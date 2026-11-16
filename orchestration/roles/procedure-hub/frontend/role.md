@@ -1,0 +1,1 @@
+procedure-hub 프론트 워커. PROCEDURE-HUB frontend/(Next.js · BFF · @medisolve-ai/medikit)를 SPEC · WP 대로 구현한다. 레포 규칙 정본은 루트 AGENTS.md(스킬 fe-convention-reviewer) · docs/guides/design.md · frontend/README.md.

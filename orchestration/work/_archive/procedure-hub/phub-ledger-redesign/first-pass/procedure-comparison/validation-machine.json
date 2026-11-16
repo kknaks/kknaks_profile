@@ -1,0 +1,61 @@
+{
+ "source": {
+  "path": "orchestration/work/phub-recommend/bronze/phub-ledger/procedure-comparison.json",
+  "bytes": 18002,
+  "code_points": 12088,
+  "encoding": "utf-8",
+  "bom": false,
+  "newlines": 0,
+  "backslash_escapes": 0,
+  "non_bmp_chars": 0,
+  "non_ascii_chars": 2959,
+  "sha256_start": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+  "sha256_end": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571"
+ },
+ "checks": {
+  "hash_unchanged": {
+   "pass": true
+  },
+  "no_duplicate_keys": {
+   "pass": true,
+   "detail": []
+  },
+  "node_span_reparse": {
+   "pass": true,
+   "detail": []
+  },
+  "bidirectional_pointer_set": {
+   "pass": true,
+   "detail": {
+    "json_paths": 533,
+    "nodes": 533
+   }
+  },
+  "morph_partition": {
+   "pass": true
+  },
+  "token_surface_reproduces": {
+   "pass": true,
+   "detail": []
+  },
+  "segmentation_review_matches_tokens": {
+   "pass": true,
+   "detail": []
+  },
+  "manual_expressions_all_hit": {
+   "pass": true,
+   "detail": []
+  },
+  "expression_review_all_used": {
+   "pass": true,
+   "detail": []
+  },
+  "expr_span_reproduces": {
+   "pass": true
+  },
+  "every_value_has_segment": {
+   "pass": true
+  }
+ },
+ "failure_count": 0
+}

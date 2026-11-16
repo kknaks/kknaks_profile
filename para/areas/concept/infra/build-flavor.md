@@ -11,9 +11,13 @@ aliases:
   - 앱 식별자
   - Signing.xcconfig
   - release · debug 서버 주소
+  - identity.local.properties
+  - 빌드 값 주입
+  - -P 주입
 up:
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-22-myeongdong-poc-v2
+  - 2026-11-16-android-app
 tags:
   - infra
   - 빌드
@@ -71,3 +75,7 @@ tags:
 
 - [[2026-10-22-myeongdong-poc-v2]] §2 — Flutter iOS 시술실 앱: 번들 id · 팀 id 를 gitignore `Signing.xcconfig` 로 · release = 배포 주소 고정, 서버 주소 칸은 debug 만(SPEC-004 §2.4 · `config/server.dart` · 실기기 T8)
 - [[2026-10-01-strong-hajin-deploy]] — 개인 Strong Hajin / 회사 medi-ax 를 flavors 오버레이로 가르고 identifier 를 판마다 고정(코드 #8)
+
+### flavor 대신 빌드 값 3단 주입 (DAY android-app)
+
+정식 id 가 아직 정해지지 않았을 때는 flavor 를 만들지 않고 `-P DAY_APPLICATION_ID/DAY_APP_NAME` > `android/identity.local.properties`(커밋 안 함) > `identity.properties`(placeholder) 순서로 읽었다. 서명 파일 경로도 같은 3단이다. iOS `Identity.xcconfig` 처럼 **저장소에 실제 id · 키 경로를 두지 않는** 원칙이고, 업로드 스크립트도 같은 `-P` 를 쓴다. 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

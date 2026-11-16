@@ -1,0 +1,34 @@
+{
+ "segment": "S16", "direct_read": true, "read_note": "M16 수액치료 8항목 전부 직접 읽음.",
+ "last_pointer": "/categories/15/items/7/high",
+ "observations": [
+  ["/categories/15/items/0/name", "'<별칭>주사 (<성분/제품>)' 형태: 백옥주사(글루타치온)·신데렐라주사(알파리포산)·마늘주사(비타민B1)·태반주사(라이넥). 괄호가 성분 또는 제품명 후보('라이넥'은 제품명으로 보이나 원문 명시 없음).", "P"],
+  ["/categories/15/items/3/name", "'감초주사 (간해독)' — 괄호가 성분이 아니라 목적/효과 후보. 같은 형태의 괄호가 성분·목적 두 역할.", "P"],
+  ["/categories/15/items/4/name", "'고농도 비타민C 수액' — '고농도' 농도 수식, 수치 없음.", "B"],
+  ["/categories/15/items/5/name", "'면역 수액 (종합 비타민)' — 목적(면역)+성분 묶음(종합 비타민). '종합' 의 구성 없음.", "B"],
+  ["/categories/15/items/7/name", "'다이어트 수액' — 목적만, 성분 없음.", "B"],
+  ["/categories/15/items/0/unit", "8항목 모두 '1회'. 용량(ml)·농도 없음.", "B"],
+  ["/categories/15/items/0/low", "8항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/15/items/0/name", "백옥주사", ["시술 별칭 후보"], ""],
+  ["/categories/15/items/0/name", "(글루타치온)", ["성분 후보"], ""],
+  ["/categories/15/items/1/name", "신데렐라주사", ["시술 별칭 후보"], ""],
+  ["/categories/15/items/1/name", "(알파리포산)", ["성분 후보"], ""],
+  ["/categories/15/items/2/name", "마늘주사", ["시술 별칭 후보"], ""],
+  ["/categories/15/items/2/name", "(비타민B1)", ["성분 후보", "영한 혼합"], ""],
+  ["/categories/15/items/3/name", "감초주사", ["시술 별칭 후보"], ""],
+  ["/categories/15/items/3/name", "(간해독)", ["목적/효과 후보"], ""],
+  ["/categories/15/items/4/name", "고농도 비타민C 수액", ["농도 수식", "성분 후보"], ""],
+  ["/categories/15/items/4/name", "고농도", ["농도 수식"], "정도 수식, 수치 없음."],
+  ["/categories/15/items/5/name", "면역 수액", ["목적 후보"], ""],
+  ["/categories/15/items/5/name", "(종합 비타민)", ["성분 후보", "구성 범위"], ""],
+  ["/categories/15/items/6/name", "태반주사", ["시술 별칭 후보"], ""],
+  ["/categories/15/items/6/name", "(라이넥)", ["제품명 후보"], ""],
+  ["/categories/15/items/7/name", "다이어트 수액", ["목적 후보"], ""]
+ ],
+ "issues": [
+  ["B-S16-1", "B", ["/categories/15/items/0/unit"], "수액 용량·농도·성분 함량이 없다(8항목). '고농도'의 기준값 없음."],
+  ["P-S16-1", "P", ["/categories/15/items/0/name"], "괄호가 성분·제품·목적 세 역할로 쓰인다 — 역할 구분은 잠정."]
+ ]
+}

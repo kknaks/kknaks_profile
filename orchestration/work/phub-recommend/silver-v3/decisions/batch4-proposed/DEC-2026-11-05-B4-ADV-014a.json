@@ -1,0 +1,118 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 10/21(unlinked → auto) · 근거 「감각 이상」 ⊃ 조각 「감각」 · 「감각둔화」 ⊃ 조각 「감각」 · 「감각저하」 ⊃ 조각 「감각」",
+ "gate_item": "b4-adv/014",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-ADV-014a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "감각 이상",
+  "category": null,
+  "synonyms": [
+   "감각"
+  ]
+ },
+ "proposal_item": "b4-adv/014",
+ "reason": "결정 묶음 4 — 문구 조각 「감각」 을 adverse_event_type 「감각 이상」 의 동의어로(근거: 「감각 이상」 ⊃ 조각 「감각」 · 「감각둔화」 ⊃ 조각 「감각」 · 「감각저하」 ⊃ 조각 「감각」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@9/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@2/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@2/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@5/3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@5/4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@5/2/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@7/3/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/0/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/2/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/3/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@8/3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/5/6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/1/5/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@8/1/6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@9/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@15/6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@9/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@13/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@13/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_event_type"
+ }
+}

@@ -1,0 +1,1169 @@
+{
+ "note": "Kiwi 0.24.1(cong) 기본 사전 원시 출력의 알려진 오분절·오태깅 출현별 기록. 토큰 전수 열람(SEG-00~13)에서 직접 찾았다. 교정하지 않았고 morphology.json 의 원시 토큰은 그대로다. 이 목록 밖의 원시 출력 정확성을 보장하지 않는다.",
+ "kinds": {
+  "SPLIT_TERM": "전문어·시술명·일반어 분해",
+  "FALSE_NUM": "숫자·수량으로 오인",
+  "FALSE_MODIFIER": "거짓 부사·수식어 생성",
+  "NEG_HIDDEN": "부정 접두가 묻히거나 사라짐",
+  "POS_SHIFT": "품사가 바뀌어 기능이 달라짐",
+  "PARTICLE_ABSORB": "조사·접미가 명사에 흡수",
+  "INCONSISTENT": "같은 표기의 분절 불일치",
+  "ID_SPLIT": "식별자·장비명 내부 기호 분리"
+ },
+ "entries": [
+  {
+   "pointer": "/optimization_principles/0",
+   "span": [
+    4,
+    6
+   ],
+   "text": "우선",
+   "raw_tokens": [
+    "우선/MAG"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "「안전성 우선」의 우선(우선순위)이 부사(MAG)로 태깅 — 명사 결합 정보가 약해진다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/5/detail",
+   "span": [
+    31,
+    33
+   ],
+   "text": "우선",
+   "raw_tokens": [
+    "우선/MAG"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "「필러 위치 안정화 우선」의 우선이 부사 — 목적·우선순위 서술이 부사로 읽힌다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/0/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/2/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/6/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/7/severity_levels/1/level",
+   "span": [
+    0,
+    3
+   ],
+   "text": "중등도",
+   "raw_tokens": [
+    "중등/NNG",
+    "도/JX"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "단계명 「중등도」가 「중등」+보조사 「도」로 갈려 정도 단계어가 사라지고 「도(또한)」로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/0/severity_levels/1/expected_sessions",
+   "span": [
+    9,
+    11
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNP",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」가 「필」+어미 「러」로 분해 — 시술 토큰 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/0/severity_levels/2/expected_sessions",
+   "span": [
+    21,
+    23
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNP",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/2/expected_sessions",
+   "span": [
+    20,
+    22
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNP",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/expected_sessions",
+   "span": [
+    47,
+    49
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNP",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/2/maintenance",
+   "span": [
+    11,
+    13
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNG",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」 분해 — 유지 빈도 「필러 6개월+」의 대상 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/maintenance",
+   "span": [
+    11,
+    13
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNG",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필러」 분해 — 유지 빈도 대상 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/0/evidence",
+   "span": [
+    64,
+    66
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "필/NNG",
+    "러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "문헌 서술 「HA 필러 열분해」의 필러 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/0/severity_levels/2/sequence",
+   "span": [
+    32,
+    34
+   ],
+   "text": "필러",
+   "raw_tokens": [
+    "피/VV",
+    "ᆯ러/EC"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「2주 후 필러」의 필러가 동사 「피다」+어미로 분석 — 순서 단계의 시술 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/1/rationale",
+   "span": [
+    30,
+    32
+   ],
+   "text": "슬림",
+   "raw_tokens": [
+    "슬/MAG",
+    "림/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「턱선 슬림」이 부사 「슬」+「림」 — 거짓 부사 생성, 효과어 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/1/rationale",
+   "span": [
+    36,
+    43
+   ],
+   "text": "바이오스티뮬로",
+   "raw_tokens": [
+    "바이오스티뮬로/NNG"
+   ],
+   "kind": "PARTICLE_ABSORB",
+   "impact": "조사 「로」가 명사에 흡수 — 다른 출현(바이오스티뮬/NNG 로/JKB)과 표면형이 달라 같은 대상 집계에서 빠진다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/2/rationale",
+   "span": [
+    26,
+    28
+   ],
+   "text": "거상",
+   "raw_tokens": [
+    "거/NNB",
+    "상/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「물리적 거상」(들어 올림)이 의존명사 「거」+「상」 — 효과어 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/2/rationale",
+   "span": [
+    15,
+    19
+   ],
+   "text": "실리프팅",
+   "raw_tokens": [
+    "실/NNG",
+    "리프팅/NNG"
+   ],
+   "kind": "INCONSISTENT",
+   "impact": "다른 출현은 실리프팅/NNP 한 토큰 — 같은 시술이 분석마다 다르게 잘림",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/recommended_base/4",
+   "span": [
+    0,
+    4
+   ],
+   "text": "실리프팅",
+   "raw_tokens": [
+    "실/NNG",
+    "리프팅/NNG"
+   ],
+   "kind": "INCONSISTENT",
+   "impact": "같은 시술의 분절 불일치",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/1/severity_levels/2/contraindicated_combos/0",
+   "span": [
+    7,
+    10
+   ],
+   "text": "비가교",
+   "raw_tokens": [
+    "비가교/NNP"
+   ],
+   "kind": "NEG_HIDDEN",
+   "impact": "부정 접두 「비(非)」가 고유명사 안에 묻힘 — 「가교 HA」와의 대비가 토큰에서 드러나지 않는다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/7/rule",
+   "span": [
+    7,
+    10
+   ],
+   "text": "비가교",
+   "raw_tokens": [
+    "비가교/NNP"
+   ],
+   "kind": "NEG_HIDDEN",
+   "impact": "부정 접두 「비」 숨김",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/7/detail",
+   "span": [
+    0,
+    3
+   ],
+   "text": "비가교",
+   "raw_tokens": [
+    "비가교/NNP"
+   ],
+   "kind": "NEG_HIDDEN",
+   "impact": "부정 접두 「비」 숨김",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/2/severity_levels/2/rationale",
+   "span": [
+    5,
+    9
+   ],
+   "text": "지방이식",
+   "raw_tokens": [
+    "지방/NNG",
+    "이/JKS",
+    "식/NNB"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「지방이식」의 이식이 주격조사 「이」+「식」 — 시술명 소실, 거짓 주어 표지",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/1/rationale",
+   "span": [
+    30,
+    35
+   ],
+   "text": "스킨부스터",
+   "raw_tokens": [
+    "스킨/NNG",
+    "부스/NNG",
+    "터/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술 계열명 3토큰 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/rationale",
+   "span": [
+    75,
+    80
+   ],
+   "text": "스킨부스터",
+   "raw_tokens": [
+    "스킨/NNG",
+    "부스/NNG",
+    "터/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술 계열명 3토큰 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/optimal_combo/0",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/sequence",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/rationale",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/expected_sessions",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/contraindicated_combos/0",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+   "span": [
+    90,
+    93
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/optimal_combo/0",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/sequence",
+   "span": [
+    30,
+    33
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/rationale",
+   "span": [
+    25,
+    28
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/expected_sessions",
+   "span": [
+    29,
+    32
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/contraindicated_combos/0",
+   "span": [
+    0,
+    3
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/upgrade/0",
+   "span": [
+    5,
+    8
+   ],
+   "text": "CO2",
+   "raw_tokens": [
+    "CO/SL",
+    "2/SN"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "장비명 「CO2」의 2가 숫자(SN)로 분리 — 수량·회차로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+   "span": [
+    0,
+    3
+   ],
+   "text": "엑소좀",
+   "raw_tokens": [
+    "엑소/NNP",
+    "좀/MAG"
+   ],
+   "kind": "FALSE_MODIFIER",
+   "impact": "「엑소좀」이 「엑소」+정도부사 「좀(조금)」 — 거짓 정도 수식 생성, 대상명 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+   "span": [
+    51,
+    53
+   ],
+   "text": "유의",
+   "raw_tokens": [
+    "유/NNG",
+    "의/JKG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「유의 개선」(통계적 유의)이 「유」+관형격조사 — 근거 강도 표현 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/optimal_combo/1",
+   "span": [
+    6,
+    8
+   ],
+   "text": "경구",
+   "raw_tokens": [
+    "경/NNG",
+    "구/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "투여 경로 「경구」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/optimal_combo/1",
+   "span": [
+    9,
+    11
+   ],
+   "text": "국소",
+   "raw_tokens": [
+    "국/NNG",
+    "소/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "투여 경로 「국소」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/2/sequence",
+   "span": [
+    9,
+    11
+   ],
+   "text": "국소",
+   "raw_tokens": [
+    "국/NNG",
+    "소/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "투여 경로 「국소」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/optimal_combo/3",
+   "span": [
+    8,
+    10
+   ],
+   "text": "병용",
+   "raw_tokens": [
+    "병/NNG",
+    "용/XSN"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「병용 보조」의 병용(함께 씀)이 「병」+접미사 — 병용 조건 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/sequence",
+   "span": [
+    47,
+    49
+   ],
+   "text": "선행",
+   "raw_tokens": [
+    "선/NNG",
+    "행/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「광차단 선행」의 선행(먼저 함) 분해 — 선행 조건 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/4/severity_levels/1/sequence",
+   "span": [
+    71,
+    73
+   ],
+   "text": "미백",
+   "raw_tokens": [
+    "미/NNP",
+    "백/NR"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "「스킨부스터(미백)」의 미백이 「미」+수사 「백(100)」 — 거짓 수량 생성",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/0/sequence",
+   "span": [
+    16,
+    18
+   ],
+   "text": "필링",
+   "raw_tokens": [
+    "필/NNG",
+    "링/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필링」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/annual_plans/1/schedule/11/procedures/1",
+   "span": [
+    9,
+    11
+   ],
+   "text": "필링",
+   "raw_tokens": [
+    "필/NNG",
+    "링/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「필링」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/sequence",
+   "span": [
+    0,
+    4
+   ],
+   "text": "서브시전",
+   "raw_tokens": [
+    "서브/NNG",
+    "시전/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "시술명 「서브시전」 분해(다른 출현은 한 토큰)",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/expected_sessions",
+   "span": [
+    0,
+    4
+   ],
+   "text": "서브시전",
+   "raw_tokens": [
+    "서브시/NNP",
+    "전/MM"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「서브시전」이 「서브시」+관형사 「전」 — 시술명 소실, 거짓 관형사",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/expected_sessions",
+   "span": [
+    0,
+    4
+   ],
+   "text": "서브시전",
+   "raw_tokens": [
+    "서브시/NNP",
+    "전/MM"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "같음",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/sequence",
+   "span": [
+    11,
+    13
+   ],
+   "text": "박리",
+   "raw_tokens": [
+    "박/NNG",
+    "리/XSN"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「흉터 박리」의 박리 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/rationale",
+   "span": [
+    11,
+    13
+   ],
+   "text": "박리",
+   "raw_tokens": [
+    "박/NNG",
+    "리/XSN"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「섬유화 박리」의 박리 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/1/sequence",
+   "span": [
+    38,
+    40
+   ],
+   "text": "동시",
+   "raw_tokens": [
+    "동/MM",
+    "시/NNB"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「PRP 동시 도포」의 동시가 관형사 「동」+의존명사 「시」 — 동시 시점 표현이 토큰에서 사라진다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/level",
+   "span": [
+    7,
+    10
+   ],
+   "text": "박스카",
+   "raw_tokens": [
+    "박스/NNG",
+    "카/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "흉터 유형 「박스카」 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/level",
+   "span": [
+    11,
+    15
+   ],
+   "text": "아이스픽",
+   "raw_tokens": [
+    "아이스/NNG",
+    "픽/MAG"
+   ],
+   "kind": "FALSE_MODIFIER",
+   "impact": "흉터 유형 「아이스픽」이 「아이스」+부사 「픽」 — 거짓 부사",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/5/severity_levels/2/sequence",
+   "span": [
+    56,
+    58
+   ],
+   "text": "남은",
+   "raw_tokens": [
+    "남/NNG",
+    "은/JX"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "「필러(남은 함몰)」의 남은(남다+관형형)이 명사 「남」+보조사 — 잔여 조건이 사라진다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/6/severity_levels/1/rationale",
+   "span": [
+    34,
+    40
+   ],
+   "text": "Nd:YAG",
+   "raw_tokens": [
+    "Nd/SL",
+    ":/SP",
+    "YAG/SL"
+   ],
+   "kind": "ID_SPLIT",
+   "impact": "장비명 「Nd:YAG」의 콜론이 구두점(SP)으로 분리 — 라벨 구분자(「밝은 피부:」)와 구별되지 않는다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_concern/6/severity_levels/2/optimal_combo/0",
+   "span": [
+    21,
+    27
+   ],
+   "text": "Nd:YAG",
+   "raw_tokens": [
+    "Nd/SL",
+    ":/SP",
+    "YAG/SL"
+   ],
+   "kind": "ID_SPLIT",
+   "impact": "같음",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/0/avoid/0",
+   "span": [
+    17,
+    19
+   ],
+   "text": "중요",
+   "raw_tokens": [
+    "중/NNB",
+    "요/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「자연스러운 노화 중요」의 중요가 「중」+「요」 — 회피 사유의 판단어 소실",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/2/primary_concerns/1",
+   "span": [
+    0,
+    2
+   ],
+   "text": "처짐",
+   "raw_tokens": [
+    "처지/VV",
+    "ᆷ/EF"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "단독 명사 「처짐」의 ㅁ이 종결어미(EF)로 — 다른 출현(ETN 명사형)과 다름",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/primary_concerns/0",
+   "span": [
+    0,
+    2
+   ],
+   "text": "처짐",
+   "raw_tokens": [
+    "처지/VV",
+    "ᆷ/EF"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "같음",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/note",
+   "span": [
+    22,
+    25
+   ],
+   "text": "비수술",
+   "raw_tokens": [
+    "비수/NNG",
+    "술/NNG"
+   ],
+   "kind": "NEG_HIDDEN",
+   "impact": "「비수술 조합」이 「비수(秘手)」+「술」 — 부정 접두 「비」 소실로 수술/비수술 대비가 사라진다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/by_age_group/3/recommended_base/0",
+   "span": [
+    5,
+    9
+   ],
+   "text": "울쎄라급",
+   "raw_tokens": [
+    "울쎄라급/NNP"
+   ],
+   "kind": "PARTICLE_ABSORB",
+   "impact": "등급 접미 「급」이 고유명사에 흡수 — 근사(수준) 표현이 토큰에서 드러나지 않는다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/0/rule",
+   "span": [
+    0,
+    3
+   ],
+   "text": "열시술",
+   "raw_tokens": [
+    "열/NR",
+    "시/NNB",
+    "술/NNG"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "「열시술」(열을 쓰는 시술)이 수사 「열(10)」+의존명사 「시(時)」+「술」 — 거짓 수량·시각 생성",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/0/detail",
+   "span": [
+    13,
+    16
+   ],
+   "text": "열시술",
+   "raw_tokens": [
+    "열/NR",
+    "시/NNB",
+    "술/NNG"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "같음 — 거짓 「10시」",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/0/detail",
+   "span": [
+    34,
+    37
+   ],
+   "text": "열시술",
+   "raw_tokens": [
+    "열/NR",
+    "시/NNB",
+    "술/NNG"
+   ],
+   "kind": "FALSE_NUM",
+   "impact": "같음",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/2/rule",
+   "span": [
+    18,
+    20
+   ],
+   "text": "수화",
+   "raw_tokens": [
+    "수/NNG",
+    "화/XSN"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「수화」(물을 머금게 함) 분해",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/2/detail",
+   "span": [
+    109,
+    111
+   ],
+   "text": "수화",
+   "raw_tokens": [
+    "수/NNB",
+    "화/XSN"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "「충분한 수화」의 수화가 의존명사 「수」+접미사 — 「~할 수」 표지로 오인될 수 있다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/2/detail",
+   "span": [
+    55,
+    57
+   ],
+   "text": "결절",
+   "raw_tokens": [
+    "결/NNG",
+    "절/NNG"
+   ],
+   "kind": "INCONSISTENT",
+   "impact": "「결절 예방」의 결절 분해(같은 값의 「결절률」은 결절/NNG)",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/2/detail",
+   "span": [
+    119,
+    121
+   ],
+   "text": "깊이",
+   "raw_tokens": [
+    "깊이/MAG"
+   ],
+   "kind": "POS_SHIFT",
+   "impact": "「정확한 주입 깊이」의 명사 깊이가 부사(깊게)로 — 깊이 조건이 수식어로 바뀐다",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/2/evidence",
+   "span": [
+    100,
+    105
+   ],
+   "text": "비마사지군",
+   "raw_tokens": [
+    "비마사지군/NNG"
+   ],
+   "kind": "NEG_HIDDEN",
+   "impact": "부정 접두 「비」가 한 명사에 묻힘 — 대조군 표지 숨김",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/combination_rules/4/detail",
+   "span": [
+    17,
+    19
+   ],
+   "text": "반동",
+   "raw_tokens": [
+    "반/NNG",
+    "동/NNG"
+   ],
+   "kind": "INCONSISTENT",
+   "impact": "「반동 색소침착」의 반동 분해(다른 출현은 반동/NNG)",
+   "status": "K-기록됨(교정 안 함)"
+  },
+  {
+   "pointer": "/annual_plans/1/schedule/0/procedures/0",
+   "span": [
+    4,
+    6
+   ],
+   "text": "이마",
+   "raw_tokens": [
+    "이/MM",
+    "마/NNG"
+   ],
+   "kind": "SPLIT_TERM",
+   "impact": "부위 「이마」가 관형사 「이(this)」+「마」 — 부위 소실",
+   "status": "K-기록됨(교정 안 함)"
+  }
+ ]
+}

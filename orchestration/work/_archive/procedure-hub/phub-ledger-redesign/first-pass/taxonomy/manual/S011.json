@@ -1,0 +1,43 @@
+{"section":"S011","state":"read","last_pointer":"/modality/3/subcategories/1/items/6/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/3/subcategories/0/label","/modality/3/subcategories/1/label"],"note":"M4 하위분류 label 'PN/PDRN', 'HA (물광)' — 성분 축. 'HA (물광)' 은 성분+통칭 시술명 병기."},
+ {"status":"I","pointers":["/modality/3/subcategories/0/items/4/extracted/overview","/modality/3/subcategories/0/items/4/extracted/onset_duration/onset","/modality/3/subcategories/0/items/4/extracted/onset_duration/duration"],"note":"인에이블: overview 가 '리도카인·프로카인 마취제가 아님(이전 … 표기는 오기)'라 정정하지만 onset '5-10분', duration '1-2시간' 은 마취제 같은 시간값이 그대로 남아 있다(정정 미반영 흔적으로 보임)."},
+ {"status":"I","pointers":["/modality/3/subcategories/0/items/5/detail","/modality/3/subcategories/0/items/5/extracted/overview","/modality/3/subcategories/0/items/5/extracted/mechanism"],"note":"스네일샷: detail 'PN 기반 스킨부스터', overview·mechanism 은 '달팽이 분비물 추출물 기반'. PN/PDRN 하위분류 소속과도 서술이 엇갈린다."},
+ {"status":"P","pointers":["/modality/3/subcategories/0/items/3/extracted/overview"],"note":"비타란 overview 에 이름 오해 방지 문구('제품명에 비타가 들어가지만 비타민 제제가 아님'). 원문이 스스로 이름-성분 오해를 경고한다. 그런데 indications 는 '항산화 필요','영양 공급' — 비타민형 서술과 유사(판단 후속)."},
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/2/extracted/overview","/modality/3/subcategories/1/label"],"note":"릴리이드M 은 '멀티펩타이드 스킨부스터'(펩타이드·성장인자)인데 'HA (물광)' 하위분류에 있다. NCTF 필로르가·매쿰7 도 복합 성분 메조테라피."},
+ {"status":"P","pointers":["/modality/3/subcategories/0/items/0/extracted/mechanism","/modality/3/subcategories/0/items/1/extracted/mechanism"],"note":"리쥬란 계열 mechanism 에 주입 깊이 약어와 수치('IDS(1-2mm)', 'IED(1mm)') — 약어 정의 없음."},
+ {"status":"P","pointers":["/modality/3/subcategories/0/items/0/extracted/aftercare/2"],"note":"M4 상용구 '[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 …' 가 모든 항목에 반복(GLOBAL-I01)."},
+ {"status":"P","pointers":["/modality/3/subcategories/0/items/2/name","/modality/3/subcategories/0/items/7/detail"],"note":"이름·detail 의 '+' 가 성분 복합('리쥬란HB+' 의 끝 '+' 는 상표 일부로 보임, 'HA+PN 복합', 'PDRN+초음파' 는 성분+기기 병용). 같은 기호가 상표·성분·병용에 쓰인다(GLOBAL-F01)."}
+],
+"expressions":[
+ {"pointer":"/modality/3/subcategories/0/items/0/extracted/mechanism","text":"IDS(1-2mm) 깊이로 진피상층에 주입","kinds":["수량·단위·시간","범위","부위"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/1/extracted/mechanism","text":"IED(1mm) 얕은 깊이 주입","kinds":["수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/1/detail","text":"파마리서치 눈가 전용","kinds":["부위","조건"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/1/extracted/aftercare/0","text":"1-2일 눈 비비지 않기","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/1/extracted/aftercare/1","text":"안경/선글라스 착용","kinds":["기호"],"note":"'/' 대안"},
+ {"pointer":"/modality/3/subcategories/0/items/1/extracted/indications/primary/4","text":"눈가 가늘어짐","kinds":["부위","수식"],"note":"의미 모호(피부 얇아짐?) — 해석하지 않음"},
+ {"pointer":"/modality/3/subcategories/0/items/0/extracted/aftercare/2","text":"유지 목적 시 효과 감소 시점에 재시술 고려","kinds":["조건","수량·단위·시간"],"note":"상용구"},
+ {"pointer":"/modality/3/subcategories/0/items/0/extracted/aftercare/2","text":"1-3개월 간격, 2-3회 코스 권장","kinds":["수량·단위·시간","범위"],"note":"상용구"},
+ {"pointer":"/modality/3/subcategories/0/items/3/extracted/overview","text":"제품명에 '비타'가 들어가지만 비타민 제제가 아님","kinds":["부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/4/extracted/overview","text":"리도카인·프로카인 마취제가 아님(이전 'PN = 프로카인/리도카인' 표기는 오기)","kinds":["부정","참조"],"note":"원문 내 정정 기록"},
+ {"pointer":"/modality/3/subcategories/0/items/4/extracted/onset_duration/onset","text":"5-10분","kinds":["수량·단위·시간","범위"],"note":"S011-I01"},
+ {"pointer":"/modality/3/subcategories/0/items/5/extracted/aftercare/1","text":"알코올 성분 화장품 1주일간 사용 자제","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/7/extracted/aftercare/0","text":"시술 후 24시간 물 접촉 최소화","kinds":["수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/3/subcategories/0/items/7/extracted/mechanism","text":"초음파가 흡수를 향상시킵니다","kinds":["수식"],"note":"기기 병용"},
+ {"pointer":"/modality/3/subcategories/1/items/0/extracted/aftercare/1","text":"고온/저온 피하기","kinds":["부정","기호"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/4/extracted/indications/primary/0","text":"극도의 건성 피부","kinds":["수식"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/5/detail","text":"53가지 활성성분+HA","kinds":["수량·단위·시간","기호"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/5/extracted/aftercare/0","text":"24시간 내 세안 시 찬물 사용, 사우나·찜질방 2주간 자제","kinds":["수량·단위·시간","조건","부정"],"note":"한 원소에 두 지시"},
+ {"pointer":"/modality/3/subcategories/1/items/6/extracted/overview","text":"7가지 성분의 복합 스킨부스터","kinds":["수량·단위·시간"],"note":"이름 '매쿰7' 의 7"}
+],
+"seg_errors":[
+ {"scope":"all","surface":"리쥬란","issue":"'리쥬란아이','리쥬란HB+' 에서 리쥬/NNP 이/VCP 란/ETM 으로 분해(리쥬란힐러는 한 토큰)","impact":"브랜드명이 서술격+어미로 바뀜"},
+ {"scope":"all","surface":"필로르가","issue":"단독 출현 시 필로르/NNP 가/JKS — 끝 '가' 를 조사로","impact":"제품명 절단"},
+ {"scope":"all","surface":"릴리이드M","issue":"릴리/NNP 이드/NNG M/SL","impact":"제품명 분해"},
+ {"scope":"all","surface":"박피부","issue":"박/NNG 피부/NNG — '얇은 피부(薄皮膚)' 의미가 '박' 으로 분리","impact":"수식 의미 소실"}
+],
+"issues":[
+ {"id":"S011-I01","status":"I","pointers":["/modality/3/subcategories/0/items/4/extracted/overview","/modality/3/subcategories/0/items/4/extracted/onset_duration"],"note":"인에이블 정정 문구와 마취제형 시간값 공존.","impact":"onset_duration 채택 금지 후보 — 원본 확인은 후속"},
+ {"id":"S011-I02","status":"I","pointers":["/modality/3/subcategories/0/items/5/detail","/modality/3/subcategories/0/items/5/extracted/overview"],"note":"스네일샷 PN vs 달팽이 분비물.","impact":"성분 축 분류 후속 확인"},
+ {"id":"S011-F01","status":"F","pointers":["/modality/3/subcategories/1/items/2","/modality/3/subcategories/1/items/5","/modality/3/subcategories/1/items/6"],"note":"HA(물광) 하위분류에 펩타이드·복합 메조 제품.","impact":"하위분류 축(성분) 과 실제 성분 불일치 — 설계 단계 판단"}
+]}

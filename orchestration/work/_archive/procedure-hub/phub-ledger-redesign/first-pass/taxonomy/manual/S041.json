@@ -1,0 +1,37 @@
+{"section":"S041","state":"read","last_pointer":"/modality/14/subcategories/2/items/5/extracted/aftercare/2",
+"observations":[
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/59/name","/modality/14/subcategories/0/items/29/detail"],"note":"'물톡스' 가 항목 name(auto-M15-1775402148301)이면서 PHA필 detail 의 별칭('물톡스 · PHA 기반 …')으로도 나온다. 두 항목 모두 PHA 기반 수분 필링."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/57","/modality/14/subcategories/0/items/58"],"note":"엑소좀필·줄기세포필 — 다른 계열(M4-3 엑소좀, M17 줄기세포) 성분을 필링과 결합한 항목명."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/60/detail","/modality/14/subcategories/0/items/46"],"note":"런치필 detail '크리스탈/다이아몬드 경량 필링 · 점심시간 가능' — 크리스탈필과 같은 물리적 미세박피 계열, 이름이 시간대(점심) 유래."},
+ {"status":"P","pointers":["/modality/14/subcategories/1/label","/modality/14/subcategories/1/items/0/name","/modality/14/subcategories/0/items/8/extracted/overview"],"note":"M15-2 '딥클렌징' 하위분류의 아쿠아필(워터제트) — 앞의 케미컬필링 밀크필도 '워터제트 기반 물리적 클렌징'. 같은 성격 항목이 두 하위분류에 나뉨."},
+ {"status":"I","pointers":["/modality/14/subcategories/1/items/2/extracted/indications/primary","/modality/14/subcategories/1/items/2/extracted/overview"],"note":"라라젯 (클렌징) overview '공기압 딥클렌징 장비' 인데 indications '주름 개선','피부 처짐','흉터 개선', safety '시술 중 따뜻함','화상' — 클렌징과 맞지 않는 값(다른 장비 레코드 혼입 의심). detail 빈 문자열."},
+ {"status":"P","pointers":["/modality/14/subcategories/1/items/1/extracted/mechanism"],"note":"하이드라페이셜 mechanism '아쿠아필 대비 강력한 정소력' — 다른 항목(아쿠아필) 비교 참조, '정소력' 오기 의심(S038 '정소하므로' 와 같은 표기)."},
+ {"status":"P","pointers":["/modality/14/subcategories/2/items/0/name","/modality/14/subcategories/2/items/3/name"],"note":"'옴니룩스'(M15-3-1)와 '옴니럭스'(auto) — 표기만 다른 LED 장비 두 항목."},
+ {"status":"P","pointers":["/modality/14/subcategories/2/items/1/extracted/indications/primary/1"],"note":"힐라이트 indications '주사' — 질환명(주사비) 동형이의(S022-K01 과 같은 성격)."},
+ {"status":"P","pointers":["/modality/14/subcategories/2/items/0/extracted/onset_duration/onset","/modality/14/subcategories/2/items/1/extracted/onset_duration/duration"],"note":"LED 항목 onset/duration 이 회차·시리즈 기준('3-5회차부터','시리즈 완료 후 4-8주','유지 관리 필요')."}
+],
+"expressions":[
+ {"pointer":"/modality/14/subcategories/0/items/56/detail","text":"콜라겐 유효성분 침투 · 탄력+재생","kinds":["기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/57/detail","text":"엑소좀 도포+필링 · 재생+항염","kinds":["기호","참조"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/58/detail","text":"줄기세포 배양액+필링 · 재생+영양","kinds":["기호","참조"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/59/extracted/mechanism","text":"PHA는 분자량이 커서 피부 깊숙이 침투하지 않아 자극을 최소화하면서","kinds":["부정","조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/60/detail","text":"크리스탈/다이아몬드 경량 필링 · 점심시간 가능","kinds":["기호","가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/0/extracted/mechanism","text":"(클렌징) → 다양한 혈청 성분으로 피부 수분 공급(보습) → 항산화, 펩타이드 등 활성 성분 침투(영양 공급)","kinds":["기호","수량·단위·시간"],"note":"'→' 3단계"},
+ {"pointer":"/modality/14/subcategories/1/items/0/extracted/mechanism","text":"물리적 + 화학적 + 영양학적 3단계 시너지","kinds":["기호","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/1/extracted/mechanism","text":"아쿠아필 대비 강력한 정소력으로","kinds":["비교","참조"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/1/extracted/aftercare/1","text":"강한 자극 피하기(48시간)","kinds":["수식","부정","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/2/extracted/mechanism","text":"공기압으로 약물을 피부에 주입하는 기능도 겸한다","kinds":["수식"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/3/extracted/safety/common/2","text":"묘한 따끔거림","kinds":["수식"],"note":"비전문 수식어"},
+ {"pointer":"/modality/14/subcategories/1/items/3/extracted/indications/primary/2","text":"여드름 전단계 피부 관리","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/1/items/6/detail","text":"물 흡인+약물 도포 동시 관리","kinds":["기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/2/items/0/extracted/onset_duration/onset","text":"3-5회차부터","kinds":["수량·단위·시간","범위"],"note":"회차 기준 시점"},
+ {"pointer":"/modality/14/subcategories/2/items/1/extracted/aftercare/0","text":"보습 강화(NMF+세포간 지질)","kinds":["기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/2/items/3/extracted/mechanism","text":"적색광(630-700nm)과 근적외선(700-1000nm)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/2/items/4/extracted/mechanism","text":"주로 630-700nm 적색광, 415nm 청색광","kinds":["수량·단위·시간","가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/2/items/5/detail","text":"LED 마스크 · 클리닉용","kinds":["조건"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S041-I01","status":"I","pointers":["/modality/14/subcategories/1/items/2/extracted/indications/primary","/modality/14/subcategories/1/items/2/extracted/safety"],"note":"라라젯 (클렌징) 적응증·부작용이 클렌징과 맞지 않음.","impact":"레코드 혼입 의심 — 원본 확인 후보"},
+ {"id":"S041-F01","status":"F","pointers":["/modality/14/subcategories/2/items/0","/modality/14/subcategories/2/items/3","/modality/14/subcategories/0/items/59","/modality/14/subcategories/0/items/29"],"note":"표기만 다른 항목 쌍(옴니룩스/옴니럭스), 이름·별칭 중복(물톡스).","impact":"개체 병합 후속"}
+]}

@@ -1,0 +1,22 @@
+{"section":"S019","state":"read","last_pointer":"/modality/6/name",
+"observations":[
+ {"status":"I","pointers":["/modality/6/products/3/material","/modality/6/products/3/extracted/overview","/modality/6/subcategories/2/items/1/detail"],"note":"테스리프트: 제품 material 'PDO+PCL', overview 'PDO, PLLA, PCL 복합 구성', 브랜드 항목 detail 'PDO+몰딩 메쉬'. 재질 서술 세 가지."},
+ {"status":"I","pointers":["/modality/6/products/4/extracted/mechanism","/modality/6/products/4/extracted/onset_duration/duration","/modality/6/subcategories/2/items/2/extracted/onset_duration/duration"],"note":"실루엣소프트: 제품 mechanism '24-36개월 점진적 분해', duration '18~24개월', 항목 duration '12-18개월'."},
+ {"status":"P","pointers":["/modality/6/products/4/extracted/aftercare/4","/modality/6/products/4/extracted/mechanism"],"note":"영문 해부 지표명 'Pitanguy line', '인대선 고정점' — 위치 표현이 원문에만 있고 정의 없음."}
+],
+"expressions":[
+ {"pointer":"/modality/6/products/3/extracted/mechanism","text":"PDO 실(6개월)은 즉각적 물리적 거상을 제공하며, PLLA(12-18개월)와 PCL(24-36개월)은 점진적 조직 자극","kinds":["수량·단위·시간","범위","비교"],"note":"재질별 기간"},
+ {"pointer":"/modality/6/products/3/extracted/safety/common/3","text":"표면 울퉁불퉁함(2-4주 내 개선)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/products/3/extracted/onset_duration/duration","text":"최대 24-36개월(PCL 기반)","kinds":["범위","조건"],"note":""},
+ {"pointer":"/modality/6/products/3/extracted/aftercare/1","text":"1주일 금주, 금연","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/6/products/3/extracted/aftercare/2","text":"강한 마사지/미용시술 2주 회피","kinds":["부정","수량·단위·시간","기호"],"note":""},
+ {"pointer":"/modality/6/products/4/extracted/mechanism","text":"혈관신생(모세혈관 2배 증가)","kinds":["수량·단위·시간"],"note":"배수"},
+ {"pointer":"/modality/6/products/4/extracted/indications/primary/0","text":"경도~중등도 안면 처짐","kinds":["범위","수식"],"note":"정도 범위"},
+ {"pointer":"/modality/6/products/4/extracted/aftercare/3","text":"배치 부위 수평 누움 1주일 제한","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/6/products/4/extracted/aftercare/4","text":"Pitanguy line 주변 충격 방지","kinds":["부위","부정"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S019-I01","status":"I","pointers":["/modality/6/products/3/material","/modality/6/products/3/extracted/overview"],"note":"테스리프트 재질 서술 불일치.","impact":"재질 축 후속"},
+ {"id":"S019-I02","status":"I","pointers":["/modality/6/products/4/extracted/mechanism","/modality/6/products/4/extracted/onset_duration/duration"],"note":"실루엣소프트 기간 불일치.","impact":"기간 채택 후속"}
+]}

@@ -1,0 +1,202 @@
+# S009  scope=M3 바이오스티뮬레이터/콜라겐부스터  units=M3-3 items/3 | M3-4 items/0 | M3-4 items/1 | M3-new-1774324237649 items/0 | M3-new-1774324237649 items/1 | M3-new-1774324237649 items/2 | M3-new-1774324237649 items/3 | M3-new-1774324237649 items/4 | M3-new-1774324237649 items/5 | M3-new-1774324512965 items/0 | extracted | products 컨테이너
+# 상위 문맥: [{"pointer": "/modality/2", "id": "M3", "category": "바이오스티뮬레이터/콜라겐부스터", "name": "바이오스티뮬레이터/콜라겐부스터"}, {"pointer": "/modality/2/subcategories/3", "id": "M3-3", "label": "PCL (폴리카프로락톤)"}]
+@ /modality/2/subcategories/3/items/3 auto-M3-1775364775148 린피니
+  . {id,name,detail,extracted}
+  /id = "auto-M3-1775364775148"
+  /name = "린피니"
+  /detail = "PCL신규"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "신규 PCL 기반의 차세대 바이오스티뮬레이터"
+  /extracted/mechanism = "폴리카프로락톤(PCL) 마이크로스피어가 서서히 분해되며 콜라겐 합성을 촉진합니다. 점진적이고 자연스러운 피부 재생과 볼륨 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"콜라겐 리모델링" ‖ 1:"피부 탄력 향상" ‖ 2:"자연스러운 볼륨 증대"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"주사 부위 압통" ‖ 2:"발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "12-24개월"
+  /extracted/aftercare [3] = 0:"규칙적인 마사지" ‖ 1:"충분한 수분 공급" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/4 M3-4 PDLLA (폴리-D,L-락틱산)
+  . {id,label,items}
+  /id = "M3-4"
+  /label = "PDLLA (폴리-D,L-락틱산)"
+  /items [2]
+@ /modality/2/subcategories/4/items/0 M3-4-2 쥬베룩볼륨
+  . {id,name,detail,extracted}
+  /id = "M3-4-2"
+  /name = "쥬베룩볼륨"
+  /detail = "바임 고함량 PDLLA+HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고함량 PDLLA/HA 콜라겐 부스터"
+  /extracted/mechanism = "고농도 PDLLA 미세입자와 하이알루론산(HA) 하이드로겔의 최적 복합체. PDLLA의 이물반응으로 지속적 콜라겐 유도, HA의 하이드로필릭 성질로 즉각 볼륨과 보습 동시 제공."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"중증 위축" ‖ 1:"심한 팔자주름" ‖ 2:"광대뼈 보강" ‖ 3:"얼굴 전체 리프팅"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"결절 형성" ‖ 2:"일시적 홍반"
+  /extracted/safety/serious [2] = 0:"지연성 육아종" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주(HA 즉시 + PDLLA 점진)"
+  /extracted/onset_duration/duration = "24-30개월"
+  /extracted/aftercare [4] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"과도한 열 노출 피하기" ‖ 2:"햇빛 차단" ‖ 3:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/4/items/1 M3-4-1 쥬베룩
+  . {id,name,detail,extracted}
+  /id = "M3-4-1"
+  /name = "쥬베룩"
+  /detail = "바임 PDLLA+HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDLLA+HA 복합 바이오스티뮬레이터"
+  /extracted/mechanism = "PDLLA 미세입자가 이물반응을 유도하여 콜라겐 생성을 자극하고, HA 하이드로겔이 즉각적인 볼륨을 제공하는 이중 작용 메커니즘. 진피 내 주입 시 지속적인 콜라겐 재형성으로 장기 효과 유지."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"볼륨 손실 교정" ‖ 1:"팔자주름" ‖ 2:"입가주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"경결감" ‖ 2:"이물감"
+  /extracted/safety/serious [2] = 0:"육아종 형성" ‖ 1:"과도한 이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~2주"
+  /extracted/onset_duration/duration = "12~18개월"
+  /extracted/aftercare [4] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"과도한 표정 움직임 제한" ‖ 2:"냉찜질 48시간" ‖ 3:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5 M3-new-1774324237649 무세포동종진피(hADM)
+  . {id,label,description,items}
+  /id = "M3-new-1774324237649"
+  /label = "무세포동종진피(hADM)"
+  /description = "무세포동종진피(hADM, human Acellular Dermal Matrix) 기반 ECM 스킨부스터. 인체 진피 조직에서 세포를 제거하고 ECM(콜라겐/엘라스틴/GAGs) 구조만 남겨 피부에 직접 주입. 기존 스킨부스터(콜라겐 생성 '유도')와 달리 콜라겐 구조 자체를 '직접 보충'. 인체조직은행 허가 필요(식약처). 의료기기 허가는 별도. 주요 제조사: 엘앤씨바이오(리투오), 한스바이오메드(셀르디엠), 바임(쥬브아셀), 더에쓰씨(아디떼), 도프(DOF)"
+  /items [6]
+@ /modality/2/subcategories/5/items/0 auto-17-1774737181584 리투오
+  . {id,name,detail,extracted}
+  /id = "auto-17-1774737181584"
+  /name = "리투오"
+  /detail = "휴메딕스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "엘앤씨바이오/휴메딕스 · 세계 최초 hADM ECM 스킨부스터 · 입자 100µm"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs — 을 피부 진피층에 직접 주입한다. 콜라겐 생성을 '유도'하는 것이 아니라 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다. 100µm 입자. 세계 최초 hADM ECM 스킨부스터. 빠른 탄력 체감. 거래처 2000곳+."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5/items/1 auto-18-1774737181584 리투오파인
+  . {id,name,detail,extracted}
+  /id = "auto-18-1774737181584"
+  /name = "리투오파인"
+  /detail = "휴메딕스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "엘앤씨바이오/휴메딕스 · hADM 미세입자 경량형"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs — 을 피부 진피층에 직접 주입한다. 콜라겐 생성을 '유도'하는 것이 아니라 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다. 리투오의 경량 버전. 미세 입자로 피부결 개선에 최적화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5/items/2 auto-19-1774737181584 셀르디엠
+  . {id,name,detail,extracted}
+  /id = "auto-19-1774737181584"
+  /name = "셀르디엠"
+  /detail = "한스바이오파마"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "한스바이오메드/민트메디컬 · hADM · 75µm 초미세입자 · ECM 160mg"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs — 을 피부 진피층에 직접 주입한다. 콜라겐 생성을 '유도'하는 것이 아니라 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다. 75µm 초미세 입자로 균일한 콜라겐 전달. ECM 함량 160mg으로 업계 최고."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5/items/3 auto-20-1774737181584 쥬브아셀
+  . {id,name,detail,extracted}
+  /id = "auto-20-1774737181584"
+  /name = "쥬브아셀"
+  /detail = "바임"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "바임 · hADM ECM 스킨부스터"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs — 을 피부 진피층에 직접 주입한다. 콜라겐 생성을 '유도'하는 것이 아니라 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5/items/4 auto-21-1774737181584 아디떼
+  . {id,name,detail,extracted}
+  /id = "auto-21-1774737181584"
+  /name = "아디떼"
+  /detail = "더에쓰씨"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "더에쓰씨 · hADM ECM 스킨부스터"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs — 을 피부 진피층에 직접 주입한다. 콜라겐 생성을 '유도'하는 것이 아니라 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/5/items/5 auto-M3-hADM-1775404146754 도프ECM
+  . {id,name,detail,extracted}
+  /id = "auto-M3-hADM-1775404146754"
+  /name = "도프ECM"
+  /detail = "도프(DOF) · hADM · 바임 판매 예정 · 2025 출시"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "도프(DOF) · hADM · 바임 판매 예정 · 2025 출시"
+  /extracted/mechanism = "인체 유래 무세포동종진피(hADM)에서 세포와 면역유발 인자를 제거하고 남은 세포외기질(ECM) — 콜라겐, 엘라스틴, GAGs(글리코사미노글리칸) — 을 피부 진피층에 직접 주입한다. 기존 스킨부스터가 콜라겐 '생성을 유도'하는 방식이라면, hADM은 콜라겐 구조 자체를 '직접 보충'하여 진피 환경을 근본적으로 재건한다. 도프(DOF) 자체 조직가공 기술. 바임 판매 예정."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름" ‖ 2:"피부결/밀도 개선" ‖ 3:"모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"경결감" ‖ 3:"일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (ECM 리모델링 지속)"
+  /extracted/aftercare [3] = 0:"주입 부위 당일 자극 자제" ‖ 1:"멍/부종은 수일 내 자연 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/6 M3-new-1774324512965 PDO (폴리디옥사논)
+  . {id,label,items}
+  /id = "M3-new-1774324512965"
+  /label = "PDO (폴리디옥사논)"
+  /items [1]
+@ /modality/2/subcategories/6/items/0 auto-22-1774737181584 울트라콜
+  . {id,name,detail,extracted}
+  /id = "auto-22-1774737181584"
+  /name = "울트라콜"
+  /detail = "울트라브이"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "울트라브이 PDO 미세입자 콜라겐부스터"
+  /extracted/mechanism = "폴리디옥사논(PDO) 미세입자를 진피에 주입하여 이물반응을 유도, 콜라겐 신생을 자극한다. PDO는 약 6개월에 걸쳐 생분해되며, 그 과정에서 신생 콜라겐이 생성된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얕은 주름" ‖ 1:"입술 볼륨" ‖ 2:"흉터"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"멍" ‖ 2:"알레르기 반응"
+  /extracted/safety/serious [2] = 0:"아나필락시스" ‖ 1:"과민반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "3~6개월"
+  /extracted/aftercare [3] = 0:"냉찜질 48시간" ‖ 1:"접촉 최소화" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2 M3 바이오스티뮬레이터/콜라겐부스터 바이오스티뮬레이터/콜라겐부스터
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "바이오스티뮬레이터는 피부 속에 특수 물질을 주입해서 우리 몸이 스스로 콜라겐(피부 탄력 단백질)을 만들도록 자극하는 시술이다. 일반 필러가 즉각적으로 볼륨을 채워주는 것과 달리, 바이오스티뮬레이터는 시간이 지나면서 자연스러운 콜라겐 재생 효과를 가져온다. 대표적으로 PLLA(스컬트라), CaHA(래디어스), PCL(엘란쎄), PDLLA(쥬베룩) 등이 있다."
+  /extracted/mechanism = "바이오스티뮬레이터는 체내에서 분해되는 생체적합성 물질(PLLA, CaHA, PCL 등)을 피부 진피층이나 피하지방층에 주입한다. 주입된 미세 입자들이 주변 조직에 가벼운 이물반응(우리 몸이 이물질에 반응하는 것)을 일으키고, 이 과정에서 섬유모세포(콜라겐을 만드는 세포)가 활성화되어 새로운 콜라겐을 대량으로 생성한다. 주입 물질 자체는 서서히 분해되어 사라지지만, 새로 만들어진 콜라겐은 오랫동안 남아 피부 탄력과 볼륨을 유지해준다. 칼슘 기반 필러(래디어스)의 경우 칼슘을 기반으로 한 마이크로 입자가 주름과 꺼진 부분의 볼륨을 즉시 채워줄 뿐만 아니라, 새로운 콜라겐 생성을 촉진해 효과 지속기간이 평균 18~24개월로 기존 필러보다 길다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [4] = 0:"얼굴 볼륨 감소 (나이가 들면서 볼이 꺼지는 것)" ‖ 1:"피부 탄력 저하 (늘어진 피부, 처진 피부)" ‖ 2:"깊은 주름 (팔자주름, 볼 주름 등)" ‖ 3:"얼굴 윤곽 보정 (관자놀이 꺼짐, 볼 꺼짐)"
+  /extracted/indications/extended [4] = 0:"손등 회춘술 (손등 볼륨 채움)" ‖ 1:"목주름 개선" ‖ 2:"턱선 윤곽 보정" ‖ 3:"뺨 지방위축증 (뺨 볼륨 감소)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"주입 물질 성분에 알레르기가 있는 경우" ‖ 1:"시술 부위에 감염이나 염증이 진행 중인 경우" ‖ 2:"켈로이드 체질 (흉터가 비정상적으로 부풀어오르는 체질)"
+  /extracted/contraindications/relative [3] = 0:"임신 중이거나 수유 중일 때는 미루는 게 좋음" ‖ 1:"자가면역질환이 있는 경우 의사와 상의 필요" ‖ 2:"혈액 응고에 영향을 주는 약물 복용 중이면 의사에게 알릴 것"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 홍반 (빨개짐)" ‖ 1:"붓기" ‖ 2:"멍" ‖ 3:"압통 (누르면 아픈 느낌)"
+  /extracted/safety/uncommon [3] = 0:"피부 아래 결절 (딱딱한 덩어리가 만져지는 것)" ‖ 1:"주입 물질이 원래 위치에서 이동하는 현상" ‖ 2:"색소침착 (시술 부위가 어두워지는 현상)"
+  /extracted/safety/serious [3] = 0:"이물반응 (몸이 주입 물질을 이물질로 인식해 만성 염증을 일으키는 것)" ‖ 1:"혈관 막힘 (극히 드물지만 필러가 혈관에 들어갈 위험)" ‖ 2:"감염 (무균 관리가 안 될 경우)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "즉각적 볼륨 효과 + 콜라겐 재생은 4~6주 후부터 시작"
+  /extracted/onset_duration/peak = "시술 후 2~3개월 뒤 콜라겐 재생 효과 최대"
+  /extracted/onset_duration/duration = "PLLA(스컬트라) 18~24개월, CaHA(래디어스) 18~24개월, PCL(엘란쎄) 12~48개월 (제품에 따라 다름)"
+  /extracted/aftercare [3] = 0:"PLLA(스컬트라) 시술 후 부드러운 마사지는 선택 (5-5-5 규칙의 결절 예방효과는 RCT 미입증)" ‖ 1:"시술 후 과도한 음주, 사우나, 격렬한 운동 피하기" ‖ 2:"시술 부위를 강하게 누르거나 문지르지 않기"
+  /extracted/related_techniques [3] = 0:"히알루론산 필러 -- 즉각적 볼륨 효과가 필요할 때 병합" ‖ 1:"보톡스 -- 주름 예방 목적으로 병합 가능" ‖ 2:"고주파(RF) 시술 -- 피부 타이트닝 효과 시너지"
+  /products [6]

@@ -1,0 +1,33 @@
+{"section":"S017","state":"read","last_pointer":"/modality/6/subcategories/2/items/15/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/3/name","/modality/6/subcategories/0/items/4/detail","/modality/6/subcategories/2/items/3/extracted/overview"],"note":"'잼버실' 은 브랜드 항목 name 이면서 재질 항목 PCA실의 detail('잼버실 소재')에도 나온다. 잼버실 overview 는 'PCA(Polycaprolactone)' — PCA실 detail 의 '폴리카프로락톤아크릴레이트' 와 영문 풀이가 다르다."},
+ {"status":"I","pointers":["/modality/6/subcategories/2/items/13/extracted/mechanism","/modality/6/subcategories/2/items/13/extracted/onset_duration/duration"],"note":"캐번실 mechanism 'PDO … 약 6개월에 걸쳐 생분해' 인데 duration '12-18개월'. PDO 브랜드 항목 대부분 duration 12-18개월 — 상용구 'PDO 6개월' 및 재질 항목 PDO '6-8개월' 과 다르다(지속효과 vs 흡수기간 구분이 원문에 없음, B)."},
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/11/extracted/overview","/modality/6/subcategories/2/items/11/extracted/indications/primary"],"note":"N코그는 '코 모양을 교정하고 높이를 개선하는 비수술적 성형술' — 다른 브랜드 항목(안면 리프팅)과 부위·목적이 다르다. detail 은 'PDO 코그 · 다방향'."},
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/10/extracted/mechanism"],"note":"몰드리프트 '몰드(필러)' — 실리프팅 항목 안에 필러 구성요소. 계열 경계 걸침."},
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/3/extracted/aftercare","/modality/6/subcategories/2/items/4/extracted/aftercare"],"note":"브랜드 항목 aftercare 는 첫 원소만 항목별이고 나머지 4문장('며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)', '크게 입 벌리거나 강한 저작 며칠 자제', '당김감/부종은 수일 내 자연 완화', '이상 반응(…) 시 즉시 내원')과 상용구가 반복된다."},
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/8/extracted/safety/common/0"],"note":"앵커리프트 safety/common 원소 하나에 '부종, 멍, 당김감, 실밥 노출 가능성' 네 값."},
+ {"status":"P","pointers":["/modality/6/subcategories/2/items/7/extracted/mechanism","/modality/6/subcategories/2/items/8/extracted/mechanism"],"note":"코그 구조를 '코그(갈고리)', '바브(미늘)', '돌기', '톱니', '루프', '오메가(Ω)' 등 여러 말로 설명한다(동의 여부 판단 안 함)."}
+],
+"expressions":[
+ {"pointer":"/modality/6/subcategories/2/items/4/detail","text":"PDO 코그실 · 한국제품","kinds":["시술·제품명"],"note":"재질+형태+원산지"},
+ {"pointer":"/modality/6/subcategories/2/items/4/extracted/indications/primary/1","text":"턱선 정리 및 V라인 형성","kinds":["부위"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/5/extracted/onset_duration/onset","text":"즉시 (최종 효과는 2-3개월)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/6/detail","text":"PDO 모노+코그 라인업","kinds":["기호","참조"],"note":"'+' = 두 형태 모두 보유"},
+ {"pointer":"/modality/6/subcategories/2/items/7/detail","text":"PDO 코그실 · 전방향 코그","kinds":["수식"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/8/extracted/safety/common/0","text":"실밥 노출 가능성","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/8/extracted/indications/primary/1","text":"깊은 팔자주름과 마리오네트 라인 개선","kinds":["부위","수식"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/10/detail","text":"성형 몰드+실 결합","kinds":["기호"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/10/extracted/onset_duration/onset","text":"즉시 (몰드), 2-4주 (실 효과)","kinds":["수량·단위·시간","조건"],"note":"구성요소별 시점"},
+ {"pointer":"/modality/6/subcategories/2/items/11/extracted/mechanism","text":"실을 코 내부에 삽입하여","kinds":["부위"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/11/extracted/aftercare/0","text":"시술 후 1주일간 코 강한 마사지 자제","kinds":["수량·단위·시간","부위","부정"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/12/extracted/mechanism","text":"오메가(Ω) 형태로 제작된 PDO 실","kinds":["수식","기호"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/13/extracted/mechanism","text":"약 6개월에 걸쳐 생분해되며","kinds":["수량·단위·시간"],"note":"S017-I01"},
+ {"pointer":"/modality/6/subcategories/2/items/14/extracted/aftercare/1","text":"딱딱한 음식 피하기","kinds":["부정","수식"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/15/extracted/onset_duration/onset","text":"즉시 (최대 효과 2-4주)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/3/extracted/aftercare/0","text":"시술 후 2주간 과도한 안면 강한 마사지·사우나 자제","kinds":["수량·단위·시간","수식","부정"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S017-B01","status":"B","pointers":["/modality/6/subcategories/2/items/13/extracted/onset_duration/duration","/modality/6/subcategories/2/items/13/extracted/mechanism"],"note":"PDO 실의 '흡수(분해) 기간'과 '효과 지속 기간'을 원문이 구분해 적지 않아, 6개월·6-8개월·12-18개월 중 무엇이 무엇인지 판단 불가.","impact":"기간 정보 종류 분리 제한"},
+ {"id":"S017-F01","status":"F","pointers":["/modality/6/subcategories/2/items/11"],"note":"N코그(코 성형) 가 브랜드 하위분류에 안면 리프팅과 함께 있다.","impact":"부위·목적 축 분해 후속"}
+]}

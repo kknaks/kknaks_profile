@@ -1,0 +1,334 @@
+# S046  scope=M16 수액치료  units=id | category | category_en | group | subcategories 컨테이너 | M16-1 items/0 | M16-1 items/1 | M16-1 items/2 | M16-1 items/3 | M16-1 items/4 | M16-1 items/5 | M16-1 items/6 | M16-2 items/0 | M16-2 items/1 | M16-2 items/2 | M16-2 items/3 | M16-2 items/4 | M16-2 items/5 | M16-2 items/6 | M16-2 items/7 | M16-3 items/0 | M16-3 items/1 | M16-3 items/2
+# 상위 문맥: []
+@ /modality/15 M16 수액치료 수액치료
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M16"
+  /category = "수액치료"
+  /category_en = "IV Therapy"
+  /group = "관리"
+  /subcategories [7]
+@ /modality/15/subcategories/0 M16-1 미백/항산화
+  . {id,label,items}
+  /id = "M16-1"
+  /label = "미백/항산화"
+  /items [7]
+@ /modality/15/subcategories/0/items/0 M16-1-1 백옥주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "M16-1-1"
+  /name = "백옥주사"
+  /detail = "마케팅 명칭 — 실제 성분은 글루타치온 IV"
+  /is_marketing_name = true
+  /ingredient_basis = "환원형 글루타치온(GSH). 용량은 클리닉별로 상이(600-2,000mg 범위)"
+  /canonical_category = "M16 수액치료 > 항산화·미백 IV"
+  /naming_caveat = "'하얗게 된다'는 효과 기반 마케팅명. 고용량 글루타치온 IV의 미백 효과는 제한된 임상 근거이며 FDA·식약처의 미백 목적 공식 허가 적응증 아님. 의료광고 표현 주의 필요"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "글루타치온 정맥주사로 항산화·미백"
+  /extracted/mechanism = "글루타치온의 강력한 항산화 작용으로 활성산소 제거 및 멜라닌 합성 억제. 정맥주사를 통해 높은 생체이용률로 직접 혈류 전달되어 전신 항산화 효과 제공."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부미백" ‖ 1:"항산화" ‖ 2:"피로개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 어지러움" ‖ 2:"소화불편"
+  /extracted/safety/serious [2] = 0:"알레르기 반응" ‖ 1:"아나필락시스"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [2] = 0:"주사 후 2시간 음주 자제" ‖ 1:"정기적 시술로 효과 유지"
+@ /modality/15/subcategories/0/items/1 M16-1-2 고농도C
+  . {id,name,detail,extracted}
+  /id = "M16-1-2"
+  /name = "고농도C"
+  /detail = "비타민C 메가도스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민C 메가도스 정맥주사"
+  /extracted/mechanism = "고용량 비타민C의 강력한 항산화 작용으로 콜라겐 합성 촉진 및 활성산소 제거. 정맥주사를 통해 경구 투여 불가능한 고농도 도달로 피부 항노화 효과."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부탄력 개선" ‖ 1:"항노화" ‖ 2:"항산화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 불편감" ‖ 1:"일시적 소화불편" ‖ 2:"두통"
+  /extracted/safety/serious [2] = 0:"신장 결석(과다 투여 시)" ‖ 1:"용혈성 빈혈(G6PD 결핍자)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일"
+  /extracted/onset_duration/duration = "2-3주"
+  /extracted/aftercare [2] = 0:"충분한 수분섭취" ‖ 1:"신기능 정상 확인 후 시술"
+@ /modality/15/subcategories/0/items/2 auto-55-1774737181584 셀디톡스수액
+  . {id,name,detail,extracted}
+  /id = "auto-55-1774737181584"
+  /name = "셀디톡스수액"
+  /detail = "해독·항산화"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "해독·항산화 성분 복합 수액"
+  /extracted/mechanism = "항산화제 및 간 해독 성분의 복합작용으로 활성산소 제거 및 체내 독소 배출 촉진. 정맥주사를 통해 높은 생체이용률로 전신 해독·항산화 효과 제공."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피로회복" ‖ 1:"면역력 강화" ‖ 2:"피부개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 어지러움" ‖ 2:"메스꺼움"
+  /extracted/safety/serious [1] = 0:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~1일"
+  /extracted/onset_duration/duration = "3-7일"
+  /extracted/aftercare [2] = 0:"충분한 수분섭취" ‖ 1:"알코올 섭취 제한"
+@ /modality/15/subcategories/0/items/3 auto-M16-1775362661625 알파리포산주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775362661625"
+  /name = "알파리포산주사"
+  /detail = "항산화 · 당대사 개선 · 신데렐라주사 성분"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "강력한 항산화 작용으로 세포 재생을 촉진하고 피부 개선 효과를 제공하는 미용 주사"
+  /extracted/mechanism = "세포 내 미토콘드리아에서 에너지 대사를 활성화하고 활성산소를 제거합니다. 당대사 개선을 통해 피부 세포의 재생력을 높이고 콜라겐 합성을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 톤 개선 및 미백" ‖ 1:"피로 개선 및 항노화"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 통증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "24-48시간"
+  /extracted/onset_duration/duration = "2-4주"
+  /extracted/aftercare [2] = 0:"충분한 수분 섭취" ‖ 1:"음주 자제 24시간"
+@ /modality/15/subcategories/0/items/4 auto-M16-1775364775092 멀티비타민수액
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364775092"
+  /name = "멀티비타민수액"
+  /detail = "B1/B2/B6/B12/C"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "필수 비타민 B군과 C를 조합한 정맥 수액 치료"
+  /extracted/mechanism = "비타민 B군은 에너지 대사와 신경 기능을 지원합니다. 비타민 C는 콜라겐 합성과 항산화 작용을 통해 피부 건강을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피로 회복" ‖ 1:"피부 톤 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 경미한 통증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "당일-3일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [2] = 0:"충분한 수분 섭취" ‖ 1:"시술 부위 강한 압박 자제"
+@ /modality/15/subcategories/0/items/5 auto-M16-1775364775093 비타민D주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364775093"
+  /name = "비타민D주사"
+  /detail = "콜레칼시페롤"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민D3 고용량 근육주사를 통한 결핍 교정"
+  /extracted/mechanism = "콜레칼시페롤이 간과 신장에서 활성형 비타민D로 변환됩니다. 칼슘 흡수 촉진과 면역 기능 조절을 통해 전신 건강을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"비타민D 결핍" ‖ 1:"면역력 저하"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 근육통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [2] = 0:"주사 후 충분한 휴식" ‖ 1:"혈중 농도 추적 검사"
+@ /modality/15/subcategories/0/items/6 auto-M16-1775402736447 스노우주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775402736447"
+  /name = "스노우주사"
+  /detail = "글루타치온+트라넥삼산"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "글루타치온과 트라넥삼산을 조합한 미백 수액으로 전신 미백과 항산화 효과를 제공"
+  /extracted/mechanism = "글루타치온의 항산화와 멜라닌 합성 억제, 트라넥삼산의 미백 효과로 피부 톤 개선"
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"전신 미백" ‖ 1:"색소침착" ‖ 2:"간 해독" ‖ 3:"피로 회복" ‖ 4:"항산화"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 어지러움" ‖ 2:"알레르기 반응 가능"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [4] = 0:"충분한 수분 섭취" ‖ 1:"금주 24시간" ‖ 2:"운전 주의" ‖ 3:"알레르기 관찰"
+@ /modality/15/subcategories/1 M16-2 피로회복
+  . {id,label,items}
+  /id = "M16-2"
+  /label = "피로회복"
+  /items [8]
+@ /modality/15/subcategories/1/items/0 M16-2-1 마늘주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "M16-2-1"
+  /name = "마늘주사"
+  /detail = "마케팅 명칭 — 실제 성분은 비타민 B1(푸르설티아민 등)"
+  /is_marketing_name = true
+  /ingredient_basis = "푸르설티아민(fursultiamine) 등 지용성 B1 유도체. 주사 후 일시적 마늘향 체취가 이름의 유래"
+  /canonical_category = "M16 수액치료 > 비타민 B 계열"
+  /naming_caveat = "'마늘'은 주사 후 특유의 체취에서 유래한 마케팅명이며 실제 마늘 추출물이 아님. 피로 개선 효능은 대체적이며 식약처 허가 적응증 확인 필요"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민B1 복합 피로회복 주사"
+  /extracted/mechanism = "비타민B1과 마늘 추출물의 협력작용으로 탄수화물 대사 촉진 및 에너지 생성 활성화. 정맥주사를 통해 빠른 흡수로 급성 피로 회복 및 신경 기능 개선."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피로회복" ‖ 1:"신진대사 촉진" ‖ 2:"에너지 부스트"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"마늘 냄새 입냄새" ‖ 1:"일시적 소화불편" ‖ 2:"주사 부위 통증"
+  /extracted/safety/serious [1] = 0:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~수 시간"
+  /extracted/onset_duration/duration = "3-5일"
+  /extracted/aftercare [2] = 0:"과도한 운동 제한(24시간)" ‖ 1:"충분한 수면"
+@ /modality/15/subcategories/1/items/1 M16-2-2 신데렐라주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "M16-2-2"
+  /name = "신데렐라주사"
+  /detail = "마케팅 명칭 — 실제 성분은 알파리포산(ALA)"
+  /is_marketing_name = true
+  /ingredient_basis = "알파리포산(alpha-lipoic acid). 용량은 클리닉별 상이"
+  /canonical_category = "M16 수액치료 > 항산화 IV"
+  /naming_caveat = "'신데렐라처럼 예뻐진다'는 효과 연상 마케팅명. 알파리포산의 미용·피부 효과는 제한적 근거이며 당뇨병성 신경병증 등 일부 적응증 외에는 공식 미용 허가 아님"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "알파리포산 항노화·대사촉진 주사"
+  /extracted/mechanism = "알파리포산의 강력한 항산화 작용으로 활성산소 제거 및 미토콘드리아 에너지 생성 촉진. 정맥주사를 통해 세포 대사 활성화 및 피부 항노화 효과 동시 달성."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"항노화" ‖ 1:"피부탄력 개선" ‖ 2:"체내 에너지 촉진"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 저혈당" ‖ 2:"두통"
+  /extracted/safety/serious [2] = 0:"알레르기 반응" ‖ 1:"심한 저혈당(당뇨약 병용 시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [2] = 0:"공복 피하기" ‖ 1:"당뇨약 복용자 의료진 상담 필수"
+@ /modality/15/subcategories/1/items/2 auto-56-1774737181584 에너지부스트수액
+  . {id,name,detail,extracted}
+  /id = "auto-56-1774737181584"
+  /name = "에너지부스트수액"
+  /detail = "피로회복"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민·미네랄 복합 피로회복 수액"
+  /extracted/mechanism = "비타민B군, 미네랄, 항산화제의 복합작용으로 세포 에너지 생성 촉진 및 피로물질 제거. 정맥주사를 통해 높은 생체이용률로 빠른 피로회복 및 신진대사 활성화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피로회복" ‖ 1:"신진대사 촉진" ‖ 2:"스트레스 해소"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 불편감" ‖ 1:"일시적 어지러움" ‖ 2:"메스꺼움"
+  /extracted/safety/serious [1] = 0:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~수 시간"
+  /extracted/onset_duration/duration = "3-7일"
+  /extracted/aftercare [2] = 0:"충분한 수분섭취" ‖ 1:"과도한 운동 제한(24시간)"
+@ /modality/15/subcategories/1/items/3 auto-57-1774737181584 아르기닌주사
+  . {id,name,detail,extracted}
+  /id = "auto-57-1774737181584"
+  /name = "아르기닌주사"
+  /detail = "혈류개선·체력회복"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "아미노산 혈류개선·면역강화 주사"
+  /extracted/mechanism = "아르기닌의 일산화질소(NO) 생성 촉진으로 혈관 이완 및 혈류 개선. 정맥주사를 통해 직접 혈류 전달로 빠른 혈류 개선, 조직 산소공급 증가 및 체력 회복 촉진."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"혈류개선" ‖ 1:"체력회복" ‖ 2:"면역강화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 혈압저하" ‖ 2:"메스꺼움"
+  /extracted/safety/serious [2] = 0:"저혈압" ‖ 1:"헤르페스 재활성화"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [2] = 0:"혈압 저하자 의료진 상담" ‖ 1:"충분한 수면"
+@ /modality/15/subcategories/1/items/4 auto-M16-1775362647500 징크주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775362647500"
+  /name = "징크주사"
+  /detail = "아연 · 면역/피부재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "아연을 정맥 또는 근육 주사로 투여하여 면역력 강화와 피부 재생을 촉진하는 미용의학 시술"
+  /extracted/mechanism = "아연이 콜라겐 합성과 단백질 대사에 필수적인 보조인자로 작용하여 상처 치유와 피부 재생을 촉진합니다. 또한 항산화 효소의 활성을 높이고 면역세포 기능을 강화하여 전반적인 피부 건강을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"상처 치유 지연 및 피부 재생 촉진" ‖ 1:"면역력 저하로 인한 피부 트러블 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 통증 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "4-8주"
+  /extracted/aftercare [3] = 0:"주사 부위 청결 유지 및 과도한 자극 피하기" ‖ 1:"주사 부위 압박 수분간" ‖ 2:"충분한 수분 섭취"
+@ /modality/15/subcategories/1/items/5 auto-M16-1775362656075 비오틴주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775362656075"
+  /name = "비오틴주사"
+  /detail = "비타민H · 모발/피부/손톱"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모발, 피부, 손톱 건강 개선을 위한 비타민H(비오틴) 정맥주사 요법"
+  /extracted/mechanism = "케라틴 합성에 필수적인 조효소 역할을 하여 모발과 손톱의 구조적 강도를 향상시킵니다. 지방산 합성과 아미노산 대사를 촉진하여 피부 세포 재생과 보습 기능을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"모발 탈모 및 모발 가늘어짐" ‖ 1:"손톱 약화 및 갈라짐" ‖ 2:"피부 건조 및 거칠음"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"주사 부위 경미한 통증" ‖ 1:"일시적 소화불량"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 섭취" ‖ 1:"균형잡힌 단백질 식단 유지" ‖ 2:"과도한 열 스타일링 피하기"
+@ /modality/15/subcategories/1/items/6 auto-M16-1775364775090 마이어스칵테일
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364775090"
+  /name = "마이어스칵테일"
+  /detail = "Mg+Ca+B/C 복합수액"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "마그네슘, 칼슘, 비타민 B/C 복합 정맥 수액 치료"
+  /extracted/mechanism = "마그네슘과 칼슘이 근육 이완과 신경 전달을 조절합니다. 비타민 B/C 복합체가 에너지 생성과 항산화 작용을 통해 전신 컨디션을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"만성피로" ‖ 1:"스트레스성 피부 트러블"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"수액 주입 중 혈관 따끔함"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "당일-1주"
+  /extracted/onset_duration/duration = "2-4주"
+  /extracted/aftercare [2] = 0:"수액 후 충분한 휴식" ‖ 1:"알코올 섭취 자제"
+@ /modality/15/subcategories/1/items/7 auto-M16-1775364775091 종합아미노산수액
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364775091"
+  /name = "종합아미노산수액"
+  /detail = "필수아미노산 20종"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "인체 필수 아미노산 20종을 포함한 종합 정맥 수액"
+  /extracted/mechanism = "필수 아미노산들이 단백질 합성의 기본 재료로 사용됩니다. 콜라겐 생성 촉진과 세포 재생을 통해 피부 탄력과 회복력을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하" ‖ 1:"회복 지연"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"수액 주입 중 팔 무거움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일"
+  /extracted/onset_duration/duration = "3-6주"
+  /extracted/aftercare [2] = 0:"단백질 식품 함께 섭취" ‖ 1:"충분한 수면"
+@ /modality/15/subcategories/2 M16-3 재생/면역
+  . {id,label,items}
+  /id = "M16-3"
+  /label = "재생/면역"
+  /items [9]
+@ /modality/15/subcategories/2/items/0 M16-3-1 태반주사(라엔넥)
+  . {id,name,detail,extracted}
+  /id = "M16-3-1"
+  /name = "태반주사(라엔넥)"
+  /detail = "인태반 추출물"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "인태반 추출물 항노화·재생 주사"
+  /extracted/mechanism = "라엔넥의 효소처리 인태반 추출물(저·중분자 단백질 포함)에 포함된 필수 아미노산, 펩타이드, 비타민, 미네랄, 핵산, 성장인자가 세포 재생 촉진 및 항노화 효과 제공. 근육/피하주사로 천천히 흡수되어 지속적 효과 유지."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부재생" ‖ 1:"항노화" ‖ 2:"피로회복"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"발적" ‖ 2:"약간의 가려움"
+  /extracted/safety/serious [2] = 0:"알레르기 반응" ‖ 1:"감염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1주"
+  /extracted/onset_duration/duration = "2-4주"
+  /extracted/aftercare [3] = 0:"정맥주사 절대 금지(쇼크 위험)" ‖ 1:"주사 부위 청결 유지" ‖ 2:"주 1-2회 정기적 시술 권장"
+@ /modality/15/subcategories/2/items/1 M16-3-2 NAD+
+  . {id,name,detail,extracted}
+  /id = "M16-3-2"
+  /name = "NAD+"
+  /detail = "항노화 · 세포에너지"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "항노화·세포에너지 촉진 수액"
+  /extracted/mechanism = "NAD+(nicotinamide adenine dinucleotide)는 세포 에너지(ATP) 생성의 핵심 코엔자임으로, 정맥주사를 통해 직접 혈류 전달되어 미토콘드리아 기능 활성화, DNA 손상 복구 및 장수 유전자 활성화로 항노화 효과 제공."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"항노화" ‖ 1:"세포에너지 촉진" ‖ 2:"인지기능 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 불편감" ‖ 1:"일시적 피부 홍조" ‖ 2:"가벼운 두통"
+  /extracted/safety/serious [1] = 0:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "수 시간~1-2일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [2] = 0:"충분한 수분섭취" ‖ 1:"정기적 시술로 효과 극대화"
+@ /modality/15/subcategories/2/items/2 auto-58-1774737181584 이뮨코어수액
+  . {id,name,detail,extracted}
+  /id = "auto-58-1774737181584"
+  /name = "이뮨코어수액"
+  /detail = "면역강화"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "면역강화 복합 수액"
+  /extracted/mechanism = "비타민C, 아연, 셀레늄, 항산화제 등의 복합작용으로 면역세포 기능 촉진 및 자연살해세포 활성화. 정맥주사를 통해 높은 생체이용률로 빠른 면역력 강화 및 항바이러스·항감염 효과."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"면역력 강화" ‖ 1:"감염 예방" ‖ 2:"회복력 촉진"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"일시적 피로감" ‖ 2:"메스꺼움"
+  /extracted/safety/serious [1] = 0:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~1-2일"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [3] = 0:"충분한 수분섭취" ‖ 1:"균형 잡힌 식단" ‖ 2:"규칙적 운동"

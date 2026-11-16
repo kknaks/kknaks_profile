@@ -1,0 +1,117 @@
+# S037  scope=M14 크라이오리포라이시스  units=id | category | category_en | group | subcategories 컨테이너 | M14-1 items/0 | M14-1 items/1 | M14-1 items/2 | M14-1 items/3 | M14-1 items/4 | extracted | products 컨테이너 | name
+# 상위 문맥: []
+@ /modality/13 M14 크라이오리포라이시스 크라이오리포라이시스
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M14"
+  /category = "크라이오리포라이시스"
+  /category_en = "Cryolipolysis"
+  /group = "시술/기기"
+  /subcategories [1]
+@ /modality/13/subcategories/0 M14-1 냉각지방분해
+  . {id,label,items}
+  /id = "M14-1"
+  /label = "냉각지방분해"
+  /items [5]
+@ /modality/13/subcategories/0/items/0 M14-1-1 쿨스컬프팅
+  . {id,name,detail,extracted}
+  /id = "M14-1-1"
+  /name = "쿨스컬프팅"
+  /detail = "엘러간 · 대표 장비"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "엘러간의 냉동 지방분해 기술 기반 비수술적 지방감소 시술"
+  /extracted/mechanism = "영하 10도 전후의 저온으로 피부와 지방 조직을 냉각시켜 지방세포를 선택적으로 파괴한다. 지방세포 내부에 크리스탈이 형성되면서 세포가 손상되고, 손상된 세포는 수 주에 걸쳐 자연사하며 면역계를 통해 체외로 배출된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"운동/식이요법으로 빠지지 않는 국소 지방 감소 (복부, 옆구리, 허벅지)" ‖ 1:"이중턱 (턱 아래 부위)" ‖ 2:"팔뚝, 등 부위 국소 지방 축적"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 부위 통증 및 불편감" ‖ 1:"일시적 부종, 발적, 저림감" ‖ 2:"시술 부위 따뜻함 또는 따끔거림" ‖ 3:"타박상"
+  /extracted/safety/serious [2] = 0:"냉동주머니증 (cryolipolysis-induced panniculitis): 드물지만 중증 염증 반응" ‖ 1:"PAH(역설적 지방 비대, paradoxical adipose hyperplasia) — 반드시 사전 고지"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3주 후부터 효과 나타나기 시작, 3개월에 최대 효과"
+  /extracted/onset_duration/duration = "반영구적 (제거된 지방세포는 재생되지 않음) (1회당 약 20-25% 지방 감소)"
+  /extracted/aftercare [6] = 0:"시술 직후 냉찜질로 부종 및 불편감 완화" ‖ 1:"과도한 열 노출 피하기" ‖ 2:"시술 부위 마사지 (필요시 의사 지시)" ‖ 3:"통증이나 이상 증상 발생 시 즉시 의료진 상담" ‖ 4:"결과 평가는 3개월 이후" ‖ 5:"[시술 주기 참고] 1회당 약 20-25% 지방 감소. 효과 발현 2-3개월. 추가 시술은 효과 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/13/subcategories/0/items/1 auto-M14-1775361047443 바넥스
+  . {id,name,detail,extracted}
+  /id = "auto-M14-1775361047443"
+  /name = "바넥스"
+  /detail = "RF+석션 바디 컨투어링"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF 에너지와 석션을 결합하여 지방 감소와 피부 타이트닝을 동시에 제공하는 바디 컨투어링 시술"
+  /extracted/mechanism = "RF 에너지가 진피층과 피하지방층을 가열하여 콜라겐 변성과 지방세포 파괴를 유도합니다. 동시에 석션(음압)이 조직을 끌어당겨 RF 전달을 향상시키고 림프 순환을 촉진하여 바디라인 개선 효과를 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"국소 지방 축적 부위의 바디 컨투어링" ‖ 1:"피부 처짐과 셀룰라이트 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반과 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 후부터 효과 시작"
+  /extracted/onset_duration/duration = "6-12개월 지속"
+  /extracted/aftercare [5] = 0:"시술 당일 과도한 운동과 사우나 피하기" ‖ 1:"시술 부위 발적/부종은 수일 내 자연 소실" ‖ 2:"효과 발현까지 2-3개월 소요 (정상)" ‖ 3:"PAH(역설적 지방 비대) 징후 시 내원" ‖ 4:"[시술 주기 참고] 1회당 약 20-25% 지방 감소. 효과 발현 2-3개월. 추가 시술은 효과 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/13/subcategories/0/items/2 auto-M14-1775363067062 쿨미니
+  . {id,name,detail,extracted}
+  /id = "auto-M14-1775363067062"
+  /name = "쿨미니"
+  /detail = "앨러간 · 이중턱 전용 소형 어플리케이터"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "이중턱 지방세포를 선택적으로 파괴하는 비침습적 냉각지방분해 장비"
+  /extracted/mechanism = "CoolSculpting 기술을 이용하여 -11°C의 저온으로 이중턱 부위 지방세포를 냉각시킨다. 냉각된 지방세포는 세포사멸(apoptosis)을 통해 자연적으로 파괴되어 체외로 배출된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱 지방 감소" ‖ 1:"턱선 윤곽 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 부종, 발적, 저림감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "영구적 (파괴된 지방세포는 재생되지 않음)"
+  /extracted/aftercare [4] = 0:"시술 후 15분간 마사지" ‖ 1:"2-3일간 부종 관리" ‖ 2:"충분한 수분 섭취로 지방세포 배출 촉진" ‖ 3:"[시술 주기 참고] 1회당 약 20-25% 지방 감소. 효과 발현 2-3개월. 추가 시술은 효과 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/13/subcategories/0/items/3 auto-M14-1775364775188 크라이오듀얼
+  . {id,name,detail,extracted}
+  /id = "auto-M14-1775364775188"
+  /name = "크라이오듀얼"
+  /detail = "듀얼양측동시"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "양쪽을 동시에 시술하는 듀얼 냉각 지방 분해 시스템"
+  /extracted/mechanism = "영하의 온도로 지방세포를 선택적으로 냉각시켜 세포사를 유도합니다. 듀얼 시스템으로 양측을 동시에 처리하여 시술 효율성을 높입니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"국소 지방 감소" ‖ 1:"복부 지방" ‖ 2:"허벅지 지방" ‖ 3:"이중턱"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"일시적 마비감" ‖ 1:"홍조" ‖ 2:"멍" ‖ 3:"부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "영구적"
+  /extracted/aftercare [4] = 0:"마사지 권장" ‖ 1:"충분한 수분 섭취" ‖ 2:"규칙적인 운동" ‖ 3:"[시술 주기 참고] 1회당 약 20-25% 지방 감소. 효과 발현 2-3개월. 추가 시술은 효과 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/13/subcategories/0/items/4 auto-M14-1775402698241 쿨핏프로그램
+  . {id,name,detail,extracted}
+  /id = "auto-M14-1775402698241"
+  /name = "쿨핏프로그램"
+  /detail = "쿨스컬프팅+인모드바디 조합 · 바디 컨투어링"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "쿨스컬프팅과 인모드바디를 결합한 비수술 바디 컨투어링 프로그램"
+  /extracted/mechanism = "쿨스컬프팅은 냉각기술로 지방세포를 선택적으로 동결파괴시켜 자연적인 대사과정을 통해 제거합니다. 인모드바디는 RF 에너지로 피하지방을 가열하고 콜라겐 재생을 촉진하여 피부탄력과 바디라인을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"국소적 지방축적 제거" ‖ 1:"바디라인 개선 및 피부탄력 증진"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술부위 일시적 부종, 멍, 감각저하"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 2-3일간 과도한 운동 및 사우나 피하기"
+@ /modality/13 M14 크라이오리포라이시스 크라이오리포라이시스
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "크라이오리포라이시스는 지방세포가 다른 세포보다 추위에 약한 성질을 이용해, 피부를 차갑게 냉각시켜 지방세포만 선택적으로 파괴하는 비수술적 지방 감소 시술이다. 한국에서는 '쿨스컬프팅(젤틱)', '크라이오' 등의 브랜드명으로 알려져 있다."
+  /extracted/mechanism = "어플리케이터(시술 기구)가 피부와 지방 조직을 흡입하면서 영하 10도 전후의 저온으로 냉각시킨다. 지방세포(adipocyte)는 다른 피부 세포보다 추위에 민감하여, 일정 온도 이하로 내려가면 지방세포 내부에 결정(크리스탈)이 형성되면서 세포가 손상된다. 손상된 지방세포는 수 주에 걸쳐 자연사(세포자멸사, apoptosis)하고, 몸의 면역 체계(대식세포)에 의해 자연스럽게 분해되어 체외로 배출된다. 주변의 피부, 근육, 신경 조직은 손상 없이 보존된다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [2] = 0:"운동/식이요법으로 빠지지 않는 국소 지방 감소 (복부, 옆구리, 허벅지 등)" ‖ 1:"이중턱 지방 감소"
+  /extracted/indications/extended [4] = 0:"팔뚝 지방 감소" ‖ 1:"브래지어 라인 지방" ‖ 2:"무릎 위 지방" ‖ 3:"등 지방"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"냉글로불린혈증 (찬 온도에 의해 혈중 단백질이 굳는 질환)" ‖ 1:"발작성 냉혈색소뇨증 (추위에 의해 혈색소가 파괴되는 질환)" ‖ 2:"한랭두드러기 (추위에 의한 두드러기)"
+  /extracted/contraindications/relative [3] = 0:"레이노 현상 (추위에 의해 손끝/발끝이 하얗게 변하는 증상)" ‖ 1:"시술 부위에 탈장이 있는 경우" ‖ 2:"시술 부위에 심한 피부 질환이 있는 경우"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [5] = 0:"시술 부위 홍반 (빨개짐)" ‖ 1:"붓기" ‖ 2:"멍" ‖ 3:"일시적 감각 저하 (저림, 무감각)" ‖ 4:"시술 중 당기는 느낌과 냉감"
+  /extracted/safety/uncommon [2] = 0:"시술 부위 통증 (수일~수주 지속)" ‖ 1:"피부 경결 (딱딱해지는 느낌)"
+  /extracted/safety/serious [1] = 0:"역설적 지방 증식 (Paradoxical Adipose Hyperplasia, PAH) -- 극히 드물게 시술 부위 지방이 오히려 커지는 현상"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 후 3~4주부터 지방 감소 체감 시작"
+  /extracted/onset_duration/peak = "시술 후 2~3개월 뒤 최종 결과"
+  /extracted/onset_duration/duration = "파괴된 지방세포는 영구적으로 제거 (체중 증가 시 남은 지방세포가 커질 수 있음)"
+  /extracted/aftercare [3] = 0:"특별한 다운타임 없이 일상생활 바로 가능" ‖ 1:"시술 부위를 가볍게 마사지하면 효과 촉진" ‖ 2:"건강한 식이와 운동 병행 권장"
+  /extracted/related_techniques [3] = 0:"HIFES/EMS -- 근육 강화와 병합하여 바디 윤곽 개선" ‖ 1:"고주파(RF) 바디 -- 피부 타이트닝과 시너지" ‖ 2:"지방흡입 -- 더 적극적인 지방 제거가 필요한 경우"
+  /products [0]
+  /name = "크라이오리포라이시스"

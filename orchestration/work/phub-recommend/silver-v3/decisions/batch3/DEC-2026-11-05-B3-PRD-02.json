@@ -1,0 +1,42 @@
+{
+ "id": "DEC-2026-11-05-B3-PRD-02",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "product_name"
+ },
+ "new_value": {
+  "canonical": "라라젯",
+  "category": null,
+  "code": "M15",
+  "synonyms": [
+   "LHALA JET"
+  ]
+ },
+ "reason": "제품 사전에 「라라젯」(LHALA JET · M15 수분·약물 주입 장비). step1 조사 항목 2(@293 허가·웹 근거 locator 없음 · @312 비활성)는 묶음 1 제외 목록이었다 — 사용자 제공 웹 자료(tier 4)로 근거가 생겼다(step1 survey 레코드는 같은 PRD- id 로 이 제품에 합쳐진다). 두 분류 항목(클렌징·주입장비)의 fold 는 묶음 2B MFC-02 로 이미 적용.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "silver-v3/sources/2026-11-05-lhalajet-blsclinic.md — 웹 tier 4 · 사용자 제공 「같은 시술 같은데」"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/5/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@293"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 제품 사전에 「라라젯」 추가 · fold 결정"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

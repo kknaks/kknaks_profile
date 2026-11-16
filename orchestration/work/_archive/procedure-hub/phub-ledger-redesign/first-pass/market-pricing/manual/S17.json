@@ -1,0 +1,29 @@
+{
+ "segment": "S17", "direct_read": true, "read_note": "M17 줄기세포치료 6항목 전부 직접 읽음.",
+ "last_pointer": "/categories/16/items/5/high",
+ "observations": [
+  ["/categories/16/items/0/name", "모든 항목이 '줄기세포' 로 시작. '배양액 주입'·'엑소좀'·'+ MTS'·'두피치료'·'관절치료'·'3회 패키지' 로 구분. '줄기세포 엑소좀' 은 M5 '엑소좀 (전체얼굴)' 과 다른 항목으로 존재(가격 다름).", "P"],
+  ["/categories/16/items/2/name", "'줄기세포 + MTS (전체얼굴)' — '+' 조합. M5·M12 의 'PRP + MTS' 류와 같은 조합 표기 방식.", "P"],
+  ["/categories/16/items/4/name", "'줄기세포 관절치료' — 미용 시술이 아닌 관절 적응증 후보. 부위·범위 없음.", "B"],
+  ["/categories/16/items/5/name", "'줄기세포 3회 패키지 (전체얼굴)' unit '3회' — 패키지에 포함되는 줄기세포 시술 종류(배양액·엑소좀 등)가 원문에 없음.", "B"],
+  ["/categories/16/items/0/low", "6항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/16/items/0/name", "줄기세포 배양액 주입", ["성분 후보", "시술 행위 후보"], ""],
+  ["/categories/16/items/0/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/16/items/1/name", "줄기세포 엑소좀", ["성분 후보", "시술명 후보"], ""],
+  ["/categories/16/items/1/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/16/items/2/name", "줄기세포 + MTS", ["조합", "'+' 연결"], ""],
+  ["/categories/16/items/2/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/16/items/3/name", "줄기세포 두피치료", ["부위 후보", "시술명 후보"], ""],
+  ["/categories/16/items/3/name", "(탈모)", ["고민 후보"], ""],
+  ["/categories/16/items/4/name", "줄기세포 관절치료", ["부위/적응증 후보", "시술명 후보"], ""],
+  ["/categories/16/items/5/name", "3회 패키지", ["회차", "판매 구성"], ""],
+  ["/categories/16/items/5/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""]
+ ],
+ "issues": [
+  ["B-S17-1", "B", ["/categories/16/items/5/name"], "'3회 패키지' 구성 시술·간격이 없다."],
+  ["B-S17-2", "B", ["/categories/16/items/4/name"], "'관절치료' 의 관절 부위·범위가 없다."],
+  ["F-S17-1", "F", ["/categories/16/items/1/name", "/categories/4/items/2/name"], "'줄기세포 엑소좀'(M17)과 '엑소좀'(M5)의 관계는 후속 연결 과제(병합하지 않음)."]
+ ]
+}

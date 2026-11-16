@@ -1,0 +1,696 @@
+{
+  "rows": 580,
+  "groups": {
+    "extracted": 521,
+    "taxonomy_products": 59
+  },
+  "fields": 1394,
+  "scalar_leaves": 4170,
+  "raw_oracle_exact": true,
+  "all_current_source_text_equals_last_write_projection": true,
+  "normal_renames": [
+    {
+      "from": "safety.common_adverse_effects",
+      "to": "safety.common",
+      "count": 2
+    },
+    {
+      "from": "safety.serious_adverse_effects",
+      "to": "safety.serious",
+      "count": 2
+    },
+    {
+      "from": "safety.common_side_effects",
+      "to": "safety.common",
+      "count": 1
+    }
+  ],
+  "collisions": [
+    {
+      "id": "M1-1-3",
+      "predicate": "safety.common",
+      "fields": [
+        {
+          "legacy_id": "M1-1-3",
+          "raw_pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+          "raw_field": "safety.common_adverse_effects",
+          "raw_value": [
+            "주입 부위 부종",
+            "경미한 통증",
+            "일시적 발적"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 3
+        },
+        {
+          "legacy_id": "M1-1-3",
+          "raw_pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common",
+          "raw_field": "safety.common",
+          "raw_value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 2
+        }
+      ],
+      "before_leaf_count": 2,
+      "after_leaf_count": 5
+    },
+    {
+      "id": "auto-2-1774737181584",
+      "predicate": "safety.common",
+      "fields": [
+        {
+          "legacy_id": "auto-2-1774737181584",
+          "raw_pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+          "raw_field": "safety.common_adverse_effects",
+          "raw_value": [
+            "일시적 근력 약화",
+            "주입 부위 부종/발적",
+            "두통"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 3
+        },
+        {
+          "legacy_id": "auto-2-1774737181584",
+          "raw_pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common",
+          "raw_field": "safety.common",
+          "raw_value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 2
+        }
+      ],
+      "before_leaf_count": 2,
+      "after_leaf_count": 5
+    },
+    {
+      "id": "M7-P-1",
+      "predicate": "safety.common",
+      "fields": [
+        {
+          "legacy_id": "M7-P-1",
+          "raw_pointer": "/modality/6/products/1/extracted/safety/common_side_effects",
+          "raw_field": "safety.common_side_effects",
+          "raw_value": [
+            "부종",
+            "경미한 통증",
+            "일시적 울퉁불퉁함",
+            "스레드 촉지감"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 4
+        },
+        {
+          "legacy_id": "M7-P-1",
+          "raw_pointer": "/modality/6/products/1/extracted/safety/common",
+          "raw_field": "safety.common",
+          "raw_value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ],
+          "normalized_predicate": "safety.common",
+          "leaf_count": 2
+        }
+      ],
+      "before_leaf_count": 2,
+      "after_leaf_count": 6
+    }
+  ],
+  "override_count": 624,
+  "override_groups": {
+    "units": 248,
+    "product_links": 376
+  },
+  "collision_override_occurrences": [
+    {
+      "pointer": "/units/15/side_effect_override/0",
+      "value": {
+        "source": "taxonomy 항목 extracted",
+        "id": "auto-2-1774737181584",
+        "name": "턱선보톡스",
+        "level": "단위 시술",
+        "values": {
+          "common": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ],
+          "serious": [
+            "안면 비대칭",
+            "턱밑 처짐",
+            "반복 시술 1.5% 교근 섬유화"
+          ]
+        },
+        "override_of": "family:M1",
+        "priority": 2
+      }
+    },
+    {
+      "pointer": "/product_links/2/side_effect_override/0",
+      "value": {
+        "source": "taxonomy 항목 extracted",
+        "id": "M1-1-3",
+        "name": "코어톡스",
+        "level": "제품 × 계열",
+        "values": {
+          "common": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ],
+          "serious": [
+            "근력 약화",
+            "안검하수",
+            "표정 경직"
+          ]
+        },
+        "sub_family": null,
+        "override_of": "family:M1",
+        "priority": 1
+      }
+    },
+    {
+      "pointer": "/product_links/73/side_effect_override/0",
+      "value": {
+        "source": "taxonomy products extracted",
+        "id": "M7-P-1",
+        "name": "에버라인",
+        "level": "제품 × 계열(taxonomy products extracted)",
+        "values": {
+          "common": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ]
+        },
+        "sub_family": null,
+        "override_of": "family:M7",
+        "priority": 1
+      }
+    }
+  ],
+  "ownerless_or_candidate_rows": [
+    {
+      "pointer": "/extracted/27",
+      "id": "auto-4-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/28",
+      "id": "auto-5-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/29",
+      "id": "auto-6-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/30",
+      "id": "auto-7-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/109",
+      "id": "auto-25-1774737181584",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-019",
+        "U5-040",
+        "U5-142"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/127",
+      "id": "M7-1-1",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/128",
+      "id": "M7-1-2",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/129",
+      "id": "M7-1-3",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/130",
+      "id": "auto-26-1774737181584",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 4
+    },
+    {
+      "pointer": "/extracted/131",
+      "id": "auto-M7-1775361902160",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/132",
+      "id": "auto-M7-1775364775160",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/133",
+      "id": "M7-2-1",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/134",
+      "id": "M7-2-2",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/135",
+      "id": "M7-2-3",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-022",
+        "U5-097",
+        "U5-098",
+        "U5-122"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/173",
+      "id": "auto-M8-1775402572157",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/174",
+      "id": "auto-M8-1775402586665",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/175",
+      "id": "auto-M8-1775402736445",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/220",
+      "id": "auto-M8-1775361951910",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-024",
+        "U5-026"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/274",
+      "id": "auto-41-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/275",
+      "id": "auto-42-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/291",
+      "id": "auto-44-1774737181584",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/314",
+      "id": "auto-M14-1775402698241",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/358",
+      "id": "auto-M15-1775401780659",
+      "attach": "원문 보관(원장님 문의)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/415",
+      "id": "auto-M15-1775364797158",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/416",
+      "id": "auto-M15-1775361793054",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/417",
+      "id": "auto-M15-1775361802111",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/418",
+      "id": "auto-M15-1775361818736",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/419",
+      "id": "auto-M15-1775361951887",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/420",
+      "id": "auto-M15-1775361951900",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/421",
+      "id": "auto-M15-1775364775180",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/422",
+      "id": "auto-M15-1775364775181",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/423",
+      "id": "auto-M15-1775364775182",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/424",
+      "id": "auto-M15-1775364775183",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/425",
+      "id": "auto-M15-1775364775184",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/426",
+      "id": "auto-M15-1775364797147",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/427",
+      "id": "auto-M15-1775364797148",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/428",
+      "id": "auto-M15-1775364797149",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/429",
+      "id": "auto-M15-1775364797150",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/431",
+      "id": "auto-M15-1775361864704",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/434",
+      "id": "auto-M15-1775364775170",
+      "attach": "원문 보관(값)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/436",
+      "id": "auto-M15-1775361878302",
+      "attach": "원문 보관(시술 아님(다른 단계))",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/437",
+      "id": "auto-M15-1775361885031",
+      "attach": "원문 보관(시술 아님(다른 단계))",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/438",
+      "id": "auto-M15-1775361951923",
+      "attach": "원문 보관(시술 아님)",
+      "units": null,
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/443",
+      "id": "auto-M15-1775402626587",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/445",
+      "id": "auto-M15-1775402736448",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/446",
+      "id": "auto-M15-1775402736449",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/447",
+      "id": "auto-M15-1775402736450",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/449",
+      "id": "auto-M15-1775402736452",
+      "attach": "원문 보관(6단계 패키지)",
+      "units": null,
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/491",
+      "id": "auto-M16-1775402996209",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/493",
+      "id": "auto-M16-1775403054538",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/496",
+      "id": "auto-M16-1775403076220",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/497",
+      "id": "auto-M16-1775403176935",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/498",
+      "id": "auto-M16-1775403176936",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/501",
+      "id": "auto-M16-1775361054038",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-070",
+        "U5-071",
+        "U5-072",
+        "U5-073",
+        "U5-074",
+        "U5-077",
+        "U5-078",
+        "U5-079",
+        "U5-080"
+      ],
+      "safety_fields": 2
+    },
+    {
+      "pointer": "/extracted/514",
+      "id": "M17-1-1",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-081",
+        "U5-121",
+        "U5-143"
+      ],
+      "safety_fields": 3
+    },
+    {
+      "pointer": "/extracted/517",
+      "id": "M17-3-1",
+      "attach": "단위 시술 후보",
+      "units": [
+        "U5-019",
+        "U5-040",
+        "U5-142"
+      ],
+      "safety_fields": 3
+    }
+  ]
+}

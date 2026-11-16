@@ -1,0 +1,5331 @@
+[
+ {
+  "evidence": [],
+  "id": "adverse-phrase",
+  "kind": "dictionary_add",
+  "options": [],
+  "recommend_reason": "하위 항목마다",
+  "recommended": null,
+  "subitems": [],
+  "title": "① 부작용 문구 조각 → 사건 사전 동의어(상위 0 / 조각 0)",
+  "why": "문구 사전 unlinked 항목에서 사건을 못 찾은 미등록 조각 — 조각이 든 문구 자리 수 순. 하위 항목마다 고른다."
+ },
+ {
+  "evidence": [],
+  "id": "site-material",
+  "kind": "dictionary_add",
+  "options": [],
+  "recommend_reason": "하위 항목마다",
+  "recommended": null,
+  "subitems": [],
+  "title": "② 부작용 문구의 부위·조직·물질 조각(하위 0)",
+  "why": "같은 미등록 조각 중 부위(site · 상대 부위) · 물질(adverse_qualifier · 성분) 사전 후보가 있는 것. 하위 항목마다 고른다."
+ },
+ {
+  "evidence": [],
+  "id": "procedure-fragment",
+  "kind": "canonical_mapping",
+  "options": [],
+  "recommend_reason": "하위 항목마다",
+  "recommended": null,
+  "subitems": [
+   {
+    "already_decided": [
+     "DEC-2026-11-04-B1-SYN-001",
+     "DEC-2026-11-05-B3-SIT-01",
+     "DEC-2026-11-05-B3-SIT-02",
+     "DEC-2026-11-05-B3-SIT-03",
+     "DEC-2026-11-06-B6A-SITE-01",
+     "DEC-2026-11-06-B6A-SITE-02",
+     "DEC-2026-11-06-B6A-SITE-03",
+     "DEC-2026-11-06-B6A-SITE-04",
+     "DEC-2026-11-06-B6A-SITE-05",
+     "DEC-2026-11-06-B6A-SITE-06",
+     "DEC-2026-11-06-B6A-SITE-07",
+     "DEC-2026-11-06-B6A-SITE-08",
+     "DEC-2026-11-06-B6A-SITE-09",
+     "DEC-2026-11-06-B6A-SITE-10",
+     "DEC-2026-11-06-B6A-SITE-11",
+     "DEC-2026-11-06-B6A-SITE-12",
+     "DEC-2026-11-06-B6A-SITE-13",
+     "DEC-2026-11-06-B6A-SITE-14",
+     "DEC-2026-11-06-B6A-SITE-15"
+    ],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "synergy.json:links[].to@21",
+        "note": "원장 이름 병기 「인모드(바디)」"
+       }
+      ],
+      "canonical": "인모드",
+      "closes_references": 1,
+      "code": "M9",
+      "dictionary": "product_name"
+     },
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「바디 전체」 ⊃ 조각 「바디」"
+       }
+      ],
+      "canonical": "바디 전체",
+      "closes_references": 2,
+      "code": null,
+      "dictionary": "site"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "synergy.json",
+      "locator": "synergy.json:links[].to@20",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "HIFES/EMS 바디"
+     },
+     {
+      "file": "synergy.json",
+      "locator": "synergy.json:links[].to@21",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "M9-인모드(바디)"
+     },
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "바넬라 (고주파 바디)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "고주파 바디 RF"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "바디 RF"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "바디 HIFU(리포셀)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "EMS 바디 (팔뚝/허벅지)"
+     }
+    ],
+    "fragment": "바디",
+    "id": "b4-prc/001",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-001a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-034f572396"
+       },
+       "proposal_item": "b4-prc/001",
+       "reason": "결정 묶음 4 — 참조 조각 「바디」 을 그 참조들(⑨ 7)에서 product_name 「인모드」(PRD-034f572396)로 읽는다(근거: 원장 이름 병기 「인모드(바디)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@20"
+        },
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@21"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/3"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "바디",
+        "scope": [
+         "REF-6416534ee8",
+         "REF-65195c4396",
+         "REF-6633e9a989",
+         "REF-73140eefc2",
+         "REF-85dcc44f0d",
+         "REF-e4e3b3c211",
+         "REF-e79e6b0138"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 1/7(원장 자리 1) · 근거 원장 이름 병기 「인모드(바디)」",
+      "key": "map_1",
+      "label": "product_name 「인모드」(M9)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-001b",
+       "kind": "dictionary_add",
+       "new_value": {
+        "canonical": "바디 전체",
+        "category": null,
+        "synonyms": [
+         "바디"
+        ]
+       },
+       "proposal_item": "b4-prc/001",
+       "reason": "결정 묶음 4 — 참조 조각 「바디」 을 site 「바디 전체」 의 동의어로(근거: 「바디 전체」 ⊃ 조각 「바디」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@20"
+        },
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@21"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/3"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "dictionary": "site"
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/7(원장 자리 2) · 근거 「바디 전체」 ⊃ 조각 「바디」",
+      "key": "syn_2",
+      "label": "site 「바디 전체」 의 동의어"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "HIFES/EMS 바디",
+      "ref_id": "REF-e79e6b0138",
+      "slot": "synergy.links[].from/to (노드 52)"
+     },
+     {
+      "hint": "M9",
+      "label": "인모드(바디)",
+      "ref_id": "REF-65195c4396",
+      "slot": "synergy.links[].from/to (노드 52)"
+     },
+     {
+      "hint": "M9",
+      "label": "바넬라 (고주파 바디)",
+      "ref_id": "REF-e4e3b3c211",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "고주파 바디 RF",
+      "ref_id": "REF-85dcc44f0d",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "바디 RF",
+      "ref_id": "REF-6633e9a989",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "바디 HIFU(리포셀)",
+      "ref_id": "REF-6416534ee8",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": "M10",
+      "label": "EMS 바디 (팔뚝/허벅지)",
+      "ref_id": "REF-73140eefc2",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「바디」 — 인모드, 바디 전체 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 7(원장 자리 7)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「냉각지방분해」 ⊃ 조각 「지방분해」"
+       }
+      ],
+      "canonical": "냉각지방분해",
+      "closes_references": 2,
+      "code": "M14",
+      "dictionary": "modality_subcategory_label"
+     },
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「지방분해주사 (마케팅명)」 ⊃ 조각 「지방분해」"
+       }
+      ],
+      "canonical": "지방분해주사 (마케팅명)",
+      "closes_references": 2,
+      "code": "M16",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "지방분해"
+     },
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "스컬프슈어 (레이저 지방분해)"
+     },
+     {
+      "file": "post-procedure-timeline.json",
+      "locator": "post-procedure-timeline.json:timelines[].name@5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "DCA 지방분해 주사"
+     }
+    ],
+    "fragment": "지방분해",
+    "id": "b4-prc/002",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-002a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-5dbcd39366"
+       },
+       "proposal_item": "b4-prc/002",
+       "reason": "결정 묶음 4 — 참조 조각 「지방분해」 을 그 참조들(⑨ 4)에서 modality_subcategory_label 「냉각지방분해」(SUB-5dbcd39366)로 읽는다(근거: 「냉각지방분해」 ⊃ 조각 「지방분해」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "post-procedure-timeline.json:timelines[].name@5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "지방분해",
+        "scope": [
+         "REF-154291cf05",
+         "REF-851be0d05a",
+         "REF-da6f8f82a5",
+         "REF-e1f34f89a3"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/4(원장 자리 6) · 근거 「냉각지방분해」 ⊃ 조각 「지방분해」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「냉각지방분해」(M14)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-002b",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-489a0c3701"
+       },
+       "proposal_item": "b4-prc/002",
+       "reason": "결정 묶음 4 — 참조 조각 「지방분해」 을 그 참조들(⑨ 4)에서 modality_subcategory_label 「지방분해주사 (마케팅명)」(SUB-489a0c3701)로 읽는다(근거: 「지방분해주사 (마케팅명)」 ⊃ 조각 「지방분해」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "post-procedure-timeline.json:timelines[].name@5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "지방분해",
+        "scope": [
+         "REF-154291cf05",
+         "REF-851be0d05a",
+         "REF-da6f8f82a5",
+         "REF-e1f34f89a3"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/4(원장 자리 6) · 근거 「지방분해주사 (마케팅명)」 ⊃ 조각 「지방분해」",
+      "key": "map_2",
+      "label": "modality_subcategory_label 「지방분해주사 (마케팅명)」(M16)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M14",
+      "label": "지방분해",
+      "ref_id": "REF-e1f34f89a3",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "지방분해",
+      "ref_id": "REF-154291cf05",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     },
+     {
+      "hint": "M8",
+      "label": "스컬프슈어 (레이저 지방분해)",
+      "ref_id": "REF-da6f8f82a5",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M16",
+      "label": "DCA 지방분해 주사",
+      "ref_id": "REF-851be0d05a",
+      "slot": "post-procedure-timeline.timelines[].name (10)"
+     }
+    ],
+    "title": "참조 조각 「지방분해」 — 냉각지방분해, 지방분해주사 (마케팅명) 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 4(원장 자리 8)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「리쥬란 힐러」 ⊃ 조각 「리쥬란」"
+       }
+      ],
+      "canonical": "리쥬란 힐러",
+      "closes_references": 3,
+      "code": "M4",
+      "dictionary": "product_name"
+     },
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「리쥬란아이」 ⊃ 조각 「리쥬란」"
+       }
+      ],
+      "canonical": "리쥬란아이",
+      "closes_references": 3,
+      "code": "M4",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@1/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리쥬란 (PN주사)"
+     },
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@8/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "스킨부스터 (쥬베룩/리쥬란)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "스킨부스터(리쥬란)"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:common_combos[].sequence[]@5/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "스킨부스터 리쥬란"
+     }
+    ],
+    "fragment": "리쥬란",
+    "id": "b4-prc/003",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-003a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-21b89b29a3"
+       },
+       "proposal_item": "b4-prc/003",
+       "reason": "결정 묶음 4 — 참조 조각 「리쥬란」 을 그 참조들(⑨ 4)에서 product_name 「리쥬란 힐러」(PRD-21b89b29a3)로 읽는다(근거: 「리쥬란 힐러」 ⊃ 조각 「리쥬란」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@1/3"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@8/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/0/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-sequence.json:common_combos[].sequence[]@5/1"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "리쥬란",
+        "scope": [
+         "REF-380af0e5ee",
+         "REF-476cd51b2e",
+         "REF-84f5ae9763",
+         "REF-bfc74ed8ee"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 3/4(원장 자리 3) · 근거 「리쥬란 힐러」 ⊃ 조각 「리쥬란」",
+      "key": "map_1",
+      "label": "product_name 「리쥬란 힐러」(M4)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-003b",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-7d42735092"
+       },
+       "proposal_item": "b4-prc/003",
+       "reason": "결정 묶음 4 — 참조 조각 「리쥬란」 을 그 참조들(⑨ 4)에서 product_name 「리쥬란아이」(PRD-7d42735092)로 읽는다(근거: 「리쥬란아이」 ⊃ 조각 「리쥬란」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@1/3"
+        },
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@8/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/0/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-sequence.json:common_combos[].sequence[]@5/1"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "리쥬란",
+        "scope": [
+         "REF-380af0e5ee",
+         "REF-476cd51b2e",
+         "REF-84f5ae9763",
+         "REF-bfc74ed8ee"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 3/4(원장 자리 3) · 근거 「리쥬란아이」 ⊃ 조각 「리쥬란」",
+      "key": "map_2",
+      "label": "product_name 「리쥬란아이」(M4)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M4",
+      "label": "리쥬란 (PN주사)",
+      "ref_id": "REF-476cd51b2e",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M4",
+      "label": "스킨부스터 (쥬베룩/리쥬란)",
+      "ref_id": "REF-bfc74ed8ee",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "스킨부스터(리쥬란)",
+      "ref_id": "REF-380af0e5ee",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "스킨부스터 리쥬란",
+      "ref_id": "REF-84f5ae9763",
+      "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)"
+     }
+    ],
+    "title": "참조 조각 「리쥬란」 — 리쥬란 힐러, 리쥬란아이 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/11/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "연말 리프팅 관리(RF/HIFU 터치)"
+     },
+     {
+      "file": "post-procedure-timeline.json",
+      "locator": "post-procedure-timeline.json:timelines[].name@2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "HIFU/RF 리프팅"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@6/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "민트 리프팅 (양쪽)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@12/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "플라즈마 리프팅 (전체얼굴)"
+     }
+    ],
+    "fragment": "리프팅",
+    "id": "b4-prc/004",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "연말 리프팅 관리(RF/HIFU 터치)",
+      "ref_id": "REF-b009d7edf1",
+      "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)"
+     },
+     {
+      "hint": "M9",
+      "label": "HIFU/RF 리프팅",
+      "ref_id": "REF-642f354ffe",
+      "slot": "post-procedure-timeline.timelines[].name (10)"
+     },
+     {
+      "hint": "M7",
+      "label": "민트 리프팅 (양쪽)",
+      "ref_id": "REF-01910d1c7b",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M13",
+      "label": "플라즈마 리프팅 (전체얼굴)",
+      "ref_id": "REF-7787517462",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「리프팅」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「쥬베룩볼륨」 ⊃ 조각 「볼륨」"
+       }
+      ],
+      "canonical": "쥬베룩볼륨",
+      "closes_references": 0,
+      "code": "M3",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "입술 볼륨 (HA 1cc)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@1/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "턱 끝 볼륨 (HA 1cc)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@1/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이마 볼륨 (HA 2cc)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@1/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "볼 볼륨 (HA 1cc)"
+     }
+    ],
+    "fragment": "볼륨",
+    "id": "b4-prc/005",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-005a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-78dc378af5"
+       },
+       "proposal_item": "b4-prc/005",
+       "reason": "결정 묶음 4 — 참조 조각 「볼륨」 을 그 참조들(⑨ 4)에서 product_name 「쥬베룩볼륨」(PRD-78dc378af5)로 읽는다(근거: 「쥬베룩볼륨」 ⊃ 조각 「볼륨」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@1/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@1/3"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@1/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@1/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "볼륨",
+        "scope": [
+         "REF-07845a4790",
+         "REF-0efc3dbf09",
+         "REF-16da584a56",
+         "REF-6189269ba0"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/4(원장 자리 0) · 근거 「쥬베룩볼륨」 ⊃ 조각 「볼륨」",
+      "key": "map_1",
+      "label": "product_name 「쥬베룩볼륨」(M3)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M2",
+      "label": "입술 볼륨 (HA 1cc)",
+      "ref_id": "REF-16da584a56",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M2",
+      "label": "턱 끝 볼륨 (HA 1cc)",
+      "ref_id": "REF-07845a4790",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M2",
+      "label": "이마 볼륨 (HA 2cc)",
+      "ref_id": "REF-6189269ba0",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M2",
+      "label": "볼 볼륨 (HA 1cc)",
+      "ref_id": "REF-0efc3dbf09",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「볼륨」 — 쥬베룩볼륨 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "market-pricing.json:categories[].items[].name@14/4",
+        "note": "원장 이름 병기 「이온토포레시스(비타민C)」"
+       }
+      ],
+      "canonical": "이온토포레시스",
+      "closes_references": 3,
+      "code": "M15",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/0/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "비타민C 이온토포레시스"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:common_combos[].sequence[]@4/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "비타민C 이온토포레시스"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@14/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이온토포레시스 (비타민C)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@15/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "고농도 비타민C 수액"
+     }
+    ],
+    "fragment": "비타민C",
+    "id": "b4-prc/006",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-006a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-14c7f5379c"
+       },
+       "proposal_item": "b4-prc/006",
+       "reason": "결정 묶음 4 — 참조 조각 「비타민C」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「이온토포레시스」(SUB-14c7f5379c)로 읽는다(근거: 원장 이름 병기 「이온토포레시스(비타민C)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/0/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-sequence.json:common_combos[].sequence[]@4/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@14/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@15/4"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "비타민C",
+        "scope": [
+         "REF-0586eaa695",
+         "REF-5518f02147",
+         "REF-e167774a2e"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 3/4(원장 자리 3) · 근거 원장 이름 병기 「이온토포레시스(비타민C)」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「이온토포레시스」(M15)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "비타민C 이온토포레시스",
+      "ref_id": "REF-5518f02147",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "비타민C 이온토포레시스",
+      "ref_id": "REF-5518f02147",
+      "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)"
+     },
+     {
+      "hint": "M15",
+      "label": "이온토포레시스 (비타민C)",
+      "ref_id": "REF-e167774a2e",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M16",
+      "label": "고농도 비타민C 수액",
+      "ref_id": "REF-0586eaa695",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「비타민C」 — 이온토포레시스 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_age_group[].avoid[]@2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "과도한 시술 빈도(피부 회복력 저하 고려)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_age_group[].avoid[]@3/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "회복력 초과 시술 빈도"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@6/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "모든 시술"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@14/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "진정관리 (시술 후 재생팩)"
+     }
+    ],
+    "fragment": "시술",
+    "id": "b4-prc/007",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "과도한 시술 빈도(피부 회복력 저하 고려)",
+      "ref_id": "REF-c84d7db12d",
+      "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)"
+     },
+     {
+      "hint": null,
+      "label": "회복력 초과 시술 빈도",
+      "ref_id": "REF-9e9471f373",
+      "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)"
+     },
+     {
+      "hint": null,
+      "label": "모든 시술",
+      "ref_id": "REF-b6d732a97b",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     },
+     {
+      "hint": "M15",
+      "label": "진정관리 (시술 후 재생팩)",
+      "ref_id": "REF-76f780237d",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「시술」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "심부 필링(페놀)"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "심부 필링(TCA 50%+/페놀)"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:minimum_intervals[].to@3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "박리성(ablative) 레이저/심부 필링"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:minimum_intervals[].from@4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "심부 필링"
+     }
+    ],
+    "fragment": "심부",
+    "id": "b4-prc/008",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "심부 필링(페놀)",
+      "ref_id": "REF-ef67cb7695",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     },
+     {
+      "hint": null,
+      "label": "심부 필링(TCA 50%+/페놀)",
+      "ref_id": "REF-8238e69d5c",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     },
+     {
+      "hint": null,
+      "label": "박리성(ablative) 레이저/심부 필링",
+      "ref_id": "REF-e2cc35080f",
+      "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)"
+     },
+     {
+      "hint": null,
+      "label": "심부 필링",
+      "ref_id": "REF-a17da282da",
+      "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)"
+     }
+    ],
+    "title": "참조 조각 「심부」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이모드 (복부)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이모드 (힙)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이모드 (복부+힙 동시)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이모드 (4회 패키지)"
+     }
+    ],
+    "fragment": "이모드",
+    "id": "b4-prc/009",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M10",
+      "label": "이모드 (복부)",
+      "ref_id": "REF-5621e08e0a",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M10",
+      "label": "이모드 (힙)",
+      "ref_id": "REF-9f2d6daf51",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M10",
+      "label": "이모드 (복부+힙 동시)",
+      "ref_id": "REF-0abc21e857",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M10",
+      "label": "이모드 (4회 패키지)",
+      "ref_id": "REF-bfff23f5f3",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「이모드」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 4(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@5/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "다이오드 (808nm/810nm)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "다이오드 레이저(810nm)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "다이오드(810nm)"
+     }
+    ],
+    "fragment": "810nm",
+    "id": "b4-prc/010",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "다이오드 (808nm/810nm)",
+      "ref_id": "REF-0de4c32307",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "다이오드 레이저(810nm)",
+      "ref_id": "REF-c062302516",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "다이오드(810nm)",
+      "ref_id": "REF-d927401fa0",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「810nm」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "영문 낱말 「EMS」 ↔ 「바디 EMS」"
+       }
+      ],
+      "canonical": "바디 EMS",
+      "closes_references": 0,
+      "code": "M10",
+      "dictionary": "modality_subcategory_label"
+     },
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "영문 낱말 「EMS」 ↔ 「페이셜 EMS」"
+       }
+      ],
+      "canonical": "페이셜 EMS",
+      "closes_references": 0,
+      "code": "M10",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "synergy.json",
+      "locator": "synergy.json:links[].to@20",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "HIFES/EMS 바디"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "안면 EMS (표정근 강화)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@9/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "EMS 바디 (팔뚝/허벅지)"
+     }
+    ],
+    "fragment": "EMS",
+    "id": "b4-prc/011",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-011a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-f16d314207"
+       },
+       "proposal_item": "b4-prc/011",
+       "reason": "결정 묶음 4 — 참조 조각 「EMS」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「바디 EMS」(SUB-f16d314207)로 읽는다(근거: 영문 낱말 「EMS」 ↔ 「바디 EMS」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@20"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "EMS",
+        "scope": [
+         "REF-40e3babab3",
+         "REF-73140eefc2",
+         "REF-e79e6b0138"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 영문 낱말 「EMS」 ↔ 「바디 EMS」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「바디 EMS」(M10)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-011b",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-b7bd0ea81e"
+       },
+       "proposal_item": "b4-prc/011",
+       "reason": "결정 묶음 4 — 참조 조각 「EMS」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「페이셜 EMS」(SUB-b7bd0ea81e)로 읽는다(근거: 영문 낱말 「EMS」 ↔ 「페이셜 EMS」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@20"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@9/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "EMS",
+        "scope": [
+         "REF-40e3babab3",
+         "REF-73140eefc2",
+         "REF-e79e6b0138"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 영문 낱말 「EMS」 ↔ 「페이셜 EMS」",
+      "key": "map_2",
+      "label": "modality_subcategory_label 「페이셜 EMS」(M10)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "HIFES/EMS 바디",
+      "ref_id": "REF-e79e6b0138",
+      "slot": "synergy.links[].from/to (노드 52)"
+     },
+     {
+      "hint": "M10",
+      "label": "안면 EMS (표정근 강화)",
+      "ref_id": "REF-40e3babab3",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M10",
+      "label": "EMS 바디 (팔뚝/허벅지)",
+      "ref_id": "REF-73140eefc2",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「EMS」 — 바디 EMS, 페이셜 EMS 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "바넬라 (고주파 바디)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "고주파 바디 RF"
+     },
+     {
+      "file": "post-procedure-timeline.json",
+      "locator": "post-procedure-timeline.json:timelines[].name@6",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "니들RF (미세침 고주파)"
+     }
+    ],
+    "fragment": "고주파",
+    "id": "b4-prc/012",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M9",
+      "label": "바넬라 (고주파 바디)",
+      "ref_id": "REF-e4e3b3c211",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "고주파 바디 RF",
+      "ref_id": "REF-85dcc44f0d",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": "M11",
+      "label": "니들RF (미세침 고주파)",
+      "ref_id": "REF-5c79154640",
+      "slot": "post-procedure-timeline.timelines[].name (10)"
+     }
+    ],
+    "title": "참조 조각 「고주파」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「색소/토닝」 ⊃ 조각 「색소」"
+       }
+      ],
+      "canonical": "색소/토닝",
+      "closes_references": 0,
+      "code": "M8",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/3/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "IPL(색소 관리)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/9/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "IPL(가을 색소 관리)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/9/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "IPL(가을 색소)"
+     }
+    ],
+    "fragment": "색소",
+    "id": "b4-prc/013",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-013a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-a6011da318"
+       },
+       "proposal_item": "b4-prc/013",
+       "reason": "결정 묶음 4 — 참조 조각 「색소」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「색소/토닝」(SUB-a6011da318)로 읽는다(근거: 「색소/토닝」 ⊃ 조각 「색소」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/3/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/9/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/9/1"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "색소",
+        "scope": [
+         "REF-5da7193b15",
+         "REF-b572fd0bf1",
+         "REF-c640464ff3"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 「색소/토닝」 ⊃ 조각 「색소」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「색소/토닝」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "IPL(색소 관리)",
+      "ref_id": "REF-b572fd0bf1",
+      "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)"
+     },
+     {
+      "hint": null,
+      "label": "IPL(가을 색소 관리)",
+      "ref_id": "REF-c640464ff3",
+      "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)"
+     },
+     {
+      "hint": null,
+      "label": "IPL(가을 색소)",
+      "ref_id": "REF-5da7193b15",
+      "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)"
+     }
+    ],
+    "title": "참조 조각 「색소」 — 색소/토닝 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「여드름 전용」 ⊃ 조각 「여드름」"
+       }
+      ],
+      "canonical": "여드름 전용",
+      "closes_references": 0,
+      "code": "M15",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@10/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "니들RF (여드름 흉터)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@11/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "MTS (여드름 흉터 집중)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@12/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "플라즈마 (여드름 치료)"
+     }
+    ],
+    "fragment": "여드름",
+    "id": "b4-prc/014",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-014a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-e72084467a"
+       },
+       "proposal_item": "b4-prc/014",
+       "reason": "결정 묶음 4 — 참조 조각 「여드름」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「여드름 전용」(SUB-e72084467a)로 읽는다(근거: 「여드름 전용」 ⊃ 조각 「여드름」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@10/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@11/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@12/2"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "여드름",
+        "scope": [
+         "REF-3e2882e0f8",
+         "REF-b1d17ecc4f",
+         "REF-f9491ba78c"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 「여드름 전용」 ⊃ 조각 「여드름」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「여드름 전용」(M15)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M11",
+      "label": "니들RF (여드름 흉터)",
+      "ref_id": "REF-b1d17ecc4f",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M12",
+      "label": "MTS (여드름 흉터 집중)",
+      "ref_id": "REF-3e2882e0f8",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M13",
+      "label": "플라즈마 (여드름 치료)",
+      "ref_id": "REF-f9491ba78c",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「여드름」 — 여드름 전용 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@4/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "레이저토닝 (저출력 Nd:YAG)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "저출력 IPL(병용 보조)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "저출력 피코토닝"
+     }
+    ],
+    "fragment": "저출력",
+    "id": "b4-prc/015",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "레이저토닝 (저출력 Nd:YAG)",
+      "ref_id": "REF-e6351579d0",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "저출력 IPL(병용 보조)",
+      "ref_id": "REF-4da628970c",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "저출력 피코토닝",
+      "ref_id": "REF-548cafd757",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「저출력」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「지방분해주사 (마케팅명)」 ⊃ 조각 「주사」"
+       }
+      ],
+      "canonical": "지방분해주사 (마케팅명)",
+      "closes_references": 0,
+      "code": "M16",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트라넥삼산(경구+주사)"
+     },
+     {
+      "file": "post-procedure-timeline.json",
+      "locator": "post-procedure-timeline.json:timelines[].name@5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "DCA 지방분해 주사"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@4/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDRN 주사 (부위당)"
+     }
+    ],
+    "fragment": "주사",
+    "id": "b4-prc/016",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-016a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-489a0c3701"
+       },
+       "proposal_item": "b4-prc/016",
+       "reason": "결정 묶음 4 — 참조 조각 「주사」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「지방분해주사 (마케팅명)」(SUB-489a0c3701)로 읽는다(근거: 「지방분해주사 (마케팅명)」 ⊃ 조각 「주사」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "post-procedure-timeline.json:timelines[].name@5"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@4/4"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "주사",
+        "scope": [
+         "REF-616820f3af",
+         "REF-6bb3032c07",
+         "REF-851be0d05a"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 「지방분해주사 (마케팅명)」 ⊃ 조각 「주사」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「지방분해주사 (마케팅명)」(M16)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "트라넥삼산(경구+주사)",
+      "ref_id": "REF-616820f3af",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": "M16",
+      "label": "DCA 지방분해 주사",
+      "ref_id": "REF-851be0d05a",
+      "slot": "post-procedure-timeline.timelines[].name (10)"
+     },
+     {
+      "hint": "M5",
+      "label": "PDRN 주사 (부위당)",
+      "ref_id": "REF-6bb3032c07",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「주사」 — 지방분해주사 (마케팅명) 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@1/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "프락셀 (프랙셔널 레이저)"
+     },
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@3/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "CO2 프랙셔널 레이저"
+     },
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@3/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "피코 프랙셔널"
+     }
+    ],
+    "fragment": "프랙셔널",
+    "id": "b4-prc/017",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "프락셀 (프랙셔널 레이저)",
+      "ref_id": "REF-61e5788ccb",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M8",
+      "label": "CO2 프랙셔널 레이저",
+      "ref_id": "REF-7abbdf5aa8",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M8",
+      "label": "피코 프랙셔널",
+      "ref_id": "REF-ddb1fe5c6d",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     }
+    ],
+    "title": "참조 조각 「프랙셔널」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 3(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/3/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/4/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/5/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@1/6/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@10/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@10/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@2/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@2/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@2/2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@2/3/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@2/4/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@3/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@6/2/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@6/3/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/0/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/1/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/2/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/4/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/5/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/6/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@3/0/0/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/2/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/3/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리프팅기기"
+     }
+    ],
+    "fragment": "리프팅기기",
+    "id": "b4-prc/018",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M9",
+      "label": "리프팅기기",
+      "ref_id": "REF-1d66b51c54",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "리프팅기기",
+      "ref_id": "REF-b8f9860643",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「리프팅기기」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 41)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "조각 「제모레이저」 ⊃ 「제모」"
+       }
+      ],
+      "canonical": "제모",
+      "closes_references": 2,
+      "code": "M8",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@9/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@9/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@9/2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@9/3/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/0/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/2/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/3/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제모레이저"
+     }
+    ],
+    "fragment": "제모레이저",
+    "id": "b4-prc/019",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-019a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-5ca76e37a4"
+       },
+       "proposal_item": "b4-prc/019",
+       "reason": "결정 묶음 4 — 참조 조각 「제모레이저」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「제모」(SUB-5ca76e37a4)로 읽는다(근거: 조각 「제모레이저」 ⊃ 「제모」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/1/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/2/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/3/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/0/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/1/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/2/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/3/0/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "제모레이저",
+        "scope": [
+         "REF-4690afbfbb",
+         "REF-9a8e493f02"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 9) · 근거 조각 「제모레이저」 ⊃ 「제모」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「제모」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "제모레이저",
+      "ref_id": "REF-9a8e493f02",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "제모레이저",
+      "ref_id": "REF-4690afbfbb",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「제모레이저」 — 제모 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 9)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@0/13/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@0/14/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@0/15/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@0/16/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/13/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/14/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/15/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/16/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "반영구화장"
+     }
+    ],
+    "fragment": "반영구화장",
+    "id": "b4-prc/020",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M15",
+      "label": "반영구화장",
+      "ref_id": "REF-e0e91f5638",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "반영구화장",
+      "ref_id": "REF-251b05fa1b",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「반영구화장」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 8)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@12/6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@12/7/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@12/8/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/8/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "약물치료"
+     }
+    ],
+    "fragment": "약물치료",
+    "id": "b4-prc/021",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M15",
+      "label": "약물치료",
+      "ref_id": "REF-be2343c35c",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "약물치료",
+      "ref_id": "REF-7f2ff30d4c",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「약물치료」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 6)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "영문 낱말 「LLLT」 ↔ 「저출력레이저(LLLT)」"
+       }
+      ],
+      "canonical": "저출력레이저(LLLT)",
+      "closes_references": 0,
+      "code": "M8",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "synergy.json",
+      "locator": "synergy.json:links[].to@29",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "저출력레이저(LLLT) 두피"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/3/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/4/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/5/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     }
+    ],
+    "fragment": "LLLT",
+    "id": "b4-prc/022",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-022a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-d4844f414e"
+       },
+       "proposal_item": "b4-prc/022",
+       "reason": "결정 묶음 4 — 참조 조각 「LLLT」 을 그 참조들(⑨ 2)에서 product_name 「저출력레이저(LLLT)」(PRD-d4844f414e)로 읽는다(근거: 영문 낱말 「LLLT」 ↔ 「저출력레이저(LLLT)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "synergy.json:links[].to@29"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/3/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/4/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/5/0/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "LLLT",
+        "scope": [
+         "REF-eea8c375c0",
+         "REF-f9f8bfd924"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 영문 낱말 「LLLT」 ↔ 「저출력레이저(LLLT)」",
+      "key": "map_1",
+      "label": "product_name 「저출력레이저(LLLT)」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "저출력레이저(LLLT) 두피",
+      "ref_id": "REF-eea8c375c0",
+      "slot": "synergy.links[].from/to (노드 52)"
+     },
+     {
+      "hint": null,
+      "label": "헤어맥스(LLLT)",
+      "ref_id": "REF-f9f8bfd924",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「LLLT」 — 저출력레이저(LLLT) 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@12/10/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "모발이식"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@12/9/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "모발이식"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/10/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "모발이식"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/9/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "모발이식"
+     }
+    ],
+    "fragment": "모발이식",
+    "id": "b4-prc/023",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M15",
+      "label": "모발이식",
+      "ref_id": "REF-6e7ba3cf92",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "모발이식",
+      "ref_id": "REF-d39917f1a2",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「모발이식」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@4/6/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미백주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@4/7/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미백주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/6/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미백주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/7/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미백주사"
+     }
+    ],
+    "fragment": "미백주사",
+    "id": "b4-prc/024",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M16",
+      "label": "미백주사",
+      "ref_id": "REF-bd1a6c11e8",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "미백주사",
+      "ref_id": "REF-c446fabe10",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「미백주사」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@8/6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@8/7/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     }
+    ],
+    "fragment": "병변내",
+    "id": "b4-prc/025",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M15",
+      "label": "병변내 스테로이드주사",
+      "ref_id": "REF-1d57cf251b",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "병변내 스테로이드주사",
+      "ref_id": "REF-e8a4c2b362",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「병변내」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@8/6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@8/7/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "병변내 스테로이드주사"
+     }
+    ],
+    "fragment": "스테로이드주사",
+    "id": "b4-prc/026",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M15",
+      "label": "병변내 스테로이드주사",
+      "ref_id": "REF-1d57cf251b",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "병변내 스테로이드주사",
+      "ref_id": "REF-e8a4c2b362",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「스테로이드주사」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 4)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "procedure-comparison.json:comparisons[].procedures[].name@5/0",
+        "note": "원장 이름 병기 「알렉산드라이트(755nm)」"
+       },
+       {
+        "kind": "paren_phrase",
+        "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/0",
+        "note": "원장 이름 병기 「알렉산드라이트(755nm)」"
+       }
+      ],
+      "canonical": "알렉산드라이트",
+      "closes_references": 2,
+      "code": "M8",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@5/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "알렉산드라이트 (755nm)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "알렉산드라이트(755nm)"
+     }
+    ],
+    "fragment": "755nm",
+    "id": "b4-prc/027",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-027a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-e611fc179c"
+       },
+       "proposal_item": "b4-prc/027",
+       "reason": "결정 묶음 4 — 참조 조각 「755nm」 을 그 참조들(⑨ 2)에서 product_name 「알렉산드라이트」(PRD-e611fc179c)로 읽는다(근거: 원장 이름 병기 「알렉산드라이트(755nm)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@5/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "755nm",
+        "scope": [
+         "REF-0397083c33",
+         "REF-cc242017d0"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 원장 이름 병기 「알렉산드라이트(755nm)」",
+      "key": "map_1",
+      "label": "product_name 「알렉산드라이트」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "알렉산드라이트 (755nm)",
+      "ref_id": "REF-0397083c33",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "알렉산드라이트(755nm)",
+      "ref_id": "REF-cc242017d0",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「755nm」 — 알렉산드라이트 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@7/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDT (광역동치료)"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:common_combos[].sequence[]@3/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "광조사(PDT)"
+     }
+    ],
+    "fragment": "PDT",
+    "id": "b4-prc/028",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "PDT (광역동치료)",
+      "ref_id": "REF-2989f5c5e5",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "광조사(PDT)",
+      "ref_id": "REF-a7b844c6e1",
+      "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)"
+     }
+    ],
+    "title": "참조 조각 「PDT」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트라넥삼산(경구/국소)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트라넥삼산(경구+주사)"
+     }
+    ],
+    "fragment": "경구",
+    "id": "b4-prc/029",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "트라넥삼산(경구/국소)",
+      "ref_id": "REF-f9f0b83670",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     },
+     {
+      "hint": null,
+      "label": "트라넥삼산(경구+주사)",
+      "ref_id": "REF-616820f3af",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「경구」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "procedure-comparison.json:comparisons[].procedures[].name@4/2",
+        "note": "원장 이름 병기 「IPL(광선치료)」"
+       }
+      ],
+      "canonical": "IPL",
+      "closes_references": 1,
+      "code": "M8",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@4/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "IPL (광선치료)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@14/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "LED 광선치료 (전체얼굴)"
+     }
+    ],
+    "fragment": "광선치료",
+    "id": "b4-prc/030",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-030a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-ed961f40d7"
+       },
+       "proposal_item": "b4-prc/030",
+       "reason": "결정 묶음 4 — 참조 조각 「광선치료」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「IPL」(SUB-ed961f40d7)로 읽는다(근거: 원장 이름 병기 「IPL(광선치료)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@4/2"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@14/3"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "광선치료",
+        "scope": [
+         "REF-a6defde176",
+         "REF-b7c6b137a0"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 1/2(원장 자리 1) · 근거 원장 이름 병기 「IPL(광선치료)」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「IPL」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M9",
+      "label": "IPL (광선치료)",
+      "ref_id": "REF-a6defde176",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M15",
+      "label": "LED 광선치료 (전체얼굴)",
+      "ref_id": "REF-b7c6b137a0",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「광선치료」 — IPL 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@1/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "턱 끝 볼륨 (HA 1cc)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@5/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "턱 끝 지방이식"
+     }
+    ],
+    "fragment": "끝",
+    "id": "b4-prc/031",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M2",
+      "label": "턱 끝 볼륨 (HA 1cc)",
+      "ref_id": "REF-07845a4790",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M6",
+      "label": "턱 끝 지방이식",
+      "ref_id": "REF-783d9bfd7a",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「끝」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/0",
+        "note": "원장 이름 병기 「쿨스컬프팅(냉동지방분해)」"
+       }
+      ],
+      "canonical": "쿨스컬프팅",
+      "closes_references": 2,
+      "code": "M14",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "쿨스컬프팅 (냉동지방분해)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "크라이오(냉동지방분해)"
+     }
+    ],
+    "fragment": "냉동지방분해",
+    "id": "b4-prc/032",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-032a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-0d46a67493"
+       },
+       "proposal_item": "b4-prc/032",
+       "reason": "결정 묶음 4 — 참조 조각 「냉동지방분해」 을 그 참조들(⑨ 2)에서 product_name 「쿨스컬프팅」(PRD-0d46a67493)로 읽는다(근거: 원장 이름 병기 「쿨스컬프팅(냉동지방분해)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "냉동지방분해",
+        "scope": [
+         "REF-5e0fb0e488",
+         "REF-f500045020"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 원장 이름 병기 「쿨스컬프팅(냉동지방분해)」",
+      "key": "map_1",
+      "label": "product_name 「쿨스컬프팅」(M14)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M14",
+      "label": "쿨스컬프팅 (냉동지방분해)",
+      "ref_id": "REF-f500045020",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "크라이오(냉동지방분해)",
+      "ref_id": "REF-5e0fb0e488",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「냉동지방분해」 — 쿨스컬프팅 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@6/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "리포셀 (HIFU 지방)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "바디 HIFU(리포셀)"
+     }
+    ],
+    "fragment": "리포셀",
+    "id": "b4-prc/033",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M10",
+      "label": "리포셀 (HIFU 지방)",
+      "ref_id": "REF-8f843f89f3",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": null,
+      "label": "바디 HIFU(리포셀)",
+      "ref_id": "REF-6416534ee8",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「리포셀」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "synergy.json",
+      "locator": "synergy.json:links[].to@58",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "마이크로니들링(MTS) 두피"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "마이크로니들링+미백약물"
+     }
+    ],
+    "fragment": "마이크로니들링",
+    "id": "b4-prc/034",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "마이크로니들링(MTS) 두피",
+      "ref_id": "REF-033024f86d",
+      "slot": "synergy.links[].from/to (노드 52)"
+     },
+     {
+      "hint": null,
+      "label": "마이크로니들링+미백약물",
+      "ref_id": "REF-d7d85091f1",
+      "slot": "treatment-optimization.optimal_combo[] (57)"
+     }
+    ],
+    "title": "참조 조각 「마이크로니들링」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@8/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "물광주사 (메소테라피)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@3/6",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "스킨부스터 물광주사 (전체얼굴)"
+     }
+    ],
+    "fragment": "물광주사",
+    "id": "b4-prc/035",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M4",
+      "label": "물광주사 (메소테라피)",
+      "ref_id": "REF-0ad5865954",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M4",
+      "label": "스킨부스터 물광주사 (전체얼굴)",
+      "ref_id": "REF-e45416105b",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「물광주사」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@13/4/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미라드라이"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@13/4/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "미라드라이"
+     }
+    ],
+    "fragment": "미라드라",
+    "id": "b4-prc/036",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M9",
+      "label": "미라드라이",
+      "ref_id": "REF-e687587f34",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "미라드라이",
+      "ref_id": "REF-c86b6a5db6",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「미라드라」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDO 실 (10줄 기준)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@6/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "몰딩 실 (V라인)"
+     }
+    ],
+    "fragment": "실",
+    "id": "b4-prc/037",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M7",
+      "label": "PDO 실 (10줄 기준)",
+      "ref_id": "REF-1ad8c7a556",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M7",
+      "label": "몰딩 실 (V라인)",
+      "ref_id": "REF-80e286c743",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「실」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「재생/면역」 ⊃ 조각 「재생」"
+       }
+      ],
+      "canonical": "재생/면역",
+      "closes_references": 0,
+      "code": "M16",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@8/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PRP (자가혈 재생)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@12/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "플라즈마 샤워 (진정/재생)"
+     }
+    ],
+    "fragment": "재생",
+    "id": "b4-prc/038",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-038a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-3fdf0e05ff"
+       },
+       "proposal_item": "b4-prc/038",
+       "reason": "결정 묶음 4 — 참조 조각 「재생」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「재생/면역」(SUB-3fdf0e05ff)로 읽는다(근거: 「재생/면역」 ⊃ 조각 「재생」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "procedure-comparison.json:comparisons[].procedures[].name@8/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@12/5"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "재생",
+        "scope": [
+         "REF-144e6062d3",
+         "REF-a7019b20a2"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「재생/면역」 ⊃ 조각 「재생」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「재생/면역」(M16)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M5",
+      "label": "PRP (자가혈 재생)",
+      "ref_id": "REF-a7019b20a2",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M13",
+      "label": "플라즈마 샤워 (진정/재생)",
+      "ref_id": "REF-144e6062d3",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「재생」 — 재생/면역 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@7/8",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "점 제거 (1개당)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@7/9",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "문신 제거 (10cm2)"
+     }
+    ],
+    "fragment": "제거",
+    "id": "b4-prc/039",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "점 제거 (1개당)",
+      "ref_id": "REF-1c3b6589e9",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M8",
+      "label": "문신 제거 (10cm2)",
+      "ref_id": "REF-4773eff675",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「제거」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@7/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제네시스 (Nd:YAG 롱펄스)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@7/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "제네시스 (전체얼굴)"
+     }
+    ],
+    "fragment": "제네시스",
+    "id": "b4-prc/040",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "제네시스 (Nd:YAG 롱펄스)",
+      "ref_id": "REF-962faee154",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     },
+     {
+      "hint": "M8",
+      "label": "제네시스 (전체얼굴)",
+      "ref_id": "REF-d761e5c6e5",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「제네시스」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「주입장비」 ⊃ 조각 「주입」"
+       }
+      ],
+      "canonical": "주입장비",
+      "closes_references": 0,
+      "code": "M15",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "HA 필러 주입 후 RF/HIFU"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@16/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "줄기세포 배양액 주입 (전체얼굴)"
+     }
+    ],
+    "fragment": "주입",
+    "id": "b4-prc/041",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-041a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-7a55a09d24"
+       },
+       "proposal_item": "b4-prc/041",
+       "reason": "결정 묶음 4 — 참조 조각 「주입」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「주입장비」(SUB-7a55a09d24)로 읽는다(근거: 「주입장비」 ⊃ 조각 「주입」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@16/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "주입",
+        "scope": [
+         "REF-576bed0942",
+         "REF-d3bcd921bc"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「주입장비」 ⊃ 조각 「주입」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「주입장비」(M15)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "HA 필러 주입 후 RF/HIFU",
+      "ref_id": "REF-d3bcd921bc",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     },
+     {
+      "hint": "M17",
+      "label": "줄기세포 배양액 주입 (전체얼굴)",
+      "ref_id": "REF-576bed0942",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「주입」 — 주입장비 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「탈모(비수술)」 ⊃ 조각 「탈모」"
+       }
+      ],
+      "canonical": "탈모(비수술)",
+      "closes_references": 0,
+      "code": "M15",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@11/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "MTS (두피 탈모)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@16/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "줄기세포 두피치료 (탈모)"
+     }
+    ],
+    "fragment": "탈모",
+    "id": "b4-prc/042",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-042a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-ec89ca8924"
+       },
+       "proposal_item": "b4-prc/042",
+       "reason": "결정 묶음 4 — 참조 조각 「탈모」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「탈모(비수술)」(SUB-ec89ca8924)로 읽는다(근거: 「탈모(비수술)」 ⊃ 조각 「탈모」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@11/5"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@16/3"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "탈모",
+        "scope": [
+         "REF-977e15a7e4",
+         "REF-bacbdbcaf9"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「탈모(비수술)」 ⊃ 조각 「탈모」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「탈모(비수술)」(M15)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M12",
+      "label": "MTS (두피 탈모)",
+      "ref_id": "REF-bacbdbcaf9",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M17",
+      "label": "줄기세포 두피치료 (탈모)",
+      "ref_id": "REF-977e15a7e4",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「탈모」 — 탈모(비수술) 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "market-pricing.json:categories[].items[].name@8/1",
+        "note": "원장 이름 병기 「울쎄라(턱라인)」"
+       }
+      ],
+      "canonical": "울쎄라",
+      "closes_references": 2,
+      "code": "M9",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@8/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "울쎄라 (턱라인)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@8/3",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "슈링크 유니버스 (턱라인)"
+     }
+    ],
+    "fragment": "턱라인",
+    "id": "b4-prc/043",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-043a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-83a25f8d92"
+       },
+       "proposal_item": "b4-prc/043",
+       "reason": "결정 묶음 4 — 참조 조각 「턱라인」 을 그 참조들(⑨ 2)에서 product_name 「울쎄라」(PRD-83a25f8d92)로 읽는다(근거: 원장 이름 병기 「울쎄라(턱라인)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@8/1"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@8/3"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "턱라인",
+        "scope": [
+         "REF-6837397cee",
+         "REF-6c699710fd"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 원장 이름 병기 「울쎄라(턱라인)」",
+      "key": "map_1",
+      "label": "product_name 「울쎄라」(M9)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M9",
+      "label": "울쎄라 (턱라인)",
+      "ref_id": "REF-6837397cee",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M9",
+      "label": "슈링크 유니버스 (턱라인)",
+      "ref_id": "REF-6c699710fd",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「턱라인」 — 울쎄라 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [
+     "DEC-2026-11-04-B1-SYN-001",
+     "DEC-2026-11-05-B3-SIT-01",
+     "DEC-2026-11-05-B3-SIT-02",
+     "DEC-2026-11-05-B3-SIT-03",
+     "DEC-2026-11-06-B6A-SITE-01",
+     "DEC-2026-11-06-B6A-SITE-02",
+     "DEC-2026-11-06-B6A-SITE-03",
+     "DEC-2026-11-06-B6A-SITE-04",
+     "DEC-2026-11-06-B6A-SITE-05",
+     "DEC-2026-11-06-B6A-SITE-06",
+     "DEC-2026-11-06-B6A-SITE-07",
+     "DEC-2026-11-06-B6A-SITE-08",
+     "DEC-2026-11-06-B6A-SITE-09",
+     "DEC-2026-11-06-B6A-SITE-10",
+     "DEC-2026-11-06-B6A-SITE-11",
+     "DEC-2026-11-06-B6A-SITE-12",
+     "DEC-2026-11-06-B6A-SITE-13",
+     "DEC-2026-11-06-B6A-SITE-14",
+     "DEC-2026-11-06-B6A-SITE-15"
+    ],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "paren_phrase",
+        "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1",
+        "note": "원장 이름 병기 「프락셔널(피부결)」"
+       }
+      ],
+      "canonical": "프락셔널",
+      "closes_references": 2,
+      "code": "M8",
+      "dictionary": "modality_subcategory_label"
+     },
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "조각 「피부결」 ⊃ 「피부」"
+       }
+      ],
+      "canonical": "피부",
+      "closes_references": 2,
+      "code": null,
+      "dictionary": "site"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_age_group[].upgrade[]@3/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "프락셔널 CO2(피부결)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "프락셔널(피부결)"
+     }
+    ],
+    "fragment": "피부결",
+    "id": "b4-prc/044",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-044a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-6d6c52287f"
+       },
+       "proposal_item": "b4-prc/044",
+       "reason": "결정 묶음 4 — 참조 조각 「피부결」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「프락셔널」(SUB-6d6c52287f)로 읽는다(근거: 원장 이름 병기 「프락셔널(피부결)」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "피부결",
+        "scope": [
+         "REF-2332f364eb",
+         "REF-ce0cd41707"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 원장 이름 병기 「프락셔널(피부결)」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「프락셔널」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-044b",
+       "kind": "dictionary_add",
+       "new_value": {
+        "canonical": "피부",
+        "category": null,
+        "synonyms": [
+         "피부결"
+        ]
+       },
+       "proposal_item": "b4-prc/044",
+       "reason": "결정 묶음 4 — 참조 조각 「피부결」 을 site 「피부」 의 동의어로(근거: 조각 「피부결」 ⊃ 「피부」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "dictionary": "site"
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 2/2(원장 자리 2) · 근거 조각 「피부결」 ⊃ 「피부」",
+      "key": "syn_2",
+      "label": "site 「피부」 의 동의어"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "프락셔널 CO2(피부결)",
+      "ref_id": "REF-ce0cd41707",
+      "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)"
+     },
+     {
+      "hint": null,
+      "label": "프락셔널(피부결)",
+      "ref_id": "REF-2332f364eb",
+      "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)"
+     }
+    ],
+    "title": "참조 조각 「피부결」 — 프락셔널, 피부 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].name@13/2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "피코레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].combos[].combo[]@13/2/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "피코레이저"
+     }
+    ],
+    "fragment": "피코레이저",
+    "id": "b4-prc/045",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "피코레이저",
+      "ref_id": "REF-3440737a2c",
+      "slot": "problem-packages.procedures[].name (시술 종류 29)"
+     },
+     {
+      "hint": null,
+      "label": "피코레이저",
+      "ref_id": "REF-9226d652d9",
+      "slot": "problem-packages.combos[].combo[] (멤버 29)"
+     }
+    ],
+    "title": "참조 조각 「피코레이저」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_age_group[].avoid[]@2/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "과도한 시술 빈도(피부 회복력 저하 고려)"
+     },
+     {
+      "file": "treatment-optimization.json",
+      "locator": "treatment-optimization.json:by_age_group[].avoid[]@3/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "회복력 초과 시술 빈도"
+     }
+    ],
+    "fragment": "회복력",
+    "id": "b4-prc/046",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "과도한 시술 빈도(피부 회복력 저하 고려)",
+      "ref_id": "REF-c84d7db12d",
+      "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)"
+     },
+     {
+      "hint": null,
+      "label": "회복력 초과 시술 빈도",
+      "ref_id": "REF-9e9471f373",
+      "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)"
+     }
+    ],
+    "title": "참조 조각 「회복력」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "HA 필러 주입 후 RF/HIFU"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@14/5",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "진정관리 (시술 후 재생팩)"
+     }
+    ],
+    "fragment": "후",
+    "id": "b4-prc/047",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "HA 필러 주입 후 RF/HIFU",
+      "ref_id": "REF-d3bcd921bc",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     },
+     {
+      "hint": "M15",
+      "label": "진정관리 (시술 후 재생팩)",
+      "ref_id": "REF-76f780237d",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「후」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "「흉터 전용」 ⊃ 조각 「흉터」"
+       }
+      ],
+      "canonical": "흉터 전용",
+      "closes_references": 0,
+      "code": "M15",
+      "dictionary": "modality_subcategory_label"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@10/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "니들RF (여드름 흉터)"
+     },
+     {
+      "file": "market-pricing.json",
+      "locator": "market-pricing.json:categories[].items[].name@11/4",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "MTS (여드름 흉터 집중)"
+     }
+    ],
+    "fragment": "흉터",
+    "id": "b4-prc/048",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-048a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "SUB-da033816bb"
+       },
+       "proposal_item": "b4-prc/048",
+       "reason": "결정 묶음 4 — 참조 조각 「흉터」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「흉터 전용」(SUB-da033816bb)로 읽는다(근거: 「흉터 전용」 ⊃ 조각 「흉터」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@10/4"
+        },
+        {
+         "kind": "ledger",
+         "ref": "market-pricing.json:categories[].items[].name@11/4"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "흉터",
+        "scope": [
+         "REF-3e2882e0f8",
+         "REF-b1d17ecc4f"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「흉터 전용」 ⊃ 조각 「흉터」",
+      "key": "map_1",
+      "label": "modality_subcategory_label 「흉터 전용」(M15)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M11",
+      "label": "니들RF (여드름 흉터)",
+      "ref_id": "REF-b1d17ecc4f",
+      "slot": "market-pricing.items[].name (122)"
+     },
+     {
+      "hint": "M12",
+      "label": "MTS (여드름 흉터 집중)",
+      "ref_id": "REF-3e2882e0f8",
+      "slot": "market-pricing.items[].name (122)"
+     }
+    ],
+    "title": "참조 조각 「흉터」 — 흉터 전용 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 2(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@3/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@7/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@8/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     }
+    ],
+    "fragment": "복용",
+    "id": "b4-prc/049",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "이소트레티노인 복용 중",
+      "ref_id": "REF-da0f6ec10b",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     }
+    ],
+    "title": "참조 조각 「복용」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@3/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@7/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     },
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@8/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "이소트레티노인 복용 중"
+     }
+    ],
+    "fragment": "중",
+    "id": "b4-prc/050",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "이소트레티노인 복용 중",
+      "ref_id": "REF-da0f6ec10b",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     }
+    ],
+    "title": "참조 조각 「중」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/3/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/4/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@12/5/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "헤어맥스(LLLT)"
+     }
+    ],
+    "fragment": "헤어맥스",
+    "id": "b4-prc/051",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "헤어맥스(LLLT)",
+      "ref_id": "REF-f9f8bfd924",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「헤어맥스」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 3)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [
+     {
+      "basis": [
+       {
+        "kind": "partial",
+        "note": "영문 낱말 「CO2레이저」 ↔ 「CO2프락셔널」"
+       }
+      ],
+      "canonical": "CO2프락셔널",
+      "closes_references": 1,
+      "code": "M8",
+      "dictionary": "product_name"
+     }
+    ],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@13/0/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "CO2레이저"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@13/1/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "CO2레이저"
+     }
+    ],
+    "fragment": "CO2레이저",
+    "id": "b4-prc/052",
+    "kind": "canonical_mapping",
+    "options": [
+     {
+      "builder_applies_now": true,
+      "decision_payload": {
+       "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+       "decided_at": null,
+       "decided_by": null,
+       "id": "DEC-2026-11-05-B4-PRC-052a",
+       "kind": "canonical_mapping",
+       "new_value": {
+        "to_id": "PRD-bc29658174"
+       },
+       "proposal_item": "b4-prc/052",
+       "reason": "결정 묶음 4 — 참조 조각 「CO2레이저」 을 그 참조들(⑨ 1)에서 product_name 「CO2프락셔널」(PRD-bc29658174)로 읽는다(근거: 영문 낱말 「CO2레이저」 ↔ 「CO2프락셔널」)",
+       "source_refs": [
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@13/0/0/0"
+        },
+        {
+         "kind": "ledger",
+         "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@13/1/0/0"
+        },
+        {
+         "kind": "erd",
+         "ref": "erd-v3.1.md §5.2"
+        },
+        {
+         "kind": "brief",
+         "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+        }
+       ],
+       "status": "proposed",
+       "target": {
+        "from_ref": "CO2레이저",
+        "scope": [
+         "REF-9cfcadfe38"
+        ]
+       }
+      },
+      "effect": "풀리는 ⑨ 참조 1/1(원장 자리 2) · 근거 영문 낱말 「CO2레이저」 ↔ 「CO2프락셔널」",
+      "key": "map_1",
+      "label": "product_name 「CO2프락셔널」(M8)로 읽기(그 참조 자리만)"
+     },
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "근거가 정규화 부분 일치·원장 문구 병기뿐 — 병기는 같은 말·원인·예시·부위를 가리지 않고 부분 일치는 표기 겹침일 뿐이라 같은 뜻이라는 원장 문장이 아니다(추천 없음 · 사람이 정한다)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "CO2레이저",
+      "ref_id": "REF-9cfcadfe38",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「CO2레이저」 — CO2프락셔널 중 무엇인가?",
+    "why": "⑨ open 미해결 참조 1(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDL(V빔)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDL(V빔)"
+     }
+    ],
+    "fragment": "PDL",
+    "id": "b4-prc/053",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "PDL(V빔)",
+      "ref_id": "REF-9af7afebc4",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「PDL」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDL(V빔)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/1/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "PDL(V빔)"
+     }
+    ],
+    "fragment": "V빔",
+    "id": "b4-prc/054",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "PDL(V빔)",
+      "ref_id": "REF-9af7afebc4",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「V빔」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트리암시놀론(±5-FU)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트리암시놀론(±5-FU)"
+     }
+    ],
+    "fragment": "±5-FU",
+    "id": "b4-prc/055",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "트리암시놀론(±5-FU)",
+      "ref_id": "REF-e9a4ece5ff",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「±5-FU」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트리암시놀론(±5-FU)"
+     },
+     {
+      "file": "problem-packages.json",
+      "locator": "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/0/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "트리암시놀론(±5-FU)"
+     }
+    ],
+    "fragment": "트리암시놀론",
+    "id": "b4-prc/056",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "트리암시놀론(±5-FU)",
+      "ref_id": "REF-e9a4ece5ff",
+      "slot": "problem-packages.procedures[].products[] (제품 34)"
+     }
+    ],
+    "title": "참조 조각 「트리암시놀론」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 2)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@5/2",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "Nd:YAG (1064nm)"
+     }
+    ],
+    "fragment": "1064nm",
+    "id": "b4-prc/057",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "Nd:YAG (1064nm)",
+      "ref_id": "REF-ba9c484fac",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     }
+    ],
+    "title": "참조 조각 「1064nm」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 1)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:incompatible_same_day[].pair[]@6/0",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "심부 필링(TCA 50%+/페놀)"
+     }
+    ],
+    "fragment": "50%",
+    "id": "b4-prc/058",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "심부 필링(TCA 50%+/페놀)",
+      "ref_id": "REF-8238e69d5c",
+      "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)"
+     }
+    ],
+    "title": "참조 조각 「50%」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 1)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "procedure-comparison.json",
+      "locator": "procedure-comparison.json:comparisons[].procedures[].name@5/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "다이오드 (808nm/810nm)"
+     }
+    ],
+    "fragment": "808nm",
+    "id": "b4-prc/059",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": "M8",
+      "label": "다이오드 (808nm/810nm)",
+      "ref_id": "REF-0de4c32307",
+      "slot": "procedure-comparison.procedures[].name (39)"
+     }
+    ],
+    "title": "참조 조각 「808nm」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 1)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   },
+   {
+    "already_decided": [],
+    "candidates": [],
+    "evidence": [
+     {
+      "file": "treatment-sequence.json",
+      "locator": "treatment-sequence.json:common_combos[].sequence[]@3/1",
+      "note": "⑨ open 미해결 참조(미등록 조각)",
+      "text": "ALA 도포·배양"
+     }
+    ],
+    "fragment": "ALA",
+    "id": "b4-prc/060",
+    "kind": "dictionary_add",
+    "options": [
+     {
+      "builder_applies_now": null,
+      "decision_payload": null,
+      "effect": "결정 없음",
+      "key": "keep",
+      "label": "지금대로(⑨ 미해결)"
+     }
+    ],
+    "recommend_reason": "사전 후보 근거 없음(추천 없음)",
+    "recommended": null,
+    "references": [
+     {
+      "hint": null,
+      "label": "ALA 도포·배양",
+      "ref_id": "REF-a4fd8b4b6b",
+      "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)"
+     }
+    ],
+    "title": "참조 조각 「ALA」 — 하위분류·제품·부위·성분 사전 후보 없음",
+    "why": "⑨ open 미해결 참조 1(원장 자리 1)가 이 미등록 조각 때문에 튜플이 못 된다. 후보는 하위분류·제품·부위·성분 사전의 정규화 부분 일치·원장 병기뿐(유사도 없음). 하위분류·제품은 그 참조 자리만 읽는 canonical_mapping(라벨 조각 · scope=REF-) — 사전 전체를 바꾸지 않는다(「HA」 B2A-MAP-001 과 같은 방식)."
+   }
+  ],
+  "title": "③ 시술 쪽 남은 조각(⑨ open · 상위 60 / 조각 198)",
+  "why": "⑨ open 미해결 참조의 미등록 조각 — 그 조각이 든 open ⑨ 참조 수 순. 하위 항목마다 고른다."
+ }
+]

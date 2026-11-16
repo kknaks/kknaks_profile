@@ -1,0 +1,265 @@
+{
+ "segment_id": "S6",
+ "read_pointers_prefix": "/combos/5",
+ "observations": [
+  {
+   "pointer": "/combos/5/packages/0/name",
+   "status": "P",
+   "note": "\"스킨보톡스\" — procedures M1(보톡스와 동일 코드). 시술 변형(희석)이 코드가 아니라 이름·products 괄호(나보타(희석))로만 구분됨."
+  },
+  {
+   "pointer": "/combos/5/packages/0/products/0",
+   "status": "P",
+   "note": "\"레이저 토닝\"이 products에 시술명 형태로 들어감 — products 원소가 제품명만 담지는 않음."
+  },
+  {
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "status": "P",
+   "note": "\"문헌상 병용요법 모공 약 20~30% 감소, 개인차 큼\" — 원문에 있는 백분율. 출처 미기재(F). expectedResult와 riskBenefit에 '3~5회 반복 시 ... 점진적 개선'이 거의 같은 문장으로 중복 출현."
+  },
+  {
+   "pointer": "/combos/5/packages/2/upsellHook",
+   "status": "P",
+   "note": "\"매회 10% 할인\" — 가격 할인 백분율이 원문에 있음."
+  },
+  {
+   "pointer": "/combos/5/packages/2/riskBenefit",
+   "status": "P",
+   "note": "\"다운타임도 상대적으로 길 수 있음(3~5일)\" — 가능성+괄호 수치 범위."
+  },
+  {
+   "pointer": "/combos/5/packages/0/clinicalRationale",
+   "status": "P",
+   "note": "화살표 연쇄가 시술 순서가 아니라 기전 인과(차단 → 감소 → 축소)를 나타냄. 같은 '→' 기호가 순서(P2-3)와 인과(여기) 두 쓰임."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/5/packages/0/name",
+   "text": "스킨보톡스 + 레이저",
+   "kind": "시술 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/products/0",
+   "text": "나보타(희석) + 레이저 토닝",
+   "kind": "제품 결합·변형",
+   "note": "괄호=희석"
+  },
+  {
+   "pointer": "/combos/5/packages/0/priceRange",
+   "text": "15~30만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/expectedResult",
+   "text": "피지 분비 감소 + 모공 축소",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/expectedResult",
+   "text": "1~2주 후 모공이 조여지는 느낌",
+   "kind": "시간·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/salesPitch",
+   "text": "보톡스를 희석해서 피부 전체에 얇게 깔면",
+   "kind": "조건·부위·정도",
+   "note": "'얇게' 수치화 금지"
+  },
+  {
+   "pointer": "/combos/5/packages/0/upsellHook",
+   "text": "모공 확실하게 잡으시려면 니들RF가 있어요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/clinicalRationale",
+   "text": "희석 보톡스의 피내 주사 → 피지선 아세틸콜린 차단 → 피지 분비 감소 → 모공 축소",
+   "kind": "기전 인과 연쇄",
+   "note": "→ = 인과"
+  },
+  {
+   "pointer": "/combos/5/packages/0/clinicalRationale",
+   "text": "레이저가 진피 콜라겐 자극으로 모공벽 탄력 향상",
+   "kind": "층·기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/0/riskBenefit",
+   "text": "스킨보톡스는 일반 보톡스보다 용량이 적어 부작용 최소",
+   "kind": "비교·인과",
+   "note": "용량 수치 미기재"
+  },
+  {
+   "pointer": "/combos/5/packages/1/products/0",
+   "text": "포텐자/인트라셀 + PRP",
+   "kind": "제품 결합+대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/priceRange",
+   "text": "30~50만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/expectedResult",
+   "text": "3~5회 반복 시 눈에 띄는 변화(개인차 큼)",
+   "kind": "회차·조건·유보",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/salesPitch",
+   "text": "모공 줄이는 데 가장 효과적인 조합",
+   "kind": "최상급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/salesPitch",
+   "text": "니들RF가 모공 주변 콜라겐을 조이고",
+   "kind": "부위·기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/upsellHook",
+   "text": "스킨부스터 추가하시면 모공+피부결+탄력까지",
+   "kind": "조건·효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/clinicalRationale",
+   "text": "니들RF(진피 열응고 → 콜라겐 수축 → 모공벽 타이트닝)",
+   "kind": "기전 인과 연쇄",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/clinicalRationale",
+   "text": "PRP(성장인자가 열손상 부위 콜라겐 리모델링 가속)",
+   "kind": "기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/clinicalRationale",
+   "text": "모공 축소의 골든 조합",
+   "kind": "평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "text": "니들RF 후 2~3일 홍반·부종",
+   "kind": "시간·부작용",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "text": "PRP가 회복을 촉진하여 다운타임 단축",
+   "kind": "인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "text": "문헌상 병용요법 모공 약 20~30% 감소, 개인차 큼",
+   "kind": "근거·수치·유보",
+   "note": "'약' 근사"
+  },
+  {
+   "pointer": "/combos/5/packages/2/products/0",
+   "text": "포텐자 + 피코레이저 + PRP + 리쥬란",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/priceRange",
+   "text": "60~90만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/expectedResult",
+   "text": "매끈하고 깨끗한 피부",
+   "kind": "형용사",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/salesPitch",
+   "text": "모공만 줄이는 게 아니라 색소·피부결까지 한 번에",
+   "kind": "부정·범위",
+   "note": "'-이 아니라'"
+  },
+  {
+   "pointer": "/combos/5/packages/2/salesPitch",
+   "text": "이걸 3회만 하시면 '피부 어디서 했어?' 소리 들으실 거예요",
+   "kind": "회차·조건·인용",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/upsellHook",
+   "text": "5회 패키지 가입하시면 매회 10% 할인 + 유지 스킨부스터 2회 무료",
+   "kind": "회차·조건·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/clinicalRationale",
+   "text": "모공의 원인(피지·콜라겐 이완·각질)과 동반 문제(색소·피부결)를 동시 해결",
+   "kind": "원인 나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/riskBenefit",
+   "text": "열 시술 2개(니들RF+레이저)이므로 순서·간격 주의",
+   "kind": "수량·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/riskBenefit",
+   "text": "니들RF→레이저→PRP→SB 순서",
+   "kind": "순서",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/2/riskBenefit",
+   "text": "효과는 최대이나 다운타임도 상대적으로 길 수 있음(3~5일)",
+   "kind": "양보·가능성·시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "text": "3~5회 반복 시 모공 크기·피부결의 점진적 개선",
+   "kind": "회차·조건",
+   "note": "expectedResult와 거의 같은 문장 반복 출현",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/5/packages/0/riskBenefit",
+   "text": "위험 매우 낮음",
+   "kind": "정도",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/5/packages/2/clinicalRationale",
+   "text": "니들RF(진피 모공 타이트닝) + 레이저(표피 색소·각질 정리) + PRP(재생 촉진) + 스킨부스터(수분·DNA 회복)",
+   "kind": "시술-층-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-13",
+   "status": "F",
+   "pointer": "/combos/5/packages/1/riskBenefit",
+   "note": "'문헌상 ... 약 20~30% 감소' 출처 미기재 — 외부 보충 금지, 후속 근거 연결"
+  },
+  {
+   "id": "I-PC-14",
+   "status": "P",
+   "pointer": "/combos/5/packages/0/procedures",
+   "note": "스킨보톡스(희석)가 M1 코드로만 표현 — 변형 시술의 코드 구분 없음(의미 판단은 후속)"
+  }
+ ]
+}

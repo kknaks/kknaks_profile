@@ -1,0 +1,872 @@
+{
+ "segment": "S12",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M12/effects/7/added_at",
+ "read_note": "M12 진술 20개(moa 7·adverse_effects 5·effects 8) 모든 값 직접 읽음.",
+ "observations": [
+  {
+   "id": "S12-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/adverse_effects/0/citations/0",
+    "/categories/M12/moa/5/citations/0"
+   ],
+   "text": "citations 키 구성 변형 두 가지: Alster 2018(AE/0·1)은 pmc·oa_url 없음(doi 있음), Gowda 2021(moa/5·6, AE/3·4, effects/6·7)은 doi 없음(pmc·oa_url 있음). 나머지는 Singh 2016 8키 전부."
+  },
+  {
+   "id": "S12-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/adverse_effects/0/statement",
+    "/categories/M12/adverse_effects/0/accuracy_note",
+    "/categories/M12/adverse_effects/0/patient_ko",
+    "/categories/M12/adverse_effects/0/patient_en",
+    "/categories/M12/adverse_effects/0/patient_ja"
+   ],
+   "text": "PIH 진술 조건이 필드마다 다르다: statement 'particularly in darker skin phototypes'(피부형), accuracy_note '자외선 노출이나 과도한 자극 시', patient_ko '시술 후 관리가 소홀하거나 자외선에 노출될 경우'(피부형 조건 탈락)+'일시적으로', patient_en 'if not protected from the sun, especially for those with deeper skin tones'(둘 다), patient_ja '日焼け対策を怠ると … 丁寧なケアで防げます'(예방 가능 주장 추가)."
+  },
+  {
+   "id": "S12-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/adverse_effects/1/statement",
+    "/categories/M12/adverse_effects/1/accuracy_note",
+    "/categories/M12/adverse_effects/1/patient_ko",
+    "/categories/M12/adverse_effects/1/patient_en"
+   ],
+   "text": "감염·tram-track 흉터 조건: statement 'with overly aggressive technique or inadequate aseptic practice'(시술자 측 조건 두 가지, or), accuracy_note '비위생적인 기구 사용이나 과도한 깊이 조절 실패 시'(깊이 조건), patient_ko '위생적이지 못한 환경 … 사후 관리가 부족하면'(환자 측 사후관리로 이동), patient_en/zh/ja 는 사건명을 빼고 관리 지침 형태."
+  },
+  {
+   "id": "S12-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/adverse_effects/2/statement"
+   ],
+   "text": "AE/2 'well tolerated by patients with minimal discomfort' — 내약성 서술이 adverse_effects 에 있다. patient_en 'Most people …'(비율 추가), ja 'ほとんどの方'."
+  },
+  {
+   "id": "S12-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/adverse_effects/3/statement",
+    "/categories/M12/adverse_effects/4/statement",
+    "/categories/M12/adverse_effects/0/statement"
+   ],
+   "text": "AE/3 'Postinflammatory hyperpigmentation occurs after microneedling.'(단정·조건 없음)와 AE/0 'can occur, particularly in darker skin phototypes'(가능성·조건)는 같은 사건의 다른 수식. AE/4 'Erythema and edema follow microneedling treatments.'(시간 순서 'follow'). patient_en AE/4 'common reactions that resolve naturally'(빈도·경과 추가)."
+  },
+  {
+   "id": "S12-O6",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/effects/1/statement",
+    "/categories/M12/effects/7/statement",
+    "/categories/M12/effects/0/statement",
+    "/categories/M12/effects/6/statement"
+   ],
+   "text": "고민 표현: 'stretch marks'(effects/1)·'striae distensae'(effects/7), 'acne scars'(effects/0)·'atrophic acne scars'(effects/6). patient_ko '스트레치 마크'·'튼살', '여드름 흉터'·'움푹 패인 여드름 흉터'. 같은 대상인지(동의어) 여부는 후속 — 문자열로 병합하지 않음."
+  },
+  {
+   "id": "S12-O7",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/effects/6/citations/0/title",
+    "/categories/M12/effects/7/citations/0/title"
+   ],
+   "text": "effects/6·7 과 moa/5·6 의 근거는 'A Systematic Review Examining the Potential Adverse Effects of Microneedling.' — 제목상 부작용 체계적 문헌고찰이 효과·기전 진술의 근거로도 쓰임."
+  },
+  {
+   "id": "S12-O8",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/effects/2/patient_en",
+    "/categories/M12/effects/2/patient_ja"
+   ],
+   "text": "effects/2 statement 'enhances skin rejuvenation' 에 없는 반복성 'Regular care'·'定期的に' 가 patient_en/zh/ja 에 추가됨."
+  },
+  {
+   "id": "S12-O9",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/moa/3/statement"
+   ],
+   "text": "'collagen types I, III, and VII, and tropoelastin' — 세부 유형 나열. patient_ko/en/ja 는 유형을 뺌."
+  },
+  {
+   "id": "S12-O10",
+   "status": "P",
+   "pointers": [
+    "/categories/M12/name"
+   ],
+   "text": "name 'Microneedling / percutaneous collagen induction (non-RF)' — '/' 병기 + 괄호 '(non-RF)' 부정 한정."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S12-X1",
+   "pointer": "/categories/M12/name",
+   "text": "Microneedling / percutaneous collagen induction",
+   "facets": [
+    "name_candidate",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S12-X2",
+   "pointer": "/categories/M12/name",
+   "text": "(non-RF)",
+   "facets": [
+    "negation",
+    "scope"
+   ]
+  },
+  {
+   "id": "S12-X3",
+   "pointer": "/categories/M12/moa/0/statement",
+   "text": "creates micro-punctures in the skin",
+   "facets": [
+    "mechanism",
+    "size"
+   ]
+  },
+  {
+   "id": "S12-X4",
+   "pointer": "/categories/M12/moa/0/statement",
+   "text": "through percutaneous collagen induction",
+   "facets": [
+    "mechanism",
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S12-X5",
+   "pointer": "/categories/M12/moa/0/patient_ko",
+   "text": "[1][2][3]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X6",
+   "pointer": "/categories/M12/moa/1/statement",
+   "text": "reorganization of old collagen fibres and synthesis of new collagen, elastin, and capillaries",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S12-X7",
+   "pointer": "/categories/M12/moa/2/statement",
+   "text": "neocollagenesis and neoelastogenesis in the dermis",
+   "facets": [
+    "mechanism",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S12-X8",
+   "pointer": "/categories/M12/moa/2/patient_ko",
+   "text": "피부 깊은 층에서",
+   "facets": [
+    "depth"
+   ]
+  },
+  {
+   "id": "S12-X9",
+   "pointer": "/categories/M12/moa/3/statement",
+   "text": "collagen types I, III, and VII, and tropoelastin",
+   "facets": [
+    "ingredient",
+    "example"
+   ]
+  },
+  {
+   "id": "S12-X10",
+   "pointer": "/categories/M12/moa/4/statement",
+   "text": "induces dermal injury leading to new collagen-rich tissue formation",
+   "facets": [
+    "mechanism",
+    "cause"
+   ]
+  },
+  {
+   "id": "S12-X11",
+   "pointer": "/categories/M12/moa/4/patient_en",
+   "text": "gently encourages",
+   "facets": [
+    "degree"
+   ],
+   "status": "I",
+   "note": "dermal injury 가 gently 로"
+  },
+  {
+   "id": "S12-X12",
+   "pointer": "/categories/M12/moa/5/statement",
+   "text": "controlled micro-injuries",
+   "facets": [
+    "mechanism",
+    "degree",
+    "size"
+   ]
+  },
+  {
+   "id": "S12-X13",
+   "pointer": "/categories/M12/moa/5/statement",
+   "text": "growth factors including transforming growth factor alpha and beta, fibroblast growth factor, and platelet-derived growth factor",
+   "facets": [
+    "ingredient",
+    "example"
+   ]
+  },
+  {
+   "id": "S12-X14",
+   "pointer": "/categories/M12/moa/5/patient_ko",
+   "text": "[1][2][3]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X15",
+   "pointer": "/categories/M12/moa/5/patient_en",
+   "text": "natural성분",
+   "facets": [
+    "mixed_script"
+   ],
+   "status": "I",
+   "note": "영어 값 안 한글 '성분'"
+  },
+  {
+   "id": "S12-X16",
+   "pointer": "/categories/M12/moa/6/statement",
+   "text": "Microtrauma from microneedling",
+   "facets": [
+    "cause"
+   ]
+  },
+  {
+   "id": "S12-X17",
+   "pointer": "/categories/M12/moa/6/statement",
+   "text": "promotes neogenesis of collagen, elastin, and capillaries",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S12-X18",
+   "pointer": "/categories/M12/moa/6/patient_ko",
+   "text": "가벼운 자극",
+   "facets": [
+    "degree"
+   ],
+   "status": "I",
+   "note": "Microtrauma → 가벼운 자극"
+  },
+  {
+   "id": "S12-X19",
+   "pointer": "/categories/M12/moa/6/patient_ko",
+   "text": "[1][2][4][6]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X20",
+   "pointer": "/categories/M12/adverse_effects/0/statement",
+   "text": "Post-inflammatory hyperpigmentation can occur",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X21",
+   "pointer": "/categories/M12/adverse_effects/0/statement",
+   "text": "particularly in darker skin phototypes",
+   "facets": [
+    "condition",
+    "population",
+    "degree"
+   ]
+  },
+  {
+   "id": "S12-X22",
+   "pointer": "/categories/M12/adverse_effects/0/accuracy_note",
+   "text": "자외선 노출이나 과도한 자극 시",
+   "facets": [
+    "condition",
+    "degree"
+   ]
+  },
+  {
+   "id": "S12-X23",
+   "pointer": "/categories/M12/adverse_effects/0/accuracy_note",
+   "text": "PIH 발생 가능성이 있음",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X24",
+   "pointer": "/categories/M12/adverse_effects/0/patient_ko",
+   "text": "시술 후 관리가 소홀하거나 자외선에 노출될 경우",
+   "facets": [
+    "condition",
+    "time"
+   ],
+   "status": "I",
+   "note": "피부형 조건 탈락"
+  },
+  {
+   "id": "S12-X25",
+   "pointer": "/categories/M12/adverse_effects/0/patient_ko",
+   "text": "피부 톤이 일시적으로 어두워지는 현상이 생길 수 있습니다",
+   "facets": [
+    "event",
+    "duration_quality",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X26",
+   "pointer": "/categories/M12/adverse_effects/0/patient_en",
+   "text": "if not protected from the sun",
+   "facets": [
+    "condition",
+    "negation"
+   ]
+  },
+  {
+   "id": "S12-X27",
+   "pointer": "/categories/M12/adverse_effects/0/patient_en",
+   "text": "especially for those with deeper skin tones",
+   "facets": [
+    "condition",
+    "population"
+   ]
+  },
+  {
+   "id": "S12-X28",
+   "pointer": "/categories/M12/adverse_effects/0/patient_ja",
+   "text": "丁寧なケアで防げます",
+   "facets": [
+    "prevention_claim",
+    "possibility"
+   ],
+   "status": "I",
+   "note": "statement 에 없음"
+  },
+  {
+   "id": "S12-X29",
+   "pointer": "/categories/M12/adverse_effects/1/statement",
+   "text": "Bacterial infection and tram-tracking scarring can occur",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X30",
+   "pointer": "/categories/M12/adverse_effects/1/statement",
+   "text": "with overly aggressive technique or inadequate aseptic practice",
+   "facets": [
+    "condition",
+    "degree",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S12-X31",
+   "pointer": "/categories/M12/adverse_effects/1/accuracy_note",
+   "text": "비위생적인 기구 사용이나 과도한 깊이 조절 실패 시",
+   "facets": [
+    "condition",
+    "depth",
+    "negation"
+   ]
+  },
+  {
+   "id": "S12-X32",
+   "pointer": "/categories/M12/adverse_effects/1/accuracy_note",
+   "text": "감염 및 흉터 발생함",
+   "facets": [
+    "event",
+    "certainty"
+   ]
+  },
+  {
+   "id": "S12-X33",
+   "pointer": "/categories/M12/adverse_effects/1/patient_ko",
+   "text": "위생적이지 못한 환경에서 시술하거나 사후 관리가 부족하면",
+   "facets": [
+    "condition",
+    "negation"
+   ],
+   "status": "I",
+   "note": "사후 관리 조건 추가"
+  },
+  {
+   "id": "S12-X34",
+   "pointer": "/categories/M12/adverse_effects/1/patient_ko",
+   "text": "세균 감염이나 흉터가 생길 위험이 있습니다",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X35",
+   "pointer": "/categories/M12/adverse_effects/1/patient_en",
+   "text": "Following proper care instructions is essential",
+   "facets": [
+    "recommendation"
+   ],
+   "status": "I",
+   "note": "사건명 탈락·지침화"
+  },
+  {
+   "id": "S12-X36",
+   "pointer": "/categories/M12/adverse_effects/2/statement",
+   "text": "well tolerated by patients with minimal discomfort",
+   "facets": [
+    "tolerability",
+    "degree"
+   ]
+  },
+  {
+   "id": "S12-X37",
+   "pointer": "/categories/M12/adverse_effects/2/patient_ko",
+   "text": "불편함이 거의 없습니다",
+   "facets": [
+    "degree",
+    "negation"
+   ]
+  },
+  {
+   "id": "S12-X38",
+   "pointer": "/categories/M12/adverse_effects/2/patient_en",
+   "text": "Most people find this process very manageable",
+   "facets": [
+    "proportion",
+    "degree"
+   ]
+  },
+  {
+   "id": "S12-X39",
+   "pointer": "/categories/M12/adverse_effects/3/statement",
+   "text": "Postinflammatory hyperpigmentation occurs after microneedling",
+   "facets": [
+    "event",
+    "time"
+   ]
+  },
+  {
+   "id": "S12-X40",
+   "pointer": "/categories/M12/adverse_effects/3/patient_ko",
+   "text": "그 부위가 갈색으로 어두워질 수 있습니다",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X41",
+   "pointer": "/categories/M12/adverse_effects/3/patient_en",
+   "text": "Some temporary shadowing may appear",
+   "facets": [
+    "duration_quality",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X42",
+   "pointer": "/categories/M12/adverse_effects/4/statement",
+   "text": "Erythema and edema follow microneedling treatments",
+   "facets": [
+    "event",
+    "time"
+   ]
+  },
+  {
+   "id": "S12-X43",
+   "pointer": "/categories/M12/adverse_effects/4/patient_ko",
+   "text": "피부가 붉어지고 부을 수 있습니다",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S12-X44",
+   "pointer": "/categories/M12/adverse_effects/4/patient_ko",
+   "text": "[1][2][3]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X45",
+   "pointer": "/categories/M12/adverse_effects/4/patient_en",
+   "text": "Mild pinkness and a temporary full feeling in the skin are common reactions that resolve naturally",
+   "facets": [
+    "degree",
+    "duration_quality",
+    "frequency",
+    "course"
+   ],
+   "status": "I",
+   "note": "빈도·경과 추가"
+  },
+  {
+   "id": "S12-X46",
+   "pointer": "/categories/M12/effects/0/statement",
+   "text": "improves appearance of acne scars",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X47",
+   "pointer": "/categories/M12/effects/0/patient_ko",
+   "text": "[1][3][8]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X48",
+   "pointer": "/categories/M12/effects/1/statement",
+   "text": "reduces appearance of stretch marks",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X49",
+   "pointer": "/categories/M12/effects/1/patient_ko",
+   "text": "[1]",
+   "facets": [
+    "citation_marker"
+   ]
+  },
+  {
+   "id": "S12-X50",
+   "pointer": "/categories/M12/effects/2/statement",
+   "text": "enhances skin rejuvenation",
+   "facets": [
+    "effect"
+   ]
+  },
+  {
+   "id": "S12-X51",
+   "pointer": "/categories/M12/effects/2/patient_ko",
+   "text": "[1][2][3][4]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X52",
+   "pointer": "/categories/M12/effects/2/patient_en",
+   "text": "Regular care",
+   "facets": [
+    "frequency",
+    "repetition"
+   ],
+   "status": "I",
+   "note": "statement 에 반복성 없음"
+  },
+  {
+   "id": "S12-X53",
+   "pointer": "/categories/M12/effects/3/statement",
+   "text": "diminishes wrinkles and fine lines",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X54",
+   "pointer": "/categories/M12/effects/4/statement",
+   "text": "improves skin elasticity through collagen induction",
+   "facets": [
+    "effect",
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S12-X55",
+   "pointer": "/categories/M12/effects/4/patient_ko",
+   "text": "[1]",
+   "facets": [
+    "citation_marker"
+   ]
+  },
+  {
+   "id": "S12-X56",
+   "pointer": "/categories/M12/effects/5/statement",
+   "text": "restores dermal structure for skin firmness",
+   "facets": [
+    "effect",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S12-X57",
+   "pointer": "/categories/M12/effects/5/patient_ko",
+   "text": "[1][2][3]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X58",
+   "pointer": "/categories/M12/effects/6/statement",
+   "text": "improves appearance of atrophic acne scars",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X59",
+   "pointer": "/categories/M12/effects/6/patient_ko",
+   "text": "움푹 패인 여드름 흉터",
+   "facets": [
+    "concern",
+    "form"
+   ]
+  },
+  {
+   "id": "S12-X60",
+   "pointer": "/categories/M12/effects/6/patient_ko",
+   "text": "[3][5]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-X61",
+   "pointer": "/categories/M12/effects/7/statement",
+   "text": "treats striae distensae",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X62",
+   "pointer": "/categories/M12/effects/7/patient_ko",
+   "text": "튼살을 개선하는 시술입니다",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S12-X63",
+   "pointer": "/categories/M12/effects/7/patient_en",
+   "text": "long-term lines",
+   "facets": [
+    "concern",
+    "duration"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S12-R1",
+   "pointer": "/categories/M12/adverse_effects/0/patient_en",
+   "text": "may temporarily darken",
+   "facets": [
+    "possibility",
+    "duration_quality",
+    "event"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R2",
+   "pointer": "/categories/M12/adverse_effects/1/patient_en",
+   "text": "prevent any unwanted marks",
+   "facets": [
+    "prevention_claim",
+    "negation"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R3",
+   "pointer": "/categories/M12/adverse_effects/2/patient_en",
+   "text": "during the application",
+   "facets": [
+    "time"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R4",
+   "pointer": "/categories/M12/effects/0/patient_en",
+   "text": "look much less noticeable",
+   "facets": [
+    "comparison",
+    "degree"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R5",
+   "pointer": "/categories/M12/effects/1/patient_ko",
+   "text": "스트레치 마크가 덜 보이게 합니다",
+   "facets": [
+    "effect",
+    "degree",
+    "concern"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R6",
+   "pointer": "/categories/M12/effects/1/patient_en",
+   "text": "appear softer and more natural",
+   "facets": [
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R7",
+   "pointer": "/categories/M12/effects/2/patient_en",
+   "text": "look brighter and more refreshed",
+   "facets": [
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R8",
+   "pointer": "/categories/M12/effects/3/patient_en",
+   "text": "become softer and less prominent",
+   "facets": [
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R9",
+   "pointer": "/categories/M12/effects/4/patient_en",
+   "text": "feel more elastic and supple",
+   "facets": [
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R10",
+   "pointer": "/categories/M12/effects/5/patient_en",
+   "text": "a firmer and more toned look",
+   "facets": [
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R11",
+   "pointer": "/categories/M12/effects/6/patient_en",
+   "text": "Uneven areas on the skin become less noticeable",
+   "facets": [
+    "concern",
+    "negation",
+    "comparison"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S12-R11",
+   "pointer": "/categories/M12/effects/3/patient_en",
+   "text": "as the skin feels more refreshed",
+   "facets": [
+    "comparison",
+    "condition"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S12-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M12/adverse_effects/0/patient_ko",
+    "/categories/M12/adverse_effects/0/accuracy_note",
+    "/categories/M12/adverse_effects/0/patient_ja",
+    "/categories/M12/adverse_effects/1/patient_ko",
+    "/categories/M12/adverse_effects/1/accuracy_note",
+    "/categories/M12/adverse_effects/1/patient_en"
+   ],
+   "text": "부작용 조건이 필드별로 다르다(피부형↔자외선·사후관리↔깊이). 위험 조건의 원천이 어느 필드인지 원문이 밝히지 않음. I-LANG(조건 변형 사례)."
+  },
+  {
+   "id": "S12-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M12/moa/5/patient_en"
+   ],
+   "text": "patient_en 한글 혼입 'natural성분'. I-SCRIPT."
+  },
+  {
+   "id": "S12-I3",
+   "class": "I",
+   "pointers": [
+    "/categories/M12/moa/0/patient_ko",
+    "/categories/M12/moa/5/patient_ko",
+    "/categories/M12/moa/6/patient_ko",
+    "/categories/M12/adverse_effects/4/patient_ko",
+    "/categories/M12/effects/0/patient_ko",
+    "/categories/M12/effects/2/patient_ko",
+    "/categories/M12/effects/5/patient_ko",
+    "/categories/M12/effects/6/patient_ko"
+   ],
+   "text": "인용 표지 vs citations 1개. I-CITE."
+  },
+  {
+   "id": "S12-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M12/effects/1",
+    "/categories/M12/effects/7",
+    "/categories/M12/effects/0",
+    "/categories/M12/effects/6",
+    "/categories/M12/adverse_effects/0",
+    "/categories/M12/adverse_effects/3"
+   ],
+   "text": "동의어·포함 관계 후보(stretch marks↔striae distensae, acne scars⊃atrophic acne scars, PIH 두 진술) — 후속 의미 조사."
+  },
+  {
+   "id": "S12-F2",
+   "class": "F",
+   "pointers": [
+    "/categories/M12/adverse_effects/2"
+   ],
+   "text": "내약성 진술의 정보 종류(부작용 배열 소속) — 후속."
+  },
+  {
+   "id": "S12-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M12/adverse_effects/3/statement",
+    "/categories/M12/adverse_effects/4/statement"
+   ],
+   "text": "PIH·홍반·부종의 빈도·지속 기간 없음. patient_en 'common'·'temporary' 의 근거는 원장에 없다."
+  }
+ ]
+}

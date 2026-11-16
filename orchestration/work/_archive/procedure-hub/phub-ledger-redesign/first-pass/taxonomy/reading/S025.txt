@@ -1,0 +1,228 @@
+# S025  scope=M8 레이저  units=M8-6 items/8 | M8-6 items/9 | M8-6 items/10 | M8-6 items/11 | M8-6 items/12 | M8-6 items/13 | M8-6 items/14 | auto-new-M8-1775360463 items/0 | auto-new-M8-1775360463 items/1 | auto-new-M8-1775360463 items/2 | extracted | products 컨테이너 | M8-P-0 | M8-P-1 | M8-P-2
+# 상위 문맥: [{"pointer": "/modality/7", "id": "M8", "category": "레이저", "name": "레이저"}, {"pointer": "/modality/7/subcategories/5", "id": "M8-6", "label": "기타"}]
+@ /modality/7/subcategories/5/items/8 auto-M8-1775364775127 바이탈라이즈
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775127"
+  /name = "바이탈라이즈"
+  /detail = "IPL재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "IPL을 이용한 피부 재생 및 활력 개선 시술"
+  /extracted/mechanism = "다양한 파장의 IPL이 멜라닌과 헤모글로빈에 선택적으로 작용합니다. 콜라겐 합성을 촉진하고 피부 세포 재생을 활성화하여 전반적인 피부 상태를 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 재생" ‖ 1:"색소 개선" ‖ 2:"혈관 병변"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"색소 침착" ‖ 2:"건조감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [4] = 0:"자외선 차단" ‖ 1:"보습" ‖ 2:"스크럽 사용 자제" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/9 auto-M8-1775364775128 포토나스타발브
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775128"
+  /name = "포토나스타발브"
+  /detail = "Er:YAG어성"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Er:YAG 레이저를 이용한 어븀야그 피부 재생 시술"
+  /extracted/mechanism = "2940nm Er:YAG 레이저가 물분자에 강하게 흡수되어 피부를 정밀하게 제거합니다. 열손상을 최소화하면서 효과적인 피부 재생과 콜라겐 리모델링을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"표면 주름" ‖ 1:"색소 침착" ‖ 2:"피부 질감 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"홍조" ‖ 1:"부종" ‖ 2:"각질 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-10개월"
+  /extracted/aftercare [4] = 0:"습윤 드레싱" ‖ 1:"자외선 차단" ‖ 2:"딱지 제거 자제" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/10 auto-M8-1775364775193 레이저토닝듀얼
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775193"
+  /name = "레이저토닝듀얼"
+  /detail = "1064+532듀얼"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1064nm와 532nm 듀얼 파장을 이용한 색소 치료"
+  /extracted/mechanism = "1064nm는 깊은 색소를, 532nm는 표면 색소를 선택적으로 파괴합니다. 두 파장의 조합으로 다층적 색소 병변을 효과적으로 치료하며 점진적인 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"기미" ‖ 1:"잡티" ‖ 2:"문신 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 색소 침착" ‖ 1:"홍조" ‖ 2:"각질"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"자외선 차단" ‖ 1:"미백 관리" ‖ 2:"문지르기 자제" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/11 auto-M8-1775364775194 사파이어레이저
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775194"
+  /name = "사파이어레이저"
+  /detail = "사파이어냉각팁"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "사파이어냉각팁을 활용한 레이저 제모 및 모공관리 시술"
+  /extracted/mechanism = "사파이어냉각팁이 피부 표면을 -5도로 냉각하여 열손상을 최소화합니다. 레이저 에너지가 모낭의 멜라닌에 선택적으로 흡수되어 모낭을 파괴합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"레이저 제모" ‖ 1:"모공축소" ‖ 2:"피부결 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"약간의 부종" ‖ 2:"색소침착"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"자외선 차단" ‖ 1:"보습 관리" ‖ 2:"일주일간 사우나 자제" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/12 auto-M8-1775364797146 로제라이트
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364797146"
+  /name = "로제라이트"
+  /detail = "홍조전용RF+IPL"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "홍조 전용 RF와 IPL을 결합한 혈관치료 시술"
+  /extracted/mechanism = "IPL이 혈관 내 헤모글로빈에 선택적으로 작용하여 확장된 모세혈관을 응고시킵니다. RF 에너지가 진피층을 가열하여 혈관벽을 수축시키고 콜라겐 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"안면홍조" ‖ 1:"모세혈관확장증" ‖ 2:"주사비"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"시술 후 일시적 홍조" ‖ 1:"약간의 따가움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [4] = 0:"냉찜질" ‖ 1:"자외선 차단" ‖ 2:"자극적인 화장품 피하기" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/13 auto-M8-1793931444282 저출력레이저(LLLT)
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1793931444282"
+  /name = "저출력레이저(LLLT)"
+  /detail = ""
+  /extracted {}
+@ /modality/7/subcategories/5/items/14 auto-M8-1793931444283 다이오드 레이저
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1793931444283"
+  /name = "다이오드 레이저"
+  /detail = ""
+  /extracted {}
+@ /modality/7/subcategories/6 auto-new-M8-1775360463 피코초(Picosecond)
+  . {id,label,items}
+  /id = "auto-new-M8-1775360463"
+  /label = "피코초(Picosecond)"
+  /items [3]
+@ /modality/7/subcategories/6/items/0 auto-M8-1775360583893 피코플러스
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775360583893"
+  /name = "피코플러스"
+  /detail = "루트로닉 · 1064/595/660/532nm 4파장"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "4가지 파장을 이용한 피코초 레이저로 색소질환과 피부톤 개선을 위한 미용시술"
+  /extracted/mechanism = "피코초(10^-12초) 단위의 초단펄스로 멜라닌과 색소입자를 미세하게 파괴합니다. 4가지 파장(1064/595/660/532nm)이 각각 다른 깊이와 색소에 선택적으로 작용하여 효과를 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"기미, 주근깨, 잡티 등 색소질환" ‖ 1:"문신 제거" ‖ 2:"모공 개선" ‖ 3:"피부톤 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"시술 부위 일시적 홍반" ‖ 1:"경미한 부종" ‖ 2:"딱지 형성" ‖ 3:"색소침착 또는 탈색 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~1주일"
+  /extracted/onset_duration/duration = "6개월~1년"
+  /extracted/aftercare [6] = 0:"자외선 차단제 필수 사용" ‖ 1:"딱지 제거 자제" ‖ 2:"보습제 충분히 도포" ‖ 3:"사우나, 찜질방 1주일 자제" ‖ 4:"화장품 자극 성분 피하기" ‖ 5:"[시술 주기 참고] 토닝 모드: 1-2주 간격 누적. 색소 줌패스: 4주 이상 간격. 타투 제거: 7-8주 간격 (대식세포 제거 시간 필요). 과도한 반복 시 PIH 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/6/items/1 auto-M8-1775360593064 디스커버리피코
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775360593064"
+  /name = "디스커버리피코"
+  /detail = "퀀타시스템 · 이탈리아"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "피코초 레이저를 이용한 멜라닌 색소 제거 및 피부 재생 시술"
+  /extracted/mechanism = "1064nm/532nm 피코초(10^-12초) 펄스로 멜라닌 색소를 미세하게 분해합니다. 광음향 효과로 주변 조직 손상 최소화하며 콜라겐 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"기미, 주근깨, 잡티 제거" ‖ 1:"문신 제거" ‖ 2:"모공 개선" ‖ 3:"피부톤 균일화"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"색소침착" ‖ 2:"딱지 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후 색소 변화, 1-2주 후 본격적 개선"
+  /extracted/onset_duration/duration = "6개월-1년, 개인차 존재"
+  /extracted/aftercare [5] = 0:"자외선 차단제 필수" ‖ 1:"딱지 제거 자제" ‖ 2:"충분한 보습" ‖ 3:"음주/사우나 1주일 자제" ‖ 4:"[시술 주기 참고] 토닝 모드: 1-2주 간격 누적. 색소 줌패스: 4주 이상 간격. 타투 제거: 7-8주 간격 (대식세포 제거 시간 필요). 과도한 반복 시 PIH 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/6/items/2 auto-M8-1775360601666 엔라이튼
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775360601666"
+  /name = "엔라이튼"
+  /detail = "큐테라 · 1064/532/670nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "큐테라사의 3파장 레이저로 멜라닌 선택적 파괴를 통한 색소성 병변 및 문신 제거 시술"
+  /extracted/mechanism = "1064nm, 532nm, 670nm의 서로 다른 파장이 각각 깊은 멜라닌, 표재성 멜라닌, 혈관성 병변을 선택적으로 타겟팅합니다. 피코초 단위의 극초단파 펄스로 색소 입자를 미세하게 분쇄하여 자연 배출을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨, 검버섯 등 색소성 병변 개선" ‖ 1:"문신 제거 및 토닝"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 후 2-4주"
+  /extracted/onset_duration/duration = "개인차에 따라 6개월-2년"
+  /extracted/aftercare [3] = 0:"자외선 차단제 필수 사용" ‖ 1:"시술 부위 강한 마찰 자제" ‖ 2:"[시술 주기 참고] 토닝 모드: 1-2주 간격 누적. 색소 줌패스: 4주 이상 간격. 타투 제거: 7-8주 간격 (대식세포 제거 시간 필요). 과도한 반복 시 PIH 위험 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7 M8 레이저 레이저
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "레이저(LASER)는 '유도방출에 의한 빛의 증폭'이라는 뜻으로, 특정 파장의 강력한 빛을 피부에 쏘아 원하는 피부 문제만 골라서 치료하는 시술이다. 1960년대 처음 개발된 후 꾸준히 발전해, 현재는 색소(기미·점), 혈관(홍조), 주름, 흉터, 제모, 문신 제거 등 거의 모든 피부 문제에 다양한 종류의 레이저가 사용되고 있다."
+  /extracted/mechanism = "레이저는 '선택광선열용해(특정 색소만 골라서 열로 파괴하는 원리)' 개념을 기반으로 작동한다. 피부 속 특정 표적(멜라닌 색소, 혈관의 헤모글로빈, 물 등)이 특정 파장의 빛을 흡수하면 열이 발생해 그 표적만 선택적으로 파괴된다. 이때 레이저 조사 시간을 표적의 열이완시간(열이 식는 데 걸리는 시간)보다 짧게 유지하면, 주위 정상 조직에는 열손상 없이 표적만 치료할 수 있다. 분획 레이저(프랙셔널)는 빛을 미세하게 쪼개서 피부에 미세한 열손상 구역을 만들고, 사이사이 정상 피부가 빠르게 회복을 도와 다운타임을 줄인 최신 기술이다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [5] = 0:"색소 병변 — 기미, 주근깨, 검버섯, 오타모반 등" ‖ 1:"혈관 병변 — 혈관종, 모세혈관확장증, 홍조" ‖ 2:"문신 제거" ‖ 3:"피부 재생/주름 개선 — 프랙셔널 레이저, CO₂ 레이저" ‖ 4:"제모 — 알렉산드라이트, 다이오드, Nd:YAG 레이저"
+  /extracted/indications/extended [7] = 0:"여드름흉터 치료" ‖ 1:"피부 리서페이싱 (피부 표면을 새롭게 재생)" ‖ 2:"넓은 모공 개선" ‖ 3:"여드름 치료 (PDT — 광역학요법과 병합)" ‖ 4:"백반증, 건선 치료 (엑시머 레이저)" ‖ 5:"창상 치유 촉진 (저출력 레이저)" ‖ 6:"피부암 전구 병변 치료 (광선각화증 등)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"치료 부위에 활동성 감염이 있는 경우" ‖ 1:"광과민성 질환이 있는 경우 (빛에 과민하게 반응하는 질환)" ‖ 2:"켈로이드 체질 (박피형 레이저 시)"
+  /extracted/contraindications/relative [4] = 0:"최근 과도한 자외선 노출이나 인공 태닝을 한 경우 (색소침착 위험 증가)" ‖ 1:"임신 중이거나 수유 중일 때" ‖ 2:"이소트레티노인(여드름 치료제) 복용 후 6개월 이내" ‖ 3:"피부색이 어두운 경우 (색소침착·탈색 위험이 높아 파장·설정 주의 필요)"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [4] = 0:"시술 부위 홍반 (빨개짐)" ‖ 1:"부종 (붓기)" ‖ 2:"일시적 통증이나 열감" ‖ 3:"가벼운 딱지 형성"
+  /extracted/safety/uncommon [3] = 0:"색소침착 (시술 후 피부가 일시적으로 어두워지는 현상 — 특히 아시안 피부에서 흔함)" ‖ 1:"색소탈실 (피부색이 하얗게 빠지는 현상)" ‖ 2:"물집 형성"
+  /extracted/safety/serious [3] = 0:"흉터 (에너지가 과한 경우)" ‖ 1:"감염 (특히 박피형 레이저 후)" ‖ 2:"눈 손상 (보호안경 미착용 시)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 종류에 따라 다름 — 색소 레이저는 1~2주 후 딱지 탈락 시, 프랙셔널은 1~3개월에 걸쳐 서서히"
+  /extracted/onset_duration/peak = "프랙셔널 레이저의 경우 3~6개월에 걸쳐 콜라겐 리모델링으로 효과 극대화"
+  /extracted/onset_duration/duration = "색소/혈관 레이저는 병변 제거 시 반영구적, 피부 재생 레이저는 수개월~수년 (노화는 계속 진행되므로)"
+  /extracted/aftercare [4] = 0:"자외선 차단제 꼼꼼히 바르기 (시술 후 색소침착 예방에 가장 중요)" ‖ 1:"시술 부위 딱지를 억지로 떼지 않기" ‖ 2:"보습 관리 철저히 하기" ‖ 3:"박피형 레이저 후에는 의사가 처방한 연고 사용"
+  /extracted/related_techniques [3] = 0:"IPL (Intense Pulsed Light) — 레이저와 비슷하지만 여러 파장의 빛을 동시에 사용" ‖ 1:"프랙셔널 레이저 — 기존 박피 레이저의 다운타임을 줄인 최신 기술" ‖ 2:"PDT (광역학요법) — 광감작제 약물 + 레이저를 병합한 여드름/피부암 치료"
+  /products [6]
+@ /modality/7/products/0 M8-P-0 피코슈어
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-0"
+  /name = "피코슈어"
+  /name_en = "PicoSure"
+  /manufacturer = "사이노슈어"
+  /country = "US"
+  /mfds = null
+  /type = "피코레이저"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Cynosure 755nm 알렉산드라이트 피코초 레이저"
+  /extracted/mechanism = "755nm 알렉산드라이트 레이저를 피코초 단위로 조사. 멜라닌에 높은 선택성을 가지며 Focus Lens Array로 프락셔널 효과도 제공. 광음향(photoacoustic) + 광열(photothermal) 이중 메커니즘."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"검은색 및 파란색 타투 제거" ‖ 1:"갈색 기미 및 잡티" ‖ 2:"오타 모양증" ‖ 3:"검은색 문신" ‖ 4:"멜라닌 관련 색소질환"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"일시적 홍반 및 부종" ‖ 1:"색소침착과다(PIH: 1% 이하, QS 제품 중 최저 수준)" ‖ 2:"색소침착감소" ‖ 3:"딱지 형성" ‖ 4:"드물게 수포 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "직후부터 즉시 관찰 가능하나 최종 효과는 4-8주 후 표현"
+  /extracted/onset_duration/duration = "세션당 지속적 개선, 누적 치료로 색소 완전 제거"
+  /extracted/aftercare [5] = 0:"48시간 이상 자외선 차단(SPF 50+)" ‖ 1:"치료 부위 냉찜질 1-2시간" ‖ 2:"딱지가 생긴 경우 억지로 제거 금지" ‖ 3:"염증 반응 시 의료진 상담" ‖ 4:"1-2개월 간격으로 반복 시술"
+@ /modality/7/products/1 M8-P-1 피코웨이
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-1"
+  /name = "피코웨이"
+  /name_en = "PicoWay"
+  /manufacturer = "캔델라"
+  /country = "US"
+  /mfds = null
+  /type = "피코레이저"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Candela 1064/532/785nm Nd:YAG 피코초 레이저"
+  /extracted/mechanism = "1064nm/532nm/785nm Nd:YAG 피코초 레이저. 다중 파장으로 다양한 색소와 문신 잉크 색상에 대응. 피코초 펄스의 광음향 효과로 색소를 미세 파편으로 분쇄."
+  /extracted/indications {primary}
+  /extracted/indications/primary [7] = 0:"문신" ‖ 1:"검버섯" ‖ 2:"잡티" ‖ 3:"기미" ‖ 4:"오타모반" ‖ 5:"베커모반" ‖ 6:"선천성 모반"
+  /extracted/safety {common}
+  /extracted/safety/common [6] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"색소침착" ‖ 3:"색소탈실" ‖ 4:"수포" ‖ 5:"딱지 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주부터 색소 분해 시작, 4-8주 최대 효과"
+  /extracted/onset_duration/duration = "누적 치료로 장기 지속, 개인차 있음"
+  /extracted/aftercare [5] = 0:"자외선 차단 필수 (SPF 50+ 4주 이상)" ‖ 1:"치료 후 냉찜질로 염증 완화" ‖ 2:"딱지 형성 시 자연 탈락 대기" ‖ 3:"자극적인 화장품 사용 중단" ‖ 4:"과도한 운동 및 사우나 1주 회피"
+@ /modality/7/products/2 M8-P-2 레블라이트
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-2"
+  /name = "레블라이트"
+  /name_en = "RevLite"
+  /manufacturer = "사이노슈어"
+  /country = "US"
+  /mfds = null
+  /type = "Nd:YAG"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1064nm 및 532nm 파장의 Q-switched Nd:YAG 레이저로 멜라닌에 선택적으로 작용하는 색소 제거 장비"
+  /extracted/mechanism = "Q-switched Nd:YAG 레이저의 짧은 펄스 에너지(나노초)가 멜라닌 함유 세포에 선택적 광열용해를 유발한다. 멜라닌의 높은 흡수도에 의해 표피 및 진피의 색소병변을 효과적으로 파괴하면서 주변 조직 손상은 최소화한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"문신 제거" ‖ 1:"색소침착(검버섯, 기미, 주근깨)" ‖ 2:"오타모반" ‖ 3:"태모반" ‖ 4:"검은색/파란색 색소 병변"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"수포 형성" ‖ 3:"치유 후 색소침착(PIH 약 10%)" ‖ 4:"색소탈실(약 5-10%)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 - 시술 직후부터 색소 파괴 개시"
+  /extracted/onset_duration/duration = "색소 제거 완성까지 4-8주(여러 회 시술 필요)"
+  /extracted/aftercare [5] = 0:"자외선 차단제 SPF 50+ 필수 사용" ‖ 1:"시술 후 3-7일간 냉찜질" ‖ 2:"감염 예방을 위해 항생제 연고 도포" ‖ 3:"피부장벽 손상 시기에 자극 성분 회피" ‖ 4:"2-4주 간격으로 재시술 권장"

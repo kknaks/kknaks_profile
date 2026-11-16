@@ -1,0 +1,184 @@
+{
+ "source": "orchestration/work/phub-recommend/bronze/phub-ledger/patient-education.json",
+ "source_sha256": "6c96520c514b76ef7f93d7f685e53023afe91b05133a9b9ca5db0a95d42d91ac",
+ "rule": "pe_common.segment_of — /categories/<i> 하위는 S(i+1), 나머지는 S00",
+ "segments": [
+  {
+   "segment": "S00",
+   "label": "상위 메타 — / · /version · /updated · /categories 컨테이너",
+   "pointer_root": "",
+   "owns": "루트·version·updated·categories 배열 노드 자체",
+   "context_refs": []
+  },
+  {
+   "segment": "S01",
+   "label": "/categories/0 M1 보톡스",
+   "pointer_root": "/categories/0",
+   "owns": "/categories/0 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S02",
+   "label": "/categories/1 M2 필러",
+   "pointer_root": "/categories/1",
+   "owns": "/categories/1 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S03",
+   "label": "/categories/2 M3 바이오스티뮬레이터/콜라겐부스터",
+   "pointer_root": "/categories/2",
+   "owns": "/categories/2 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S04",
+   "label": "/categories/3 M4 스킨부스터",
+   "pointer_root": "/categories/3",
+   "owns": "/categories/3 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S05",
+   "label": "/categories/4 M5 PRP/자가혈",
+   "pointer_root": "/categories/4",
+   "owns": "/categories/4 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S06",
+   "label": "/categories/5 M6 지방이식",
+   "pointer_root": "/categories/5",
+   "owns": "/categories/5 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S07",
+   "label": "/categories/6 M7 실리프팅",
+   "pointer_root": "/categories/6",
+   "owns": "/categories/6 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S08",
+   "label": "/categories/7 M8 레이저",
+   "pointer_root": "/categories/7",
+   "owns": "/categories/7 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S09",
+   "label": "/categories/8 M9 기기 리프팅",
+   "pointer_root": "/categories/8",
+   "owns": "/categories/8 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S10",
+   "label": "/categories/9 M10 HIFES/EMS",
+   "pointer_root": "/categories/9",
+   "owns": "/categories/9 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S11",
+   "label": "/categories/10 M11 니들RF",
+   "pointer_root": "/categories/10",
+   "owns": "/categories/10 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S12",
+   "label": "/categories/11 M12 마이크로니들링(MTS)",
+   "pointer_root": "/categories/11",
+   "owns": "/categories/11 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S13",
+   "label": "/categories/12 M13 플라즈마",
+   "pointer_root": "/categories/12",
+   "owns": "/categories/12 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S14",
+   "label": "/categories/13 M14 크라이오리포라이시스",
+   "pointer_root": "/categories/13",
+   "owns": "/categories/13 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S15",
+   "label": "/categories/14 M15 메디컬스킨케어",
+   "pointer_root": "/categories/14",
+   "owns": "/categories/14 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S16",
+   "label": "/categories/15 M16 수액치료",
+   "pointer_root": "/categories/15",
+   "owns": "/categories/15 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  },
+  {
+   "segment": "S17",
+   "label": "/categories/16 M17 줄기세포치료",
+   "pointer_root": "/categories/16",
+   "owns": "/categories/16 및 하위 전부",
+   "context_refs": [
+    "/version",
+    "/updated"
+   ]
+  }
+ ]
+}

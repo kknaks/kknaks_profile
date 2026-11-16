@@ -1,0 +1,14 @@
+# 키 · 캐시 · 가상환경은 공유하지 않는다
+.env
+.env.*
+!.env.example
+cache/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+node_modules/

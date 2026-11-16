@@ -1,0 +1,453 @@
+[
+  {
+    "name": "invent_source_scope_exclusion",
+    "source_detail": "Inject existing but unsupported product exclusion into source scope; strict refs remain valid",
+    "before": {
+      "application_state": "unknown",
+      "axes": {
+        "concern": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "container": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "family": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "patient_conditions": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "none"
+        },
+        "product": {
+          "excluded": [],
+          "included": [
+            "product:M1-2-1"
+          ],
+          "knowledge": "explicit",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "site": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "site_relation": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "statement_site": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "none"
+        },
+        "target": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "unit_procedure": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+          ],
+          "value_kind": "entity_refs"
+        }
+      },
+      "conflicts": [],
+      "container_scope_ref": null,
+      "id": "scp:889c1d46993c0d30a9e4c8515f79c64bc8adfe740483eb16b837ace6e7b26d36",
+      "source_refs": [
+        "src:6e1013da872e1e9b231cc023c5f4cf0185f9f9db435801ad39908b3965bf4771"
+      ],
+      "statement_qualifiers": [],
+      "type": "scope"
+    },
+    "verdict": "PASS",
+    "failure_count": 0,
+    "normalized_id_failures": 0,
+    "codes": {},
+    "diagnostics": []
+  },
+  {
+    "name": "delete_original_statement_qualifiers",
+    "source_detail": "Delete existing raw statement qualifiers while all original sources remain preserved",
+    "before": {
+      "application_state": "unknown",
+      "axes": {
+        "concern": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "container": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "family": {
+          "excluded": [],
+          "included": [
+            "family:M1"
+          ],
+          "knowledge": "explicit",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "patient_conditions": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "none"
+        },
+        "product": {
+          "excluded": [],
+          "included": [
+            "product:M1-2-1"
+          ],
+          "knowledge": "explicit",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "site": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "site_relation": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "statement_site": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "none"
+        },
+        "target": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        },
+        "unit_procedure": {
+          "excluded": [],
+          "included": [],
+          "knowledge": "not_declared",
+          "raw_refs": [
+            "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+            "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+          ],
+          "value_kind": "entity_refs"
+        }
+      },
+      "conflicts": [],
+      "container_scope_ref": null,
+      "id": "scp:cf2f38e50072b9c208f73d6eb62f02ef6fb26a0486d2a8bf8268814135810ff8",
+      "source_refs": [
+        "src:530e47def18bc37a6f99ebad9cdc9f87d6108276df5b6a7fd6076caa84d5da21",
+        "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b"
+      ],
+      "statement_qualifiers": [
+        {
+          "axis": "legacy_context",
+          "operator": null,
+          "raw": {
+            "attach": "제품 × 계열",
+            "family": "M1",
+            "shown_on": [],
+            "sub_family": null
+          },
+          "source_ref": "src:0a8dc35dd118d219ccd414cb31092179b218a142365407686a7f3b35e7a8d58b",
+          "state": "needs_source",
+          "value": null
+        }
+      ],
+      "type": "scope"
+    },
+    "verdict": "FAIL",
+    "failure_count": 3,
+    "normalized_id_failures": 0,
+    "codes": {
+      "SAFETY_INDEX_CLAIMS": 1,
+      "OVERRIDE_CLAIMS": 1,
+      "OVERRIDE_AFTER": 1
+    },
+    "diagnostics": [
+      {
+        "code": "SAFETY_INDEX_CLAIMS",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0",
+        "field": "claim_refs",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "OVERRIDE_CLAIMS",
+        "source_locator": "step5-units.json#/product_links/7/side_effect_override/0",
+        "field": "claim_refs",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "OVERRIDE_AFTER",
+        "source_locator": "step5-units.json#/product_links/7/side_effect_override/0",
+        "field": "after",
+        "reason": "Independent original value/contract mismatch"
+      }
+    ]
+  },
+  {
+    "name": "delete_explicit_product_line_membership",
+    "source_detail": "Erase an explicitly sourced line membership without altering source roots",
+    "before": {
+      "aliases": [
+        {
+          "lang": "ko",
+          "original_lang": "한",
+          "source_ref": "src:5846203b6fc7365e7278e02cc5f05ff393b5a2276576708100aaf36aade89f22",
+          "state": "unreviewed",
+          "text": "더채움프리미어"
+        },
+        {
+          "lang": "en",
+          "original_lang": "영",
+          "source_ref": "src:87217a05b91f835981a21ab63f36601970606b1e77adff3229baf32ce46eab8c",
+          "state": "unreviewed",
+          "text": "THE CHAEUM PREMIUM"
+        }
+      ],
+      "company_roles": [
+        {
+          "claim_ref": "clm:ab939f42b928d87c2ecead9afa7d2f7684c44f51d47fc08d4f7197bce8f861ef",
+          "name": "(주)아크로스",
+          "original": null,
+          "role": "manufacturer"
+        },
+        {
+          "claim_ref": "clm:a2c8ddd321d971c575e6e0d255f877787520b0a12491533e46e0ef1b4d5eed8c",
+          "name": "해당 없음",
+          "original": null,
+          "role": "importer"
+        },
+        {
+          "claim_ref": "clm:1b24bd0fd6b2362a8e51755d96d9aa7f74022555d0e8d30cae6de9c7a3dfd32f",
+          "name": "휴젤(주)",
+          "original": null,
+          "role": "seller"
+        }
+      ],
+      "continuity": {
+        "merged_from": [],
+        "merged_into": null,
+        "moved_to": null,
+        "split_from": []
+      },
+      "decision_refs": [],
+      "family_mapping_refs": [
+        "map:7505c8c224c0ba3510f966209cd413c417d58acbd6ebd9ae0cdf924858aaf191"
+      ],
+      "id": "product:auto-M2-1775364775108",
+      "identity_kind": "제품(의료기기)",
+      "label": "더채움 프리미엄",
+      "license_claim_refs": [
+        "clm:11d7dbd7df09d84c0ef39dcf4a1f40f62713fdeb9a96126e8429cbb21b3176cd",
+        "clm:ca8eaf066c65b22edcf382c27b27c16f04a4b85987a5b64302652e814101bd90",
+        "clm:fe1a88e50fac1b16db3e42a25cc898a47482f51a0e4c3a79877aaec9bdc58803",
+        "clm:0b7c534a90c6a672ba036a66a530045cc425c57d03d520c54068a4f93dc982d5",
+        "clm:5f5612702531e5c78dd90ca62e3717bf680b3caabbe2d354c8653eb0e677c80c",
+        "clm:291a5a783ae4b31c76d499de77250e6d71e259c3a4a96603b9d2b3d6dfedf732",
+        "clm:1515f395a9d35e2b73065b2d974ff94eb07fec6831d436865619defdf3a7c8d5",
+        "clm:ee9686cfca637d053aded80dbb5b055e0e1f3b1b31b052fb21d38375932d427a",
+        "clm:379ec6fcdca2c8cb353121ecdfda483ab99866f03255cb28f2c8136ae2526bfb"
+      ],
+      "line_memberships": [
+        {
+          "decision_ref": null,
+          "parent_product_ref": "product:M2-1-2",
+          "reason": "Explicit line_row; no separately verified approval decision",
+          "role": "품목"
+        }
+      ],
+      "native_id": "auto-M2-1775364775108",
+      "revision": 1,
+      "source_refs": [
+        "src:7f94d232b1cf4d187c4397533657e75e56f589be279a0ea3b1f4a4091a247c31",
+        "src:80ddbd483373c9f20e951333d1a841c4321ed33f0226f7959129c3366d053268",
+        "src:9eb8cb08b4e134bdd2d6a02d000da6140dcce5646cb92fbd93d6ff8aee3bf8d2",
+        "src:bd7ac22a7d0b13da2373869b954a81eee4b933882eef60908d517e50867cc074",
+        "src:bed44aff4deed116db151bd2ecb2bc74f23c01eecfc1090cc6471bf98e58b4e2",
+        "src:cbb163e96e9588c0e05fc7ea239e910fd9e63986bc9d5e17b26084cec49ec96d",
+        "src:dedce87d37d1728f5cb075ab64ad31f76fd673180314b6fdd1ae6ae9609b63d5",
+        "src:f2e2bb2b6aa8fcf6ecd1a91c0ce0aab178e1c2d2419c6f8cb76a1f7ce3d6600f",
+        "src:ff04d981d1110f81414a084b939970978310c1c30c6f66aee6ca4dfa991f4a03"
+      ],
+      "spec_claim_refs": [
+        "clm:132e6d11ce1b6759e72c502c1890684f3b1b8d7303f9c63af14ff83cae7f95e1"
+      ],
+      "status": "active",
+      "type": "product"
+    },
+    "verdict": "PASS",
+    "failure_count": 0,
+    "normalized_id_failures": 0,
+    "codes": {},
+    "diagnostics": []
+  },
+  {
+    "name": "source_raw_negative_control",
+    "source_detail": "Known raw alteration must be rejected after graph ID recomputation",
+    "before": {
+      "id": "clm:78ac7685236872f89ffc66e7d0af863b1c01c0ca3a87471772807c83448fb3dc",
+      "kind": "safety",
+      "language": null,
+      "mapping_refs": [
+        "map:3935211cc8d4ea5400cf957d93eef2dfe91fe9f4ca37856be4498de5e855a3df",
+        "map:19e74226d7ca81e95c9815a737d3ea6051610420ae647daabe9a872302dd02be"
+      ],
+      "normalized_value": null,
+      "override": null,
+      "predicate": "safety.common",
+      "raw_field": "safety.common",
+      "raw_value": [
+        "주입부위 부종",
+        "약간의 통증",
+        "멍",
+        "두통"
+      ],
+      "review_state": "unreviewed",
+      "scope_ref": "scp:cf2f38e50072b9c208f73d6eb62f02ef6fb26a0486d2a8bf8268814135810ff8",
+      "source_refs": [
+        "src:af60a5edb87d98d84e4342c8fe74f113da6bb5d5a3738b49cbd9d4bb05340724"
+      ],
+      "subject_ref": "product:M1-2-1",
+      "type": "claim",
+      "variant": {
+        "equivalence": "unreviewed",
+        "of": null
+      }
+    },
+    "verdict": "FAIL",
+    "failure_count": 5,
+    "normalized_id_failures": 0,
+    "codes": {
+      "CLAIM_RAW": 1,
+      "SAFETY_RAW": 1,
+      "SAFETY_INDEX_CLAIMS": 1,
+      "OVERRIDE_CLAIMS": 1,
+      "OVERRIDE_AFTER": 1
+    },
+    "diagnostics": [
+      {
+        "code": "CLAIM_RAW",
+        "source_locator": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json#/modality/0/subcategories/0/items/0/extracted/safety/common",
+        "field": "safety.common",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "SAFETY_RAW",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0/extracted/safety/common",
+        "field": "raw_value",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "SAFETY_INDEX_CLAIMS",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0",
+        "field": "claim_refs",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "OVERRIDE_CLAIMS",
+        "source_locator": "step5-units.json#/product_links/7/side_effect_override/0",
+        "field": "claim_refs",
+        "reason": "Independent original value/contract mismatch"
+      },
+      {
+        "code": "OVERRIDE_AFTER",
+        "source_locator": "step5-units.json#/product_links/7/side_effect_override/0",
+        "field": "after",
+        "reason": "Independent original value/contract mismatch"
+      }
+    ]
+  }
+]

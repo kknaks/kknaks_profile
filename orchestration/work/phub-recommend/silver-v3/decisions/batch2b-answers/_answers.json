@@ -1,0 +1,258 @@
+{
+ "botox-product-vs-modality": {
+  "choice": "to_modality",
+  "note": "사용자 결정 2026-11-05: 괄호 없는 「보톡스」= 계열 M1. 「보톡스(회사명)」= 그 회사의 톡신 제품(엘러간·더모톡신 등) — 회사 사전 일치 규칙은 ERD v3 후보"
+ },
+ "event-split/공기색전": {
+  "choice": "keep",
+  "note": "사용자 2026-11-05: 색전이 사건, 공기는 막는 물질. 물질은 시술 엣지로 유추(수액→공기 · 필러→필러물질). 명시 칸은 ERD v3 후보"
+ },
+ "event-split/과민반응": {
+  "choice": "split",
+  "note": "사용자 2026-11-05: 과민반응과 아나필락시스는 다른 사건"
+ },
+ "event-split/동상": {
+  "choice": "split",
+  "note": "사용자 2026-11-05: 동상은 원인, 괴사는 결과(필러 혈관폐색도 괴사로). 동상→괴사 인과는 묶음 3 edge_create"
+ },
+ "event-split/섬유화": {
+  "choice": "split",
+  "note": "사용자 2026-11-05: 섬유화는 조직 변화(과정), 경결은 소견. 섬유화→경결(영구) 인과는 묶음 3. 경결은 경과 일시/영구로 갈림"
+ },
+ "event-split/지방괴사": {
+  "choice": "keep",
+  "note": "사용자 2026-11-05: 괴사가 더 큰 범위. 지방괴사 = (괴사, 피하 지방층) — 사건은 유지, 조직은 부위 칸. 부위 사전에 조직층 추가는 묶음 3"
+ },
+ "excel-v-plus": {
+  "choice": "keep",
+  "note": "추천대로 — 사용자 「추천으로 간다」 2026-11-05 · 엑셀 V+ 별도 장비(수허 20-31)"
+ },
+ "injection-site-erythema-edema": {
+  "choice": "both_site",
+  "note": "사용자 2026-11-05: 주사 부위에 부종과 홍반이 같이 생긴다"
+ },
+ "mface-like/라라젯": {
+  "choice": "fold",
+  "note": "사용자 2026-11-05: 같은 시술 → 접기. 라라젯 = 음압+고압 물줄기 클렌징·미세자극·용액 전달을 한 번에(blsclinic). 출처 sources/2026-11-05-lhalajet-blsclinic.md"
+ },
+ "mface-like/엠페이스": {
+  "choice": "fold",
+  "note": ""
+ },
+ "paren-synonym-unknown-tuples-4/#36": {
+  "choice": "drop_unknown",
+  "note": "추천대로 — 괄호 안이 감각 이상 동의어"
+ },
+ "paren-synonym-unknown-tuples-4/#45": {
+  "choice": "drop_unknown",
+  "note": "사용자 2026-11-05: 감각이상 하나(일시). 저림·감각저하는 하위 증상=표현. 부위는 시술 부위 — 묶음 3 adverse_tuple_assign"
+ },
+ "paren-synonym-unknown-tuples-4/#46": {
+  "choice": "drop_unknown",
+  "note": "추천대로 — 괄호 안 영문 표기"
+ },
+ "paren-synonym-unknown-tuples-4/#58": {
+  "choice": "drop_unknown",
+  "note": "사용자 2026-11-05: (경결, 일시) 하나. 괄호 안 섬유화는 분리된 사건으로"
+ },
+ "same-three-cells-21/01": {
+  "choice": "fold",
+  "note": "추천대로 — 스컬트라 규격만 다름"
+ },
+ "same-three-cells-21/02": {
+  "choice": "fold",
+  "note": "추천대로 — 쥬베룩볼륨"
+ },
+ "same-three-cells-21/03": {
+  "choice": "fold",
+  "note": "추천대로 — 쥬베룩"
+ },
+ "same-three-cells-21/04": {
+  "choice": "fold",
+  "note": "추천대로 — 리쥬란힐러"
+ },
+ "same-three-cells-21/05": {
+  "choice": "fold",
+  "note": "추천대로 — 리쥬란아이"
+ },
+ "same-three-cells-21/06": {
+  "choice": "fold",
+  "note": "추천대로 — 프로파일로"
+ },
+ "same-three-cells-21/07": {
+  "choice": "fold",
+  "note": "추천대로 — 볼뉴머(classification_issue 없는 쪽 유지)"
+ },
+ "same-three-cells-21/08": {
+  "choice": "keep",
+  "note": "추천대로 — 엑셀 V+ 와 엑셀V 는 이미 다름"
+ },
+ "same-three-cells-21/09": {
+  "choice": "fold",
+  "note": "추천대로 — 보톡스"
+ },
+ "same-three-cells-21/10": {
+  "choice": "fold",
+  "note": "추천대로 — 필러"
+ },
+ "same-three-cells-21/11": {
+  "choice": "fold",
+  "note": "추천대로 — 스킨부스터"
+ },
+ "same-three-cells-21/12": {
+  "choice": "fold",
+  "note": "추천대로 — 시크릿"
+ },
+ "same-three-cells-21/13": {
+  "choice": "fold",
+  "note": "추천대로 — 인트라셀"
+ },
+ "same-three-cells-21/14": {
+  "choice": "fold",
+  "note": "추천대로 — 니들RF"
+ },
+ "same-three-cells-21/15": {
+  "choice": "fold",
+  "note": "추천대로 — 실리프팅"
+ },
+ "same-three-cells-21/16": {
+  "choice": "fold",
+  "note": "사용자 2026-11-05: 계열 M3 두 이름(바이오스티뮬레이터 = 학술 · 콜라견부스터 = 마케팅) + 회차 수식어라 같은 시술"
+ },
+ "same-three-cells-21/17": {
+  "choice": "fold",
+  "note": "추천대로 — 프락셔널"
+ },
+ "same-three-cells-21/18": {
+  "choice": "fold",
+  "note": "추천대로 — 지방이식"
+ },
+ "same-three-cells-21/19": {
+  "choice": "fold",
+  "note": "추천대로 — 피코웨이"
+ },
+ "same-three-cells-21/20": {
+  "choice": "keep",
+  "note": "사용자 2026-11-05: PRP/엑소좀은 「또는」 조합 표기. 엑소좀은 자가혈이 아니므로 따로. / 규칙은 v3"
+ },
+ "same-three-cells-21/21": {
+  "choice": "fold",
+  "note": "추천대로 — 레이저"
+ },
+ "slash-together-or/01": {
+  "choice": "or_record",
+  "note": "규칙: 대안(계열) 둘 → 또는. HIFU 또는 RF"
+ },
+ "slash-together-or/02": {
+  "choice": "outer_only",
+  "note": "괄호 안은 장비 예시(슈링크 또는 울쎄라) → 바깥 HIFU 하나"
+ },
+ "slash-together-or/04": {
+  "choice": "or_record",
+  "note": "규칙: 재질 대안 → 또는. PDO 또는 PCL"
+ },
+ "slash-together-or/05": {
+  "choice": "or_record",
+  "note": "규칙: 제품 대안 → 또는. 스컬트라 또는 엘란쎄"
+ },
+ "slash-together-or/06": {
+  "choice": "or_record",
+  "note": "규칙: 대안 → 또는. 원장 sequence 가 'or' 명시"
+ },
+ "slash-together-or/07": {
+  "choice": "or_record",
+  "note": "규칙: 재질 대안 → 또는"
+ },
+ "slash-together-or/09": {
+  "choice": "outer_only",
+  "note": "괄호 안은 장비 예시 → 바깥 HIFU 하나"
+ },
+ "slash-together-or/10": {
+  "choice": "or_record",
+  "note": "규칙: 대안 → 또는. 금기 쌍이라 프락셔널·필링 각각 금기 엣지(묶음 3 edge_create)"
+ },
+ "slash-together-or/11": {
+  "choice": "or_record",
+  "note": "규칙: 대안 → 또는. 최소 간격 규칙은 RF·HIFU 각각"
+ },
+ "technique-inheritance-9/M1": {
+  "choice": "apply",
+  "note": "톡신 전부 주사. 출처 procedure-profiles mechanism"
+ },
+ "technique-inheritance-9/M10": {
+  "choice": "apply",
+  "note": "EMS 전자기 자극"
+ },
+ "technique-inheritance-9/M12": {
+  "choice": "apply",
+  "note": "MTS 물리적 미세바늘"
+ },
+ "technique-inheritance-9/M13": {
+  "choice": "apply",
+  "note": "플라즈마 에너지"
+ },
+ "technique-inheritance-9/M14": {
+  "choice": "apply",
+  "note": "냉각 지방분해"
+ },
+ "technique-inheritance-9/M16": {
+  "choice": "keep",
+  "note": "보류 — M16 에 정맥 아닌 주사(지방분해주사 PPC · 두피 메조) 섮임. 묶음 3 에서 항목별 지정"
+ },
+ "technique-inheritance-9/M2": {
+  "choice": "apply",
+  "note": "필러 전부 주사"
+ },
+ "technique-inheritance-9/M7": {
+  "choice": "apply",
+  "note": "실리프팅 = 물리적 거상"
+ },
+ "technique-inheritance-9/M9": {
+  "choice": "apply",
+  "note": "HIFU·RF 전부 열 응고"
+ },
+ "two-event-candidates-10/01": {
+  "choice": "only_1",
+  "note": "추천대로 — 괄호 안 빨개짐은 홍반 동의어"
+ },
+ "two-event-candidates-10/02": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/03": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/04": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/05": {
+  "choice": "only_1",
+  "note": "한 문장 = (통증, 주사 부위) 하나"
+ },
+ "two-event-candidates-10/06": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/07": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/08": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "two-event-candidates-10/09": {
+  "choice": "only_1",
+  "note": "한 문장 = (통증, 주사 부위) 하나"
+ },
+ "two-event-candidates-10/10": {
+  "choice": "only_1",
+  "note": "추천대로"
+ },
+ "volnewmer-m4-m9": {
+  "choice": "fold",
+  "note": "추천대로 — 원장 classification_issue 가 M9-2 통합 지시"
+ }
+}

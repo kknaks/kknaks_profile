@@ -1,0 +1,58 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "technique-inheritance-9/M14",
+  "label": "붙인다 → technique cooling",
+  "note": "냉각 지방분해",
+  "option": "apply"
+ },
+ "id": "DEC-2026-11-04-B2B-TEC-05",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "TEC-eea6040eeb"
+ },
+ "reason": "결정 묶음 2B — 계열 M14 기법 「cooling」을 분류 항목 5 튜플에 붙인다(§9.5.6) · 사용자 메모: 냉각 지방분해",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].mechanism[]@13/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@13/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@13/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@13/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@13/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@13/0/4"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "from_ref": "R5:M14",
+  "scope": [
+   "CAT-0d46a67493",
+   "CAT-3c6f31b90c",
+   "CAT-5065190d26",
+   "CAT-593a0c1a05",
+   "CAT-b1078ae328"
+  ]
+ }
+}

@@ -1,0 +1,171 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "injection-site-erythema-edema",
+  "label": "홍반·부종 둘 다 주사 부위",
+  "note": "사용자 2026-11-05: 주사 부위에 부종과 홍반이 같이 생긴다",
+  "option": "both_site"
+ },
+ "id": "DEC-2026-11-04-B2B-ISE-01",
+ "kind": "adverse_tuple_assign",
+ "new_value": {
+  "tuples": [
+   {
+    "course_id": "DIC-589c42f2e4",
+    "event_id": "DIC-3976550d98",
+    "site_id": "DIC-ea508b7841"
+   },
+   {
+    "course_id": "DIC-589c42f2e4",
+    "event_id": "DIC-6ca53d09be",
+    "site_id": "DIC-ea508b7841"
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 「주사 부위 홍반·부종」의 부종에도 주사 부위를 준다(§9.6.2b · 검토 v2.4 결정 2) · 사용자 메모: 사용자 2026-11-05: 주사 부위에 부종과 홍반이 같이 생긴다",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@M1/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/19"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common_adverse_effects[]@M1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/28"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/31"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/35"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/39"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/43"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/44"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/45"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/57"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/61"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/67"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/73"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/76"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common_adverse_effects[]@M1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/81"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/84"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/88"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/25"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/29"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/34"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/39"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/43"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/50"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "kind": "raw_name",
+  "locator": "complications.json:categories[].complications[].name@M1/2"
+ }
+}

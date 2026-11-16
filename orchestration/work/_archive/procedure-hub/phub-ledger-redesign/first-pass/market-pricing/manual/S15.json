@@ -1,0 +1,34 @@
+{
+ "segment": "S15", "direct_read": true, "read_note": "M15 메디컬스킨케어 7항목 전부 직접 읽음.",
+ "last_pointer": "/categories/14/items/6/high",
+ "observations": [
+  ["/categories/14/items/1/name", "'화학 박피 (살리실산/글리콜산)' — 괄호가 성분 두 개를 '/' 로. 대안(둘 중 하나) 해석이 README 규칙과 맞으나 원문 문맥만으로 확정하지 않음. 농도 없음.", "P"],
+  ["/categories/14/items/2/name", "'LDM 초음파 관리' — 괄호·범위 없음. 'LDM' 영문 약어 풀이 없음.", "B"],
+  ["/categories/14/items/4/name", "'이온토포레시스 (비타민C)' — 괄호가 성분.", "P"],
+  ["/categories/14/items/5/name", "'진정관리 (시술 후 재생팩)' — '시술 후' 는 시간 조건(다른 시술 뒤). 어떤 시술 뒤인지·얼마 뒤인지 원문에 없음. 다른 항목을 가리키는 참조 표현일 수 있음.", "P"],
+  ["/categories/14/items/6/name", "'프리미엄 스킨케어 (풀코스)' — '프리미엄' 등급 수식, '풀코스' 구성 범위. 구성 내용 없음.", "B"],
+  ["/categories/14/items/0/low", "7항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/14/name", "메디컬스킨케어", ["분류명", "외래어"], ""],
+  ["/categories/14/items/0/name", "아쿠아필", ["시술명/장비명 후보"], ""],
+  ["/categories/14/items/0/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/14/items/1/name", "화학 박피", ["시술명 후보"], ""],
+  ["/categories/14/items/1/name", "(살리실산/글리콜산)", ["성분 후보", "'/' 연결"], ""],
+  ["/categories/14/items/2/name", "LDM 초음파 관리", ["시술명 후보", "영문 약어"], ""],
+  ["/categories/14/items/3/name", "LED 광선치료", ["시술명 후보", "영문 약어"], ""],
+  ["/categories/14/items/3/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/14/items/4/name", "이온토포레시스", ["기법명 후보"], ""],
+  ["/categories/14/items/4/name", "(비타민C)", ["성분 후보", "영한 혼합"], ""],
+  ["/categories/14/items/5/name", "진정관리", ["시술명/목적 후보"], ""],
+  ["/categories/14/items/5/name", "(시술 후 재생팩)", ["시간 조건", "참조"], ""],
+  ["/categories/14/items/5/name", "시술 후", ["시간 조건", "참조"], "'후' — 선후 관계."],
+  ["/categories/14/items/6/name", "프리미엄 스킨케어", ["등급 수식", "시술명 후보"], ""],
+  ["/categories/14/items/6/name", "(풀코스)", ["구성 범위"], ""]
+ ],
+ "issues": [
+  ["F-S15-1", "F", ["/categories/14/items/5/name"], "'시술 후' 가 가리키는 시술이 원문에 없다 — 참조 표현과 위치만 보존, 연결은 후속."],
+  ["B-S15-1", "B", ["/categories/14/items/6/name", "/categories/14/items/2/name"], "'풀코스' 구성·'LDM' 풀이 없음."],
+  ["B-S15-2", "B", ["/categories/14/items/1/name"], "박피 성분 농도·범위 없음."]
+ ]
+}

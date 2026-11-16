@@ -1,0 +1,48 @@
+{"section":"S020","state":"read","last_pointer":"/modality/7/subcategories/0/items/11/extracted/aftercare/2",
+"observations":[
+ {"status":"P","pointers":["/modality/7/category_en","/modality/7/subcategories/0/label"],"note":"M8 category '레이저', category_en 'Laser & Light' — 영문이 '빛(광)' 까지 포함해 한글보다 넓다. M8-1 label '색소/토닝' — 적응증(색소)과 시술 방식(토닝) 묶음."},
+ {"status":"P","pointers":["/modality/7/subcategories/0/items/1/name","/modality/7/subcategories/0/items/0/name","/modality/7/subcategories/0/items/0/detail"],"note":"같은 하위분류에 시술 방식명(레이저토닝, 피코토닝, 알렉스토닝, 제네시스토닝)과 장비 브랜드명(피코슈어, 레블라이트SI, 피코케어, 트루피코 …)이 섞여 있다. detail 은 '제조사 · 펄스 · 파장' 또는 '파장 · 매질' 형식."},
+ {"status":"P","pointers":["/modality/7/subcategories/0/items/0/extracted/aftercare/6"],"note":"M8-1 상용구 '[시술 주기 참고] 토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험 …' 이 문신 제거 장비(트루피코·루비레이저)에도 붙는다. 트루피코 duration '4-8주 간격 다회 시술' 과 다르다(GLOBAL-I01)."},
+ {"status":"I","pointers":["/modality/7/subcategories/0/items/1/extracted/safety/serious/0","/modality/7/subcategories/0/items/2/extracted/safety/serious/0"],"note":"레이저토닝 serious 'QS Nd:YAG 기반이므로 ~10% 가능의 매우 낮은 발생률' — 10% 를 '매우 낮은' 이라 쓴다. 피코토닝은 'QS-Nd:YAG 10%에 비해 현저히 낮음(1% 이하)'. 같은 수치에 대한 평가가 문장마다 다르다."},
+ {"status":"B","pointers":["/modality/7/subcategories/0/items/0/extracted/safety/common/2"],"note":"피코슈어 safety/common '경미한 결막' — 명사가 잘린 것으로 보인다(결막 무엇인지 원문 없음)."},
+ {"status":"P","pointers":["/modality/7/subcategories/0/items/7/extracted/onset_duration/duration","/modality/7/subcategories/0/items/9/extracted/onset_duration/duration","/modality/7/subcategories/0/items/11/extracted/onset_duration/duration"],"note":"duration 칸 값이 '영구적 (완전 제거 시)', '4-8주 간격 다회 시술 (의사 판단)', '반영구적', '누적 시술로 4-6주 후 최대 효과' 등 지속기간이 아닌 정보를 담는다."},
+ {"status":"P","pointers":["/modality/7/subcategories/0/items/0/extracted/mechanism","/modality/7/subcategories/0/items/1/extracted/mechanism"],"note":"mechanism 에 문헌 인용 표기 'Anderson&Parrish 1983', 'Anderson & Parrish의 선택적 광열용해' 가 반복."},
+ {"status":"P","pointers":["/modality/7/subcategories/0/items/9/detail","/modality/7/subcategories/0/items/10/detail","/modality/7/subcategories/0/items/5/detail"],"note":"detail 에 인증·등급 주장('K마크 인증', 'FDA/CE', 'QS Nd:YAG 업그레이드', '경제형')."}
+],
+"expressions":[
+ {"pointer":"/modality/7/subcategories/0/items/0/detail","text":"사이노슈어 · 피코초 펄스 755nm","kinds":["수량·단위·시간","시술·제품명"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/mechanism","text":"선택적 광열용해(Anderson&Parrish 1983)","kinds":["참조","주장"],"note":"문헌 인용"},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/indications/primary/2","text":"오타모반/밀도모반","kinds":["기호"],"note":"'/' 나열"},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/safety/serious/2","text":"수포 형성(과도 에너지 시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/onset_duration/duration","text":"주근깨 5-7회, 문신 10-20회 이상","kinds":["수량·단위·시간","범위","조건"],"note":"적응증별 회차"},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/aftercare/1","text":"7일간 자외선 차단(SPF 50+)","kinds":["수량·단위·시간","기호"],"note":"'+' = 이상"},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/aftercare/4","text":"색소침착 위험 시 미백 제품 병행","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/0/extracted/aftercare/6","text":"토닝 — 1-2주 간격 누적 시술. 반응 보며 간격 조절. 과도한 반복 시 PIH/저색소증 위험","kinds":["수량·단위·시간","조건","가능성·빈도"],"note":"상용구"},
+ {"pointer":"/modality/7/subcategories/0/items/1/extracted/mechanism","text":"저에너지 반복 조사로 표피 손상 없이 진피층의 색소만 선택적으로 제거","kinds":["수식","부정","부위"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/1/extracted/safety/serious/0","text":"저에너지 반복 조사 시 낮으나 QS Nd:YAG 기반이므로 ~10% 가능의 매우 낮은 발생률","kinds":["조건","가능성·빈도","수량·단위·시간"],"note":"S020-I01"},
+ {"pointer":"/modality/7/subcategories/0/items/1/extracted/aftercare/3","text":"레티놀 등 자극성 제품 1주일 중단","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/2/extracted/safety/serious/0","text":"염증후색소침착(PIH): 1% 이하(QS-Nd:YAG 10%에 비해 현저히 낮음)","kinds":["범위","비교","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/2/extracted/onset_duration/duration","text":"회당 시술 간격 2-4주, 완전한 결과는 4-6회 시술 후 (개인차)","kinds":["수량·단위·시간","범위","조건"],"note":"상용구 '1-2주 간격' 과 다름"},
+ {"pointer":"/modality/7/subcategories/0/items/3/extracted/mechanism","text":"긴 펄스폭으로 인해 표피 손상을 최소화하면서 진피층까지 충분한 에너지 전달이 가능","kinds":["수식","가능성·빈도"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/3/extracted/onset_duration/onset","text":"직후 발적, 3-7일 내 색소 침착 가시화","kinds":["수량·단위·시간","범위"],"note":"onset 칸의 부작용성 서술"},
+ {"pointer":"/modality/7/subcategories/0/items/4/extracted/safety/serious/2","text":"흉터 형성(극드문)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/4/extracted/onset_duration/onset","text":"직후~1주일(초기 개선), 4주 이후(전체 효과)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/4/extracted/aftercare/4","text":"색소침착 위험군은 전문의 상담 필수","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/6/extracted/mechanism","text":"피코초(10^-12초) 단위의 극초단파 레이저","kinds":["수량·단위·시간","기호"],"note":"지수 표기"},
+ {"pointer":"/modality/7/subcategories/0/items/7/extracted/onset_duration/duration","text":"영구적 (완전 제거 시)","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/7/extracted/aftercare/4","text":"가피 형성 시 자연 탈락 대기 (인위적 제거 자제)","kinds":["조건","부정"],"note":"M8 반복 문장"},
+ {"pointer":"/modality/7/subcategories/0/items/7/extracted/aftercare/1","text":"자외선 차단 (PIH 예방 — 피부 장벽 손상 상태)","kinds":["조건"],"note":"반복 문장"},
+ {"pointer":"/modality/7/subcategories/0/items/8/extracted/mechanism","text":"기존 나노초 레이저 대비 열손상을 최소화","kinds":["비교"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/9/extracted/mechanism","text":"4개의 서로 다른 파장(532nm, 694nm, 755nm, 1064nm)","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/9/extracted/onset_duration/duration","text":"4-8주 간격 다회 시술 (의사 판단)","kinds":["수량·단위·시간","범위","조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/0/items/11/extracted/mechanism","text":"나노초 펄스와 피코초 펄스를 결합하여","kinds":["수식"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"오타모반","issue":"문맥에 따라 오타/NNG 모반/NNG(오타=typo 오탐) 또는 오타모반/NNG","impact":"질환명 분해·오탐"},
+ {"scope":"all","surface":"Nd:YAG","issue":"Nd/SL :/SP YAG/SL — 콜론을 구두점으로 분리","impact":"레이저 매질명 분해(복합 표현으로 보존)"}
+],
+"issues":[
+ {"id":"S020-I01","status":"I","pointers":["/modality/7/subcategories/0/items/1/extracted/safety/serious/0"],"note":"'~10% … 매우 낮은 발생률' 평가 모순.","impact":"빈도 평가 채택 시 확인"},
+ {"id":"S020-B01","status":"B","pointers":["/modality/7/subcategories/0/items/0/extracted/safety/common/2"],"note":"'경미한 결막' 잘린 값.","impact":"부작용 식별 불가"},
+ {"id":"S020-F01","status":"F","pointers":["/modality/7/subcategories/0/items/1","/modality/7/subcategories/0/items/0"],"note":"시술 방식명과 장비명이 같은 층에 공존.","impact":"시술/장비 개체 분리 설계 과제"}
+]}

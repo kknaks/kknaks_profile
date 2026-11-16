@@ -1,0 +1,444 @@
+{
+ "segment": "S04",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M4/effects/3/added_at",
+ "read_note": "M4 진술 8개(moa 2·adverse_effects 2·effects 4) 모든 값 직접 읽음. title 의 이스케이프 \\\" 확인.",
+ "observations": [
+  {
+   "id": "S04-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M4/moa/0/citations/0/title"
+   ],
+   "text": "8개 진술 모두 같은 서지 Rho 2024(PMID 39544509). title 원문 리터럴은 'Injectable \\\"Skin Boosters\\\" …' 로 이스케이프된 따옴표를 포함(디코딩 값은 \"Skin Boosters\")."
+  },
+  {
+   "id": "S04-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M4/name",
+    "/categories/M4/effects/0/statement",
+    "/categories/M4/effects/2/statement"
+   ],
+   "text": "name 은 'non-crosslinked HA, polynucleotides, amino-acid/vitamin cocktails' 를 괄호로 나열하지만 effects/0·effects/2 는 'Cross-linked hyaluronic acid'·'Intradermal cross-linked hyaluronic acid injections' 를 주어로 한다. polynucleotides 진술은 없다."
+  },
+  {
+   "id": "S04-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M4/adverse_effects/0/statement"
+   ],
+   "text": "adverse_effects/0 'Non-crosslinked hyaluronic acid shows inconsistent results due to rapid degradation' — 사건이 아닌 효과 일관성 한계와 원인. patient_en·zh·ja 는 'vary in duration'·'個人差' 로 원인(빠른 분해)을 뺌."
+  },
+  {
+   "id": "S04-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M4/adverse_effects/1/statement",
+    "/categories/M4/adverse_effects/1/patient_en",
+    "/categories/M4/adverse_effects/1/patient_ja"
+   ],
+   "text": "statement 'may lead to local or systemic hypersensitivity reactions including foreign-body granulomas'. patient_ko 는 국소/전신·육아종 유지. patient_en 'temporary local sensitivity in some cases'·zh '某些情况下…暂时性'·ja '稀に一時的な違和感' — systemic·granulomas 탈락, temporary·稀に 추가."
+  },
+  {
+   "id": "S04-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M4/effects/1/statement",
+    "/categories/M4/effects/3/statement"
+   ],
+   "text": "효과의 측정 대상: stratum corneum hydration 증가·transepidermal water loss 감소(effects/1), vascularization 증가·epidermis 두꺼워짐(effects/3, 'low molecular weight hyaluronic acid and amino acids' 조건)."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S04-X1",
+   "pointer": "/categories/M4/name",
+   "text": "non-crosslinked HA, polynucleotides, amino-acid/vitamin cocktails",
+   "facets": [
+    "material",
+    "name_candidate",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S04-X2",
+   "pointer": "/categories/M4/moa/0/statement",
+   "text": "inhibits collagenase enzymes",
+   "facets": [
+    "mechanism",
+    "negation"
+   ]
+  },
+  {
+   "id": "S04-X3",
+   "pointer": "/categories/M4/moa/0/statement",
+   "text": "slowing collagen breakdown",
+   "facets": [
+    "mechanism",
+    "rate"
+   ]
+  },
+  {
+   "id": "S04-X4",
+   "pointer": "/categories/M4/moa/0/patient_ko",
+   "text": "[1][9]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S04-X5",
+   "pointer": "/categories/M4/moa/1/statement",
+   "text": "mechanically stretches the dermis",
+   "facets": [
+    "mechanism",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S04-X6",
+   "pointer": "/categories/M4/moa/1/statement",
+   "text": "leading to neocollagenesis and promotion of elastin",
+   "facets": [
+    "effect"
+   ]
+  },
+  {
+   "id": "S04-X7",
+   "pointer": "/categories/M4/moa/1/patient_ko",
+   "text": "동시에",
+   "facets": [
+    "time"
+   ]
+  },
+  {
+   "id": "S04-X8",
+   "pointer": "/categories/M4/adverse_effects/0/statement",
+   "text": "Non-crosslinked hyaluronic acid",
+   "facets": [
+    "material",
+    "negation"
+   ]
+  },
+  {
+   "id": "S04-X9",
+   "pointer": "/categories/M4/adverse_effects/0/statement",
+   "text": "shows inconsistent results due to rapid degradation",
+   "facets": [
+    "efficacy_limit",
+    "cause",
+    "rate"
+   ]
+  },
+  {
+   "id": "S04-X10",
+   "pointer": "/categories/M4/adverse_effects/0/patient_ko",
+   "text": "빠르게 분해되어 효과가 일정하지 않습니다",
+   "facets": [
+    "cause",
+    "rate",
+    "negation"
+   ]
+  },
+  {
+   "id": "S04-X11",
+   "pointer": "/categories/M4/adverse_effects/0/patient_ko",
+   "text": "일반 히알루론산",
+   "facets": [
+    "material"
+   ],
+   "note": "statement 'Non-crosslinked'"
+  },
+  {
+   "id": "S04-X12",
+   "pointer": "/categories/M4/adverse_effects/0/patient_en",
+   "text": "can sometimes show results that vary in duration",
+   "facets": [
+    "possibility",
+    "frequency",
+    "duration"
+   ]
+  },
+  {
+   "id": "S04-X13",
+   "pointer": "/categories/M4/adverse_effects/1/statement",
+   "text": "Mesotherapy cocktails",
+   "facets": [
+    "technique",
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S04-X14",
+   "pointer": "/categories/M4/adverse_effects/1/statement",
+   "text": "may lead to local or systemic hypersensitivity reactions",
+   "facets": [
+    "possibility",
+    "event",
+    "scope",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S04-X15",
+   "pointer": "/categories/M4/adverse_effects/1/statement",
+   "text": "including foreign-body granulomas",
+   "facets": [
+    "event",
+    "example"
+   ]
+  },
+  {
+   "id": "S04-X16",
+   "pointer": "/categories/M4/adverse_effects/1/patient_ko",
+   "text": "주사 부위나 전신에 과민 반응이 생길 수 있으며",
+   "facets": [
+    "scope",
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S04-X17",
+   "pointer": "/categories/M4/adverse_effects/1/patient_ko",
+   "text": "이물 반응 육아종이 포함됩니다",
+   "facets": [
+    "event",
+    "example"
+   ]
+  },
+  {
+   "id": "S04-X18",
+   "pointer": "/categories/M4/adverse_effects/1/patient_en",
+   "text": "temporary local sensitivity in some cases",
+   "facets": [
+    "duration_quality",
+    "scope",
+    "frequency"
+   ],
+   "status": "I",
+   "note": "systemic·granulomas 탈락"
+  },
+  {
+   "id": "S04-X19",
+   "pointer": "/categories/M4/adverse_effects/1/patient_ja",
+   "text": "稀に一時的な違和感",
+   "facets": [
+    "frequency",
+    "duration_quality"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S04-X20",
+   "pointer": "/categories/M4/effects/0/statement",
+   "text": "Cross-linked hyaluronic acid",
+   "facets": [
+    "material"
+   ],
+   "status": "I",
+   "note": "name 은 non-crosslinked"
+  },
+  {
+   "id": "S04-X21",
+   "pointer": "/categories/M4/effects/0/statement",
+   "text": "diffuse homogeneous restoration of dermal extracellular matrix and fibers",
+   "facets": [
+    "effect",
+    "scope",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S04-X22",
+   "pointer": "/categories/M4/effects/0/patient_ko",
+   "text": "고르게 채워줍니다",
+   "facets": [
+    "effect",
+    "degree"
+   ]
+  },
+  {
+   "id": "S04-X23",
+   "pointer": "/categories/M4/effects/1/statement",
+   "text": "heightened stratum corneum hydration",
+   "facets": [
+    "effect",
+    "comparison",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S04-X24",
+   "pointer": "/categories/M4/effects/1/statement",
+   "text": "decrease in transepidermal water loss",
+   "facets": [
+    "effect",
+    "comparison"
+   ]
+  },
+  {
+   "id": "S04-X25",
+   "pointer": "/categories/M4/effects/1/patient_en",
+   "text": "Natural ingredients",
+   "facets": [
+    "material"
+   ],
+   "status": "I",
+   "note": "statement 'Non-crosslinked hyaluronic acid'"
+  },
+  {
+   "id": "S04-X26",
+   "pointer": "/categories/M4/effects/2/statement",
+   "text": "Intradermal cross-linked hyaluronic acid injections",
+   "facets": [
+    "route",
+    "material"
+   ]
+  },
+  {
+   "id": "S04-X27",
+   "pointer": "/categories/M4/effects/2/statement",
+   "text": "improve skin texture and skin roughness",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S04-X28",
+   "pointer": "/categories/M4/effects/2/patient_ko",
+   "text": "진피에 가교 히알루론산을 주사하면",
+   "facets": [
+    "condition",
+    "route",
+    "material"
+   ]
+  },
+  {
+   "id": "S04-X29",
+   "pointer": "/categories/M4/effects/2/patient_ko",
+   "text": "[1][2][3][4][9]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I"
+  },
+  {
+   "id": "S04-X30",
+   "pointer": "/categories/M4/effects/3/statement",
+   "text": "low molecular weight hyaluronic acid and amino acids",
+   "facets": [
+    "material",
+    "ingredient"
+   ]
+  },
+  {
+   "id": "S04-X31",
+   "pointer": "/categories/M4/effects/3/statement",
+   "text": "increases vascularization and thickens epidermis",
+   "facets": [
+    "effect",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S04-X32",
+   "pointer": "/categories/M4/effects/3/patient_ko",
+   "text": "[1]",
+   "facets": [
+    "citation_marker"
+   ]
+  },
+  {
+   "id": "S04-X33",
+   "pointer": "/categories/M4/effects/3/patient_en",
+   "text": "Selected ingredients help support skin vitality",
+   "facets": [
+    "effect"
+   ],
+   "status": "I",
+   "note": "측정 대상 소실"
+  },
+  {
+   "id": "S04-R1",
+   "pointer": "/categories/M4/adverse_effects/1/patient_en",
+   "text": "may lead to",
+   "facets": [
+    "possibility"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S04-R2",
+   "pointer": "/categories/M4/effects/1/statement",
+   "text": "Non-crosslinked hyaluronic acid",
+   "facets": [
+    "material",
+    "negation"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S04-R3",
+   "pointer": "/categories/M4/effects/1/patient_ko",
+   "text": "비가교 히알루론산",
+   "facets": [
+    "material",
+    "negation"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S04-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M4/name",
+    "/categories/M4/effects/0/statement",
+    "/categories/M4/effects/2/statement"
+   ],
+   "text": "name 의 'non-crosslinked HA' 와 진술의 'cross-linked hyaluronic acid' 가 같은 카테고리 안에 있다. 원문 그대로 보존."
+  },
+  {
+   "id": "S04-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M4/adverse_effects/1/patient_en",
+    "/categories/M4/adverse_effects/1/patient_zh",
+    "/categories/M4/adverse_effects/1/patient_ja",
+    "/categories/M4/adverse_effects/0/patient_en",
+    "/categories/M4/effects/3/patient_en"
+   ],
+   "text": "patient_en/zh/ja 가 전신·육아종·원인·측정 대상을 빼고 '일시적'·'稀に'를 더함. I-LANG."
+  },
+  {
+   "id": "S04-I3",
+   "class": "I",
+   "pointers": [
+    "/categories/M4/moa/0/patient_ko",
+    "/categories/M4/effects/2/patient_ko"
+   ],
+   "text": "인용 표지 vs citations 1개. I-CITE."
+  },
+  {
+   "id": "S04-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M4/adverse_effects/0"
+   ],
+   "text": "효과 일관성 한계 진술이 adverse_effects 에 있음 — 정보 종류 후속 판단."
+  },
+  {
+   "id": "S04-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M4/name"
+   ],
+   "text": "name 에 있는 polynucleotides·vitamin cocktails 에 대한 진술 없음."
+  }
+ ]
+}

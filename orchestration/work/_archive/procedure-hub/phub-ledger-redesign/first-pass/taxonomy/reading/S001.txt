@@ -1,0 +1,237 @@
+# S001  scope=M1 보톡스  units=id | category | category_en | group | subcategories 컨테이너 | M1-2 items/0 | M1-2 items/1 | M1-2 items/2 | M1-2 items/3 | M1-1 items/0 | M1-1 items/1 | M1-1 items/2 | M1-1 items/3 | M1-1 items/4 | M1-1 items/5 | M1-1 items/6 | M1-1 items/7
+# 상위 문맥: []
+@ /modality/0 M1 보톡스 보톡스
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M1"
+  /category = "보톡스"
+  /category_en = "Botulinum Toxin"
+  /group = "주사/주입"
+  /subcategories [3]
+@ /modality/0/subcategories/0 M1-2 수입
+  . {id,label,items}
+  /id = "M1-2"
+  /label = "수입"
+  /items [4]
+@ /modality/0/subcategories/0/items/0 M1-2-1 보톡스(엘러간)
+  . {id,name,detail,extracted}
+  /id = "M1-2-1"
+  /name = "보톡스(엘러간)"
+  /detail = "오리지널 · 900kDa 복합체"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "오리지널 보톡스, 900kDa 복합체 제형"
+  /extracted/mechanism = "신경 말단에서 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린 분비를 차단, 근육 수축을 억제한다. 900kDa 복합체 형태로 보조단백질이 독소를 안정화하여 보존성이 높다. 효과 지속은 신경발아(sprouting) 회복 속도에 의존한다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [4] = 0:"미간주름" ‖ 1:"눈가주름(까치발)" ‖ 2:"이마주름" ‖ 3:"사각턱"
+  /extracted/indications/extended [2] = 0:"눈썹 올리기" ‖ 1:"목주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입부위 부종" ‖ 1:"약간의 통증" ‖ 2:"멍" ‖ 3:"두통"
+  /extracted/safety/serious [2] = 0:"안검하수(눈꺼풀 처짐)" ‖ 1:"비대칭 표정 (드문 경우)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일 이내 효과 시작, 2-4주 점진적 개선, 1개월 완전 효과"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [4] = 0:"시술 후 2-3일 간 과도한 운동 피하기" ‖ 1:"주사 부위 강하게 문지르거나 압박하지 않기 (가볍게 만지는 것은 무방)" ‖ 2:"시술 부위 청결 유지" ‖ 3:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/0/items/1 M1-2-3 디스포트
+  . {id,name,detail,extracted}
+  /id = "M1-2-3"
+  /name = "디스포트"
+  /detail = "입센 · 프랑스 · 넓은 확산"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소 기반의 신경독소 제품으로, 광범위한 확산을 특징으로 하는 보톡스 시술용 제제입니다."
+  /extracted/mechanism = "Clostridium botulinum Type A 독소가 SNARE 복합체의 SNAP-25를 절단하여 신경근 접합부에서 아세틸콜린의 분비를 차단합니다. 이를 통해 표정근의 수축을 억제하고 주름을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"이마 주름" ‖ 1:"눈가 주름(까마귀발)" ‖ 2:"미간 주름" ‖ 3:"턱선 개선" ‖ 4:"사각턱(교근축소)"
+  /extracted/safety {common,serious,note}
+  /extracted/safety/common [4] = 0:"주사 부위 부종" ‖ 1:"발적" ‖ 2:"경미한 통증" ‖ 3:"두통"
+  /extracted/safety/serious [4] = 0:"안검하수" ‖ 1:"비대칭" ‖ 2:"표정 경직" ‖ 3:"알레르기 반응"
+  /extracted/safety/note = "반복 시술 시 교근 섬유화 위험 약 1.5%"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "2-3일"
+  /extracted/onset_duration/peak = "1개월"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [5] = 0:"주사 부위 청결 유지 (세안/화장은 수시간 후 가능)" ‖ 1:"7일간 과도한 얼굴 운동 삼가" ‖ 2:"당일 고온 환경(사우나 등) 자제 권장" ‖ 3:"효과 확인은 2주 후 진행" ‖ 4:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/0/items/2 M1-2-2 제오민
+  . {id,name,detail,extracted}
+  /id = "M1-2-2"
+  /name = "제오민"
+  /detail = "멀츠 · 독일 · 150kDa 순수톡신"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "150kDa 순수 보툴리눔 톡신 A로 안면 주름 개선 및 근육 이완 치료제"
+  /extracted/mechanism = "Clostridium botulinum Type A가 신경근 접합부에서 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린 분비를 차단한다. 이를 통해 표정근의 수축을 억제하여 주름 형성을 방지한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"이마 주름" ‖ 1:"눈가 주름(crow's feet)" ‖ 2:"미간 주름"
+  /extracted/safety {common,serious,note}
+  /extracted/safety/common [3] = 0:"주입부위 부종" ‖ 1:"경미한 통증" ‖ 2:"일시적 발적"
+  /extracted/safety/serious [2] = 0:"안검하수(반복 시 고려)" ‖ 1:"안면 비대칭"
+  /extracted/safety/note = "반복 시술 시 1.5% 교근 섬유화 위험"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일 시작, 1개월 완전 효과"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [3] = 0:"주사 부위 강하게 문지르지 않기 (가볍게 만지는 것은 무방)" ‖ 1:"주입 후 24시간 격렬한 운동 자제" ‖ 2:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/0/items/3 auto-M1-1775360538524 다복스
+  . {id,name,detail,extracted}
+  /id = "auto-M1-1775360538524"
+  /name = "다복스"
+  /detail = "갈더마 · 지속형 보툴리눔 독소 신제제"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "장기 지속형 보툴리눔 독소로 기존 제품 대비 효과 지속 기간이 연장된 신제제이다."
+  /extracted/mechanism = "보툴리눔 독소 A형의 신경독성 단백질이 신경근 접합부에서 아세틸콜린 방출을 차단한다. 이를 통해 근육 수축을 억제하여 표정주름을 개선하고 하이드로겔 기반 포뮬레이션으로 지속성을 연장한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"미간 주름" ‖ 1:"이마 주름" ‖ 2:"눈�리 주름(까치발)"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 통증" ‖ 1:"부종" ‖ 2:"홍반" ‖ 3:"두통"
+  /extracted/safety/serious [3] = 0:"근육 약화" ‖ 1:"안검하수" ‖ 2:"안면 비대칭"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3~7일"
+  /extracted/onset_duration/duration = "12주 이상"
+  /extracted/aftercare [3] = 0:"주사 부위 강하게 문지르거나 압박하지 않기 (가볍게 만지는 것은 무방)" ‖ 1:"격렬한 운동 자제(24시간)" ‖ 2:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1 M1-1 국산
+  . {id,label,items}
+  /id = "M1-1"
+  /label = "국산"
+  /items [14]
+@ /modality/0/subcategories/1/items/0 M1-1-1 보툴렉스
+  . {id,name,detail,extracted}
+  /id = "M1-1-1"
+  /name = "보툴렉스"
+  /detail = "휴젤 · 국내 점유율 1위"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 기반으로 한 신경근 차단제로, 표정근 주름 개선 및 얼굴 윤곽 시술에 사용되는 국내 대표 보톡스 제품"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경 말단에서 아세틸콜린 분비를 차단함으로써 근육 수축을 억제한다. 900kDa 복합체 형태의 순수독소(150kDa)가 안정적으로 전달되어 지속적인 근육 이완 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까마귀발)" ‖ 3:"입꼬리 처짐" ‖ 4:"사각턱 개선" ‖ 5:"종아리 발달"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"멍" ‖ 2:"일시적 근력 약화" ‖ 3:"두통"
+  /extracted/safety/serious [4] = 0:"안면 비대칭" ‖ 1:"눈꺼풀 처짐(안검하수)" ‖ 2:"눈 건조증" ‖ 3:"알레르기 반응"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "2-3일 후 효과 시작"
+  /extracted/onset_duration/peak = "1개월 완전 효과 도달"
+  /extracted/onset_duration/duration = "3-4개월 지속"
+  /extracted/aftercare [6] = 0:"시술 후 4시간 이내 세안, 화장, 운동 자제" ‖ 1:"시술 후 24시간 이내 음주 및 사우나 피하기" ‖ 2:"완전한 효과 확인까지 며칠 소요" ‖ 3:"필요시 2주 후 터치업 가능" ‖ 4:"항응고제 복용 시 시술 전 의료진 상담 필수" ‖ 5:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/1 M1-1-2 나보타
+  . {id,name,detail,extracted}
+  /id = "M1-1-2"
+  /name = "나보타"
+  /detail = "대웅제약 · FDA 승인"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 정제한 신경독소로, 근육의 수축을 일시적으로 억제하여 주름 개선 및 과다 발한 치료에 사용되는 미용시술 제품"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경 말단에서의 아세틸콜린 분비를 차단한다. 900kDa 복합체 형태의 독소-단백질 복합체가 세포 내로 유입되어 150kDa 순수독소가 작용하는 구조로, 근육 이완 효과를 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"이마, 미간, 눈가 주름 개선" ‖ 1:"과다 발한증" ‖ 2:"사각턱(교근) 축소"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종, 홍반" ‖ 1:"두통" ‖ 2:"일시적 근력 약화"
+  /extracted/safety/serious [3] = 0:"안면 비대칭" ‖ 1:"안검하수(눈꺼풀 처짐)" ‖ 2:"과도한 근육 이완"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "2-3일부터 효과 시작"
+  /extracted/onset_duration/peak = "1개월 완전 효과 발현"
+  /extracted/onset_duration/duration = "약 3-4개월"
+  /extracted/aftercare [4] = 0:"당일 고온 환경(사우나 등) 자제 권장" ‖ 1:"며칠 정기적인 마사지 또는 얼굴 자극 최소화" ‖ 2:"개인차에 따라 2주 후 재평가 상담 권장" ‖ 3:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/2 M1-1-4 메디톡신
+  . {id,name,detail,extracted}
+  /id = "M1-1-4"
+  /name = "메디톡신"
+  /detail = "메디톡스 · 복합체 900kDa"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소의 900kDa 복합체로 구성된 신경독소로, 근육 수축을 억제하여 주름 개선 효과를 제공하는 미용시술 제품입니다."
+  /extracted/mechanism = "보툴리눔 독소는 신경-근육 접합부에서 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린의 분비를 차단합니다. 이를 통해 근육 수축을 억제하고 주름 형성을 방지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까마귀발)" ‖ 3:"목주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 멍/부종" ‖ 1:"두통" ‖ 2:"안면 비대칭" ‖ 3:"안검하수"
+  /extracted/safety/serious [3] = 0:"신경독성반응" ‖ 1:"과도한 근력약화" ‖ 2:"전신독성반응"
+  /extracted/onset_duration {onset,peak_effect,duration}
+  /extracted/onset_duration/onset = "2-3일부터 효과 시작"
+  /extracted/onset_duration/peak_effect = "1개월 완전 효과 발현"
+  /extracted/onset_duration/duration = "3-4개월 지속"
+  /extracted/aftercare [3] = 0:"당일 고온 환경(사우나 등) 자제 권장" ‖ 1:"2주 후 효과 평가 및 추가 교정" ‖ 2:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/3 M1-1-3 코어톡스
+  . {id,name,detail,extracted}
+  /id = "M1-1-3"
+  /name = "코어톡스"
+  /detail = "메디톡스 · 순수톡신 150kDa"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "순수 보툴리눔 톡신 150kDa 단일 성분으로 제작된 프리미엄 보톡스 제품"
+  /extracted/mechanism = "보툴리눔 톡신이 신경-근육 접합부에서 SNARE 복합체(SNAP-25)를 절단하여 아세틸콜린의 분비를 차단한다. 이를 통해 근육 수축을 억제하고 주름 형성을 방지한다."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까치발)"
+  /extracted/indications/secondary [3] = 0:"팔자주름" ‖ 1:"목주름" ‖ 2:"사각턱 개선"
+  /extracted/safety {common_adverse_effects,serious_adverse_effects,common}
+  /extracted/safety/common_adverse_effects [3] = 0:"주입 부위 부종" ‖ 1:"경미한 통증" ‖ 2:"일시적 발적"
+  /extracted/safety/serious_adverse_effects [3] = 0:"근력 약화" ‖ 1:"안검하수" ‖ 2:"표정 경직"
+  /extracted/safety/common [2] = 0:"시술 부위 발적" ‖ 1:"일시적 부종"
+  /extracted/onset_duration {duration}
+  /extracted/onset_duration/duration = "개인차 있음"
+  /extracted/aftercare [4] = 0:"당일 격렬한 운동 자제 권장" ‖ 1:"주사 부위 강하게 문지르거나 압박하지 않기 (가볍게 만지는 것은 무방)" ‖ 2:"문제 발생 시 시술자와 상담" ‖ 3:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/4 M1-1-5 이노톡스
+  . {id,name,detail,extracted}
+  /id = "M1-1-5"
+  /name = "이노톡스"
+  /detail = "메디톡스 · 액상형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 정제한 근육이완제로, 표정주름 개선 및 얼굴 윤곽 시술에 사용되는 의료용 미용제품"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경말단에서의 아세틸콜린 분비를 차단한다. 이를 통해 표정근의 수축을 억제하고 주름을 개선하는 원리로 작용한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"이마주름" ‖ 1:"미간주름" ‖ 2:"눈가주름(까치발)" ‖ 3:"턱선 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입부위 부종" ‖ 1:"경미한 통증" ‖ 2:"일시적 멍"
+  /extracted/safety/serious [1] = 0:"근력약화(부적절한 용량 시)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "2-3일"
+  /extracted/onset_duration/peak = "1개월"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [4] = 0:"시술 후 4시간 이내 얼굴 만지기 자제" ‖ 1:"당일 운동 및 고온노출 피하기" ‖ 2:"첫 며칠 반복 주입 제한" ‖ 3:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/5 auto-1-1774737181584 더톡신
+  . {id,name,detail,extracted}
+  /id = "auto-1-1774737181584"
+  /name = "더톡신"
+  /detail = "제테마"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클로스트리디움 보툴리눔 A형 독소를 기반으로 한 신경독소 미용시술 제품으로, 근육의 수축을 억제하여 주름 개선 효과를 제공합니다."
+  /extracted/mechanism = "클로스트리디움 보툴리눔 A형 독소는 신경근 접합부에서 SNARE 복합체(SNAP-25)를 특이적으로 절단하여 아세틸콜린의 분비를 차단합니다. 이를 통해 표정근의 수축이 억제되어 동적 주름이 개선됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까치발)"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 부종" ‖ 1:"발적" ‖ 2:"가벼운 멍" ‖ 3:"두통"
+  /extracted/safety/serious [3] = 0:"근력 약화" ‖ 1:"안검하수" ‖ 2:"표정 부자연스러움"
+  /extracted/onset_duration {onset,peak_effect,duration}
+  /extracted/onset_duration/onset = "2-3일 후 효과 시작"
+  /extracted/onset_duration/peak_effect = "1개월 완전 발현"
+  /extracted/onset_duration/duration = "3-4개월 지속"
+  /extracted/aftercare [5] = 0:"최소 24시간 동안 주입 부위 만지지 않기" ‖ 1:"3-5일간 격한 운동 피하기" ‖ 2:"당일 고온 환경(사우나 등) 자제 권장" ‖ 3:"과음 피하기" ‖ 4:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/6 M1-1-6 원더톡스
+  . {id,name,detail,extracted}
+  /id = "M1-1-6"
+  /name = "원더톡스"
+  /detail = "종근당"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소 기반의 신경독소로, 근육의 과도한 수축을 완화하여 주름 개선 및 얼굴 윤곽 개선 효과를 제공하는 미용 시술 제품"
+  /extracted/mechanism = "보톡스는 신경말단의 SNARE 복합체(SNAP-25)를 절단함으로써 아세틸콜린의 분비를 차단하고 근육 수축을 억제한다. 900kDa의 복합체 형태로 제공되며, 순수 독소는 150kDa이다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"이마 주름" ‖ 1:"미간 주름" ‖ 2:"눈가 주름(까치발)" ‖ 3:"턱근육 발달" ‖ 4:"승모근 발달"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 붓기" ‖ 1:"가벼운 멍" ‖ 2:"두통" ‖ 3:"눈꺼풀 처짐(drooping)"
+  /extracted/safety/serious [3] = 0:"알레르기 반응" ‖ 1:"호흡곤란" ‖ 2:"근육 약화 확산"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "2-3일부터 효과 시작"
+  /extracted/onset_duration/peak = "1개월에 완전한 효과 발현"
+  /extracted/onset_duration/duration = "3-4개월 지속"
+  /extracted/aftercare [4] = 0:"당일 동안 심한 운동 및 마사지 피하기" ‖ 1:"두드리거나 문지르지 않기" ‖ 2:"2주 후 결과 재평가" ‖ 3:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/0/subcategories/1/items/7 M1-1-7 리즈톡신
+  . {id,name,detail,extracted}
+  /id = "M1-1-7"
+  /name = "리즈톡신"
+  /detail = "휴온스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Clostridium botulinum Type A 독소를 유효성분으로 하는 근육이완제로, 표정주름 개선 및 미용 목적의 주사제"
+  /extracted/mechanism = "SNARE 복합체(SNAP-25)를 절단하여 신경-근육 접합부에서 아세틸콜린의 분비를 차단한다. 이를 통해 근육 수축을 억제하고 주름을 개선시킨다."
+  /extracted/indications {primary,secondary}
+  /extracted/indications/primary [3] = 0:"이마주름" ‖ 1:"미간주름" ‖ 2:"눈가주름(crow's feet)"
+  /extracted/indications/secondary [2] = 0:"팔자주름" ‖ 1:"목주름"
+  /extracted/safety {common,serious,contraindications}
+  /extracted/safety/common [4] = 0:"주입부위 부종" ‖ 1:"홍반" ‖ 2:"멍" ‖ 3:"두통"
+  /extracted/safety/serious [3] = 0:"표정근 과도 이완" ‖ 1:"안검하수" ‖ 2:"복시"
+  /extracted/safety/contraindications [3] = 0:"임신/수유 중" ‖ 1:"신경근 질환" ‖ 2:"항응고제 복용"
+  /extracted/onset_duration {onset,peak_effect,duration}
+  /extracted/onset_duration/onset = "2-3일 후 효과 시작"
+  /extracted/onset_duration/peak_effect = "1개월 완전 효과 발현"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [5] = 0:"시술 후 4시간 이내 세안/화장 자제" ‖ 1:"시술 당일 과도한 운동 자제" ‖ 2:"주사 부위 강하게 문지르거나 압박하지 않기 (가볍게 만지는 것은 무방)" ‖ 3:"알코올 섭취 당일 자제" ‖ 4:"[시술 주기 참고] 효과 지속 3-6개월. 보통 2-3개월 간격 유지 시술. 반복 시 항체 내성 가능성 모니터링 (개인차 있으며, 의사와 상의하여 결정)"

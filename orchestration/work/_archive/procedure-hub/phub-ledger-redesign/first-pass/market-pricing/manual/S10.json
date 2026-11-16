@@ -1,0 +1,32 @@
+{
+ "segment": "S10", "direct_read": true, "read_note": "M10 HIFES/EMS 6항목 전부 직접 읽음.",
+ "last_pointer": "/categories/9/items/5/high",
+ "observations": [
+  ["/categories/9/items/2/name", "'이모드 (복부+힙 동시)' — '+' 로 두 부위를 묶고 '동시' 로 같은 회차 시행을 명시. 가격(180000/350000/600000)은 복부·힙 단독 합(200000/400000/800000)보다 낮음 — 원문 값 그대로.", "P"],
+  ["/categories/9/items/3/name", "'이모드 (4회 패키지)' unit '4회' — 패키지 부위가 무엇인지(복부·힙 등) 원문에 없음.", "B"],
+  ["/categories/9/items/4/name", "'안면 EMS (표정근 강화)' — 괄호가 부위가 아니라 목적/효과 후보('강화').", "P"],
+  ["/categories/9/items/5/name", "'EMS 바디 (팔뚝/허벅지)' — '/' 로 두 부위. 둘 중 하나의 가격인지 둘 다인지 원문만으로 확정 불가. README 규칙상 '/'=대안.", "P"],
+  ["/categories/9/items/0/low", "6항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/9/name", "HIFES/EMS", ["분류명", "'/' 연결", "영문 약어"], ""],
+  ["/categories/9/items/0/name", "이모드", ["장비명 후보"], ""],
+  ["/categories/9/items/0/name", "(복부)", ["부위 후보"], ""],
+  ["/categories/9/items/1/name", "이모드", ["장비명 후보"], ""],
+  ["/categories/9/items/1/name", "(힙)", ["부위 후보"], ""],
+  ["/categories/9/items/2/name", "이모드", ["장비명 후보"], ""],
+  ["/categories/9/items/2/name", "(복부+힙 동시)", ["부위 조합", "동시 시행"], ""],
+  ["/categories/9/items/2/name", "복부+힙", ["부위 조합", "'+' 연결"], ""],
+  ["/categories/9/items/2/name", "동시", ["동시 시행", "시간"], ""],
+  ["/categories/9/items/3/name", "이모드", ["장비명 후보"], ""],
+  ["/categories/9/items/3/name", "(4회 패키지)", ["회차", "판매 구성"], ""],
+  ["/categories/9/items/4/name", "안면 EMS", ["부위 후보", "기법명 후보"], ""],
+  ["/categories/9/items/4/name", "(표정근 강화)", ["목적/효과 후보", "부위 후보"], "'강화' — 효과 방향."],
+  ["/categories/9/items/5/name", "EMS 바디", ["기법명 후보", "부위 범위"], ""],
+  ["/categories/9/items/5/name", "(팔뚝/허벅지)", ["부위 후보", "'/' 연결"], ""]
+ ],
+ "issues": [
+  ["B-S10-1", "B", ["/categories/9/items/3/name"], "'4회 패키지' 의 부위·간격이 없다."],
+  ["P-S10-1", "P", ["/categories/9/items/5/name"], "'팔뚝/허벅지' 가 대안(둘 중 하나)인지 잠정."]
+ ]
+}

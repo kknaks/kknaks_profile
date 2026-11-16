@@ -1,0 +1,321 @@
+{
+ "segment_id": "S1",
+ "read_pointers_prefix": "/combos/0",
+ "observations": [
+  {
+   "pointer": "/combos/0/problem",
+   "status": "P",
+   "note": "problem 값 \"쁘띠시술\"은 다른 problem(주름·모공 등)과 달리 고민이 아니라 시술군 이름처럼 읽힌다. 고민/시술군 구분은 후속 의미 조사(F)."
+  },
+  {
+   "pointer": "/combos/0/packages/0/products/0",
+   "status": "P",
+   "note": "제품 대안을 영문 \"or\"로 표기. README 규칙의 \"/\"(대안)와 다른 기호. 같은 의미인지 확정하지 않음(F)."
+  },
+  {
+   "pointer": "/combos/0/packages/1/products/0",
+   "status": "P",
+   "note": "products 배열 원소가 1개뿐이고 그 안에 \"+\"와 \"or\"가 섞인 결합 문자열. 결합 우선순위(나보타 + (쥬비덤 or 이브아르))는 원문에 괄호가 없어 확정 불가(B)."
+  },
+  {
+   "pointer": "/combos/0/packages/0/priceRange",
+   "status": "B",
+   "note": "\"5~8만\" — 통화·단위(원)·1회당/패키지당 여부가 원문에 없음. 채우지 않음."
+  },
+  {
+   "pointer": "/combos/0/packages/0/procedures",
+   "status": "P",
+   "note": "procedures는 M코드 배열(M1). 코드가 가리키는 시술 이름은 이 원장 안에 정의가 없음 — 다른 원장 참조로 보이며 후속 연결 과제(F). name의 시술명 순서와 procedures 순서 대응도 미확정."
+  },
+  {
+   "pointer": "/combos/0/packages/1/clinicalRationale",
+   "status": "P",
+   "note": "\"보톡스가 근육 움직임을 줄여 필러 유지력도 향상시킴\" — 시술 간 인과 주장. 임상적 사실 여부 판단하지 않음."
+  },
+  {
+   "pointer": "/combos/0/packages/1/riskBenefit",
+   "status": "P",
+   "note": "\"→\" 기호가 위험(혈관 폐색)과 대비 조치(히알루로니다아제 비상 준비)를 잇는다. 기호 의미 확정 안 함."
+  },
+  {
+   "pointer": "/combos/0/packages/2/name",
+   "status": "P",
+   "note": "name은 \"수입 보톡스 + 수입 필러 + 스킨부스터\"로 '수입' 수식어가 이름에 들어감. productTier=\"수입\"과 중복 표현."
+  },
+  {
+   "pointer": "/combos/0/packages/2/products/0",
+   "status": "P",
+   "note": "\"보톡스(엘러간)\" — 괄호가 제조사/브랜드를 표기. README의 '괄호 안 대안은 예시' 규칙과 다른 쓰임일 수 있음(F)."
+  },
+  {
+   "pointer": "/combos/0/packages/2/upsellHook",
+   "status": "P",
+   "note": "HIFU가 업셀 대상으로 등장하지만 이 패키지 procedures에는 없음. 업셀 문구 속 시술은 패키지 구성원이 아님."
+  },
+  {
+   "pointer": "/combos/0/packages/0/expectedResult",
+   "status": "P",
+   "note": "\"이마·미간·눈가\" 부위 나열에 가운뎃점(·) 사용. README의 부위 나열 '+' 규칙과 다른 기호."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/0/packages/0/products/0",
+   "text": "나보타 or 보툴렉스",
+   "kind": "제품 대안",
+   "note": "or 연결"
+  },
+  {
+   "pointer": "/combos/0/packages/0/priceRange",
+   "text": "5~8만",
+   "kind": "수량·범위",
+   "note": "단위 미기재"
+  },
+  {
+   "pointer": "/combos/0/packages/0/expectedResult",
+   "text": "이마·미간·눈가 주름 개선",
+   "kind": "부위+효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/0/expectedResult",
+   "text": "시술 10분",
+   "kind": "시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/0/expectedResult",
+   "text": "바로 일상 복귀",
+   "kind": "시간·회복",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/0/salesPitch",
+   "text": "처음이시면 가볍게 보톡스부터 시작해보세요",
+   "kind": "조건",
+   "note": "조건 -시면"
+  },
+  {
+   "pointer": "/combos/0/packages/0/salesPitch",
+   "text": "점심시간에도 가능해요",
+   "kind": "가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/0/upsellHook",
+   "text": "필러로 꺼진 부분 채우시면",
+   "kind": "조건·부위",
+   "note": "부위 불특정 '꺼진 부분'"
+  },
+  {
+   "pointer": "/combos/0/packages/0/clinicalRationale",
+   "text": "보톡스 단독으로도 동적 주름에 충분한 효과",
+   "kind": "수식·범위",
+   "note": "'단독으로도'의 보조사 '도'"
+  },
+  {
+   "pointer": "/combos/0/packages/0/clinicalRationale",
+   "text": "첫 방문 환자 신뢰 구축 후 추가 시술 연계",
+   "kind": "시간·순서",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/0/riskBenefit",
+   "text": "위험 최소, 효과 확실",
+   "kind": "평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/products/0",
+   "text": "나보타 + 쥬비덤 or 이브아르",
+   "kind": "제품 결합+대안",
+   "note": "괄호 없음, 결합 범위 모호"
+  },
+  {
+   "pointer": "/combos/0/packages/1/productTier",
+   "text": "국산+수입 혼합",
+   "kind": "제품 등급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/priceRange",
+   "text": "25~45만",
+   "kind": "수량·범위",
+   "note": "단위 미기재"
+  },
+  {
+   "pointer": "/combos/0/packages/1/expectedResult",
+   "text": "동적주름(보톡스) + 정적주름·볼륨(필러) 동시 해결",
+   "kind": "문제-시술 대응",
+   "note": "괄호가 담당 시술을 표기"
+  },
+  {
+   "pointer": "/combos/0/packages/1/salesPitch",
+   "text": "30분이면 끝나고",
+   "kind": "시간·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/salesPitch",
+   "text": "'좀 쉬었나?' 소리 들으실 거예요",
+   "kind": "인용·추측",
+   "note": "작은따옴표 인용"
+  },
+  {
+   "pointer": "/combos/0/packages/1/upsellHook",
+   "text": "스킨부스터 한 번 추가하시면",
+   "kind": "회차·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/upsellHook",
+   "text": "패키지로 묶으면 할인도 돼요",
+   "kind": "조건·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/clinicalRationale",
+   "text": "보톡스(근이완) + 필러(볼륨)",
+   "kind": "시술-기전",
+   "note": "괄호가 기전 표기"
+  },
+  {
+   "pointer": "/combos/0/packages/1/clinicalRationale",
+   "text": "보톡스가 근육 움직임을 줄여 필러 유지력도 향상시킴",
+   "kind": "인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/riskBenefit",
+   "text": "필러 혈관 폐색 주의 → 히알루로니다아제 비상 준비",
+   "kind": "위험+대비",
+   "note": "→ 기호"
+  },
+  {
+   "pointer": "/combos/0/packages/1/riskBenefit",
+   "text": "효과 대비 위험 비율 매우 우수",
+   "kind": "정도 부사+평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/products/0",
+   "text": "보톡스(엘러간) + 쥬비덤 + 리쥬란",
+   "kind": "제품 결합",
+   "note": "괄호=브랜드/제조사"
+  },
+  {
+   "pointer": "/combos/0/packages/2/priceRange",
+   "text": "60~100만",
+   "kind": "수량·범위",
+   "note": "단위 미기재"
+  },
+  {
+   "pointer": "/combos/0/packages/2/expectedResult",
+   "text": "1회로 동안 얼굴 완성",
+   "kind": "회차+효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/salesPitch",
+   "text": "결과가 더 자연스럽고 오래가요",
+   "kind": "비교 수식",
+   "note": "비교 대상 미기재"
+  },
+  {
+   "pointer": "/combos/0/packages/2/upsellHook",
+   "text": "피부 탄력까지 원하시면 HIFU 추가하시는 분들이 많으세요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/upsellHook",
+   "text": "풀 패키지로 가시면 원장님이 직접 해드려요",
+   "kind": "조건·시술자",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/clinicalRationale",
+   "text": "임상 데이터 가장 풍부",
+   "kind": "최상급 평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/clinicalRationale",
+   "text": "쥬비덤 Vycross 기술",
+   "kind": "제품+기술명",
+   "note": "영문 기술명"
+  },
+  {
+   "pointer": "/combos/0/packages/2/clinicalRationale",
+   "text": "리쥬란 PN(폴리뉴클레오타이드)",
+   "kind": "제품+성분",
+   "note": "약어+괄호 풀이"
+  },
+  {
+   "pointer": "/combos/0/packages/2/clinicalRationale",
+   "text": "시술 후 재생 촉진",
+   "kind": "시간+효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/riskBenefit",
+   "text": "수입 제품의 예측 가능한 결과",
+   "kind": "가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/2/riskBenefit",
+   "text": "스킨부스터 재생으로 부작용 최소화",
+   "kind": "인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/0/packages/1/salesPitch",
+   "text": "가장 인기 있는 동안 조합",
+   "kind": "최상급",
+   "note": "'동안'(외모) — 정규식 부정 '안' 오탐 위치",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/0/packages/1/clinicalRationale",
+   "text": "가장 검증된 쁘띠 조합",
+   "kind": "최상급",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/0/packages/0/salesPitch",
+   "text": "10분이면 끝나고",
+   "kind": "시간·조건",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/0/packages/2/clinicalRationale",
+   "text": "수입 보톡스(엘러간)",
+   "kind": "제품+브랜드",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-01",
+   "status": "B",
+   "pointer": "/combos/*/packages/*/priceRange",
+   "note": "가격 범위 단위·기준(원, 회당/패키지) 원문 미기재 — 전 구획 공통 확인 예정"
+  },
+  {
+   "id": "I-PC-02",
+   "status": "F",
+   "pointer": "/combos/*/packages/*/procedures/*",
+   "note": "M코드 정의가 이 원장에 없음 — 다른 원장 참조 후속 연결"
+  },
+  {
+   "id": "I-PC-03",
+   "status": "F",
+   "pointer": "/combos/*/packages/*/products/*",
+   "note": "products 원소 안 '+'·'or'·'/'·괄호 혼용, 결합 우선순위 원문에 없음"
+  }
+ ]
+}

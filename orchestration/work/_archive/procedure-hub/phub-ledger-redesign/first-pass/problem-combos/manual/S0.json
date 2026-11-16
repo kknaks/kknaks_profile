@@ -1,0 +1,11 @@
+{"segment_id":"S0","read_pointers":["/version","/updated","/description"],
+"observations":[
+ {"pointer":"/version","status":"P","note":"버전 문자열 \"1.2\". 숫자형이 아니라 문자열로 저장됨."},
+ {"pointer":"/updated","status":"P","note":"날짜형 문자열 \"2026-07-26\"(ISO 형태). 원장 폴더 README의 1판 스냅샷 시점(10-26)과 다른 값이지만 의미 해석은 하지 않음."},
+ {"pointer":"/description","status":"P","note":"\"상담 안내와 의료진 참고 정보 통합\" — 한 항목 안에 상담용 문구(salesPitch·upsellHook)와 의료진 참고(clinicalRationale·riskBenefit)가 함께 있다는 원장 자기서술. 필드 역할 분류는 후속 과제(F)."}
+],
+"expressions":[
+ {"pointer":"/description","text":"Problem별 추천 조합","kind":"원문 자기서술","note":"영문 Problem + 한국어 조사 혼합"},
+ {"pointer":"/description","text":"상담 안내와 의료진 참고 정보 통합","kind":"원문 자기서술","note":""}
+],
+"issues":[]}

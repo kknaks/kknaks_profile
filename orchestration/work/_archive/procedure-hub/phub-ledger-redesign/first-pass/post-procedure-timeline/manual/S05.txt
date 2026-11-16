@@ -1,0 +1,74 @@
+# S05 /timelines/4 thread-lift — 직접 읽기 2026-11-09
+id | thread-lift | id_code |
+category | M7 | id_code |
+name | 실리프팅 | procedure_name | 형태소 분절 주의(실+리프팅)
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 즉각적 리프팅 효과 (과교정 상태) | onset_speed,judgment |
+phases/0/normal/1 | 부종/당김감 | alt |
+phases/0/normal/2 | 주사 부위 통증 | site | 실리프팅인데 「주사 부위」 표현(원문 그대로)
+phases/0/normal/3 | 입 벌리기 불편 (정상) | function,judgment |
+phases/0/abnormal/0 | 멍 (광범위할 수 있음) | extent,possibility |
+phases/0/abnormal/1 | 한쪽이 더 당기는 느낌 | asymmetry,comparison,subjective | 「더」
+phases/0/caution/0 | 비정상적 심한 통증 | degree,severity |
+phases/0/caution/1 | 피부 표면에 실 만져짐 | location,detection |
+phases/0/emergency/0 | 심한 출혈/혈종 | severity,alt |
+phases/0/emergency/1 | 안면 신경 손상 (입꼬리/눈꺼풀 마비) | site,gloss,alt |
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 급성 부종기 | phase_label,speed |
+phases/1/normal/0 | 부종 피크 (Day 1-2) | peak,peak_time |
+phases/1/normal/1 | 멍 확대 (중력에 의해 아래로 이동) | extent,cause,direction | 「아래로」 방향
+phases/1/normal/2 | 입 벌리기/씹기 불편 지속 | function,alt,persistence |
+phases/1/normal/3 | 당김감 강함 | degree |
+phases/1/abnormal/0 | 비대칭 부종 (좌우 차이 큼) | asymmetry,degree |
+phases/1/abnormal/1 | 침자 부위 삼출 | site |
+phases/1/caution/0 | 발열 (37.5도 이상) | numeric_threshold,unit |
+phases/1/caution/1 | 통증 악화 (개선 아닌 악화) | worsening,negation,contrast |
+phases/1/caution/2 | 실 삽입 부위 발적 확대 | site,extent |
+phases/1/emergency/0 | 감염 초기 (발열 + 발적 + 농) | early_sign,co_occurrence |
+phases/1/emergency/1 | 혈종 형성 (한쪽 급격 부종) | formation,restriction,speed |
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 회복기 | phase_label |
+phases/2/normal/0 | 부종 점차 감소 | speed,change |
+phases/2/normal/1 | 멍 황색 변화 (흡수 진행) | color_change,progress |
+phases/2/normal/2 | 당김감 완화 | change |
+phases/2/normal/3 | 입 움직임 개선 | function,change |
+phases/2/abnormal/0 | 부종 감소 느림 | speed |
+phases/2/abnormal/1 | 피부 표면 불규칙 (dimpling) | texture,mixed_script |
+phases/2/caution/0 | 실 촉지/돌출 (피부 아래 만져짐) | detection,alt,location |
+phases/2/caution/1 | 지속적 발열 | persistence |
+phases/2/caution/2 | 심한 비대칭 | severity |
+phases/2/emergency/0 | 실 노출 (피부 밖으로) | exposure,location |
+phases/2/emergency/1 | 감염 (농/발열/발적) | gloss,alt |
+phases/2/emergency/2 | 안면 신경 마비 지속 | persistence |
+phases/3/period | Day 7-14 | period,time_range |
+phases/3/label | 안정기 | phase_label |
+phases/3/normal/0 | 부종/멍 대부분 소실 | alt,proportion_approx,resolution |
+phases/3/normal/1 | 리프팅 효과 자연스러워짐 | quality,change |
+phases/3/normal/2 | 일상생활 완전 복귀 | activity,degree | 「완전」
+phases/3/normal/3 | 콜라겐 생성 시작 | mechanism,onset |
+phases/3/abnormal/0 | 경미한 비대칭 잔존 | severity,persistence |
+phases/3/abnormal/1 | 미세한 dimpling 잔존 | degree,mixed_script,persistence |
+phases/3/abnormal/2 | 간헐적 찌릿함 | frequency_pattern | 「간헐적」 = 반복 양상(빈도와 다름, 잠정)
+phases/3/caution/0 | 실 이동/돌출 징후 | alt,early_sign |
+phases/3/caution/1 | 지연성 감염 | delayed_onset |
+phases/3/caution/2 | 비대칭 악화 | worsening |
+phases/3/emergency/0 | 실 노출 | exposure |
+phases/3/emergency/1 | 농양 형성 | formation |
+phases/3/emergency/2 | 진행성 안면 비대칭 | progress,site |
+phases/4/period | Day 14-30 | period,time_range |
+phases/4/label | 최종 안정기 | phase_label |
+phases/4/normal/0 | 최종 리프팅 결과 확인 | evaluation |
+phases/4/normal/1 | 당김감 자연스러움 | quality |
+phases/4/normal/2 | 콜라겐 리모델링 진행 중 | mechanism,progress |
+phases/4/normal/3 | 재시술 판단 가능 시점 | retreatment_decision,possibility |
+phases/4/abnormal/0 | 리프팅 효과 조기 감소 | timing,change | 「조기」 — 기준 기간 원문 없음
+phases/4/abnormal/1 | 경미한 비대칭 | severity |
+phases/4/caution/0 | 실 이동 (리프팅 소실) | consequence_gloss |
+phases/4/caution/1 | 만성 통증/불편감 | chronicity,alt | 「만성」 기간 정의 없음
+phases/4/emergency/0 | 지연성 감염/농양 | delayed_onset,alt |
+phases/4/emergency/1 | 실 노출/돌출 | alt,exposure |
+O | 「실 노출」 이 phases/2·3·4 emergency 에, 「실 이동/돌출」 이 phases/2·3·4 caution 에 반복된다. 같은 증상이 caution(촉지/돌출)·emergency(노출/돌출)에 함께 걸친다(phases/4: caution 「실 이동」, emergency 「실 노출/돌출」).
+O | 기간 Day 0 / 1-3 / 3-7 / 7-14 / 14-30.
+Q | B | phases/4/abnormal/0 phases/4/caution/1 | 「조기」「만성」 의 기간 기준이 원문에 없다.
+Q | P | phases/2/caution/0 phases/4/emergency/1 | 「돌출」 이 caution·emergency 양쪽에 있어 등급을 가르는 기준(촉지 vs 노출)은 잠정.

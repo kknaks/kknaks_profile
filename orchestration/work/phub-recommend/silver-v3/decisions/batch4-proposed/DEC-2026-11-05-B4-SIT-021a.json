@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/2(unlinked → auto) · 근거 영문 낱말 「PDO」 ↔ 「PDO+PCL」",
+ "gate_item": "b4-sit/021",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-021a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "PDO+PCL",
+  "category": null,
+  "synonyms": [
+   "PDO"
+  ]
+ },
+ "proposal_item": "b4-sit/021",
+ "reason": "결정 묶음 4 — 문구 조각 「PDO」 을 ingredient_material 「PDO+PCL」 의 동의어로(근거: 영문 낱말 「PDO」 ↔ 「PDO+PCL」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@6/1/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@6/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "ingredient_material"
+ }
+}

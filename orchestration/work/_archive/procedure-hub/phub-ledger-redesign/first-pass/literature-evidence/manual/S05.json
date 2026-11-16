@@ -1,0 +1,475 @@
+{
+ "segment": "S05",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M5/effects/0/patient_ja",
+ "read_note": "M5 진술 7개(moa 4·adverse_effects 2·effects 1) 모든 값 직접 읽음.",
+ "observations": [
+  {
+   "id": "S05-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/moa/0",
+    "/categories/M5/moa/1",
+    "/categories/M5/adverse_effects/0",
+    "/categories/M5/adverse_effects/1",
+    "/categories/M5/effects/0"
+   ],
+   "text": "점수 진술 5개(100·95·100·100·95)는 added_at 이 없고, moa/2·moa/3 은 added_at 만 있다. by_category_average M5=98.0 과 일치."
+  },
+  {
+   "id": "S05-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/name",
+    "/categories/M5/moa/1/statement",
+    "/categories/M5/moa/2/statement"
+   ],
+   "text": "name 'Platelet-rich plasma (PRP) and exosome therapies' — 두 계열을 and 로 묶은 카테고리. 진술은 PRP(moa/0·3, AE 0·1, effects/0)와 exosome(moa/1·2)으로 나뉜다."
+  },
+  {
+   "id": "S05-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/moa/1/citations/0/title",
+    "/categories/M5/moa/2/citations/0/title"
+   ],
+   "text": "exosome 진술 두 개의 인용 제목이 'The biology and function of exosomes in cancer.'·'Exosomes: key players in cancer and potential therapeutic strategy.' — 제목상 암 맥락 문헌. 미용 적용과의 관련성은 원문이 밝히지 않음."
+  },
+  {
+   "id": "S05-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/adverse_effects/0/statement"
+   ],
+   "text": "'Post-procedure pain, swelling, and bruising at injection sites are the most frequently reported PRP adverse events' — 시점(post-procedure)·부위(injection sites)·상대 빈도('most frequently reported', 보고 사건 기준). patient_ko '일시적으로'(경과)·'가장 흔하게 발생하는'(보고 빈도→발생 빈도로 바뀜), patient_en 'minor bruising'(정도 추가)."
+  },
+  {
+   "id": "S05-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/adverse_effects/1/statement",
+    "/categories/M5/adverse_effects/1/patient_ko",
+    "/categories/M5/adverse_effects/1/patient_en"
+   ],
+   "text": "statement 는 '외인성(비자가) 혈액 제제 사용 시 감염 전파는 이론적 위험'(조건+가능성). accuracy_note 는 '이론적, 실제적으로 존재함'으로 statement 보다 강하다. patient_ko 는 '본인의 혈액을 활용하면 매우 안전합니다' 를 더하고, patient_en/zh/ja 는 감염 위험을 전혀 언급하지 않고 자가 혈액의 적합성만 말한다."
+  },
+  {
+   "id": "S05-O6",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/effects/0/statement",
+    "/categories/M5/effects/0/patient_en"
+   ],
+   "text": "statement 'chronic and post-procedural wounds' 를 patient_en/zh 는 'after other procedures or for dry areas'·'干燥部位' 로 옮김 — chronic wounds 가 dry areas 로 바뀜. patient_ja '気になる部分'."
+  },
+  {
+   "id": "S05-O7",
+   "status": "P",
+   "pointers": [
+    "/categories/M5/moa/0/statement"
+   ],
+   "text": "성장인자 목록 '(PDGF, TGF-β, VEGF, EGF)' — 괄호 예시 나열. patient_ko 는 '혈액에서 추출한 농축된 재생 성분들' 로 일반화."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S05-X1",
+   "pointer": "/categories/M5/name",
+   "text": "Platelet-rich plasma (PRP) and exosome therapies",
+   "facets": [
+    "name_candidate",
+    "conjunction"
+   ]
+  },
+  {
+   "id": "S05-X2",
+   "pointer": "/categories/M5/moa/0/statement",
+   "text": "concentrated platelet-derived growth factors (PDGF, TGF-β, VEGF, EGF)",
+   "facets": [
+    "ingredient",
+    "example",
+    "degree"
+   ]
+  },
+  {
+   "id": "S05-X3",
+   "pointer": "/categories/M5/moa/0/statement",
+   "text": "stimulate fibroblast proliferation and collagen synthesis",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S05-X4",
+   "pointer": "/categories/M5/moa/0/accuracy_note",
+   "text": "명확함",
+   "facets": [
+    "certainty"
+   ]
+  },
+  {
+   "id": "S05-X5",
+   "pointer": "/categories/M5/moa/0/patient_ko",
+   "text": "혈액에서 추출한 농축된 재생 성분들",
+   "facets": [
+    "ingredient",
+    "source_material"
+   ]
+  },
+  {
+   "id": "S05-X6",
+   "pointer": "/categories/M5/moa/1/statement",
+   "text": "Extracellular vesicles (exosomes)",
+   "facets": [
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S05-X7",
+   "pointer": "/categories/M5/moa/1/statement",
+   "text": "carry proteins, lipids, and microRNAs",
+   "facets": [
+    "ingredient",
+    "example"
+   ]
+  },
+  {
+   "id": "S05-X8",
+   "pointer": "/categories/M5/moa/1/statement",
+   "text": "modulate recipient cell signaling and extracellular matrix remodeling",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S05-X9",
+   "pointer": "/categories/M5/moa/1/accuracy_note",
+   "text": "현대 재생의학의 핵심임",
+   "facets": [
+    "degree"
+   ]
+  },
+  {
+   "id": "S05-X10",
+   "pointer": "/categories/M5/moa/1/patient_ko",
+   "text": "돕는 것으로 알려져 있습니다",
+   "facets": [
+    "evidence_status",
+    "hedge"
+   ],
+   "status": "I",
+   "note": "statement 는 단정"
+  },
+  {
+   "id": "S05-X11",
+   "pointer": "/categories/M5/moa/1/patient_ko",
+   "text": "아주 작은 입자",
+   "facets": [
+    "size",
+    "degree"
+   ]
+  },
+  {
+   "id": "S05-X12",
+   "pointer": "/categories/M5/moa/1/citations/0/title",
+   "text": "in cancer",
+   "facets": [
+    "context_scope"
+   ],
+   "status": "F"
+  },
+  {
+   "id": "S05-X13",
+   "pointer": "/categories/M5/moa/2/statement",
+   "text": "contain growth factors, lipids, amino acids, peptides, and RNA",
+   "facets": [
+    "ingredient",
+    "example"
+   ]
+  },
+  {
+   "id": "S05-X14",
+   "pointer": "/categories/M5/moa/2/statement",
+   "text": "promote fibroblast growth and collagen production",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S05-X15",
+   "pointer": "/categories/M5/moa/2/citations/0/title",
+   "text": "key players in cancer and potential therapeutic strategy",
+   "facets": [
+    "context_scope",
+    "possibility"
+   ],
+   "status": "F"
+  },
+  {
+   "id": "S05-X16",
+   "pointer": "/categories/M5/moa/2/patient_en",
+   "text": "essential nutrients",
+   "facets": [
+    "ingredient"
+   ],
+   "status": "I",
+   "note": "statement 성분 목록 일반화"
+  },
+  {
+   "id": "S05-X17",
+   "pointer": "/categories/M5/moa/3/statement",
+   "text": "stimulates tissue repair and new blood vessel formation",
+   "facets": [
+    "mechanism"
+   ]
+  },
+  {
+   "id": "S05-X18",
+   "pointer": "/categories/M5/moa/3/patient_en",
+   "text": "encourage healthy circulation in the skin",
+   "facets": [
+    "mechanism"
+   ],
+   "status": "I",
+   "note": "'new blood vessel formation' 이 circulation 으로 바뀜"
+  },
+  {
+   "id": "S05-X19",
+   "pointer": "/categories/M5/adverse_effects/0/statement",
+   "text": "Post-procedure",
+   "facets": [
+    "time"
+   ]
+  },
+  {
+   "id": "S05-X20",
+   "pointer": "/categories/M5/adverse_effects/0/statement",
+   "text": "pain, swelling, and bruising at injection sites",
+   "facets": [
+    "event",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S05-X21",
+   "pointer": "/categories/M5/adverse_effects/0/statement",
+   "text": "the most frequently reported",
+   "facets": [
+    "frequency",
+    "comparison",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S05-X22",
+   "pointer": "/categories/M5/adverse_effects/0/accuracy_note",
+   "text": "주사 시술에서 가장 빈번한 부작용임",
+   "facets": [
+    "frequency",
+    "comparison",
+    "scope"
+   ]
+  },
+  {
+   "id": "S05-X23",
+   "pointer": "/categories/M5/adverse_effects/0/patient_ko",
+   "text": "일시적으로 나타날 수 있으며",
+   "facets": [
+    "duration_quality",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S05-X24",
+   "pointer": "/categories/M5/adverse_effects/0/patient_ko",
+   "text": "가장 흔하게 발생하는 현상입니다",
+   "facets": [
+    "frequency",
+    "comparison"
+   ],
+   "status": "I",
+   "note": "'reported' 가 '발생'으로"
+  },
+  {
+   "id": "S05-X25",
+   "pointer": "/categories/M5/adverse_effects/0/patient_en",
+   "text": "temporary discomfort, swelling, or minor bruising",
+   "facets": [
+    "event",
+    "duration_quality",
+    "degree"
+   ]
+  },
+  {
+   "id": "S05-X26",
+   "pointer": "/categories/M5/adverse_effects/1/statement",
+   "text": "Transmission of infection is a theoretical risk",
+   "facets": [
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S05-X27",
+   "pointer": "/categories/M5/adverse_effects/1/statement",
+   "text": "when exogenous (non-autologous) blood products are used",
+   "facets": [
+    "condition",
+    "negation",
+    "source_material"
+   ]
+  },
+  {
+   "id": "S05-X28",
+   "pointer": "/categories/M5/adverse_effects/1/accuracy_note",
+   "text": "이론적, 실제적으로 존재함",
+   "facets": [
+    "possibility",
+    "certainty"
+   ],
+   "status": "I",
+   "note": "statement 는 theoretical 만"
+  },
+  {
+   "id": "S05-X29",
+   "pointer": "/categories/M5/adverse_effects/1/patient_ko",
+   "text": "외부의 혈액 성분을 사용하는 경우 이론적으로 감염 우려가 있으나",
+   "facets": [
+    "condition",
+    "possibility",
+    "event"
+   ]
+  },
+  {
+   "id": "S05-X30",
+   "pointer": "/categories/M5/adverse_effects/1/patient_ko",
+   "text": "본인의 혈액을 활용하면 매우 안전합니다",
+   "facets": [
+    "condition",
+    "safety_claim",
+    "degree"
+   ],
+   "status": "I",
+   "note": "statement 에 없는 안전 주장"
+  },
+  {
+   "id": "S05-X31",
+   "pointer": "/categories/M5/adverse_effects/1/patient_en",
+   "text": "very compatible with your body's system",
+   "facets": [
+    "safety_claim",
+    "degree"
+   ],
+   "status": "I",
+   "note": "감염 위험 탈락"
+  },
+  {
+   "id": "S05-X32",
+   "pointer": "/categories/M5/effects/0/statement",
+   "text": "supports wound healing in chronic and post-procedural wounds",
+   "facets": [
+    "effect",
+    "scope",
+    "time"
+   ]
+  },
+  {
+   "id": "S05-X33",
+   "pointer": "/categories/M5/effects/0/accuracy_note",
+   "text": "보조 요법으로 가치가 큼",
+   "facets": [
+    "role",
+    "degree"
+   ]
+  },
+  {
+   "id": "S05-X34",
+   "pointer": "/categories/M5/effects/0/patient_en",
+   "text": "after other procedures or for dry areas",
+   "facets": [
+    "time",
+    "scope"
+   ],
+   "status": "I",
+   "note": "chronic wounds → dry areas"
+  },
+  {
+   "id": "S05-X35",
+   "pointer": "/categories/M5/effects/0/citations/0/title",
+   "text": "Autologous platelet-rich plasma for treating chronic wounds.",
+   "facets": [
+    "context_scope",
+    "source_material"
+   ]
+  },
+  {
+   "id": "S05-R1",
+   "pointer": "/categories/M5/adverse_effects/0/patient_en",
+   "text": "You may experience",
+   "facets": [
+    "possibility"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  },
+  {
+   "id": "S05-R2",
+   "pointer": "/categories/M5/adverse_effects/1/accuracy_note",
+   "text": "비자가 혈액 제제 사용 시",
+   "facets": [
+    "condition",
+    "negation",
+    "source_material"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S05-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M5/adverse_effects/1/patient_ko",
+    "/categories/M5/adverse_effects/1/patient_en",
+    "/categories/M5/adverse_effects/1/patient_zh",
+    "/categories/M5/adverse_effects/1/patient_ja",
+    "/categories/M5/adverse_effects/1/accuracy_note"
+   ],
+   "text": "감염 위험 진술의 언어별 내용 차이: ko 는 '매우 안전' 추가, en/zh/ja 는 위험 자체 탈락, accuracy_note 는 '실제적으로' 추가. I-LANG(안전 정보 방향이 달라지는 사례)."
+  },
+  {
+   "id": "S05-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M5/effects/0/patient_en",
+    "/categories/M5/effects/0/patient_zh"
+   ],
+   "text": "chronic wounds → dry areas/干燥部位. I-LANG."
+  },
+  {
+   "id": "S05-I3",
+   "class": "I",
+   "pointers": [
+    "/categories/M5/adverse_effects/0/patient_ko",
+    "/categories/M5/moa/1/patient_ko"
+   ],
+   "text": "'most frequently reported' → '가장 흔하게 발생'(보고 기준이 발생 기준으로), 단정 → '알려져 있습니다'. I-LANG."
+  },
+  {
+   "id": "S05-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M5/moa/1/citations/0/title",
+    "/categories/M5/moa/2/citations/0/title"
+   ],
+   "text": "암 맥락 문헌이 미용 exosome 기전 진술의 근거로 쓰인 적합성 — 원문 범위 밖 사실 확인이 필요, 후속(외부 자료로 채우지 않음)."
+  },
+  {
+   "id": "S05-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M5/adverse_effects/0/statement"
+   ],
+   "text": "'most frequently reported' 의 수치·분모 없음. 지속 기간도 없음(patient_ko '일시적'의 근거 없음)."
+  }
+ ]
+}

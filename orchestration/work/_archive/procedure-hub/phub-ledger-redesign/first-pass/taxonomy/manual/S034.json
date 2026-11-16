@@ -1,0 +1,187 @@
+{
+ "section": "S034",
+ "state": "read",
+ "last_pointer": "/modality/10/name",
+ "observations": [
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/10/products/3/name",
+    "/modality/10/products/3/name_en",
+    "/modality/10/subcategories/0/items/10/name"
+   ],
+   "note": "제품 name '제니스', name_en 'AGNES' — 영문명이 같은 원장 항목 '아그네스'(여드름 피지선 RF)와 대응. 한글명·영문명 불일치(어느 쪽이 맞는지 원문만으로 불명)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/products/1/name",
+    "/modality/10/extracted/overview"
+   ],
+   "note": "제품 '인트라셀' 은 항목에 없다. 모달리티 overview 브랜드 목록 '인트라셀','포텐자','시크릿','스카렛' — 항목명은 '스칼렛프로'(표기 다름), '시크릿RF'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/products/0/extracted/aftercare/2",
+    "/modality/10/subcategories/0/items/0/extracted/aftercare/2"
+   ],
+   "note": "제품 포텐자 aftercare '4주 간격 시술' vs 항목 포텐자 상용구 '고출력 니들RF — 최소 6-8주 이상 간격'. 같은 장비의 간격 진술이 다르다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/extracted/mechanism",
+    "/modality/10/extracted/safety/uncommon/0"
+   ],
+   "note": "모달리티 mechanism '박피성 시술 시 발생하는 색소침착 등의 부작용이 없고' — 같은 객체 safety/uncommon '색소침착 (… 위험이 매우 작음)' 과 '없다/매우 작다' 정도 차이."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/10/extracted/aftercare/0",
+    "/modality/10/subcategories/0/items/0/extracted/safety/common/2"
+   ],
+   "note": "모달리티 aftercare '시술 후에 보이는 딱지가 없으므로' vs 항목 safety '미세한 딱지 형성'."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/10/extracted/overview",
+   "text": "비박피성 피부재생 장비와 프랙셔널 레이저의 장점을 합쳐",
+   "kinds": [
+    "비교",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/mechanism",
+   "text": "원하는 목표 부위에만 약 20%의 면적에 피부재생을 촉진하는 미세한 상처",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/mechanism",
+   "text": "박피성 시술 시 발생하는 색소침착 등의 부작용이 없고",
+   "kinds": [
+    "부정",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/contraindications/relative/0",
+   "text": "켈로이드 체질 (단, 일반적인 니들RF는 켈로이드 위험이 낮음)",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": "'단,' 단서"
+  },
+  {
+   "pointer": "/modality/10/extracted/safety/uncommon/0",
+   "text": "색소침착 (박피나 레이저 시술에 비해 위험이 매우 작음)",
+   "kinds": [
+    "비교",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/safety/serious/0",
+   "text": "감염 (1회용 팁 사용으로 위생 관리)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/safety/serious/1",
+   "text": "드물게 화상 (부적절한 에너지 설정 시)",
+   "kinds": [
+    "가능성·빈도",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/aftercare/0",
+   "text": "시술 후에 보이는 딱지가 없으므로 일상생활에 지장 없음",
+   "kinds": [
+    "부정",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/related_techniques/0",
+   "text": "프랙셔널 레이저 -- 비슷한 피부 재생 원리이나 표피 손상이 더 큼",
+   "kinds": [
+    "참조",
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/extracted/related_techniques/2",
+   "text": "MTS(마이크로니들링) -- RF 없이 물리적 자극만으로 콜라겐 유도",
+   "kinds": [
+    "참조",
+    "부정"
+   ],
+   "note": "M12 참조"
+  },
+  {
+   "pointer": "/modality/10/products/3/extracted/aftercare/2",
+   "text": "4-6주 간격 3-4회 시술",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/10/products/3/extracted/safety/serious/0",
+   "text": "색소침착 (깊은 피부톤, 과다 에너지)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "일루다",
+   "issue": "일루/MAG 다/MAG — 제조사명을 부사 두 개로",
+   "impact": "회사명 소실"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S034-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/10/products/3/name",
+    "/modality/10/products/3/name_en"
+   ],
+   "note": "제니스/AGNES 이름 불일치.",
+   "impact": "제품 식별 — 원본 확인 후보"
+  },
+  {
+   "id": "S034-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/10/extracted/mechanism",
+    "/modality/10/extracted/safety/uncommon/0",
+    "/modality/10/extracted/aftercare/0"
+   ],
+   "note": "모달리티 설명 안에서 색소침착·딱지 유무 진술 정도 차이.",
+   "impact": "부작용 정보 채택 시 확인"
+  }
+ ]
+}

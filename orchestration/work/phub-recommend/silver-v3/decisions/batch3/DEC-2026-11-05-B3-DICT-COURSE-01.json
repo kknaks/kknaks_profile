@@ -1,0 +1,61 @@
+{
+ "id": "DEC-2026-11-05-B3-DICT-COURSE-01",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "course"
+ },
+ "new_value": {
+  "canonical": "지속",
+  "synonyms": [
+   "지속적",
+   "잔여",
+   "점진적으로 커지는"
+  ],
+  "category": null
+ },
+ "reason": "경과 사전에 「지속」 추가 — 일시와 영구 사이(수 주 이상 남지만 영구라고는 안 함). 원장 타임라인·동의서의 「지속적 경결」「잔여 경결」「점진적으로 커지는 경결」이 지금 경과 미상으로만 잡힘. 사용자 「지속도 있을 거야」(2026-11-05)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@5/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@1/4"
+  }
+ ],
+ "evidence": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/3/0",
+   "text": "지속적 경결 (대개 정상 염증반응으로 수 주 내 자연 소실 …)"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/4/1",
+   "text": "잔여 경결"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@5/2/1",
+   "text": "경결감 지속 (정상)"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@1/4",
+   "text": "시술 부위 수일 후 점진적으로 커지는 경결/결절"
+  }
+ ],
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "approval_note": "결정 묶음 3 추가 — 사용자 「지속도 있을 거야」"
+}

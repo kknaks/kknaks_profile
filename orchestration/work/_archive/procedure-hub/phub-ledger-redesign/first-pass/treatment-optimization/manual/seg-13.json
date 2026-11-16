@@ -1,0 +1,39 @@
+{
+  "segment": "SEG-13",
+  "read_status": "direct_read_done",
+  "read_note": "/annual_plans/2 (40대+ 안티에이징 집중 플랜) 상위 필드와 schedule 12개월 각 month·procedures 전 원소(월당 2~3개)를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O13-1", "pointers": ["/annual_plans/2/age_group", "/by_age_group/2/age", "/by_age_group/3/age"], "status": "B", "text": "age_group 「40대+」 는 by_age_group 의 「40대」·「50대+」 어느 쪽과도 같은 문자열이 아니다. 두 연령대를 모두 덮는지 원문에 없다. 50대+ 전용 플랜은 없다."},
+    {"id": "O13-2", "pointers": ["/annual_plans/2/schedule/1/procedures/0", "/by_concern/1/severity_levels/1/optimal_combo/0"], "status": "P", "text": "「HIFU(울쎄라/슈링크)」 는 by_concern 의 「HIFU(슈링크/울쎄라)」 와 괄호 안 순서가 반대다."},
+    {"id": "O13-3", "pointers": ["/annual_plans/2/schedule/2/procedures/0"], "status": "P", "text": "「필러(팔자/볼)」: 괄호 안은 부위이고 `/` 로 잇는다. README 는 부위 나열에 `+`, 대안에 `/` 를 쓰도록 하므로 이 표기는 「팔자 또는 볼」 로 읽힐 수 있다. 원문 의도(둘 다/둘 중 하나)는 정하지 않았다(F)."},
+    {"id": "O13-4", "pointers": ["/annual_plans/2/schedule/1/procedures/1", "/annual_plans/2/schedule/6/procedures/2", "/annual_plans/2/schedule/11/procedures/2"], "status": "P", "text": "토닝 회수가 월마다 다르다: 2·7·12월 「토닝 2회」, 나머지 대부분 「토닝 4회」, 4·8월은 토닝 없음. HIFU(2월)·프락셔널(7월)·리프팅 관리(12월) 달에 2회로 줄어든다(잠정 관찰, 이유는 원문에 없음)."},
+    {"id": "O13-5", "pointers": ["/annual_plans/2/schedule/1/procedures/0", "/annual_plans/2/schedule/7/procedures/0", "/annual_plans/2/schedule/11/procedures/1", "/by_age_group/2/maintenance"], "status": "P", "text": "HIFU 계열은 2월 「HIFU(울쎄라/슈링크)」, 8월 「HIFU/RF(하반기)」, 12월 「연말 리프팅 관리(RF/HIFU 터치)」. 8→12월은 4개월이다. by_age_group/2 maintenance 「HIFU 6개월+」 와 12월 「터치」 의 관계(같은 HIFU 회차로 보는지)는 원문에 없다(판정 안 함). `/` 순서가 HIFU/RF 와 RF/HIFU 로 바뀐다."},
+    {"id": "O13-6", "pointers": ["/annual_plans/2/schedule/2/procedures/0", "/annual_plans/2/schedule/8/procedures/0", "/by_age_group/2/maintenance"], "status": "P", "text": "필러 3월·필러 터치업 9월(6개월). by_age_group/2 「필러 6개월+」 와 맞는 간격으로 읽히나 터치업을 같은 회차로 보는지 원문에 없다."},
+    {"id": "O13-7", "pointers": ["/annual_plans/2/schedule/3/procedures/1", "/annual_plans/2/schedule/4/procedures/0", "/annual_plans/2/schedule/5/procedures/0", "/annual_plans/2/schedule/10/procedures/1"], "status": "P", "text": "바이오스티뮬레이터 1~3차(4·5·6월) 뒤 11월 「바이오스티뮬레이터(유지 1차)」: 시리즈 차수와 유지 차수를 따로 센다."},
+    {"id": "O13-8", "pointers": ["/annual_plans/2/schedule/0/procedures", "/annual_plans/2/schedule/6/procedures", "/annual_plans/2/schedule/3/procedures"], "status": "B", "text": "같은 달에 보톡스+스킨부스터+토닝(1월), 보톡스+프락셔널+토닝(7월), 보톡스 터치업+바이오스티뮬레이터+IPL(4월)이 있다. combination_rules 의 동일일·순서 규칙을 이 달들에 적용할 날짜 정보가 원문에 없다."},
+    {"id": "O13-9", "pointers": ["/annual_plans/2/schedule/0/procedures/0", "/annual_plans/2/schedule/7/procedures/0", "/annual_plans/2/schedule/9/procedures/1", "/annual_plans/2/schedule/6/procedures/1"], "status": "P", "text": "괄호의 역할: 「보톡스 풀페이스」(부위, 괄호 없음), 「HIFU/RF(하반기)」(시기), 「IPL(가을 색소)」(계절+대상), 「프락셔널(피부결)」(대상)."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/annual_plans/2/plan_name", "text": "40대+ 안티에이징 집중 플랜", "kinds": ["age", "open_ended", "plan_name", "degree_modifier"]},
+    {"pointer": "/annual_plans/2/age_group", "text": "40대+", "kinds": ["age", "open_ended", "plus_non_procedure"]},
+    {"pointer": "/annual_plans/2/annual_budget_range", "text": "400-1000만원", "kinds": ["cost", "range", "quantity_unit"]},
+    {"pointer": "/annual_plans/2/focus", "text": "처짐/주름 적극 관리", "kinds": ["focus", "degree_modifier", "slash_non_alternative"]},
+    {"pointer": "/annual_plans/2/focus", "text": "볼륨 복원", "kinds": ["focus", "effect_purpose"]},
+    {"pointer": "/annual_plans/2/focus", "text": "복합 시술 조합", "kinds": ["focus", "combination"]},
+    {"pointer": "/annual_plans/2/schedule/0/procedures/0", "text": "보톡스 풀페이스", "kinds": ["procedure_like", "body_part", "range_area", "language_mixed"]},
+    {"pointer": "/annual_plans/2/schedule/1/procedures/0", "text": "HIFU(울쎄라/슈링크)", "kinds": ["procedure_like", "product_like", "parenthetical", "alternative"]},
+    {"pointer": "/annual_plans/2/schedule/1/procedures/1", "text": "토닝 2회", "kinds": ["session_count", "monthly_count"]},
+    {"pointer": "/annual_plans/2/schedule/2/procedures/0", "text": "필러(팔자/볼)", "kinds": ["procedure_like", "body_part", "parenthetical", "slash_ambiguous"]},
+    {"pointer": "/annual_plans/2/schedule/3/procedures/0", "text": "보톡스 터치업", "kinds": ["touch_up", "language_mixed"]},
+    {"pointer": "/annual_plans/2/schedule/6/procedures/1", "text": "프락셔널(피부결)", "kinds": ["procedure_like", "parenthetical", "target_concern"]},
+    {"pointer": "/annual_plans/2/schedule/7/procedures/0", "text": "HIFU/RF(하반기)", "kinds": ["procedure_like", "alternative", "parenthetical", "season"]},
+    {"pointer": "/annual_plans/2/schedule/8/procedures/0", "text": "필러 터치업", "kinds": ["touch_up", "language_mixed"]},
+    {"pointer": "/annual_plans/2/schedule/9/procedures/1", "text": "IPL(가을 색소)", "kinds": ["procedure_like", "parenthetical", "season", "target_concern"]},
+    {"pointer": "/annual_plans/2/schedule/10/procedures/1", "text": "바이오스티뮬레이터(유지 1차)", "kinds": ["parenthetical", "maintenance", "series_order"]},
+    {"pointer": "/annual_plans/2/schedule/11/procedures/1", "text": "연말 리프팅 관리(RF/HIFU 터치)", "kinds": ["season", "parenthetical", "alternative", "touch_up", "bundle_name"]}
+  ],
+  "issues": [
+    {"id": "B-13-1", "class": "B", "pointers": ["/annual_plans/2/age_group"], "text": "「40대+」 가 by_age_group 의 40대·50대+ 중 무엇을 덮는지 원문에 없다."},
+    {"id": "B-13-2", "class": "B", "pointers": ["/annual_plans/2/schedule"], "text": "같은 달 여러 시술의 날짜·순서가 원문에 없어 동일일·간격 규칙 적용 여부를 판단할 수 없다."}
+  ]
+}

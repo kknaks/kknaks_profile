@@ -1,0 +1,32 @@
+{
+ "id": "DEC-2026-11-05-B3-MAP-01",
+ "kind": "canonical_mapping",
+ "target": {
+  "from_ref": "CAT-6db65700a1",
+  "scope": [
+   "CAT-6db65700a1"
+  ]
+ },
+ "new_value": {
+  "to_id": "SUB-9088d13466"
+ },
+ "reason": "엑소좀 통합 ③ — M17 「줄기세포유래 엑소좀」은 M4 엑소좀(하위분류 M4-3 엑소좀/성장인자)의 같은 시술. CAT- id 와 R2(M17 트리)는 그대로, 튜플 what 만 M4-3.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@16/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@3/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ③ M17 「줄기세포유래 엑소좀」→ M4 엑소좀 동의어(출처 표시)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

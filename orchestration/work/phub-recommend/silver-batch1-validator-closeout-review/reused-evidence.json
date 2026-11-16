@@ -1,0 +1,377 @@
+{
+  "code_hashes": [
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/validate.py",
+      "sha256": "a851fa2379f21816db84c983ab29066e9692ce7571f4b3cf00a16bc518090ea4",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/independent_source.py",
+      "sha256": "2edf85aa252b78f371ae6f6bd5f0efa97f174ee1e37b715da1bce7d7b4a03bf1",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/test_contract.py",
+      "sha256": "65308c8c699775cef79619e240b929273445f548e79c426ae5d06d3529a08e94",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/build.py",
+      "sha256": "36feeadf46663233aa1cbdd3d96c93941c96b7844295f5968e5dc290e63f30ee",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/rules.py",
+      "sha256": "09414bc6f13a2ff316b5a84f5b555cbdcecb70a7f7c3a8887cddfa8be53bb780",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/transport.py",
+      "sha256": "436e9854e449d89341b2dd464daa6dd03c62da7f9b4271247de3de5795407bee",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/type-contract.json",
+      "sha256": "b658f87c1fa9659e1b262b00b73449538105f8d83ac3e4d840f417d37553c1cb",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/expected-inputs.json",
+      "sha256": "d490ece2e2dcc4097951e31079f7bfdccf0d99e8ebcdbe8a7307c4d76171cd82",
+      "matches_current": true
+    },
+    {
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-migration/expected-rules.json",
+      "sha256": "3f2e4760dc2276a113ccecbca382fdc1df97bea86e52e30b940bc5dbf9fed2b1",
+      "matches_current": true
+    }
+  ],
+  "regression": {
+    "verdict": "PASS",
+    "negative": 44,
+    "positive": 14,
+    "all_passed": true
+  },
+  "fix_full_cli": {
+    "count": 21,
+    "all_passed": true,
+    "materialized_evidence": [
+      {
+        "case": "scope_exclusion",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_erasure",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_erasure",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_role",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_partial_field_loss",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_parent",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_extra",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "line_source_fieldstate",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_raw",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_source",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_state",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_operator_value",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "qualifier_addition",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "axis_raw_refs",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "scope_source_refs",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "family_excluded",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "membership_excluded",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "safety_unit_excluded",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "product_qualifier_addition",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "family_qualifier_addition",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      },
+      {
+        "case": "raw_value_control",
+        "files_match_manifest": true,
+        "validation_matches_recorded_codes": true
+      }
+    ]
+  },
+  "prior_end_drift": [],
+  "rebuilt_files_byte_equal_now": true,
+  "prior_repro_hash_matches": true,
+  "prior_repro_verdict": "PASS",
+  "prior_repro_trials": [
+    {
+      "exit_code": 0,
+      "files": [
+        {
+          "equal": true,
+          "file": "audit-sidecar.json"
+        },
+        {
+          "equal": true,
+          "file": "coverage.json"
+        },
+        {
+          "equal": true,
+          "file": "identity-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "input-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "mapping-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "override-projection.json"
+        },
+        {
+          "equal": true,
+          "file": "records.json"
+        },
+        {
+          "equal": true,
+          "file": "ref-contract.json"
+        },
+        {
+          "equal": true,
+          "file": "rule-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "safety-claims.json"
+        },
+        {
+          "equal": true,
+          "file": "schema.json"
+        },
+        {
+          "equal": true,
+          "file": "source-diff.json"
+        },
+        {
+          "equal": true,
+          "file": "source-row-index.json"
+        },
+        {
+          "equal": true,
+          "file": "output-manifest.json"
+        }
+      ],
+      "passed": true,
+      "stderr": "",
+      "trial": 1
+    },
+    {
+      "exit_code": 0,
+      "files": [
+        {
+          "equal": true,
+          "file": "audit-sidecar.json"
+        },
+        {
+          "equal": true,
+          "file": "coverage.json"
+        },
+        {
+          "equal": true,
+          "file": "identity-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "input-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "mapping-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "override-projection.json"
+        },
+        {
+          "equal": true,
+          "file": "records.json"
+        },
+        {
+          "equal": true,
+          "file": "ref-contract.json"
+        },
+        {
+          "equal": true,
+          "file": "rule-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "safety-claims.json"
+        },
+        {
+          "equal": true,
+          "file": "schema.json"
+        },
+        {
+          "equal": true,
+          "file": "source-diff.json"
+        },
+        {
+          "equal": true,
+          "file": "source-row-index.json"
+        },
+        {
+          "equal": true,
+          "file": "output-manifest.json"
+        }
+      ],
+      "passed": true,
+      "stderr": "",
+      "trial": 2
+    },
+    {
+      "actual_relocated_files_read": 69,
+      "exit_code": 0,
+      "files": [
+        {
+          "equal": true,
+          "file": "audit-sidecar.json"
+        },
+        {
+          "equal": true,
+          "file": "coverage.json"
+        },
+        {
+          "equal": true,
+          "file": "identity-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "input-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "mapping-ledger.json"
+        },
+        {
+          "equal": true,
+          "file": "override-projection.json"
+        },
+        {
+          "equal": true,
+          "file": "records.json"
+        },
+        {
+          "equal": true,
+          "file": "ref-contract.json"
+        },
+        {
+          "equal": true,
+          "file": "rule-manifest.json"
+        },
+        {
+          "equal": true,
+          "file": "safety-claims.json"
+        },
+        {
+          "equal": true,
+          "file": "schema.json"
+        },
+        {
+          "equal": true,
+          "file": "source-diff.json"
+        },
+        {
+          "equal": true,
+          "file": "source-row-index.json"
+        },
+        {
+          "equal": true,
+          "file": "output-manifest.json"
+        }
+      ],
+      "manifest_bytes_identical": true,
+      "passed": true,
+      "stderr": "",
+      "trial": "physical_relocation"
+    },
+    {
+      "diagnostic": "BUILD FAILED: input hash/bytes mismatch: /Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/silver-batch1-review/execution-copy/tmp/reproducible/relocated-inputs/raw21/taxonomy.json",
+      "exit_code": 1,
+      "passed": true,
+      "trial": "source_tamper_rejected"
+    },
+    {
+      "diagnostic": "BUILD FAILED: manifest is not approved v2; no silent rebaseline",
+      "passed": true,
+      "trial": "manifest_rebaseline_rejected"
+    }
+  ]
+}

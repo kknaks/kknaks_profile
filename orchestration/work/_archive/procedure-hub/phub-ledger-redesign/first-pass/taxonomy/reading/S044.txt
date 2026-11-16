@@ -1,0 +1,322 @@
+# S044  scope=M15 메디컬스킨케어  units=auto-1775361777 items/11 | auto-1775361777 items/12 | auto-1775361777 items/13 | auto-1775361850 items/0 | auto-1775361850 items/1 | auto-1775361850 items/2 | auto-1775361850 items/3 | auto-1775361850 items/4 | auto-1775361850 items/5 | auto-1775361870 items/0 | auto-1775361870 items/1 | auto-1775361870 items/2 | auto-1775361870 items/3 | auto-1775361870 items/4 | auto-1775361870 items/5 | auto-1775361870 items/6 | auto-1775402620 items/0 | auto-1775402620 items/1 | auto-1775402620 items/2
+# 상위 문맥: [{"pointer": "/modality/14", "id": "M15", "category": "메디컬스킨케어", "name": "메디컬스킨케어"}, {"pointer": "/modality/14/subcategories/10", "id": "auto-1775361777", "label": "약물/토피컬"}]
+@ /modality/14/subcategories/10/items/11 auto-M15-1775364797148 알부틴
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364797148"
+  /name = "알부틴"
+  /detail = "멜라닌전구체 억제 미백"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "베어베리 추출물에서 유래한 천연 미백 성분으로 멜라닌 전구체 생성을 억제"
+  /extracted/mechanism = "티로시나제의 활성 부위에 경쟁적으로 결합하여 멜라닌 합성 과정을 차단합니다. 하이드로퀴논과 유사한 구조로 안전성은 높으면서 지속적인 미백 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"색소침착" ‖ 1:"기미" ‖ 2:"주근깨" ‖ 3:"노인성색소반"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"매우 경미한 자극"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "사용기간에 비례"
+  /extracted/aftercare [3] = 0:"지속적 사용" ‖ 1:"자외선차단" ‖ 2:"다른 미백성분과 병용 가능"
+@ /modality/14/subcategories/10/items/12 auto-M15-1775364797149 글리콜산크림
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364797149"
+  /name = "글리콜산크림"
+  /detail = "AHA 홈케어 각질관리"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "분자량이 가장 작은 AHA로 각질 제거와 피부 재생을 위한 홈케어용 화학적 필링제"
+  /extracted/mechanism = "각질층의 데스모솜 결합을 약화시켜 죽은 세포의 탈락을 촉진합니다. 진피층의 콜라겐과 엘라스틴 합성을 자극하여 피부 텍스처 개선과 잔주름 완화 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"거친피부" ‖ 1:"모공각화증" ‖ 2:"경미한주름" ‖ 3:"색소침착"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"자극감" ‖ 1:"홍조" ‖ 2:"박탈감" ‖ 3:"광과민성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "사용중단시 점진적 감소"
+  /extracted/aftercare [4] = 0:"저농도부터 시작" ‖ 1:"주 2-3회 사용" ‖ 2:"엄격한 자외선차단" ‖ 3:"충분한 보습"
+@ /modality/14/subcategories/10/items/13 auto-M15-1775364797150 선크림SPF50
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364797150"
+  /name = "선크림SPF50"
+  /detail = "자외선차단 필수"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "UVA/UVB 광선으로부터 피부를 보호하는 고차단 지수의 필수 메디컬 스킨케어 제품"
+  /extracted/mechanism = "물리적 차단제는 자외선을 반사하고 화학적 차단제는 UV에너지를 흡수하여 열로 변환합니다. 광노화, 색소침착, 피부암 등의 광손상을 예방하고 기존 치료 효과를 유지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"자외선차단" ‖ 1:"광노화예방" ‖ 2:"색소침착예방" ‖ 3:"피부암예방"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"화학적 차단제 알레르기" ‖ 1:"모공막힘"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-3시간"
+  /extracted/aftercare [4] = 0:"2-3시간마다 재도포" ‖ 1:"충분한 양 사용" ‖ 2:"물리적 차단 병행" ‖ 3:"저녁 철저한 세안"
+@ /modality/14/subcategories/11 auto-1775361850 흉터 전용
+  . {id,label,items}
+  /id = "auto-1775361850"
+  /label = "흉터 전용"
+  /items [6]
+@ /modality/14/subcategories/11/items/0 auto-M15-1775361858045 서브시전
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361858045"
+  /name = "서브시전"
+  /detail = "18G Nokor 니들 · rolling scar 섬유 밴드 절단"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "18G Nokor 니들을 이용해 rolling scar의 섬유 밴드를 절단하여 함몰된 흉터를 개선하는 시술"
+  /extracted/mechanism = "18G Nokor 니들을 피하 섬유 밴드에 삽입하여 물리적으로 절단합니다. 절단된 섬유 밴드 부위에 출혈과 염증 반응이 일어나면서 새로운 콜라겐이 형성되어 함몰 부위가 상승합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"rolling type acne scar" ‖ 1:"bound down scar with tethering bands"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"멍" ‖ 1:"부종" ‖ 2:"통증" ‖ 3:"일시적 색소침착"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"냉찜질 48시간" ‖ 1:"항생제 연고 도포" ‖ 2:"자외선 차단" ‖ 3:"시술 부위 강한 압박 자제"
+@ /modality/14/subcategories/11/items/1 auto-M15-1775361864704 실리콘시트
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361864704"
+  /name = "실리콘시트"
+  /detail = "실리콘 젤 시트 · 비후성 반흔/켈로이드 압박"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "실리콘 젤 시트는 비후성 반흔과 켈로이드 치료에 사용되는 의료용 압박 시트"
+  /extracted/mechanism = "실리콘 시트가 피부에 밀착되어 수분을 유지하고 콜라겐 합성을 조절합니다. 지속적인 압박과 수화 작용으로 과도한 섬유조직 형성을 억제하여 흉터를 평평하게 만듭니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"비후성 반흔" ‖ 1:"켈로이드"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"접촉성 피부염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월 지속 사용"
+  /extracted/aftercare [4] = 0:"하루 12-24시간 착용" ‖ 1:"시트를 매일 세척하여 재사용" ‖ 2:"피부 자극 시 일시 중단" ‖ 3:"정기적으로 흉터 상태 관찰"
+@ /modality/14/subcategories/11/items/2 auto-M15-1775361870269 스테로이드 병변내 주사
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361870269"
+  /name = "스테로이드 병변내 주사"
+  /detail = "트리암시놀론 10-40mg/mL · 비후성 반흔/켈로이드"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비후성 반흔과 켈로이드 치료를 위해 트리암시놀론을 병변 내에 직접 주사하는 시술"
+  /extracted/mechanism = "트리암시놀론이 콜라겐 합성을 억제하고 염증 반응을 감소시켜 반흔 조직의 증식을 억제한다. 또한 혈관 수축과 섬유아세포의 활동을 억제하여 기존 반흔 조직을 축소시킨다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"비후성 반흔" ‖ 1:"켈로이드"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 위축"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"시술 부위 강한 압박 자제" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/11/items/3 auto-M15-1775364775169 펀치시술
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775169"
+  /name = "펀치시술"
+  /detail = "펀치이식"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "깊은 여드름 흉터나 모공을 개선하기 위해 병변 부위를 제거하고 이식하는 외과적 시술"
+  /extracted/mechanism = "펀치를 이용해 흉터 조직을 완전히 제거한 후 건강한 피부로 이식하거나 봉합합니다. 깊은 아이스픽 흉터나 박스카 흉터의 물리적 구조를 직접 교정하여 즉각적인 개선을 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"아이스픽흉터" ‖ 1:"박스카흉터" ‖ 2:"깊은여드름흉터" ‖ 3:"확장된모공"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"부종" ‖ 1:"멍" ‖ 2:"감염위험" ‖ 3:"색소침착"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "영구적"
+  /extracted/aftercare [4] = 0:"상처부위 건조 유지" ‖ 1:"항생제 연고 도포" ‖ 2:"자외선차단 철저" ‖ 3:"2주간 격한 운동 자제"
+@ /modality/14/subcategories/11/items/4 auto-M15-1775364775170 실리콘겔
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775170"
+  /name = "실리콘겔"
+  /detail = "도포형흉터관리"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "흉터 조직의 과증식을 억제하고 성숙을 도와 흉터를 개선하는 도포형 치료제"
+  /extracted/mechanism = "실리콘이 형성하는 반투과성 막이 수분 증발을 제한하여 흉터 조직의 수화 상태를 유지합니다. 콜라겐 합성을 정상화하고 섬유아세포의 과도한 증식을 억제하여 흉터의 두께와 경도를 감소시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"비후성흉터" ‖ 1:"켈로이드" ‖ 2:"수술후흉터" ‖ 3:"외상후흉터"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"접촉성피부염" ‖ 1:"가려움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "지속사용시 점진적 개선"
+  /extracted/aftercare [4] = 0:"하루 2회 얇게 도포" ‖ 1:"최소 3개월 이상 사용" ‖ 2:"마사지와 병행" ‖ 3:"자외선차단"
+@ /modality/14/subcategories/11/items/5 auto-M15-1775364775171 양파추출물연고
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775171"
+  /name = "양파추출물연고"
+  /detail = "컨트라투벡스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "양파 추출물 기반 흉터 개선 전용 연고"
+  /extracted/mechanism = "양파 추출물의 알리신과 케르세틴 성분이 콜라겐 합성을 조절합니다. 흉터 조직의 과도한 섬유화를 억제하고 정상적인 피부 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"수술 후 흉터" ‖ 1:"켈로이드성 흉터"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"적용 부위 경미한 자극감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "연속 사용 시 지속"
+  /extracted/aftercare [2] = 0:"하루 2-3회 얇게 도포" ‖ 1:"자외선 차단"
+@ /modality/14/subcategories/12 auto-1775361870 여드름 전용
+  . {id,label,items}
+  /id = "auto-1775361870"
+  /label = "여드름 전용"
+  /items [7]
+@ /modality/14/subcategories/12/items/0 auto-M15-1775361878302 이소트레티노인
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361878302"
+  /name = "이소트레티노인"
+  /detail = "13-cis-레티노산 · 피지선 위축 · 중증 여드름"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "피지선 위축을 통해 중증 여드름을 치료하는 비타민A 유도체"
+  /extracted/mechanism = "피지선에서 세포 분화를 촉진하고 피지 생성을 억제하여 피지선 위축을 유도합니다. 각질 형성을 정상화하고 염증 반응을 감소시켜 여드름 병변을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"결절낭포성 여드름" ‖ 1:"기존 치료에 불응하는 중증 여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"구순염, 피부건조" ‖ 1:"근골격계 통증" ‖ 2:"간수치 상승" ‖ 3:"기형유발 위험"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "치료 종료 후 수년간 효과 지속"
+  /extracted/aftercare [4] = 0:"철저한 피임 (치료 중 및 치료 후 1개월)" ‖ 1:"정기적 간기능 및 지질 검사" ‖ 2:"자외선 차단제 사용" ‖ 3:"보습제 적극 사용"
+@ /modality/14/subcategories/12/items/1 auto-M15-1775361885031 스피로노락톤
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361885031"
+  /name = "스피로노락톤"
+  /detail = "항안드로겐 · 여성 호르몬성 여드름"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "안드로겐 수용체를 차단하여 호르몬성 여드름을 치료하는 경구용 항안드로겐 약물"
+  /extracted/mechanism = "안드로겐 수용체에 경쟁적으로 결합하여 DHT와 테스토스테론의 작용을 차단합니다. 피지선에서 안드로겐의 영향을 억제하여 피지 분비를 감소시키고 여드름 형성을 예방합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"성인 여성의 호르몬성 여드름" ‖ 1:"턱선 및 하안면부 염증성 여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"월경불순 및 불규칙한 출혈"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "치료 지속하는 동안"
+  /extracted/aftercare [2] = 0:"정기적인 전해질 및 신장기능 검사" ‖ 1:"혈압 모니터링"
+@ /modality/14/subcategories/12/items/2 auto-M15-1775361951923 아큐탄
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361951923"
+  /name = "아큐탄"
+  /detail = "이소트레티노인 브랜드"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "경구 이소트레티노인 (13-cis-레티노산)"
+  /extracted/mechanism = "피지선 세포의 분화와 세포사멸을 유도하여 피지 분비를 최대 90% 감소시킨다. 모낭 각화를 정상화하고 P. acnes 간접 억제 및 항염 작용을 나타낸다. 유일하게 여드름 4대 병인을 모두 타격하는 약물이다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"중증 결절성 여드름" ‖ 1:"치료 저항성 여드름" ‖ 2:"반흔 형성 여드름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"건조(입술/피부/점막)" ‖ 1:"근육통" ‖ 2:"간기능 이상"
+  /extracted/safety/serious [3] = 0:"태아 기형(절대 금기)" ‖ 1:"우울증/자살충동(모니터링)" ‖ 2:"간독성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주 악화 후 개선"
+  /extracted/onset_duration/duration = "4-6개월 코스"
+  /extracted/aftercare [4] = 0:"임신 방지(치료 중+종료 후 1개월)" ‖ 1:"간기능 정기 검사" ‖ 2:"자외선 차단" ‖ 3:"헌혈 금지"
+@ /modality/14/subcategories/12/items/3 auto-M15-1775364775172 면포압출
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775172"
+  /name = "면포압출"
+  /detail = "코메도익스트랙터"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "전용 도구를 이용한 모공 내 면포 직접 제거술"
+  /extracted/mechanism = "멸균된 코메도 익스트랙터로 물리적 압력을 가해 면포를 제거합니다. 모공 막힘을 해소하여 염증성 여드름으로의 진행을 예방합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"블랙헤드" ‖ 1:"화이트헤드"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "4-6주"
+  /extracted/aftercare [2] = 0:"항균 연고 도포" ‖ 1:"24시간 메이크업 자제"
+@ /modality/14/subcategories/12/items/4 auto-M15-1775364775173 ALA-PDT
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775173"
+  /name = "ALA-PDT"
+  /detail = "광역학치료"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "ALA 광감작제와 특정 파장 광선을 이용한 광역학 치료"
+  /extracted/mechanism = "5-ALA가 세포 내 포르피린으로 변환되어 광감작제 역할을 합니다. 특정 파장의 빛과 반응하여 활성산소를 생성, 병변 세포를 선택적으로 파괴합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"광선각화증" ‖ 1:"여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"치료 후 광과민성 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [2] = 0:"48시간 강한 빛 노출 자제" ‖ 1:"진정 크림 사용"
+@ /modality/14/subcategories/12/items/5 auto-M15-1775364775174 PDT블루라이트
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775174"
+  /name = "PDT블루라이트"
+  /detail = "415nm포르피린"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "415nm 파장 블루라이트를 이용한 여드름 광치료"
+  /extracted/mechanism = "415nm 블루라이트가 여드름균이 생성하는 포르피린을 활성화시킵니다. 활성화된 포르피린이 여드름균을 선택적으로 파괴하여 염증을 감소시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"염증성 여드름" ‖ 1:"경증 여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"치료 중 눈부심"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [2] = 0:"보습제 충분히 도포" ‖ 1:"자외선 차단제 사용"
+@ /modality/14/subcategories/12/items/6 auto-M15-1775364775175 레드라이트
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775175"
+  /name = "레드라이트"
+  /detail = "630nm항염"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "630nm 파장 적색광을 이용한 항염 및 재생 치료"
+  /extracted/mechanism = "630nm 적색광이 세포 내 미토콘드리아를 자극하여 ATP 생성을 증가시킵니다. 염증 매개체를 억제하고 콜라겐 합성을 촉진하여 피부 재생을 돕습니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 염증" ‖ 1:"상처 치유 촉진"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"치료 후 일시적 온열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "4-8주"
+  /extracted/aftercare [2] = 0:"충분한 보습" ‖ 1:"진정 관리"
+@ /modality/14/subcategories/13 auto-1775402620 시그니처프로그램
+  . {id,label,items}
+  /id = "auto-1775402620"
+  /label = "시그니처프로그램"
+  /items [8]
+@ /modality/14/subcategories/13/items/0 auto-M15-1775402626587 유리피부관리
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402626587"
+  /name = "유리피부관리"
+  /detail = "토닝+필링+스킨부스터 조합 · 투명 광채"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "토닝, 필링, 스킨부스터를 조합하여 투명하고 광채나는 유리같은 피부질감을 만드는 복합 관리 프로그램"
+  /extracted/mechanism = "토닝으로 색소침착과 모공을 개선하고 필링으로 각질층을 제거하여 피부 턴오버를 촉진합니다. 스킨부스터로 진피층에 히알루론산을 주입하여 수분과 탄력을 보충하고 피부 광채를 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 톤 개선 및 투명감 증진" ‖ 1:"모공 축소 및 피부 질감 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍조 및 민감성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [1] = 0:"시술 후 24-48시간 강한 자외선 노출 피하기"
+@ /modality/14/subcategories/13/items/1 auto-M15-1775402654237 제네오X
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402654237"
+  /name = "제네오X"
+  /detail = "옥시제네오+초음파+네오마사지 · 산소+영양 3in1"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "산소공급, 초음파, 마사지를 결합한 3in1 복합 피부관리 시술"
+  /extracted/mechanism = "옥시제네오는 산소와 영양성분을 피부 깊숙이 전달하고, 초음파는 세포 재생을 촉진합니다. 네오마사지는 혈액순환을 개선하여 피부 탄력과 광택을 동시에 향상시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선" ‖ 1:"안색 개선 및 광택 증진"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"일시적 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-3주"
+  /extracted/aftercare [1] = 0:"자외선 차단제 사용"
+@ /modality/14/subcategories/13/items/2 auto-M15-1775402736448 도자기피부관리
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736448"
+  /name = "도자기피부관리"
+  /detail = "IPL+토닝+물광"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "IPL, 토닝, 물광주사를 순차적으로 시행하여 도자기처럼 매끄럽고 균일한 피부를 만드는 복합 관리"
+  /extracted/mechanism = "IPL로 색소와 혈관 개선, 토닝으로 피부 결 정리, 물광주사로 수분과 윤기 공급"
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"전체적 피부 개선" ‖ 1:"피부 결 개선" ‖ 2:"수분 부족" ‖ 3:"칙칙한 피부톤"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"주사 부위 미세 출혈" ‖ 2:"가려움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-1주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [4] = 0:"충분한 보습" ‖ 1:"자외선 차단" ‖ 2:"음주 금지 24시간" ‖ 3:"마사지 금지 1주"

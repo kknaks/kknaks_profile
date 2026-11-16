@@ -1,0 +1,5129 @@
+{
+ "version": "v1",
+ "decided_at": "2026-10-28",
+ "decision_ref": "_RESUME §2 2026-10-28 「4단계 기법 조사(step4-research) 반영 — 전부 추천대로(사용자 「추천으로 가자」)」 · J1 안 1 · J2 · + 3단계 「표정근」 · 10-29 J7 G5 · G6 · G7 · G8(K14 흡입 마사지 · N4 also K08 · N8 · N9 · N10 기본 기법)",
+ "research": "step4-research.json · step4-research.md (S1~S12)",
+ "bundles": [
+  {
+   "id": "S1",
+   "title": "기법 축 구조 = 안 1(노드 2층 · 나머지 속성)",
+   "recommendation": "큰 기법 12 + 세부 기법 12 노드. 층 · 대상 근육 · 도구 형태 = 단위 시술 속성(키 밖) · 펄스 방식 · 가능 방식 · 박피 여부 · 전극 · 주입기 · 침투 방식 · 실 디자인 = 장비(제품) 속성",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S2",
+   "title": "큰 기법 12 이름 · 근거",
+   "recommendation": "주입 · 삽입 · 미세침 천공 · 조사 · 에너지 가열 · 전자기 자극 · 플라즈마 전달 · 냉각 · 도포 · 침투 · 박리·흡인 · 소수술",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S3",
+   "title": "세부 기법 12",
+   "recommendation": "주입 › 메조테라피 · 정맥 주사 · 무바늘 제트 주입 / 삽입 › 코그 · 모노 · 볼륨 / 조사 › 토닝 · 프락셔널 · 광역학 / 소수술 › 서브시전 · 펀치 · 압출",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S4",
+   "title": "층 · 깊이 = 속성",
+   "recommendation": "값 사전 13(표피 · 진피 · 피하 · 피하-근막 경계 · Sub-SMAS · 근육 내 · 골막상 · 연골막상 · 심부측두근막 심층 · 점막하 · 정맥 내 · 병변 내 · 피하 지방층) · anatomy safe_injection_depth 11 → (부위 × 주입) `safe_layers` + 제약 원문",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S5",
+   "title": "대상 근육 = 속성",
+   "recommendation": "값 사전 16(영문 키 · KMA 한글 · 원천 표기 · 붙는 부위) · M1 단위 시술 `target_muscles` · 근육 두께 · 덮임 수치 11 = 근거 속성",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S6",
+   "title": "에너지 방식 = 장비 속성(technique_hint 25 재확인)",
+   "recommendation": "피코초 · Q스위치(나노초) · 롱펄스 = pulse_mode · 프락셔널 = 가능 방식(→ K04b 와 잇는 조건) · 박피 여부 = 원천 「비박리성」 또는 매질(CO2 · Er:YAG 박피성 · Er:Glass · 톨륨 비박피성)",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S7",
+   "title": "원천 칸 판정(C)",
+   "recommendation": "related_techniques 51 · mechanism 25 · group 17 · sequence 19 · anatomy 52 · extracted 17칸(중복)",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S8",
+   "title": "계열 기본 기법 18(주 + 보조)",
+   "recommendation": "E 표",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S9",
+   "title": "초안 큰 기법 65 대응",
+   "recommendation": "유지 4 · 합침 29 · 버림(다른 단계/속성) 32",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S10",
+   "title": "넘겨받은 것 처리",
+   "recommendation": "D 표 14줄",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S11",
+   "title": "원천 충돌 6 · 원천 수정 후보 3",
+   "recommendation": "X1~X6",
+   "decision": "추천대로",
+   "owner": "사용자"
+  },
+  {
+   "id": "S12",
+   "title": "열린 OQ 정리",
+   "recommendation": "OQ-201 · OQ-310 · OQ-311 닫힘 · OQ-308 = 5단계 결정론",
+   "decision": "추천대로",
+   "owner": "사용자"
+  }
+ ],
+ "user_decisions": [
+  {
+   "id": "J1",
+   "question": "기법 축 구조 — 안 1(추천: 노드 24 · 층 · 근육 · 펄스는 속성) / 안 2(층 · 펄스 · 근육까지 노드 — 노드 56 · 키 약 210)",
+   "decision": "안 1(추천대로)"
+  },
+  {
+   "id": "J2",
+   "question": "DEC-002 D-02 예시 「HA 필러 · 코 · 피하 주입」을 원천(골막상 · 연골막상)에 맞게 고칠지",
+   "decision": "고친다 — 「HA 필러 · 코 · 주입」(층 속성: 콧등 = 골막상 · 코끝 = 연골막상). DEC-002.md 는 이 판에서 고치지 않고 step4-source-fix.md 에 한 줄(코디가 writer 로 반영)",
+   "note": "조사 추천 문구 「골막상 주입」은 코끝(연골막상)을 빼므로 결정 문구는 층을 빼고 층은 속성으로"
+  }
+ ],
+ "source": {
+  "path": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26",
+  "snapshot": "stg 2026-10-26"
+ },
+ "source_map": {
+  "file": "source-map.json",
+  "stage": "4",
+  "meaning": "지도가 4단계로 정한 칸만(27칸) — 그 밖 칸은 셈 밖"
+ },
+ "index_label": {
+  "zones": "id",
+  "profiles": "id",
+  "modality": "id",
+  "sequence_order": "order"
+ },
+ "dedupe": {
+  "file": "extracted.json",
+  "against_file": "taxonomy.json",
+  "rule": "extracted.json {code}.related_techniques 줄이 taxonomy.json modality[{code}].extracted.related_techniques 줄과 글자 그대로 같으면 중복 — taxonomy 행으로 셈(새 표현 0). 다른 줄은 제 행으로 결정이 필요(없으면 open)",
+  "destination": "taxonomy.json 행으로 셈(중복 제거) — 새 표현 0",
+  "decided_by": "S7"
+ },
+ "nodes": [
+  {
+   "id": "K01",
+   "name": "주입",
+   "parent": null,
+   "medical_name": "injection",
+   "basis": "mechanism injection(M1~M6 · M17) · group 주사/주입 · 계열 정의 「주사」「주입」(M1~M6 · M17 · N1) · DEC-002 D-02 예시 「근육 내 주입」「피하 주입」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K01a",
+   "name": "메조테라피",
+   "parent": "K01",
+   "medical_name": "mesotherapy — 진피 내 미세 다점 주입",
+   "basis": "문헌 M4 이름 「Skinboosters and mesotherapy」 · M4 정의 「진피에 소량씩 여러 점 주입」 · related_techniques 「메조보톡스 — 보톡스를 진피층에 소량 주사」「히알루론산 메조테라피(물광주사)」「메조리프트」「메조페시아」「메조테라피 — 피부에 직접 영양 성분 주입」 · D-02 예시 「진피 내 미세 주입(스킨보톡스)」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K01b",
+   "name": "정맥 주사",
+   "parent": "K01",
+   "medical_name": "intravenous",
+   "basis": "mechanism intravenous(M16) · M16 정의 「정맥으로 투여」 · DEC-003 D-05 「수액 = 기법 「정맥 주사」」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K01c",
+   "name": "무바늘 제트 주입",
+   "parent": "K01",
+   "medical_name": "needle-free jet injection",
+   "basis": "M4 정의 「(또는 무바늘 제트 주입)」(39544509 Delivery Methods) · step2 M4 deferred 「주입 기기 → 4단계」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K02",
+   "name": "삽입",
+   "parent": null,
+   "medical_name": "thread insertion",
+   "basis": "mechanism mechanical(M7) · M7 정의 「실을 피하에 넣어」 · 문헌 33469333 「inserted subcutaneously along a planned course」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K02a",
+   "name": "코그실 삽입",
+   "parent": "K02",
+   "medical_name": "barbed (cog) thread",
+   "basis": "문헌 33469333 「Absorbable barbed threads … mechanically reposition」 · 원천 M7-2 하위 항목 「코그(Cog)」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K02b",
+   "name": "모노실 삽입",
+   "parent": "K02",
+   "medical_name": "mono (smooth) thread",
+   "basis": "원천 M7-2 하위 항목 「모노」 · 문헌 33469333 「Thread insertion stimulates … collagen」(당김 없음)",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K02c",
+   "name": "볼륨실 삽입",
+   "parent": "K02",
+   "medical_name": "volume thread",
+   "basis": "원천 M7-2 하위 항목 「볼륨실」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K03",
+   "name": "미세침 천공",
+   "parent": null,
+   "medical_name": "microneedling (percutaneous)",
+   "basis": "mechanism mechanical(M12) · thermal+mechanical(M11) · createsChannel · M11/M12 정의 「미세침 … 찔러 / 미세 천공」 · 문헌 27559496 「micro-punctures」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K04",
+   "name": "조사",
+   "parent": null,
+   "medical_name": "irradiation (laser · IPL · LED)",
+   "basis": "mechanism thermal · ablative(M8) · M8 정의 「피부에 조사해」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K04a",
+   "name": "토닝",
+   "parent": "K04",
+   "medical_name": "laser toning (low-fluence multi-pass)",
+   "basis": "treatment-sequence 「M8-토닝」(레이저 단계 안에서 따로 부름) · 원천 항목 레이저토닝 · 피코토닝 · 알렉스토닝 · 제네시스토닝",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K04b",
+   "name": "프락셔널",
+   "parent": "K04",
+   "medical_name": "fractional photothermolysis",
+   "basis": "treatment-sequence 「M8-프락셔널」 · related_techniques 「프랙셔널 레이저」 · 문헌 32273965 「Fractional ablative / Non-ablative fractional lasers」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K04c",
+   "name": "광역학",
+   "parent": "K04",
+   "medical_name": "photodynamic therapy (PDT)",
+   "basis": "related_techniques 「PDT (광역학요법) — 광감작제 약물 + 레이저」 · 원천 항목 ALA-PDT",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K05",
+   "name": "에너지 가열",
+   "parent": null,
+   "medical_name": "non-invasive energy heating (HIFU · RF · microwave)",
+   "basis": "mechanism thermal(M9) · M9 정의 「피부를 뚫지 않고 … 가열」 · 문헌 37753689 HIFU · RF",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K06",
+   "name": "전자기 자극",
+   "parent": null,
+   "medical_name": "electromagnetic / electrical stimulation (muscle · tissue)",
+   "basis": "mechanism electromagnetic_stimulation(M10) · M10 정의 · U6(10-29): 근육 수축 목적 밖까지 넓힘 — N7 펄스 전자기장 치료(두피 모낭 자극 · 허가 품목명 「의료용전자기발생기」 = M10 장비와 같은 품목)",
+   "decided_by": "S1 · S2 · S3 (J1 안 1) · U6(10-29)"
+  },
+  {
+   "id": "K07",
+   "name": "플라즈마 전달",
+   "parent": null,
+   "medical_name": "plasma energy delivery",
+   "basis": "mechanism plasma_energy(M13) · M13 정의 「피부 표면에 직접 전달」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K08",
+   "name": "냉각",
+   "parent": null,
+   "medical_name": "cooling (cryo)",
+   "basis": "mechanism cooling(M14) · M14 정의 「냉각해」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K09",
+   "name": "도포",
+   "parent": null,
+   "medical_name": "topical application",
+   "basis": "mechanism topical(M15) · treatment-sequence 「M15-도포」 · M5 · M17 정의 「주입·도포」 · source-map U5",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K10",
+   "name": "침투",
+   "parent": null,
+   "medical_name": "transdermal delivery assist (iontophoresis · electroporation · sonophoresis)",
+   "basis": "mechanism infusion(M15) · treatment-sequence phase 「약물 도포/침투」 · 2단계 M15 하위 「흡수 보조 기기」 · related 「MTS + 약물 투입 — 경피 흡수 촉진」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K11",
+   "name": "박리·흡인",
+   "parent": null,
+   "medical_name": "mechanical exfoliation · suction",
+   "basis": "2단계 M15 하위 「기계적 박리·클렌징」 · treatment-sequence 「M15-클렌징」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K12",
+   "name": "소수술",
+   "parent": null,
+   "medical_name": "minor dermatologic procedure",
+   "basis": "2단계 M15 deferred 「서브시전 · 면포압출 · 펀치 → 5단계 시술」 — 단위 시술이 되려면 기법 칸이 있어야 함",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K12a",
+   "name": "서브시전",
+   "parent": "K12",
+   "medical_name": "subcision",
+   "basis": "원천 항목 서브시전 detail 「섬유 밴드 절단」 · related 「진피절제주입법(서브시전 + 필러)」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K12b",
+   "name": "펀치",
+   "parent": "K12",
+   "medical_name": "punch technique",
+   "basis": "원천 항목 펀치시술 「펀치이식」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K12c",
+   "name": "압출",
+   "parent": "K12",
+   "medical_name": "comedone extraction",
+   "basis": "원천 항목 면포압출 「압출」",
+   "decided_by": "S1 · S2 · S3 (J1 안 1)"
+  },
+  {
+   "id": "K13",
+   "name": "미세색소주입",
+   "parent": null,
+   "medical_name": "micropigmentation (cosmetic tattooing · permanent makeup)",
+   "basis": "U3 — 색소를 진피 상층에 남기는 기법은 기존 24 노드에 없음(K01 주입 = 주사기 주입 · K03 미세침 천공 = 물질 안 남김) · 문헌 37727553 「Micropigmentation.」(2023) · 16042938(Dermatol Surg 2005) · N3 정의 「바늘로 진피 상층에 색소를 심어」(step5-research2)",
+   "decided_by": "U3(10-29)"
+  },
+  {
+   "id": "K14",
+   "name": "흡입 마사지",
+   "parent": null,
+   "medical_name": "mechanical suction massage (LPG endermologie)",
+   "basis": "G6 — 음압 흡입 + 롤러로 피부 · 피하 조직을 기계적으로 주무르는 기법은 기존 25 노드에 없음(K11 박리·흡인 = 피부 표면 각질 · K05 에너지 가열 = 열 · K06 = 전자기) · 문헌 19261014 · 23581834 · 10654755(LPG endermologie) · 원천 taxonomy P12-4 「엔더몰로지」 detail 「흡입마사지」",
+   "decided_by": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」)"
+  }
+ ],
+ "dictionaries": {
+  "layer": [
+   "표피",
+   "진피",
+   "피하",
+   "피하-근막 경계(SMAS 상방)",
+   "Sub-SMAS",
+   "근육 내",
+   "골막상",
+   "연골막상",
+   "심부측두근막 심층",
+   "점막하",
+   "정맥 내",
+   "병변 내",
+   "피하 지방층"
+  ],
+  "pulse_mode": [
+   "피코초",
+   "Q스위치(나노초)",
+   "롱펄스"
+  ],
+  "ablative": [
+   "박피성",
+   "비박피성"
+  ],
+  "tool_form": [
+   "롤러형",
+   "스탬프형",
+   "전동"
+  ],
+  "peel_depth": [
+   "얕은",
+   "중간",
+   "깊은"
+  ],
+  "modes": [
+   {
+    "value": "프락셔널",
+    "node": "K04b",
+    "basis": "S6 — 가능 방식(장비) → K04b 프락셔널과 잇는 조건"
+   }
+  ],
+  "target_muscle": [
+   {
+    "key": "Frontalis",
+    "ko_kma": "이마근(전두근)",
+    "source_label": "전두근 (Frontalis)",
+    "sites": [
+     "이마"
+    ],
+    "basis": "zones forehead target_muscle"
+   },
+   {
+    "key": "Corrugator supercilii",
+    "ko_kma": "눈썹주름근(추미근)",
+    "source_label": "추미근 (Corrugator supercilii)",
+    "sites": [
+     "미간"
+    ],
+    "basis": "zones glabella target_muscle"
+   },
+   {
+    "key": "Procerus",
+    "ko_kma": "눈살근",
+    "source_label": "비근근 (Procerus)",
+    "sites": [
+     "미간"
+    ],
+    "basis": "zones glabella target_muscle — 원천 「비근근」 표기(코 Nasalis 와 같은 표기 · 충돌 X1)"
+   },
+   {
+    "key": "Temporalis",
+    "ko_kma": "관자근(측두근)",
+    "source_label": "측두근 (Temporalis)",
+    "sites": [
+     "관자놀이"
+    ],
+    "basis": "zones temple target_muscle 「이갈이/사각턱 보조」"
+   },
+   {
+    "key": "Orbicularis oculi",
+    "ko_kma": "눈둘레근(안륜근)",
+    "source_label": "안륜근 (Orbicularis oculi)",
+    "sites": [
+     "눈가",
+     "눈밑"
+    ],
+    "basis": "zones periorbital target_muscle 「까마귀발, 눈밑 주름」"
+   },
+   {
+    "key": "Nasalis",
+    "ko_kma": "코근",
+    "source_label": "비근근 (Nasalis)",
+    "sites": [
+     "코"
+    ],
+    "basis": "zones nose target_muscle 「bunny lines」 — 원천 「비근근」 표기(충돌 X1)"
+   },
+   {
+    "key": "Depressor septi nasi",
+    "ko_kma": "코중격내림근",
+    "source_label": "depressor septi nasi",
+    "sites": [
+     "코끝"
+    ],
+    "basis": "zones nose target_muscle 「코끝 처짐(depressor septi nasi)」"
+   },
+   {
+    "key": "Levator labii superioris",
+    "ko_kma": "위입술올림근(상순거근)",
+    "source_label": "상순거근 (Levator labii superioris)",
+    "sites": [
+     "팔자"
+    ],
+    "basis": "zones nasolabial target_muscle 「NLF 보조 치료」"
+   },
+   {
+    "key": "Masseter",
+    "ko_kma": "깨물근(교근)",
+    "source_label": "교근 (Masseter)",
+    "sites": [
+     "사각턱"
+    ],
+    "basis": "zones cheek · jawline target_muscle 「사각턱」 · step3 handoff_note 사각턱"
+   },
+   {
+    "key": "Zygomaticus",
+    "ko_kma": "광대근",
+    "source_label": "광대근 (Zygomaticus)",
+    "sites": [
+     "잇몸"
+    ],
+    "basis": "zones cheek target_muscle 「gummy smile」"
+   },
+   {
+    "key": "Orbicularis oris",
+    "ko_kma": "입둘레근(구륜근)",
+    "source_label": "구륜근 (Orbicularis oris)",
+    "sites": [
+     "입술",
+     "입가"
+    ],
+    "basis": "zones lips target_muscle 「lip flip, 입가 주름」"
+   },
+   {
+    "key": "Mentalis",
+    "ko_kma": "턱끝근(이근)",
+    "source_label": "이근 (Mentalis)",
+    "sites": [
+     "턱끝"
+    ],
+    "basis": "zones chin target_muscle 「턱 딤플(peach pit chin)」"
+   },
+   {
+    "key": "Platysma",
+    "ko_kma": "넓은목근(광경근)",
+    "source_label": "광경근 (Platysma)",
+    "sites": [
+     "턱선",
+     "목"
+    ],
+    "basis": "zones jawline · neck target_muscle 「턱선 리프트 · platysmal bands, 목 주름」 · step3 handoff_note 목"
+   },
+   {
+    "key": "Depressor anguli oris",
+    "ko_kma": "입꼬리내림근(구각하제근)",
+    "source_label": "DAO(구각하제근)",
+    "sites": [
+     "입꼬리"
+    ],
+    "basis": "zones chin tissue_data.dao_coverage · notes 「DAO 보톡스 시 이신경 손상 주의」"
+   },
+   {
+    "key": "Trapezius",
+    "ko_kma": "등세모근",
+    "source_label": "(원천 이름 칸 「승모근」)",
+    "sites": [
+     "승모근"
+    ],
+    "basis": "step3 handoff_note 승모근(10-28 부위 이름 2벌 결정)"
+   },
+   {
+    "key": "Gastrocnemius",
+    "ko_kma": "장딴지근",
+    "source_label": "(원천 이름 칸 「종아리」)",
+    "sites": [
+     "종아리"
+    ],
+    "basis": "step3 handoff_note 종아리"
+   },
+   {
+    "key": "Musculi faciei (mimetic muscles)",
+    "ko_kma": "표정근(얼굴근육)",
+    "source_label": "표정근 (원천 이름 칸 — 시장가 「안면 EMS (표정근 강화)」)",
+    "sites": [
+     "얼굴"
+    ],
+    "group": true,
+    "basis": "step3 이름 칸 「표정근」(market-pricing 「안면 EMS (표정근 강화)」) — 낱 근육이 아니라 얼굴 표정근 묶음 · 10-28 해부학 결정(대상 근육 → 4단계) · 브리프 추가"
+   }
+  ],
+  "device_attrs": [
+   "pulse_mode",
+   "modes",
+   "ablative",
+   "electrode(모노폴라 · 바이폴라)",
+   "energy(RF · 캐비테이션)",
+   "injector(멀티니들)",
+   "delivery(이온도입 · 전기천공 · 초음파)",
+   "thread_design",
+   "suction",
+   "cooling"
+  ],
+  "unit_procedure_attrs": [
+   "safe_layers(+ constraint_text)",
+   "target_muscles",
+   "landmarks",
+   "tool_form",
+   "peel_depth",
+   "application",
+   "evidence"
+  ]
+ },
+ "zone_site": {
+  "file": "step3-decisions.json",
+  "key": "danger_zone_mapping",
+  "meaning": "위험 부위 zone → 3단계 부위 노드(읽기만)"
+ },
+ "site_layer_split": [
+  {
+   "zone": "nose",
+   "group_site": "코(묶음)",
+   "group_layers": [
+    "골막상",
+    "연골막상"
+   ],
+   "splits": [
+    {
+     "site": "콧등",
+     "layers": [
+      "골막상"
+     ],
+     "basis": "원문 「골막상 (코뼈 부위)」 — 코뼈 = 콧등"
+    },
+    {
+     "site": "코끝",
+     "layers": [
+      "연골막상"
+     ],
+     "basis": "원문 「연골막상 (비첨부)」 — 비첨 = 코끝"
+    }
+   ],
+   "source": "anatomy-danger-zones.json zones[nose].safe_injection_depth 「골막상 (코뼈 부위) 또는 연골막상 (비첨부)」",
+   "decided_by": "_RESUME §2 10-28 J2 · 브리프"
+  }
+ ],
+ "expressions": [
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].safe_injection_depth",
+   "text": "골막상층 (supraperiosteal) — 혈관은 표재성이므로 깊은 층이 안전",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「이마」에 대응",
+   "layers": [
+    "골막상"
+   ],
+   "constraint_text": null,
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[glabella].safe_injection_depth",
+   "text": "골막상층 (supraperiosteal) — 절대 피하층 주사 금지",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「미간」에 대응",
+   "layers": [
+    "골막상"
+   ],
+   "constraint_text": "피하 금지(원문 「절대 피하층 주사 금지」)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[temple].safe_injection_depth",
+   "text": "심부측두근막 심층 (deep temporal fascia deep layer) 또는 골막상",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「관자놀이」에 대응",
+   "layers": [
+    "심부측두근막 심층",
+    "골막상"
+   ],
+   "constraint_text": null,
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].safe_injection_depth",
+   "text": "안와연(orbital rim) 외측, 골막상",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「눈가(묶음)」에 대응",
+   "layers": [
+    "골막상"
+   ],
+   "constraint_text": "안와연 외측(원문 지표)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].safe_injection_depth",
+   "text": "골막상 (코뼈 부위) 또는 연골막상 (비첨부)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「코(묶음)」에 대응",
+   "layers": [
+    "골막상",
+    "연골막상"
+   ],
+   "constraint_text": "골막상 = 코뼈 부위(콧등) · 연골막상 = 비첨부(코끝)(원문) — 코(묶음)은 둘 다",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7 · 브리프(코 층 나눔)"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nasolabial].safe_injection_depth",
+   "text": "피하 또는 피하-근막 경계 (SMAS 상방)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「팔자」에 대응",
+   "layers": [
+    "피하",
+    "피하-근막 경계(SMAS 상방)"
+   ],
+   "constraint_text": null,
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].safe_injection_depth",
+   "text": "골막상 (관골부) 또는 피하 (협부), Sub-SMAS 층 주의",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「볼(묶음)」에 대응",
+   "layers": [
+    "골막상",
+    "피하"
+   ],
+   "constraint_text": "골막상 = 관골부(광대) · 피하 = 협부(볼) · Sub-SMAS 주의(원문)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[lips].safe_injection_depth",
+   "text": "점막-피부 경계(vermillion border) 진피 내 또는 점막하",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「입술」에 대응",
+   "layers": [
+    "진피",
+    "점막하"
+   ],
+   "constraint_text": "vermillion border 진피 내 또는 점막하(원문)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[chin].safe_injection_depth",
+   "text": "골막상 (이부 정중앙) — 이신경공 외측 피할 것",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「턱끝」에 대응",
+   "layers": [
+    "골막상"
+   ],
+   "constraint_text": "이신경공 외측 피할 것 → 8단계 신경 주의(site_caution)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[jawline].safe_injection_depth",
+   "text": "골막상 또는 피하 (하악연 위/아래 구분)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「턱선」에 대응",
+   "layers": [
+    "골막상",
+    "피하"
+   ],
+   "constraint_text": "하악연 위/아래 구분(원문 지표 → 주입 지표 속성)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[neck].safe_injection_depth",
+   "text": "광경근(Platysma) 내 또는 피내 (진피층)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 단위 시술 속성 `safe_layers`(부위 × 큰 기법 주입 제약 · 키 밖) · 3단계 danger_zone_mapping 으로 부위 노드 「목(묶음)」에 대응",
+   "layers": [
+    "근육 내",
+    "진피"
+   ],
+   "constraint_text": "광경근 내 또는 피내(진피층)(원문)",
+   "basis": "source-map 4 · 속성 「기법(층 · 깊이) — 부위별 주입 층 제약」 · _RESUME 10-28 해부학 결정(층 · 깊이 → 4단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].botox_specific.target_muscle",
+   "text": "전두근 (Frontalis)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Frontalis",
+     "sites": [
+      "이마"
+     ]
+    }
+   ],
+   "other_parts": [],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[glabella].botox_specific.target_muscle",
+   "text": "추미근 (Corrugator supercilii), 비근근 (Procerus)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Corrugator supercilii",
+     "sites": [
+      "미간"
+     ]
+    },
+    {
+     "muscle": "Procerus",
+     "sites": [
+      "미간"
+     ]
+    }
+   ],
+   "other_parts": [],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[temple].botox_specific.target_muscle",
+   "text": "측두근 (Temporalis) — 이갈이/사각턱 보조",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Temporalis",
+     "sites": [
+      "관자놀이"
+     ]
+    }
+   ],
+   "other_parts": [
+    "이갈이 → 7단계 고민",
+    "사각턱 보조 → 5단계 (M1 × 사각턱) 보조 근육"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].botox_specific.target_muscle",
+   "text": "안륜근 (Orbicularis oculi) — 까마귀발, 눈밑 주름",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Orbicularis oculi",
+     "sites": [
+      "눈가",
+      "눈밑"
+     ]
+    }
+   ],
+   "other_parts": [
+    "까마귀발 · 눈밑 주름 → 7단계 고민(주름)"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].botox_specific.target_muscle",
+   "text": "비근근 (Nasalis) — bunny lines, 코끝 처짐(depressor septi nasi)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Nasalis",
+     "sites": [
+      "코"
+     ]
+    },
+    {
+     "muscle": "Depressor septi nasi",
+     "sites": [
+      "코끝"
+     ]
+    }
+   ],
+   "other_parts": [
+    "bunny lines · 코끝 처짐 → 7단계 고민"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nasolabial].botox_specific.target_muscle",
+   "text": "상순거근 (Levator labii superioris) — NLF 보조 치료",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Levator labii superioris",
+     "sites": [
+      "팔자"
+     ]
+    }
+   ],
+   "other_parts": [
+    "NLF 보조 치료 → 팔자(3단계 · 이미 노드)"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].botox_specific.target_muscle",
+   "text": "교근 (Masseter) — 사각턱, 광대근 (Zygomaticus) — gummy smile",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Masseter",
+     "sites": [
+      "사각턱"
+     ]
+    },
+    {
+     "muscle": "Zygomaticus",
+     "sites": [
+      "잇몸"
+     ]
+    }
+   ],
+   "other_parts": [
+    "사각턱 → 3단계 노드 · gummy smile → 7단계 고민(잇몸 노출 미소)"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[lips].botox_specific.target_muscle",
+   "text": "구륜근 (Orbicularis oris) — lip flip, 입가 주름",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Orbicularis oris",
+     "sites": [
+      "입술",
+      "입가"
+     ]
+    }
+   ],
+   "other_parts": [
+    "lip flip → 5단계 단위 시술 이름 후보 · 입가 주름 → 7단계 고민"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[chin].botox_specific.target_muscle",
+   "text": "이근 (Mentalis) — 턱 딤플(peach pit chin)",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Mentalis",
+     "sites": [
+      "턱끝"
+     ]
+    }
+   ],
+   "other_parts": [
+    "턱 딤플(peach pit chin) → 7단계 고민(자갈턱 · 10-27 OQ-206)"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[jawline].botox_specific.target_muscle",
+   "text": "교근 (Masseter) — 사각턱, 광경근 (Platysma) — 턱선 리프트",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Masseter",
+     "sites": [
+      "사각턱"
+     ]
+    },
+    {
+     "muscle": "Platysma",
+     "sites": [
+      "턱선"
+     ]
+    }
+   ],
+   "other_parts": [
+    "턱선 리프트 → 5단계 (M1 × 턱선) 이름 후보(네페르티티 리프트 동의어)"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[neck].botox_specific.target_muscle",
+   "text": "광경근 (Platysma) — platysmal bands, 목 주름",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 값 사전(시맨틱 16) · 단위 시술 속성 `target_muscles`(M1 보툴리눔 톡신 × 부위 · 키 밖)",
+   "muscles": [
+    {
+     "muscle": "Platysma",
+     "sites": [
+      "목"
+     ]
+    }
+   ],
+   "other_parts": [
+    "platysmal bands · 목 주름 → 7단계 고민"
+   ],
+   "basis": "source-map 4 · 속성 「기법(대상 근육) — 톡신 × 부위 단위 시술」 · _RESUME 10-28 해부학 결정",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].tissue_data.frontalis_thickness.midpupil_mm",
+   "text": "1.8",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Frontalis",
+   "attach": [
+    {
+     "muscle": "Frontalis"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].tissue_data.frontalis_thickness.lateral_canthus_mm",
+   "text": "1.61",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Frontalis",
+   "attach": [
+    {
+     "muscle": "Frontalis"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].tissue_data.frontalis_thickness.lateral_orbital_rim_mm",
+   "text": "0.11",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Frontalis",
+   "attach": [
+    {
+     "muscle": "Frontalis"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].tissue_data.skin_to_periosteum_mm",
+   "text": "5.0",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:골막상@이마",
+   "attach": [
+    {
+     "layer": "골막상",
+     "site": "이마"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[forehead].tissue_data.notes",
+   "text": "이마 피부-골막 거리 평균 0.5cm — 매우 얇음",
+   "verdict": "근거 원문",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 층 근거(피부-골막 거리) · layer:골막상@이마",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[glabella].tissue_data.csm_mean_thickness_mm",
+   "text": "1.62",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Corrugator supercilii",
+   "attach": [
+    {
+     "muscle": "Corrugator supercilii"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[glabella].tissue_data.csm_thickness_variation_mm",
+   "text": "0.4",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Corrugator supercilii",
+   "attach": [
+    {
+     "muscle": "Corrugator supercilii"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[glabella].tissue_data.notes",
+   "text": "추미근(CSM, corrugator supercilii muscle) 평균 두께 약 1.62±0.4mm. 기존 15mm/21mm 값은 근육 두께로 해부학적으로 성립하지 않아 삭제했으며, 특정 인종 간 두께 차이로 혈관 표재성을 단정할 근거는 불충분",
+   "verdict": "근거 원문",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 대상 근육 근거(추미근 두께 · 삭제 사유 포함) · Corrugator supercilii",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[temple].tissue_data.stl_entry_point",
+   "text": "STL(상측두융합선, Superior temporal line)에서 측두근막이 두 층으로 분리",
+   "verdict": "근거 원문(주입 지표)",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:심부측두근막 심층@관자놀이",
+   "attach": [
+    {
+     "layer": "심부측두근막 심층",
+     "site": "관자놀이"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[temple].tissue_data.notes",
+   "text": "Pitanguy line 위에서 안면신경 측두분지가 표재성으로 주행 — 이 선 위 피하층 주사 주의",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — site_caution 신경(안면신경 측두분지 · Pitanguy line)",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].tissue_data.tear_trough_anatomy",
+   "text": "눈물고랑(tear trough)은 안와연 바로 아래 — 안륜근(orbicularis oculi) 매우 얇음",
+   "verdict": "근거 원문",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Orbicularis oculi · layer:골막상@눈밑",
+   "attach": [
+    {
+     "muscle": "Orbicularis oculi"
+    },
+    {
+     "layer": "골막상",
+     "site": "눈밑"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].tissue_data.muscle_fiber_data",
+   "text": "눈물고랑 부위 안륜근 섬유 두께 0.5-1.0mm (SRA 2024)",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Orbicularis oculi",
+   "attach": [
+    {
+     "muscle": "Orbicularis oculi"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].tissue_data.orbital_septum",
+   "text": "안와격막(orbital septum)은 안와 내용물의 방벽 — 관통 시 안와 내 합병증",
+   "verdict": "근거 원문(관통 금지 지표) + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:골막상@눈가 · 「관통 시 안와 내 합병증」 → 8단계 합병증 참조",
+   "attach": [
+    {
+     "layer": "골막상",
+     "site": "눈가"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[periorbital].tissue_data.notes",
+   "text": "각동맥: 내안각에서 medial 9.0mm, 깊이 2.3mm, 직경 1.7mm (교과서)",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — site_caution 혈관(각동맥 위치 · 깊이 · 지름)",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].tissue_data.rhinion_subcutaneous_mm",
+   "text": "2.02",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:피하@코",
+   "attach": [
+    {
+     "layer": "피하",
+     "site": "코"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].tissue_data.rhinion_data_source",
+   "text": "JCD 2024, USG n=52",
+   "verdict": "근거 출처",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:피하@코",
+   "attach": [
+    {
+     "layer": "피하",
+     "site": "코"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].tissue_data.nasal_tip_skin_thickness_mm",
+   "text": "1.5",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:연골막상@코끝",
+   "attach": [
+    {
+     "layer": "연골막상",
+     "site": "코끝"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nose].tissue_data.notes",
+   "text": "Rhinion 피하조직 2.02mm (초음파 측정) — 혈관이 매우 표재성",
+   "verdict": "근거 원문 + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 층 근거(Rhinion 피하 2.02mm) · 「혈관이 매우 표재성」 → 8단계 site_caution 참조",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[nasolabial].tissue_data.notes",
+   "text": "안면동맥 분지가 NLF 인접부에 존재하는 비율은 93.3%이며, 이 중 NLF 5mm 이내 주행은 약 42.9%",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — site_caution 혈관(안면동맥 분포 비율)",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].tissue_data.buccal_fat_pad",
+   "text": "협지방체(Buccal fat pad): SMAS 심층에 위치, 저작공간까지 연장",
+   "verdict": "근거 원문",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:Sub-SMAS@볼",
+   "attach": [
+    {
+     "layer": "Sub-SMAS",
+     "site": "볼"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].tissue_data.smas_depth_mm",
+   "text": "4.5",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:Sub-SMAS@볼",
+   "attach": [
+    {
+     "layer": "Sub-SMAS",
+     "site": "볼"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].tissue_data.sub_smas_vs_subcutaneous",
+   "text": "Sub-SMAS: 볼륨 리프팅 / Subcutaneous: 표재성 주름 교정",
+   "verdict": "속성 값 + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — layer:Sub-SMAS · 피하@볼 · 「볼륨 리프팅 / 표재성 주름 교정」 목적 낱말 → 7단계 고민 엣지 근거",
+   "attach": [
+    {
+     "layer": "Sub-SMAS",
+     "site": "볼"
+    },
+    {
+     "layer": "피하",
+     "site": "볼"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[cheek].tissue_data.notes",
+   "text": "협지방체는 관골, 측두, 협부, 익구개 공간에 걸쳐 있음 — 감염 시 파급 위험",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — 합병증(협지방체 감염 파급)",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[lips].tissue_data.notes",
+   "text": "상순동맥은 대부분 점막하층에 위치(약 58.5%)하고 점막면에서 평균 약 4.5-5.6mm(가장 얕은 경우 약 3.2mm) 깊이로 주행하며 구각(구각에서 0.5cm 이내 유입) 쪽에서 더 깊다. 후방 주행 덕분에 vermillion border의 표재성 진피 내 소량 주입이 가장 안전하며, 구각부 심부·정중/중간 vermillion 점막하 주입은 동맥 손상 위험이 높아 금지",
+   "verdict": "근거 원문 + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 층 근거(「vermillion border 표재성 진피 내 소량 주입이 가장 안전」) · 상순동맥 깊이 → 8단계 site_caution",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[chin].tissue_data.dao_coverage",
+   "text": "DAO(구각하제근)의 67.7%가 이신경공을 덮고 있음",
+   "verdict": "근거 원문 + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Depressor anguli oris · 이신경공 덮임 → 8단계 site_caution(신경) 참조",
+   "attach": [
+    {
+     "muscle": "Depressor anguli oris"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[chin].tissue_data.notes",
+   "text": "이신경공(Mental foramen): DAO의 67.7%가 덮음 — DAO 보톡스 시 이신경 손상 주의",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — site_caution 신경(이신경공) · DAO 는 C-3 dao_coverage 로 대상 근육",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[jawline].tissue_data.notes",
+   "text": "안면동맥: 하악각 부위에서 직경 1.9mm로 가장 굵음 — 하악연 주사 최대 위험 혈관",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 — site_caution 혈관(안면동맥 하악각)",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[neck].tissue_data.platysma_thickness_mm",
+   "text": "1.5",
+   "verdict": "근거 수치",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Platysma",
+   "attach": [
+    {
+     "muscle": "Platysma"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[neck].tissue_data.platysma_coverage",
+   "text": "광경근은 쇄골~하악연까지, 정중선에서 결손 부위 있음",
+   "verdict": "근거 원문",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 근거 속성(`evidence`) — Platysma",
+   "attach": [
+    {
+     "muscle": "Platysma"
+    }
+   ],
+   "basis": "source-map 4 · 「기법(대상 근육 · 깊이) 근거 수치」/「층 · 깊이 · 주입 지표 근거」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "anatomy-danger-zones.json",
+   "key": "zones[neck].tissue_data.notes",
+   "text": "광경근(Platysma) 하방에 외경정맥 등 주요 혈관 — 광경근 관통 주사 주의",
+   "verdict": "근거 원문 + 넘김",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 층 제약 「광경근 관통 주사 주의」 · 외경정맥 → 8단계 site_caution",
+   "basis": "source-map 4 · 「기법(층 · 깊이 · 주입 지표) 근거」 · 10-28 해부학 결정(혈관 · 신경 · 합병증 = 8단계)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M1].extracted.related_techniques",
+   "text": "메조보톡스 (더모톡신) — 피부 탄력 개선, 리프팅 효과",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피 — 단위 시술 이름(스킨보톡스 동의어)은 5단계",
+   "name": "메조보톡스 (더모톡신)",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M1].extracted.related_techniques",
+   "text": "에어보톡스 — 여드름 흉터 치료에 활용",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01c 무바늘 제트 주입 — 이름은 5단계(M1 × 흉터 · 고민 7단계)",
+   "name": "에어보톡스",
+   "node": "K01c",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M2].extracted.related_techniques",
+   "text": "히알루론산 메조테라피 (물광주사) — 피부 속 수분·탄력 개선",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피 — 「물광주사」 이름은 5단계(M4)",
+   "name": "히알루론산 메조테라피 (물광주사)",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M2].extracted.related_techniques",
+   "text": "자가지방이식 — 본인 지방으로 볼륨 채움, 알레르기 위험 없음",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열 M6 (계열 이름 동의어 — 이미 정본)",
+   "name": "자가지방이식",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M2].extracted.related_techniques",
+   "text": "진피절제주입법 (서브시전 + 필러) — 흉터 치료에 병합 활용",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K12a 서브시전 + K01 주입 — 같은 세션 두 단위 시술 조합은 7단계 추천 조합(U3)",
+   "name": "진피절제주입법 (서브시전 + 필러)",
+   "node": "K12a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M3].extracted.related_techniques",
+   "text": "히알루론산 필러 -- 즉각적 볼륨 효과가 필요할 때 병합",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M2",
+   "name": "히알루론산 필러",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M3].extracted.related_techniques",
+   "text": "보톡스 -- 주름 예방 목적으로 병합 가능",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M1",
+   "name": "보톡스",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M3].extracted.related_techniques",
+   "text": "고주파(RF) 시술 -- 피부 타이트닝 효과 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M9 하위 RF",
+   "name": "고주파(RF) 시술",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M4].extracted.related_techniques",
+   "text": "메조리프트 (Mesolift) -- 비타민과 히알루론산 주사로 리프팅 효과",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피 — 이름은 5단계(M4)",
+   "name": "메조리프트 (Mesolift)",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M4].extracted.related_techniques",
+   "text": "메조보톡스 -- 보톡스를 진피층에 소량 주사해 모공/탄력 개선",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피 — 「보톡스를 진피층에 소량 주사」(층 진피)",
+   "name": "메조보톡스",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M4].extracted.related_techniques",
+   "text": "메조페시아 (Mesopecia) -- 두피에 약물 주사해 탈모 치료",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피 — 부위 두피(3단계) · 고민 탈모(7단계) · 이름 5단계",
+   "name": "메조페시아 (Mesopecia)",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M5].extracted.related_techniques",
+   "text": "MTS + PRP — MTS로 미세 구멍을 낸 후 PRP를 도포해 흡수 촉진",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K03 미세침 천공 → K09 도포(채널 후) — 두 단위 시술 순서 조합은 7단계 추천 조합 · 순서는 8단계",
+   "name": "MTS + PRP",
+   "node": "K03",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M5].extracted.related_techniques",
+   "text": "프랙셔널 레이저 + PRP — 레이저 시술 후 PRP를 도포해 재생 효과 증대",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04b 프락셔널 → K09 도포 — 조합은 7단계 · 순서 8단계",
+   "name": "프랙셔널 레이저 + PRP",
+   "node": "K04b",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M5].extracted.related_techniques",
+   "text": "진피절제주입법 + PRP — 여드름흉터에 서브시전 후 PRP 주입",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K12a 서브시전 + K01 주입 — 조합은 7단계",
+   "name": "진피절제주입법 + PRP",
+   "node": "K12a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M6].extracted.related_techniques",
+   "text": "히알루론산 필러 -- 소량 볼륨 보정에 간편한 대안",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M2",
+   "name": "히알루론산 필러",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M6].extracted.related_techniques",
+   "text": "SVF(기질혈관분획) -- 지방에서 줄기세포를 분리하여 추가 재생 효과",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M17 하위 「세포(SVF)」(이미 정본) · step2 M6 deferred SVF → 5단계",
+   "name": "SVF(기질혈관분획)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M6].extracted.related_techniques",
+   "text": "PRP(혈소판풍부혈장) -- 지방이식 시 병합하여 생착률 향상",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M5",
+   "name": "PRP(혈소판풍부혈장)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M7].extracted.related_techniques",
+   "text": "필러 -- 볼륨 부족한 부위에 병합 시술",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M2",
+   "name": "필러",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M7].extracted.related_techniques",
+   "text": "보톡스 -- 근육성 주름에 병합 가능",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M1",
+   "name": "보톡스",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M7].extracted.related_techniques",
+   "text": "고주파(RF)/HIFU -- 피부 타이트닝과 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M9",
+   "name": "고주파(RF)/HIFU",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M8].extracted.related_techniques",
+   "text": "IPL (Intense Pulsed Light) — 레이저와 비슷하지만 여러 파장의 빛을 동시에 사용",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M8 하위 「IPL」(이미 정본 · 매질) — 기법은 K04 조사",
+   "name": "IPL (Intense Pulsed Light)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M8].extracted.related_techniques",
+   "text": "프랙셔널 레이저 — 기존 박피 레이저의 다운타임을 줄인 최신 기술",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04b 프락셔널",
+   "name": "프랙셔널 레이저",
+   "node": "K04b",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M8].extracted.related_techniques",
+   "text": "PDT (광역학요법) — 광감작제 약물 + 레이저를 병합한 여드름/피부암 치료",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04c 광역학",
+   "name": "PDT (광역학요법)",
+   "node": "K04c",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M9].extracted.related_techniques",
+   "text": "실리프팅 -- 물리적 리프팅과 기기 타이트닝 병합",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M7",
+   "name": "실리프팅",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M9].extracted.related_techniques",
+   "text": "보톡스 -- 근육성 주름에 병합",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M1",
+   "name": "보톡스",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M9].extracted.related_techniques",
+   "text": "필러 -- 볼륨 부족 부위에 병합",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M2",
+   "name": "필러",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M9].extracted.related_techniques",
+   "text": "IPL/레이저 -- 색소, 혈관 치료와 병합 시 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M8",
+   "name": "IPL/레이저",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M10].extracted.related_techniques",
+   "text": "크라이오리포라이시스 (냉동지방분해) -- 지방 감소에 병합",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M14",
+   "name": "크라이오리포라이시스 (냉동지방분해)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M10].extracted.related_techniques",
+   "text": "고주파(RF) 바디 -- 피부 타이트닝과 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M9 × 바디(3단계)",
+   "name": "고주파(RF) 바디",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M10].extracted.related_techniques",
+   "text": "지방흡입 -- 더 적극적인 지방 제거가 필요한 경우",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "계열 밖",
+   "destination": "계열 밖(수술) — 8단계 「대신」 관계 원문(synergy 「대신」 B06 ④ 와 같은 처리)",
+   "name": "지방흡입",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M11].extracted.related_techniques",
+   "text": "프랙셔널 레이저 -- 비슷한 피부 재생 원리이나 표피 손상이 더 큼",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04b 프락셔널",
+   "name": "프랙셔널 레이저",
+   "node": "K04b",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M11].extracted.related_techniques",
+   "text": "일반 고주파(RF) -- 비침습적 타이트닝",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(비교) — 계열 M9 하위 RF",
+   "name": "일반 고주파(RF)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M11].extracted.related_techniques",
+   "text": "MTS(마이크로니들링) -- RF 없이 물리적 자극만으로 콜라겐 유도",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합 · 비교) — 계열 M12 · 기법 K03",
+   "name": "MTS(마이크로니들링)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M12].extracted.related_techniques",
+   "text": "MTS + PRP — 미세 구멍 후 PRP 도포로 피부 재생 효과 극대화",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K03 미세침 천공 → K09 도포(채널 후) — 두 단위 시술 순서 조합은 7단계 추천 조합 · 순서는 8단계",
+   "name": "MTS + PRP",
+   "node": "K03",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M12].extracted.related_techniques",
+   "text": "MTS + 약물 투입 — 비타민C, 히알루론산 등 유효 성분 경피 흡수 촉진",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K10 침투(「경피 흡수 촉진」) — 채널 후 침투는 U5 가드 대상",
+   "name": "MTS + 약물 투입",
+   "node": "K10",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M12].extracted.related_techniques",
+   "text": "프랙셔널 레이저 — 비슷한 원리(미세 열손상 → 재생)이지만 레이저 에너지 사용",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04b 프락셔널",
+   "name": "프랙셔널 레이저",
+   "node": "K04b",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M13].extracted.related_techniques",
+   "text": "메디컬스킨케어(필링) -- 병합 시 약물 흡수율 향상",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M15 하위 화학 박피",
+   "name": "메디컬스킨케어(필링)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M13].extracted.related_techniques",
+   "text": "레이저 토닝 -- 색소 치료와 병합",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04a 토닝",
+   "name": "레이저 토닝",
+   "node": "K04a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M13].extracted.related_techniques",
+   "text": "MTS(마이크로니들링) -- 피부 재생 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합 · 비교) — 계열 M12 · 기법 K03",
+   "name": "MTS(마이크로니들링)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M14].extracted.related_techniques",
+   "text": "HIFES/EMS -- 근육 강화와 병합하여 바디 윤곽 개선",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M10",
+   "name": "HIFES/EMS",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M14].extracted.related_techniques",
+   "text": "고주파(RF) 바디 -- 피부 타이트닝과 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M9 × 바디(3단계)",
+   "name": "고주파(RF) 바디",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M14].extracted.related_techniques",
+   "text": "지방흡입 -- 더 적극적인 지방 제거가 필요한 경우",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "계열 밖",
+   "destination": "계열 밖(수술) — 8단계 「대신」 관계 원문(synergy 「대신」 B06 ④ 와 같은 처리)",
+   "name": "지방흡입",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M15].extracted.related_techniques",
+   "text": "MTS(마이크로니들링) -- 물리적 자극으로 피부 재생 유도",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합 · 비교) — 계열 M12 · 기법 K03",
+   "name": "MTS(마이크로니들링)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M15].extracted.related_techniques",
+   "text": "레이저토닝 -- 기미/색소 치료에 병합",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04a 토닝",
+   "name": "레이저토닝",
+   "node": "K04a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M15].extracted.related_techniques",
+   "text": "LDM(초음파) -- 피부 진정 및 재생 시너지",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 1단계 제품 LDM(M15 흡수 보조 · 기법 K10)",
+   "name": "LDM(초음파)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M16].extracted.related_techniques",
+   "text": "메조테라피 -- 피부에 직접 영양 성분 주입",
+   "verdict": "기법 노드 근거",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K01a 메조테라피",
+   "name": "메조테라피",
+   "node": "K01a",
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M16].extracted.related_techniques",
+   "text": "PRP(혈소판풍부혈장) -- 자가 혈액 활용 재생 치료",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 시술↔시술 관계(병합) — 계열 M5",
+   "name": "PRP(혈소판풍부혈장)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M16].extracted.related_techniques",
+   "text": "경구 영양제 -- 유지 요법으로 병행",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "계열 밖",
+   "destination": "계열 밖(경구) — 8단계 관계 원문(유지 요법)",
+   "name": "경구 영양제",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M17].extracted.related_techniques",
+   "text": "자가지방이식 — 줄기세포 없이 지방만 이식하는 기존 방법",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열 M6 (계열 이름 동의어 — 이미 정본)",
+   "name": "자가지방이식",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M17].extracted.related_techniques",
+   "text": "SVF(기질혈관분획) 치료법 — 지방에서 추출한 줄기세포 혼합물 이식",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M17 하위 「세포(SVF)」(이미 정본)",
+   "name": "SVF(기질혈관분획) 치료법",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M17].extracted.related_techniques",
+   "text": "줄기세포 배양액(AAPE) — 줄기세포가 분비한 성장인자 단백질을 이용한 치료",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M17 하위 「배양액·추출물」 · 1단계 제품 AAPE(이미 정본)",
+   "name": "줄기세포 배양액(AAPE)",
+   "node": null,
+   "basis": "source-map B03 「「— 」 앞 이름은 기법/단위 시술 후보, 뒤 문장은 근거 · 계열 노드에는 붙이지 않음」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M1].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M2].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M3].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M3].mechanism",
+   "text": "regenerative",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "작용(효과) 태그 — 기법 아님 → 2단계 계열 정의(문헌 moa) 대조 · 8단계 근거",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M4].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M4].mechanism",
+   "text": "regenerative",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "작용(효과) 태그 — 기법 아님 → 2단계 계열 정의(문헌 moa) 대조 · 8단계 근거",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M5].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M5].mechanism",
+   "text": "regenerative",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "작용(효과) 태그 — 기법 아님 → 2단계 계열 정의(문헌 moa) 대조 · 8단계 근거",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M6].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M6].mechanism",
+   "text": "regenerative",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "작용(효과) 태그 — 기법 아님 → 2단계 계열 정의(문헌 moa) 대조 · 8단계 근거",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M7].mechanism",
+   "text": "mechanical",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K02 삽입",
+   "node": "K02",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M8].mechanism",
+   "text": "thermal",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K04 조사",
+   "node": "K04",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M8].mechanism",
+   "text": "ablative",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "4단계 — 속성 `ablative` 값 「박피성」(M8 · 매질 CO2 · Er:YAG 에서 유도 — 문헌 32273965)",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M9].mechanism",
+   "text": "thermal",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K05 에너지 가열",
+   "node": "K05",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M11].mechanism",
+   "text": "thermal",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K03 미세침 천공 — M11 은 미세침 + 고주파 에너지(장비 속성 `energy` = RF)",
+   "node": "K03",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M11].mechanism",
+   "text": "mechanical",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K03 미세침 천공 — M11 은 미세침 + 고주파 에너지(장비 속성 `energy` = RF)",
+   "node": "K03",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M12].mechanism",
+   "text": "mechanical",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K03 미세침 천공",
+   "node": "K03",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M10].mechanism",
+   "text": "electromagnetic_stimulation",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K06 전자기 자극",
+   "node": "K06",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M13].mechanism",
+   "text": "plasma_energy",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K07 플라즈마 전달",
+   "node": "K07",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M14].mechanism",
+   "text": "cooling",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K08 냉각",
+   "node": "K08",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M15].mechanism",
+   "text": "topical",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K09 도포",
+   "node": "K09",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M15].mechanism",
+   "text": "infusion",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K10 침투 — M15 하위 「흡수 보조 기기」",
+   "node": "K10",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M16].mechanism",
+   "text": "intravenous",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01b 정맥 주사",
+   "node": "K01b",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M17].mechanism",
+   "text": "injection",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "K01 주입(큰 기법)",
+   "node": "K01",
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "procedure-profiles.json",
+   "key": "profiles[M17].mechanism",
+   "text": "regeneration",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "시맨틱",
+   "destination": "「regenerative」 표기 변형 → 시맨틱 정규화(같은 값) 후 같은 행선지",
+   "node": null,
+   "basis": "source-map 4 · 「기법 상위 축 원천 표현」(B03)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M1].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M2].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M3].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M4].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M5].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M6].group",
+   "text": "주사/주입",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "주사/주입",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M7].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": "group 「시술/기기」 ↔ mechanism mechanical · 정의 「실을 넣어」(삽입)",
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M8].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M9].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M10].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M11].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M12].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M13].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M14].group",
+   "text": "시술/기기",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "시술/기기",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M15].group",
+   "text": "관리",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "관리",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M16].group",
+   "text": "관리",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "관리",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": "group 「관리」 ↔ mechanism intravenous",
+   "decided_by": "S7"
+  },
+  {
+   "file": "taxonomy.json",
+   "key": "modality[M17].group",
+   "text": "관리",
+   "verdict": "속성 값",
+   "bucket": "속성",
+   "stage": null,
+   "destination": "2단계 계열 속성 `group`(메뉴 묶음 원문 · 표시용) — 기법 노드 아님 · 2단계 정본은 고치지 않고 4단계 반영 때 속성만 더함",
+   "group": "관리",
+   "basis": "source-map 4 rec 「계열에는 「기본 방식」 속성으로만」 · 기법 상위 축은 mechanism(태그가 계열 정의와 1:1)",
+   "note": "group 「관리」 ↔ mechanism injection",
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[1].categories",
+   "text": "M15-클렌징",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 세션 단계(순서 원문) — 단위 시술 아님(source-map B06 rec) · 기법은 K11 박리·흡인",
+   "node": "K11",
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[2].categories",
+   "text": "국소마취",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "5단계",
+   "destination": "5단계 단위 시술 운영 속성 `anesthesia` 값(profiles needsAnesthesia 와 같은 칸) — 단위 시술 아님",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[2].categories",
+   "text": "연고마취",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "5단계",
+   "destination": "5단계 단위 시술 운영 속성 `anesthesia` 값 — 단위 시술 아님",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[3].categories",
+   "text": "M9-HIFU",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M9 하위 「HIFU」 → 순서 주장 `conditions.sub`",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[3].categories",
+   "text": "M9-RF",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M9 하위 「RF」 → 순서 주장 `conditions.sub`",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[3].categories",
+   "text": "M8-IPL",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M8 하위 「IPL」 → 순서 주장 `conditions.sub`",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[4].categories",
+   "text": "M8-토닝",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04a 토닝 → 순서 주장 `conditions.technique`",
+   "node": "K04a",
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[4].categories",
+   "text": "M8-프락셔널",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K04b 프락셔널 → 순서 주장 `conditions.technique`",
+   "node": "K04b",
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[4].categories",
+   "text": "M8-혈관",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "7단계",
+   "destination": "7단계 목적(혈관) — step2 M8 deferred 「M8-4 혈관 → 목적」 · 순서 주장 조건은 목적",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[5].categories",
+   "text": "M11",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[5].categories",
+   "text": "M12",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[6].categories",
+   "text": "M2",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[6].categories",
+   "text": "M3",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[7].categories",
+   "text": "M4",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[8].categories",
+   "text": "M1",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[9].categories",
+   "text": "M5",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 계열(이미 정본)",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[10].categories",
+   "text": "M15-도포",
+   "verdict": "기법 노드",
+   "bucket": "노드로",
+   "stage": null,
+   "destination": "4단계 K09 도포 → 순서 주장 `conditions.technique` · 이 단계 reason(화장품 엑소좀 채널 내 도포 금지)은 U5 가드 근거",
+   "node": "K09",
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[11].categories",
+   "text": "M15-LED",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "2단계",
+   "destination": "2단계 M8 하위 「LED」(D04 로 M8 편입 — 원천 「M15-」 접두는 옛 자리) → 순서 주장 `conditions.sub`",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  },
+  {
+   "file": "treatment-sequence.json",
+   "key": "sequence_order[11].categories",
+   "text": "M15-팩",
+   "verdict": "넘김",
+   "bucket": "넘김",
+   "stage": "8단계",
+   "destination": "8단계 세션 단계(진정/마무리 원문) — 단위 시술 아님(B06 rec) · step2 M15 deferred 「도포/팩 → 6단계 해체」",
+   "node": null,
+   "basis": "source-map 4 rec 「꼬리는 4단계 기법 / 2단계 하위 계열 사전으로 풀어 conditions.sub · 마취 · 클렌징 · 진정은 세션 단계」",
+   "note": null,
+   "decided_by": "S7"
+  }
+ ],
+ "handoffs": [
+  {
+   "id": "H01",
+   "from": "step3 deferred",
+   "item": "진피(6)",
+   "detail": "taxonomy 하위 이름 「무세포동종진피(hADM)」(재료 이름) · problem-packages cc_detail 「진피색소」「진피 타이트닝」 · 항목 detail 「미녹시딜 진피 주입」",
+   "destination": "「무세포동종진피」 = 2단계 하위 계열 이름(이미 정본 · 층 아님) / 「진피색소」 = 7단계 고민(병변 깊이) / 「진피 타이트닝」 = 7단계 고민 · 목적 / 「진피 주입」 = 층 값 「진피」 + K01a 메조테라피(5단계 미녹시딜 두피 메조 단위 시술)",
+   "source_ref": {
+    "type": "step3_deferred",
+    "key": [
+     "진피",
+     "조직층"
+    ]
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H02",
+   "from": "step3 deferred",
+   "item": "표피(1)",
+   "detail": "탄앤막필링 detail 「TAN(표피재생)」",
+   "destination": "7단계 목적(표피 재생) — 층 값 아님(효과 낱말)",
+   "source_ref": {
+    "type": "step3_deferred",
+    "key": [
+     "표피",
+     "조직층"
+    ]
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H03",
+   "from": "step3 deferred",
+   "item": "피하(1)",
+   "detail": "카복시테라피 detail 「CO2 가스 피하주입」",
+   "destination": "층 값 「피하」 + K01 주입 — 5단계 카복시 단위 시술 · 계열 N2 카복시테라피(10-29 U1 — 10-28 「카복시 N2 세우지 않음」 철회)",
+   "source_ref": {
+    "type": "step3_deferred",
+    "key": [
+     "피하",
+     "조직층"
+    ]
+   },
+   "decided_by": "S10 · U1(10-29)"
+  },
+  {
+   "id": "H04",
+   "from": "step3 compound",
+   "item": "네페르티티 리프트(턱선 · 목 각 2문자열)",
+   "detail": "auto-3 「목주름/턱선(네페르티티 리프트)」 · DEC-002 D-03 표 OQ-201 「이름 있는 기법인지 상담 용어인지」",
+   "destination": "기법 노드 아님 → 상담 용어 = 5단계 단위 시술 이름(M1 × 턱선 · 목) · 기법 = K01 주입(근육 내) · 대상 근육 Platysma(원천 zones jawline 「광경근 — 턱선 리프트」 · neck 「platysmal bands」). OQ-201 의 이 물음은 닫힘",
+   "source_ref": {
+    "type": "step3_compound",
+    "keys": [
+     [
+      "네페르티티",
+      "네페르티티"
+     ],
+     [
+      "네페르티티리프트",
+      "네페르티티"
+     ]
+    ]
+   },
+   "muscles": [
+    {
+     "muscle": "Platysma",
+     "sites": [
+      "턱선",
+      "목"
+     ]
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H05",
+   "from": "step3 handoff_note",
+   "item": "사각턱 — 깨물근 · 아래턱뼈각",
+   "destination": "대상 근육 Masseter(M1 × 사각턱) · 「아래턱뼈각」 = 주입 지표 근거(`landmarks` 원문)",
+   "source_ref": {
+    "type": "step3_handoff_note",
+    "node": "사각턱"
+   },
+   "muscles": [
+    {
+     "muscle": "Masseter",
+     "sites": [
+      "사각턱"
+     ]
+    }
+   ],
+   "landmarks": [
+    {
+     "site": "사각턱",
+     "text": "아래턱뼈각(angulus mandibulae)"
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H06",
+   "from": "step3 handoff_note",
+   "item": "목 — 넓은목근",
+   "destination": "대상 근육 Platysma(M1 × 목)",
+   "source_ref": {
+    "type": "step3_handoff_note",
+    "node": "목"
+   },
+   "muscles": [
+    {
+     "muscle": "Platysma",
+     "sites": [
+      "목"
+     ]
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H07",
+   "from": "step3 handoff_note",
+   "item": "승모근 — 등세모근",
+   "destination": "대상 근육 Trapezius(M1 × 승모근)",
+   "source_ref": {
+    "type": "step3_handoff_note",
+    "node": "승모근"
+   },
+   "muscles": [
+    {
+     "muscle": "Trapezius",
+     "sites": [
+      "승모근"
+     ]
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H08",
+   "from": "step3 handoff_note",
+   "item": "종아리 — 장딴지근",
+   "destination": "대상 근육 Gastrocnemius(M1 × 종아리)",
+   "source_ref": {
+    "type": "step3_handoff_note",
+    "node": "종아리"
+   },
+   "muscles": [
+    {
+     "muscle": "Gastrocnemius",
+     "sites": [
+      "종아리"
+     ]
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H09",
+   "from": "step3 handoff_note",
+   "item": "턱선 — 아래턱뼈 아래모서리(mandibular border)",
+   "destination": "주입 지표 근거(`landmarks` 원문) — zones jawline safe_injection_depth 「하악연 위/아래 구분」과 같은 지표",
+   "source_ref": {
+    "type": "step3_handoff_note",
+    "node": "턱선"
+   },
+   "landmarks": [
+    {
+     "site": "턱선",
+     "text": "아래턱뼈 아래모서리(mandibular border) — zones jawline 「하악연 위/아래 구분」과 같은 지표"
+    }
+   ],
+   "decided_by": "S10"
+  },
+  {
+   "id": "H10",
+   "from": "step2 M8 deferred",
+   "item": "방식(피코초 · 프락셔널 · 롱펄스 · Q스위치 …) + 원천 하위 M8-2 「프락셔널」 · 「피코초(Picosecond)」",
+   "destination": "프락셔널 = 세부 기법 노드 K04b · 피코초 · Q스위치 · 롱펄스 = 장비(제품) 속성 `pulse_mode` — 하위 이름 「피코초(Picosecond)」는 제품 3행(피코플러스 · 디스커버리 피코 · 엔라이튼)의 pulse_mode 로",
+   "source_ref": {
+    "type": "step2_deferred",
+    "family": "M8"
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H11",
+   "from": "step2 technique_hint",
+   "item": "25행",
+   "destination": "행마다 재확인(hints 표) — 값 25행 전부 · 버림 표현 3(피코코어 나노초 · 스타워커 피코나노 · 클라리티2 Q-switched) · 원천 수정 후보 1(M8-P-3 설명)",
+   "source_ref": {
+    "type": "step2_hints"
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H12",
+   "from": "step2 M4 deferred",
+   "item": "주입 기기(원천 M15-6 주입장비 · 물광/메조건)",
+   "destination": "기기는 1단계 제품(정본) · 「어떻게」 = K01a 메조테라피(멀티니들 자동 주입 — 장비 속성 `injector` = 멀티니들) / K01c 무바늘 제트 주입(니들리스 · 공기압 · 제트) / K10 침투(초음파 주입 벨라소닉 · 옥시덤)",
+   "source_ref": {
+    "type": "step2_deferred",
+    "family": "M4"
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H13",
+   "from": "source-map U5",
+   "item": "도포 제약 — ASCE+ · EXOSOME SKIN(화장품 허가)",
+   "destination": "4단계는 기법 노드만 준다: 이 두 제품의 uses_product 는 K09 도포(온전한 피부)만 · K01 주입 · K10 침투(채널 경유) 금지 — 근거 products legal_warning(2) + treatment-sequence order 10 reason 「화장품 분류 엑소좀 · 배양액의 채널 내 도포는 금지」. 가드 적용은 5단계(지도 5)",
+   "source_ref": {
+    "type": "source_map",
+    "ref": "U5"
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H14",
+   "from": "step2 셀렉V · BBL 히어로 open 사유",
+   "item": "허가 ↔ 원천 매질 충돌(v3 W-b)",
+   "destination": "기법은 둘 다 K04 조사 — 매질 충돌은 기법 값을 바꾸지 않음. 셀렉V 펄스 방식은 보조 매질에만(hints 표) · BBL 히어로 hint 없음",
+   "source_ref": {
+    "type": "step2_ledger",
+    "ledger_ids": [
+     "auto-M8-1775364106103",
+     "auto-31-1774737181584"
+    ]
+   },
+   "decided_by": "S10"
+  },
+  {
+   "id": "H15",
+   "from": "step3 strings(브리프 추가)",
+   "item": "표정근(1)",
+   "detail": "3단계 이름 칸 「표정근」(시장가 「안면 EMS (표정근 강화)」) — step3 정본은 4단계 대상 근육으로 넘김",
+   "destination": "대상 근육 값 「Musculi faciei (mimetic muscles) · 표정근(얼굴근육)」(근육 묶음) — M10 × 얼굴 × K06 전자기 자극 단위 시술 속성 `target_muscles`(5단계에서 붙임). step3 얼굴 노드 해부학 이름 속성에서 빼기는 step4-source-fix.md",
+   "source_ref": {
+    "type": "step3_deferred",
+    "key": [
+     "표정근",
+     "표정근"
+    ]
+   },
+   "muscles": [
+    {
+     "muscle": "Musculi faciei (mimetic muscles)",
+     "sites": [
+      "얼굴"
+     ]
+    }
+   ],
+   "decided_by": "브리프 추가(_RESUME §2 10-28 「4단계 입력 추가」)"
+  }
+ ],
+ "technique_hints": [
+  {
+   "ledger_id": "M8-1-3",
+   "name": "피코슈어",
+   "sub_family": "알렉산드라이트 레이저",
+   "hint": [
+    "프락셔널",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "프락셔널 = 「Focus Lens Array로 프락셔널 효과도 제공」 — 렌즈로 되는 가능 방식(mode)",
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775361386532",
+   "name": "레블라이트 SI",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Q-switched",
+    "나노초",
+    "큐스위치"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775361394023",
+   "name": "피코케어",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775362587235",
+   "name": "피코코어",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "나노초",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {
+    "나노초": "비교 문장 「기존 나노초 레이저 대비」(step2 v3 W-a)"
+   },
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775362943490",
+   "name": "트루피코",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Q-switched"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "값은 원천 설명 「Q-switched 기술」 그대로 · 1단계 확인 불가 · step2 근거 약(실제 장비명 질문) 그대로 따라감 — 새 질문 없음",
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775362951135",
+   "name": "리레이저",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Q-switched"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775120",
+   "name": "스타워커",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "나노초",
+    "피코나노",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)",
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {
+    "피코나노": "기술 이름(「포토나 피코나노 기술」) — 값은 「나노초 펄스와 피코초 펄스를 결합」에서 둘 다"
+   },
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-2-4",
+   "name": "프락셀 듀얼",
+   "sub_family": "Er:Glass",
+   "hint": [
+    "비박리성",
+    "비박피",
+    "프락셔널"
+   ],
+   "pulse_mode": [],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [
+    {
+     "value": "비박피성",
+     "basis": "원천 「비박리성」"
+    }
+   ],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775361850481",
+   "name": "모자이크",
+   "sub_family": "Er:Glass",
+   "hint": [
+    "비박리성",
+    "프락셔널"
+   ],
+   "pulse_mode": [],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [
+    {
+     "value": "비박피성",
+     "basis": "원천 「비박리성」"
+    }
+   ],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775362603297",
+   "name": "에코2",
+   "sub_family": "탄산가스 레이저",
+   "hint": [
+    "프락셔널",
+    "프랙셔널"
+   ],
+   "pulse_mode": [],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [
+    {
+     "value": "박피성",
+     "basis": "매질 유도"
+    }
+   ],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "박피성은 매질 탄산가스에서 유도(문헌 32273965 「Ablative CO2」)",
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775364106103",
+   "name": "셀렉V",
+   "sub_family": "IPL",
+   "hint": [
+    "Q-switched"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)"
+   ],
+   "pulse_scope": "보조 하위 계열 엔디야그 레이저",
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "Q스위치는 원천 설명의 Nd:YAG 에 붙음 → 2단계 보조 하위 계열 「엔디야그 레이저」 쪽 장비 속성으로 한정(주 IPL 에는 펄스 방식 없음) · 허가 ↔ 원천 매질 충돌은 step2 conflict 그대로",
+   "decided_by": "S6 · 검수 W1(조사 pulse_scope 되살림)"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775119",
+   "name": "에코2 에볼루션",
+   "sub_family": "탄산가스 레이저",
+   "hint": [
+    "프락셔널"
+   ],
+   "pulse_mode": [],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [
+    {
+     "value": "박피성",
+     "basis": "매질 유도"
+    }
+   ],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "프락셔널 = 원천 하위 이름 「프락셔널」(M8-2)에서 · 박피성은 매질 탄산가스에서 유도",
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775364775129",
+   "name": "울트라펄스",
+   "sub_family": "탄산가스 레이저",
+   "hint": [
+    "프락셔널"
+   ],
+   "pulse_mode": [],
+   "modes": [
+    "프락셔널"
+   ],
+   "ablative": [
+    {
+     "value": "박피성",
+     "basis": "매질 유도"
+    }
+   ],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": "프락셔널 = 원천 하위 이름 「프락셔널」(M8-2)에서 · 박피성은 매질 탄산가스에서 유도",
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-4-1",
+   "name": "브이빔",
+   "sub_family": "PDL",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-4-2",
+   "name": "엑셀 V",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-4-3",
+   "name": "더마V",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-34-1774737181584",
+   "name": "노블린",
+   "sub_family": "알렉산드라이트 레이저",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-5-4",
+   "name": "클라리티2",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Q-switched",
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {
+    "Q-switched": "제품 항목 M8-P-3 설명 「Q-switched」 ↔ 원장 항목 「롱펄스 532+1064」 · 허가 모델명 「CLARITY II LPA」(Long Pulse Alexandrite) → 롱펄스가 허가 근거 · M8-P-3 설명은 원천 수정 후보"
+   },
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-5-5",
+   "name": "아발란체",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-36-1774737181584",
+   "name": "아포지 엘리트 플러스",
+   "sub_family": "알렉산드라이트 레이저",
+   "hint": [
+    "롱펄스"
+   ],
+   "pulse_mode": [
+    "롱펄스"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775362936434",
+   "name": "리팟",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Q-switched",
+    "나노초"
+   ],
+   "pulse_mode": [
+    "Q스위치(나노초)"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775360583893",
+   "name": "피코플러스",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Picosecond",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775360593064",
+   "name": "디스커버리 피코",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Picosecond",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "auto-M8-1775360601666",
+   "name": "엔라이튼",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "Picosecond",
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  },
+  {
+   "ledger_id": "M8-P-1",
+   "name": "피코웨이",
+   "sub_family": "엔디야그 레이저",
+   "hint": [
+    "피코초"
+   ],
+   "pulse_mode": [
+    "피코초"
+   ],
+   "modes": [],
+   "ablative": [],
+   "dropped": {},
+   "destination": "제품(장비) 속성 — 펄스 방식 · 가능 방식 · 박피 여부 → 5단계 uses_product 로 단위 시술(K04a 토닝 · K04b 프락셔널 …)과 잇는 조건",
+   "note": null,
+   "decided_by": "S6"
+  }
+ ],
+ "pulse_by_medium": {
+  "알렉산드라이트 레이저": [
+   "롱펄스",
+   "피코초"
+  ],
+  "엔디야그 레이저": [
+   "Q스위치(나노초)",
+   "롱펄스",
+   "피코초"
+  ],
+  "PDL": [
+   "롱펄스"
+  ]
+ },
+ "family_defaults": [
+  {
+   "family": "M1",
+   "family_name": "보툴리눔 톡신",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "근육 내",
+   "basis": "정의 「근육·피부에 주사」 · mechanism injection · D-02 예시 「사각턱 · 근육 내 주입」 — 「피부(진피)」 쪽은 K01a(스킨보톡스 · 다한증)로 단위 시술에서 덮어씀",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M2",
+   "family_name": "성형용 필러",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "부위 safe_layers",
+   "basis": "정의 「진피·피하에 … 주입」 · mechanism injection · 층은 부위별(anatomy safe_injection_depth)",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M3",
+   "family_name": "바이오스티뮬레이터",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "부위 safe_layers",
+   "basis": "정의 「주입」 · mechanism injection",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M4",
+   "family_name": "스킨부스터",
+   "default": "K01a",
+   "default_name": "메조테라피",
+   "also": [
+    "K01c"
+   ],
+   "default_layer": "진피",
+   "basis": "정의 「진피에 소량씩 여러 점 주입(또는 무바늘 제트 주입)」 · 문헌 이름 mesotherapy",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M5",
+   "family_name": "PRP·엑소좀",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [
+    "K09"
+   ],
+   "default_layer": null,
+   "basis": "정의 「주입·도포」 · related 「MTS + PRP — 도포」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M6",
+   "family_name": "자가지방이식",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「꺼진 곳에 주입」 · mechanism injection",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M7",
+   "family_name": "실리프팅",
+   "default": "K02",
+   "default_name": "삽입",
+   "also": [],
+   "default_layer": "피하",
+   "basis": "정의 「실을 피하에 넣어」 · 문헌 33469333 「inserted subcutaneously」 — 세부(코그 · 모노 · 볼륨)는 단위 시술에서",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M8",
+   "family_name": "레이저·광치료",
+   "default": "K04",
+   "default_name": "조사",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「피부에 조사」 · mechanism thermal · ablative — 세부(토닝 · 프락셔널 · 광역학)는 단위 시술에서",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M9",
+   "family_name": "HIFU·고주파 리프팅",
+   "default": "K05",
+   "default_name": "에너지 가열",
+   "also": [],
+   "default_layer": "진피 · SMAS(문헌)",
+   "basis": "정의 「피부를 뚫지 않고 … 가열」 · 문헌 37753689 「HIFU … dermis and SMAS · RF … papillary dermis」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M10",
+   "family_name": "HIFEM·EMS 근육 자극",
+   "default": "K06",
+   "default_name": "전자기 자극",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「전자기장 또는 전기 자극으로 근육을 수축」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M11",
+   "family_name": "고주파 마이크로니들(니들RF)",
+   "default": "K03",
+   "default_name": "미세침 천공",
+   "also": [],
+   "default_layer": "진피",
+   "basis": "정의 「미세침을 진피에 찌른 뒤 … 고주파」 — 장비 속성 energy = RF",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M12",
+   "family_name": "마이크로니들링(MTS)",
+   "default": "K03",
+   "default_name": "미세침 천공",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「미세침(롤러·스탬프·전동 펜)으로 미세 천공」 — 롤러 · 스탬프 · 전동 = 도구 형태 속성",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M13",
+   "family_name": "플라즈마",
+   "default": "K07",
+   "default_name": "플라즈마 전달",
+   "also": [],
+   "default_layer": "표피",
+   "basis": "정의 「피부 표면에 직접 전달」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M14",
+   "family_name": "냉동지방분해",
+   "default": "K08",
+   "default_name": "냉각",
+   "also": [],
+   "default_layer": "피하 지방층",
+   "basis": "정의 「피부 밖에서 지방층을 냉각」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M15",
+   "family_name": "외용 관리",
+   "default": "K09",
+   "default_name": "도포",
+   "also": [
+    "K11",
+    "K10"
+   ],
+   "default_layer": null,
+   "basis": "정의 「바르거나 흡수 … 기계적 박리·클렌징 기기 · 흡수 보조 기기」 — 하위 계열별: 화학 박피 · 외용제 = K09 / 기계적 박리·클렌징 = K11 / 흡수 보조 기기 = K10",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M16",
+   "family_name": "정맥 영양 수액",
+   "default": "K01b",
+   "default_name": "정맥 주사",
+   "also": [],
+   "default_layer": "정맥 내",
+   "basis": "정의 「정맥으로 투여」 · mechanism intravenous · DEC-003 D-05 — 정맥 아닌 성분 주사(DEC-003 OQ-308)는 5단계에서 허가 용법으로 K01 덮어씀",
+   "decided_by": "S8"
+  },
+  {
+   "family": "M17",
+   "family_name": "줄기세포·줄기세포 유래 제제",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [
+    "K09"
+   ],
+   "default_layer": null,
+   "basis": "정의 「주입·도포」 · mechanism injection",
+   "decided_by": "S8"
+  },
+  {
+   "family": "N1",
+   "family_name": "지방분해 주사",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "피하 지방층",
+   "basis": "정의 「피하 지방층에 … 직접 주사」",
+   "decided_by": "S8"
+  },
+  {
+   "family": "N2",
+   "family_name": "카복시테라피",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "피하",
+   "basis": "정의 「의료용 CO2 가스를 피하·진피에 주입」 · H03 「카복시테라피 detail 「CO2 가스 피하주입」 → 층 값 「피하」 + K01」",
+   "decided_by": "U1(10-29)"
+  },
+  {
+   "family": "N3",
+   "family_name": "반영구 화장",
+   "default": "K13",
+   "default_name": "미세색소주입",
+   "also": [],
+   "default_layer": "진피 상층",
+   "basis": "정의 「바늘로 진피 상층에 색소를 심어」 · U3 K13 신설",
+   "decided_by": "U1 · U3(10-29)"
+  },
+  {
+   "family": "N4",
+   "family_name": "피부 소수술",
+   "default": "K12",
+   "default_name": "소수술",
+   "also": [
+    "K01",
+    "K08"
+   ],
+   "default_layer": null,
+   "basis": "정의 「수술 도구로 … 절단 · 절제 · 제거하거나 병변 안에 약물을 직접 주사」 · K12 계열 기본이 비어 있던 자리(step5-research2) · 병변 내 주사 = K01(U4) · 병변 냉동 파괴 = K08 냉각(G5 · 2단계 N4 정의 넓힘)",
+   "decided_by": "U1 · U4(10-29) · J7 G5(10-29 5단계 보강 · 사용자 「응 추천으로 가자」)"
+  },
+  {
+   "family": "N5",
+   "family_name": "태반 추출물 주사",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "피하 · 근육",
+   "basis": "정의 「피하 · 근육에 주사」 · 허가 용법 멜스몬주 「피하주사」 · 라이넥주 「피하 또는 근육주사」(K01b 정맥 아님)",
+   "decided_by": "U1 · F8(10-29)"
+  },
+  {
+   "family": "N6",
+   "family_name": "성장호르몬 주사",
+   "default": "K01",
+   "default_name": "주입",
+   "also": [],
+   "default_layer": "피하",
+   "basis": "정의 「소마트로핀을 피하 주사」 · 소마트로핀 허가 용법 피하(원천 「수액치료」 문구는 경로 근거 아님 — step5-research2)",
+   "decided_by": "U1 · F8(10-29)"
+  },
+  {
+   "family": "N7",
+   "family_name": "펄스 전자기장 치료",
+   "default": "K06",
+   "default_name": "전자기 자극",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「저강도 펄스 전자기장으로 두피 모낭을 자극」 · U6 K06 정의 넓힘",
+   "decided_by": "U1 · U6 · F8(10-29)"
+  },
+  {
+   "family": "N8",
+   "family_name": "기계적 흡입 마사지",
+   "default": "K14",
+   "default_name": "흡입 마사지",
+   "also": [],
+   "default_layer": "피하 지방층",
+   "basis": "정의 「음압 흡입과 롤러로 피부 · 피하 조직을 기계적으로 … 셀룰라이트 · 피하 조직」 · K14 신설(G6)",
+   "decided_by": "J7 G6(10-29 5단계 보강 · 사용자 「응 추천으로 가자」)"
+  },
+  {
+   "family": "N9",
+   "family_name": "모발이식",
+   "default": "K12",
+   "default_name": "소수술",
+   "also": [],
+   "default_layer": null,
+   "basis": "정의 「모낭 단위를 떼어(FUE 낱개 채취 · FUT 띠 절제) … 옮겨 심는 수술」 — 수술 도구로 조직을 떼고 옮김 = K12(G7)",
+   "decided_by": "J7 G7(10-29 5단계 보강 · 사용자 「응 추천으로 가자」)"
+  },
+  {
+   "family": "N10",
+   "family_name": "지방흡입",
+   "default": "K12",
+   "default_name": "소수술",
+   "also": [],
+   "default_layer": "피하 지방층",
+   "basis": "정의 「피하 지방층에 캐뉼라를 넣어 지방을 음압으로 빨아내는 수술」 = K12(G8)",
+   "decided_by": "J7 G8(10-29 5단계 보강 · 사용자 「응 추천으로 가자」)"
+  }
+ ],
+ "draft_techniques": [
+  {
+   "id": "T01",
+   "name": "근육축소",
+   "source_expressions": [
+    "근육축소",
+    "교근축소"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "합침",
+   "node": "K01",
+   "node_name": "주입",
+   "reason": "층 근육 내 + 대상 근육(교근 · 장딴지근) — 「축소」는 7단계 목적 · 「교근축소」는 D-03 표대로 해부학·기법 속성",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T02",
+   "name": "스킨보톡스",
+   "source_expressions": [
+    "스킨보톡스"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K01a",
+   "node_name": "메조테라피",
+   "reason": "「스킨보톡스」 = 상담 용어 → 5단계 단위 시술 이름(M1 × 얼굴 전체 × 메조테라피) — D-02 예시",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T03",
+   "name": "네페르티티 리프트",
+   "source_expressions": [
+    "네페르티티 리프트"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "5단계 단위 시술 이름(M1 × 턱선 · 목 · 기법 K01 · 대상 근육 Platysma) — D 표 네페르티티",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T04",
+   "name": "토닝",
+   "source_expressions": [
+    "토닝",
+    "532nm 포커스 토닝",
+    "포커스 토닝",
+    "피코토닝",
+    "알렉스토닝",
+    "듀얼 토닝",
+    "제네시스토닝"
+   ],
+   "draft_unit_procedures": 3,
+   "verdict": "유지",
+   "node": "K04a",
+   "node_name": "토닝",
+   "reason": "변형 이름(피코토닝 · 알렉스토닝 · 제네시스토닝 · 포커스 · 듀얼)은 5단계 이름 · 동의어 — 펄스 · 매질은 장비 속성/2단계 하위",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T05",
+   "name": "박피성 프락셔널",
+   "source_expressions": [
+    "박피성"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K04b",
+   "node_name": "프락셔널",
+   "reason": "속성 ablative = 박피성",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T06",
+   "name": "비박피성 프락셔널",
+   "source_expressions": [
+    "비박피성",
+    "비박리성",
+    "비박피성 피코 프락셀"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "합침",
+   "node": "K04b",
+   "node_name": "프락셔널",
+   "reason": "속성 ablative = 비박피성",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T07",
+   "name": "프락셔널",
+   "source_expressions": [
+    "프락셔널",
+    "프락셀",
+    "피코슈어 프락셔널",
+    "얕은 박피"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "유지",
+   "node": "K04b",
+   "node_name": "프락셔널",
+   "reason": "「얕은 박피」 = 속성 peel_depth 「얕은」(프락셀 듀얼 1927nm)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T08",
+   "name": "BBL 시술 프로토콜",
+   "source_expressions": [
+    "BBL 시술 프로토콜",
+    "BBL 여드름 시술 프로토콜"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "장비 프로그램 이름(BBL Forever Young · Clear) → 5단계 단위 시술 이름 · 기법은 K04 조사",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T09",
+   "name": "일반 레이저 방식",
+   "source_expressions": [
+    "루비",
+    "KTP"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "루비 · KTP = 2단계 M8 하위 계열(매질 · 이미 정본)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T10",
+   "name": "4단계리프팅",
+   "source_expressions": [
+    "4단계리프팅"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "장비 프로그램 이름(포토나 4D) → 5단계 단위 시술 이름 · 기법 K04 조사",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T11",
+   "name": "모노폴라",
+   "source_expressions": [
+    "모노폴라"
+   ],
+   "draft_unit_procedures": 11,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "모노폴라 = RF 전극 방식 → 장비(제품) 속성 `electrode`",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T12",
+   "name": "바이폴라",
+   "source_expressions": [
+    "바이폴라",
+    "양극성"
+   ],
+   "draft_unit_procedures": 3,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "바이폴라 · 양극성 = 장비 속성 `electrode`",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T13",
+   "name": "침습+비침습",
+   "source_expressions": [
+    "침습+비침습"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "침습+비침습 = 장비 속성(니들 · 비니들 핸드피스 겸용) — 단위 시술은 쓰는 쪽 기법(K03 · K05)으로 각각",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T14",
+   "name": "마이크로웨이브",
+   "source_expressions": [
+    "마이크로웨이브",
+    "극초단파"
+   ],
+   "draft_unit_procedures": 3,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "마이크로웨이브 = 2단계 M9 하위 계열(이미 정본)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T15",
+   "name": "캐비테이션",
+   "source_expressions": [
+    "캐비테이션"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "캐비테이션 = 장비 속성 `energy`(바이캐빈) — 기법 K05",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T16",
+   "name": "석션",
+   "source_expressions": [
+    "석션"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "석션 = 장비 속성(어플리케이터 흡인 · 바넥스 · 바넥스프로 · 소노퀸) — 기법은 계열 기본(K08 · K06 · K10)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T17",
+   "name": "냉각",
+   "source_expressions": [
+    "냉각"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K08",
+   "node_name": "냉각",
+   "reason": "크라이오셀(M15-8) 냉각 · 사파이어레이저 「냉각」은 장비 속성(표피 냉각)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T18",
+   "name": "코그",
+   "source_expressions": [
+    "코그",
+    "코그(Cog)",
+    "Cog",
+    "양방향",
+    "단방향"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K02a",
+   "node_name": "코그실 삽입",
+   "reason": "「양방향 · 단방향」 = 실 디자인 → 제품 속성 `thread_design`(5단계 uses_product)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T19",
+   "name": "모노",
+   "source_expressions": [
+    "모노"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K02b",
+   "node_name": "모노실 삽입",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T20",
+   "name": "볼륨실",
+   "source_expressions": [
+    "볼륨실"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K02c",
+   "node_name": "볼륨실 삽입",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T21",
+   "name": "2방향",
+   "source_expressions": [
+    "2방향"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T22",
+   "name": "다방향",
+   "source_expressions": [
+    "다방향"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T23",
+   "name": "전방향",
+   "source_expressions": [
+    "전방향"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T24",
+   "name": "콘",
+   "source_expressions": [
+    "콘"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T25",
+   "name": "오메가 형태",
+   "source_expressions": [
+    "오메가 형태"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T26",
+   "name": "루프형",
+   "source_expressions": [
+    "루프형"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T27",
+   "name": "텐션형",
+   "source_expressions": [
+    "텐션형"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T28",
+   "name": "벌집형",
+   "source_expressions": [
+    "벌집형"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T29",
+   "name": "몰딩 메쉬",
+   "source_expressions": [
+    "몰딩 메쉬"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "실 디자인 → 제품 속성 `thread_design`(5단계 uses_product · 원문 그대로)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T30",
+   "name": "롤러형",
+   "source_expressions": [
+    "롤러형"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "도구 형태 → 단위 시술/장비 속성 `tool_form` = 롤러형 (DEC-003 OQ-311 닫힘)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T31",
+   "name": "스탬프형",
+   "source_expressions": [
+    "스탬프형",
+    "전동 스탬프형"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "도구 형태 `tool_form` = 스탬프형",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T32",
+   "name": "전동",
+   "source_expressions": [
+    "전자동",
+    "펜타입",
+    "진동형"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "도구 형태 `tool_form` = 전동(펜타입 · 진동형)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T33",
+   "name": "멀티니들",
+   "source_expressions": [
+    "멀티니들"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K01a",
+   "node_name": "메조테라피",
+   "reason": "멀티니들 = 주입 기기 형태 → 장비 속성 `injector`",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T34",
+   "name": "니들리스",
+   "source_expressions": [
+    "니들리스",
+    "공기압 주입",
+    "제트 주입",
+    "공기압 약물주입"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K01c",
+   "node_name": "무바늘 제트 주입",
+   "reason": "니들리스 · 공기압 · 제트 주입",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T35",
+   "name": "분사",
+   "source_expressions": [
+    "분사"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K01c",
+   "node_name": "무바늘 제트 주입",
+   "reason": "분사(노보젯) — 크리스탈필 「분사」는 K11 박리(결정 분사 박피)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T36",
+   "name": "초음파 주입",
+   "source_expressions": [
+    "초음파 주입"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K10",
+   "node_name": "침투",
+   "reason": "초음파 주입(벨라소닉) = 침투 방식 장비 속성 `delivery` = 초음파",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T37",
+   "name": "이온도입",
+   "source_expressions": [
+    "이온도입",
+    "전류 약물침투"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K10",
+   "node_name": "침투",
+   "reason": "이온도입 = 장비 속성 `delivery`",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T38",
+   "name": "전기천공",
+   "source_expressions": [
+    "전기천공"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K10",
+   "node_name": "침투",
+   "reason": "전기천공 = 장비 속성 `delivery`",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T39",
+   "name": "워터제트",
+   "source_expressions": [
+    "워터제트",
+    "고압 워터젯",
+    "물 흡인"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K11",
+   "node_name": "박리·흡인",
+   "reason": "워터제트 · 물 흡인",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T40",
+   "name": "미세박피",
+   "source_expressions": [
+    "미세박피"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K11",
+   "node_name": "박리·흡인",
+   "reason": "미세박피(크리스탈필)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T41",
+   "name": "중간~심층",
+   "source_expressions": [
+    "중간~심층"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K09",
+   "node_name": "도포",
+   "reason": "속성 peel_depth = 중간(TCA)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T42",
+   "name": "심부필링",
+   "source_expressions": [
+    "심부필링"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K09",
+   "node_name": "도포",
+   "reason": "속성 peel_depth = 깊은(페놀)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T43",
+   "name": "CROSS 기법",
+   "source_expressions": [
+    "CROSS 기법"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K09",
+   "node_name": "도포",
+   "reason": "속성 application = 국소(점) — CROSS",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T44",
+   "name": "도포",
+   "source_expressions": [
+    "도포",
+    "국소 적용"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "유지",
+   "node": "K09",
+   "node_name": "도포",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T45",
+   "name": "마사지",
+   "source_expressions": [
+    "마사지",
+    "림프순환"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "마사지 · 림프순환 = 장비 동작(제네오X · LDM) → 장비 속성 · 파셀라 경락은 2단계 판정 그대로",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T46",
+   "name": "섬유 밴드 절단",
+   "source_expressions": [
+    "섬유 밴드 절단"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K12a",
+   "node_name": "서브시전",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T47",
+   "name": "압박",
+   "source_expressions": [
+    "압박"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "압박(실리콘시트) = 외용제 사용 형태 → K09 도포 · 제품 속성",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T48",
+   "name": "펀치이식",
+   "source_expressions": [
+    "펀치이식"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K12b",
+   "node_name": "펀치",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T49",
+   "name": "압출",
+   "source_expressions": [
+    "압출"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K12c",
+   "node_name": "압출",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T50",
+   "name": "광역학치료",
+   "source_expressions": [
+    "광역학치료"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K04c",
+   "node_name": "광역학",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T51",
+   "name": "원심분리",
+   "source_expressions": [
+    "원심분리"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "원심분리 = 재료 준비(PRP) → 5단계 운영 속성 `prep`(profiles prepNotes 와 같은 칸)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T52",
+   "name": "미세 지방 주입",
+   "source_expressions": [
+    "미세 지방 주입"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "미세 지방 = 2단계 M6 하위 「지방 입자 크기(마이크로 · 나노)」(이미 정본) — 기법은 K01",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T53",
+   "name": "초미세",
+   "source_expressions": [
+    "초미세"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "초미세(나노) = 2단계 M6 하위 「지방 입자 크기」(이미 정본)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T54",
+   "name": "SVF(줄기세포 포함)",
+   "source_expressions": [
+    "SVF(줄기세포 포함)"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "SVF = 2단계 M17 하위 「세포(SVF)」 · step2 M6 deferred → 5단계",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T55",
+   "name": "메조테라피",
+   "source_expressions": [
+    "메조테라피"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K01a",
+   "node_name": "메조테라피",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T56",
+   "name": "진피 주입",
+   "source_expressions": [
+    "진피 주입"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K01a",
+   "node_name": "메조테라피",
+   "reason": "층 값 「진피」",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T57",
+   "name": "피하 주사",
+   "source_expressions": [
+    "피하주입",
+    "피하"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "합침",
+   "node": "K01",
+   "node_name": "주입",
+   "reason": "층 값 「피하」",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T58",
+   "name": "국소 주사",
+   "source_expressions": [
+    "국소"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K01",
+   "node_name": "주입",
+   "reason": "층 값 「피하 지방층」(N1 지방분해 주사)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T59",
+   "name": "병변내 주사",
+   "source_expressions": [
+    "병변내 주사"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "합침",
+   "node": "K01",
+   "node_name": "주입",
+   "reason": "층 값 「병변 내」(스테로이드 병변내 주사)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T60",
+   "name": "정맥 주사",
+   "source_expressions": [
+    "IV",
+    "정맥주사"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "합침",
+   "node": "K01b",
+   "node_name": "정맥 주사",
+   "reason": "",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T61",
+   "name": "주입",
+   "source_expressions": [
+    "주입",
+    "주사",
+    "두피 주입"
+   ],
+   "draft_unit_procedures": 4,
+   "verdict": "유지",
+   "node": "K01",
+   "node_name": "주입",
+   "reason": "「두피 주입」의 「두피」는 3단계 부위",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T62",
+   "name": "IPL",
+   "source_expressions": [
+    "IPL"
+   ],
+   "draft_unit_procedures": 2,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "IPL = 2단계 M8 하위 계열(이미 정본) — 기법 K04 조사 (OQ-311 닫힘)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T63",
+   "name": "BBL스킨타이트",
+   "source_expressions": [
+    "BBL스킨타이트"
+   ],
+   "draft_unit_procedures": 0,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "BBL스킨타이트 = 장비 프로그램 이름 → 5단계 단위 시술 이름 · 기법 K04 조사",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T64",
+   "name": "알렉산드라이트",
+   "source_expressions": [
+    "알렉산드라이트"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "알렉산드라이트 = 2단계 M8 하위 계열(이미 정본)",
+   "decided_by": "S9"
+  },
+  {
+   "id": "T65",
+   "name": "콜드플라즈마",
+   "source_expressions": [
+    "콜드플라즈마"
+   ],
+   "draft_unit_procedures": 1,
+   "verdict": "버림",
+   "node": null,
+   "node_name": null,
+   "reason": "콜드플라즈마 = 2단계 M13 하위 「콜드 플라즈마」(이미 정본) — 기법 K07",
+   "decided_by": "S9"
+  }
+ ],
+ "structure_options": [
+  {
+   "id": "안 1",
+   "recommend": true,
+   "nodes": 24,
+   "unit_procedure_keys_draft": 199,
+   "unit_procedure_keys_with_step2_sub": 202,
+   "what": "큰 기법 12 + 세부 12 노드 · 층 · 대상 근육 · 도구 = 단위 시술 속성(키 밖) · 펄스 · 가능 방식 · 박피 · 전극 · 주입기 · 침투 방식 · 실 디자인 = 장비 속성",
+   "key": "계열 × 하위 계열 × 부위 × 기법 노드(세부 있으면 세부)",
+   "merged_from_draft": {
+    "M6|None|None|K01": [
+     "UP-M6-002",
+     "UP-M6-003"
+    ],
+    "M10|None|바디|K06": [
+     "UP-M10-001",
+     "UP-M10-002"
+    ],
+    "M12|None|None|K03": [
+     "UP-M12-001",
+     "UP-M12-002",
+     "UP-M12-003"
+    ],
+    "M6|None|얼굴 전체|K01": [
+     "UP-M6-007",
+     "UP-M6-010"
+    ],
+    "M8|프락셔널|얼굴 전체|K04b": [
+     "UP-M8-008",
+     "UP-M8-009"
+    ],
+    "M9|RF (고주파)|얼굴 전체|K05": [
+     "UP-M9-004",
+     "UP-M9-006"
+    ],
+    "M9|RF (고주파)|목|K05": [
+     "UP-M9-007",
+     "UP-M9-025",
+     "UP-M9-029"
+    ],
+    "M9|RF (고주파)|팔뚝|K05": [
+     "UP-M9-023",
+     "UP-M9-026"
+    ]
+   },
+   "pros": "키가 원천이 따로 부르는 것에서만 갈림 · 코드(uses_technique 단일)와 맞음 · 장비가 정하는 값이 장비에 붙음",
+   "cons": "technique 노드에 parent 속성 · 단위 시술/장비 속성 칸 추가(SPEC 개정 몫)"
+  },
+  {
+   "id": "안 2",
+   "recommend": false,
+   "nodes": 56,
+   "unit_procedure_keys_draft": "약 210(추정)",
+   "what": "층 13 · 펄스 3 · 대상 근육 16 까지 하위 노드",
+   "key": "계열 × 하위 × 부위 × 기법 잎(층 · 펄스 포함)",
+   "pros": "층 · 펄스로 바로 질의 가능",
+   "cons": "「또는」 층 5곳(관자놀이 · 팔자 · 입술 · 턱선 · 목)에서 한 시술이 둘로 · M8 토닝 3행 × 펄스 최대 3 → +6 · 근육 노드는 부위와 1:1 이라 키 0 증가인데 노드만 16"
+  },
+  {
+   "id": "안 3",
+   "recommend": false,
+   "nodes": 65,
+   "unit_procedure_keys_draft": 209,
+   "what": "초안 그대로(평평한 65)",
+   "key": "계열 × 하위 × 부위 × 초안 기법",
+   "pros": "없음",
+   "cons": "장비 속성(모노폴라) · 하위 계열(IPL · 루비) · 제품 디자인(오메가)이 기법과 섞임 — 2단계 이전 문제 재발"
+  }
+ ],
+ "conflicts": [
+  {
+   "id": "X1",
+   "what": "「비근근」 한 표기에 두 근육",
+   "a": "zones glabella 「비근근 (Procerus)」",
+   "b": "zones nose 「비근근 (Nasalis)」",
+   "resolve": "값 사전 키 = 영문(Procerus 눈살근 · Nasalis 코근 — KMA 표준 한글) · 원천 표기는 `source_label` 로 보관 · 원천 수정 후보: glabella 표기 「비근근」→「눈살근」"
+  },
+  {
+   "id": "X2",
+   "what": "클라리티2 펄스 방식",
+   "a": "원장 항목 M8-5-4 「롱펄스 532+1064nm」 · 허가 모델 「CLARITY II LPA」(Long Pulse Alexandrite)",
+   "b": "제품 항목 M8-P-3 「Q-switched Nd:YAG」",
+   "resolve": "롱펄스(허가 모델명 근거) · M8-P-3 설명은 원천 수정 후보"
+  },
+  {
+   "id": "X3",
+   "what": "기법 상위 축 — taxonomy group ↔ profiles mechanism",
+   "a": "group: M7 시술/기기 · M16 관리 · M17 관리",
+   "b": "mechanism: M7 mechanical(삽입) · M16 intravenous · M17 injection",
+   "resolve": "큰 기법은 mechanism + 2단계 정의(문헌) 기준 · group 은 계열 표시 속성(원문) — 고치지 않음"
+  },
+  {
+   "id": "X4",
+   "what": "DEC-002 D-02 예시 ↔ 원천 층",
+   "a": "D-02 예시 「HA 필러 · 코 · 피하 주입」",
+   "b": "zones nose safe_injection_depth 「골막상 (코뼈 부위) 또는 연골막상 (비첨부)」",
+   "resolve": "층 값은 원천 기준(골막상 @코 · 연골막상 @코끝) — D-02 예시는 형식 예시로 보고 문구 고침은 사용자 판단 J2"
+  },
+  {
+   "id": "X5",
+   "what": "LED 자리",
+   "a": "treatment-sequence 「M15-LED」",
+   "b": "2단계 정본 M8 하위 「LED」(D04)",
+   "resolve": "2단계 정본 따름 · 원천 수정 후보: categories 「M15-LED」→「M8-LED」"
+  },
+  {
+   "id": "X6",
+   "what": "셀렉V Q스위치",
+   "a": "2단계 주 하위 IPL(허가 펄스광선조사기)",
+   "b": "원천 설명 Q-switched Nd:YAG",
+   "resolve": "pulse_mode 를 보조 하위(엔디야그) 쪽에만 — 기법 값(K04 조사)은 그대로"
+  }
+ ],
+ "source_fix": {
+  "source_candidates": [
+   {
+    "file": "anatomy-danger-zones.json",
+    "path": "zones[glabella].botox_specific.target_muscle",
+    "from": "비근근 (Procerus)",
+    "to": "눈살근 (Procerus)",
+    "why": "X1"
+   },
+   {
+    "file": "taxonomy.json",
+    "path": "modality[M8].products[M8-P-3] 설명",
+    "from": "Q-switched Nd:YAG",
+    "to": "(허가 모델 CLARITY II LPA — 롱펄스)",
+    "why": "X2"
+   },
+   {
+    "file": "treatment-sequence.json",
+    "path": "sequence_order[11].categories",
+    "from": "M15-LED",
+    "to": "M8-LED",
+    "why": "X5"
+   }
+  ],
+  "dec_text": [
+   {
+    "target": "DEC-002.md D-02 예시",
+    "now": "「HA 필러 · 코 · 피하 주입」",
+    "fix": "「HA 필러 · 코 · 주입」(층 속성: 콧등 골막상 · 코끝 연골막상)",
+    "why": "J2 — 원천 anatomy nose safe_injection_depth 「골막상 (코뼈 부위) 또는 연골막상 (비첨부)」 · 예시 문구만(결정 내용 그대로)",
+    "who": "코디 → writer"
+   }
+  ],
+  "step3": [
+   {
+    "target": "step3-decisions.json strings 「표정근」(얼굴 노드 · kind 해부학 이름(속성))",
+    "fix": "step3 얼굴 노드 해부학 이름 속성에서 빼기 — 4단계 대상 근육 값(H15)으로 넘김",
+    "why": "10-28 해부학 결정(대상 근육 → 4단계) · 부위 노드에는 같은 겉자리 의학 이름만",
+    "who": "코디(3단계 정본 갱신 때) · **반영됨** 2026-10-29"
+   }
+  ]
+ },
+ "oq_closed": [
+  {
+   "oq": "DEC-002 OQ-201",
+   "q": "「어떻게(기법)」 목록과 세분화 · 네페르티티 리프트가 기법인가",
+   "answer": "안 1 노드 24 + 속성 사전 — 층은 속성(키 밖) · 네페르티티 리프트 = 5단계 단위 시술 이름(기법 K01 · 대상 근육 Platysma)"
+  },
+  {
+   "oq": "DEC-003 OQ-310",
+   "q": "실 구조 · 유형(코그 · 모노 · 볼륨)",
+   "answer": "삽입 세부 노드 3(K02a~c) · 모양 낱말(2방향 · 다방향 · 콘 · 오메가 · 루프 · 텐션 · 벌집 · 몰딩 메쉬)은 제품 속성 thread_design"
+  },
+  {
+   "oq": "DEC-003 OQ-311",
+   "q": "도구 · 방식명 vs 기법 · 장비",
+   "answer": "더마롤러 · 더마스탬프 · MTS롤러 = 도구 형태 속성 · IPL · 알렉산드라이트 · 콜드플라즈마 = 2단계 하위 계열(정본) · BBL스킨타이트 = 5단계 이름"
+  },
+  {
+   "oq": "DEC-003 OQ-308",
+   "q": "수액의 투여 경로",
+   "answer": "4단계는 노드 둘(K01 주입 · K01b 정맥 주사)만 준다 — 단위 시술마다 고르는 일은 5단계(1단계 정본 허가 품목 · MFDS 용법 조회 결정론). 4단계 open 아님"
+  }
+ ],
+ "not_done": [
+  "단위 시술마다 기법 붙이기(5단계 — 항목 이름 · detail 칸은 지도상 5단계)",
+  "site_caution · 혈관 · 신경 · 합병증(8단계)",
+  "SPEC 개정(technique.parent · 속성 칸)"
+ ],
+ "revision": "2026-10-29 5단계 반영: K13 미세색소주입 신설(U3) · K06 정의 넓힘(U6) · 계열 기본 기법 N2~N7(U1 · U4) · H03 행선지 N2(U1)"
+}

@@ -1,0 +1,1547 @@
+{
+  "scope": "artifact correctness and immutable inputs only; not clinical validation",
+  "passed": 274,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/build.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/facts.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/inputs.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/tools.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/raw/config.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/raw-manifest.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_build.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/scripts/gold_ingest.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/combo-recipes.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/complications.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/extracted.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/market-pricing.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/patient-education.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pih-risk.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/post-procedure-timeline.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-profiles.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/products.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic-build.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/semantic.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/source-map.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply-log.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-cancel-recheck.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d09-web.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d12-web.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d15-web.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d16-web.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17-2.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d17.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d18.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d19.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-d20-31.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-domestic7.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-check.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-export-recheck.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-kpic.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-n45-check.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-A.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-B.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-C.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products-v1-frozen.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-source-fix.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-step5-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v2.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-families.v3.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-open-resolve.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step2-step5-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-lexicon.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step3-sites.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step4-techniques.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-research2.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.v-pre7.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-packages.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step6-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-apply.py"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-decisions.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-effect.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-research.json"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/README.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/concern-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-concern-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-explanation-check/references/rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/families.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-family-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/package-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-package-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/query-patterns.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-product-check/references/rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/measures.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-quality-eval/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-relation-check/references/relation-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-semantic-check/references/semantic-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/name-fields.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/nodes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-site-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/family-defaults.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/nodes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/record-schema.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-technique-check/references/value-dictionary.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/SKILL.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/inheritance-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/key-rules.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/mistakes.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/origin-questions.md"
+    },
+    {
+      "check": "input_preserved",
+      "pass": true,
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/reference/2026-10-27-skills-procedure-hub/procedure-hub-unit-check/references/record-schema.md"
+    },
+    {
+      "check": "issue_ids_unique",
+      "pass": true,
+      "count": 42
+    },
+    {
+      "check": "issue_contract",
+      "pass": true
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[0].subcategories[1].items[3].extracted.safety.common_adverse_effects"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[0].subcategories[1].items[3].extracted.safety.common"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "path": "$.extracted[7].source_text['safety.common']"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-02",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[0].subcategories[2].items[7].extracted.safety.common_adverse_effects"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-02",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[0].subcategories[2].items[7].extracted.safety.common"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-02",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "path": "$.extracted[25].source_text['safety.common']"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-03",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[6].products[1].extracted.safety.common_side_effects"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-03",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[6].products[1].extracted.safety.common"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "LOSS-03",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "path": "$.taxonomy_products[36].source_text['safety.common']"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ANCHOR-10",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[8].complaints[10]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ANCHOR-10",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.claims[365]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ANCHOR-11",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[8].complaints[11]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ANCHOR-11",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.claims[366]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-095",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[0].complaints[13].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-095",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[95]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-097",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[0].complaints[14].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-097",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[97]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-099",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[0].complaints[15].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-099",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[99]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-101",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[0].complaints[16].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-101",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[101]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-130",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[1].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-130",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[130]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-131",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[2].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-131",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[131]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-190",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[9].complaints[0].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-190",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[190]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-191",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[9].complaints[1].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-191",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[191]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-193",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[9].complaints[2].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-193",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[193]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-194",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[9].complaints[3].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-194",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[194]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-200",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[10].complaints[3].combos[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-200",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[200]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-201",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[10].complaints[4].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-201",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[201]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-211",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[11].complaints[7].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-211",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[211]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-212",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[11].complaints[8].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-212",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[212]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-213",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[11].complaints[9].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-213",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[213]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-226",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[0].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-226",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[226]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-227",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[1].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-227",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[227]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-228",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[2].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-228",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[228]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-229",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[4].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-229",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[229]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-230",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[5].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-230",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[230]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-231",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[13].complaints[6].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ARITY-231",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[231]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "SCOPE-ORDER-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+      "path": "$.rules[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "SCOPE-ORDER-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.claims[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ORIGIN-CC-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[1].complaints[3]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "ORIGIN-CC-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[111]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "CAND-volume",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "path": "$.comparisons[2]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "CAND-volume",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.combos[72].members[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "CAND-wrinkle",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+      "path": "$.comparisons[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "CAND-wrinkle",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.combos[71].members[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-109",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[1].complaints[3].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-109",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[109]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-110",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[1].complaints[3].combos[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-110",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[110]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-111",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[1].complaints[3].combos[2]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-111",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[111]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-132",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[3].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-132",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[132]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-133",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[3].combos[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-133",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[133]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-134",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[4].combos[0]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-134",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[134]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-135",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+      "path": "$.problems[3].complaints[4].combos[1]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "NOTE-LINK-135",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+      "path": "$.step8_notes[135]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PRODUCT-SCOPE-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[3].subcategories[3].items[4]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PRODUCT-SCOPE-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+      "path": "$.product_links[243]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PROJECTION-K8-0028",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "path": "$.category_specific[1].checks[5].label"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PROJECTION-K8-0028",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.conditions.not_condition[2]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PROJECTION-K8-0029",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+      "path": "$.category_specific[1].checks[6].label"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PROJECTION-K8-0029",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.conditions.not_condition[3]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PATIENT-LANG-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+      "path": "$.categories.M2.adverse_effects[2]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "PATIENT-LANG-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+      "path": "$.evidence.statements[19]"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "RESOLUTION-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[9].subcategories[0].items[0].extracted.onset_duration.duration"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "RESOLUTION-01",
+      "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+      "path": "$.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+    },
+    {
+      "check": "issue_reference_value",
+      "pass": true,
+      "issue": "RESOLUTION-01",
+      "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json",
+      "path": "$.node_slots[280]"
+    },
+    {
+      "check": "schema_field_contracts",
+      "pass": true,
+      "count": 63
+    },
+    {
+      "check": "schema_field_names_unique",
+      "pass": true
+    },
+    {
+      "check": "direct_comparison_arithmetic",
+      "pass": true
+    },
+    {
+      "check": "direct_differences",
+      "pass": true
+    },
+    {
+      "check": "loss_evidence_count",
+      "pass": true
+    },
+    {
+      "check": "primary_ID_groups",
+      "pass": true
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "inventory.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "field-census.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "uncertainty-hits.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "decision-uncertainty-hits.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "stage-metrics.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "identity-collisions.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "direct-comparisons.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "step8-origin-locators.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "provenance-coverage.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "normalization-collisions.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "schema-proposal.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "id-design.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "issues.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "inventory.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "stage-metrics.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "field-census.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "uncertainty-hits.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "decision-uncertainty-hits.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "direct-comparisons.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "normalization-collisions.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "identity-collisions.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "duplicate-cc-evidence.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "step8-origin-locators.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "schema-proposal.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "audit.py"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "curate.py"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "propose.py"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "id-design.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "provenance-coverage.json"
+    },
+    {
+      "check": "report_link_exists",
+      "pass": true,
+      "target": "verification.json"
+    },
+    {
+      "check": "report_comparison_arithmetic",
+      "pass": true,
+      "total": 9785
+    }
+  ]
+}

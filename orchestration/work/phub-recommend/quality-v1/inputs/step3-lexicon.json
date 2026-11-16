@@ -1,0 +1,2472 @@
+{
+ "version": "1.1",
+ "note": "부위 문자열 사전 — 순서 = 우선순위(같은 시작 위치면 앞 것). first=true 는 맨 앞 우선. 영문 패턴은 대소문자 무시(case_sensitive=true 만 구분) · 이름 칸 목록은 step3-decisions.json name_fields(v5)",
+ "normalize": "공백 제거 · 영문으로 시작하면 소문자 · 라틴 글자 악센트 제거(NFKD 결합 부호 · 글자 수 보존 — v4 F-B, 원천 문자열을 매칭 전에 접는다)",
+ "excluded_keys": [
+  {
+   "suffix": "citations.[].title",
+   "reason": "논문 제목 — 원천 내용이 아니라 서지(코디 기본값 F1)"
+  }
+ ],
+ "entries": [
+  {
+   "expr": "#skip:ALA",
+   "pattern": "\\bALA(?![A-Za-z])",
+   "case_sensitive": true,
+   "first": false
+  },
+  {
+   "expr": "#skip:광대역",
+   "pattern": "광대역",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:페이스메이커",
+   "pattern": "페이스메이커",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:코스",
+   "pattern": "코스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:코그",
+   "pattern": "코그",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:피코",
+   "pattern": "피코",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:볼륨",
+   "pattern": "볼륨",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:볼뉴머",
+   "pattern": "볼뉴머",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:볼루스",
+   "pattern": "볼루스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:볼류",
+   "pattern": "볼류",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:고려해볼",
+   "pattern": "고려해볼",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:사다리꼴근",
+   "pattern": "사다리꼴근",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:슈퍼투턱주사",
+   "pattern": "슈퍼투턱주사",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:이부프로펜",
+   "pattern": "이부프로펜",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:복직근이개",
+   "pattern": "복직근이개",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:대이개신경",
+   "pattern": "대이개신경",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:이개측두신경",
+   "pattern": "이개측두신경",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:하이드라페이셜",
+   "pattern": "하이드라페이셜",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:craniofacial",
+   "pattern": "craniofacial",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:foreign body",
+   "pattern": "foreign body",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:목적",
+   "pattern": "목적",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:목표",
+   "pattern": "목표",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:항목",
+   "pattern": "항목",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:목욕",
+   "pattern": "목욕",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:눈에 띄",
+   "pattern": "눈에 띄",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:눈에 보이",
+   "pattern": "눈에 보이",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:손상",
+   "pattern": "손상",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:발생",
+   "pattern": "발생",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:발적",
+   "pattern": "발적",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:몸이 ",
+   "pattern": "몸이 ",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:몸의 ",
+   "pattern": "몸의 ",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:몸에서",
+   "pattern": "몸에서",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:몸 안",
+   "pattern": "몸 안",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:몸 밖",
+   "pattern": "몸 밖",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:신경근",
+   "pattern": "신경근",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:부정맥",
+   "pattern": "부정맥",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:혈전정맥염",
+   "pattern": "혈전정맥염",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:nerve signals",
+   "pattern": "nerve signals",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "#skip:stops nerve",
+   "pattern": "stops nerve",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "‹부위›라인",
+   "pattern": "(?<![가-힣])(?:관자놀이|겨드랑이|눈꺼풀|콧망울|입꼬리|사각턱|승모근|옆구리|허벅지|종아리|엉덩이|비키니|이마|미간|관자|눈가|눈밑|눈썹|코끝|콧등|콧대|광대|입가|팔자|인중|잇몸|턱끝|턱선|턱밑|두피|팔뚝|복부|가슴|눈|볼|팔|배|힙|손|발)\\s?라인",
+   "case_sensitive": false,
+   "first": true,
+   "note": "W7 규칙 일반형(v4 W-C) — 노드 이름 · 동의어 바로 뒤 「라인」. 전용 항목이 있는 꼴(페이스 · 얼굴 · 턱 · 코 · 목 · 어깨 · 헤어 · 바디 · 브라 · 다리 · 허리 · 아이 · 마리오네트 · 입술 · 등 · V)과 쇄골(같은 표면 다른 뜻 — 알려진 한계)은 뺐다. 결정 없는 문자열로 open → 결정에 「부위+다른 축(D-07)」 한 줄로 닫는다"
+  },
+  {
+   "expr": "풀페이스큐레이션",
+   "pattern": "풀페이스큐레이션",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "페이스앤넥큐레이션",
+   "pattern": "페이스앤넥큐레이션",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "넥큐레이션",
+   "pattern": "넥큐레이션",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디큐레이션",
+   "pattern": "바디큐레이션",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "리쥬란아이",
+   "pattern": "리쥬란 ?아이",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "엠페이스",
+   "pattern": "엠페이스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "튠페이스",
+   "pattern": "튠페이스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "인모드바디",
+   "pattern": "인모드바디",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디인모드",
+   "pattern": "바디인모드",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디써마지",
+   "pattern": "바디써마지",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디HIFU",
+   "pattern": "바디HIFU",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "거미정맥",
+   "pattern": "거미정맥",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "정맥(투여 경로)",
+   "pattern": "(?<![가-힣])정맥(?= ?(?:주사|투여|내|으로|로|영양|수액))|정맥주사|\\bIV\\b",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "혈관 · 신경 이름",
+   "pattern": "\\b[A-Za-z]+(?: [a-z]+){0,3} (?:artery|arteries|vein|nerve)s?\\b|[Dd]orsal nasal|[가-힣]{0,6}(?:동맥|정맥)(?:[가-힣]{0,3}분지|가지)?|(?:안면|측두|안와하|안와상|활차상|하악변연|협근|관골|외비|눈물|이|부|천측두)신경(?: ?[가-힣]{0,3}분지)?|눈동맥|안동맥|\\b[Ss]upra(?:orbital|trochlear)\\b",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "해부 지표(뼈 · 선 · 구조)",
+   "pattern": "안와(?:상연|하공|연|격막|상부|상절흔|내)|상안와|안와(?![주가-힣])|이신경공|이주|관자궁|관골궁|측두(?:융합선|선)|상측두융합선|쇄골|내안각|비밸브|이하선관?|침샘|협지방체|Buccal fat pad|mental foramen|orbital rim|Pitanguy|STL|(?<![가-힣])이개(?![가-힣])|deep temporal fascia|superior temporal line|orbital septum|\\b[Tt]ragus\\b|\\b[Ss]ubmandibular (?:salivary )?glands?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "조직층",
+   "pattern": "진피(?:층)?|표피(?:층)?|피하(?=층|조직|지방| |주|에|,|\\)|-|$)|피하지방층?|(?:심부)?측두근막(?:이)?|근막층?|골막상?층?|연골막상|SMAS|점막하?|유두진피|망상진피|그물진피",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "얼굴 전체",
+   "pattern": "전체얼굴|전체 얼굴|얼굴 ?전체|전안면|안면 전체",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "풀페이스",
+   "pattern": "풀페이스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "전체미백",
+   "pattern": "전체미백",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "얼굴윤곽",
+   "pattern": "얼굴 ?윤곽|facial contouring",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "얼굴혈관종",
+   "pattern": "얼굴혈관종",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "얼굴형",
+   "pattern": "얼굴형",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "얼굴-목 경계선",
+   "pattern": "얼굴-목 경계선",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "얼굴",
+   "pattern": "얼굴",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "페이스라인",
+   "pattern": "페이스 ?라인|얼굴 라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "페이스리프팅",
+   "pattern": "페이스 ?리프(?:팅|트)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "애플 페이스",
+   "pattern": "애플 페이스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "페이스",
+   "pattern": "(?<![가-힣])페이스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "안면홍조",
+   "pattern": "안면홍조증?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "안면거상",
+   "pattern": "안면거상술?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "중안면",
+   "pattern": "중안면부?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "하안면",
+   "pattern": "하안면부?|lower face",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "표정근",
+   "pattern": "표정근",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "안면",
+   "pattern": "안면부?|facial(?! artery| vein| nerve)|\\bface\\b",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마주름",
+   "pattern": "이마 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마필러",
+   "pattern": "이마 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마지방이식",
+   "pattern": "이마 ?지방이식",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마 볼륨",
+   "pattern": "이마 ?볼륨",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마/관자놀이",
+   "pattern": "이마/관자놀이",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이마",
+   "pattern": "이마",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "forehead",
+   "pattern": "[Ff]orehead|전두근|[Ff]rontalis",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "미간주름",
+   "pattern": "미간 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "미간",
+   "pattern": "미간",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "glabella",
+   "pattern": "[Gg]labellar?|추미근|[Cc]orrugator(?: supercilii)?|[Pp]rocerus",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "관자놀이충전",
+   "pattern": "관자놀이 ?충전",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "관자놀이",
+   "pattern": "관자놀이|관자(?![궁가-힣])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "측두부",
+   "pattern": "측두부|측두(?![가-힣])|측두(?=의 )|[Tt]emple|측두근(?!막)|[Tt]emporalis",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈썹반영구",
+   "pattern": "눈썹 ?반영구",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈썹하수",
+   "pattern": "눈썹 ?하수|눈썹 처짐|Mephisto",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈썹",
+   "pattern": "눈썹",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "까치발",
+   "pattern": "까치발(?: 주름)?|까마귀발(?: 주름)?|crow'?s feet|crows-feet",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈가주름",
+   "pattern": "눈가 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈가보톡스",
+   "pattern": "눈가 ?보톡스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈가 쳐짐",
+   "pattern": "눈가 ?쳐짐",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈가",
+   "pattern": "눈가|눈\\ufffd리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈 주변",
+   "pattern": "눈 ?주변|눈 ?주위|안와 ?주위|[Pp]eriorbital|꺼진 눈",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "안륜근",
+   "pattern": "안륜근|[Oo]rbicularis oculi",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈꼬리",
+   "pattern": "눈꼬리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈물고랑",
+   "pattern": "눈물고랑|tear trough",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "하안검",
+   "pattern": "하안검(?! ?외반)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "윗눈꺼풀",
+   "pattern": "윗눈꺼풀",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "다크서클필러",
+   "pattern": "다크서클 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "다크서클",
+   "pattern": "다크서클",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "애교필러",
+   "pattern": "애교 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "애교살",
+   "pattern": "애교살?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈밑 꺼짐",
+   "pattern": "눈밑 ?꺼짐|눈밑 ?주름|눈밑 ?볼륨",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈밑",
+   "pattern": "눈밑",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈꺼풀쳐짐",
+   "pattern": "눈꺼풀 ?(?:쳐짐|처짐)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "안검하수",
+   "pattern": "안검하수|안검외반|하안검 ?외반",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "아이라인반영구",
+   "pattern": "아이라인 ?반영구|아이라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈꺼풀",
+   "pattern": "눈꺼풀|상안검거근|안검(?!하수|외반)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "눈(기관 · 동작)",
+   "pattern": "(?<![가-힣])눈(?= ?(?:떨림|손상|건조|비비|문지르|무거|보호|이 ))|팬더눈|눈부심|눈물(?!고랑|신경)|\\bdry eyes?\\b|\\beyes?\\b",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "코안면",
+   "pattern": "코안면(?:전문)?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코입술주름",
+   "pattern": "코입술주름|비순주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "비순구",
+   "pattern": "비순구|[Nn]asolabial(?: [Ff]old)?|비순홈|상순거근|[Ll]evator labii superioris",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "콧망울",
+   "pattern": "콧망울|비익|\\bala\\b|\\balar\\b|콧구멍",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "토끼주름",
+   "pattern": "토끼주름|bunny lines?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "콧등",
+   "pattern": "콧등|코등|콧대|비배부|코뼈|\\bdorsum\\b",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "매부리코",
+   "pattern": "매부리코",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코끝",
+   "pattern": "코끝|코 끝|비첨부?|비주|[Cc]olumella(?:r)?|depressor septi nasi",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코필러",
+   "pattern": "코 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코실리프팅",
+   "pattern": "코 ?실리프팅",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코조각주사",
+   "pattern": "코 ?조각주사",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코성형",
+   "pattern": "코성형",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코 라인",
+   "pattern": "코 라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "코",
+   "pattern": "(?<![가-힣])코(?=$|[\\s/·,.)(]|가|에|의|를|는|와|로|,)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "nose",
+   "pattern": "\\b[Nn]ose\\b|[Nn]asalis|비근근 \\(Nasalis\\)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼쳐짐",
+   "pattern": "(?<![귓귀])볼 ?(?:쳐짐|처짐)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "불독살",
+   "pattern": "불독살",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼살",
+   "pattern": "(?<![귓귀])볼살",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼필러",
+   "pattern": "(?<![귓귀])볼 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼지방이식",
+   "pattern": "(?<![귓귀])볼 ?지방이식",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼볼륨충전",
+   "pattern": "(?<![귓귀])볼 ?볼륨 ?(?:충전)?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼/광대",
+   "pattern": "(?<![귓귀])볼/광대",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼/관자놀이",
+   "pattern": "(?<![귓귀])볼/관자놀이",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "볼",
+   "pattern": "(?<![귓귀])(?<![가-힣])볼(?=$|[\\s/·,.)(]|이|가|에|의|을|를|은|는|과|와|도|로|만)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "뺨",
+   "pattern": "뺨",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "협부",
+   "pattern": "상?협부|[Bb]uccal|협근(?!신경)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "cheek",
+   "pattern": "\\b[Cc]heek\\b(?: \\(Malar/Buccal\\))?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "광대축소주사",
+   "pattern": "광대 ?축소 ?주사",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "광대",
+   "pattern": "광대뼈?|관골부?|[Mm]alar|[Zz]ygomatic(?:us)?|광대근",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "마리오네트라인",
+   "pattern": "마리오네트 ?라인|마리오네트선|마리오넷",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입꼬리주름",
+   "pattern": "입꼬리 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입가주름",
+   "pattern": "입가 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입가 거상",
+   "pattern": "입가 거상",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입가",
+   "pattern": "입가|입 ?(?:주변|주위)|구주위|[Pp]erioral|around the mouth",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입냄새",
+   "pattern": "입냄새",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "구강 · 구순 질환",
+   "pattern": "구강|구순포진|구순염",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입(동작)",
+   "pattern": "(?<![가-힣])입(?= ?(?:벌|움직))|(?<![가-힣])입(?=을 크게 벌)|(?<![가-힣])입(?=과 입술 움직임)",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "입술필러",
+   "pattern": "(?<!흡)입술 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입술반영구",
+   "pattern": "(?<!흡)입술 ?반영구",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입술 볼륨",
+   "pattern": "(?<!흡)입술 ?(?:볼륨|확대|라인)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입술",
+   "pattern": "(?<!흡)입술|윗입술|상구순|상순|하순|구순(?!포진|염)|[Vv]ermill?ion|\\b[Ll]ips?\\b|[Ll]ip flip|구륜근|[Oo]rbicularis oris",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "인중선",
+   "pattern": "인중선",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "인중",
+   "pattern": "인중|[Pp]hiltrum",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "잇몸미소",
+   "pattern": "잇몸 ?미소|[Gg]ummy smile",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "잇몸",
+   "pattern": "잇몸|치은|\\bgum\\b",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "구각",
+   "pattern": "구각(?:부|하제근)?|[Oo]ral commissure|commissure|DAO",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "입꼬리",
+   "pattern": "입꼬리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "팔자주름",
+   "pattern": "팔자 ?주름",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "팔자",
+   "pattern": "팔자(?!렌)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "이중턱",
+   "pattern": "이중턱",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "자갈턱",
+   "pattern": "자갈턱|peach pit chin|턱 딤플",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "뾰족턱",
+   "pattern": "뾰족턱",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "사각턱보톡스",
+   "pattern": "사각턱 ?보톡스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "사각턱",
+   "pattern": "사각턱",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "교근",
+   "pattern": "교근(?! ?축소)|[Mm]asseter|턱근육|하악각|턱폭",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "교근축소",
+   "pattern": "교근 ?축소",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱끝 볼륨",
+   "pattern": "턱 ?끝 ?(?:볼륨|연장)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱끝 필러",
+   "pattern": "턱 ?끝 ?(?:지방이식|필러)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱끝",
+   "pattern": "턱 ?끝|[Mm]entum|이부(?=[ 처정])|이근|[Mm]entalis|\\b[Cc]hin\\b(?: \\(Mentum\\))?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱선무너짐",
+   "pattern": "턱선 ?무너짐",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱선실리프팅",
+   "pattern": "턱선 ?실리프팅",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱선보톡스",
+   "pattern": "턱선 ?보톡스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱라인",
+   "pattern": "턱 ?라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱선",
+   "pattern": "턱선|[Jj]awline(?: \\(Mandibular border\\))?|하악연|[Mm]andibular border",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱 아래",
+   "pattern": "턱 ?아래|턱밑지방|[Ss]ubmental|under the chin",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱살",
+   "pattern": "턱살",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱밑",
+   "pattern": "턱밑",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "하관",
+   "pattern": "하관",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱필러",
+   "pattern": "턱 ?필러",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱보톡스",
+   "pattern": "턱 ?보톡스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱/턱선",
+   "pattern": "턱/턱선",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "상악골",
+   "pattern": "상악골|위턱뼈",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "하악",
+   "pattern": "하악(?![가-힣])|[Mm]andib(?:le|ular)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "턱",
+   "pattern": "턱(?![가-힣])|턱(?=[을은으이의과도])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "V라인",
+   "pattern": "[Vv]라인|브이라인|V라인주사",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "목주름",
+   "pattern": "목 ?주름|목의 세로 ?주름|목 앞쪽 세로주름|목 밴드|[Pp]latysmal bands?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "네페르티티",
+   "pattern": "네페르티티(?: 리프트)?|Nefertiti lift",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "목 실리프팅",
+   "pattern": "목 ?실리프팅|목 ?리프팅",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "목",
+   "pattern": "(?<![가-힣])목(?=$|[\\s/·,)(]|의|과|선|전용|을|에|이)|초음파목|네크라인|(?<![가-힣])목 라인|넥(?=큐)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "neck",
+   "pattern": "\\b[Nn]eck\\b|경부(?!터)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "광경근",
+   "pattern": "광경근|플래티스마근?|[Pp]latysma(?:l)?|흉쇄유돌근|SCM",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "승모근보톡스",
+   "pattern": "승모근 ?보톡스",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "승모근",
+   "pattern": "승모근|사다리꼴근|등세모근|[Tt]rapezius",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "어깨라인",
+   "pattern": "어깨 ?라인|어깨(?! 처짐\\(손상)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "두피 시술명",
+   "pattern": "두피(?:메조|PRP|엑소좀|스케일링|주사|치료)|MTS두피",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "헤어라인반영구",
+   "pattern": "헤어라인 ?반영구|헤어라인|SMP",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "정수리",
+   "pattern": "정수리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "두피",
+   "pattern": "두피|\\b[Ss]calp\\b",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디 시술명",
+   "pattern": "바디(?:리프팅|컨투어링|탄력|큐레이션)|바디 ?라인|바디 ?쳐짐|바디 ?탄력",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "바디(여성)",
+   "pattern": "바디\\(여성\\)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "body contouring",
+   "pattern": "body contouring",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "Body(대분류 영문)",
+   "pattern": "\\bBody\\b",
+   "case_sensitive": true,
+   "first": false
+  },
+  {
+   "expr": "바디",
+   "pattern": "바디|EMS 바디|탄탄한 몸|몸매|신체 처짐",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "겨드랑이",
+   "pattern": "겨드랑이?|액와|[Aa]xill\\w*",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "팔(채혈 · 투여 · 자세)",
+   "pattern": "(?<![가-힣])팔(?=에서 소량| 혈관| 올린| 무거움)",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "팔뚝",
+   "pattern": "팔뚝",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "팔",
+   "pattern": "(?<![가-힣])팔(?![가-힣])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "뱃살",
+   "pattern": "뱃살",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "복부",
+   "pattern": "복부|복직근|(?<![가-힣0-9.~-])배(?= ?(?:및|근육|,))|임신선",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "옆구리",
+   "pattern": "옆구리|러브핸들|허리 ?라인|허리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "등살",
+   "pattern": "등살(?:주사)?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "브라라인",
+   "pattern": "브라라인|브래지어 라인|브라 라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "등",
+   "pattern": "(?<=가슴/)등|(?<![가-힣])등(?= ?(?:라인|부위|브라라인))|(?<![가-힣] )(?<![가-힣])등(?= (?:지방|마사지))",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "상체 거상",
+   "pattern": "상체 거상|머리 높여",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "가슴(부종 위치)",
+   "pattern": "목/가슴으로 확대",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "가슴",
+   "pattern": "가슴",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "수염",
+   "pattern": "수염",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "구레나룻",
+   "pattern": "구레나룻",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "힙업",
+   "pattern": "힙업",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "엉덩이",
+   "pattern": "엉덩이|둔부|[Bb]uttocks?|[Gg]lute\\w*",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "힙",
+   "pattern": "(?<![가-힣])힙(?![가-힣])|(?<![가-힣])볼기(?:부위)?(?![가-힣])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "허벅지 안쪽",
+   "pattern": "허벅지 안쪽",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "허벅지",
+   "pattern": "허벅지|대퇴부(?! 전외측)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "대퇴부 전외측",
+   "pattern": "대퇴부 전외측",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "무릎",
+   "pattern": "무릎",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "다리(자세)",
+   "pattern": "다리 거상",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "하지정맥류",
+   "pattern": "하지정맥류",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "다리라인",
+   "pattern": "다리 ?라인",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "다리",
+   "pattern": "(?<![가-힣])다리",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "종아리",
+   "pattern": "종아리|비복근",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "손(위생 · 증상)",
+   "pattern": "손 ?위생|손 깨끗|손끝|손톱|손으로",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "손등",
+   "pattern": "손등(?:회춘술| 회춘술)?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "손바닥",
+   "pattern": "손바닥",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "손",
+   "pattern": "(?<![가-힣])손(?![가-힣])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "발바닥",
+   "pattern": "발바닥",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "발끝",
+   "pattern": "발끝",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "발",
+   "pattern": "(?<![가-힣])발(?![가-힣])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "질",
+   "pattern": "(?<![가-힣])질(?=\\s?(?:타이트닝|레이저|건조|이완))",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "비키니",
+   "pattern": "비키니",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "전신항노화",
+   "pattern": "전신 ?항노화|전신재생",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "전신(계통 · 약동학)",
+   "pattern": "전신(?:발진|독성|흡수|적|으로)|전신에",
+   "case_sensitive": false,
+   "first": true
+  },
+  {
+   "expr": "전신",
+   "pattern": "(?<=\\()전신(?=\\))|전신 처짐",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "전신(계통)",
+   "pattern": "전신",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "hair",
+   "pattern": "\\bhair(?![A-Za-z])",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "모발",
+   "pattern": "모발(?!이식)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "모발이식",
+   "pattern": "모발이식",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "체모",
+   "pattern": "체모(?!방)",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "골반저근",
+   "pattern": "골반저근?",
+   "case_sensitive": false,
+   "first": false
+  },
+  {
+   "expr": "관절",
+   "pattern": "관절치료",
+   "case_sensitive": false,
+   "first": false
+  }
+ ],
+ "residual": {
+  "note": "사전 매치 범위 밖에서 부위 형태소가 든 낱말(한글 · 영문 단어 단위)을 찾는다. 허용 목록에 없으면 open. 영문 어간은 단어 안에서도 찾는다(underarm · forearm · neckline — v4 F-B), 소음은 allowed. v4(2026-10-28) 목록 출처 — 덧대기 대신 표준 부위 목록에서 뽑음: (1) 영문 · 해부명: FIPAT Terminologia Anatomica 2판(TA2, 2019) Part 1 「Partes corporis humani」 96–175 · 「Regiones corporis humani」 176–350 — https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf (2026-10-28 내려받음) (2) 한글: 대한의사협회 의학용어 6.1판 검색(TA2 영문 이름 255개를 조회, 91개 정확 일치 + 낱말 66개 조회) — https://term.kma.org/search/list.asp (2026-10-28 조회). 대한해부학회 『해부학용어』 6판은 온라인 목록이 없어 직접 대조하지 못했다 — 의학용어집 6판은 해부학회 용어를 반영(정민석 외, 해부·생물인류학 32(1):9-15, 2019, https://doi.org/10.11637/aba.2019.32.1.9)한 것이라 그 대용으로 썼다(예: gluteal region → 볼기부위, nucha → 목덜미, groin → 고샅부위, umbilical region → 배꼽부위, areola → 젖꽃판 · 유륜). (3) 상담 구어 묶음(review-step3-v3-report F-B): 쌍꺼풀 · 꺼풀 · 겨털 · 뒷목 · 목덜미 · 등허리 · 콧날 · 눈두덩 · 유두 · 유륜 · 견갑 · 볼기 · 배꼽 · 사타구니 · 귓바퀴 / underarm · forearm · jowl · neckline · décolletage · love handles · muffin top. 목록 밖 신조어는 잡히지 않는다 — step3-sites.md 「알려진 한계」",
+  "morphemes_ko": [
+   "얼굴",
+   "페이스",
+   "안면",
+   "이마",
+   "미간",
+   "관자",
+   "측두",
+   "눈",
+   "안와",
+   "안검",
+   "애교",
+   "다크서클",
+   "코",
+   "콧",
+   "비배",
+   "비순",
+   "비익",
+   "비주",
+   "비첨",
+   "볼",
+   "뺨",
+   "광대",
+   "관골",
+   "협",
+   "입",
+   "구각",
+   "구강",
+   "구순",
+   "상순",
+   "하순",
+   "입술",
+   "잇몸",
+   "인중",
+   "팔자",
+   "턱",
+   "하관",
+   "하악",
+   "상악",
+   "자갈",
+   "귀",
+   "이개",
+   "목",
+   "경부",
+   "넥",
+   "데콜테",
+   "가슴",
+   "쇄골",
+   "어깨",
+   "승모",
+   "겨드랑",
+   "팔",
+   "손",
+   "발",
+   "다리",
+   "하지",
+   "허벅",
+   "대퇴",
+   "종아리",
+   "무릎",
+   "엉덩",
+   "둔부",
+   "힙",
+   "복부",
+   "배",
+   "뱃",
+   "옆구리",
+   "러브",
+   "허리",
+   "등",
+   "브라",
+   "비키니",
+   "사타",
+   "서혜",
+   "두피",
+   "머리",
+   "헤어",
+   "정수리",
+   "전신",
+   "바디",
+   "몸",
+   "교근",
+   "전두",
+   "눈썹",
+   "구레",
+   "수염",
+   "마리오",
+   "유방",
+   "젖",
+   "정강",
+   "골반",
+   "치아",
+   "치은",
+   "외음",
+   "음부",
+   "회음",
+   "항문",
+   "생식",
+   "두정",
+   "후두",
+   "귓",
+   "뒤통수",
+   "마루",
+   "꼭지",
+   "귓바퀴",
+   "귀구슬",
+   "맞구슬",
+   "귓불",
+   "눈꺼풀",
+   "꺼풀",
+   "눈확",
+   "속눈썹",
+   "바깥코",
+   "콧구멍",
+   "목덜미",
+   "목뿔",
+   "빗장",
+   "몸통",
+   "젖꽃판",
+   "유륜",
+   "명치",
+   "갈비",
+   "배꼽",
+   "고샅",
+   "샅",
+   "두덩",
+   "척주",
+   "엉치",
+   "천골",
+   "꼬리뼈",
+   "미골",
+   "비뇨생식",
+   "위팔",
+   "아래팔",
+   "팔꿈치",
+   "팔꿉",
+   "손목",
+   "손허리",
+   "손가락",
+   "엄지",
+   "새끼손",
+   "새끼발",
+   "손바닥",
+   "손등",
+   "볼기",
+   "궁둥",
+   "넓적다리",
+   "오금",
+   "장딴지",
+   "발목",
+   "발꿈치",
+   "발뒤꿈치",
+   "발허리",
+   "발가락",
+   "발등",
+   "발바닥",
+   "견갑",
+   "어깨뼈",
+   "삼각근",
+   "흉근",
+   "쌍꺼풀",
+   "겨털",
+   "뒷목",
+   "등허리",
+   "콧날",
+   "눈두덩",
+   "사타구니",
+   "볼때기",
+   "허릿살",
+   "옆구리살",
+   "팔뚝살",
+   "허벅지살"
+  ],
+  "stems_en": [
+   "face",
+   "facial",
+   "forehead",
+   "brow",
+   "glabell",
+   "temple",
+   "tempor",
+   "orbit",
+   "eye",
+   "lid",
+   "palpeb",
+   "tear",
+   "nose",
+   "nasal",
+   "nasol",
+   "dorsum",
+   "tip",
+   "columell",
+   "ala",
+   "cheek",
+   "malar",
+   "buccal",
+   "zygom",
+   "midface",
+   "lip",
+   "labi",
+   "oral",
+   "mouth",
+   "perioral",
+   "commiss",
+   "marionet",
+   "gum",
+   "gingiv",
+   "chin",
+   "mentum",
+   "mental",
+   "jaw",
+   "mandib",
+   "masset",
+   "submental",
+   "neck",
+   "cervic",
+   "platysm",
+   "decollet",
+   "trapez",
+   "shoulder",
+   "axill",
+   "arm",
+   "hand",
+   "palm",
+   "finger",
+   "foot",
+   "feet",
+   "sole",
+   "leg",
+   "thigh",
+   "calf",
+   "knee",
+   "buttock",
+   "glute",
+   "hip",
+   "abdom",
+   "belly",
+   "flank",
+   "back",
+   "bra",
+   "bikini",
+   "scalp",
+   "hair",
+   "body",
+   "trunk",
+   "chest",
+   "breast",
+   "parotid",
+   "frontal",
+   "crow",
+   "ear",
+   "lobe",
+   "groin",
+   "pubic",
+   "genital",
+   "shin",
+   "elbow",
+   "wrist",
+   "ankle",
+   "nipple",
+   "head",
+   "occiput",
+   "occipit",
+   "vertex",
+   "pariet",
+   "mastoid",
+   "auric",
+   "lobule",
+   "helix",
+   "tragus",
+   "eyelid",
+   "palpebr",
+   "eyebrow",
+   "supercili",
+   "bucca",
+   "nasi",
+   "philtr",
+   "nucha",
+   "hyoid",
+   "submandib",
+   "sternocleid",
+   "clavic",
+   "thorax",
+   "thorac",
+   "pector",
+   "mamma",
+   "areola",
+   "umbilic",
+   "navel",
+   "inguin",
+   "pubi",
+   "hypogastr",
+   "epigastr",
+   "hypochondr",
+   "loin",
+   "waist",
+   "dorsal",
+   "vertebr",
+   "scapul",
+   "lumbar",
+   "sacr",
+   "coccyg",
+   "pelvi",
+   "perine",
+   "anal",
+   "anus",
+   "urogenit",
+   "vulva",
+   "deltoid",
+   "armpit",
+   "brachi",
+   "cubit",
+   "forearm",
+   "carp",
+   "thenar",
+   "thumb",
+   "digit",
+   "limb",
+   "cox",
+   "femor",
+   "genu",
+   "poplit",
+   "crur",
+   "sura",
+   "malleol",
+   "heel",
+   "calcan",
+   "plantar",
+   "toe",
+   "hallu",
+   "underarm",
+   "jowl",
+   "neckline",
+   "decolletage",
+   "love handle",
+   "lovehandle",
+   "muffin top",
+   "saddlebag",
+   "double chin"
+  ],
+  "allowed": [
+   {
+    "reason": "「입」 글자 겹침 — 주입 · 삽입 · 흡입 · 입자 · 수입 · 「…입니다」 · 입문 · 입체 · 입모근(모낭 근육)",
+    "morphemes": [
+     "입"
+    ],
+    "tokens": [
+     "가입하시면",
+     "것입니다",
+     "과정입니다",
+     "과주입",
+     "나노입자",
+     "나노입자가",
+     "나노입자를",
+     "년입니다",
+     "높입니다",
+     "메커니즘입니다",
+     "물입자",
+     "미세입자",
+     "미세입자가",
+     "미세입자는",
+     "미세입자를",
+     "미세입자와",
+     "미세입자의",
+     "미입증",
+     "반영구적입니다",
+     "방식입니다",
+     "보입니다",
+     "분야입니다",
+     "사안입니다",
+     "사항입니다",
+     "삽입",
+     "삽입되어",
+     "삽입된",
+     "삽입부",
+     "삽입에",
+     "삽입으로",
+     "삽입은",
+     "삽입점",
+     "삽입층",
+     "삽입하면서",
+     "삽입하여",
+     "삽입합니다",
+     "삽입해서",
+     "색소입자를",
+     "수입",
+     "시술입니다",
+     "시술제품입니다",
+     "쌓입니다",
+     "약물주입",
+     "외입니다",
+     "원칙입니다",
+     "위입니다",
+     "유입",
+     "유입되고",
+     "유입되어",
+     "이온도입",
+     "인체유래주입",
+     "일시적입니다",
+     "입니다",
+     "입모근의",
+     "입문",
+     "입문으로",
+     "입센",
+     "입원",
+     "입자",
+     "입자가",
+     "입자는",
+     "입자들을",
+     "입자들이",
+     "입자로",
+     "입자를",
+     "입자보다",
+     "입자에",
+     "입자의",
+     "입자형",
+     "입증되지",
+     "입체",
+     "입체가열",
+     "입체감",
+     "입체적",
+     "입체적으로",
+     "장비입니다",
+     "정상입니다",
+     "제제입니다",
+     "제품입니다",
+     "제한적입니다",
+     "조합입니다",
+     "주사입니다",
+     "주입",
+     "주입과",
+     "주입기",
+     "주입되어",
+     "주입된",
+     "주입량",
+     "주입량을",
+     "주입부",
+     "주입부를",
+     "주입부위",
+     "주입액에",
+     "주입액의",
+     "주입에",
+     "주입에도",
+     "주입으로",
+     "주입은",
+     "주입을",
+     "주입이",
+     "주입이면",
+     "주입장비",
+     "주입점",
+     "주입제",
+     "주입제로",
+     "주입층",
+     "주입층별",
+     "주입하고",
+     "주입하는",
+     "주입하며",
+     "주입하면",
+     "주입하면서",
+     "주입하여",
+     "주입하지",
+     "주입한",
+     "주입한다",
+     "주입합니다",
+     "주입해서",
+     "주입형",
+     "줄입니다",
+     "지방흡입",
+     "지방흡입으로",
+     "진피절제주입법",
+     "진피절제주입법과",
+     "초미세입자",
+     "침입",
+     "타입",
+     "타입별",
+     "타입의",
+     "탈모주입",
+     "투입",
+     "투입과",
+     "펜타입",
+     "프로그램입니다",
+     "피부타입",
+     "피부타입에",
+     "피부타입의",
+     "피하주입",
+     "필링입니다",
+     "필수입니다",
+     "핵심입니다",
+     "현상입니다",
+     "효과입니다",
+     "효과적입니다",
+     "흡입",
+     "흡입마사지",
+     "흡입식",
+     "흡입에",
+     "흡입으로",
+     "흡입하면서"
+    ]
+   },
+   {
+    "reason": "「…하지」 동사 어미",
+    "morphemes": [
+     "하지"
+    ],
+    "tokens": [
+     "가능하지만",
+     "권고하지",
+     "권장하지",
+     "기대하지",
+     "뚜렷하지만",
+     "마사지하지",
+     "보장하지",
+     "보장하지는",
+     "비슷하지만",
+     "사용하지",
+     "성립하지",
+     "시술하지만",
+     "시행하지",
+     "안전하지는",
+     "압박하지",
+     "약하지만",
+     "어색하지",
+     "원하지",
+     "위험하지",
+     "유의하지",
+     "일정하지",
+     "자극하지",
+     "작용하지",
+     "적용하지",
+     "적합하지",
+     "전달하지",
+     "주사하지",
+     "지지하지만",
+     "충분하지",
+     "취급하지",
+     "침투하지",
+     "하지"
+    ]
+   },
+   {
+    "reason": "「발」 글자 겹침 — 발현 · 발열 · 유발 · 재발 · 발한 · 개발 · 성분 이름",
+    "morphemes": [
+     "발"
+    ],
+    "tokens": [
+     "개발",
+     "개발되고",
+     "개발된",
+     "개발로",
+     "개발한",
+     "과다발한",
+     "과발달로",
+     "기형유발",
+     "동시다발로",
+     "면역유발",
+     "무발열원",
+     "반발",
+     "발달",
+     "발달된",
+     "발달로",
+     "발달해서",
+     "발라시클로비르",
+     "발라주기",
+     "발라주면",
+     "발모",
+     "발성장애",
+     "발열",
+     "발열감",
+     "발열과",
+     "발열물질",
+     "발음",
+     "발작성",
+     "발전해",
+     "발진",
+     "발진이나",
+     "발한",
+     "발한을",
+     "발한증",
+     "발현",
+     "발현기",
+     "발현까지",
+     "발현에",
+     "발현을",
+     "발효",
+     "발휘합니다",
+     "세발",
+     "세발자제",
+     "신경발아",
+     "아발란체",
+     "유발",
+     "유발되며",
+     "유발하고",
+     "유발하므로",
+     "유발하여",
+     "유발한다",
+     "유발할",
+     "유발함으로써",
+     "유발합니다",
+     "재발",
+     "재발률",
+     "재발성",
+     "재발이",
+     "증발시키고",
+     "증발을",
+     "촉발한다",
+     "촉발합니다",
+     "포토나스타발브",
+     "프레가발린",
+     "필발",
+     "활발해집니다",
+     "후발"
+    ]
+   },
+   {
+    "reason": "나열 「…등」 · 중등도 · 균등 — 부위 「등」은 사전 문맥 패턴이 잡음(8회)",
+    "morphemes": [
+     "등"
+    ],
+    "tokens": [
+     "균등",
+     "균등하게",
+     "균등한",
+     "동등",
+     "등장",
+     "등재됨",
+     "불균등한",
+     "중등도",
+     "중등증"
+    ]
+   },
+   {
+    "reason": "사마귀 · 복귀 · 희귀",
+    "morphemes": [
+     "귀"
+    ],
+    "tokens": [
+     "귀속하지",
+     "복귀",
+     "복귀까지",
+     "사마귀",
+     "편평사마귀",
+     "희귀"
+    ]
+   },
+   {
+    "reason": "성분 · 제품 이름(알코올 · 코직산 · 코엔자임 · 피코 · 코팅 …)",
+    "morphemes": [
+     "코"
+    ],
+    "tokens": [
+     "글루코네이트",
+     "글리코사미노글리칸",
+     "뉴메코",
+     "니코틴아미드아데닌디뉴클레오타이드",
+     "미스코",
+     "반코마이신",
+     "솔코세릴필링",
+     "아미노글리코시드",
+     "아스코르브산",
+     "아스코르브산을",
+     "알코올",
+     "에코",
+     "엑소코바이오",
+     "이뮨코어수액",
+     "코메도",
+     "코메도를",
+     "코메도익스트랙터",
+     "코어톡스",
+     "코엔자임",
+     "코엔자임으로",
+     "코직산",
+     "코직산을",
+     "코직산이",
+     "코팅",
+     "코팅된",
+     "피코코어",
+     "하이드로코르티손",
+     "하이어코퍼레이션"
+    ]
+   },
+   {
+    "reason": "배양 · 배출 · 배치 · 「N배」(배수)",
+    "morphemes": [
+     "배"
+    ],
+    "tokens": [
+     "림프배액을",
+     "배가",
+     "배가됨",
+     "배설",
+     "배설되며",
+     "배수",
+     "배액",
+     "배액을",
+     "배양",
+     "배양검사",
+     "배양액",
+     "배양액과",
+     "배양액에",
+     "배양액에서",
+     "배양액은",
+     "배양액의",
+     "배양에서",
+     "배열된",
+     "배예요",
+     "배제",
+     "배제하며",
+     "배증파는",
+     "배출",
+     "배출되며",
+     "배출되어",
+     "배출된다",
+     "배출됩니다",
+     "배출시킵니다",
+     "배출을",
+     "배출이",
+     "배치",
+     "배치로",
+     "배치를",
+     "배치별",
+     "배합",
+     "분배",
+     "재배열",
+     "재배치",
+     "재배치하고",
+     "절개배농",
+     "줄기세포배양액",
+     "중배엽",
+     "지배적이어서",
+     "혈액배양"
+    ]
+   },
+   {
+    "reason": "손실 · 결손 · 손잡이",
+    "morphemes": [
+     "손"
+    ],
+    "tokens": [
+     "결손",
+     "결손부위",
+     "경피수분손실을",
+     "볼륨손실",
+     "손실",
+     "손실과",
+     "손실로",
+     "손실을",
+     "손잡이에",
+     "수분손실",
+     "시력손실"
+    ]
+   },
+   {
+    "reason": "성분 · 제품 · 일반어 겹침(아목시실린 · 아다팔렌 · 세팔렉신 · 팔로마 · 트라넥삼산 · 라이넥 · 바넥스 · 협진 · 위협 · 주경부터 · 볼록함 · 에볼루션 · 토브라마이신 · 브라이트닝 · 헤어맥스 · 헤어셀 · 「헤어 제품」 · 「몸에 부담」)",
+    "morphemes": [
+     "목",
+     "팔",
+     "넥",
+     "협",
+     "경부",
+     "볼",
+     "브라",
+     "헤어",
+     "몸"
+    ],
+    "tokens": [
+     "라엔넥",
+     "라엔넥의",
+     "라이넥",
+     "메디오스타넥스트프로",
+     "몸에",
+     "바넥스",
+     "바넥스프로",
+     "볼록함",
+     "브라이트닝레이저",
+     "세팔렉신",
+     "아다팔렌",
+     "아다팔렌과",
+     "아다팔렌은",
+     "아목시실린",
+     "에볼루션",
+     "에브넥",
+     "위협할",
+     "이볼브",
+     "주경부터",
+     "토브라마이신",
+     "트라넥사믹산",
+     "트라넥사민산",
+     "트라넥삼산",
+     "트라넥삼산으로",
+     "트라넥삼산을",
+     "트라넥삼산의",
+     "팔로마",
+     "헤어",
+     "헤어맥스",
+     "헤어셀",
+     "협력작용으로",
+     "협진"
+    ]
+   },
+   {
+    "reason": "영문 겹침 — 근육 몸통 「body 내」 · temporary · Legacy · Lipko · lipids · lipoic · LIPO · brace · breastfeeding",
+    "morphemes": [
+     "body",
+     "leg",
+     "tempor",
+     "lip",
+     "bra",
+     "breast"
+    ],
+    "tokens": [
+     "LIPO",
+     "Legacy",
+     "Lipko",
+     "Temporary",
+     "body",
+     "body에",
+     "brace",
+     "breastfeeding",
+     "lipids",
+     "lipoic",
+     "lipotransfer",
+     "temporarily",
+     "temporary"
+    ]
+   },
+   {
+    "reason": "v3 새 형태소의 겹침 — 후두근(인두 · 후두 근육, 합병증 문맥) · 쥐젖(병변) · 젖산(성분)",
+    "morphemes": [
+     "후두",
+     "젖",
+     "shin"
+    ],
+    "tokens": [
+     "후두근",
+     "쥐젖",
+     "젖산"
+    ]
+   },
+   {
+    "reason": "영문 어간이 단어 안에서 겹침(v4 F-B 단어 안 매칭) — 일반 영단어 · 학술지 · URL · 저자 이름 · 제품 이름(research · appearance · surface · balance · Digital · onlinelibrary · Valanciene · HArmonyCa · EMFACE · Cryolipolysis …)",
+    "morphemes": [
+     "ear",
+     "anal",
+     "chin",
+     "arm",
+     "lip",
+     "bra",
+     "ala",
+     "digit",
+     "face",
+     "shin",
+     "tip"
+    ],
+    "tokens": [
+     "abrasion",
+     "analysis",
+     "appear",
+     "appearance",
+     "balance",
+     "balanced",
+     "balancing",
+     "blanching",
+     "clear",
+     "clears",
+     "cryolipolysis",
+     "digital",
+     "emface",
+     "flip",
+     "harm",
+     "harmonyca",
+     "hmpgloballearningnetwork",
+     "imbalance",
+     "multiple",
+     "nearby",
+     "onlinelibrary",
+     "reaching",
+     "refreshing",
+     "research",
+     "surface",
+     "valanciene",
+     "warm"
+    ]
+   },
+   {
+    "reason": "v4 표준 목록 한글 형태소의 겹침 — 제품 이름",
+    "morphemes": [
+     "마루"
+    ],
+    "tokens": [
+     "데마루치"
+    ]
+   }
+  ],
+  "allowed_patterns": [
+   {
+    "reason": "나열 「…등」 — 앞이 「낱말+공백」일 때만(쉼표 · 빗금 · 가운뎃점 · 여는 괄호 · 따옴표 뒤의 「등」, 문장 머리의 「등」은 부위일 수 있어 open) · 앞 낱말이 노드 이름 · 노드로 가는 결정 문자열(+과/와)이면 허용 안 함(v4 W-C — 「가슴과 등」 · 「팔 등」은 부위 나열일 수 있어 open)",
+    "token": "등(?:의|을|이|으로|에|과|은)?",
+    "before": "[^\\s,/·(\\[{\"]\\s$",
+    "not_after_node_term": true
+   },
+   {
+    "reason": "배수 「N배」 — 앞이 숫자일 때만",
+    "token": "배",
+    "before": "\\d$"
+   },
+   {
+    "reason": "논문 저자 이름(성) — 대소문자 구분 · 앞이 「이니셜, 」일 때만(citations[].authors 「Cho SW, Shin BH」)",
+    "token": "Shin",
+    "before": "[A-Z]{1,3}, $"
+   },
+   {
+    "reason": "「지방흡입술」(조사 붙은 꼴 포함) — 「흡입술」 안의 「입술」 겹침(N1)",
+    "token": "지방흡입술[가-힣]*",
+    "before": ""
+   }
+  ],
+  "morpheme_patterns_ko": [
+   {
+    "label": "유두",
+    "pattern": "(?<!모)유두(?!진피)",
+    "reason": "모유두(모낭) · 유두진피(조직층) 앞뒤 막기"
+   }
+  ],
+  "sources": [
+   {
+    "name": "FIPAT Terminologia Anatomica 2nd ed. (TA2) Part 1 — Partes corporis humani 96–175 · Regiones corporis humani 176–350",
+    "url": "https://cdn.dal.ca/content/dam/dalhousie/pdf/library/FIPAT/TA2/FIPAT-TA2-Part-1.pdf",
+    "accessed": "2026-10-28",
+    "used_for": "stems_en"
+   },
+   {
+    "name": "대한의사협회 의학용어 6.1판 검색(TA2 영문 → 한글)",
+    "url": "https://term.kma.org/search/list.asp",
+    "accessed": "2026-10-28",
+    "used_for": "morphemes_ko"
+   },
+   {
+    "name": "정민석 · 오창석 · 이영일, 해부학 선생이 의학용어집 제6판을 만드는 데 참여한 경험, 해부·생물인류학 32(1):9-15, 2019",
+    "url": "https://doi.org/10.11637/aba.2019.32.1.9",
+    "accessed": "2026-10-28",
+    "used_for": "의학용어집이 해부학용어를 반영한다는 근거(해부학용어집 6판 대용)"
+   },
+   {
+    "name": "상담 구어 묶음 — review-step3-v3-report.md F-B",
+    "url": "orchestration/work/phub-recommend/review-step3-v3-report.md",
+    "accessed": "2026-10-28",
+    "used_for": "morphemes_ko · stems_en 구어"
+   }
+  ]
+ }
+}

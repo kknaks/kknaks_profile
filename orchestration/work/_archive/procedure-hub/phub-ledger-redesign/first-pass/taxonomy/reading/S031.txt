@@ -1,0 +1,24 @@
+# S031  scope=M9 기기 리프팅  units=M9-P-6 | name
+# 상위 문맥: [{"pointer": "/modality/8", "id": "M9", "category": "기기 리프팅", "name": "기기 리프팅"}]
+@ /modality/8/products/6 M9-P-6 LDM
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M9-P-6"
+  /name = "LDM"
+  /name_en = "LDM-MED"
+  /manufacturer = "제이시스메디칼"
+  /country = "KR"
+  /mfds = null
+  /type = "초음파"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF 기술 기반의 피부 리프팅 기기로 심부 콜라겐 수축과 신생 콜라겐 생성을 유도한다."
+  /extracted/mechanism = "이온진동을 통해 조직 내 이온의 운동으로 심부 열을 발생시킨다. 이를 통해 기존 콜라겐의 즉각적 수축과 장기적 신생 콜라겐 생성으로 피부 탄력을 회복시킨다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 처짐" ‖ 1:"목 주름" ‖ 2:"팔뚝 처짐" ‖ 3:"복부 탄력 저하" ‖ 4:"전반적 피부 탄력 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"시술 직후 홍반" ‖ 1:"부종" ‖ 2:"일시적 감각 이상" ‖ 3:"화상(부적절한 사용 시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 효과 + 점진적 개선(2-3개월)"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"24시간 고온 노출 피하기(사우나, 찜질방)" ‖ 1:"자극적 화장품 최소 1주일 사용 금지" ‖ 2:"냉찜질로 부종 관리" ‖ 3:"자외선 차단 필수" ‖ 4:"충분한 수분 섭취"
+@ /modality/8 M9 기기 리프팅 기기 리프팅
+  /name = "기기 리프팅"

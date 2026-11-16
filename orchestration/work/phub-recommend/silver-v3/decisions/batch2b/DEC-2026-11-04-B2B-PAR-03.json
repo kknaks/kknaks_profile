@@ -1,0 +1,43 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "paren-synonym-unknown-tuples-4/#46",
+  "label": "미상 튜플을 뺀다 → (홍반, none, 일시) + (부종, none, 미상)",
+  "note": "추천대로 — 괄호 안 영문 표기",
+  "option": "drop_unknown"
+ },
+ "id": "DEC-2026-11-04-B2B-PAR-03",
+ "kind": "adverse_tuple_assign",
+ "new_value": {
+  "tuples": [
+   {
+    "course_id": "DIC-ff4e6c4fd1",
+    "event_id": "DIC-3976550d98",
+    "site_id": "none"
+   },
+   {
+    "course_id": "DIC-589c42f2e4",
+    "event_id": "DIC-6ca53d09be",
+    "site_id": "none"
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 「일시적 홍반·부종 (Erythema / Edema)」의 괄호 안 동의어가 만든 미상 튜플을 뺀다(§9.6.2a · 검토 v2.4 #46) · 사용자 메모: 추천대로 — 괄호 안 영문 표기",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M14/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "kind": "raw_name",
+  "locator": "complications.json:categories[].complications[].name@M14/3"
+ }
+}

@@ -9,6 +9,7 @@ aliases:
   - 깔린 클라이언트 호환
 up:
   - 2026-11-12-fix-web
+  - 2026-11-16-ext-api-charty1
 tags:
   - API
   - 하위호환
@@ -49,3 +50,4 @@ DAY 직원 앱(Flutter) `Need.parse` 는 `why` 를 문자열 그대로 받고 `d
 ## 출처
 
 - [[2026-11-12-fix-web]] §2 — DAY 수락 뒤 미시작(`accept`)을 서버에서 뺄지 웹에서만 거를지를 앱 파서(`Need.parse` · `Limits.parse`)로 판정 · 앱 무수정 · 새 빌드 없음
+- [[2026-11-16-ext-api-charty1]] §2 — 읽는 쪽이 외부 API(KOS 내부)일 때: 내지 않을 원소(다 쓴 묶음)는 모양을 보지 않고 먼저 거른다 · protobuf 0 생략은 「없는 칸 = 0」으로 받되 칸 자체가 없거나 타입이 틀리면 여전히 502(`procedure/back/app/service/ext.py` `_ticket` · DEC-012 D-46)

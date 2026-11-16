@@ -1,0 +1,31 @@
+{
+ "id": "DEC-2026-11-05-B3-P-REN-03",
+ "kind": "canonical_rename",
+ "target": {
+  "dictionary": "modality",
+  "code": "M5",
+  "canonical": "PRP/자가혈"
+ },
+ "new_value": {
+  "canonical": "자가혈 유래 시술",
+  "old_as_synonym": true,
+  "old_id_as_alias": true,
+  "is_marketing_name": null,
+  "synonyms": []
+ },
+ "reason": "추천·미확정 — 계열 M5 정준 이름 「자가혈 유래 시술」(PRP·PRF(CGF)·MCT·ACT 는 하위분류 · 「PRP/자가혈」·「PRP 피부재생술」은 동의어). 사용자 「자가혈이 더 넓은 개념」.",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@4"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「자가혈이 더 넓은 개념」(추천 · 미확정)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

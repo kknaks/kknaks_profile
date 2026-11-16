@@ -1,0 +1,82 @@
+{
+ "total": 6,
+ "passed": 6,
+ "cases": [
+  {
+   "id": "BASE",
+   "type": "baseline",
+   "input": "원천 그대로",
+   "expect": [],
+   "actual": [],
+   "note": "원천 그대로 — open 0",
+   "pass": true
+  },
+  {
+   "id": "T2",
+   "type": "remove_decision",
+   "input": "결정에서 ['하관', '하관'] 뺌",
+   "expect": [
+    "결정없음:하관|하관",
+    "트리밖행선지없음:하관"
+   ],
+   "actual": [
+    "결정없음:하관|하관",
+    "트리밖행선지없음:하관"
+   ],
+   "note": "재검수 v2 T2",
+   "pass": true
+  },
+  {
+   "id": "N-이마",
+   "type": "remove_decision",
+   "input": "결정에서 ['이마', '이마'] 뺌",
+   "expect": [
+    "결정없음:이마|이마"
+   ],
+   "actual": [
+    "결정없음:이마|이마"
+   ],
+   "note": "v5 이름 칸 가드 — 위험 부위 zone 이름 · 고민 메뉴 이름 칸",
+   "pass": true
+  },
+  {
+   "id": "N-forehead",
+   "type": "remove_decision",
+   "input": "결정에서 ['forehead', 'forehead'] 뺌",
+   "expect": [
+    "결정없음:forehead|forehead"
+   ],
+   "actual": [
+    "결정없음:forehead|forehead"
+   ],
+   "note": "v5 이름 칸 가드 — zone id · name_en 칸",
+   "pass": true
+  },
+  {
+   "id": "N-코필러",
+   "type": "remove_decision",
+   "input": "결정에서 ['코필러', '코필러'] 뺌",
+   "expect": [
+    "결정없음:코필러|코필러"
+   ],
+   "actual": [
+    "결정없음:코필러|코필러"
+   ],
+   "note": "v5 이름 칸 가드 — 시장가 · CC · 고민 메뉴 이름 칸",
+   "pass": true
+  },
+  {
+   "id": "N-사각턱",
+   "type": "remove_decision",
+   "input": "결정에서 ['사각턱', '사각턱'] 뺌",
+   "expect": [
+    "결정없음:사각턱|사각턱"
+   ],
+   "actual": [
+    "결정없음:사각턱|사각턱"
+   ],
+   "note": "v5 이름 칸 가드 — 시장가 · CC · 고민 메뉴 — 추가 지시 7 노드",
+   "pass": true
+  }
+ ]
+}

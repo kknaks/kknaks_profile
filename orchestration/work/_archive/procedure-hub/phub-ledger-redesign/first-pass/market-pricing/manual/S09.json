@@ -1,0 +1,33 @@
+{
+ "segment": "S09", "direct_read": true, "read_note": "M9 에너지기기(HIFU/RF) 8항목 전부 직접 읽음.",
+ "last_pointer": "/categories/8/items/7/high",
+ "observations": [
+  ["/categories/8/name", "'에너지기기(HIFU/RF)' — 괄호 안 '/' 로 두 기술 계열. 각 항목이 HIFU·RF 중 어느 쪽인지 원문에 없음(항목에 계열 표시 없음).", "B"],
+  ["/categories/8/items/0/name", "장비명 후보(울쎄라·슈링크 유니버스·더블로골드·써마지 FLX·인모드) + 괄호 적용 범위(풀페이스·턱라인·눈가). 이 카테고리는 '전체얼굴' 대신 '풀페이스' 를 씀.", "P"],
+  ["/categories/8/items/5/name", "'써마지 FLX (풀페이스 900샷)' unit '900샷', '(눈가 450샷)' unit '450샷' — 샷 수가 가격 기준. 다른 장비 항목(unit '1회')은 샷 수 없음.", "P"],
+  ["/categories/8/items/0/low", "8항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/8/name", "에너지기기(HIFU/RF)", ["분류명", "'/' 연결", "영문 약어"], ""],
+  ["/categories/8/items/0/name", "울쎄라", ["장비명 후보"], ""],
+  ["/categories/8/items/0/name", "(풀페이스)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/8/items/1/name", "울쎄라", ["장비명 후보"], ""],
+  ["/categories/8/items/1/name", "(턱라인)", ["부위 후보"], ""],
+  ["/categories/8/items/2/name", "슈링크 유니버스", ["장비명 후보"], ""],
+  ["/categories/8/items/2/name", "(풀페이스)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/8/items/3/name", "슈링크 유니버스", ["장비명 후보"], ""],
+  ["/categories/8/items/3/name", "(턱라인)", ["부위 후보"], ""],
+  ["/categories/8/items/4/name", "더블로골드", ["장비명 후보"], ""],
+  ["/categories/8/items/4/name", "(풀페이스)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/8/items/5/name", "써마지 FLX", ["장비명 후보", "영한 혼합"], ""],
+  ["/categories/8/items/5/name", "(풀페이스 900샷)", ["적용 범위", "수량·단위"], ""],
+  ["/categories/8/items/6/name", "써마지 FLX", ["장비명 후보", "영한 혼합"], ""],
+  ["/categories/8/items/6/name", "(눈가 450샷)", ["부위 후보", "수량·단위"], ""],
+  ["/categories/8/items/7/name", "인모드", ["장비명 후보"], ""],
+  ["/categories/8/items/7/name", "(풀페이스)", ["적용 범위", "부위 후보"], ""]
+ ],
+ "issues": [
+  ["B-S09-1", "B", ["/categories/8/name"], "항목별 HIFU/RF 계열 표시가 없다."],
+  ["B-S09-2", "B", ["/categories/8/items/0/unit"], "unit '1회' 장비 항목들의 샷 수가 없다(써마지만 샷 수 있음)."]
+ ]
+}

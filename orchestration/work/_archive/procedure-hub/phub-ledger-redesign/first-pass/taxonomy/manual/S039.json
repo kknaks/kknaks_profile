@@ -1,0 +1,38 @@
+{"section":"S039","state":"read","last_pointer":"/modality/14/subcategories/0/items/36/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/20/name","/modality/14/subcategories/0/items/3/name","/modality/14/subcategories/0/items/20/detail","/modality/14/subcategories/0/items/3/extracted/overview"],"note":"'블랙필링'(TCA+살리실, 중강도)과 '블랙필'(글리콜산 표재성)이 별도 항목 — 이름이 거의 같고 내용이 다르다."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/27/name","/modality/14/subcategories/0/items/27/detail","/modality/7/subcategories/1/items/3/name"],"note":"'CO2필'(탄산팩 · CO2+O2 교환)은 M8 의 'CO2프락셔널'(10600nm 레이저)과 'CO2' 문자열을 공유하나 전혀 다른 시술. 문자열 일치로 연결 금지."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/19/detail","/modality/14/subcategories/0/items/30/detail","/modality/14/subcategories/0/items/34/detail","/modality/14/subcategories","/modality/14/subcategories/0/label"],"note":"'케미컬필링' 하위분류에 물리적 박피(미라필링 '산호칼슘미세침', 해초필·미라클필링 '담수해면체 미세침', 그린필 '기계적 박피술')와 메조테라피성(살몬필 'PDRN … 메조테라피 필링') 항목이 함께 있다."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/23/detail","/modality/14/subcategories/0/items/24/detail","/modality/14/subcategories/0/items/29/detail","/modality/14/subcategories/0/items/26/detail"],"note":"detail 첫 토막이 별칭·원명인 경우: 'FOxC Peel'(여우필), '플래티넘필'(플라필), '물톡스'(PHA필), 'PRX-T33'(PRX필), '오리지널 GREEN PEEL'(그린필), 'Fermented Complex Regeneration'(FCR필), '탄산팩'(CO2필). 이후 ' · ' 로 성분·효과가 이어진다."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/33/extracted/mechanism","/modality/3/subcategories/0"],"note":"살몬필 'PDRN … A2A 수용체' 서술은 M4-1(PN/PDRN) 항목들과 같은 기전 서술(연결 키 없음)."},
+ {"status":"P","pointers":["/modality/14/subcategories/0/items/25/extracted/mechanism","/modality/14/subcategories/0/items/27/extracted/mechanism"],"note":"효능 주장형 기전 서술(산소 공급·보어 효과). 근거 미기재 — 승인하지 않음."}
+],
+"expressions":[
+ {"pointer":"/modality/14/subcategories/0/items/19/detail","text":"산호칼슘미세침","kinds":["시술·제품명"],"note":"붙여 쓴 재료+형태"},
+ {"pointer":"/modality/14/subcategories/0/items/20/detail","text":"TCA+살리실","kinds":["기호"],"note":"성분 결합"},
+ {"pointer":"/modality/14/subcategories/0/items/20/extracted/onset_duration/duration","text":"12-24개월","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/23/detail","text":"FOxC Peel · 수분+각질+여드름/미백/탄력 관리","kinds":["시술·제품명","기호"],"note":"'+' 와 '/' 혼용 나열"},
+ {"pointer":"/modality/14/subcategories/0/items/24/detail","text":"플래티넘필 · PHA+LHA+백금 · 초저자극 · 항산화+속건조 개선","kinds":["시술·제품명","기호","수식"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/26/detail","text":"PRX-T33 · TCA+H2O2+코직산 · 비박리성 바이오리버탈라이저","kinds":["시술·제품명","기호","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/26/extracted/mechanism","text":"과산화수소가 TCA의 각질 박리를 억제하여 비박리성 효과","kinds":["부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/27/detail","text":"탄산팩 · CO2+O2 교환 · 노폐물 배출+피부결","kinds":["시술·제품명","기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/27/extracted/mechanism","text":"보어 효과(Bohr effect)에 의해 헤모글로빈의 산소 해리를 촉진","kinds":["참조","주장"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/27/extracted/aftercare/2","text":"24시간 내 사우나·찜질방 피하기","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/28/detail","text":"민감/예민 피부 전용 · 피부장벽 개선 · 저자극","kinds":["조건","기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/29/extracted/mechanism","text":"PHA는 분자량이 큰 3세대 필링제로 각질층 상부에서만 작용하여","kinds":["비교","부위","수식"],"note":"'만' 한정"},
+ {"pointer":"/modality/14/subcategories/0/items/30/extracted/mechanism","text":"담수해면체(Spongilla lacustris)의 천연 실리카 미세침","kinds":["시술·제품명"],"note":"학명 병기"},
+ {"pointer":"/modality/14/subcategories/0/items/31/extracted/mechanism","text":"9가지 천연 허브와 식물 추출물","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/31/extracted/aftercare/3","text":"사우나/찜질방 2주간 금지","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/32/detail","text":"PHA+히알루론산+펩타이드+아미노산 22종 · 필링+영양 동시","kinds":["기호","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/33/extracted/aftercare/3","text":"알코올 성분 화장품 일주일간 금지","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/34/extracted/aftercare/2","text":"48시간 내 사우나/찜질방 금지","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/0/items/36/extracted/indications/primary/1","text":"면포성 여드름(블랙헤드, 화이트헤드)","kinds":["수식"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"아크네필","issue":"아크/NNP 네/MM 필/NNB — '네'를 관형사(수 4)로","impact":"수량 오탐 가능"},
+ {"scope":"all","surface":"산소필","issue":"산소/NNG 필/NNB — '필'을 의존명사로","impact":"시술명 분해(CO2필도 필/NNB)"}
+],
+"issues":[
+ {"id":"S039-F01","status":"F","pointers":["/modality/14/subcategories/0/items/19","/modality/14/subcategories/0/items/30","/modality/14/subcategories/0/items/31","/modality/14/subcategories/0/items/34","/modality/14/subcategories/0/items/33"],"note":"케미컬필링 하위분류에 물리적 박피·메조테라피성 항목.","impact":"박피 방식 축 분해는 설계 단계"},
+ {"id":"S039-F02","status":"F","pointers":["/modality/14/subcategories/0/items/20","/modality/14/subcategories/0/items/3"],"note":"블랙필링/블랙필 유사 이름 별개 항목.","impact":"동일성 판단 후속"}
+]}

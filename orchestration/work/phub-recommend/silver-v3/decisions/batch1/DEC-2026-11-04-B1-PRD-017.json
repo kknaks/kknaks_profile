@@ -1,0 +1,70 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허20-527호 · the 채움 프리미엄 No. 2 (the Chaeum Premium No. 2)",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@35/0"
+  },
+  {
+   "detail": "web: https://m.dailypharm.com/user/news/35353",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@35/1"
+  },
+  {
+   "detail": "web: https://dailypharm.com/user/news/340605",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@35/2"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-017",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "더채움 프리미엄",
+  "category": null,
+  "code": "M2",
+  "synonyms": [
+   "THE CHAEUM PREMIUM"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 1 허가 건 · 2 웹 · ledger_id auto-M2-1775364775108",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@35"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@35/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@35/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@35/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@35/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@35",
+   "value": "더채움프리미어",
+   "why": "다른 분류 항목 이름 「더채움프리미어」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

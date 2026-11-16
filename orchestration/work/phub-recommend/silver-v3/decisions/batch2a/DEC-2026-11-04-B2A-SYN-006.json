@@ -1,0 +1,137 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "CO2",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "post-procedure-timeline.json:timelines[].name@3",
+   "procedure-comparison.json:comparisons[].procedures[].name@3/1",
+   "treatment-optimization.json:by_age_group[].upgrade[]@3/0",
+   "treatment-sequence.json:common_combos[].sequence[]@7/0",
+   "treatment-sequence.json:minimum_intervals[].from@5"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {
+   "adverse": [
+    "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M8/0",
+    "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M8/4",
+    "literature-evidence.json:categories.{code}.adverse_effects[].statement@M8/0",
+    "literature-evidence.json:categories.{code}.adverse_effects[].statement@M8/4",
+    "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/3/2/0",
+    "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/3/3/0"
+   ]
+  },
+  "target": {
+   "canonical": "레이저",
+   "code": "M8",
+   "dictionary": "modality",
+   "entity_id": "MOD-59360be607",
+   "label_locators": [
+    "taxonomy.json:modality[].category@7",
+    "taxonomy.json:modality[].id@7"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/7/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": "M8",
+    "label": "프락셔널 CO2 레이저",
+    "locators": [
+     "post-procedure-timeline.json:timelines[].name@3"
+    ],
+    "ref_id": "REF-e214da53b7",
+    "relation": "R15"
+   },
+   {
+    "hint": "M8",
+    "label": "CO2 프랙셔널 레이저",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@3/1"
+    ],
+    "ref_id": "REF-7abbdf5aa8",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "프락셔널 CO2(피부결)",
+    "locators": [
+     "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+    ],
+    "ref_id": "REF-ce0cd41707",
+    "relation": "R17"
+   },
+   {
+    "hint": null,
+    "label": "프락셔널 CO2",
+    "locators": [
+     "treatment-sequence.json:common_combos[].sequence[]@7/0"
+    ],
+    "ref_id": "REF-adf0a7bea2",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "프락셔널 CO2",
+    "locators": [
+     "treatment-sequence.json:minimum_intervals[].from@5"
+    ],
+    "ref_id": "REF-adf0a7bea2",
+    "relation": "R18"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-006",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "레이저",
+  "category": null,
+  "synonyms": [
+   "CO2"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「CO2」 → 계열 M8 「레이저」(하위분류 미지정). 사전 modality 정준값 「레이저」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「CO2」는 시술 축 미등록 조각 5 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].id@7"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/7/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].name@3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].from@5"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ }
+}

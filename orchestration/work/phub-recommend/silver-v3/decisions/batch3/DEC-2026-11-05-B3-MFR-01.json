@@ -1,0 +1,37 @@
+{
+ "id": "DEC-2026-11-05-B3-MFR-01",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "manufacturer"
+ },
+ "new_value": {
+  "canonical": "앨러간/애브비",
+  "category": null,
+  "synonyms": [
+   "엘러간"
+  ]
+ },
+ "reason": "회사 사전 「앨러간/애브비」의 동의어 「엘러간」(표기 변형) — V3-2 괄호 안 회사 규칙이 「보톡스(엘러간)」을 그 회사 제품으로 읽게 된다.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-combos.json:combos[].packages[].products[]@0/2/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §12 V3-2 후속 · 검토 D-2 「엘러간」→ 「앨러간/애브비」 동의어"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「제품도 다 보톡스(회사명)으로 많이 쓴다」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

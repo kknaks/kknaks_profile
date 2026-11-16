@@ -1,0 +1,64 @@
+{
+  "_about": "직접 읽기에서 나온 잠정 관찰. 원문 값이 아니며 의미 확정이 아니다. 기호 P/B/I/F/K 는 issues.md 항목.",
+  "status": [
+    ["1차 범위 종료", "예 — 코디 확인 전. 원장 전체 완료 아님"],
+    ["전수 읽기", "S0·S1 두 구획 모두 직접 읽기 완료(27 rule × 7칸 + 메타 3)"],
+    ["구조·값 수집", "노드 {nodes} · 말단 {leaves} · 키 출현 {keys} · 중복 키 0 · 이스케이프 0 — source-map.json"],
+    ["형태소·표현 수집", "언어 텍스트 {applied}값 Kiwi(cong) 분석 · 토큰 {tokens} · 제외 {excluded}값(ID·코드·날짜·버전) 사유 기록 · 필드명 11개 별도 · 직접 표현 {manual} + regex 후보 {regex}"],
+    ["기계 검증", "verify.py PASS — validation.md"],
+    ["읽기 검토", "수식·조건·부정·가능성·범위·순서 표현을 rule 별로 대조. 결과 validation.md §5"],
+    ["알려진 분석 오류", "Kiwi 오분절/오태깅 known_issue {known}출현 — issues.md K1 (원시 출력 미교정)"],
+    ["열린 미결", "A 0(해결 1) · B 6 · C 0 · I 3 · P 7 · F 6 · K 4 — issues.md. 현재 사용자 선택 대기 0(미결이 닫혔다는 뜻 아님)"],
+    ["후속 의미 조사", "level 체계·from/to 방향·분기 interval·레이저 종류 명칭·다른 원장 참조 — issues.md F"]
+  ],
+  "columns": [
+    ["version", "string · 최상위 객체 키", "1", "—", "1.1", "`/version`"],
+    ["updated", "string(날짜형) · 최상위", "1", "—", "2026-07-11", "`/updated`"],
+    ["description", "string · 최상위", "1", "—", "시술 간 금기/주의사항/간격 매트릭스", "`/description`"],
+    ["rules", "array · 최상위 · 원소 object 27개", "1", "빈 배열 아님", "(27 object)", "`/rules`"],
+    ["rules/*", "object · 7키 고정 순서 from, from_name, to, to_name, level, interval, note", "27", "선택적 필드 없음 · 키 순서 27개 동일", "{{from:M1,…}}", "`/rules/0`"],
+    ["rules/*/from", "string · ID 코드 M+숫자", "27", "M1·M2·M3·M4·M5·M6·M7·M8·M9 (from 에 M11·M12 없음)", "M1", "`/rules/0/from`"],
+    ["rules/*/from_name", "string · 시술명", "27", "한글 단독 / 한글+'/'+한글 / 한글+괄호 영문 / 공백 포함", "바이오스티뮬레이터/콜라겐부스터", "`/rules/11/from_name`"],
+    ["rules/*/to", "string · ID 코드", "27", "M2·M4·M7·M8·M9·M11·M12 (to 에 M1·M3·M5·M6 없음)", "M11", "`/rules/5/to`"],
+    ["rules/*/to_name", "string · 시술명", "27", "한글 단독 / 한글+영문 혼합 / 괄호 영문", "마이크로니들링(MTS)", "`/rules/10/to_name`"],
+    ["rules/*/level", "string · 영문 코드", "27", "{level_counts} (build 집계)", "caution", "`/rules/1/level`"],
+    ["rules/*/interval", "string · 간격 구절", "27", "'같은 날 가능' / 'N주 간격 권장' / 'N~M주 간격(권장)' / 'N주·N개월 이상(간격)' / 'N개월 간격' / 분기형 '조건: 값 / 조건: 값'", "2~4주 간격 권장", "`/rules/7/interval`"],
+    ["rules/*/interval (분기형)", "string · 한 칸 안 ' / ' 로 분기 2개, 각 분기 '조건: 값'", "2", "rule 2(같은 날·괄호 순서 포함), rule 12", "비침습/프락셔널 논어블레이티브: 2~4주 / 어블레이티브(프락셔널 CO2/Er:YAG 등): 3~4개월", "`/rules/12/interval`"],
+    ["rules/*/note", "string · 1~4 문장, 마침표 구분", "27", "근거·순서(→)·조건·예외(괄호)·level 코드 언급", "동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관", "`/rules/0/note`"]
+  ],
+  "sections": {
+    "S0": [
+      "description 은 '금기/주의사항/간격'을 말하지만 level 값은 safe/caution/warning 셋이며 '금기'로 표시된 값은 없다(I1·F1).",
+      "updated 2026-07-11 · version 1.1 — 변경 이력은 원장 안에 없다(README 의 CHANGELOG 는 이번 범위 밖)."
+    ]
+  },
+  "rules": {
+    "0": ["note 의 순서(보톡스 먼저)는 from→to 순서와 같다. 비교: rule 3·6·13 은 반대 순서(P2)."],
+    "1": [],
+    "2": ["level=safe 이나 interval 이 두 분기이고 둘째 분기(박리)는 '3일~1주 간격 권장', note 는 'caution 유지'라 적는다 — 한 rule 의 level 칸 하나가 두 분기를 다 담지 못한다(I2).", "interval 은 'CO2·Er:YAG', note 는 'CO2/Er:YAG' — 같은 대상에 구분자가 다르다(I3).", "'박리/비박리'(rule 2)와 '어블레이티브/논어블레이티브'(rule 12·21)가 같은 구분인지 원문은 말하지 않는다(F4)."],
+    "3": ["순서: 리프팅(to) 먼저 → 보톡스(from) — from/to 와 반대(P2)."],
+    "4": [],
+    "5": ["순서·이유의 방향(무엇이 먼저인지) 진술 없음(B3)."],
+    "6": ["순서: 실(to) 먼저 → 필러(from) — from/to 와 반대(P2)."],
+    "7": ["interval '2~4주' 와 note 의 '특히 프락셔널, IPL은 4주' — 범위 안 값 선택 조건이 note 에만 있다(P5)."],
+    "8": [],
+    "9": ["note 의 '+'는 두 이유 연결. README '+ = 함께 시술'과 다른 쓰임(P3)."],
+    "10": [],
+    "11": [],
+    "12": ["interval 분기 조건의 수식 범위 모호(F3). '미세구' 뜻 불명(B4)."],
+    "13": ["level=safe 인데 interval 은 '1주 간격 권장' — safe 가 같은 날 가능을 뜻하지 않는 사례(P4). 순서 두 방향 모두 가능."],
+    "14": ["'시너지 조합' — 다른 원장(synergy) 개념 언급. 이 원장엔 참조 키 없음(F5)."],
+    "15": ["'MTS + PRP' 이름 순서가 from(M5 PRP)/to(M12 MTS)와 반대. '+'는 함께 시술 쓰임으로 읽힘."],
+    "16": ["'프락셔널 레이저'로 한정 — to_name '레이저' 전체에 대한 진술인지 불명(B2)."],
+    "17": ["'에너지기기' — to_name '기기 리프팅'과 다른 말(P1)."],
+    "18": [],
+    "19": [],
+    "20": ["'레이저 + HIFU' — HIFU 가 to_name '기기 리프팅'의 예로 읽힘(P1)."],
+    "21": ["interval 은 2주, note 괄호에 어블레이티브 4주 예외 — interval 칸만 쓰면 예외가 사라진다(P5)."],
+    "22": [],
+    "23": [],
+    "24": ["interval '3개월 이상' — '간격' 어휘 없음. 하한만 있음."],
+    "25": ["note '금지' 와 level=warning, interval '2~3개월 간격' 공존(P6)."],
+    "26": ["배열 끝 3개(rule 24~26)가 from=M6 — from 순서가 M9(rule 23) 뒤에 M6 로 돌아간다(구조 사실)."]
+  }
+}

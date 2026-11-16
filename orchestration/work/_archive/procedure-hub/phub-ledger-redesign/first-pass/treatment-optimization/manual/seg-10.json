@@ -1,0 +1,640 @@
+{
+  "segment": "SEG-10",
+  "read_status": "direct_read_done",
+  "read_note": "/combination_rules/0~7 각 rule·detail·evidence·consensus·priority 를 원문 순서로 직접 읽음. 같은 원장 by_concern 의 대응 문구와 대조(원장 내부 대조만, 외부 자료 없음)",
+  "observations": [
+    {
+      "id": "O10-1",
+      "pointers": [
+        "/combination_rules/0/priority",
+        "/combination_rules/1/priority",
+        "/combination_rules/2/priority",
+        "/combination_rules/7/priority"
+      ],
+      "status": "B",
+      "text": "priority 값은 critical·important·moderate·caution 네 가지다. 값 사이 순서·척도는 원문에 정의돼 있지 않다. by_concern 의 evidence_level(high·moderate) 과 moderate 가 겹치지만 다른 칸이다."
+    },
+    {
+      "id": "O10-2",
+      "pointers": [
+        "/combination_rules/0/consensus",
+        "/combination_rules/1/consensus",
+        "/combination_rules/7/consensus"
+      ],
+      "status": "P",
+      "text": "consensus 값 꼴: 「근거 기반 임상 권고」(0), 「3/3 AI 합의」(1~6), 「2/3 AI 합의 (제한적 근거)」(7). `/` 는 분수(합의 수/패널 수). consensus_method 의 3-AI 패널과 연결되는 것으로 읽히나 확정하지 않음."
+    },
+    {
+      "id": "O10-3",
+      "pointers": [
+        "/combination_rules/0/detail"
+      ],
+      "status": "P",
+      "text": "detail/0 은 네 문장: (1) 「당일 시술 가능하나 웬만하면 열시술을 먼저」(양보 + 완곡 권고), (2) 「보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어 HIFU를 먼저 시행하거나 2주 이상 간격」(가능성 → 두 대안), (3) 「필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행」(대안), (4) 「RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로 HIFU와 동일한 절대 규칙으로 취급하지 않음」(범위 한정 + 부정). rule 제목 「열시술 → 주사 순서」 는 이 한정을 담지 않는다."
+    },
+    {
+      "id": "O10-4",
+      "pointers": [
+        "/combination_rules/0/detail",
+        "/combination_rules/1/rule",
+        "/combination_rules/1/detail",
+        "/by_concern/0/severity_levels/2/contraindicated_combos/0"
+      ],
+      "status": "I",
+      "text": "HA 필러 뒤 HIFU 간격이 원장 안에서 다르다: combination_rules/0 「4주 이상 간격 권장」, combination_rules/1 「14일 이내 RF/HIFU 시 필러 용해 위험」·제목 「필러 → RF 14일 간격」, by_concern/0 중증 「14일 이내 RF/HIFU 금지」. 서로 다른 강도(권장/위험/금지)와 기간(4주/14일)이다(원문 내 불일치 후보, 판정 안 함)."
+    },
+    {
+      "id": "O10-5",
+      "pointers": [
+        "/combination_rules/1/rule",
+        "/combination_rules/1/detail"
+      ],
+      "status": "P",
+      "text": "rule 제목은 「RF」 만, detail 은 「RF/HIFU」. 「→」 는 순서(필러 다음 RF)를 나타낸다."
+    },
+    {
+      "id": "O10-6",
+      "pointers": [
+        "/combination_rules/2/rule",
+        "/combination_rules/2/detail",
+        "/combination_rules/2/evidence"
+      ],
+      "status": "P",
+      "text": "rule/2 는 등식 꼴 「결절 예방 = 희석·수화·주입 깊이 (마사지는 선택)」. detail 은 「5-5-5 마사지는 기술적 보조로 권장」 → 「동물실험은 … 지지하지만 인체 RCT에서는 결절률 차이가 없었으며」 → 「핵심은 적정 희석·충분한 수화·정확한 주입 깊이」. 대조(지지하지만/없었으며)·정도(적정·충분한·정확한) 수식. 「5-5-5」 의 뜻은 원문에 없다(B). 「바이오스티뮬」 이 detail 에서 PLLA 로 좁혀진다."
+    },
+    {
+      "id": "O10-7",
+      "pointers": [
+        "/combination_rules/3/rule",
+        "/combination_rules/3/detail",
+        "/by_concern/3/severity_levels/1/contraindicated_combos/0",
+        "/by_concern/3/severity_levels/2/contraindicated_combos/0"
+      ],
+      "status": "I",
+      "text": "rule/3 제목 「프락셔널 후 당일 필러 금지」 와 detail 「최소 4주 간격」: 제목은 당일만, detail 은 4주 최소 간격. by_concern 의 같은 금지문은 당일만 적는다(원문 내 불일치 후보)."
+    },
+    {
+      "id": "O10-8",
+      "pointers": [
+        "/combination_rules/4/detail",
+        "/by_concern/4/severity_levels/1/optimal_combo/3",
+        "/by_concern/4/severity_levels/1/contraindicated_combos/1"
+      ],
+      "status": "I",
+      "text": "rule/4 detail 「저출력 토닝만 권장」(제한 「만」) 과 by_concern/4 중등도의 「저출력 IPL(병용 보조)」 추천·「저출력·병용 보조로만」 허용이 다르다(원문 내 불일치 후보). rule 제목 「고에너지」, detail 「고출력」 표기 차이."
+    },
+    {
+      "id": "O10-9",
+      "pointers": [
+        "/combination_rules/5/detail",
+        "/by_concern/0/severity_levels/1/sequence"
+      ],
+      "status": "P",
+      "text": "rule/5 「같은날: 필러 먼저 → 보톡스 나중. 필러 위치 안정화 우선, 보톡스 확산 방지.」 는 by_concern/0 중등도 「같은날: 필러→스킨부스터→보톡스」 와 방향이 같다. 목적 서술(안정화 우선·확산 방지) 이 있다."
+    },
+    {
+      "id": "O10-10",
+      "pointers": [
+        "/combination_rules/6/detail",
+        "/by_concern/6/severity_levels/2/contraindicated_combos/0"
+      ],
+      "status": "I",
+      "text": "rule/6 「레이저 제모 후 2주 내 동일 부위 필링/프락셔널 금지」 와 by_concern/6 중증 「제모 부위 필링/프락셔널 동시 금지」: 기간(2주 내 vs 동시) 이 다르다(원문 내 불일치 후보). rule/6 제목 「제모 부위 타 시술 간격」 은 대상 시술을 「타 시술」 로 넓게 부른다."
+    },
+    {
+      "id": "O10-11",
+      "pointers": [
+        "/combination_rules/7/detail",
+        "/combination_rules/7/consensus",
+        "/by_concern/1/severity_levels/2/contraindicated_combos/0"
+      ],
+      "status": "P",
+      "text": "rule/7 「비가교 HA가 PDO를 24-72시간 내 분해할 수 있음 (in vitro). 동시 시술 금지.」: 가능성(할 수 있음)·실험 조건(in vitro)·시간 범위·금지. consensus 「2/3 AI 합의 (제한적 근거)」, priority 「caution」. by_concern/1 중증의 「PDO실 + 비가교HA 동시 금지」 와 같은 내용이며 표기 「비가교HA」/「비가교 HA」 띄어쓰기가 다르다. 24-72시간 근거와 「동시」 의 범위 관계는 원문에 없다."
+    },
+    {
+      "id": "O10-12",
+      "pointers": [
+        "/combination_rules/0/evidence",
+        "/combination_rules/1/evidence",
+        "/combination_rules/2/evidence",
+        "/combination_rules/3/evidence",
+        "/combination_rules/4/evidence",
+        "/combination_rules/5/evidence",
+        "/combination_rules/6/evidence",
+        "/combination_rules/7/evidence"
+      ],
+      "status": "B",
+      "text": "evidence 는 서지 식별 정도가 제각각이다: PMC 번호·학술지·권호·쪽이 있는 것(0·2), 연도만(0의 일부·1 「JCD 2023 논문」), 범주만(「임상 가이드라인」「피부과 교과서 + 다수 임상연구」「임상 컨센서스」「제조사 가이드 + 임상 경험」「in vitro 연구」). 원장만으로 문헌을 특정할 수 없는 값이 있다. 사실 여부는 검증하지 않았다."
+    }
+  ],
+  "manual_expressions": [
+    {
+      "pointer": "/combination_rules/0/rule",
+      "text": "열시술 → 주사 순서",
+      "kinds": [
+        "order_sequence",
+        "category_term"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "보톡스와 HIFU/RF 열시술은 당일 시술 가능하나",
+      "kinds": [
+        "same_day",
+        "possibility",
+        "concession",
+        "alternative",
+        "category_term"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "웬만하면 열시술을 먼저 시행",
+      "kinds": [
+        "hedge",
+        "order_sequence",
+        "recommendation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "MFU/HIFU는 보톡스 주입 후 2주 이내 효력을 감소시킬 수 있어",
+      "kinds": [
+        "possibility",
+        "interval_within",
+        "time",
+        "effect_interference",
+        "causal",
+        "abbreviation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "HIFU를 먼저 시행하거나 2주 이상 간격을 둔다",
+      "kinds": [
+        "order_sequence",
+        "alternative",
+        "interval_min",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "필러 후 HIFU를 4주 이상 간격 권장하거나 HIFU를 먼저 시행한다",
+      "kinds": [
+        "interval_min",
+        "time",
+        "recommendation",
+        "alternative",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "RF·IPL·비침습 레이저는 보톡스와 당일 병행 가능하므로",
+      "kinds": [
+        "same_day",
+        "possibility",
+        "causal",
+        "category_term",
+        "negation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "HIFU와 동일한 절대 규칙으로 취급하지 않음",
+      "kinds": [
+        "negation",
+        "scope_limit",
+        "comparison"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/evidence",
+      "text": "MFU-보툴리눔독소 진피내 주입 RCT (J Cosmet Dermatol, PMC11945533)",
+      "kinds": [
+        "citation",
+        "language_en",
+        "identifier",
+        "layer_depth",
+        "parenthetical"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/evidence",
+      "text": "HIFU-HA 필러 열분해 연구(2024)",
+      "kinds": [
+        "citation",
+        "date",
+        "parenthetical"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/evidence",
+      "text": "보툴리눔독소 당일 병용 안전성 리뷰(2014/2020)",
+      "kinds": [
+        "citation",
+        "same_day",
+        "date",
+        "parenthetical",
+        "slash_non_alternative"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/consensus",
+      "text": "근거 기반 임상 권고",
+      "kinds": [
+        "consensus",
+        "recommendation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/1/rule",
+      "text": "필러 → RF 14일 간격",
+      "kinds": [
+        "order_sequence",
+        "interval",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/1/detail",
+      "text": "HA 필러 주입 후 14일 이내 RF/HIFU 시",
+      "kinds": [
+        "interval_within",
+        "time",
+        "condition_when",
+        "alternative",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/1/detail",
+      "text": "필러 용해 위험",
+      "kinds": [
+        "risk_reason"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/1/evidence",
+      "text": "JCD 2023 논문",
+      "kinds": [
+        "citation",
+        "date",
+        "abbreviation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/1/consensus",
+      "text": "3/3 AI 합의",
+      "kinds": [
+        "consensus",
+        "quantity_unit",
+        "slash_fraction"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/rule",
+      "text": "바이오스티뮬 결절 예방 = 희석·수화·주입 깊이",
+      "kinds": [
+        "prevention",
+        "equation",
+        "layer_depth",
+        "abbreviation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/rule",
+      "text": "(마사지는 선택)",
+      "kinds": [
+        "parenthetical",
+        "optional"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/detail",
+      "text": "PLLA 균일 분포를 위한 5-5-5 마사지는 기술적 보조로 권장",
+      "kinds": [
+        "purpose",
+        "material",
+        "quantity_unit",
+        "adjunct",
+        "recommendation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/detail",
+      "text": "2025 동물실험은 균일 분포·결절 예방 효과를 지지하지만",
+      "kinds": [
+        "evidence_level_text",
+        "date",
+        "concession",
+        "prevention"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/detail",
+      "text": "인체 RCT에서는 결절률 차이가 없었으며",
+      "kinds": [
+        "evidence_level_text",
+        "negation",
+        "comparison",
+        "language_en"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/detail",
+      "text": "핵심은 적정 희석·충분한 수화·정확한 주입 깊이",
+      "kinds": [
+        "degree_modifier",
+        "layer_depth",
+        "requirement"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/evidence",
+      "text": "Dermatologica Sinica 2025;43(3):247-248 동물실험은 마사지 효과 지지",
+      "kinds": [
+        "citation",
+        "identifier",
+        "date",
+        "language_en"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/2/evidence",
+      "text": "Wu & Goldman RCT(Dermatol Surg 2016)는 마사지군·비마사지군 결절률 차이 없음",
+      "kinds": [
+        "citation",
+        "language_en",
+        "date",
+        "negation",
+        "comparison",
+        "parenthetical"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/3/rule",
+      "text": "프락셔널 후 당일 필러 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "same_day",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/3/detail",
+      "text": "열린 상처에 필러 주입 시 감염 위험",
+      "kinds": [
+        "condition_when",
+        "risk_reason",
+        "target_condition"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/3/detail",
+      "text": "최소 4주 간격",
+      "kinds": [
+        "interval_min",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/4/rule",
+      "text": "기미에 고에너지 레이저 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "target_condition",
+        "energy_level"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/4/detail",
+      "text": "기미 환자에 고출력 레이저 시 반동 색소침착(PIH) 위험",
+      "kinds": [
+        "condition_when",
+        "target_condition",
+        "energy_level",
+        "risk_reason",
+        "parenthetical",
+        "abbreviation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/4/detail",
+      "text": "저출력 토닝만 권장",
+      "kinds": [
+        "restriction",
+        "energy_level",
+        "recommendation"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/4/evidence",
+      "text": "피부과 교과서 + 다수 임상연구",
+      "kinds": [
+        "citation",
+        "plus_non_procedure",
+        "quantity_vague"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/5/rule",
+      "text": "같은날 필러+보톡스 순서",
+      "kinds": [
+        "same_day",
+        "plus_list",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/5/detail",
+      "text": "같은날: 필러 먼저 → 보톡스 나중",
+      "kinds": [
+        "same_day",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/5/detail",
+      "text": "필러 위치 안정화 우선",
+      "kinds": [
+        "purpose",
+        "priority_preference"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/5/detail",
+      "text": "보톡스 확산 방지",
+      "kinds": [
+        "purpose",
+        "prevention"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/6/rule",
+      "text": "제모 부위 타 시술 간격",
+      "kinds": [
+        "body_part",
+        "interval",
+        "category_term"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/6/detail",
+      "text": "레이저 제모 후 2주 내 동일 부위 필링/프락셔널 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "interval_within",
+        "time",
+        "body_part",
+        "order_sequence",
+        "slash_ambiguous"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/6/detail",
+      "text": "피부 장벽 회복 필요",
+      "kinds": [
+        "reason",
+        "need",
+        "recovery_period"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/6/evidence",
+      "text": "제조사 가이드 + 임상 경험",
+      "kinds": [
+        "citation",
+        "plus_non_procedure"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/7/rule",
+      "text": "PDO실 + 비가교HA 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "material",
+        "plus_in_prohibition"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/7/detail",
+      "text": "비가교 HA가 PDO를 24-72시간 내 분해할 수 있음 (in vitro)",
+      "kinds": [
+        "possibility",
+        "interval_within",
+        "range",
+        "time",
+        "parenthetical",
+        "language_en",
+        "effect_interference"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/7/detail",
+      "text": "동시 시술 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "same_time"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/7/consensus",
+      "text": "2/3 AI 합의 (제한적 근거)",
+      "kinds": [
+        "consensus",
+        "slash_fraction",
+        "parenthetical",
+        "evidence_limit"
+      ]
+    },
+    {
+      "pointer": "/combination_rules/0/detail",
+      "text": "HA 필러는",
+      "kinds": [
+        "topic_subject",
+        "material"
+      ],
+      "note": "미덮임 어절 검토에서 추가: 셋째 문장의 주제. 같은 문장 「필러 후」 와 겹침"
+    }
+  ],
+  "issues": [
+    {
+      "id": "I-10-1",
+      "class": "I",
+      "pointers": [
+        "/combination_rules/0/detail",
+        "/combination_rules/1/detail",
+        "/by_concern/0/severity_levels/2/contraindicated_combos/0"
+      ],
+      "text": "HA 필러 → HIFU 간격: 4주 이상 권장 vs 14일 이내 위험/금지(원문 내 불일치 후보).",
+      "note": "양립 가능; 모순으로 확정하지 않음. 「14일 이내 RF/HIFU 시 필러 용해 위험」(`/combination_rules/1/detail`)·「14일 이내 RF/HIFU 금지」(`/by_concern/0/severity_levels/2/contraindicated_combos/0`)는 금지·위험 하한이고, 「필러 후 HIFU를 4주 이상 간격 권장」(`/combination_rules/0/detail`)은 권장 간격이다 — 강도가 다른 별개 진술이라 함께 성립한다. 후속 검토로 남는 것: 14일~4주 구간을 어떻게 다룰지, 간격의 기준 시점, RF 포함 범위(4주 문장은 HIFU 만, 14일 문장은 RF/HIFU 를 적었다). I 분류·ID·집계는 그대로 둔다. 원문 모순 확정 목록에 넣지 않는다. 원문을 고치거나 새 관계를 적용하지 않았고, 원문 밖 임상 판단으로 채우지 않는다(batch-04 독립 검토 §2.5 R2 반영)."
+    },
+    {
+      "id": "I-10-2",
+      "class": "I",
+      "pointers": [
+        "/combination_rules/3/rule",
+        "/combination_rules/3/detail"
+      ],
+      "text": "프락셔널 후 필러: 제목 「당일 금지」 vs detail 「최소 4주 간격」(원문 내 불일치 후보).",
+      "note": "양립 가능; 모순으로 확정하지 않음. detail 「최소 4주 간격」(`/combination_rules/3/detail`)은 rule 「프락셔널 후 당일 필러 금지」(`/combination_rules/3/rule`)를 포함한다 — 제목이 더 좁은 범위를 적은 포함 관계다. 후속 검토로 남는 것: 금지 범위가 당일인지 4주인지(제목과 상세의 범위 차이), 간격의 기준 시점. I 분류·ID·집계는 그대로 둔다. 원문 모순 확정 목록에 넣지 않는다. 원문을 고치거나 새 관계를 적용하지 않았고, 원문 밖 임상 판단으로 채우지 않는다(batch-04 독립 검토 §2.5 R2 반영)."
+    },
+    {
+      "id": "I-10-3",
+      "class": "I",
+      "pointers": [
+        "/combination_rules/4/detail",
+        "/by_concern/4/severity_levels/1/optimal_combo/3"
+      ],
+      "text": "기미: 「저출력 토닝만 권장」 vs 중등도 추천 「저출력 IPL(병용 보조)」(원문 내 불일치 후보)."
+    },
+    {
+      "id": "I-10-4",
+      "class": "I",
+      "pointers": [
+        "/combination_rules/6/detail",
+        "/by_concern/6/severity_levels/2/contraindicated_combos/0"
+      ],
+      "text": "제모 부위 필링/프락셔널: 「2주 내」 vs 「동시」(원문 내 불일치 후보).",
+      "note": "양립 가능; 모순으로 확정하지 않음. 「제모 부위 필링/프락셔널 동시 금지」(`/by_concern/6/severity_levels/2/contraindicated_combos/0`)는 「레이저 제모 후 2주 내 동일 부위 필링/프락셔널 금지」(`/combination_rules/6/detail`)에 포함된다 — 포함 관계다. 후속 검토로 남는 것: 「동시」의 범위, 2주 이후의 처리, 두 문장의 부위 표현(「제모 부위」·「동일 부위」)이 같은 범위인지. I 분류·ID·집계는 그대로 둔다. 원문 모순 확정 목록에 넣지 않는다. 원문을 고치거나 새 관계를 적용하지 않았고, 원문 밖 임상 판단으로 채우지 않는다(batch-04 독립 검토 §2.5 R2 반영)."
+    },
+    {
+      "id": "B-10-1",
+      "class": "B",
+      "pointers": [
+        "/combination_rules/0/priority",
+        "/combination_rules/1/priority",
+        "/combination_rules/2/priority",
+        "/combination_rules/3/priority",
+        "/combination_rules/4/priority",
+        "/combination_rules/5/priority",
+        "/combination_rules/6/priority",
+        "/combination_rules/7/priority"
+      ],
+      "text": "priority 네 값의 척도·순서가 원문에 없다."
+    },
+    {
+      "id": "B-10-2",
+      "class": "B",
+      "pointers": [
+        "/combination_rules/1/evidence",
+        "/combination_rules/3/evidence",
+        "/combination_rules/4/evidence",
+        "/combination_rules/5/evidence",
+        "/combination_rules/6/evidence",
+        "/combination_rules/7/evidence"
+      ],
+      "text": "evidence 가 범주·연도만 있어 문헌을 특정할 수 없는 값이 있다."
+    },
+    {
+      "id": "B-10-3",
+      "class": "B",
+      "pointers": [
+        "/combination_rules/2/detail"
+      ],
+      "text": "「5-5-5 마사지」 의 정의가 원문에 없다."
+    }
+  ]
+}

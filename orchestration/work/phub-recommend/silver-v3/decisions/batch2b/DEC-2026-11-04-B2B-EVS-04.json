@@ -1,0 +1,53 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "event-split/섬유화",
+  "label": "「섬유화」을 새 사건으로",
+  "note": "사용자 2026-11-05: 섬유화는 조직 변화(과정), 경결은 소견. 섬유화→경결(영구) 인과는 묶음 3. 경결은 경과 일시/영구로 갈림",
+  "option": "split"
+ },
+ "id": "DEC-2026-11-04-B2B-EVS-04",
+ "kind": "event_split",
+ "new_value": {
+  "new_events": [
+   {
+    "canonical": "섬유화",
+    "category": "구조/이물",
+    "synonyms": []
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 사건 사전 「경결」에서 「섬유화」을 따로 세운다(검토 2-C) · 사용자 메모: 사용자 2026-11-05: 섬유화는 조직 변화(과정), 경결은 소견. 섬유화→경결(영구) 인과는 묶음 3. 경결은 경과 일시/영구로 갈림",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M16/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.long_term[]@M1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M1/34"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious_adverse_effects[]@M1/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@M1/24"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "event": "경결"
+ }
+}

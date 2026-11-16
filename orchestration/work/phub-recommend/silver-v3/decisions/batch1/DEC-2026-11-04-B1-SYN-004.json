@@ -1,0 +1,165 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "MTS",
+  "fragment_count": 14,
+  "fragment_occurrence_locators": [
+   "synergy.json:links[].to@10",
+   "synergy.json:links[].to@58",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/0/0/1",
+   "procedure-comparison.json:comparisons[].procedures[].name@3/2",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/1/1",
+   "treatment-sequence.json:common_combos[].sequence[]@3/0",
+   "treatment-sequence.json:common_combos[].sequence[]@7/1",
+   "market-pricing.json:categories[].items[].name@4/5",
+   "market-pricing.json:categories[].items[].name@11/0",
+   "market-pricing.json:categories[].items[].name@11/1",
+   "market-pricing.json:categories[].items[].name@11/2",
+   "market-pricing.json:categories[].items[].name@11/4",
+   "market-pricing.json:categories[].items[].name@11/5",
+   "market-pricing.json:categories[].items[].name@16/2"
+  ],
+  "label_locators": [
+   "taxonomy.json:modality[].category@11",
+   "consent-checklist.json:categories[].name@11",
+   "contraindications.json:rules[].to_name@10",
+   "contraindications.json:rules[].to_name@14",
+   "contraindications.json:rules[].to_name@15",
+   "contraindications.json:rules[].to_name@22",
+   "market-pricing.json:categories[].name@11",
+   "patient-education.json:categories[].name@11",
+   "pre-procedure-checklist.json:category_specific[].name@11",
+   "procedure-profiles.json:profiles[].name@10"
+  ],
+  "target": {
+   "canonical": "마이크로니들링(MTS)",
+   "code": "M12",
+   "dictionary": "modality",
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/11/canonical",
+   "rule": "괄호 안 일치 「마이크로니들링(MTS)」",
+   "value": "마이크로니들링(MTS)"
+  }
+ },
+ "id": "DEC-2026-11-04-B1-SYN-004",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "마이크로니들링(MTS)",
+  "category": null,
+  "synonyms": [
+   "MTS"
+  ]
+ },
+ "reason": "발주서: 해당 하위분류 라벨(근거가 계열 라벨뿐이면 계열) — 조각 「MTS」 ↔ modality 「마이크로니들링(MTS)」(M12) : 괄호 안 일치 「마이크로니들링(MTS)」 · 하위분류 라벨 근거는 없고 계열 라벨에만 근거가 있어 계열 동의어로 제안",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].name@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "contraindications.json:rules[].to_name@10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "contraindications.json:rules[].to_name@14"
+  },
+  {
+   "kind": "ledger",
+   "ref": "contraindications.json:rules[].to_name@15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "contraindications.json:rules[].to_name@22"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].name@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "patient-education.json:categories[].name@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "pre-procedure-checklist.json:category_specific[].name@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].name@10"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/11/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@58"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@12/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@4/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-2"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

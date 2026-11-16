@@ -1,0 +1,211 @@
+# S013  scope=M4 스킨부스터  units=auto-new-M4-1775360442 items/1 | auto-new-M4-1775360442 items/2 | auto-new-M4-1775360442 items/3 | auto-new-M4-1775360442 items/4 | auto-new-M4-1775360442 items/5 | extracted | products 컨테이너 | M4-P-0 | M4-P-1 | M4-P-2 | M4-P-3 | M4-P-4 | name
+# 상위 문맥: [{"pointer": "/modality/3", "id": "M4", "category": "스킨부스터", "name": "스킨부스터"}, {"pointer": "/modality/3/subcategories/3", "id": "auto-new-M4-1775360442", "label": "콜라겐/신규"}]
+@ /modality/3/subcategories/3/items/1 auto-M4-1775360458021 엑소힐러
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775360458021"
+  /name = "엑소힐러"
+  /detail = "5세대 엑소좀 · 줄기세포 배양액 기반"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "줄기세포 배양액 유래 엑소좀과 생리활성물질을 함유한 차세대 피부재생 스킨부스터"
+  /extracted/mechanism = "엑소좀의 성장인자(EGF, FGF, VEGF 등)와 사이토카인이 진피 섬유아세포를 자극하여 콜라겐 및 엘라스틴 합성을 촉진한다. 줄기세포 배양액의 생리활성물질은 피부 자가재생능력을 강화하고 항염증·항산화 작용으로 피부노화를 지연시킨다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하 및 주름" ‖ 1:"피부 결 개선 및 톤 균일화" ‖ 2:"피부 재생 및 회복력 증진" ‖ 3:"미세한 흉터 및 모공 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 경미한 통증·부종" ‖ 1:"일시적 발적" ‖ 2:"따끔거림 및 가려움증"
+  /extracted/safety/serious [3] = 0:"감염" ‖ 1:"과민반응·알레르기" ‖ 2:"육아종 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 메이크업 및 사우나 자제" ‖ 1:"문제 부위 과도한 자극 회피" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/3/items/2 auto-M4-1775360463217 벨피엔 프로
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775360463217"
+  /name = "벨피엔 프로"
+  /detail = "휴메딕스 · 차세대 PN"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고농도 플라센타 추출물과 다중 성장인자를 함유한 차세대 스킨부스터로 피부 재생 및 탄력 개선을 유도하는 제품"
+  /extracted/mechanism = "플라센타 유래 성장인자와 사이토카인이 섬유아세포를 자극하여 콜라겐 및 엘라스틴 생성을 촉진한다. 동시에 항산화 성분이 활성산소를 제거하여 피부 손상을 최소화하고 자연스러운 재생을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 탄력 감소" ‖ 1:"잔주름 및 표피 주름" ‖ 2:"피부 톤 불균형" ‖ 3:"피부 건조증" ‖ 4:"피부 노화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 부종" ‖ 1:"경미한 홍반" ‖ 2:"일시적 통증감" ‖ 3:"가려움증"
+  /extracted/safety/serious [3] = 0:"알레르기 반응" ‖ 1:"감염" ‖ 2:"이상반응 시 즉시 의료진 상담"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 고온의 온천·사우나 자제" ‖ 1:"주사 부위 문지르지 않기" ‖ 2:"과도한 운동 당일 자제" ‖ 3:"고자극 제품 사용 1주일 자제" ‖ 4:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/3/items/3 auto-M4-1775360574999 투 (TU)
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775360574999"
+  /name = "투 (TU)"
+  /detail = "인체 유래 I형 콜라겐 직접 주입 · 2025 신규"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "인체 유래 I형 콜라겐을 직접 주입하여 피부 탄력과 볼륨을 개선하는 2025년 신규 미용시술"
+  /extracted/mechanism = "인체에서 추출한 I형 콜라겐을 진피층에 직접 주입하여 기존 콜라겐 구조를 보강합니다. 자연스러운 조직 통합과 콜라겐 재생을 촉진하여 피부 탄력과 두께를 증가시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 주름 개선" ‖ 1:"안면 볼륨 손실 보정"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주입 부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 후 2-4주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"주입 부위 강한 압박 자제 (가볍게는 무방)" ‖ 1:"주입 부위 당일 자극적 제품 자제" ‖ 2:"멍/부종은 수일 내 자연 소실" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/3/items/4 auto-M4-1775361378128 바이리즌
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775361378128"
+  /name = "바이리즌"
+  /detail = "휴젤 · 주사/도포/화장품 라인업"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴젤의 바이리즌은 피부 재생과 탄력 개선을 위한 복합 미용 시술 라인업"
+  /extracted/mechanism = "다양한 활성 성분이 진피층에 작용하여 콜라겐 합성을 촉진하고 세포 재생을 활성화합니다. 피부 장벽 강화와 수분 보유력 향상을 통해 전반적인 피부 컨디션을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 잔주름 개선" ‖ 1:"피부 톤 균일화 및 광채 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 세안 시 자극 최소화" ‖ 1:"주입 부위 당일 자극적 제품 자제" ‖ 2:"멍/부종은 수일 내 자연 소실" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/3/items/5 auto-M4-1775364775152 SNP솔루션
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364775152"
+  /name = "SNP솔루션"
+  /detail = "콜라겐국산"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 콜라겐 기반 스킨부스터"
+  /extracted/mechanism = "고순도 콜라겐이 직접 진피층에 공급되어 피부 구조를 강화합니다. 자연스러운 콜라겐 합성을 촉진하여 피부 탄력과 두께를 개선시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 탄력 개선" ‖ 1:"잔주름 감소" ‖ 2:"피부 두께 증가"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 멍" ‖ 1:"일시적 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 화장 자제" ‖ 1:"충분한 보습" ‖ 2:"비타민C 세럼 사용 권장" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3 M4 스킨부스터 스킨부스터
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "스킨부스터는 피부의 진피층(피부 깊은 곳)에 히알루론산, 비타민, 아미노산 등 영양 성분을 소량씩 여러 포인트에 주입하는 시술이다. 한국에서는 '물광주사'로 널리 알려져 있으며, 메조테라피(mesotherapy) 기법을 기반으로 한다. 피부 자체의 수분과 탄력을 개선하는 것이 목적이다."
+  /extracted/mechanism = "메조테라피는 중배엽(mesoderm) 유래 조직, 특히 피부의 진피층에 소량의 약물을 국소적으로 여러 포인트에 피내주사(피부 안에 주사)하는 치료법이다. 히알루론산을 진피 내에 주입하면 기존 필러와 같은 연조직 확대 기능보다는, 피부를 자극해 피부 자신의 구성성분을 스스로 형성하게 하여 피부 자체의 질을 향상시킨다. 전신 약물 투여로 발생할 수 있는 부담감과 위험성을 최소화하고, 원하는 국소부위에 제한적으로 약물을 직접 전달할 수 있다는 장점이 있다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [4] = 0:"피부 수분 부족 (건조하고 윤기 없는 피부)" ‖ 1:"잔주름 (얕은 주름)" ‖ 2:"피부 탄력 저하" ‖ 3:"모공 확대"
+  /extracted/indications/extended [6] = 0:"피부 노화 방지" ‖ 1:"기미 (피부 색소 불균일)" ‖ 2:"탈모증 (두피 메조테라피, 메조페시아)" ‖ 3:"셀룰라이트 (피부 울퉁불퉁한 지방 침착)" ‖ 4:"흉터 개선" ‖ 5:"튼살 (임신선, 성장선)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [4] = 0:"허혈성 심질환 (심장에 혈액 공급이 부족한 질환)" ‖ 1:"당뇨병 환자" ‖ 2:"신장질환 환자" ‖ 3:"주입 약물에 과민반응을 보이는 경우"
+  /extracted/contraindications/relative [3] = 0:"항응고제 복용 중인 경우 (멍이 잘 들 수 있음)" ‖ 1:"임산부, 생리 중인 경우 주의 필요" ‖ 2:"시술 부위에 피부 질환이 있는 경우"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [4] = 0:"주사 부위 통증" ‖ 1:"일시적 홍반 (빨개짐)" ‖ 2:"약간의 붓기" ‖ 3:"멍"
+  /extracted/safety/uncommon [3] = 0:"알레르기 반응" ‖ 1:"혈종 (피가 고이는 것)" ‖ 2:"피부색소침착 (시술 부위가 어두워지는 현상)"
+  /extracted/safety/serious [2] = 0:"농양 (고름이 차는 감염)" ‖ 1:"드물게 심한 알레르기 반응"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 직후~2일 이내 피부 광채 효과 시작"
+  /extracted/onset_duration/peak = "2~4주 후 피부결 개선 효과 최대"
+  /extracted/onset_duration/duration = "1~3개월 유지 (반복 시술 시 효과 누적)"
+  /extracted/aftercare [3] = 0:"시술 당일 세안이나 화장은 피하기" ‖ 1:"시술 후 자외선 차단제 꼼꼼히 바르기" ‖ 2:"시술 부위를 문지르거나 강하게 누르지 않기"
+  /extracted/related_techniques [3] = 0:"메조리프트 (Mesolift) -- 비타민과 히알루론산 주사로 리프팅 효과" ‖ 1:"메조보톡스 -- 보톡스를 진피층에 소량 주사해 모공/탄력 개선" ‖ 2:"메조페시아 (Mesopecia) -- 두피에 약물 주사해 탈모 치료"
+  /products [5]
+@ /modality/3/products/0 M4-P-0 리쥬란 힐러
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M4-P-0"
+  /name = "리쥬란 힐러"
+  /name_en = "Rejuran Healer"
+  /manufacturer = "파마리서치"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PN/PDRN"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "연어 DNA 기반 생물 자극제로 피부 재생을 유도"
+  /extracted/mechanism = "연어의 DNA 유래 폴리뉴클레오타이드(PN)를 진피에 주입하여 피부의 자연적인 치유 과정을 자극하고, 피부 자신의 히알루론산과 콜라겐 생성을 촉진한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 건조증 및 수분 부족" ‖ 1:"피부 탄력 저하" ‖ 2:"잔주름 및 피부 텍스처 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"경미한 발적" ‖ 2:"일시적 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 세안 피하기" ‖ 1:"과도한 마사지 금지" ‖ 2:"선크림 사용 필수"
+@ /modality/3/products/1 M4-P-1 리쥬란 HB+
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M4-P-1"
+  /name = "리쥬란 HB+"
+  /name_en = "Rejuran HB+"
+  /manufacturer = "파마리서치"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PN+HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "연어 DNA 기반 고농축 폴리뉴클레오타이드"
+  /extracted/mechanism = "PDRN(폴리뉴클레오타이드)이 A2A 수용체를 활성화하여 진피 재생을 촉진합니다. ERK/AKT 신호전달 경로를 통해 피부 탄력과 광택을 개선하며, 멜라닌 합성 억제로 피부톤 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 건조증 및 탄력 저하" ‖ 1:"잔주름 및 피부결 개선" ‖ 2:"전체 얼굴 톤 균일화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 발적 및 부종" ‖ 1:"일시적 가려움증" ‖ 2:"경미한 통증"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [3] = 0:"주입 후 24시간 강한 마사지 금지" ‖ 1:"고온 환경(사우나, 찜질방) 3-5일 피하기" ‖ 2:"자외선 차단 필수"
+@ /modality/3/products/2 M4-P-2 리쥬란아이
+  . {id,name,name_en,manufacturer,country,mfds,ingredient,extracted}
+  /id = "M4-P-2"
+  /name = "리쥬란아이"
+  /name_en = "Rejuran i"
+  /manufacturer = "파마리서치"
+  /country = "KR"
+  /mfds = true
+  /ingredient = "PN"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "안와 주변부 전용 PDRN 제품"
+  /extracted/mechanism = "저분자 PDRN을 안와 주변 얇은 피부(0.5-1mm)에 맞게 설계하여 A2A 수용체 활성화로 눈가 주름 개선과 진피 수분 보충을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"눈가 잔주름 및 미세주름" ‖ 1:"다크써클 및 피로도" ‖ 2:"눈가 건조증"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"눈가 부종" ‖ 1:"일시적 자극감" ‖ 2:"결막 충혈(드물음)"
+  /extracted/safety/serious [2] = 0:"결막염" ‖ 1:"안구 자극"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "5-10일"
+  /extracted/onset_duration/duration = "3-5개월"
+  /extracted/aftercare [3] = 0:"주입 후 48시간 눈 문지르기 금지" ‖ 1:"안경/선글라스 착용 권장" ‖ 2:"3일간 아이메이크업 자제"
+@ /modality/3/products/3 M4-P-3 스킨보톡스
+  . {id,name,name_en,manufacturer,country,mfds,note,extracted}
+  /id = "M4-P-3"
+  /name = "스킨보톡스"
+  /name_en = "Skin Botox"
+  /manufacturer = "-"
+  /country = "-"
+  /mfds = false
+  /note = "보톡스 희석 피내주사법 (별도 제품 아님)"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "아르기닌 함유 저분자 성장인자 복합체"
+  /extracted/mechanism = "피부 재생 관련 성장인자(EGF, FGF 등)와 아미노산 복합물을 진피에 주입하여 fibroblast 활성화를 촉진하고, 표피-진피 상호작용을 강화하여 표피 재생과 미세주름 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"미세주름 및 잔주름" ‖ 1:"피부 톤 암침 개선" ‖ 2:"피부 재생 촉진"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"일시적 홍반" ‖ 2:"경미한 가려움증"
+  /extracted/safety/serious [2] = 0:"알레르기 반응" ‖ 1:"감염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-5일"
+  /extracted/onset_duration/duration = "3-4개월"
+  /extracted/aftercare [3] = 0:"주입 후 24시간 고온 노출 금지" ‖ 1:"5일간 활성화 에센스/토너 사용 최소화" ‖ 2:"자외선 차단 강화"
+@ /modality/3/products/4 M4-P-4 벨피엔
+  . {id,name,name_en,manufacturer,country,mfds,note,extracted}
+  /id = "M4-P-4"
+  /name = "벨피엔"
+  /name_en = "Belpien"
+  /manufacturer = "휴메딕스"
+  /country = "KR"
+  /mfds = false
+  /note = "2026 하반기 출시 예정, PN+HA 복합"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "휴메딕스 펩타이드 기반 피부재생 부스터"
+  /extracted/mechanism = "생체모방 펩타이드와 항산화 복합물을 진피에 주입하여 fibroblast 자극과 collagen 생성을 촉진하고, 항염 신호전달을 강화하여 피부 탄력 개선과 피부장벽 복원을 도모합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 탄력 저하" ‖ 1:"주름 및 피부결 개선" ‖ 2:"민감성 피부 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 발적" ‖ 1:"경미한 부종" ‖ 2:"일시적 통증"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "5-10일"
+  /extracted/onset_duration/duration = "4-5개월"
+  /extracted/aftercare [3] = 0:"주입 후 3일 자극적 화장품 회피" ‖ 1:"일주일간 보습팩 집중 관리" ‖ 2:"자외선 차단 필수"
+@ /modality/3 M4 스킨부스터 스킨부스터
+  /name = "스킨부스터"

@@ -1,0 +1,6 @@
+source orchestration/work/phub-recommend/bronze/phub-ledger/treatment-optimization.json sha256 07b9ebe0a843280b4eef9487590951932192435ea46284aba425338ab9d9767b expected_match True
+nodes 691 keys 388 dups 0
+tokens 3025 applied 413 excluded 42 nonstring 36
+expressions {'total': 1758, 'auto_regex': 1114, 'auto_clause': 231, 'manual_direct_reading': 413, 'auto_false_positive': 14, 'modifier_tokens_checked': 206, 'modifier_tokens_unreviewed': 0, 'uncovered_eojeol': 163}
+segments_read 14 / 14
+sha256_end 07b9ebe0a843280b4eef9487590951932192435ea46284aba425338ab9d9767b unchanged True

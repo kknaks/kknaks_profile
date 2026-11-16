@@ -1,0 +1,654 @@
+{
+  "run_id": "run_05ed91e27327",
+  "batch": "02",
+  "agent": "claude",
+  "model": "opus",
+  "state": "first_pass_closed",
+  "skill_sha256": "bc443eb14e7f127b6863087063639a0f19db61b429aaa029727a21638f06ae2a",
+  "workers": [
+    {
+      "ledger": "anatomy-danger-zones",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/anatomy-danger-zones.json",
+      "source_sha256": "34b2a2de737a2770828ce52e49c3f4f17dc54c21ad9754362c24ebf4fced69a4",
+      "source_bytes": 29555,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/anatomy-danger-zones",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-02-anatomy-danger-zones-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "1b1276c5-e74c-400f-a58c-255321e53541",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_ae090e15f6e0",
+          "dispatchId": "ctx_b62ce8afddae",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_f7d97210-006f-420d-8c9f-779e84397d73",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_f7d97210-006f-420d-8c9f-779e84397d73",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "4b7fc57c-88bb-4e1d-8d84-a1341d04ffa9",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "e0f7fdb5-7e40-4871-b9bb-c7bcc3756d38",
+            "generation": 143,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "4b7fc57c-88bb-4e1d-8d84-a1341d04ffa9",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_ae090e15f6e0",
+      "dispatchId": "ctx_b62ce8afddae",
+      "stage": "input_accepted",
+      "handle": "term_f7d97210-006f-420d-8c9f-779e84397d73",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass_34135_checks",
+      "read_review": "independent_batch_review_accepted_with_disclosed_scope",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/anatomy-danger-zones/review.md",
+      "coverage": {
+        "chunks": 12,
+        "leaves": 483,
+        "missing": 0,
+        "duplicate_owner": 0,
+        "review_parts": 12
+      },
+      "remaining": {
+        "source_insufficiency_groups": 5,
+        "source_inconsistency": 4,
+        "provisional": 11,
+        "followup": 3,
+        "analysis_limitations_groups": 5,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal",
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "combo-recipes",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/combo-recipes.json",
+      "source_sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94",
+      "source_bytes": 6486,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/combo-recipes",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-02-combo-recipes-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "f1f8f28f-cc23-48e7-aae1-0c67c6944f3f",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_e41ee8f83211",
+          "dispatchId": "ctx_1ad94f5ccf0c",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_28742b8b-580d-467d-befa-cccb971e7566",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_28742b8b-580d-467d-befa-cccb971e7566",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "eec9e450-ddd3-4ffe-b275-93acf4cc4ea2",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "f372ca9f-74e3-4b18-848e-b8522592a20e",
+            "generation": 144,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "eec9e450-ddd3-4ffe-b275-93acf4cc4ea2",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_e41ee8f83211",
+      "dispatchId": "ctx_1ad94f5ccf0c",
+      "stage": "input_accepted",
+      "handle": "term_28742b8b-580d-467d-befa-cccb971e7566",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_disclosed_scope",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/combo-recipes/review.md",
+      "coverage": {
+        "chunks": 8,
+        "leaves": 141,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 10,
+        "provisional": 8,
+        "followup": 7,
+        "source_inconsistency": 1,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal",
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "consent-checklist",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/consent-checklist.json",
+      "source_sha256": "4e138ffb64414995483e4201396bc4f185ec34e4d150f825ec151b0fe07512e5",
+      "source_bytes": 21047,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/consent-checklist",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-02-consent-checklist-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "b9d749cb-6932-43eb-98e5-6d6c1a76453f",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_fba8e0133171",
+          "dispatchId": "ctx_4011e712c9c3",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_206729f4-58d0-4e99-8a41-a11c188cd5aa",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_206729f4-58d0-4e99-8a41-a11c188cd5aa",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "506a471d-936d-436b-b318-ef2271788efc",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "d558a916-b9c9-4d52-b4ef-3b453fe1c482",
+            "generation": 145,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "506a471d-936d-436b-b318-ef2271788efc",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_fba8e0133171",
+      "dispatchId": "ctx_4011e712c9c3",
+      "stage": "input_accepted",
+      "handle": "term_206729f4-58d0-4e99-8a41-a11c188cd5aa",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_disclosed_scope",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/consent-checklist/review.md",
+      "coverage": {
+        "chunks": 18,
+        "leaves": 306,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 5,
+        "source_inconsistency": 6,
+        "followup": 8,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal",
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "contraindications",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/contraindications.json",
+      "source_sha256": "964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2",
+      "source_bytes": 6390,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/contraindications",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-02-contraindications-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "808c469c-12db-479c-b9b2-2f37fa6c46db",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_24f8cdf24364",
+          "dispatchId": "ctx_3b2fdc5c2729",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_41bc8ce3-ecd5-4dc5-b27a-113ea20a8e30",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_41bc8ce3-ecd5-4dc5-b27a-113ea20a8e30",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "9a96d122-f51f-4707-9b89-6818a5706bed",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "a49dcf42-bd6e-41a7-90cd-5aced5839ac2",
+            "generation": 146,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "9a96d122-f51f-4707-9b89-6818a5706bed",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_24f8cdf24364",
+      "dispatchId": "ctx_3b2fdc5c2729",
+      "stage": "input_accepted",
+      "handle": "term_41bc8ce3-ecd5-4dc5-b27a-113ea20a8e30",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass_77_checks",
+      "read_review": "independent_batch_review_accepted_with_disclosed_scope",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/contraindications/review.md",
+      "coverage": {
+        "chunks": 2,
+        "owned_leaves": 192,
+        "source_leaves": 192,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 6,
+        "source_inconsistency": 3,
+        "provisional": 7,
+        "followup": 6,
+        "analysis_limitations": 4,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal",
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "extracted",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/extracted.json",
+      "source_sha256": "b829d499e3e3fd7f6119f2dc23092cf50f7c13e57ee18e9d3131a14c7e350f2c",
+      "source_bytes": 56589,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/extracted",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-02-extracted-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "9ab7763f-42ac-4f32-ab47-87d94bdb9d43",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_8b8e8a1f44d9",
+          "dispatchId": "ctx_f08f047a1f8d",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_e6951dd5-4913-45df-b516-7dbafa5d51c8",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_e6951dd5-4913-45df-b516-7dbafa5d51c8",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "d61c9cc5-b9a2-47ce-be15-2d9b6aff82d8",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "cca648a2-77a3-434e-a9c6-f708aab4bcf4",
+            "generation": 147,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "d61c9cc5-b9a2-47ce-be15-2d9b6aff82d8",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_8b8e8a1f44d9",
+      "dispatchId": "ctx_f08f047a1f8d",
+      "stage": "input_accepted",
+      "handle": "term_e6951dd5-4913-45df-b516-7dbafa5d51c8",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass_182_checks",
+      "read_review": "independent_batch_review_accepted_with_disclosed_scope",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/extracted/review.md",
+      "coverage": {
+        "chunks": 18,
+        "leaves": 719,
+        "missing": 0,
+        "duplicate_owner": 0,
+        "review_parts": 17
+      },
+      "remaining": {
+        "source_insufficiency_groups": 10,
+        "source_inconsistency": 13,
+        "provisional": 4,
+        "followup": 11,
+        "analysis_limitations_groups": 5,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal",
+      "whole_ledger_complete": false
+    }
+  ],
+  "review": {
+    "taskId": "task_8332526dcb8f",
+    "dispatchId": "ctx_68a17c6bda51",
+    "handle": "term_9a816b70-dbca-417c-813f-65f54059dbde",
+    "model": "opus",
+    "state": "settled",
+    "brief": "orchestration/work/phub-ledger-redesign/batch-02-review-brief.md",
+    "outcome": "PASS3/WARN2; all first-pass closable; blocking_extraction_errors0",
+    "report": "orchestration/work/phub-ledger-redesign/batch-02-review.md",
+    "release": "retained; reason=user_takeover; processAction=none; process exit not asserted",
+    "independent_source_reading": {
+      "full": [
+        "combo-recipes",
+        "contraindications"
+      ],
+      "sample": [
+        "anatomy-danger-zones",
+        "consent-checklist",
+        "extracted"
+      ]
+    }
+  },
+  "coordinator_acceptance": "5/5 first-pass closure accepted: independent review found no extraction/coverage errors; all per-ledger machine checks rerun by coordinator on receipt; known limitations and optional classification recommendations retained without re-investigation.",
+  "followup_recommendations": [
+    {
+      "ledger": "anatomy-danger-zones",
+      "kind": "known_analysis_limitations",
+      "detail": "17 unmarked occurrences listed with Pointer/spans in batch-02-review.md §2.1; raw tokens unchanged; no further retagging required for first-pass closure",
+      "status": "recorded_in_batch_review; not_backfilled_to_ledger_issues"
+    },
+    {
+      "ledger": "anatomy-danger-zones",
+      "kind": "classification_and_provenance",
+      "detail": "F06 관자궁/관골궁 candidate I annotation; author reread vs independent review clarification",
+      "status": "optional_followup; no source correction"
+    },
+    {
+      "ledger": "extracted",
+      "kind": "provisional_classification",
+      "detail": "I6 I7 I8 I9 I11 I13 are field-content interpretations; reviewer recommends P/F, preserving source observations and open status",
+      "status": "review_recommendation_recorded; local_I_numbering_unchanged; do_not_treat_as_proven_contradictions"
+    },
+    {
+      "ledger": "contraindications",
+      "kind": "format",
+      "detail": "review_anchor title strings are accessible via existing valid TOC; optional slug harmonization",
+      "status": "optional; no_blocker"
+    }
+  ]
+}

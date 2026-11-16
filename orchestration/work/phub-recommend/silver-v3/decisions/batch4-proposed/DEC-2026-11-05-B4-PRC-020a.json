@@ -1,0 +1,70 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 2/2(원장 자리 9) · 근거 조각 「제모레이저」 ⊃ 「제모」",
+ "gate_item": "b4-prc/020",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-020a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-5ca76e37a4"
+ },
+ "proposal_item": "b4-prc/020",
+ "reason": "결정 묶음 4 — 참조 조각 「제모레이저」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「제모」(SUB-5ca76e37a4)로 읽는다(근거: 조각 「제모레이저」 ⊃ 「제모」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@9/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/2/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@9/3/0/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "제모레이저",
+  "scope": [
+   "REF-4690afbfbb",
+   "REF-9a8e493f02"
+  ]
+ }
+}

@@ -1,0 +1,648 @@
+{
+ "note": "수동 검토 규칙. 원문 전체를 읽으며 Kiwi 원시 출력에서 확인한 오분절·의미위험을 구절(phrase 또는 regex) 단위로 적었다. build.py 는 각 구절의 모든 출현을 찾아 그 구간과 겹치는 원시 토큰 목록을 variants 와 대조해 출현별 판정을 남긴다. 어느 variant 와도 맞지 않는 출현이 있으면 build 가 실패한다(검토 누락 방지). 판정은 원시 토큰을 교정하지 않는다. verdict=issue 는 '표시됨(교정 아님)', verdict=ok 는 '해당 출현은 문제 없음으로 직접 확인'이다.",
+ "rules": [
+  {
+   "id": "SR01",
+   "phrase": "필러",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "필/NNP",
+      "러/EC"
+     ],
+     "verdict": "issue",
+     "issue": "'필러'가 필/NNP + 러/EC(연결어미)로 분절",
+     "impact": "명칭 토큰 '필러'가 사라지고 어미가 생김. 형태소만으로 명칭 출현을 세면 누락"
+    },
+    {
+     "tokens": [
+      "필러/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "코필러/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'코필러'가 한 토큰(NNG)으로 묶임",
+     "impact": "부위 '코'와 '필러'가 분리되지 않음. 부위·명칭 후보 추출에서 형태소만 쓰면 둘 다 누락"
+    }
+   ]
+  },
+  {
+   "id": "SR02",
+   "phrase": "더블로",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "더블/NNG",
+      "로/JKB"
+     ],
+     "verdict": "issue",
+     "issue": "명칭 '더블로'가 더블/NNG + 로/JKB(부사격 조사)로 분절",
+     "impact": "명칭이 '더블'+조사로 바뀜. '더블로 HIFU로'에서는 도구격 조사가 두 번 있는 것처럼 보임"
+    },
+    {
+     "tokens": [
+      "더블로/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "더블로로/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'더블로로'(명칭+조사)가 한 토큰으로 묶임",
+     "impact": "조사 '로'가 분리되지 않음. 명칭 표면형이 '더블로로'로 남음"
+    }
+   ]
+  },
+  {
+   "id": "SR03",
+   "phrase": "볼뉴머",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "보/VV",
+      "ᆯ/ETM",
+      "뉴/NNG",
+      "머/EC"
+     ],
+     "verdict": "issue",
+     "issue": "'볼뉴머'가 보다(VV)+ᆯ+뉴+머(EC)로 분석",
+     "impact": "명칭이 동사·어미로 바뀜. 용언 기본형 '보다'가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "볼/NNG",
+      "뉴/NNG",
+      "머/EC"
+     ],
+     "verdict": "issue",
+     "issue": "'볼뉴머'가 볼/뉴/머(EC)로 분절",
+     "impact": "명칭이 '볼'(부위로 오인 가능)+'뉴'+어미로 바뀜. 부위 후보 오탐 위험"
+    }
+   ]
+  },
+  {
+   "id": "SR04",
+   "phrase": "인모드",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "인/NNG",
+      "모드/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'인모드'가 인/NNG + 모드/NNG로 분절",
+     "impact": "명칭 토큰이 사라짐"
+    }
+   ]
+  },
+  {
+   "id": "SR05",
+   "phrase": "써마지",
+   "kind": "product-name-as-verb",
+   "variants": [
+    {
+     "tokens": [
+      "쓰/VV",
+      "어/EC",
+      "마/VX",
+      "지/EF"
+     ],
+     "verdict": "issue",
+     "issue": "'써마지'가 쓰다(VV)+어+말다(VX)+지(EF)로 분석",
+     "impact": "명칭이 '쓰지 마'류 동사 구성으로 바뀌어 부정(말다) 신호가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "써마지/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "써마지/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR06",
+   "phrase": "울쎄라",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "울쎄/NNG",
+      "이/VCP",
+      "라/EC"
+     ],
+     "verdict": "issue",
+     "issue": "'울쎄라'가 울쎄+이다(VCP)+라(EC)로 분석",
+     "impact": "명칭이 '울쎄'로 잘리고 서술격 조사가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "울쎄/NNP",
+      "이/VCP",
+      "라는/ETM"
+     ],
+     "verdict": "issue",
+     "issue": "'울쎄라는'이 울쎄+이다+라는(ETM)으로 분석",
+     "impact": "명칭이 '울쎄'로 잘리고 주제 조사 '는'이 관형형 어미로 바뀜"
+    },
+    {
+     "tokens": [
+      "울쎄라/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "울쎄라/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR07",
+   "phrase": "리쥬란",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "리쥬/NNP",
+      "란/JX"
+     ],
+     "verdict": "issue",
+     "issue": "'리쥬란'이 리쥬 + 란(JX)으로 분절",
+     "impact": "명칭이 '리쥬'로 잘림"
+    },
+    {
+     "tokens": [
+      "리쥬/NNG",
+      "란/JX"
+     ],
+     "verdict": "issue",
+     "issue": "'리쥬란'이 리쥬 + 란(JX)으로 분절",
+     "impact": "명칭이 '리쥬'로 잘림"
+    },
+    {
+     "tokens": [
+      "리쥬/NNP",
+      "이/VCP",
+      "란/ETM"
+     ],
+     "verdict": "issue",
+     "issue": "'리쥬란'이 리쥬+이다+란(ETM)으로 분석",
+     "impact": "명칭이 '리쥬'로 잘리고 서술격 조사가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "리쥬란/NNG"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "리쥬란힐러/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR08",
+   "phrase": "쥬베룩",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "쥬베/NNG",
+      "룩/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'쥬베룩'이 쥬베/룩으로 분절",
+     "impact": "명칭 토큰이 사라짐"
+    },
+    {
+     "tokens": [
+      "쥬베룩/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "쥬베룩/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR09",
+   "phrase": "슈링크",
+   "kind": "product-name-split",
+   "variants": [
+    {
+     "tokens": [
+      "슈/NNP",
+      "링크/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'슈링크'가 슈/NNP + 링크/NNG로 분절",
+     "impact": "명칭 토큰이 사라짐"
+    },
+    {
+     "tokens": [
+      "슈링크/NNP"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "슈링크/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR10",
+   "phrase": "올리지오",
+   "kind": "product-name-as-verb",
+   "variants": [
+    {
+     "tokens": [
+      "올리/VV",
+      "지/EC",
+      "오가/VV"
+     ],
+     "verdict": "issue",
+     "issue": "'올리지오가'가 올리다(VV)+지+오가다(VV)로 분석",
+     "impact": "명칭이 동사 둘로 바뀜. 용언 기본형 '올리다·오가다'가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "올리지오/NNP"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR11",
+   "phrase": "피코초",
+   "kind": "term-split",
+   "variants": [
+    {
+     "tokens": [
+      "피/NNG",
+      "코/NNG",
+      "초/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'피코초'(시간 단위 어휘)가 피/코/초로 분절",
+     "impact": "'코'가 부위 명사처럼 남아 부위 후보 오탐 위험. '초'가 시간 단위처럼 독립"
+    }
+   ]
+  },
+  {
+   "id": "SR12",
+   "phrase": "열부하",
+   "kind": "meaning-risk",
+   "variants": [
+    {
+     "tokens": [
+      "열/NR",
+      "부하/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'열'(熱)이 수사 NR(열=10)로 분석",
+     "impact": "수량 후보 오탐 위험. 원문 문맥은 '기기 원리·열부하를 평가해'"
+    }
+   ]
+  },
+  {
+   "id": "SR13",
+   "phrase": "CO2",
+   "kind": "numeral-in-name",
+   "variants": [
+    {
+     "tokens": [
+      "CO/SL",
+      "2/SN"
+     ],
+     "verdict": "issue",
+     "issue": "명칭 'CO2'가 CO/SL + 2/SN으로 분리",
+     "impact": "숫자 '2'가 수량처럼 독립. 'CO2 2주 후'에서는 2/SN이 연달아 두 번 나와 수량 오탐 위험"
+    }
+   ]
+  },
+  {
+   "id": "SR14",
+   "regex": "M\\d+-",
+   "kind": "code-prefix",
+   "variants": [
+    {
+     "tokens": [
+      "M/SL",
+      "*/SN",
+      "-/SO"
+     ],
+     "verdict": "issue",
+     "issue": "명칭 앞 분류 코드 접두(M+숫자+'-')가 M/SL·숫자/SN·-/SO로 분리",
+     "impact": "숫자가 수량처럼 독립. 이 숫자는 분류 코드의 일부이며 수량이 아니다(원문 구조상 from_category/to_category와 같은 코드)"
+    }
+   ]
+  },
+  {
+   "id": "SR15",
+   "kind": "meaning-risk",
+   "variants": [
+    {
+     "tokens": [
+      "실로/MAG"
+     ],
+     "verdict": "issue",
+     "issue": "'실(thread)+로(조사)'가 부사 '실로'(참으로) MAG 한 토큰으로 분석",
+     "impact": "시술 수단 '실'이 사라지고 강조 부사가 허위로 생김. 수식어(부사) 수집에서 오탐"
+    },
+    {
+     "tokens": [
+      "실/NNG",
+      "로/JKB"
+     ],
+     "verdict": "ok"
+    }
+   ],
+   "regex": "(?<![가-힣])실로"
+  },
+  {
+   "id": "SR16",
+   "kind": "meaning-risk",
+   "variants": [
+    {
+     "tokens": [
+      "자/NNB",
+      "가/JKS"
+     ],
+     "verdict": "issue",
+     "issue": "'자가'(自家)가 의존명사 자/NNB + 주격조사 가/JKS로 분석",
+     "impact": "'자가(자기 몸 유래)'라는 출처 수식이 사라짐. 원문 문맥 'PRP 자가 성장인자', '자가 지방유래 줄기세포(SVF)'"
+    },
+    {
+     "tokens": [
+      "자가/NNG"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "자가혈/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ],
+   "regex": "(?<![가-힣])자가"
+  },
+  {
+   "id": "SR17",
+   "phrase": "풀고",
+   "kind": "verb-as-noun",
+   "variants": [
+    {
+     "tokens": [
+      "풀고/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "동사 '풀고'(풀다+고)가 명사 한 토큰으로 분석",
+     "impact": "행위 '풀다'와 연결어미가 사라짐"
+    },
+    {
+     "tokens": [
+      "풀/VV",
+      "고/EC"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR18",
+   "phrase": "크라이오로",
+   "kind": "particle-fused",
+   "variants": [
+    {
+     "tokens": [
+      "크라이오로/NNP"
+     ],
+     "verdict": "issue",
+     "issue": "명칭+조사 '크라이오로'가 한 토큰",
+     "impact": "조사 '로'가 분리되지 않아 명칭 표면형이 '크라이오로'로 남음"
+    },
+    {
+     "tokens": [
+      "크라이오로/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "명칭+조사 '크라이오로'가 한 토큰",
+     "impact": "조사 '로'가 분리되지 않아 명칭 표면형이 '크라이오로'로 남음"
+    }
+   ]
+  },
+  {
+   "id": "SR19",
+   "phrase": "래디어스로",
+   "kind": "particle-fused",
+   "variants": [
+    {
+     "tokens": [
+      "래디어스로/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "명칭+조사가 한 토큰",
+     "impact": "조사 '로' 미분리"
+    },
+    {
+     "tokens": [
+      "래디어스/NNG",
+      "로/JKB"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR20",
+   "phrase": "스컬트라로",
+   "kind": "particle-fused",
+   "variants": [
+    {
+     "tokens": [
+      "스컬트라로/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "명칭+조사가 한 토큰",
+     "impact": "조사 '로' 미분리"
+    },
+    {
+     "tokens": [
+      "스컬트라로/NNP"
+     ],
+     "verdict": "issue",
+     "issue": "명칭+조사가 한 토큰",
+     "impact": "조사 '로' 미분리"
+    },
+    {
+     "tokens": [
+      "스컬트라/NNG",
+      "로/JKB"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR21",
+   "phrase": "통한 전달",
+   "kind": "meaning-risk",
+   "variants": [
+    {
+     "tokens": [
+      "통하/VV",
+      "ᆫ/ETM",
+      "전/MM",
+      "달/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'전달'이 전/MM(관형사) + 달/NNG로 분절",
+     "impact": "행위 명사 '전달'이 사라짐. 이 구절은 금지 대상(MTS 미세채널을 통한 전달)의 핵심어"
+    },
+    {
+     "tokens": [
+      "통하/VV",
+      "ᆫ/ETM",
+      "전달/NNG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR22",
+   "phrase": "동안",
+   "kind": "homograph",
+   "variants": [
+    {
+     "tokens": [
+      "동안/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "'동안'은 표기상 '童顔(어려 보이는 얼굴)'과 '시간 동안'이 같다. Kiwi 는 둘을 구분하지 않는다",
+     "impact": "시간 표현 키워드로 '동안'을 쓰면 오탐. 잠정: 원문 문맥('동안 얼굴', '동안 패키지', '동안 효과', '동안 완성')은 童顔 쪽으로 읽힌다(확정 아님)"
+    }
+   ]
+  },
+  {
+   "id": "SR23",
+   "phrase": "둘 다",
+   "kind": "meaning-risk",
+   "variants": [
+    {
+     "tokens": [
+      "두/VV",
+      "ᆯ/ETM",
+      "다/MAG"
+     ],
+     "verdict": "issue",
+     "issue": "수사 '둘'이 두다(VV)+ᆯ(ETM)로 분석",
+     "impact": "'둘 다'(양쪽 모두)의 범위 표현이 사라지고 동사가 허위로 생김"
+    },
+    {
+     "tokens": [
+      "둘/NR",
+      "다/MAG"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR24",
+   "phrase": "리프팅이라",
+   "kind": "form-overlap",
+   "variants": [
+    {
+     "tokens": [
+      "리프팅이/NNG",
+      "이/VCP",
+      "라/EC"
+     ],
+     "verdict": "issue",
+     "issue": "'리프팅이라'가 리프팅이/NNG + 이/VCP + 라로 분석(표면 '이'가 두 토큰에 걸침)",
+     "impact": "명사 표면형이 '리프팅이'로 남음"
+    },
+    {
+     "tokens": [
+      "리프팅/NNG",
+      "이/VCP",
+      "라/EC"
+     ],
+     "verdict": "ok"
+    }
+   ]
+  },
+  {
+   "id": "SR25",
+   "phrase": "에 한해",
+   "kind": "lemma-loss",
+   "variants": [
+    {
+     "tokens": [
+      "에/JKB",
+      "한/NNG",
+      "하/XSV",
+      "어/EC"
+     ],
+     "verdict": "issue",
+     "issue": "조건 표현 '~에 한해'(한하다)가 한/NNG + 하/XSV + 어로 분석",
+     "impact": "기본형 '한하다'가 제공되지 않음. 조건(한정) 신호를 형태소만으로 찾으면 누락 위험. 원문 문맥 '자가 지방유래 줄기세포(SVF)에 한해 같은 날 가능'"
+    }
+   ]
+  },
+  {
+   "id": "SR26",
+   "regex": "\\d+주",
+   "kind": "tag-inconsistency",
+   "variants": [
+    {
+     "tokens": [
+      "*/SN",
+      "주/NNB"
+     ],
+     "verdict": "ok"
+    },
+    {
+     "tokens": [
+      "*/SN",
+      "주/NNG"
+     ],
+     "verdict": "issue",
+     "issue": "기간 단위 '주'가 같은 구성에서 NNG로 태깅(다른 출현은 NNB)",
+     "impact": "품사로 단위 명사를 찾으면 일부 누락. 표면형은 같다"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,340 @@
+{
+ "segment_id": "S4",
+ "read_pointers_prefix": "/combos/3",
+ "observations": [
+  {
+   "pointer": "/combos/3/problem",
+   "status": "P",
+   "note": "\"피부결/톤/항노화\" 세 항목을 '/'로 나열. 대안인지 묶음인지 정의 없음(F)."
+  },
+  {
+   "pointer": "/combos/3/packages/1/name",
+   "status": "P",
+   "note": "name에 괄호 별칭 \"(골든루틴)\" — 패키지 별칭. salesPitch '골든루틴이라 불려요'와 대응."
+  },
+  {
+   "pointer": "/combos/3/packages/1/expectedResult",
+   "status": "B",
+   "note": "\"3~5회 1클 권장\" — '1클'(1클래스/1코스로 추정되는 약어) 뜻이 원문에 없음. 추정해 채우지 않음."
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "status": "P",
+   "note": "\"PRP/SB\" — SB가 스킨부스터 약어로 보이나 원문 정의 없음(P). '/'가 대안이 아니라 둘을 함께 묶는 쓰임으로 읽혀 README 규칙과 다를 수 있음."
+  },
+  {
+   "pointer": "/combos/3/packages/2/productTier",
+   "status": "P",
+   "note": "\"수입+국산\" — 다른 항목 \"국산+수입 혼합\"과 표기 순서·형태가 다름."
+  },
+  {
+   "pointer": "/combos/3/packages/2/products/0",
+   "status": "P",
+   "note": "\"피코레이저/프락셀\" — '/' 대안 표기."
+  },
+  {
+   "pointer": "/combos/3/packages/1/salesPitch",
+   "status": "P",
+   "note": "\"흡수율이 수십 배예요\" — 수치 주장, 근거 미기재. 임상 판단 안 함."
+  },
+  {
+   "pointer": "/combos/3/packages/1/riskBenefit",
+   "status": "P",
+   "note": "\"24시간 세안 제한\" — 시술 후 관리 지시가 riskBenefit 칸에 있음."
+  },
+  {
+   "pointer": "/combos/3/packages/0/salesPitch",
+   "status": "P",
+   "note": "\"월 1회가 이상적이에요\" 주기 권장이 salesPitch에 있음."
+  },
+  {
+   "pointer": "/combos/3/packages/1/procedures",
+   "status": "P",
+   "note": "M12,M5,M4 순서가 name(MTS+PRP+스킨부스터)·rationale 화살표 순서와 일치."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/3/packages/0/products/0",
+   "text": "리쥬란 힐러",
+   "kind": "제품명",
+   "note": "공백 포함 제품명"
+  },
+  {
+   "pointer": "/combos/3/packages/0/priceRange",
+   "text": "15~25만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/expectedResult",
+   "text": "피부 수분감·광채 향상",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/expectedResult",
+   "text": "잔주름 완화",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/expectedResult",
+   "text": "3~5회 반복 시 확연한 차이",
+   "kind": "회차·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/salesPitch",
+   "text": "한 번만 해보시면 촉촉함이 다르다는 걸 느끼실 거예요",
+   "kind": "조건·추측",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/salesPitch",
+   "text": "월 1회가 이상적이에요",
+   "kind": "주기",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/upsellHook",
+   "text": "스킨부스터 전에 MTS로 채널 열고 하시면 흡수율이 훨씬 좋아요",
+   "kind": "순서·조건·비교",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/upsellHook",
+   "text": "MTS+스킨부스터 패키지",
+   "kind": "시술 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/clinicalRationale",
+   "text": "PN/PDRN이 진피 섬유아세포를 자극하여 콜라겐·엘라스틴 합성 촉진",
+   "kind": "성분·층·기전",
+   "note": "PN/PDRN 영문 약어"
+  },
+  {
+   "pointer": "/combos/3/packages/0/clinicalRationale",
+   "text": "반복 시술로 진피 두께 증가",
+   "kind": "조건·효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/riskBenefit",
+   "text": "자잘한 구진 1~3일 내 소실",
+   "kind": "부작용·시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/0/riskBenefit",
+   "text": "가격 대비 만족도 높음",
+   "kind": "평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/name",
+   "text": "MTS + PRP + 스킨부스터 (골든루틴)",
+   "kind": "시술 결합+별칭",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/products/0",
+   "text": "MTS + 자가 PRP + 리쥬란",
+   "kind": "제품 결합",
+   "note": "'자가' 수식"
+  },
+  {
+   "pointer": "/combos/3/packages/1/priceRange",
+   "text": "30~50만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/expectedResult",
+   "text": "피부결·톤·탄력 종합 개선",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/expectedResult",
+   "text": "'아기 피부' 효과",
+   "kind": "인용·비유",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/expectedResult",
+   "text": "3~5회 1클 권장",
+   "kind": "회차·약어",
+   "note": "'1클' 뜻 원문 없음"
+  },
+  {
+   "pointer": "/combos/3/packages/1/salesPitch",
+   "text": "MTS로 구멍 열고 PRP+스킨부스터 넣으면 흡수율이 수십 배예요",
+   "kind": "순서·조건·수치",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/upsellHook",
+   "text": "피부결에 색소·기미도 있으시면 레이저 토닝 추가가 가능해요",
+   "kind": "조건·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/upsellHook",
+   "text": "톤 균일 + 재생 시너지",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/clinicalRationale",
+   "text": "MTS(채널 생성) → PRP(성장인자 PDGF·TGF-β 전달) → 스킨부스터(PDRN·HA 전달)",
+   "kind": "순서+기전",
+   "note": "TGF-β 그리스 문자"
+  },
+  {
+   "pointer": "/combos/3/packages/1/clinicalRationale",
+   "text": "경피 흡수율 극대화",
+   "kind": "효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/clinicalRationale",
+   "text": "세포 재생의 3가지 신호(성장인자+DNA회복+수분)를 동시 공급",
+   "kind": "수량·나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/riskBenefit",
+   "text": "MTS 후 약간의 홍반·출혈은 정상",
+   "kind": "시간·부작용·정도",
+   "note": "'약간의'"
+  },
+  {
+   "pointer": "/combos/3/packages/1/riskBenefit",
+   "text": "24시간 세안 제한",
+   "kind": "시간·관리",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/1/riskBenefit",
+   "text": "자가혈(PRP)이라 알레르기 위험 없음",
+   "kind": "인과·부정",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/productTier",
+   "text": "수입+국산",
+   "kind": "제품 등급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/products/0",
+   "text": "피코레이저/프락셀 + MTS + PRP + 리쥬란",
+   "kind": "제품 결합+대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/priceRange",
+   "text": "50~90만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/expectedResult",
+   "text": "색소+피부결+톤+탄력 종합 리뉴얼",
+   "kind": "효과 나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/salesPitch",
+   "text": "레이저로 묵은 각질·색소 정리하고",
+   "kind": "시술-효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/upsellHook",
+   "text": "탄력까지 원하시면 HIFU를 다음 회차에 추가하시는 분들이 많아요",
+   "kind": "조건·회차",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/clinicalRationale",
+   "text": "레이저(표피 색소 파괴+진피 미세 열손상)",
+   "kind": "층·기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/clinicalRationale",
+   "text": "자극(레이저·MTS) + 재생(PRP·스킨부스터)의 이상적 밸런스",
+   "kind": "역할 분류",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "text": "레이저 후 자외선 차단 필수",
+   "kind": "시간·관리",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "text": "시술 순서 반드시 준수(레이저→MTS→PRP→스킨부스터)",
+   "kind": "순서 제약",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "text": "재생(PRP/SB)",
+   "kind": "약어",
+   "note": "SB 정의 없음"
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "text": "과학적 근거 충분",
+   "kind": "근거 주장",
+   "note": "출처 미기재"
+  },
+  {
+   "pointer": "/combos/3/packages/2/clinicalRationale",
+   "text": "레이저(표피 색소 파괴+진피 미세 열손상) → MTS(채널 추가 확보) → PRP(재생 촉진) → 스킨부스터(수분+DNA 회복)",
+   "kind": "순서+기전",
+   "note": "읽기 검토에서 전체 연쇄 추가",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/3/packages/1/upsellHook",
+   "text": "같이 하시면 톤 균일 + 재생 시너지",
+   "kind": "조건·효과",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/3/problem",
+   "text": "피부결/톤/항노화",
+   "kind": "problem 값 / 나열",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "text": "열 시술(레이저) + 채널(MTS) + 재생(PRP/SB) 조합",
+   "kind": "역할-시술",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-08",
+   "status": "B",
+   "pointer": "/combos/3/packages/1/expectedResult",
+   "note": "'1클' 약어 뜻 원문 없음"
+  },
+  {
+   "id": "I-PC-09",
+   "status": "B",
+   "pointer": "/combos/3/packages/2/riskBenefit",
+   "note": "'SB' 약어 정의 원문 없음(스킨부스터로 보이는 것은 잠정)"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "id": "DEC-2026-11-05-B3-REN-02",
+ "kind": "canonical_rename",
+ "target": {
+  "dictionary": "modality",
+  "code": "M3",
+  "canonical": "바이오스티뮬레이터/콜라겐부스터"
+ },
+ "new_value": {
+  "canonical": "바이오스티뮬레이터",
+  "old_as_synonym": true,
+  "old_id_as_alias": true,
+  "is_marketing_name": null,
+  "synonyms": [
+   {
+    "value": "콜라겐부스터",
+    "is_marketing_name": true
+   }
+  ]
+ },
+ "reason": "계열 M3 정준 이름을 「바이오스티뮬레이터」로(사용자 확정 · 기존 동의어를 정준값으로 올림). 옛 정준값 「바이오스티뮬레이터/콜라겐부스터」는 동의어, 「콜라겐부스터」는 마케팅 용어(is_marketing_name). MOD-<M3> id 그대로.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "literature-evidence.json:categories.{code}.name@M3"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정** 「콜라겐부스터는 마케팅 용어」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

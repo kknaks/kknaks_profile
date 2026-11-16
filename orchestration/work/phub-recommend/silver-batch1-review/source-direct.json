@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "69_manifest_bytes": true,
+    "63_complete_roots": true,
+    "all_source_raw_equal": true,
+    "product_native_set": true,
+    "membership_active_set": true,
+    "1394_exact_occurrences": true,
+    "partition": true,
+    "all_unknown": true
+  },
+  "counts": {
+    "products": 395,
+    "active": 354,
+    "families": 27,
+    "membership": 354,
+    "family_null": 3,
+    "pending_director": 3,
+    "safety_rows": 580,
+    "safety_fields": 1394,
+    "scalar_leaves": 4170,
+    "not_created_rows": {
+      "owner_unresolved": 6,
+      "out_of_batch_entity": 37,
+      "candidate_only": 19
+    },
+    "not_created_fields": {
+      "owner_unresolved": 20,
+      "out_of_batch_entity": 83,
+      "candidate_only": 49
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "probes": [
+    {
+      "name": "comparison_context_excluded_duplicates",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:8663c2ac8548a8535643a6a8f5bf281c80af840b5689ee4292a6ab21666f6315",
+          "axis": "container"
+        },
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:76602408a80cd18c48c7f7e28c53a28dca66916d4c4e78dba1f298a5dab05db1"
+        }
+      ]
+    },
+    {
+      "name": "comparison_member_wrong_source_evidence",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "comparison_axis_source_state",
+          "pass": false,
+          "scope": "scope:c57ce68a27d7e2898a2dfef3dd0b987d71ba5950ef25e7d9a16f578556eb8bac"
+        }
+      ]
+    },
+    {
+      "name": "comparison_context_wrong_source_evidence",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_parent_source_context",
+          "pass": false,
+          "scope": "scope:b39f4bda962387230613bfab6726c7a3c23392e35f6ee5bd189ededa8c2180a7"
+        }
+      ]
+    },
+    {
+      "name": "source_role_duplicate_with_wrong_complaint",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "scope_axis_unique",
+          "pass": false,
+          "scope": "scope:0469d0341dff748a9b9955093ea7313e7cfd3abf06ff71bce3957bcd2e20b8f2",
+          "axis": "container"
+        },
+        {
+          "check": "combo_scope_source_axes",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "attachment_wrong_reachable_scope",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "attachment_rule_source_application",
+          "pass": false
+        },
+        {
+          "check": "attachment_claim_scope_target",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "attachment_claim_subjectless",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "attachment_rule_source_application",
+          "pass": false
+        },
+        {
+          "check": "attachment_claim_scope_target",
+          "pass": false
+        },
+        {
+          "check": "case_attachment_consistency",
+          "pass": false,
+          "case": "LOSS-01"
+        }
+      ]
+    },
+    {
+      "name": "resolution_empty_policy_version",
+      "accepted": false,
+      "expected_accepted": false,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": [
+        {
+          "check": "resolution_policy_exact_source_version",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "name": "normal_rehashed_preserves_values",
+      "accepted": true,
+      "expected_accepted": true,
+      "expectation_met": true,
+      "normalized_id_failures": 0,
+      "failed_checks": []
+    }
+  ],
+  "all_expectations_met": true,
+  "generic_unknown_candidate_control": {
+    "inspection_only": true,
+    "accepted": true,
+    "failures": [],
+    "clinical_positive": false
+  },
+  "declaration_actual_hashes": {
+    "implementation_sha256": "6ac8f07c83c4a069f031c7f89788626e01c621cbad13d854e3c62599eb924028",
+    "contract_sha256": "a191739b17fe4d6b5809aa6d1d565f60c14d1436d2828bb8228d89dae4af47a4"
+  },
+  "fingerprints_match": true,
+  "resolution_actual_source_match": true,
+  "positive": {
+    "comparison_parents": 2,
+    "exact_identity": 8,
+    "ambiguous_candidate_counts": [
+      8,
+      8
+    ],
+    "ambiguous_selected": 0,
+    "source_role_duplicate_scopes": 3,
+    "claims": 167,
+    "attachments": 8
+  }
+}

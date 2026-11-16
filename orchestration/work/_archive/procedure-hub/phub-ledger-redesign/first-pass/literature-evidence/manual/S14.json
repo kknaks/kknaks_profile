@@ -1,0 +1,11 @@
+{"segment":"S14","reading_state":"read_direct","last_read_pointer":"/categories/M14/effects",
+"read_note":"M14 name 과 빈 배열 3개 직접 확인.",
+"observations":[
+{"id":"S14-O1","status":"P","pointers":["/categories/M14/moa","/categories/M14/adverse_effects","/categories/M14/effects"],"text":"세 배열 모두 빈 배열. name 'Cryolipolysis' 만 있다."}
+],
+"expressions":[
+{"id":"S14-X1","pointer":"/categories/M14/name","text":"Cryolipolysis","facets":["name_candidate"]}
+],
+"issues":[
+{"id":"S14-B1","class":"B","pointers":["/categories/M14/moa","/categories/M14/adverse_effects","/categories/M14/effects"],"text":"진술 0개."}
+]}

@@ -1,0 +1,317 @@
+# S043  scope=M15 메디컬스킨케어  units=auto-M15-1775360998 items/0 | auto-M15-1775360998 items/1 | auto-M15-1775360998 items/2 | auto-M15-1775360998 items/3 | auto-M15-1775360998 items/4 | auto-M15-1775360998 items/5 | auto-M15-1775360998 items/6 | auto-M15-1775360998 items/7 | auto-1775361777 items/0 | auto-1775361777 items/1 | auto-1775361777 items/2 | auto-1775361777 items/3 | auto-1775361777 items/4 | auto-1775361777 items/5 | auto-1775361777 items/6 | auto-1775361777 items/7 | auto-1775361777 items/8 | auto-1775361777 items/9 | auto-1775361777 items/10
+# 상위 문맥: [{"pointer": "/modality/14", "id": "M15", "category": "메디컬스킨케어", "name": "메디컬스킨케어"}]
+@ /modality/14/subcategories/9 auto-M15-1775360998 탈모(비수술)
+  . {id,label,items}
+  /id = "auto-M15-1775360998"
+  /label = "탈모(비수술)"
+  /items [8]
+@ /modality/14/subcategories/9/items/0 auto-M15-1775361031036 LLLT (저출력 레이저)
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361031036"
+  /name = "LLLT (저출력 레이저)"
+  /detail = "두피 모낭 세포 활성화 · 비열성 광자극"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "저출력 레이저를 이용해 두피 모낭 세포를 활성화시키는 비침습적 탈모 치료법"
+  /extracted/mechanism = "660-670nm 파장의 저출력 레이저가 모낭 세포의 미토콘드리아를 자극하여 ATP 생성을 증가시킵니다. 이를 통해 세포 대사가 활성화되고 모발 성장 주기가 개선되어 탈모 진행을 억제하고 모발 밀도를 증가시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"남성형 탈모(AGA)" ‖ 1:"여성형 탈모"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"일시적 두피 자극감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6개월"
+  /extracted/onset_duration/duration = "지속적 치료 필요"
+  /extracted/aftercare [3] = 0:"치료 후 즉시 일상생활 가능" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/9/items/1 auto-M15-1775361039291 엑소좀 두피주사
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361039291"
+  /name = "엑소좀 두피주사"
+  /detail = "줄기세포 유래 엑소좀 두피 주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "줄기세포에서 추출한 엑소좀을 두피에 직접 주입하여 모발 성장을 촉진하는 재생 치료법"
+  /extracted/mechanism = "엑소좀에 포함된 성장인자와 단백질이 모낭 줄기세포를 활성화하고 혈관신생을 촉진합니다. 모낭 주변의 염증을 감소시키고 모발 성장 주기를 정상화하여 탈모 진행을 억제합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"남성형 탈모" ‖ 1:"여성형 탈모" ‖ 2:"원형 탈모" ‖ 3:"모발 밀도 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주입 부위 일시적 부종" ‖ 1:"경미한 통증" ‖ 2:"두피 발적" ‖ 3:"가려움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주 후 초기 효과"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"시술 당일 세발 자제" ‖ 1:"3일간 사우나/찜질방 자제" ‖ 2:"1주일간 염색/파마 자제" ‖ 3:"충분한 수분 섭취"
+@ /modality/14/subcategories/9/items/2 auto-M15-1775361179309 두피 메조테라피
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361179309"
+  /name = "두피 메조테라피"
+  /detail = "모낭 성장인자 주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "두피 진피층에 성장인자/비타민 직접 주입"
+  /extracted/mechanism = "멀티니들 또는 메소건으로 두피 진피층에 성장인자(FGF, VEGF, IGF), 비타민, 미녹시딜 등을 직접 주입하여 모낭 세포를 활성화하고 모발 성장을 촉진한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"탈모 초기" ‖ 1:"모발 가늘어짐" ‖ 2:"두피 건강 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"두피 통증" ‖ 1:"홍반" ‖ 2:"부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "주 1회 10-20회 권장"
+  /extracted/aftercare [2] = 0:"시술 당일 세발 자제" ‖ 1:"자극성 샴푸 회피"
+@ /modality/14/subcategories/9/items/3 auto-M15-1775361179322 두피 PRP
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361179322"
+  /name = "두피 PRP"
+  /detail = "자가 혈소판 두피 주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가혈 PRP를 두피에 주입하여 모낭 재생"
+  /extracted/mechanism = "원심분리한 자가 혈소판 풍부 혈장(PRP)의 PDGF, TGF-beta1, VEGF 등 성장인자가 모유두세포(DPC) 증식을 촉진하고, 항세포사멸 효과로 모발 성장기(anagen)를 연장한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"안드로겐성 탈모" ‖ 1:"원형탈모" ‖ 2:"모발이식 후 생착률 향상"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"두피 통증" ‖ 1:"부종" ‖ 2:"멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "월 1회 3-6회 권장"
+  /extracted/aftercare [2] = 0:"당일 세발 자제" ‖ 1:"NSAIDs 자제(혈소판 기능 억제)"
+@ /modality/14/subcategories/9/items/4 auto-M15-1775364775176 두피LED
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775176"
+  /name = "두피LED"
+  /detail = "모낭광자극"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 광선을 이용한 모낭 광자극 탈모 치료"
+  /extracted/mechanism = "특정 파장의 LED 광선이 모낭 세포의 미토콘드리아를 활성화시킵니다. 혈액순환 개선과 모발 성장인자 분비를 촉진하여 탈모를 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"남성형 탈모" ‖ 1:"여성형 탈모" ‖ 2:"원형 탈모" ‖ 3:"모발 밀도 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"두피 일시적 온감" ‖ 1:"경미한 가려움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6개월"
+  /extracted/onset_duration/duration = "지속적 관리 필요"
+  /extracted/aftercare [4] = 0:"꾸준한 치료 지속" ‖ 1:"두피 청결 유지" ‖ 2:"스트레스 관리" ‖ 3:"충분한 수면"
+@ /modality/14/subcategories/9/items/5 auto-M15-1775364775177 두피스케일링
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775177"
+  /name = "두피스케일링"
+  /detail = "각질피지제거"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "두피의 각질과 피지를 제거하는 깊은 세정 관리"
+  /extracted/mechanism = "전용 스케일링 용액이 두피의 과도한 각질과 피지를 연화시킵니다. 물리적 제거를 통해 모공을 깨끗하게 하여 모발 성장 환경을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"지성 두피" ‖ 1:"비듬" ‖ 2:"두피 트러블" ‖ 3:"모공 막힘"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 후 두피 민감성" ‖ 1:"일시적 건조감" ‖ 2:"가벼운 자극감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-4주"
+  /extracted/aftercare [4] = 0:"24시간 샴푸 자제" ‖ 1:"순한 샴푸 사용" ‖ 2:"두피 마사지 피하기" ‖ 3:"헤어 제품 사용 주의"
+@ /modality/14/subcategories/9/items/6 auto-M15-1775364775178 헤어셀
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775178"
+  /name = "헤어셀"
+  /detail = "LED헬멧"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 헬멧을 이용한 가정용 탈모 치료 기기"
+  /extracted/mechanism = "헬멧 형태의 LED 장치가 두피 전체에 균등한 광선을 조사합니다. 모낭 세포 활성화와 혈액순환 개선을 통해 모발 성장을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"초기 탈모" ‖ 1:"모발 가늘어짐" ‖ 2:"모발 밀도 감소" ‖ 3:"탈모 예방"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"사용 중 온감" ‖ 1:"드물게 두통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6개월"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [4] = 0:"규칙적 사용" ‖ 1:"사용 시간 준수" ‖ 2:"기기 청결 유지" ‖ 3:"다른 탈모 치료와 병행 가능"
+@ /modality/14/subcategories/9/items/7 auto-M15-1775364797158 피나스테리드도포
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364797158"
+  /name = "피나스테리드도포"
+  /detail = "국소 DHT억제 탈모"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "DHT 억제를 통한 국소 탈모 치료제"
+  /extracted/mechanism = "5α-환원효소를 억제하여 DHT 생성을 차단합니다. 국소 도포로 전신 부작용을 최소화하면서 모낭 위축을 방지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"남성형 탈모" ‖ 1:"정수리 탈모" ‖ 2:"M자 탈모" ‖ 3:"여성 남성형 탈모"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"도포 부위 자극" ‖ 1:"건조감" ‖ 2:"드물게 성기능 저하"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6개월"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [4] = 0:"규칙적 도포" ‖ 1:"손 깨끗이 씻기" ‖ 2:"임신 가능 여성 접촉 금지" ‖ 3:"정기적 검진"
+@ /modality/14/subcategories/10 auto-1775361777 약물/토피컬
+  . {id,label,items}
+  /id = "auto-1775361777"
+  /label = "약물/토피컬"
+  /items [14]
+@ /modality/14/subcategories/10/items/0 auto-M15-1775361793054 하이드로퀴논
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361793054"
+  /name = "하이드로퀴논"
+  /detail = "타이로시나아제 억제 · 미백 · 최대 4%"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "타이로시나아제 억제를 통한 멜라닌 생성 차단으로 색소침착 개선에 사용되는 미백제"
+  /extracted/mechanism = "멜라닌 합성 과정에서 타이로신을 DOPA로 전환하는 타이로시나아제 효소를 선택적으로 억제합니다. 이를 통해 멜라닌 생성을 차단하고 기존 색소침착의 점진적 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"기미, 주근깨 등 색소침착 질환" ‖ 1:"염증후 색소침착 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"접촉성 피부염, 자극감, 홍반"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [3] = 0:"자외선 차단제 필수 사용" ‖ 1:"점진적 농도 증량" ‖ 2:"장기간 사용 시 주기적 휴약기 필요"
+@ /modality/14/subcategories/10/items/1 auto-M15-1775361802111 아젤라산
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361802111"
+  /name = "아젤라산"
+  /detail = "항염+항미생물 · 주사/여드름 · 타이로시나아제 차단"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "타이로시나아제 억제와 항염/항미생물 작용으로 여드름과 주사 치료에 사용되는 천연 디카르복실산"
+  /extracted/mechanism = "타이로시나아제 효소를 차단하여 멜라닌 생성을 억제하고 미백 효과를 제공한다. 프로피오니박테리움 아크네스를 포함한 세균 증식을 억제하고 각질 세포의 정상화를 통해 모공 폐색을 개선한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"여드름 (comedonal, inflammatory)" ‖ 1:"주사(rosacea)" ‖ 2:"멜라스마 및 색소침착" ‖ 3:"지루성피부염"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"초기 사용시 경미한 자극감" ‖ 1:"건조감" ‖ 2:"홍조" ‖ 3:"따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [4] = 0:"자외선 차단제 필수 사용" ‖ 1:"초기 2주간 격일 적용 후 점진적 증량" ‖ 2:"보습제 병용 사용" ‖ 3:"다른 각질 제거제와 동시 사용 주의"
+@ /modality/14/subcategories/10/items/2 auto-M15-1775361818736 아다팔렌
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361818736"
+  /name = "아다팔렌"
+  /detail = "3세대 레티노이드 · 여드름 · 모낭 각화 억제"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "3세대 레티노이드로 여드름 치료와 모낭 각화 억제에 사용되는 국소 치료제"
+  /extracted/mechanism = "레티노산 수용체에 선택적으로 결합하여 각질세포의 분화와 증식을 조절합니다. 모낭 내 각화세포의 응집을 억제하고 면포 형성을 방지하여 여드름을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"심상성 여드름(comedonal acne)" ‖ 1:"경증-중등도 염증성 여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"피부 건조, 홍반, 박탈, 작열감 등 국소 자극 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "지속적 사용 필요"
+  /extracted/aftercare [4] = 0:"야간 사용 권장" ‖ 1:"자외선 차단제 필수 사용" ‖ 2:"보습제 병용" ‖ 3:"점진적 용량 증가"
+@ /modality/14/subcategories/10/items/3 auto-M15-1775361951887 트레티노인
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361951887"
+  /name = "트레티노인"
+  /detail = "비타민A 유도체"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민A 유도체 항노화/여드름 토피컬"
+  /extracted/mechanism = "레티노산 수용체(RAR/RXR)에 결합하여 세포 턴오버를 촉진하고, 진피 콜라겐 합성을 자극한다. 표피 멜라닌 배출을 가속화하여 색소침착을 개선한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"광노화" ‖ 1:"여드름" ‖ 2:"색소침착" ‖ 3:"잔주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"건조" ‖ 1:"박리" ‖ 2:"홍반" ‖ 3:"광과민성"
+  /extracted/safety/serious [1] = 0:"태아 기형(임신 금기)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [3] = 0:"자외선 차단 필수" ‖ 1:"보습 강화" ‖ 2:"야간 사용"
+@ /modality/14/subcategories/10/items/4 auto-M15-1775361951900 벤조일퍼옥사이드
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775361951900"
+  /name = "벤조일퍼옥사이드"
+  /detail = "항균 여드름 약물"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "산화적 항균 여드름 토피컬"
+  /extracted/mechanism = "피부 표면에서 분해되어 활성산소를 방출, P. acnes를 산화적으로 사멸시킨다. 항생제와 달리 내성 발생이 없다. 각질 용해 작용으로 모낭 폐색도 완화한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"여드름" ‖ 1:"염증성 구진" ‖ 2:"농포"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"건조" ‖ 1:"박리" ‖ 2:"작열감" ‖ 3:"접촉피부염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "지속 사용"
+  /extracted/aftercare [2] = 0:"옷/침구 표백 주의" ‖ 1:"자외선 차단"
+@ /modality/14/subcategories/10/items/5 auto-M15-1775364775180 레티놀
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775180"
+  /name = "레티놀"
+  /detail = "비타민A일반형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민 A 유도체를 이용한 일반적인 안티에이징 성분"
+  /extracted/mechanism = "세포 내에서 레티노익산으로 변환되어 세포 분화와 증식을 조절합니다. 콜라겐 합성을 촉진하고 각질 탈락을 정상화시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"주름 개선" ‖ 1:"색소침착" ‖ 2:"여드름" ‖ 3:"거친 피부 결"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"초기 자극" ‖ 1:"건조" ‖ 2:"각질" ‖ 3:"광민감성 증가"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "지속 사용 필요"
+  /extracted/aftercare [4] = 0:"저농도부터 시작" ‖ 1:"야간 사용 권장" ‖ 2:"자외선 차단 필수" ‖ 3:"보습제 함께 사용"
+@ /modality/14/subcategories/10/items/6 auto-M15-1775364775181 나이아신아마이드
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775181"
+  /name = "나이아신아마이드"
+  /detail = "B3미백장벽"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비타민 B3 유도체로 미백, 장벽강화, 모공개선 효과를 제공하는 메디컬 스킨케어 성분"
+  /extracted/mechanism = "멜라노솜 전달을 억제하여 멜라닌 침착을 감소시키고 세라마이드 합성을 촉진합니다. 피지 분비를 조절하고 염증성 사이토카인을 억제하여 전반적인 피부 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"색소침착" ‖ 1:"모공확대" ‖ 2:"피부장벽손상" ‖ 3:"지성피부"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 자극감" ‖ 1:"홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "지속사용시 유지"
+  /extracted/aftercare [3] = 0:"자외선차단제 필수 사용" ‖ 1:"점진적 농도 증가" ‖ 2:"충분한 보습"
+@ /modality/14/subcategories/10/items/7 auto-M15-1775364775182 세라마이드
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775182"
+  /name = "세라마이드"
+  /detail = "장벽지질보충"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "피부 장벽의 핵심 지질 성분으로 수분 보유와 외부 자극 차단 기능을 강화하는 성분"
+  /extracted/mechanism = "피부 각질층의 지질 이중막 구조를 복원하여 경피수분손실을 감소시킵니다. 장벽 기능을 강화하여 외부 자극원과 알레르겐의 침투를 차단하고 피부 항상성을 유지합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"건성피부" ‖ 1:"아토피피부염" ‖ 2:"피부장벽손상" ‖ 3:"민감성피부"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"매우 낮은 부작용"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "사용중단시 점진적 감소"
+  /extracted/aftercare [3] = 0:"지속적인 사용 권장" ‖ 1:"적절한 보습 루틴" ‖ 2:"자극적인 성분과 병용 주의"
+@ /modality/14/subcategories/10/items/8 auto-M15-1775364775183 EGF크림
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775183"
+  /name = "EGF크림"
+  /detail = "상피세포성장인자"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "상피세포성장인자를 함유하여 피부 재생과 상처 치유를 촉진하는 고기능성 크림"
+  /extracted/mechanism = "상피세포의 증식과 분화를 촉진하여 손상된 피부의 재생 속도를 가속화합니다. 콜라겐 합성을 증가시키고 혈관신생을 도와 전반적인 피부 회복 과정을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"상처치유" ‖ 1:"여드름흉터" ‖ 2:"노화된피부" ‖ 3:"레이저시술후관리"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"일시적 자극감" ‖ 1:"발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"냉장보관" ‖ 1:"개봉후 빠른 사용" ‖ 2:"자외선차단 필수"
+@ /modality/14/subcategories/10/items/9 auto-M15-1775364775184 코직산
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364775184"
+  /name = "코직산"
+  /detail = "천연미백"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "아스페르길루스 균에서 추출한 천연 미백 성분으로 안전하고 효과적인 색소 개선 효과"
+  /extracted/mechanism = "티로시나제 효소의 구리 이온과 킬레이션을 형성하여 멜라닌 합성을 억제합니다. 기존 멜라닌의 산화를 방지하고 각질층의 색소 입자 배출을 촉진하여 미백 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"기미" ‖ 1:"주근깨" ‖ 2:"색소침착" ‖ 3:"멜라스마"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"접촉성피부염" ‖ 1:"광과민성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "지속사용시 유지"
+  /extracted/aftercare [3] = 0:"엄격한 자외선차단" ‖ 1:"저녁시간 사용 권장" ‖ 2:"패치테스트 선행"
+@ /modality/14/subcategories/10/items/10 auto-M15-1775364797147 트라넥삼산
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775364797147"
+  /name = "트라넥삼산"
+  /detail = "항플라스민 미백 기미"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "항플라스민 작용으로 기미와 염증성 색소침착을 효과적으로 개선하는 미백 성분"
+  /extracted/mechanism = "플라스민 활성을 억제하여 염증성 색소침착의 악화를 방지합니다. 케라티노사이트와 멜라노사이트 간의 상호작용을 차단하여 멜라닌 전달을 억제하고 기미 개선에 특히 효과적입니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"기미" ‖ 1:"염증후색소침착" ‖ 2:"멜라스마" ‖ 3:"간반"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 자극" ‖ 1:"건조감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "6-8주"
+  /extracted/onset_duration/duration = "지속사용시 유지"
+  /extracted/aftercare [3] = 0:"꾸준한 사용" ‖ 1:"자외선차단 필수" ‖ 2:"충분한 보습"

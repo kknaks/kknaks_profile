@@ -1,0 +1,125 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "RF",
+  "fragment_count": 15,
+  "fragment_occurrence_locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@0/1",
+   "procedure-comparison.json:comparisons[].procedures[].name@7/0",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/2/2",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/0/0",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/2",
+   "treatment-optimization.json:by_age_group[].recommended_base[]@2/2",
+   "treatment-optimization.json:by_age_group[].upgrade[]@3/1",
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/7/0",
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/11/1",
+   "treatment-sequence.json:sequence_order[].categories[]@2/1",
+   "treatment-sequence.json:incompatible_same_day[].pair[]@4/0",
+   "treatment-sequence.json:minimum_intervals[].to@0",
+   "post-procedure-timeline.json:timelines[].name@2"
+  ],
+  "label_locators": [
+   "taxonomy.json:modality[].subcategories[].label@8/1"
+  ],
+  "target": {
+   "canonical": "RF (고주파)",
+   "code": "M9",
+   "dictionary": "modality_subcategory_label",
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/35/canonical",
+   "rule": "괄호 밖 일치 「RF (고주파)」",
+   "value": "RF (고주파)"
+  }
+ },
+ "id": "DEC-2026-11-04-B1-SYN-003",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "RF (고주파)",
+  "category": null,
+  "synonyms": [
+   "RF"
+  ]
+ },
+ "reason": "발주서: 해당 하위분류 라벨(근거가 계열 라벨뿐이면 계열) — 조각 「RF」 ↔ modality_subcategory_label 「RF (고주파)」(M9) : 괄호 밖 일치 「RF (고주파)」",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@8/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/35/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].recommended_base[]@2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].upgrade[]@3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/11/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:sequence_order[].categories[]@2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].to@0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].name@2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-2"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality_subcategory_label"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

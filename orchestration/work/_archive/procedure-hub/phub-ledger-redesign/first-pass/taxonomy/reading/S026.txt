@@ -1,0 +1,64 @@
+# S026  scope=M8 레이저  units=M8-P-3 | M8-P-4 | M8-P-5 | name
+# 상위 문맥: [{"pointer": "/modality/7", "id": "M8", "category": "레이저", "name": "레이저"}]
+@ /modality/7/products/3 M8-P-3 클라리티2
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-3"
+  /name = "클라리티2"
+  /name_en = "Clarity II"
+  /manufacturer = "루트로닉"
+  /country = "KR"
+  /mfds = null
+  /type = "Nd:YAG+알렉산드라이트"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1064nm와 532nm 이중 파장의 Q-switched Nd:YAG 레이저로 색소성 병변과 문신 제거에 특화된 장비"
+  /extracted/mechanism = "선택적 광열용해 원리를 이용하여 1064nm는 진피 깊은 색소와 멜라닌에, 532nm는 표피 근처의 옥시헤모글로빈과 갈색 색소에 선택적으로 흡수되어 색소 입자를 파괴합니다. 짧은 펄스폭(수십 ns)으로 주변 조직 손상을 최소화하면서 색소 제거 효율을 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"색소성 모반(검은점, 갈색반점)" ‖ 1:"문신(흑색, 청색, 적색)" ‖ 2:"기미/주근깨" ‖ 3:"오타모반" ‖ 4:"혈관병변"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"일시적 홍반 및 부종" ‖ 1:"색소침착(PIH, 1% 이하)" ‖ 2:"경미한 수포 형성" ‖ 3:"임시 색소탈실"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시부터 수일 내 효과 확인, 최종 결과는 4-6주"
+  /extracted/onset_duration/duration = "영구적(색소 제거), 문신은 여러 회차 필요"
+  /extracted/aftercare [5] = 0:"시술 직후 냉각팩 적용" ‖ 1:"자외선 차단(SPF 50+ 이상) 필수" ‖ 2:"2주간 강한 자극 피하기" ‖ 3:"수포 형성 시 건조 유지 및 감염 방지" ‖ 4:"색소침착 고위험군은 사전 예방 관리"
+@ /modality/7/products/4 M8-P-4 엑셀V
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-4"
+  /name = "엑셀V"
+  /name_en = "Excel V"
+  /manufacturer = "큐테라"
+  /country = "US"
+  /mfds = null
+  /type = "혈관레이저"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "532nm 그린라이트와 1064nm 근적외선을 동시 발생하는 이중파장 Nd:YAG 레이저로 혈관병변과 색소병변을 선택적으로 치료하는 장비"
+  /extracted/mechanism = "선택적 광열용해(Anderson&Parrish 1983) 원리에 따라 532nm 파장은 옥시헤모글로빈에 선택적으로 흡수되어 혈관을 응고시키고, 1064nm 파장은 멜라닌에 흡수되어 색소성 병변을 파괴합니다. 정상 피부는 상대적으로 손상을 최소화하면서 목표 조직만 선택적으로 제거합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"혈관병변(모세혈관확장증, 안면홍조, 혈관종)" ‖ 1:"색소병변(기미, 주근깨, 오타모반)" ‖ 2:"문신 제거" ‖ 3:"피부 재생"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"일시적 홍반 및 부종" ‖ 1:"색소침착(PIH 1% 이하)" ‖ 2:"딱지 형성" ‖ 3:"드물게 수포 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~수일"
+  /extracted/onset_duration/duration = "누적 치료로 점진적 개선, 일반적으로 4-6주 간격 5-10회 시술"
+  /extracted/aftercare [5] = 0:"시술 직후 냉찜질로 부종 완화" ‖ 1:"최소 1주일 강한 햇빛 노출 피하기" ‖ 2:"자외선 차단제 SPF 30 이상 매일 사용" ‖ 3:"시술 부위 절대 문지르기 금지" ‖ 4:"딱지 저절로 탈락할 때까지 자극 회피"
+@ /modality/7/products/5 M8-P-5 프락셀
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M8-P-5"
+  /name = "프락셀"
+  /name_en = "Fraxel"
+  /manufacturer = "솔타메디컬"
+  /country = "US"
+  /mfds = null
+  /type = "프락셔널"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Solta Medical 1550nm 비박리성 프락셔널 레이저"
+  /extracted/mechanism = "1550nm 에르븀 도핑 광섬유 레이저(erbium-doped fiber laser)로 미세 치료 영역(MTZ)을 생성. 비박리성 프락셔널 방식으로 표피를 보존하면서 진피 콜라겐 리모델링을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 및 잔주름" ‖ 1:"흉터 (여드름흉, 외상성흉터)" ‖ 2:"피부 색소침착 (기미, 잡티)" ‖ 3:"피부 텍스처 개선" ‖ 4:"피부 탄력도 증강"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"홍반 (1-2주)" ‖ 1:"부종" ‖ 2:"일시적 색소변화 (PIH 약 50% 발생 가능성)" ‖ 3:"건조감" ‖ 4:"미세 딱지 형성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시부터 1-2주 (최대 효과는 3개월)"
+  /extracted/onset_duration/duration = "6-12개월 (누적 시술로 효과 지속)"
+  /extracted/aftercare [5] = 0:"자외선 차단제 SPF 30 이상 매일 사용" ‖ 1:"시술 후 24시간 세안 및 메이크업 금지" ‖ 2:"냉찜질로 붓기 관리" ‖ 3:"자극성 화장품 1주일 피하기" ‖ 4:"색소침착 위험 시 비타민 C, 나이아신아마이드 함유 제품 사용"
+@ /modality/7 M8 레이저 레이저
+  /name = "레이저"

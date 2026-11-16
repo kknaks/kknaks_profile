@@ -1,0 +1,456 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 D19 — 실재 제품인데 국내 허가 못 찾은 11개 재탐색(업체명으로)",
+ "basis": "제조 · 수입 · 판매사를 웹(공식 · 보도 · 병원)으로 특정 → 그 업체명으로 emedi 목록(entpName) 전수 + 식약처 API(의료기기 TYPE_NAME/ENTRPS · 의약품 item_name/entp_name, include_cancelled) + nedrug → emedi 품목 상세(모델 · 사용목적 · 수출용 여부). 「수출용에 한함」은 국내 허가로 치지 않음. 병원: 데이뷰의원 12지점(D18 크롤 재사용) · data-anyang(read-only). 추정 금지. 원장 · 결정 파일은 건드리지 않음",
+ "summary": {
+  "rows": 11,
+  "현행 허가 찾음": 1,
+  "현행 허가 없음": 10,
+  "없음 중 후보 있음(같은 제품 출처 없음)": 1,
+  "보도 ↔ 식약처 충돌": 1
+ },
+ "items": [
+  {
+   "ledger_id": "auto-M9-1775363058909",
+   "name": "시크릿맥스",
+   "kind": "의료기기",
+   "result": "현행 허가 없음 (후보 있음 — 같은 제품 출처 없음)",
+   "one_line": "이루다가 2024-05-21 식약처 허가를 받았다고 보도됐지만, 이루다·클래시스(2024-10 흡수합병) 허가 어디에도 「SECRET MAX」 모델명은 없다. 같은 달 허가된 클래시스 제허 24-342 QUADESSY(2024-05-17 · 침습+비침습 RF)가 시기와 설명이 겹치지만 같은 제품이라는 출처가 없다.",
+   "maker": [
+    "(주)이루다 — 2024-05 보도 「이루다 … 시크릿 맥스 … 식약처 허가 취득」 · https://www.pharmnews.com/news/articleView.html?idxno=244396 · https://www.bosa.co.kr/news/articleView.html?idxno=2223124",
+    "(주)클래시스 — 2024-10-02 이루다 흡수합병 등기 완료(보도) · http://www.docdocdoc.co.kr/news/articleView.html?idxno=3021520 · https://www.hitnews.co.kr/news/articleView.html?idxno=55575"
+   ],
+   "importer": [
+    "해당 없음(국내 제조)"
+   ],
+   "sellers": [
+    "(주)이루다 — 보도(2024-05) · https://www.pharmnews.com/news/articleView.html?idxno=244396",
+    "합병 뒤 판매사 표기 근거 없음"
+   ],
+   "license": null,
+   "candidates": [
+    "제허 24-342 호 · (주)클래시스(제조) · 범용 전기 수술기 · 모델 QD1-M400 · 브랜드 QUADESSY · 정상(2024-05-17 · 유효 ~2029-05-16) · 사용목적 「고주파 전류를 사용하여 조직의 응고에 사용하는 기구」 — 클래시스 출시 보도(2025-07-14)는 「침습과 비침습 방식을 결합」이라 설명하나 이루다 · 시크릿 맥스 언급 0 (https://www.rapportian.com/news/articleView.html?idxno=223695 · https://www.smarttoday.co.kr/ko-kr/articles/85616)"
+   ],
+   "basis": [
+    "팜뉴스(2024-05-21): 제조사 이루다, 「2024년 5월 21일 허가 취득」, 마이크로니들 RF, 「침습과 비침습 방식의 멀티 전극」 — 시크릿 RF 업그레이드",
+    "emedi entpName=이루다 23행/17허가 — 전부 취하(마지막 TORR 제허 21-661 · 21-143 2024-08-07 취하) · 2024년 허가 0",
+    "emedi entpName=클래시스 235행/122허가 — 2024년 허가 7건(24-622 · 24-342 · 24-484 · 24-794 · 24-494 · 24-189 · 24-187). 2024-05-21 허가일 0. 고주파(범용 전기 수술기) 2024 허가는 24-342 QUADESSY 하나",
+    "이루다 시크릿 라인은 클래시스로 넘어와 있음: 제허 11-1071(Secret RF · MTR-C1 · 정상) · 18-190(SECRET RF · 정상) · 19-708(Secret DUO · 정상) — 모델·제품명에 「MAX」 장비 없음(「MAX-25」 등은 일회용 전극 카트리지 제인 11-977 · 12-1401 · 13-1974)",
+    "시크릿 맥스가 기존 허가(11-1071 · 18-190)의 변경허가로 들어갔는지는 emedi 목록 · 상세(변경 이력 비공개)로 확인 불가"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건 · data-anyang 미앤미의원-범계 「시크릿레이저(모공·흉터)」는 시크릿 계열 표기만, 맥스 아님"
+   ],
+   "queries": [
+    "emedi query2=SECRET MAX → 0",
+    "emedi query2=Secret Max → 0",
+    "emedi query2=SECRETMAX → 0",
+    "emedi entpName=이루다 → 23행",
+    "emedi entpName=클래시스 → 235행",
+    "emedi query2=QUADESSY → 2행(24-342)",
+    "emedi query2=시크릿 → 477행(미용 RF 0)",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) TYPE_NAME=QD1-M400 → 0"
+   ],
+   "note": "QUADESSY 를 시크릿맥스로 볼지는 정할 것 — 근거는 허가일 근접(05-17 ↔ 보도 05-21) · 합병 · 「침습+비침습」 설명 겹침뿐이고 이름 대응 출처 없음",
+   "sources": []
+  },
+  {
+   "ledger_id": "M15-6-4",
+   "name": "벨라소닉",
+   "kind": "의료기기",
+   "result": "현행 국내 허가 찾음 (모델 표기 차이 있음)",
+   "one_line": "벨라소닉은 엘트라글로벌 제품이고, 엘트라글로벌 이름으로 찾으니 제인 16-4317 「BELLA SONIC 2X」(초음파자극기 · 정상)가 나온다. 영문 표기(띄어쓰기)가 달라 이전 질의 「Bellasonic」에 안 걸렸다. 같은 이름의 로보맥스 17-4558 은 「수출용에 한함」이라 제외.",
+   "maker": [
+    "(주)엘트라글로벌 — 공식 사이트 제품 페이지 BELLASONIC(Sono 3.3MHz · 10MHz / Impact 40kHz) · http://ltraglobal.com/38",
+    "위드윈네트웍 · 위드윈메디칼그룹 공동개발(위드윈피부과 공지 · 한국경제TV 인용) · https://widwinskin.com/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9Ctv-%EB%AF%B8%EB%B0%B1-%ED%83%84%EB%A0%A5-%EB%A6%AC%ED%94%84%ED%8C%85%EC%9D%84-%ED%95%9C-%EB%B2%88%EC%97%90-%EB%B2%A8%EB%9D%BC%EC%86%8C%EB%8B%89-%EC%B6%9C/"
+   ],
+   "importer": [
+    "해당 없음(국내 제조)"
+   ],
+   "sellers": [
+    "수메디칼 — 닥터다모아 제품 페이지(「Export Only」 표기) · https://drdamoa.com/product/bellasonic-%EB%B2%A8%EB%9D%BC%EC%86%8C%EB%8B%89/826/",
+    "국내 판매사 표기 근거 없음"
+   ],
+   "license": "제인 16-4317 호 · (주)엘트라글로벌(제조) · 초음파자극기 · 모델 RMVS-1000 · 브랜드 BELLA SONIC 2X · 정상(2016-04-08 · 유효 ~2028-12-31) · 수출용 아님(xprtppYn 아니오)",
+   "candidates": [
+    "제인 17-4558 호 · (주)로보맥스 · RMVS-2000 (BELLA SONIC) · 정상(2017-07-13) — 비고 「수출용에 한함」(xprtppYn 예) → 국내 허가 아님(10-27 규칙)",
+    "제인 16-4263 호 · (주)미젠 · BELLA SONIC 2X · RMVS-1000A · 2023-07-14 취하"
+   ],
+   "basis": [
+    "emedi 품목 상세 16-4317: mebTypeName RMVS-1000 · brandName BELLA SONIC 2X · 사용목적 「20KHz 이상의 초음파 에너지를 인체에 가하여 통증의 완화 등에 사용하는 기구」 · 취소/취하 아니오",
+    "엘트라글로벌 공식 제품 페이지 BELLASONIC: 「Ultral Sono 3.3MHz, 10MHz · Impact 40kHz」 — 병원 설명(3.3/10MHz + 40kHz 벨라팩트)과 같은 사양",
+    "위드윈피부과 공지: 벨라소닉 「식품의약품안전처(KFDA)에서 판매 허가를 받았다」 · 품목 초음파자극기",
+    "남는 차이: 허가 브랜드 「BELLA SONIC 2X」 ↔ 시판 이름 「BELLASONIC」 — 「2X」가 현행 시판 모델과 같은지는 출처 없음. 로보맥스 RMVS-2000 의 사용목적은 「3.3MHz, 10MHz」로 사양 숫자가 더 직접 맞지만 수출용"
+   ],
+   "sources": [
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2016002383",
+    "emedi 품목 상세 POST https://emedi.mfds.go.kr/search/data/item meddevItemSeq=2017004737",
+    "http://ltraglobal.com/38"
+   ],
+   "clinic": [
+    "위드윈피부과(강남 압구정): 「물광초음파 벨라소닉」 — 듀얼 주파수(3.3/10MHz) + 40kHz · 제조사 표기 없음 · https://widwinskin.com/%EB%AC%BC%EA%B4%91%EC%B4%88%EC%9D%8C%ED%8C%8C-%EB%B2%A8%EB%9D%BC%EC%86%8C%EB%8B%89/",
+    "오체안피부과의원(양주) 「물광초음파 벨라소닉」 시술 페이지 · https://ozheanyj.com/page/me02",
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi query2=BELLA SONIC → 3행",
+    "emedi query2=Bella Sonic → 3행",
+    "emedi query2=BELLASONIC → 0",
+    "emedi query2=BellaSono → 0",
+    "emedi query2=벨라소노 → 0",
+    "emedi query2=벨라 → 1904행(무관)",
+    "emedi entpName=위드윈 → 0",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) TYPE_NAME=RMVS-1000 → 3(로보맥스 17-4375 RMVS-1000A 포함)",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) ENTRPS=엘트라글로벌 → 4"
+   ],
+   "note": "원장 연결은 16-4317(국내) 1건. 로보맥스 RMVS-1000A(제인 17-4375 · 정상)는 브랜드 칸에 BELLA SONIC 표기가 없어 후보로 넣지 않음"
+  },
+  {
+   "ledger_id": "auto-M12-1775363026852",
+   "name": "더마펜4",
+   "kind": "의료기기",
+   "result": "현행 허가 없음 (본체)",
+   "one_line": "더마펜4 본체(펜) 허가는 어느 업체 이름으로도 없다. 국내 허가는 두원메디텍의 「Dermapen 4 needle cartridge」(소모품 바늘 카트리지)뿐이고, 국내 수입·판매사는 찾지 못했다.",
+   "maker": [
+    "DermapenWorld(Equipmed, 호주) — 공식 제품 페이지 · https://www.dermapenworld.com/en-us/dermapen-professional/dermapen-microneedling-pens/dermapen-4"
+   ],
+   "importer": [
+    "근거 없음(국내 수입사 표기 웹 0 · 허가 0)"
+   ],
+   "sellers": [
+    "근거 없음"
+   ],
+   "license": null,
+   "candidates": [
+    "제인 19-4223 호 · (주)두원메디텍(제조) · 의약품직접주입기구 · 모델 Dermapen 4 needle cartridge, Dermapen needle cartridge · 정상 — 카트리지(소모품)지 본체 아님",
+    "제인 15-4152 호 · (주)우리메카 · 의약품흡수유도피부자극기 · Dermapen③ · 정상 — 3세대 모델(4 아님)"
+   ],
+   "basis": [
+    "두원메디텍 허가 85건(620행) 중 더마펜 관련은 19-4223 카트리지뿐 · 본체(전동 펜) 0",
+    "emedi query2=Equipmed(제조사) 0 · entpName=더마펜 0"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi query2=Dermapen → 3행",
+    "emedi query2=DERMAPEN → 3행",
+    "emedi query2=Dermapen4 → 0",
+    "emedi query2=Dermapen 4 → 1(19-4223 카트리지)",
+    "emedi query2=더마펜 → 0",
+    "emedi query2=DP4 → 211행(무관)",
+    "emedi query2=Equipmed → 0",
+    "emedi entpName=더마펜 → 0",
+    "emedi entpName=두원메디텍 → 620행",
+    "emedi entpName=우리메카 → 116행(Dermapen③ 15-4152 외 자체 MTS 펜 — Dermapen 4 0)"
+   ],
+   "note": "두원메디텍이 더마펜4 본체의 국내 유통사인지 출처 없음",
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M10-1775363005172",
+   "name": "이볼브",
+   "kind": "의료기기",
+   "result": "현행 허가 없음 (같은 수입사 다른 제품)",
+   "one_line": "InMode 국내 수입사 신한네트웍스의 허가 3건(19-352 Inmode RF · 21-205 InMode · 26-107 EVOKE)에 Evolve 는 없다. 26-107 EVOKE 는 모델명이 「EVOKE」라 바디용 Evolve(RF+EMS)와 이름이 다르다.",
+   "maker": [
+    "InMode Ltd.(이스라엘) — Evolve: 「hands-free workstation … remodel skin, treat adipose tissue, and tone muscles using RF and EMS」(2020-12-14) · https://aestheticsjournal.com/news/inmode-evolve-launches-in-the-uk/ · EvolveX(2021-09-01) · https://www.prnewswire.com/news-releases/inmode-announces-launch-of-evolvex-body-transforming-platform-301366678.html",
+    "허가 3건의 제조원 표기는 Flextronics Ltd.(Migdal-Haemek, Israel)"
+   ],
+   "importer": [
+    "(주)신한네트웍스 — InMode 허가 3건의 수입업자(emedi)"
+   ],
+   "sellers": [
+    "근거 없음(국내 Evolve 판매 표기 0)"
+   ],
+   "license": null,
+   "candidates": [
+    "수허 26-107 호 · (주)신한네트웍스 · 범용 전기 수술기 · 모델 EVOKE · 브랜드 「EVOKE (NEW INMODE HANDS-FREE)」 · 정상(2026-05-15) · 사용목적 「고주파 전류를 사용하여 조직의 응고」 — 모델명이 Evolve 와 다름. EMS(근육 자극) 기능 허가 없음",
+    "수허 21-205 호 · 신한네트웍스 · InMode · 반도체레이저수술기 + 펄스광선조사기 + 범용전기수술기(플랫폼) · 정상(2021-08-19)",
+    "수허 19-352 호 · 신한네트웍스 · Inmode RF · 범용전기수술기 · 정상(2019-10-30)"
+   ],
+   "basis": [
+    "emedi 품목 상세 3건: 모델 각 1개(EVOKE · InMode · Inmode RF), Evolve · Tite · Trim · Tone 표기 0",
+    "Evoke 와 Evolve 가 다른 제품(얼굴/바디)이라는 출처: 웹 검색 결과 요약(한국경제 2020-12-31 「EVOLVE(evoke and evolve) … evoke 는 얼굴, evolve 는 바디」) — 원문(https://www.hankyung.com/article/202012316391i) 403 으로 직접 확인 못함",
+    "InMode 공식 workstation/evoke 페이지는 EvolveX 로 이동(Evoke 설명 없음) · http://www.inmodemd.com/workstation/evoke/"
+   ],
+   "clinic": [
+    "헤이데이의원 「Inmode body fx — 인모드 바디」(Evolve 아님) · https://heydayclinic.co.kr/inmodebody",
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi query2=Evolve → 257행(정형·치과·장갑·재활)",
+    "emedi query2=EVOLVE → 257행",
+    "emedi query2=EVOKE → 225행(신한네트웍스 26-107 외 보청기 등)",
+    "emedi entpName=신한네트웍스 → 3",
+    "emedi entpName=인모드 → 0",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) TYPE_NAME=EVOLVE → 1(재활기구)",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) ENTRPS=신한네트웍스 → 3"
+   ],
+   "note": "InMode 바디 계열 중 국내 허가가 확인된 것은 플랫폼(21-205 · 19-352)뿐 — 「인모드 바디(BodyFX)」가 어느 허가에 드는지는 이 행 범위 밖",
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M10-1775363019549",
+   "name": "쿨톤",
+   "kind": "의료기기",
+   "result": "현행 허가 없음",
+   "one_line": "CoolTone 제조사 앨러간(애브비)의 국내 수입사 한국애브비 허가 768행 전부를 봤지만 CoolTone 은 없다(같은 회사 바디 기기는 CoolSculpting 2건뿐). 국내 판매 · 병원 표기도 찾지 못했다.",
+   "maker": [
+    "Allergan Aesthetics(AbbVie) — FDA 510(k) 2019 보도 · https://www.dermatologytimes.com/view/allergans-cooltone-device-receives-fda-clearance"
+   ],
+   "importer": [
+    "한국애브비(주) — 앨러간 미용 의료기기(CoolSculpting · Juvederm) 수입업자(emedi). CoolTone 수입 근거 없음"
+   ],
+   "sellers": [
+    "근거 없음"
+   ],
+   "license": null,
+   "candidates": [],
+   "basis": [
+    "emedi entpName=애브비 768행/허가 30건 — 의료용저온기 CoolSculpting(수허 18-96 · 수인 21-4556 Elite) · Juvederm · XEN 등. 자기장 근육 자극기 0",
+    "한국엘러간 이름 허가는 1건(2003 양도) · 앨러간 · 젤틱 업체명 0"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi query2=CoolTone → 0",
+    "emedi query2=Cool Tone → 0",
+    "emedi query2=COOLTONE → 0",
+    "emedi query2=쿨톤 → 0",
+    "emedi query2=ZELTIQ → 2(CoolSculpting)",
+    "emedi entpName=애브비 → 768행",
+    "emedi entpName=엘러간 → 1",
+    "emedi entpName=앨러간 → 0",
+    "emedi entpName=젤틱 → 0",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) TYPE_NAME=CoolTone → 0"
+   ],
+   "note": "국내 현재 유통 웹 근거 0(질의: 쿨톤 CoolTone 국내 출시 애브비 식약처 · 쿨톤 자기장 근육 바디 피부과 — 결과는 미국 병원 · FDA 기사뿐)",
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M16-1775403024925",
+   "name": "벨카이라",
+   "kind": "의약품",
+   "result": "현행 허가 없음 (2020 철수 보도)",
+   "one_line": "벨카이라주는 앨러간이 2020년 말 판매 부진으로 국내에서 철수했다(보도). 식약처 의약품 API · nedrug 모두 「벨카이라」 0건이고, 애브비 의약품 허가 40건에도 데옥시콜산은 없다.",
+   "maker": [
+    "Allergan(현 AbbVie) — 보도 · https://www.hkn24.com/news/articleView.html?idxno=324310"
+   ],
+   "importer": [
+    "한국엘러간 → 한국애브비(주) — 현재 의약품 허가 40건 중 데옥시콜산 0"
+   ],
+   "sellers": [
+    "근거 없음(철수)"
+   ],
+   "license": null,
+   "candidates": [
+    "같은 성분(데옥시콜산) 현행 국내 허가 9건 — 브이올렛주(대웅 202105795) · 벨라콜린주(엘지화학 202400198) · 올리핏주(휴메딕스 202402922) · 펜카이라주(펜믹스 202501064) · 바이블주(한국비엠아이 202501108) · 밀리핏주사(동국 202501930) · 원더브이주(종근당 202502008) · 브이렛주(코오롱 202502184) · 브이벨라주(대한뉴팜 202600824) — 전부 다른 회사 제품"
+   ],
+   "basis": [
+    "헬스코리아뉴스(2022-01-19): 「엘러간이 지난 2020년 말 판매 부진을 이유로 '벨카이라'를 철수시키면서 …」",
+    "검색 결과 제목: 뉴스더보이스 「품목허가 취하 봇물...엘러간 '벨카이라주' 등 11품목」(https://www.newsthevoice.com/news/articleView.html?idxno=16803 — 접속 시 오류 페이지로 이동, 원문 미확인)",
+    "의약품 API · nedrug 은 취하 품목도 내지만(우르소데옥시콜산 취하 품목 확인) 벨카이라는 0 — 목록에서 빠진 이유는 확인 못함"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=벨카이라 → 0",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=벨카 → 0",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=카이벨라 → 0",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=카이벨 → 0",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=데옥시콜산 → 52(DCA 주사 9 · 나머지 우르소데옥시콜산)",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) entp_name=애브비 → 40(DCA 0)",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) entp_name=엘러간 → 0",
+    "nedrug 의약품 검색 https://nedrug.mfds.go.kr/searchDrug itemName=벨카이라 → 0"
+   ],
+   "note": null,
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043061",
+   "name": "카이벨라",
+   "kind": "의약품",
+   "result": "현행 허가 없음 (벨카이라와 같음)",
+   "one_line": "카이벨라(Kybella)는 국내명 벨카이라주와 같은 앨러간 제품이라 결과도 같다 — 2020년 말 국내 철수, 식약처 · nedrug 0건.",
+   "maker": [
+    "Allergan(현 AbbVie) — https://www.hkn24.com/news/articleView.html?idxno=324310"
+   ],
+   "importer": [
+    "한국엘러간 → 한국애브비(주) — 데옥시콜산 허가 0"
+   ],
+   "sellers": [
+    "근거 없음(철수)"
+   ],
+   "license": null,
+   "candidates": [
+    "벨카이라 행과 같음(데옥시콜산 현행 9건 · 다른 회사)"
+   ],
+   "basis": [
+    "D16 에서 벨카이라와 묶임 — 이번 질의 결과도 벨카이라와 같음"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "벨카이라 행과 같음",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=카이벨라 → 0"
+   ],
+   "note": null,
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M16-DCA-1775404043067",
+   "name": "리포린",
+   "kind": "의약품",
+   "result": "현행 허가 없음 (보도와 충돌)",
+   "one_line": "리포린주는 삼익제약이 2025-08 허가받았다는 보도가 있지만(펜믹스 위탁 데옥시콜산), 식약처 의약품 API(삼익제약 191품목) · nedrug 어디에도 리포린주가 없다 — 보도와 식약처 조회가 다르다.",
+   "maker": [
+    "(주)펜믹스 — 위탁 생산(보도 요약)",
+    "삼익제약(주) — 허가권자(보도)"
+   ],
+   "importer": [
+    "해당 없음(국내 제조)"
+   ],
+   "sellers": [
+    "삼익제약(주) — 보도 · https://www.hkn24.com/news/articleView.html?idxno=346548"
+   ],
+   "license": null,
+   "candidates": [
+    "펜카이라주(데옥시콜산) · (주)펜믹스 · 202501064 · 정상(2025-04-30) — 위탁 생산원의 자체 허가(다른 제품명)"
+   ],
+   "basis": [
+    "헬스코리아뉴스(2025-09-22): 데옥시콜산 품목 나열 중 「삼익제약 '리포린(2025년 8월 허가)'」",
+    "의약품 API entp_name=삼익제약 191품목 — 2024~2026 허가 9건(자누맥스 · 브이캡 등) 중 주사제 · 데옥시콜산 0",
+    "의약품 API item_name=데옥시콜산 결과의 현행 DCA 주사 9건에 삼익 없음"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=리포린 → 1(글리포린정 · 무관)",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=리포린주 → 0",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=리포 → 91(무관)",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=Lipo → 1(리포맥스주 · 무관)",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) entp_name=삼익제약 → 191",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) entp_name=삼익 → 191",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) entp_name=펜믹스 → 39",
+    "식약처 의약품 API(DrugPrdtPrmsnInfoService08 getDrugPrdtPrmsnInq08 · include_cancelled) item_name=데옥시콜산 → 52",
+    "nedrug 의약품 검색 https://nedrug.mfds.go.kr/searchDrug itemName=리포린 → 1(글리포린정)"
+   ],
+   "note": "보도는 허가가 있다고 하고 식약처 조회는 0건이다 — 허가 뒤 취하됐는지, 다른 이름으로 올라갔는지는 출처 없음. 삼익제약 문의 대상",
+   "sources": []
+  },
+  {
+   "ledger_id": "new-DEV-071",
+   "name": "미라쥬",
+   "kind": "의료기기(여부 미확인)",
+   "result": "현행 허가 없음",
+   "one_line": "미라쥬(Mirage 3D · 중국 상하이잉쯔)는 데이뷰의원이 색소 진단 장비로 쓰고 있지만, 국내 수입사가 어디인지 찾지 못했고 「Mirage」 허가는 ResMed 호흡기 마스크 · 휠체어뿐이다. 의료기기인지 아닌지도 출처 없음.",
+   "maker": [
+    "Shanghai Yingzi Intelligent Technology(중국) — http://myreal3d.com/ · https://www.tmtpost.com/trendmakers/419421(원장 web4)"
+   ],
+   "importer": [
+    "근거 없음"
+   ],
+   "sellers": [
+    "근거 없음"
+   ],
+   "license": null,
+   "candidates": [],
+   "basis": [
+    "emedi query2=MIRAGE 190행/47허가 — ResMed 호흡기 마스크 · 미키코리아 휠체어 · 메드트로닉 카테터 안내선 · 콘택트렌즈. 얼굴 영상 · 피부 분석 장비 0",
+    "현장 사진 DEV-071 판독 모델 「Mirage 3D P2」(원장 7_site_use)"
+   ],
+   "clinic": [
+    "데이뷰의원(daybeauclinic15 지점) 피코토닝 상세: 「데이뷰에서는 미라쥬 장비를 활용하여 피부 속 숨어있는 색소까지 파악하고 치료합니다」 — 제조사 · 수입사 표기 없음 · https://www.daybeauclinic15.com/branch/procedure_detail.php?code=G922805",
+    "data-anyang 0건"
+   ],
+   "queries": [
+    "emedi query2=MIRAGE → 190행",
+    "emedi query2=Mirage 3D → 0",
+    "emedi query2=미라쥬 → 0",
+    "emedi query2=Yingzi → 0",
+    "emedi query2=myreal → 0",
+    "식약처 API(MdlpPrdlstPrmisnInfoService06 getMdlpPrdlstPrmisnItem05) TYPE_NAME=Mirage 3D → 0",
+    "웹: Mirage 3D 얼굴 분석 / 미라쥬3D / 미라지 3D 피부과 국내 총판 → 0"
+   ],
+   "note": "비의료기기(피부 분석 · 상담용)인지 판정할 출처 없음 — 비침습 ≠ 허가 대상 아님(10-27)",
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M8-1775362619619",
+   "name": "슬렌더엑스",
+   "kind": "의료기기",
+   "result": "현행 허가 없음",
+   "one_line": "원장 업체 사이노슈어루트로닉의 허가 35건에 SlenderX 는 없고, 「Slender」 허가는 슬렌더톤 저주파 자극기뿐이다. 웹에서도 슬렌더엑스라는 제품 · 제조사를 특정하지 못했다.",
+   "maker": [
+    "근거 없음(원장 업체 표기 「사이노슈어 루트로닉」 — 그 회사 제품이라는 출처 없음)"
+   ],
+   "importer": [
+    "근거 없음"
+   ],
+   "sellers": [
+    "근거 없음"
+   ],
+   "license": null,
+   "candidates": [],
+   "basis": [
+    "emedi entpName=사이노슈어 59행/35허가(주식회사 사이노슈어루트로닉테크놀로지) — PICOPLUS · CLARITY II · XERF · eCO2 · LaseMD · HOLLYWOOD SPECTRA 등, Slender 0",
+    "원장 web4 가 짚은 SculpSure 는 수허 16-381 (주)루트로닉 · 정상 — 이름이 달라 후보로 두지 않음"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi query2=SlenderX → 0",
+    "emedi query2=Slender X → 20행(Slendertone)",
+    "emedi query2=슬렌더 → 1(슬렌더톤 전극)",
+    "emedi entpName=사이노슈어 → 59행",
+    "emedi query2=SculpSure → 1(루트로닉 16-381)",
+    "웹: 슬렌더엑스 제모 레이저 피부과 / \"슬렌더엑스\" OR \"슬렌더X\" 시술 / SlenderX laser Cynosure OR Lutronic → 0"
+   ],
+   "note": "제품 실체 출처 없음 — D19 「실재 제품」 분류에 맞는지 다시 볼 것",
+   "sources": []
+  },
+  {
+   "ledger_id": "auto-M8-1775362594611",
+   "name": "시너론 아이플러스",
+   "kind": "의료기기",
+   "result": "현행 허가 없음",
+   "one_line": "시너론켄델라코리아 허가 39행 어디에도 「iPlus · 아이플러스」는 없다. 그 회사의 IPL 계열 정상 허가는 Nordlys(19-41) · elos Plus(15-1663) 등인데, 이름이 달라 같은 제품이라는 출처가 없다.",
+   "maker": [
+    "근거 없음(원장 업체 표기 「시너론캔델라」 · 원천 「eLight+IPL」 — iPlus 라는 Syneron/Candela 제품 출처 0)"
+   ],
+   "importer": [
+    "시너론켄델라코리아 유한회사 — Syneron · Candela 제품 국내 수입사(emedi). 아이플러스 수입 근거 없음"
+   ],
+   "sellers": [
+    "근거 없음"
+   ],
+   "license": null,
+   "candidates": [],
+   "basis": [
+    "emedi entpName=시너론켄델라코리아 39행 — 정상 IPL · 광 계열: 수허 19-41 Nordlys(펄스광선조사기) · 15-1663 elos Plus(범용전기수술기) · 21-326 Nordlys Laser System. 옛 SubLight(e light) 06-1086 은 2019 취하",
+    "「iPlus」 허가는 치과 Waterlase iPlus · 「아이플러스」는 체외진단 · 자기발생기(취하) · 안경렌즈"
+   ],
+   "clinic": [
+    "데이뷰의원 12개 지점(D18 크롤 상세 751쪽 · 메뉴 290쪽 재검색) · 세라미크의원(D18 워커가 받아 둔 페이지 c/ceq/cer.html 한정) · data-anyang(안양범계 주변 prices/ 전체) — 이름 0건"
+   ],
+   "queries": [
+    "emedi entpName=시너론켄델라코리아 → 39행",
+    "emedi entpName=켄델라 → 39행",
+    "emedi entpName=신한씨스텍(옛 Candela 수입사) → 264행(iPlus 0)",
+    "emedi query2=i-Plus → 6242행(상위 1000 확인 · 미용 IPL 0)",
+    "emedi query2=아이플러스 → 14행",
+    "emedi query2=eLight → 58행(무관)",
+    "웹: Syneron iPlus OR i-Plus eLight / 시너론 아이플러스 eLight IPL → 제품 0"
+   ],
+   "note": "elos Plus · Nordlys 를 후보로 둘지는 이름 근거가 없어 넣지 않음 — 원장 E-MAX 행도 elos Plus 를 동의어로 두고 있어 함께 볼 것",
+   "sources": []
+  }
+ ]
+}

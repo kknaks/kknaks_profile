@@ -1,0 +1,36 @@
+{
+ "id": "DEC-2026-11-05-B3-P-TEC-4",
+ "kind": "canonical_mapping",
+ "target": {
+  "from_ref": "R5:M16-4",
+  "scope": [
+   "CAT-6fe5c8a257",
+   "CAT-efe7fb54fe",
+   "CAT-887aa63602",
+   "CAT-36b7fd2b27",
+   "CAT-900c3ea23f"
+  ]
+ },
+ "new_value": {
+  "to_id": "TEC-428b9bd04a"
+ },
+ "reason": "V3-8 하위분류 단위 기본 기법 — M16 「영양보충」 항목 5 의 technique=none 에 intravenous. 계열 M16 의 R5 기법은 intravenous 하나지만 DCA·지방분해주사는 피하 주사라 계열 일괄 상속 불가(ERD §9.5.6) — 하위분류 라벨 근거의 제안(임상 확인 필요).",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@15/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].mechanism[]@15/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §9.5.6 · §12 V3-8 값(M16 수액 하위분류별 기본 기법)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

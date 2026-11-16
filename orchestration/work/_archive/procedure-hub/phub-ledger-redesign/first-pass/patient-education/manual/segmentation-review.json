@@ -1,0 +1,230 @@
+{
+ "note": "직접 확인한 알려진 오분절의 출현별 기록. 원시 형태소 출력은 교정하지 않았다. 이 목록 밖 토큰의 정확성은 보장하지 않는다(전수 정답 검증 아님). 품사 태그 흔들림(같은 말이 NNG/NNP·붓기 NNG+XSN/VV-I+ETN 등)은 출현별 목록에 넣지 않고 issues.md 한계로 기록. 접두사 비/미/무(XPN)는 오분절이 아니나 부정 탐색 시 영향을 issues.md K 관찰로 기록",
+ "occurrences": [
+  {
+   "pointer": "/categories/3/common_concerns/1/q",
+   "surface": "리쥬란",
+   "occurrence": 1,
+   "observed_analysis": "리쥬/NNG 란/JX",
+   "impact": "제품명이 「리쥬」+조사 「란」으로 분해 — 토큰 기준 제품명 검색 누락. 같은 카테고리 a 의 「리쥬란은」은 정상(출현별 불일치)",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/common_concerns/0/q",
+   "surface": "써마지은",
+   "occurrence": 1,
+   "observed_analysis": "써마지/NNG 이/VCP 은/EC",
+   "impact": "원문 조사 표기 이상(「써마지은」)으로 길이0 VCP와 연결어미 EC 생성 — 화제 조사 소실·가짜 서술격",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/common_concerns/0/a",
+   "surface": "써마지은",
+   "occurrence": 1,
+   "observed_analysis": "써마지은/NNG",
+   "impact": "조사가 명사에 흡수된 미등록 명사 — 제품명 토큰 「써마지」 검색 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/common_concerns/0/a",
+   "surface": "울쎄라는",
+   "occurrence": 1,
+   "observed_analysis": "울쎄/NNP 이/VCP 라는/ETM",
+   "impact": "제품명이 「울쎄」로 잘리고 화제 조사 「는」이 인용형 「라는」으로 오인 — 제품명 손상·가짜 인용 구조",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/simple_explanation",
+   "surface": "초음파",
+   "occurrence": 1,
+   "observed_analysis": "초/XPN 음파/NNG",
+   "impact": "「초음파」가 접두사+명사로 분해 — 에너지 종류 토큰 검색 시 「음파」로만 남음",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/how_it_works",
+   "surface": "초음파",
+   "occurrence": 1,
+   "observed_analysis": "초/XPN 음파/NNG",
+   "impact": "「초음파」가 접두사+명사로 분해 — 에너지 종류 토큰 검색 시 「음파」로만 남음",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/common_concerns/0/a",
+   "surface": "초음파",
+   "occurrence": 1,
+   "observed_analysis": "초/XPN 음파/NNG",
+   "impact": "「초음파」가 접두사+명사로 분해 — 에너지 종류 토큰 검색 시 「음파」로만 남음",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/simple_explanation",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/how_it_works",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/common_concerns/0/a",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/9/how_it_works",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/10/patient_name",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/10/simple_explanation",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/10/how_it_works",
+   "surface": "고주파",
+   "occurrence": 1,
+   "observed_analysis": "고/XPN 주파/NNG",
+   "impact": "「고주파」가 접두사+명사로 분해 — 「고」가 정도(높음) 접두로 읽힐 위험·에너지 종류 토큰 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/14/patient_name",
+   "surface": "필링",
+   "occurrence": 1,
+   "observed_analysis": "필/NNG 링/NNG",
+   "impact": "「필링」이 「필」+「링」으로 분해(같은 카테고리 다른 출현은 「필링/NNG」) — 시술명 토큰 불일치",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/14/simple_explanation",
+   "surface": "필링",
+   "occurrence": 1,
+   "observed_analysis": "필/NNP 링/NNG",
+   "impact": "「필링」이 「필」+「링」으로 분해(같은 카테고리 다른 출현은 「필링/NNG」) — 시술명 토큰 불일치",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/14/common_concerns/2/q",
+   "surface": "필링",
+   "occurrence": 1,
+   "observed_analysis": "필/NNP 링/NNG",
+   "impact": "「필링」이 「필」+「링」으로 분해(같은 카테고리 다른 출현은 「필링/NNG」) — 시술명 토큰 불일치",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/15/how_it_works",
+   "surface": "혈중",
+   "occurrence": 1,
+   "observed_analysis": "혈/NNG 중/NNB",
+   "impact": "「혈중」이 「혈」+의존명사 「중」으로 분해 — 「중」이 시간(~하는 중) 표현으로 오탐될 위험. 같은 카테고리 cc2 a 의 「혈중으로」는 정상",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/15/common_concerns/1/a",
+   "surface": "격주",
+   "occurrence": 1,
+   "observed_analysis": "격/NNG 주/NNG",
+   "impact": "빈도 표현 「격주」가 「격」+「주」로 분해 — 주기 해석 시 「주」(week) 단독으로 오탐 위험",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/15/common_concerns/2/a",
+   "surface": "정맥염",
+   "occurrence": 1,
+   "observed_analysis": "정맥/NNG 염/NNG",
+   "impact": "부작용명 「정맥염」이 「정맥」+「염」으로 분해 — 사건명 토큰 누락·부위 「정맥」 오탐 위험",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/11/common_concerns/0/q",
+   "surface": "더마롤러",
+   "occurrence": 1,
+   "observed_analysis": "더/MAG 마/MAG 롤러/NNG",
+   "impact": "기구명 「더마롤러」에서 「더」가 비교 부사로 분석 — 비교 표현 오탐·기구명 누락",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/13/common_concerns/0/a",
+   "surface": "요요",
+   "occurrence": 1,
+   "observed_analysis": "요/MM 요/MM",
+   "impact": "「요요」(체중 재증가)가 관형사 두 개로 분석 — 명사 소실",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/8/downtime",
+   "surface": "붉은기와",
+   "occurrence": 1,
+   "observed_analysis": "붉/VA 은/ETM 기와/NNG",
+   "impact": "「붉은기와 붓기」의 「기」+조사 「와」가 명사 「기와」로 묶임 — 부작용 「붉은기」 소실·무관 명사 생성",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/9/common_concerns/0/a",
+   "surface": "박동기",
+   "occurrence": 1,
+   "observed_analysis": "박동/NNG 기/XSN",
+   "impact": "기기명 「심장 박동기」의 「기」가 접미사 처리 — 경미(기기명 토큰 분해)",
+   "status": "K",
+   "corrected": false
+  },
+  {
+   "pointer": "/categories/11/how_it_works",
+   "surface": "바른",
+   "occurrence": 1,
+   "observed_analysis": "바르/VA",
+   "impact": "「바른 약물」의 바르다(도포·VV)가 형용사 VA(옳다)로 태깅 — lemma 「바르다」는 같으나 품사로 의미가 바뀜. 도포 행위 탐색 누락·「옳은 약물」 오해 위험",
+   "status": "K",
+   "corrected": false
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/12(unlinked → auto) · 근거 조각 「피부가」 ⊃ 「피부」 — 표기 변형(접미 감·함·증 또는 조사 한 글자)",
+ "gate_item": "b4-sit/003",
+ "gate_option": "syn_1",
+ "gate_recommended": true,
+ "id": "DEC-2026-11-05-B4-SIT-003a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "피부",
+  "category": null,
+  "synonyms": [
+   "피부가"
+  ]
+ },
+ "proposal_item": "b4-sit/003",
+ "reason": "결정 묶음 4 — 문구 조각 「피부가」 을 site 「피부」 의 동의어로(근거: 조각 「피부가」 ⊃ 「피부」 — 표기 변형(접미 감·함·증 또는 조사 한 글자))",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.common[]@M12/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.common[]@11/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.serious[]@M15/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.serious[]@14/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.emergency[]@M2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.uncommon[]@M8/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.uncommon[]@7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.emergency[]@M8/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M12/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M12/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M15/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@11/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "site"
+ }
+}

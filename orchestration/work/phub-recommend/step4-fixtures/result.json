@@ -1,0 +1,120 @@
+{
+ "total": 10,
+ "passed": 10,
+ "cases": [
+  {
+   "id": "R1",
+   "input": "expressions {\"key\": \"zones[forehead].botox_specific.target_muscle\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 표현:zones[forehead].botox_specific.target_muscle"
+   ],
+   "actual": [
+    "결정 없는 표현:zones[forehead].botox_specific.target_muscle"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R2",
+   "input": "expressions {\"key\": \"modality[M8].extracted.related_techniques\", \"text\": \"프랙셔널 레이저 — 기존 박피 레이저의 다운타임을 줄인 최신 기술\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 표현:modality[M8].extracted.related_techniques"
+   ],
+   "actual": [
+    "결정 없는 표현:modality[M8].extracted.related_techniques"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R3",
+   "input": "expressions {\"key\": \"profiles[M1].mechanism\", \"text\": \"injection\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 표현:profiles[M1].mechanism"
+   ],
+   "actual": [
+    "결정 없는 표현:profiles[M1].mechanism"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R4",
+   "input": "expressions {\"key\": \"sequence_order[4].categories\", \"text\": \"M8-토닝\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 표현:sequence_order[4].categories"
+   ],
+   "actual": [
+    "결정 없는 표현:sequence_order[4].categories"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R5",
+   "input": "handoffs {\"id\": \"H01\"} 뺌(1줄)",
+   "expect": [
+    "넘겨받은 것 행선지 없음:진피|조직층"
+   ],
+   "actual": [
+    "넘겨받은 것 행선지 없음:진피|조직층"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R6",
+   "input": "handoffs {\"id\": \"H07\"} 뺌(1줄)",
+   "expect": [
+    "근거 없는 대상 근육:Trapezius",
+    "넘겨받은 것 행선지 없음:승모근"
+   ],
+   "actual": [
+    "근거 없는 대상 근육:Trapezius",
+    "넘겨받은 것 행선지 없음:승모근"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R7",
+   "input": "handoffs {\"id\": \"H15\"} 뺌(1줄)",
+   "expect": [
+    "근거 없는 대상 근육:Musculi faciei (mimetic muscles)",
+    "넘겨받은 것 행선지 없음:표정근|표정근"
+   ],
+   "actual": [
+    "근거 없는 대상 근육:Musculi faciei (mimetic muscles)",
+    "넘겨받은 것 행선지 없음:표정근|표정근"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R8",
+   "input": "technique_hints {\"ledger_id\": \"M8-1-3\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 technique_hint:M8-1-3"
+   ],
+   "actual": [
+    "결정 없는 technique_hint:M8-1-3"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R9",
+   "input": "family_defaults {\"family\": \"M7\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 계열 기본 기법:M7"
+   ],
+   "actual": [
+    "결정 없는 계열 기본 기법:M7"
+   ],
+   "pass": true
+  },
+  {
+   "id": "R10",
+   "input": "draft_techniques {\"id\": \"T04\"} 뺌(1줄)",
+   "expect": [
+    "결정 없는 초안 기법:T04"
+   ],
+   "actual": [
+    "결정 없는 초안 기법:T04"
+   ],
+   "pass": true
+  }
+ ]
+}

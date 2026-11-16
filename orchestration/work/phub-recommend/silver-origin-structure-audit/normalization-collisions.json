@@ -1,0 +1,103 @@
+[
+  {
+    "record_id": "M1-1-3",
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "raw_path": "$.modality[0].subcategories[1].items[3].extracted",
+    "silver_path": "$.extracted[7].source_text",
+    "normalized_key": "safety.common",
+    "sources": [
+      {
+        "source_field": "safety.common_adverse_effects",
+        "value": [
+          "주입 부위 부종",
+          "경미한 통증",
+          "일시적 발적"
+        ]
+      },
+      {
+        "source_field": "safety.common",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current": [
+      "시술 부위 발적",
+      "일시적 부종"
+    ],
+    "lost_original_leaves": [
+      "주입 부위 부종",
+      "경미한 통증",
+      "일시적 발적"
+    ]
+  },
+  {
+    "record_id": "auto-2-1774737181584",
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "raw_path": "$.modality[0].subcategories[2].items[7].extracted",
+    "silver_path": "$.extracted[25].source_text",
+    "normalized_key": "safety.common",
+    "sources": [
+      {
+        "source_field": "safety.common_adverse_effects",
+        "value": [
+          "일시적 근력 약화",
+          "주입 부위 부종/발적",
+          "두통"
+        ]
+      },
+      {
+        "source_field": "safety.common",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current": [
+      "시술 부위 발적",
+      "일시적 부종"
+    ],
+    "lost_original_leaves": [
+      "일시적 근력 약화",
+      "주입 부위 부종/발적",
+      "두통"
+    ]
+  },
+  {
+    "record_id": "M7-P-1",
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "raw_path": "$.modality[6].products[1].extracted",
+    "silver_path": "$.taxonomy_products[36].source_text",
+    "normalized_key": "safety.common",
+    "sources": [
+      {
+        "source_field": "safety.common_side_effects",
+        "value": [
+          "부종",
+          "경미한 통증",
+          "일시적 울퉁불퉁함",
+          "스레드 촉지감"
+        ]
+      },
+      {
+        "source_field": "safety.common",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current": [
+      "시술 부위 발적",
+      "일시적 부종"
+    ],
+    "lost_original_leaves": [
+      "부종",
+      "경미한 통증",
+      "일시적 울퉁불퉁함",
+      "스레드 촉지감"
+    ]
+  }
+]

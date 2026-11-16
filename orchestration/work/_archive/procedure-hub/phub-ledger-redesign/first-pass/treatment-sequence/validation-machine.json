@@ -1,0 +1,100 @@
+{
+ "source": {
+  "path": "orchestration/work/phub-recommend/bronze/phub-ledger/treatment-sequence.json",
+  "size_bytes": 8964,
+  "code_points": 5208,
+  "sha256_start": "e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf",
+  "encoding": "utf-8, BOM 없음",
+  "newline_count": 0,
+  "backslash_count": 0,
+  "non_bmp_count": 0,
+  "non_ascii_symbols": [
+   "U+00B0 °",
+   "U+00B7 ·",
+   "U+2014 —",
+   "U+2192 →",
+   "U+26A0 ⚠",
+   "U+FE0F ️"
+  ],
+  "offset_unit": "디코딩된 원문 문자열의 Unicode 코드 포인트 [start,end). byte_span 은 UTF-8 바이트 [start,end)",
+  "sha256_end": "e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf"
+ },
+ "stats": {
+  "nodes": 255,
+  "keys": 142,
+  "field_names": 22,
+  "string_nodes": 164,
+  "analyzed_values": 155,
+  "excluded_values": 9,
+  "non_string_leaves": 20,
+  "tokens": 1429,
+  "field_name_tokens": 38,
+  "expressions": 922,
+  "manual_phrases": 142,
+  "segmentation_occurrences": 69,
+  "known_false_positives": 19
+ },
+ "checks": [
+  {
+   "check": "노드 정방향(Pointer 해소·span 재파싱·byte_span 디코딩)",
+   "ok": true,
+   "detail": "nodes=255 bad=0"
+  },
+  {
+   "check": "노드 역방향(json.loads 위치 전부 존재)",
+   "ok": true,
+   "detail": "loads=255 nodes=255"
+  },
+  {
+   "check": "중복 키 0",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "check": "문자열 value_span == 값",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "문자열 노드 = analyze + exclude",
+   "ok": true,
+   "detail": "strings=164 analyze=155 exclude=9"
+  },
+  {
+   "check": "형태소 surface == text[span]",
+   "ok": true,
+   "detail": "tokens=1429"
+  },
+  {
+   "check": "표현 text == 값[span]",
+   "ok": true,
+   "detail": "expressions=922"
+  },
+  {
+   "check": "표현 생성 중복 0",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "check": "수동 표현 원문 존재",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "check": "오분절 기록 원문·원시토큰 일치",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "check": "알려진 오탐 기록 대응",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "check": "원본 해시 불변(build 시작/끝)",
+   "ok": true,
+   "detail": "e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf"
+  }
+ ],
+ "failure_count": 0
+}

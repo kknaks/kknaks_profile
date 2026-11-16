@@ -1,0 +1,335 @@
+{
+ "section": "S032",
+ "state": "read",
+ "last_pointer": "/modality/9/name",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/category",
+    "/modality/9/category_en",
+    "/modality/9/subcategories/0/label",
+    "/modality/9/subcategories/1/label"
+   ],
+   "note": "M10 category·category_en 모두 'HIFES/EMS'(영문 동일). 하위분류는 부위 축('페이셜 EMS','바디 EMS'). products 빈 배열."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/subcategories/0/items/0/name",
+    "/modality/9/subcategories/0/items/1/name",
+    "/modality/9/subcategories/1/items/1/name",
+    "/modality/9/subcategories/1/items/7/name"
+   ],
+   "note": "같은 장비로 보이는 항목 쌍: '엠페이스(EMFACE)'(M10-1-1)/'엠페이스'(auto), '엠스컬프트네오'(M10-2-2)/'엠스컬프트NEO'(auto). 내용 상세도가 다르다(연결 키 없음)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/extracted/mechanism",
+    "/modality/9/subcategories/1/items/0/detail",
+    "/modality/9/subcategories/0/items/0/detail"
+   ],
+   "note": "용어 혼용: HIFES(고강도 집속 전자기 자극) / HIFEM(고강도 집속 전자기장). 모달리티 이름은 HIFES 이고 mechanism·엠스컬프트는 HIFEM."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/subcategories/1/items/5/detail",
+    "/modality/9/subcategories/1/items/5/extracted/mechanism",
+    "/modality/9/subcategories/1/items/4/detail"
+   ],
+   "note": "쿨톤은 '쿨스컬프팅+EMS'(크라이오리폴리시스, M14 계열), 트루스컬프트는 'RF 바디 지방감소'(EMS 아님) — M10 바디 EMS 하위분류에 다른 에너지 장비가 있다."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/9/subcategories/1/items/4/extracted/aftercare/1",
+    "/modality/9/subcategories/1/items/4/extracted/aftercare/0"
+   ],
+   "note": "트루스컬프트(RF 지방감소) aftercare 에 '시술 후 근육통은 정상 반응 (1-3일)' — EMS 상용 문장 혼입으로 보임. 같은 배열에 '충분한 수분 섭취' 계열 문장이 두 번(이볼브도 같음)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/subcategories/1/items/0/extracted/safety/serious"
+   ],
+   "note": "safety/serious 원소가 금기 문장('심박동기, 금속 임플란트 보유자 금기','임신 중 금지')."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/subcategories/0/items/0/extracted/aftercare/3"
+   ],
+   "note": "M10 상용구 '[시술 주기 참고] 3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술 …' — 엠스컬프트 duration '월 1-2회 시술로 지속' 과 다르다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/9/extracted/indications/extended/2",
+    "/modality/9/extracted/indications/extended/3"
+   ],
+   "note": "확장 적응증 '산후 복직근이개', '골반저근 강화 (요실금 개선)' — 미용 외 기능 개선."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/9/subcategories/0/items/0/detail",
+   "text": "BTL · RF+HIFES · 근육+피부 동시",
+   "kinds": [
+    "기호"
+   ],
+   "note": "'+' 에너지 결합 / 대상 결합"
+  },
+  {
+   "pointer": "/modality/9/subcategories/0/items/0/extracted/safety/serious/0",
+   "text": "금속 임플란트 부위의 화상 위험 (사전 확인 필수)",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/0/items/0/extracted/aftercare/0",
+   "text": "시술 24시간 후 스킨케어 재개",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/0/items/0/extracted/aftercare/3",
+   "text": "3개월 간격 권장. 근육 적응 및 지방 대사 완료 후 재시술",
+   "kinds": [
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "상용구"
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/mechanism",
+   "text": "30분 시술로 수만 회의 강력한 근육 수축",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": "'수만 회' 비수치"
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/mechanism",
+   "text": "근육 수축의 대사 산물이 인접 지방세포의 자연사(apoptosis)를 유발",
+   "kinds": [
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/indications/primary/1",
+   "text": "엉덩이 리프팅 (힙업)",
+   "kinds": [
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/safety/common/1",
+   "text": "시술 후 근육통 (48-72시간)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/onset_duration/duration",
+   "text": "3-6개월 효과 유지, 월 1-2회 시술로 지속",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/0/extracted/aftercare/3",
+   "text": "최소 48시간 후 정상 운동 재개",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/1/extracted/safety/serious/2",
+   "text": "활성 피부 감염 부위 시술 금지",
+   "kinds": [
+    "조건",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/2/detail",
+   "text": "RF+EMS+석션 · 바디 컨투어링",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/3/extracted/aftercare/1",
+   "text": "시술 후 근육통은 정상 반응 (1-3일)",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/4/extracted/mechanism",
+   "text": "1.8MHz RF 에너지가 피하지방층 깊숙이 침투하여 지방세포의 온도를 45-50도까지 상승",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/subcategories/1/items/5/detail",
+   "text": "앨러간 · 쿨스컬프팅+EMS 근육",
+   "kinds": [
+    "기호",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/overview",
+   "text": "한국에서는 '엠스컬프', '테슬라포머' 등의 브랜드명으로 알려져 있으며",
+   "kinds": [
+    "시술·제품명",
+    "참조"
+   ],
+   "note": "항목명(엠스컬프트)과 표기 다름"
+  },
+  {
+   "pointer": "/modality/9/extracted/mechanism",
+   "text": "일반적인 운동으로는 달성할 수 없는 강도의 근육 수축",
+   "kinds": [
+    "부정",
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/indications/extended/3",
+   "text": "골반저근 강화 (요실금 개선)",
+   "kinds": [
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/contraindications/absolute/1",
+   "text": "심장박동기(페이스메이커) 또는 이식형 제세동기 사용자",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/contraindications/relative/2",
+   "text": "최근 수술 이력이 있는 부위",
+   "kinds": [
+    "조건",
+    "수량·단위·시간"
+   ],
+   "note": "'최근' 비수치"
+  },
+  {
+   "pointer": "/modality/9/extracted/onset_duration/peak",
+   "text": "마지막 시술 후 2~4주 뒤",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "조건"
+   ],
+   "note": "기준 사건 '마지막 시술'"
+  },
+  {
+   "pointer": "/modality/9/extracted/onset_duration/duration",
+   "text": "6~12개월 유지 (운동 병행 시 더 오래 유지)",
+   "kinds": [
+    "조건",
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/aftercare/0",
+   "text": "특별한 다운타임 없이 일상생활 바로 가능",
+   "kinds": [
+    "부정",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/9/extracted/related_techniques/2",
+   "text": "지방흡입 -- 더 적극적인 지방 제거가 필요한 경우",
+   "kinds": [
+    "참조",
+    "조건",
+    "비교"
+   ],
+   "note": "taxonomy 밖 시술"
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "엠스컬프트NEO",
+   "issue": "엠스컬프/NNG 트/VV NEO/SL — 끝 '트' 를 동사로",
+   "impact": "장비명 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "복직근이개",
+   "issue": "복직근/NNP 이/JKS 개/NNG — '이개(diastasis)'를 조사+명사로",
+   "impact": "질환명 소실·조사 오탐"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S032-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/9/subcategories/0/items/0",
+    "/modality/9/subcategories/0/items/1",
+    "/modality/9/subcategories/1/items/1",
+    "/modality/9/subcategories/1/items/7"
+   ],
+   "note": "같은 장비로 보이는 항목 쌍(엠페이스, 엠스컬프트네오/NEO).",
+   "impact": "개체 병합 후속"
+  },
+  {
+   "id": "S032-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/9/subcategories/1/items/4/extracted/aftercare/1"
+   ],
+   "note": "RF 장비 aftercare 에 EMS 근육통 문장.",
+   "impact": "관리 지시 채택 시 확인"
+  },
+  {
+   "id": "S032-F02",
+   "status": "F",
+   "pointers": [
+    "/modality/9/subcategories/1/items/5",
+    "/modality/9/subcategories/1/items/4"
+   ],
+   "note": "M10 에 크라이오·RF 지방감소 장비.",
+   "impact": "계열 경계 후속"
+  }
+ ]
+}

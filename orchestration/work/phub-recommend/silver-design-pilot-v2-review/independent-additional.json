@@ -1,0 +1,111 @@
+{
+  "probes": [
+    {
+      "probe": "positive_rehashed",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "language_scope_excludes_its_included_M2",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19565,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "language_scope_explicit_to_unknown_axis",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "language_scope_adds_unrelated_container",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19565,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "combo_scope_excludes_its_source_container",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "resolution_policy_version_forged",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "attachment_rule_id_version_forged",
+      "accepted": true,
+      "failed_checks": [],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "language_axis_literal_disguised_as_entity",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[163].axes.family.value_kind: enum"
+          ]
+        }
+      ],
+      "total_checks": 1,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "approved_decision_wrong_existing_target",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        }
+      ],
+      "total_checks": 19562,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "timing_invented_numeric_interval",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "timing_interval_no_numeric_invention",
+          "pass": false
+        }
+      ],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    },
+    {
+      "probe": "override_wrong_existing_scope",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "override_scope_matches_claim",
+          "pass": false
+        },
+        {
+          "check": "override_M4_scope_metadata",
+          "pass": false
+        }
+      ],
+      "total_checks": 19563,
+      "normalized_id_failures": 0
+    }
+  ],
+  "mutations": 10,
+  "accepted_mutations": 6,
+  "implementation_errors": 0
+}

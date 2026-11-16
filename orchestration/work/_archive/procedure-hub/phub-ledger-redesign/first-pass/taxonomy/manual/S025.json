@@ -1,0 +1,42 @@
+{"section":"S025","state":"read","last_pointer":"/modality/7/products/2/extracted/aftercare/4",
+"observations":[
+ {"status":"B","pointers":["/modality/7/subcategories/5/items/13","/modality/7/subcategories/5/items/13/extracted","/modality/7/subcategories/5/items/14/extracted"],"note":"'저출력레이저(LLLT)'·'다이오드 레이저' 두 항목은 detail 빈 문자열, extracted 빈 객체 {} — 이름만 있는 항목(원장 523개 항목 중 extracted 가 빈 유일한 2개). id 숫자부(1793931444282/283)도 다른 auto id 대역과 다르다."},
+ {"status":"P","pointers":["/modality/7/subcategories/6/label","/modality/7/subcategories/6/items/0/extracted/aftercare/5"],"note":"auto-new-M8-1775360463 label '피코초(Picosecond)' — 펄스 방식 축의 하위분류. 피코 장비가 M8-1(색소/토닝)에도 있다. 피코판 상용구('토닝 모드: 1-2주 간격 누적. 색소 줌패스: 4주 이상 간격. 타투 제거: 7-8주 간격 (대식세포 제거 시간 필요)')."},
+ {"status":"I","pointers":["/modality/7/subcategories/5/items/9/detail","/modality/7/subcategories/5/items/11/extracted/mechanism"],"note":"'Er:YAG어성'(의미 불명 표기), 사파이어냉각팁 '-5도' 단위 기호 없음(원문 그대로, 단위 추가 안 함)."},
+ {"status":"P","pointers":["/modality/7/products/0/mfds","/modality/7/products/1/mfds","/modality/7/products/2/mfds"],"note":"M8 products 의 mfds 가 null (M1~M7 products 는 true/false). type 필드(피코레이저, Nd:YAG …)."},
+ {"status":"I","pointers":["/modality/7/products/0/extracted/safety/common/1"],"note":"피코슈어 제품 'PIH: 1% 이하, QS 제품 중 최저 수준' — 피코 장비를 QS 제품군으로 지칭(항목 쪽 서술은 피코 vs QS 대비)."},
+ {"status":"P","pointers":["/modality/7/products/2/name","/modality/7/subcategories/0/items/5/name"],"note":"제품 '레블라이트'(RevLite)와 항목 '레블라이트SI'(QS Nd:YAG 업그레이드) — 이름 포함 관계, 연결 키 없음."},
+ {"status":"P","pointers":["/modality/7/extracted/indications/extended/4","/modality/7/extracted/indications/extended/6"],"note":"M8 모달리티 확장 적응증에 질환 치료(백반증·건선·피부암 전구 병변)와 다른 기법(엑시머 레이저, PDT) 이 포함 — taxonomy 항목에 해당 이름 없음(참조 표현만)."},
+ {"status":"P","pointers":["/modality/7/extracted/onset_duration/duration"],"note":"duration 에 이유절 '(노화는 계속 진행되므로)' — 지속기간과 근거가 한 값에."}
+],
+"expressions":[
+ {"pointer":"/modality/7/subcategories/5/items/11/extracted/mechanism","text":"피부 표면을 -5도로 냉각","kinds":["수량·단위·시간"],"note":"단위 '도'(섭씨 표기 없음)"},
+ {"pointer":"/modality/7/subcategories/5/items/12/detail","text":"홍조전용RF+IPL","kinds":["기호","부위"],"note":""},
+ {"pointer":"/modality/7/subcategories/5/items/12/extracted/indications/primary/2","text":"주사비","kinds":["부위"],"note":"'주사' 와 다른 출현형"},
+ {"pointer":"/modality/7/subcategories/6/items/0/detail","text":"루트로닉 · 1064/595/660/532nm 4파장","kinds":["수량·단위·시간","기호"],"note":""},
+ {"pointer":"/modality/7/subcategories/6/items/0/extracted/safety/common/3","text":"색소침착 또는 탈색 가능성","kinds":["가능성·빈도","조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/6/items/0/extracted/aftercare/5","text":"타투 제거: 7-8주 간격 (대식세포 제거 시간 필요)","kinds":["조건","수량·단위·시간","범위"],"note":"상용구 피코판"},
+ {"pointer":"/modality/7/subcategories/6/items/2/extracted/onset_duration/duration","text":"개인차에 따라 6개월-2년","kinds":["조건","범위"],"note":""},
+ {"pointer":"/modality/7/extracted/overview","text":"'유도방출에 의한 빛의 증폭'이라는 뜻으로","kinds":["참조"],"note":"약어 풀이"},
+ {"pointer":"/modality/7/extracted/mechanism","text":"레이저 조사 시간을 표적의 열이완시간(열이 식는 데 걸리는 시간)보다 짧게 유지하면","kinds":["조건","비교"],"note":""},
+ {"pointer":"/modality/7/extracted/indications/primary/3","text":"피부 재생/주름 개선 — 프랙셔널 레이저, CO₂ 레이저","kinds":["시술·제품명","기호"],"note":"아래첨자 ₂"},
+ {"pointer":"/modality/7/extracted/indications/extended/3","text":"여드름 치료 (PDT — 광역학요법과 병합)","kinds":["참조","시술·제품명"],"note":""},
+ {"pointer":"/modality/7/extracted/contraindications/absolute/2","text":"켈로이드 체질 (박피형 레이저 시)","kinds":["조건"],"note":"조건부 절대금기"},
+ {"pointer":"/modality/7/extracted/contraindications/relative/2","text":"이소트레티노인(여드름 치료제) 복용 후 6개월 이내","kinds":["조건","범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/extracted/contraindications/relative/3","text":"피부색이 어두운 경우 (색소침착·탈색 위험이 높아 파장·설정 주의 필요)","kinds":["조건","가능성·빈도"],"note":""},
+ {"pointer":"/modality/7/extracted/safety/uncommon/0","text":"특히 아시안 피부에서 흔함","kinds":["조건","가능성·빈도"],"note":"uncommon 칸 안의 '흔함'"},
+ {"pointer":"/modality/7/extracted/safety/serious/2","text":"눈 손상 (보호안경 미착용 시)","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/7/extracted/onset_duration/onset","text":"색소 레이저는 1~2주 후 딱지 탈락 시, 프랙셔널은 1~3개월에 걸쳐 서서히","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/extracted/onset_duration/duration","text":"색소/혈관 레이저는 병변 제거 시 반영구적, 피부 재생 레이저는 수개월~수년 (노화는 계속 진행되므로)","kinds":["조건","범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/extracted/related_techniques/2","text":"PDT (광역학요법) — 광감작제 약물 + 레이저를 병합한 여드름/피부암 치료","kinds":["참조","기호"],"note":""},
+ {"pointer":"/modality/7/products/0/extracted/mechanism","text":"광음향(photoacoustic) + 광열(photothermal) 이중 메커니즘","kinds":["기호"],"note":""},
+ {"pointer":"/modality/7/products/0/extracted/safety/common/1","text":"색소침착과다(PIH: 1% 이하, QS 제품 중 최저 수준)","kinds":["범위","비교","주장"],"note":""},
+ {"pointer":"/modality/7/products/0/extracted/aftercare/4","text":"1-2개월 간격으로 반복 시술","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/products/2/extracted/safety/common/4","text":"색소탈실(약 5-10%)","kinds":["수량·단위·시간","범위"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S025-B01","status":"B","pointers":["/modality/7/subcategories/5/items/13/extracted","/modality/7/subcategories/5/items/14/extracted","/modality/7/subcategories/5/items/13/detail","/modality/7/subcategories/5/items/14/detail"],"note":"LLLT·다이오드 레이저 항목은 이름 외 정보 없음(extracted {} · detail \"\").","impact":"항목 내용 조사 불가 — 원장 자료 부족"},
+ {"id":"S025-I01","status":"I","pointers":["/modality/7/subcategories/5/items/9/detail"],"note":"'Er:YAG어성' 의미 불명.","impact":"원본 확인 후보"},
+ {"id":"S025-B02","status":"B","pointers":["/modality/7/products/0/mfds","/modality/7/products/1/mfds","/modality/7/products/2/mfds"],"note":"mfds null — 허가 여부 미기재.","impact":"허가 정보 없음"}
+]}

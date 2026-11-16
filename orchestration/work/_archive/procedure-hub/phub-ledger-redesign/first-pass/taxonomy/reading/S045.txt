@@ -1,0 +1,114 @@
+# S045  scope=M15 메디컬스킨케어  units=auto-1775402620 items/3 | auto-1775402620 items/4 | auto-1775402620 items/5 | auto-1775402620 items/6 | auto-1775402620 items/7 | M15-도포 (items 비어 있음) | M15-팩 (items 비어 있음) | extracted | products 컨테이너 | name
+# 상위 문맥: [{"pointer": "/modality/14", "id": "M15", "category": "메디컬스킨케어", "name": "메디컬스킨케어"}, {"pointer": "/modality/14/subcategories/13", "id": "auto-1775402620", "label": "시그니처프로그램"}]
+@ /modality/14/subcategories/13/items/3 auto-M15-1775402736449 인형피부관리
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736449"
+  /name = "인형피부관리"
+  /detail = "보톡스+필러+토닝+물광"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "보톡스, 필러, 토닝, 물광주사를 조합하여 인형처럼 매끄럽고 탄력 있는 피부를 만드는 종합 관리"
+  /extracted/mechanism = "보톡스로 주름 완화, 필러로 볼륨 보강, 토닝으로 피부결 개선, 물광주사로 수분 공급"
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"주름" ‖ 1:"볼륨 감소" ‖ 2:"피부 탄력 저하" ‖ 3:"종합적 안티에이징"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주사 부위 부종" ‖ 1:"멍" ‖ 2:"일시적 근력 약화" ‖ 3:"비대칭 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-7일"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [4] = 0:"4시간 눕지 않기" ‖ 1:"마사지 금지 2주" ‖ 2:"사우나 금지 1주" ‖ 3:"과도한 표정 자제"
+@ /modality/14/subcategories/13/items/4 auto-M15-1775402736450 허니스킨관리
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736450"
+  /name = "허니스킨관리"
+  /detail = "필링+물광+LED"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "필링, 물광주사, LED 치료를 결합하여 꿀처럼 촉촉하고 윤기 있는 피부를 만드는 복합 관리"
+  /extracted/mechanism = "필링으로 각질 제거, 물광주사로 수분 공급, LED로 콜라겐 합성 촉진"
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"각질" ‖ 1:"수분 부족" ‖ 2:"피부 거칠음" ‖ 3:"윤기 부족" ‖ 4:"미세 주름"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"필링 후 각질" ‖ 1:"일시적 민감성" ‖ 2:"홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-3일"
+  /extracted/onset_duration/duration = "1-2개월"
+  /extracted/aftercare [4] = 0:"순한 세안" ‖ 1:"보습제 필수" ‖ 2:"자외선 차단" ‖ 3:"스크럽 금지 1주"
+@ /modality/14/subcategories/13/items/5 auto-M15-1775402736451 리쥬하이
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736451"
+  /name = "리쥬하이"
+  /detail = "리쥬란+히알루론산 조합"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "리쥬란과 히알루론산을 조합한 스킨부스터로 피부 재생과 수분 공급을 동시에 제공"
+  /extracted/mechanism = "리쥬란의 폴리뉴클레오타이드가 세포 재생 촉진, 히알루론산이 깊은 수분 공급"
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 재생" ‖ 1:"깊은 수분 공급" ‖ 2:"탄력 개선" ‖ 3:"미세 주름" ‖ 4:"흉터 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"주사 부위 결절" ‖ 1:"부종" ‖ 2:"멍" ‖ 3:"일시적 염증 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"마사지 금지 1주" ‖ 1:"사우나 금지 3일" ‖ 2:"충분한 수분 섭취" ‖ 3:"자외선 차단"
+@ /modality/14/subcategories/13/items/6 auto-M15-1775402736452 스킨부스터오마카세
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736452"
+  /name = "스킨부스터오마카세"
+  /detail = "리쥬란+쥬베룩+엑소좀 순차"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "리쥬란, 쥬베룩, 엑소좀을 순차적으로 시행하여 최적의 피부 재생과 개선 효과를 제공하는 프리미엄 관리"
+  /extracted/mechanism = "리쥬란으로 재생 기반 조성, 쥬베룩으로 콜라겐 합성, 엑소좀으로 세포 활성화"
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"종합적 피부 개선" ‖ 1:"노화 방지" ‖ 2:"재생 촉진" ‖ 3:"탄력 개선" ‖ 4:"흉터 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [5] = 0:"주사 부위 결절" ‖ 1:"부종" ‖ 2:"멍" ‖ 3:"일시적 염증" ‖ 4:"가려움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [4] = 0:"마사지 금지 2주" ‖ 1:"사우나 금지 1주" ‖ 2:"충분한 휴식" ‖ 3:"항염제 복용 가능"
+@ /modality/14/subcategories/13/items/7 auto-M15-1775402736453 올타이트
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402736453"
+  /name = "올타이트"
+  /detail = "RF+HIFU 복합리프팅"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF와 HIFU를 결합한 복합 리프팅으로 표재성과 심부 조직을 동시에 타이트닝하는 시술"
+  /extracted/mechanism = "RF로 진피층 콜라겐 수축, HIFU로 SMAS층까지 리프팅하여 다층 타이트닝 효과"
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 처짐" ‖ 1:"이중턱" ‖ 2:"얼굴 윤곽" ‖ 3:"목 주름" ‖ 4:"전반적 리프팅"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"시술 부위 부종" ‖ 1:"열감" ‖ 2:"일시적 신경 마비" ‖ 3:"비대칭"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3개월"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"냉찜질" ‖ 1:"마사지 금지 1개월" ‖ 2:"사우나 금지 2주" ‖ 3:"충분한 수분 섭취"
+@ /modality/14/subcategories/14 M15-도포 약물 도포 관리
+  . {id,label,items}
+  /id = "M15-도포"
+  /label = "약물 도포 관리"
+  /items [0]
+@ /modality/14/subcategories/15 M15-팩 진정팩 관리
+  . {id,label,items}
+  /id = "M15-팩"
+  /label = "진정팩 관리"
+  /items [0]
+@ /modality/14 M15 메디컬스킨케어 메디컬스킨케어
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "메디컬스킨케어는 피부과에서 시행하는 전문적인 피부 관리 시술을 총칭하며, 대표적으로 화학박피술(케미칼필링)이 있다. 필링은 화학물질, 기계적 방법, 레이저 등을 이용하여 노화되고 손상된 피부를 벗겨내고 새로운 피부 재생을 유도하는 시술이다. 일상적 피부 관리의 기본이자 핵심으로, 여드름, 기미, 잔주름, 모공 등 다양한 피부 고민에 활용된다."
+  /extracted/mechanism = "케미칼필링은 화학물질을 피부에 도포하여 해당 조직의 구조를 시각적으로 개선시키고자 하는 피부 개선 치료의 하나로, 각질이 벗겨지는 자연적 과정을 단순히 가속화시키는 것이지만 단백질의 응고 혹은 용해로 인해서 표피와 진피 일부를 완전히 파괴할 수도 있다. 필링에 사용된 성분과 적용 방법에 따라 재생 정도에 차이가 생기며, 진피에서 피부의 재생이 일어난다. 얕은필링(AHA, 저농도 TCA)은 각질층~표피층만 벗겨내고, 중간필링(고농도 TCA)은 유두진피까지, 깊은필링(페놀)은 망상진피 하부까지 영향을 미친다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [4] = 0:"칙칙한 피부 (거무칙칙함) 개선 -- 가장 흔한 적응증" ‖ 1:"여드름 치료 및 여드름 흉터" ‖ 2:"모공각화증 (피부 표면의 까칠한 돌기)" ‖ 3:"잔주름 개선"
+  /extracted/indications/extended [8] = 0:"기미 (피부 색소 불균일)" ‖ 1:"주근깨" ‖ 2:"흑자 (검은 점)" ‖ 3:"PIH(염증후색소침착, 피부 트러블 후 자국)" ‖ 4:"지루각화증 (노인성 사마귀)" ‖ 5:"광선각화증 (자외선에 의한 피부 변화)" ‖ 6:"튼살" ‖ 7:"닭살 (모공각화증)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"피부 유형 IV~VI형 (어두운 피부)에서 깊은 필링은 색소장애 위험" ‖ 1:"활동성 바이러스 감염 (단순포진 등)" ‖ 2:"시술 부위 피부 상태가 나쁜 경우나 면역결핍 상태"
+  /extracted/contraindications/relative [6] = 0:"비타민유도체(이소트레티노인) 복용 중인 경우 박피 후 반흔 우려" ‖ 1:"자외선 차단이 불가능한 사람" ‖ 2:"켈로이드 체질" ‖ 3:"과도한 기대를 하는 경우" ‖ 4:"임산부" ‖ 5:"흡연 및 경구 피임약, 갱년기 에스트로겐 복용 중"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [3] = 0:"시술 후 2~3일간 피부 건조 및 각질 발생" ‖ 1:"일시적 홍반 (빨개짐) -- 시간 지나면 대부분 호전" ‖ 2:"약간의 따가움"
+  /extracted/safety/uncommon [3] = 0:"염증후색소침착(PIH, 시술 부위가 어두워지는 것)" ‖ 1:"감염 (바이러스 감염 포함)" ‖ 2:"알레르기 반응"
+  /extracted/safety/serious [3] = 0:"반흔 (중층박피 후 비후성 반흔 발생빈도 1% 이내)" ‖ 1:"비후성 반흔 (깊은 필링에서 드물게)" ‖ 2:"색소탈실 (피부가 하얗게 변하는 것, 특히 페놀 필링)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "얕은 필링은 시술 직후부터, 중간/깊은 필링은 1~2주 후 회복되면서 효과 시작"
+  /extracted/onset_duration/peak = "필링 후 1~4회 진정/재생 관리 후 최종 결과"
+  /extracted/onset_duration/duration = "1회 시술 효과 2~4주, 주기적 시술로 장기 개선 유지"
+  /extracted/aftercare [5] = 0:"자외선 차단이 가장 중요 -- SPF 30 이상 자외선차단제를 2~3시간 간격으로 재도포" ‖ 1:"최소 시술 후 3개월간은 강박적으로 자외선 차단제 사용" ‖ 2:"보습제를 자주 도포해 피부 수분 유지" ‖ 3:"필링 후 통증이 3~4일 지속되면 바이러스 감염 의심하고 대응" ‖ 4:"필링 후 관리: 클렌징-pH 밸런싱-앰플관리-마스크-보습-메이크업 순서"
+  /extracted/related_techniques [3] = 0:"MTS(마이크로니들링) -- 물리적 자극으로 피부 재생 유도" ‖ 1:"레이저토닝 -- 기미/색소 치료에 병합" ‖ 2:"LDM(초음파) -- 피부 진정 및 재생 시너지"
+  /products [0]
+  /name = "메디컬스킨케어"

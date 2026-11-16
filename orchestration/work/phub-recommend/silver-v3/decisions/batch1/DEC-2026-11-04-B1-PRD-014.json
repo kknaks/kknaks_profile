@@ -1,0 +1,75 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허11-1322호 · N",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@29/0"
+  },
+  {
+   "detail": "web: https://www.beautetrade.com/products/cutegel-max-1400-2x11ml/54894/",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@29/3"
+  },
+  {
+   "detail": "web: https://www.digitaltoday.co.kr/aigongsi/2068/hankook-bnc-nmpa-approval-cutegel",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[]@29/4"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-014",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "큐젤 맥스",
+  "category": null,
+  "code": "M2",
+  "synonyms": [
+   "Cutegel MAX",
+   "CUTEGEL Max 1400"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의료기기)'] · 근거 1 허가 건 · 2 웹 · ledger_id auto-M2-1775361728731",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@29"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@29/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@29/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[]@29/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@29/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@29/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@29",
+   "value": "큐젤MAX",
+   "why": "다른 분류 항목 이름 「큐젤MAX」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

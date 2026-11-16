@@ -1,0 +1,139 @@
+{
+  "_about": "직접 읽기로 수집한 복합 표현. pointer=원문 값, text=값 안의 정확한 부분 문자열, occurrence=그 값 안에서 몇 번째 출현(1부터). tags 는 탐색 관점이며 확정 분류가 아니다. note 는 잠정 관찰. 구간은 build.py 가 원문에서 찾아 기록한다(없으면 빌드 실패).",
+  "items": [
+    {"pointer": "/description", "text": "시술 간 금기/주의사항/간격 매트릭스", "tags": ["whole_value", "scope", "separator_slash"], "note": "원장 전체 범위 서술. '/' 3항 나열. level 값에는 금기에 해당하는 별도 값이 없다(I1·B1 참고)."},
+    {"pointer": "/description", "text": "금기/주의사항/간격", "tags": ["separator_slash", "enumeration"], "note": "'/'가 README 의 '둘 중 하나'인지 단순 나열인지 원문으로 확정 불가(P)."},
+    {"pointer": "/description", "text": "시술 간", "tags": ["scope", "relation_between_procedures"], "note": ""},
+
+    {"pointer": "/rules/0/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/0/note", "text": "동일 부위는 보톡스 먼저 → 필러 순서 권장", "tags": ["condition", "body_area_like", "order_sequence", "recommendation", "arrow"], "note": "조건(동일 부위)이 붙은 순서 권장. 보톡스=from_name, 필러=to_name 과 같은 순서."},
+    {"pointer": "/rules/0/note", "text": "동일 부위는", "tags": ["condition", "body_area_like"], "note": "부위가 특정되지 않은 상대 조건."},
+    {"pointer": "/rules/0/note", "text": "주입 부위가 다르면 순서 무관", "tags": ["condition", "body_area_like", "order_sequence", "negation_like"], "note": "'무관' = 순서 제약 없음. 앞 문장과 대비되는 조건 분기."},
+    {"pointer": "/rules/0/note", "text": "주입 부위가 다르면", "tags": ["condition"], "note": ""},
+
+    {"pointer": "/rules/1/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/1/note", "text": "보톡스가 안정화된 후 실리프팅", "tags": ["order_sequence", "time_relative"], "note": "보톡스 먼저. '안정화' 시점은 원문에 기간 없음."},
+    {"pointer": "/rules/1/note", "text": "동시 시술 시 보톡스 확산 위험", "tags": ["condition", "risk", "same_day"], "note": ""},
+    {"pointer": "/rules/1/note", "text": "동시 시술 시", "tags": ["condition"], "note": ""},
+
+    {"pointer": "/rules/2/interval", "text": "비박리·비박리 프락셔널: 같은 날 가능(레이저 먼저 → 보톡스 순서 권장)", "tags": ["branch", "subtype_like", "same_day", "order_sequence", "parenthetical"], "note": "interval 칸 안 첫 분기. 순서는 레이저(to) 먼저."},
+    {"pointer": "/rules/2/interval", "text": "비박리·비박리 프락셔널", "tags": ["subtype_like", "enumeration"], "note": "'비박리'와 '비박리 프락셔널' 두 항 나열로 읽힘(P). 같은 말 반복이 오기인지 원문으로 확정 불가."},
+    {"pointer": "/rules/2/interval", "text": "레이저 먼저 → 보톡스 순서 권장", "tags": ["order_sequence", "recommendation", "arrow"], "note": ""},
+    {"pointer": "/rules/2/interval", "text": " / ", "tags": ["branch_separator", "separator_slash"], "note": "공백 둘린 '/'가 분기 구분자로 쓰임. 같은 값 안 'CO2·Er:YAG'는 '·'."},
+    {"pointer": "/rules/2/interval", "text": "박리 CO2·Er:YAG: 3일~1주 간격 권장", "tags": ["branch", "subtype_like", "range", "quantity_time", "recommendation"], "note": "둘째 분기."},
+    {"pointer": "/rules/2/interval", "text": "박리 CO2·Er:YAG", "tags": ["subtype_like", "device_like", "enumeration"], "note": "note 에서는 'CO2/Er:YAG'로 구분자가 다르다."},
+    {"pointer": "/rules/2/interval", "text": "3일~1주", "tags": ["range", "quantity_time", "mixed_unit"], "note": "하한·상한 단위가 다르다(일·주)."},
+    {"pointer": "/rules/2/note", "text": "비박리·비박리 프락셔널 레이저와 보톡스의 같은 날 병행은 안전하며", "tags": ["subtype_like", "same_day", "assessment"], "note": ""},
+    {"pointer": "/rules/2/note", "text": "레이저 후 냉각·부기를 고려해 레이저 먼저, 보톡스 다음 순서를 권장", "tags": ["order_sequence", "reason", "recommendation"], "note": ""},
+    {"pointer": "/rules/2/note", "text": "레이저 열에 의한 보톡스 확산 우려는 이론적이며 임상 근거가 부족", "tags": ["evidence_hedge", "negation_like", "mechanism"], "note": "근거 수준에 대한 원문 진술. 근거 출처는 원문에 없음."},
+    {"pointer": "/rules/2/note", "text": "박리 레이저(CO2/Er:YAG)는 부기·조직 부종 때문에 3일~1주 caution 유지", "tags": ["subtype_like", "reason", "range", "level_code_in_text"], "note": "note 안에 level 코드 'caution'이 등장. 이 rule 의 level 칸은 'safe'(I1)."},
+    {"pointer": "/rules/2/note", "text": "CO2/Er:YAG", "tags": ["device_like", "separator_slash", "parenthetical"], "note": ""},
+    {"pointer": "/rules/2/note", "text": "caution 유지", "tags": ["level_code_in_text"], "note": ""},
+
+    {"pointer": "/rules/3/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/3/note", "text": "HIFU/RF의 열에너지가 보톡스 단백질에 영향", "tags": ["mechanism", "device_like", "separator_slash"], "note": "to_name '기기 리프팅'의 구체 표현으로 읽힘(P). 원문에 소속 관계 명시 없음."},
+    {"pointer": "/rules/3/note", "text": "HIFU/RF", "tags": ["device_like", "separator_slash"], "note": ""},
+    {"pointer": "/rules/3/note", "text": "리프팅 안정화 후 보톡스 시술", "tags": ["order_sequence", "time_relative"], "note": "to(기기 리프팅) 먼저 → from(보톡스). from/to 순서와 반대(P2)."},
+
+    {"pointer": "/rules/4/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/4/note", "text": "주입 깊이가 달라 상호 영향 적음", "tags": ["reason", "degree", "negation_like"], "note": "'적음'은 없음이 아니라 정도 표현."},
+    {"pointer": "/rules/4/note", "text": "상호 영향 적음", "tags": ["degree"], "note": ""},
+
+    {"pointer": "/rules/5/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/5/note", "text": "니들RF의 열과 침습이 보톡스 확산에 영향", "tags": ["mechanism"], "note": "순서 진술 없음."},
+
+    {"pointer": "/rules/6/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/6/note", "text": "실로 올리고 필러로 채우는 보완적 조합", "tags": ["mechanism", "combination"], "note": ""},
+    {"pointer": "/rules/6/note", "text": "실 먼저 → 필러 순서", "tags": ["order_sequence", "arrow"], "note": "to(실리프팅) 먼저. from/to 순서와 반대(P2). '권장' 등 서술어 없음."},
+
+    {"pointer": "/rules/7/interval", "text": "2~4주 간격 권장", "tags": ["range", "quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/7/note", "text": "레이저 열이 HA 필러를 분해할 수 있음", "tags": ["possibility", "mechanism", "subtype_like"], "note": "'HA 필러'로 대상이 좁혀짐. 다른 필러 재질에 대한 진술 없음(B)."},
+    {"pointer": "/rules/7/note", "text": "HA 필러", "tags": ["subtype_like"], "note": ""},
+    {"pointer": "/rules/7/note", "text": "특히 프락셔널, IPL은 4주 간격", "tags": ["condition", "subtype_like", "quantity_time", "exception"], "note": "interval 범위(2~4주)의 상한을 특정 종류에 적용하는 것으로 읽힘(P)."},
+    {"pointer": "/rules/7/note", "text": "프락셔널, IPL", "tags": ["subtype_like", "enumeration"], "note": "IPL 이 '레이저' 범주에 포함되는지 원문은 나열만 한다(F)."},
+
+    {"pointer": "/rules/8/interval", "text": "4주 이상 간격", "tags": ["range", "lower_bound", "quantity_time"], "note": "'권장' 없음."},
+    {"pointer": "/rules/8/note", "text": "HIFU/RF의 강한 열이 HA 필러를 분해·변형시킬 위험", "tags": ["risk", "mechanism", "degree", "device_like", "subtype_like"], "note": ""},
+    {"pointer": "/rules/8/note", "text": "분해·변형", "tags": ["enumeration"], "note": ""},
+    {"pointer": "/rules/8/note", "text": "필러 안정화 후 시술", "tags": ["order_sequence", "time_relative"], "note": "필러(from) 먼저."},
+
+    {"pointer": "/rules/9/interval", "text": "4주 이상 간격", "tags": ["range", "lower_bound", "quantity_time"], "note": ""},
+    {"pointer": "/rules/9/note", "text": "니들이 필러 주입부를 관통할 위험 + RF 열이 필러에 영향", "tags": ["risk", "mechanism", "separator_plus"], "note": "'+'가 두 이유를 잇는다. README 의 '+ = 함께 시술'과 다른 쓰임(P3)."},
+    {"pointer": "/rules/9/note", "text": "필러 주입부", "tags": ["body_area_like"], "note": ""},
+
+    {"pointer": "/rules/10/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/10/note", "text": "미세침이 필러 주입 부위를 자극할 수 있음", "tags": ["possibility", "mechanism"], "note": ""},
+    {"pointer": "/rules/10/note", "text": "필러 주입 부위", "tags": ["body_area_like"], "note": ""},
+
+    {"pointer": "/rules/11/interval", "text": "4주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/11/note", "text": "콜라겐 생성 과정 중 과도한 열자극 방지", "tags": ["time_relative", "degree", "prevention"], "note": ""},
+    {"pointer": "/rules/11/note", "text": "과도한 열자극", "tags": ["degree"], "note": ""},
+
+    {"pointer": "/rules/12/interval", "text": "비침습/프락셔널 논어블레이티브: 2~4주", "tags": ["branch", "subtype_like", "range", "quantity_time", "separator_slash"], "note": "'비침습/프락셔널 논어블레이티브'의 수식 범위가 모호: (비침습)|(프락셔널 논어블레이티브) 또는 (비침습|프락셔널) 논어블레이티브(F3)."},
+    {"pointer": "/rules/12/interval", "text": "비침습/프락셔널 논어블레이티브", "tags": ["subtype_like", "separator_slash", "scope_ambiguity"], "note": "note 에서는 '비침습·프락셔널 논어블레이티브'."},
+    {"pointer": "/rules/12/interval", "text": "2~4주", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/12/interval", "text": " / ", "tags": ["branch_separator", "separator_slash"], "note": "같은 값에서 '/'가 분기 구분(공백 있음)과 항목 대안(공백 없음) 두 가지로 쓰인다."},
+    {"pointer": "/rules/12/interval", "text": "어블레이티브(프락셔널 CO2/Er:YAG 등): 3~4개월", "tags": ["branch", "subtype_like", "range", "quantity_time", "parenthetical", "open_list"], "note": ""},
+    {"pointer": "/rules/12/interval", "text": "프락셔널 CO2/Er:YAG 등", "tags": ["device_like", "open_list", "parenthetical"], "note": "'등' = 열린 목록."},
+    {"pointer": "/rules/12/interval", "text": "3~4개월", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/12/note", "text": "비침습·프락셔널 논어블레이티브 레이저는 2~4주 간격 유지", "tags": ["subtype_like", "range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/12/note", "text": "어블레이티브 박피 레이저는 콜라겐 리모델링·미세구 안정화 고려 3~4개월 권장", "tags": ["subtype_like", "reason", "range", "quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/12/note", "text": "콜라겐 리모델링·미세구 안정화", "tags": ["enumeration", "mechanism"], "note": ""},
+    {"pointer": "/rules/12/note", "text": "미세구", "tags": ["term_unclear"], "note": "rule 14 의 '미세구멍'과 같은 뜻인지(잘림 여부) 원문으로 확정 불가(B4). 고치지 않는다."},
+
+    {"pointer": "/rules/13/interval", "text": "1주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": "level=safe 인데 같은 날이 아니라 1주 간격(P4)."},
+    {"pointer": "/rules/13/note", "text": "스킨부스터 안정화 후 레이저", "tags": ["order_sequence", "time_relative"], "note": ""},
+    {"pointer": "/rules/13/note", "text": "순서: 레이저 → 스킨부스터도 가능", "tags": ["order_sequence", "arrow", "possibility", "alternative"], "note": "두 순서 모두 허용으로 읽힘. 역순일 때 간격이 같은지는 원문에 없음(B)."},
+
+    {"pointer": "/rules/14/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/14/note", "text": "MTS로 미세구멍 → 스킨부스터 흡수 극대화", "tags": ["mechanism", "arrow", "degree"], "note": "'→'가 순서 권장이 아니라 인과/과정으로 쓰임(P3)."},
+    {"pointer": "/rules/14/note", "text": "시너지 조합", "tags": ["reference_other_concept"], "note": "다른 원장(synergy)과의 연결은 후속(F5). 이 원장 안에 참조 키 없음."},
+
+    {"pointer": "/rules/15/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/15/note", "text": "MTS + PRP는 대표적 시너지 조합", "tags": ["separator_plus", "combination", "reference_other_concept"], "note": "이름 순서가 from/to 와 반대(M5=PRP, M12=MTS)."},
+    {"pointer": "/rules/15/note", "text": "재생 효과 극대화", "tags": ["degree", "effect"], "note": ""},
+
+    {"pointer": "/rules/16/interval", "text": "같은 날 가능", "tags": ["time", "same_day", "possibility"], "note": ""},
+    {"pointer": "/rules/16/note", "text": "프락셔널 레이저 후 PRP 도포/주입으로 재생 촉진", "tags": ["order_sequence", "subtype_like", "separator_slash", "effect"], "note": "'프락셔널' 레이저로 한정된 서술. 다른 레이저 종류는 원문에 없음(B)."},
+    {"pointer": "/rules/16/note", "text": "도포/주입", "tags": ["separator_slash", "alternative"], "note": ""},
+
+    {"pointer": "/rules/17/interval", "text": "2~3개월 간격", "tags": ["range", "quantity_time"], "note": "'권장' 없음."},
+    {"pointer": "/rules/17/note", "text": "실이 완전히 자리잡은 후 에너지기기", "tags": ["order_sequence", "time_relative", "degree"], "note": "'에너지기기'가 to_name '기기 리프팅'을 가리키는지 원문으로 확정 불가(P)."},
+    {"pointer": "/rules/17/note", "text": "실 위치 변형 방지", "tags": ["prevention"], "note": ""},
+
+    {"pointer": "/rules/18/interval", "text": "4주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/18/note", "text": "실 삽입부 회복 후 레이저 시술", "tags": ["order_sequence", "body_area_like", "time_relative"], "note": ""},
+
+    {"pointer": "/rules/19/interval", "text": "2~3개월 간격", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/19/note", "text": "니들이 실을 건드릴 위험", "tags": ["risk", "mechanism"], "note": ""},
+    {"pointer": "/rules/19/note", "text": "실 완전 안착 후 시술", "tags": ["order_sequence", "time_relative", "degree"], "note": ""},
+
+    {"pointer": "/rules/20/interval", "text": "2~4주 간격", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/20/note", "text": "열 부하 축적 방지", "tags": ["prevention", "mechanism"], "note": ""},
+    {"pointer": "/rules/20/note", "text": "같은 날 레이저 + HIFU는 과자극 위험", "tags": ["condition", "same_day", "separator_plus", "risk", "device_like"], "note": "'+' = 함께(같은 날). HIFU 가 to_name '기기 리프팅'의 예로 읽힘(P)."},
+
+    {"pointer": "/rules/21/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": "note 의 어블레이티브 4주 예외가 interval 칸에는 없다(P5)."},
+    {"pointer": "/rules/21/note", "text": "피부 회복 후 시술", "tags": ["order_sequence", "time_relative"], "note": "어느 시술이 먼저인지 명시 없음(B)."},
+    {"pointer": "/rules/21/note", "text": "레이저 종류에 따라 다름 (어블레이티브는 4주)", "tags": ["condition", "subtype_like", "exception", "parenthetical", "quantity_time"], "note": ""},
+    {"pointer": "/rules/21/note", "text": "(어블레이티브는 4주)", "tags": ["parenthetical", "exception"], "note": ""},
+
+    {"pointer": "/rules/22/interval", "text": "2주 간격 권장", "tags": ["quantity_time", "recommendation"], "note": ""},
+    {"pointer": "/rules/22/note", "text": "레이저로 손상된 피부 회복 후 MTS", "tags": ["order_sequence", "time_relative"], "note": ""},
+    {"pointer": "/rules/22/note", "text": "순서: 레이저 → (회복) → MTS", "tags": ["order_sequence", "arrow", "parenthetical"], "note": "괄호 안 '회복'은 시술이 아닌 단계."},
+
+    {"pointer": "/rules/23/interval", "text": "2~4주 간격", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/23/note", "text": "RF 에너지 중복", "tags": ["mechanism", "device_like"], "note": ""},
+    {"pointer": "/rules/23/note", "text": "열 부하 과축적 방지", "tags": ["prevention", "degree"], "note": ""},
+
+    {"pointer": "/rules/24/interval", "text": "3개월 이상", "tags": ["range", "lower_bound", "quantity_time"], "note": "'간격'·'권장' 없음."},
+    {"pointer": "/rules/24/note", "text": "이식된 지방의 생착률 보호", "tags": ["prevention", "effect"], "note": ""},
+    {"pointer": "/rules/24/note", "text": "열에너지가 이식 지방을 파괴할 수 있음", "tags": ["possibility", "mechanism", "risk"], "note": ""},
+
+    {"pointer": "/rules/25/interval", "text": "2~3개월 간격", "tags": ["range", "quantity_time"], "note": ""},
+    {"pointer": "/rules/25/note", "text": "지방 생착 완료 전 열자극 금지", "tags": ["prohibition", "time_relative"], "note": "'금지'가 있으나 level=warning, interval 은 기간 제시(P6)."},
+
+    {"pointer": "/rules/26/interval", "text": "3개월 간격", "tags": ["quantity_time"], "note": ""},
+    {"pointer": "/rules/26/note", "text": "지방 생착 결과 확인 후 필러로 보충", "tags": ["order_sequence", "time_relative", "condition"], "note": "지방이식(from) 먼저."},
+    {"pointer": "/rules/26/note", "text": "동시 주입 시 과교정 위험", "tags": ["condition", "same_day", "risk"], "note": ""}
+  ]
+}

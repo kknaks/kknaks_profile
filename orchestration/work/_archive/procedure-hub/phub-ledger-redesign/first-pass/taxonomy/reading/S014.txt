@@ -1,0 +1,242 @@
+# S014  scope=M5 PRP/자가혈  units=id | category | category_en | group | subcategories 컨테이너 | M5-1 items/0 | M5-2 items/0 | M5-2 items/1 | M5-3 items/0 | M5-new-1774324656750 items/0 | extracted | products 컨테이너 | M5-P-0 | M5-P-1 | M5-P-2 | M5-P-3 | M5-P-4 | name
+# 상위 문맥: []
+@ /modality/4 M5 PRP/자가혈 PRP/자가혈
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M5"
+  /category = "PRP/자가혈"
+  /category_en = "PRP / Autologous Blood"
+  /group = "주사/주입"
+  /subcategories [4]
+@ /modality/4/subcategories/0 M5-1 PRP (혈소판풍부혈장)
+  . {id,label,items}
+  /id = "M5-1"
+  /label = "PRP (혈소판풍부혈장)"
+  /items [1]
+@ /modality/4/subcategories/0/items/0 M5-1-1 PRP
+  . {id,name,detail,extracted}
+  /id = "M5-1-1"
+  /name = "PRP"
+  /detail = "원심분리 → 성장인자 농축 → 주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가혈액 혈소판 3-5배 농축 성장인자 치료"
+  /extracted/mechanism = "원심분리로 혈소판을 3-5배 농축(≥1,000,000 plt/μL)하여 PDGF, TGF-β1, VEGF, EGF, FGF-2, IGF-1 등 4000+ 단백질을 함유. 활성화 1시간 내 95% 성장인자 방출 후 7-10일간 추가 합성되며, 진피 섬유모세포 증식 및 I형 콜라겐 생성을 촉진."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 노화" ‖ 1:"주름 개선" ‖ 2:"피부 탄력 저하" ‖ 3:"탈모" ‖ 4:"모발 재성장"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적" ‖ 3:"일시적 멍"
+  /extracted/safety/serious [3] = 0:"감염" ‖ 1:"TGF-beta1에 의한 비후성 반흔 촉진 가능" ‖ 2:"알레르기 반응(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"주입 후 24시간 냉찜질" ‖ 1:"NSAIDs 사용 자제 (혈소판 기능 억제)" ‖ 2:"음주·운동 1주일 제한" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/4/subcategories/1 M5-2 PRF (피브린풍부혈장)
+  . {id,label,items}
+  /id = "M5-2"
+  /label = "PRF (피브린풍부혈장)"
+  /items [2]
+@ /modality/4/subcategories/1/items/0 M5-2-1 PRF
+  . {id,name,detail,extracted}
+  /id = "M5-2-1"
+  /name = "PRF"
+  /detail = "2세대 · 서방형 성장인자"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "2세대 자가혈 제품, 서방형 성장인자 방출"
+  /extracted/mechanism = "혈소판과 백혈구를 포함한 섬유소 매트릭스 형성으로 성장인자(PDGF, TGF-β1, VEGF)를 14-28일에 걸쳐 지속 방출. PRP 대비 장시간 생체활성 유지로 진피 리모델링 및 신생혈관화 촉진."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 재생" ‖ 1:"진피층 회복" ‖ 2:"질 주름 개선" ‖ 3:"흉터" ‖ 4:"탈모"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"이물질 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "4-8개월"
+  /extracted/aftercare [4] = 0:"주입 후 48시간 냉찜질" ‖ 1:"음주·운동 2주 제한" ‖ 2:"정기적인 후속 시술 권장" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/4/subcategories/1/items/1 auto-M5-1775364775189 CGF
+  . {id,name,detail,extracted}
+  /id = "auto-M5-1775364775189"
+  /name = "CGF"
+  /detail = "성장인자농축"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "성장인자 농축 자가혈 치료"
+  /extracted/mechanism = "자가혈액에서 추출한 농축 성장인자가 피부 재생을 촉진합니다. 혈소판과 성장인자가 콜라겐 생성과 혈관 신생을 유도하여 자연스러운 피부 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"자연스러운 피부 재생" ‖ 1:"흉터 개선" ‖ 2:"모공 축소"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"채혈 부위 멍" ‖ 1:"일시적 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"채혈 후 충분한 수분 섭취" ‖ 1:"시술 부위 냉찜질" ‖ 2:"음주 자제 3일" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/4/subcategories/2 M5-3 MCT (메타셀)
+  . {id,label,items}
+  /id = "M5-3"
+  /label = "MCT (메타셀)"
+  /items [1]
+@ /modality/4/subcategories/2/items/0 M5-3-1 CPR
+  . {id,name,detail,extracted}
+  /id = "M5-3-1"
+  /name = "CPR"
+  /detail = "고농축 성장인자"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고농축 혈소판 성장인자 제제"
+  /extracted/mechanism = "혈소판을 고농축(5배 이상)하여 PDGF, TGF-β1, VEGF, EGF 등 성장인자 농도를 극대화. 진피 섬유모세포의 증식 및 I형 콜라겐 생성 능력을 4-6배 증강하고 MMP-1/3 발현 조절."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"깊은 주름" ‖ 1:"피부 탄력 저하" ‖ 2:"광손상 피부" ‖ 3:"난치성 탈모" ‖ 4:"재생성 흉터"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적" ‖ 3:"일시적 멍"
+  /extracted/safety/serious [3] = 0:"감염" ‖ 1:"신경 손상" ‖ 2:"과도한 염증반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [5] = 0:"주입 후 24시간 냉찜질" ‖ 1:"72시간 화장품 사용 자제" ‖ 2:"2주간 음주·사우나 자제" ‖ 3:"비후성 반흔 위험군은 의료진 상담 필수" ‖ 4:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/4/subcategories/3 M5-new-1774324656750 ACT
+  . {id,label,items}
+  /id = "M5-new-1774324656750"
+  /label = "ACT"
+  /items [1]
+@ /modality/4/subcategories/3/items/0 auto-M5-1775364775190 ACR
+  . {id,name,detail,extracted}
+  /id = "auto-M5-1775364775190"
+  /name = "ACR"
+  /detail = "자가세포재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가세포 재생 치료"
+  /extracted/mechanism = "환자 자신의 혈액에서 추출한 재생인자가 손상된 피부를 복구합니다. 자가 치유력을 극대화하여 부작용을 최소화하면서 자연스러운 피부 개선을 달성합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"자연스러운 안티에이징" ‖ 1:"피부 재생" ‖ 2:"전체적인 피부 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"채혈 부위 불편감" ‖ 1:"경미한 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [4] = 0:"충분한 영양 섭취" ‖ 1:"규칙적인 생활" ‖ 2:"스트레스 관리" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/4 M5 PRP/자가혈 PRP/자가혈
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "PRP는 자기 혈액에서 혈소판이 풍부한 혈장(피를 뽑아서 성장인자가 많은 부분만 모은 것)을 추출해 피부에 주사하거나 바르는 재생 시술이다. 1987년 심장수술에서 처음 사용된 후, 피부 노화 개선 효과가 알려지면서 미용 분야에서 단독 또는 다른 시술과 병행해 널리 쓰이고 있다."
+  /extracted/mechanism = "환자 본인의 혈액을 채취해 원심분리기(빠르게 회전시키는 기계)로 돌려 혈소판이 농축된 혈장을 추출한다. 이 PRP에는 PDGF, TGF-β, VEGF, EGF, IGF 등 다양한 성장인자(세포 성장을 촉진하는 단백질)가 풍부하게 들어있다. 이 성장인자들이 피부의 섬유모세포(콜라겐을 만드는 세포)를 자극해서 새로운 콜라겐과 엘라스틴(피부 탄력 성분)을 만들어내고, 히알루론산 생성도 촉진한다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"피부 노화 개선 (전반적인 피부결, 탄력, 피부톤 개선)" ‖ 1:"잔주름 감소" ‖ 2:"꺼진 부위 볼륨 회복 (꺼진 볼, 꺼진 눈밑, 팔자주름 등)"
+  /extracted/indications/extended [4] = 0:"여드름흉터 (진피절제주입법과 병행)" ‖ 1:"탈모치료 (두피에 주입)" ‖ 2:"처진 피부 탄력 개선" ‖ 3:"다른 시술과 병행 — MTS, 프랙셔널 레이저, 메조테라피 후 도포"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"혈소판 기능 장애가 있는 경우" ‖ 1:"패혈증이나 전신 감염이 있는 경우" ‖ 2:"주사 부위에 활동성 감염이나 염증이 있는 경우"
+  /extracted/contraindications/relative [3] = 0:"혈액 응고에 영향을 주는 약물(아스피린 등) 복용 중이면 출혈 위험이 높아질 수 있음" ‖ 1:"혈액으로 인한 감염성 질환이 있는 경우 주의" ‖ 2:"색소성 질환에 대한 치료 효과는 적은 편"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증" ‖ 1:"1~2일 정도 붓기" ‖ 2:"3~7일 정도 멍이 들 수 있음"
+  /extracted/safety/uncommon [1] = 0:"피부 재생 정도가 사람마다 달라 시술 결과에 차이가 있을 수 있음"
+  /extracted/safety/serious [1] = 0:"본인 혈액을 사용하므로 알레르기·거부반응이 거의 없음 (매우 안전한 시술)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 후 3~6주경부터 효과가 나타나기 시작"
+  /extracted/onset_duration/peak = "2~3개월에 걸쳐 서서히 좋아짐"
+  /extracted/onset_duration/duration = "1회 시술로 6~12개월 유지 (반복시술은 4~6주 간격 가능)"
+  /extracted/aftercare [3] = 0:"시술 후 세안이나 화장 등 일상생활에 지장 없음" ‖ 1:"시술 부위 청결 유지" ‖ 2:"깊은 주름이나 심한 노화에는 고주파, IPL, 필러, 보톡스 등과 병행하는 것이 좋음"
+  /extracted/related_techniques [3] = 0:"MTS + PRP — MTS로 미세 구멍을 낸 후 PRP를 도포해 흡수 촉진" ‖ 1:"프랙셔널 레이저 + PRP — 레이저 시술 후 PRP를 도포해 재생 효과 증대" ‖ 2:"진피절제주입법 + PRP — 여드름흉터에 서브시전 후 PRP 주입"
+  /products [5]
+@ /modality/4/products/0 M5-P-0 셀피아
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M5-P-0"
+  /name = "셀피아"
+  /name_en = "Cellpia"
+  /manufacturer = "CGBio"
+  /country = "KR"
+  /mfds = true
+  /type = "PRP키트"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가혈 기반 세포 활성 성장인자 제제"
+  /extracted/mechanism = "자가혈액에서 혈소판 및 성장인자를 추출·농축하여 섬유모세포 증식, I형 콜라겐 생성, VEGF 매개 신생혈관화 유도. 개인 맞춤형 성장인자 농도 기반 피부 재생."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 노화" ‖ 1:"주름" ‖ 2:"피부톤 개선" ‖ 3:"탈모" ‖ 4:"피부 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"알레르기 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"주입 후 냉찜질" ‖ 1:"항염증제 사용 가능" ‖ 2:"1주일 자외선 차단" ‖ 3:"음주·운동 제한"
+@ /modality/4/products/1 M5-P-1 리젠ACR
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M5-P-1"
+  /name = "리젠ACR"
+  /name_en = "RegenACR"
+  /manufacturer = "리젠바이오텍"
+  /country = "KR"
+  /mfds = true
+  /type = "PRP키트"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자동화 혈소판 농축 성장인자 시스템"
+  /extracted/mechanism = "자가혈액을 자동 원심분리하여 혈소판 3-5배 농축. PDGF, TGF-β1, VEGF, EGF, FGF 등 성장인자 최적화로 진피층 콜라겐 재생 및 세포 증식 촉진."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 주름" ‖ 1:"피부 탄력 저하" ‖ 2:"탈모" ‖ 3:"모발 재성장"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"멍"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"신경 손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"주입 후 24시간 냉찜질" ‖ 1:"1주일 자외선 차단" ‖ 2:"음주·운동 1주일 제한"
+@ /modality/4/products/2 M5-P-2 마이셀
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M5-P-2"
+  /name = "마이셀"
+  /name_en = "Mycell"
+  /manufacturer = "한스바이오메드"
+  /country = "KR"
+  /mfds = true
+  /type = "PRP키트"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가혈 기반 다층 성장인자 분리 제제"
+  /extracted/mechanism = "자가혈액에서 혈소판 및 백혈구 포함 성장인자층을 분리·농축하여 PDGF, TGF-β1, VEGF, HGF 등을 최대화. 섬유모세포 증식 및 I형 콜라겐 생성 능력 극대화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 노화" ‖ 1:"주름 개선" ‖ 2:"피부 재생" ‖ 3:"탈모" ‖ 4:"난치성 흉터"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적" ‖ 3:"멍"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"이물질 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [4] = 0:"주입 후 냉찜질 48시간" ‖ 1:"72시간 화장품 최소화" ‖ 2:"2주 음주·사우나 금지" ‖ 3:"여성 환자는 높은 EGF/HGF 농도로 더 효과적"
+@ /modality/4/products/3 M5-P-3 ASCEplus
+  . {id,name,name_en,manufacturer,country,mfds,type,note,extracted}
+  /id = "M5-P-3"
+  /name = "ASCEplus"
+  /name_en = "ASCE+"
+  /manufacturer = "엑소코바이오"
+  /country = "KR"
+  /mfds = false
+  /type = "엑소좀"
+  /note = "화장품 허가 (주사 사용 불법)"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "자가혈 유래 성장인자 복합 제제"
+  /extracted/mechanism = "자가혈액에서 혈소판 및 성장인자를 고농축하여 PDGF, TGF-β1, VEGF, EGF, IGF-1을 함유. 진피 섬유모세포의 증식 및 I형 콜라겐 생성과 세포외기질 재형성 촉진."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 탄력 저하" ‖ 1:"주름" ‖ 2:"피부 광손상" ‖ 3:"탈모" ‖ 4:"피부 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 통증" ‖ 1:"부종" ‖ 2:"발적"
+  /extracted/safety/serious [3] = 0:"감염" ‖ 1:"신경 손상" ‖ 2:"과도한 염증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"주입 후 냉찜질" ‖ 1:"1주일 자외선 차단" ‖ 2:"음주·운동 제한" ‖ 3:"비후성 반흔 위험군 주의"
+@ /modality/4/products/4 M5-P-4 EXOSOME SKIN
+  . {id,name,name_en,manufacturer,country,mfds,type,note,extracted}
+  /id = "M5-P-4"
+  /name = "EXOSOME SKIN"
+  /name_en = "ExoSCRT"
+  /manufacturer = "엑소스템텍"
+  /country = "KR"
+  /mfds = false
+  /type = "엑소좀"
+  /note = "화장품 허가"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "엑소솜 기반 성장인자 전달 시스템"
+  /extracted/mechanism = "자가혈 유래 혹은 배양 성장인자를 엑소솜(세포외소포체)에 탑재하여 표적 세포로 전달. PDGF, TGF-β1, VEGF, EGF 등을 포함한 엑소솜이 진피층에 도달하여 섬유모세포 증식 및 콜라겐 생성 효율 극대화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 주름" ‖ 1:"피부 탄력 저하" ‖ 2:"광손상" ‖ 3:"탈모" ‖ 4:"피부 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"주입 부위 부종" ‖ 1:"발적"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"이상 염증반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "4-8개월"
+  /extracted/aftercare [4] = 0:"주입 후 냉찜질" ‖ 1:"1주일 자외선 차단" ‖ 2:"음주·운동 제한" ‖ 3:"정기적 후속 시술 권장"
+@ /modality/4 M5 PRP/자가혈 PRP/자가혈
+  /name = "PRP/자가혈"

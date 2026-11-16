@@ -1,0 +1,98 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 6/16(unlinked → auto) · 근거 「염증후 색소침착」 ⊃ 조각 「염증」",
+ "gate_item": "b4-adv/020",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-ADV-020a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "색소침착",
+  "category": null,
+  "synonyms": [
+   "염증"
+  ]
+ },
+ "proposal_item": "b4-adv/020",
+ "reason": "결정 묶음 4 — 문구 조각 「염증」 을 adverse_event_type 「색소침착」 의 동의어로(근거: 「염증후 색소침착」 ⊃ 조각 「염증」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@3/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@9/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@8/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@8/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.uncommon[]@M16/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.uncommon[]@15/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@1/0/17/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@1/2/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@4/2/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@16/1/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@3/2/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.serious[]@4/3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@13/0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/13/5/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/13/6/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "literature-evidence.json:categories.{code}.adverse_effects[].patient_ko@M7/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_event_type"
+ }
+}

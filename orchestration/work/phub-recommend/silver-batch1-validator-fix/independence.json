@@ -1,0 +1,31 @@
+{
+  "imports": [
+    "collections",
+    "transport"
+  ],
+  "no_builder_or_rules_import": true,
+  "source_documents": [
+    "manifest v2",
+    "collections.json",
+    "step1-products.json",
+    "step2-families.json",
+    "step5-units.json",
+    "raw21/taxonomy.json"
+  ],
+  "scope_census": {
+    "products": 395,
+    "families": 27,
+    "safety": 580,
+    "total": 1002,
+    "membership": "reuses product scope"
+  },
+  "expected_fields": [
+    "axes.<all10>.knowledge/included/excluded/raw_refs/value_kind",
+    "statement_qualifiers.axis/raw/source_ref/state/operator/value",
+    "container_scope_ref",
+    "conflicts",
+    "application_state",
+    "source_refs"
+  ],
+  "line_expectations": "only explicit row.line.line_row or lines.items.ledger_id joined to line_row; no name/approval inference"
+}

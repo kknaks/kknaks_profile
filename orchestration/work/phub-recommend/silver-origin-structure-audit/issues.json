@@ -1,0 +1,3521 @@
+{
+  "counting_rule": "Issue evidence rows, not independent clinical defects; systemic_group deduplicates causes; overlaps explicitly allowed; prior 9/326 not added",
+  "summary": {
+    "silver_omission": 3,
+    "silver_misinterpretation": 2,
+    "silver_representation": 21,
+    "silver_scope_metadata": 2,
+    "origin_inconsistency": 1,
+    "mapping_undetermined": 2,
+    "silver_provenance_metadata": 7,
+    "gold_projection_metadata": 2,
+    "origin_qualifier_difference": 1,
+    "resolution_policy_visibility": 1
+  },
+  "issues": [
+    {
+      "id": "LOSS-01",
+      "stage": 5,
+      "systemic_group": "normalize-overwrite",
+      "classification": "silver_omission",
+      "certainty": "confirmed",
+      "origin": [
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[0].subcategories[1].items[3].extracted.safety.common_adverse_effects",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "주입 부위 부종",
+            "경미한 통증",
+            "일시적 발적"
+          ]
+        },
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[0].subcategories[1].items[3].extracted.safety.common",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ]
+        }
+      ],
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "jsonpath": "$.extracted[7].source_text['safety.common']",
+        "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+        "lines": [
+          613,
+          620,
+          629,
+          648,
+          664,
+          674,
+          699
+        ],
+        "decision": "$.extracted_rule.key_normalize",
+        "operation": "out[normalized_key]=value; last original key silently wins"
+      },
+      "impact": {
+        "lost_original_leaves": [
+          "주입 부위 부종",
+          "경미한 통증",
+          "일시적 발적"
+        ],
+        "lost_leaf_count": 3,
+        "record_id": "M1-1-3",
+        "downstream": "source_text -> side_effect_override -> Gold facts; row-local loss, not proof each string absent everywhere"
+      },
+      "required_metadata": [
+        "source original field/path",
+        "normalization mapping record",
+        "one-to-many collision provenance"
+      ],
+      "proposed_fix": "각 원천 필드를 독립 claim으로 보존하고 normalized predicate로 연결한다; common 목록을 자동 대체하지 않는다.",
+      "confirmation_question": "원문값 복구에 임상 추정은 필요 없음; 두 목록의 관계/중복 통합 정책은 별도로 결정한다.",
+      "proposed_record": {
+        "claims": [
+          {
+            "source_field": "safety.common_adverse_effects",
+            "raw_value": [
+              "주입 부위 부종",
+              "경미한 통증",
+              "일시적 발적"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          },
+          {
+            "source_field": "safety.common",
+            "raw_value": [
+              "시술 부위 발적",
+              "일시적 부종"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          }
+        ],
+        "resolution": null
+      }
+    },
+    {
+      "id": "LOSS-02",
+      "stage": 5,
+      "systemic_group": "normalize-overwrite",
+      "classification": "silver_omission",
+      "certainty": "confirmed",
+      "origin": [
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[0].subcategories[2].items[7].extracted.safety.common_adverse_effects",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "일시적 근력 약화",
+            "주입 부위 부종/발적",
+            "두통"
+          ]
+        },
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[0].subcategories[2].items[7].extracted.safety.common",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ]
+        }
+      ],
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "jsonpath": "$.extracted[25].source_text['safety.common']",
+        "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+        "lines": [
+          613,
+          620,
+          629,
+          648,
+          664,
+          674,
+          699
+        ],
+        "decision": "$.extracted_rule.key_normalize",
+        "operation": "out[normalized_key]=value; last original key silently wins"
+      },
+      "impact": {
+        "lost_original_leaves": [
+          "일시적 근력 약화",
+          "주입 부위 부종/발적",
+          "두통"
+        ],
+        "lost_leaf_count": 3,
+        "record_id": "auto-2-1774737181584",
+        "downstream": "source_text -> side_effect_override -> Gold facts; row-local loss, not proof each string absent everywhere"
+      },
+      "required_metadata": [
+        "source original field/path",
+        "normalization mapping record",
+        "one-to-many collision provenance"
+      ],
+      "proposed_fix": "각 원천 필드를 독립 claim으로 보존하고 normalized predicate로 연결한다; common 목록을 자동 대체하지 않는다.",
+      "confirmation_question": "원문값 복구에 임상 추정은 필요 없음; 두 목록의 관계/중복 통합 정책은 별도로 결정한다.",
+      "proposed_record": {
+        "claims": [
+          {
+            "source_field": "safety.common_adverse_effects",
+            "raw_value": [
+              "일시적 근력 약화",
+              "주입 부위 부종/발적",
+              "두통"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          },
+          {
+            "source_field": "safety.common",
+            "raw_value": [
+              "시술 부위 발적",
+              "일시적 부종"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          }
+        ],
+        "resolution": null
+      }
+    },
+    {
+      "id": "LOSS-03",
+      "stage": 5,
+      "systemic_group": "normalize-overwrite",
+      "classification": "silver_omission",
+      "certainty": "confirmed",
+      "origin": [
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[6].products[1].extracted.safety.common_side_effects",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "부종",
+            "경미한 통증",
+            "일시적 울퉁불퉁함",
+            "스레드 촉지감"
+          ]
+        },
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[6].products[1].extracted.safety.common",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": [
+            "시술 부위 발적",
+            "일시적 부종"
+          ]
+        }
+      ],
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "jsonpath": "$.taxonomy_products[36].source_text['safety.common']",
+        "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+        "lines": [
+          613,
+          620,
+          629,
+          648,
+          664,
+          674,
+          699
+        ],
+        "decision": "$.extracted_rule.key_normalize",
+        "operation": "out[normalized_key]=value; last original key silently wins"
+      },
+      "impact": {
+        "lost_original_leaves": [
+          "부종",
+          "경미한 통증",
+          "일시적 울퉁불퉁함",
+          "스레드 촉지감"
+        ],
+        "lost_leaf_count": 4,
+        "record_id": "M7-P-1",
+        "downstream": "source_text -> side_effect_override -> Gold facts; row-local loss, not proof each string absent everywhere"
+      },
+      "required_metadata": [
+        "source original field/path",
+        "normalization mapping record",
+        "one-to-many collision provenance"
+      ],
+      "proposed_fix": "각 원천 필드를 독립 claim으로 보존하고 normalized predicate로 연결한다; common 목록을 자동 대체하지 않는다.",
+      "confirmation_question": "원문값 복구에 임상 추정은 필요 없음; 두 목록의 관계/중복 통합 정책은 별도로 결정한다.",
+      "proposed_record": {
+        "claims": [
+          {
+            "source_field": "safety.common_side_effects",
+            "raw_value": [
+              "부종",
+              "경미한 통증",
+              "일시적 울퉁불퉁함",
+              "스레드 촉지감"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          },
+          {
+            "source_field": "safety.common",
+            "raw_value": [
+              "시술 부위 발적",
+              "일시적 부종"
+            ],
+            "normalized_predicate": "safety.common",
+            "mapping_state": "normalized",
+            "clinical_equivalence": "unreviewed"
+          }
+        ],
+        "resolution": null
+      }
+    },
+    {
+      "id": "ANCHOR-10",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "duplicate-cc-first-match",
+      "classification": "silver_misinterpretation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[8].complaints[10]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "cc": "프락셔널레이저",
+          "cc_detail": "성장선/임신선",
+          "cc_group": "튼살",
+          "procedures": [
+            {
+              "name": "프락셔널",
+              "category": "M8",
+              "role": "리서페이싱",
+              "products": [
+                "프락셀"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "재생",
+              "products": [
+                "쥬베룩",
+                "리쥬란 힐러"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "프락셔널 + 스킨부스터",
+              "combo": [
+                "프락셔널",
+                "스킨부스터"
+              ],
+              "reason": "리서페이싱 + 재생",
+              "evidence": "프락셔널 후 재생 촉진"
+            }
+          ],
+          "alternatives": [
+            "여러 회 시리즈 필요"
+          ]
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.claims[365]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "source": "problem-packages.complaints[].combos",
+          "source_index": "P9:프락셔널레이저#0",
+          "text": "프락셔널 + 스킨부스터",
+          "kind": "시너지(CC 조합)",
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M8"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-027"
+            ],
+            "n_units": 1,
+            "flag": "7단계 이름 일치 · 후보 여럿 · 원천 제품 하위 Er:Glass/톨륨 밖 3 뺌(R31)",
+            "text": "프락셔널"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M4"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-018",
+              "U5-037"
+            ],
+            "n_units": 2,
+            "flag": "7단계 부위 없음 · 후보 전부 · 고민 영역(얼굴) 밖 1 뺌(R22 · 기본 영역 판단 ①)",
+            "text": "스킨부스터"
+          },
+          "directed": false,
+          "interval": null,
+          "reason": "리서페이싱 + 재생",
+          "evidence_text": "프락셔널 후 재생 촉진",
+          "condition": {
+            "cc": "프락셔널레이저",
+            "problem": "P9",
+            "concern_ids": [
+              "P9-3"
+            ]
+          },
+          "combo_name": "프락셔널 + 스킨부스터",
+          "combo_size": 2,
+          "rule": "구조 칸(combo)",
+          "lowering": "CC 앵커 부위로 내림(7단계 ③ 재사용)",
+          "evidence_kind": "원천 evidence 칸(설명 문장)",
+          "id": "R8-0366",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "단위 시술",
+            "단위 시술"
+          ],
+          "review_status": "ok",
+          "conflict_before": false,
+          "review_label": ""
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          963,
+          966,
+          1186,
+          1190,
+          1249,
+          1392
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:820-824,1324-1380",
+        "operation": "correspondence narrows by detail; CC edge uses cands[0]; PID:CC identity omits row/group/detail"
+      },
+      "impact": {
+        "expected_concern_from_original_group": "P9-4",
+        "actual_concern": "P9-3",
+        "raw_procedure_rows": 2,
+        "relation": "R8-0366",
+        "wrong_group": "튼살 -> P9-3"
+      },
+      "required_metadata": [
+        "source_record_id",
+        "snapshot+JSON pointer",
+        "cc_group",
+        "correspondence mapping id",
+        "scope concern id"
+      ],
+      "proposed_fix": "원천 complaint 행마다 locator를 키로 사용하고 detail/group으로 이미 확인된 대응을 재사용한다; 중복 이름은 한 행으로 합치지 않는다.",
+      "confirmation_question": "이 두 행의 원장 그룹은 명확하며 확인 없이 다른 그룹으로 옮길 근거가 없다; 원장 수정 의도가 있으면 원천 담당자가 별도로 답한다.",
+      "proposed_record": {
+        "source_record": "problem-packages:$.problems[8].complaints[10]",
+        "source_scope": {
+          "concern_group": "튼살",
+          "concern_ref": "P9-4"
+        },
+        "mapping_state": "source_structure",
+        "legacy_name_key": "P9:프락셔널레이저",
+        "raw_claims_preserved": true
+      }
+    },
+    {
+      "id": "ANCHOR-11",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "duplicate-cc-first-match",
+      "classification": "silver_misinterpretation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[8].complaints[11]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "cc": "니들RF",
+          "cc_detail": "콜라겐리모델링",
+          "cc_group": "튼살",
+          "procedures": [
+            {
+              "name": "프락셔널",
+              "category": "M8",
+              "role": "리서페이싱",
+              "products": [
+                "프락셀"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "재생",
+              "products": [
+                "쥬베룩",
+                "리쥬란 힐러"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "프락셔널 + 스킨부스터",
+              "combo": [
+                "프락셔널",
+                "스킨부스터"
+              ],
+              "reason": "리서페이싱 + 재생",
+              "evidence": "프락셔널 후 재생 촉진"
+            }
+          ],
+          "alternatives": [
+            "여러 회 시리즈 필요"
+          ]
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.claims[366]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "source": "problem-packages.complaints[].combos",
+          "source_index": "P9:니들RF#0",
+          "text": "프락셔널 + 스킨부스터",
+          "kind": "시너지(CC 조합)",
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M8"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-027"
+            ],
+            "n_units": 1,
+            "flag": "7단계 이름 일치 · 후보 여럿 · 원천 제품 하위 Er:Glass/톨륨 밖 3 뺌(R31)",
+            "text": "프락셔널"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M4"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-018",
+              "U5-037"
+            ],
+            "n_units": 2,
+            "flag": "7단계 부위 없음 · 후보 전부 · 고민 영역(얼굴) 밖 1 뺌(R22 · 기본 영역 판단 ①)",
+            "text": "스킨부스터"
+          },
+          "directed": false,
+          "interval": null,
+          "reason": "리서페이싱 + 재생",
+          "evidence_text": "프락셔널 후 재생 촉진",
+          "condition": {
+            "cc": "니들RF",
+            "problem": "P9",
+            "concern_ids": [
+              "P9-1"
+            ]
+          },
+          "combo_name": "프락셔널 + 스킨부스터",
+          "combo_size": 2,
+          "rule": "구조 칸(combo)",
+          "lowering": "CC 앵커 부위로 내림(7단계 ③ 재사용)",
+          "evidence_kind": "원천 evidence 칸(설명 문장)",
+          "id": "R8-0367",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "단위 시술",
+            "단위 시술"
+          ],
+          "review_status": "ok",
+          "conflict_before": false,
+          "review_label": ""
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          963,
+          966,
+          1186,
+          1190,
+          1249,
+          1392
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:820-824,1324-1380",
+        "operation": "correspondence narrows by detail; CC edge uses cands[0]; PID:CC identity omits row/group/detail"
+      },
+      "impact": {
+        "expected_concern_from_original_group": "P9-4",
+        "actual_concern": "P9-1",
+        "raw_procedure_rows": 2,
+        "relation": "R8-0367",
+        "wrong_group": "튼살 -> P9-1"
+      },
+      "required_metadata": [
+        "source_record_id",
+        "snapshot+JSON pointer",
+        "cc_group",
+        "correspondence mapping id",
+        "scope concern id"
+      ],
+      "proposed_fix": "원천 complaint 행마다 locator를 키로 사용하고 detail/group으로 이미 확인된 대응을 재사용한다; 중복 이름은 한 행으로 합치지 않는다.",
+      "confirmation_question": "이 두 행의 원장 그룹은 명확하며 확인 없이 다른 그룹으로 옮길 근거가 없다; 원장 수정 의도가 있으면 원천 담당자가 별도로 답한다.",
+      "proposed_record": {
+        "source_record": "problem-packages:$.problems[8].complaints[11]",
+        "source_scope": {
+          "concern_group": "튼살",
+          "concern_ref": "P9-4"
+        },
+        "mapping_state": "source_structure",
+        "legacy_name_key": "P9:니들RF",
+        "raw_claims_preserved": true
+      }
+    },
+    {
+      "id": "ARITY-095",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[0].complaints[13].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[95]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 눈썹반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "반영구화장"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-097",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[0].complaints[14].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[97]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 아이라인반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "반영구화장"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-099",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[0].complaints[15].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[99]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 입술반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "반영구화장"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-101",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[0].complaints[16].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[101]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 헤어라인반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "반영구화장"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-130",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[1].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "바이오스티뮬레이터",
+          "combo": [
+            "바이오스티뮬레이터/콜라겐부스터"
+          ],
+          "reason": "PLLA/PCL 기반 콜라겐 생성 촉진",
+          "evidence": "즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[130]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 바이오스티뮬레이터시술",
+          "text": "바이오스티뮬레이터 — PLLA/PCL 기반 콜라겐 생성 촉진 / 즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "바이오스티뮬레이터/콜라겐부스터"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-131",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[2].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "PRP",
+          "combo": [
+            "PRP"
+          ],
+          "reason": "자가혈 유래 혈소판 성장인자로 조직 재생 보조",
+          "evidence": "자가혈 PRP를 이용한 피부질감·회복 보조"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[131]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 PRP시술",
+          "text": "PRP — 자가혈 유래 혈소판 성장인자로 조직 재생 보조 / 자가혈 PRP를 이용한 피부질감·회복 보조"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "PRP"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-190",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[9].complaints[0].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[190]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 인중/구레나룻",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "제모레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-191",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[9].complaints[1].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[191]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 겨드랑이/팔/다리",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "제모레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-193",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[9].complaints[2].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[193]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 비키니",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "제모레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-194",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[9].complaints[3].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[194]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 수염/가슴/등",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "제모레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-200",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[10].complaints[3].combos[1]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "승모근 보톡스",
+          "combo": [
+            "보톡스"
+          ],
+          "reason": "승모근 이완으로 어깨라인 개선",
+          "evidence": "3~6개월 유지"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[200]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P11 승모근보톡스",
+          "text": "승모근 보톡스 — 승모근 이완으로 어깨라인 개선 / 3~6개월 유지"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "보톡스"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-201",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[10].complaints[4].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "광대 축소",
+          "combo": [
+            "지방분해"
+          ],
+          "reason": "광대 볼륨 감소",
+          "evidence": "주사로 간편하게"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[201]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P11 광대축소주사",
+          "text": "광대 축소 — 광대 볼륨 감소 / 주사로 간편하게"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "지방분해"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-211",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[11].complaints[7].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "HIFES 시리즈",
+          "combo": [
+            "HIFES"
+          ],
+          "reason": "근육 강화로 탄탄한 몸",
+          "evidence": "4~6회 시리즈"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[211]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 엠스컬프트",
+          "text": "HIFES 시리즈 — 근육 강화로 탄탄한 몸 / 4~6회 시리즈"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "HIFES"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-212",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[11].complaints[8].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "바디 타이트닝",
+          "combo": [
+            "인모드"
+          ],
+          "reason": "RF로 피부 탄력",
+          "evidence": "바디 전용 핸드피스"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[212]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 바디써마지",
+          "text": "바디 타이트닝 — RF로 피부 탄력 / 바디 전용 핸드피스"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "인모드"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-213",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[11].complaints[9].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "바디 타이트닝",
+          "combo": [
+            "인모드"
+          ],
+          "reason": "RF로 피부 탄력",
+          "evidence": "바디 전용 핸드피스"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[213]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 바디인모드",
+          "text": "바디 타이트닝 — RF로 피부 탄력 / 바디 전용 핸드피스"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "인모드"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-226",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[0].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "레이저 제거",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "레이저로 정밀 제거",
+          "evidence": "CO2 레이저 사용"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[226]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 점제거",
+          "text": "레이저 제거 — 레이저로 정밀 제거 / CO2 레이저 사용"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-227",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[1].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "레이저 제거",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "레이저로 정밀 제거",
+          "evidence": "CO2 레이저 사용"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[227]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 사마귀",
+          "text": "레이저 제거 — 레이저로 정밀 제거 / CO2 레이저 사용"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-228",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[2].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "피코레이저 시리즈",
+          "combo": [
+            "피코레이저"
+          ],
+          "reason": "피코초 레이저로 색소 분해",
+          "evidence": "다회차 필요"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[228]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 문신제거",
+          "text": "피코레이저 시리즈 — 피코초 레이저로 색소 분해 / 다회차 필요"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "피코레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-229",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[4].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "미라드라이",
+          "combo": [
+            "미라드라이"
+          ],
+          "reason": "마이크로파로 한선 영구 파괴",
+          "evidence": "1~2회로 영구 효과"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[229]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 미라드라이",
+          "text": "미라드라이 — 마이크로파로 한선 영구 파괴 / 1~2회로 영구 효과"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "미라드라이"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-230",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[5].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "광선치료",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "자외선 치료",
+          "evidence": "다회차 시리즈"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[230]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 백반증",
+          "text": "광선치료 — 자외선 치료 / 다회차 시리즈"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "ARITY-231",
+      "stage": 7,
+      "systemic_group": "singleton-pair-label",
+      "classification": "silver_representation",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[13].complaints[6].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "광선치료",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "자외선 치료",
+          "evidence": "다회차 시리즈"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[231]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 건선",
+          "text": "광선치료 — 자외선 치료 / 다회차 시리즈"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1362",
+        "operation": "all raw combos labelled 시너지(쌍 주장); step8 correctly routes singleton to attrs"
+      },
+      "impact": "원장 구성원1개인 원문21행이 step7에서 쌍 주장으로 잘못 표시된다; step8은 이를 singleton 속성으로 분류하므로 쌍 임상 사실의 신규 생성이 입증된 것은 아니다.",
+      "required_metadata": [
+        "relation arity",
+        "claim type",
+        "step8 destination reference"
+      ],
+      "proposed_fix": "kind를 실제 arity와 맞추고 singleton은 단독속성으로, pair/n-ary는 구성과 생성 규칙을 명시한다.",
+      "confirmation_question": "원장이 단독이라고 쓴 행이다; 시너지 상대를 새로 추가하지 않는다.",
+      "proposed_record": {
+        "claim_type": "single_procedure_attribute",
+        "members_raw": [
+          "레이저"
+        ],
+        "relation": null,
+        "mapping_state": "source_structure"
+      }
+    },
+    {
+      "id": "SCOPE-ORDER-01",
+      "stage": 8,
+      "systemic_group": "same-site-order-qualifier",
+      "classification": "silver_scope_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+        "jsonpath": "$.rules[0]",
+        "sha256": "964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2",
+        "value": {
+          "from": "M1",
+          "from_name": "보톡스",
+          "to": "M2",
+          "to_name": "필러",
+          "level": "safe",
+          "interval": "같은 날 가능",
+          "note": "동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.claims[0]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "source": "contraindications.rules",
+          "source_index": 0,
+          "text": "M1↔M2 같은 날 가능",
+          "kind": "병행 · 간격",
+          "a": {
+            "level": "계열",
+            "via": "원천 시술군 코드",
+            "families": [
+              "M1"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [],
+            "n_units": 0,
+            "flag": null,
+            "text": "보톡스"
+          },
+          "b": {
+            "level": "계열",
+            "via": "원천 시술군 코드",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [],
+            "n_units": 0,
+            "flag": null,
+            "text": "필러"
+          },
+          "directed": false,
+          "interval": {
+            "days": null,
+            "open_high": false,
+            "same_day": true,
+            "marks": [],
+            "condition": null,
+            "repeat": false,
+            "kind": null,
+            "first_from_source_order": false,
+            "branches": [
+              "L-SDOK"
+            ],
+            "text": "같은 날 가능",
+            "options": null,
+            "first": "a",
+            "first_basis": "원문 「보톡스 · 먼저」"
+          },
+          "level_original": "safe",
+          "level_site": "병행 가능",
+          "reason": "동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관",
+          "rule": "구조 칸(from · to · level · interval · note)",
+          "lowering": "계열(원천 시술군 코드 — 단위 시술은 조회 때 상속 · C4)",
+          "evidence_kind": "원천 표기 없음",
+          "id": "R8-0001",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "계열",
+            "계열"
+          ],
+          "review_status": "staff_check",
+          "conflict_before": true,
+          "review_label": "의료진 확인"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py",
+        "lines": [
+          895,
+          906,
+          908
+        ],
+        "operation": "first derived from interval+note; interval parser only receives interval text"
+      },
+      "impact": "동일 부위에서만의 순서와 다른 부위 순서 무관이라는 원문은 reason에 보존되나 interval.first=a, condition=null/options=null이다; structured first 단독 소비에 필요한 조건이 없다. 현재 staff_check 상태는 남아 있다.",
+      "required_metadata": [
+        "per-field condition",
+        "same_site vs different_site",
+        "original clause locator",
+        "resolution status"
+      ],
+      "proposed_fix": "같은 날 가능과 부위별 순서 주장을 분리한다; 조건 모름일 때 first를 확정하지 않는다.",
+      "confirmation_question": "원문 조건은 명시돼 있어 새 임상 사실 불필요; 원천 상충은 별도 의료진 검토로 남긴다.",
+      "proposed_record": {
+        "claims": [
+          {
+            "predicate": "same_day",
+            "raw_value": true
+          },
+          {
+            "predicate": "first",
+            "value": "a",
+            "scope": {
+              "site_relation": "same_site"
+            }
+          },
+          {
+            "predicate": "order_constraint",
+            "value": "none_stated_required",
+            "scope": {
+              "site_relation": "different_site"
+            }
+          }
+        ],
+        "resolution": {
+          "state": "staff_check",
+          "approved_first": null
+        }
+      }
+    },
+    {
+      "id": "ORIGIN-CC-01",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "palja-neck-source-conflict",
+      "classification": "origin_inconsistency",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[1].complaints[3]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "cc": "팔자주름",
+          "cc_detail": "필러/바이오스티뮬레이터",
+          "cc_group": "깊은주름",
+          "procedures": [
+            {
+              "name": "보톡스",
+              "category": "M1",
+              "role": "근육 이완으로 주름 완화",
+              "products": [
+                "보톡스",
+                "나보타",
+                "보툴렉스"
+              ]
+            },
+            {
+              "name": "필러",
+              "category": "M2",
+              "role": "깊은 주름 볼륨 충전",
+              "products": [
+                "쥬비덤",
+                "레스틸렌"
+              ]
+            },
+            {
+              "name": "리프팅기기",
+              "category": "M9",
+              "role": "피부 타이트닝",
+              "products": [
+                "울쎄라",
+                "써마지FLX"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "피부 재생·수분 공급으로 목주름·잔결 개선",
+              "products": [
+                "리쥬란 힐러",
+                "쥬베룩"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "보톡스 + 필러",
+              "combo": [
+                "보톡스",
+                "필러"
+              ],
+              "reason": "근이완 + 볼륨 = 깊은 주름 해결",
+              "evidence": "동적+정적 주름 동시 해결"
+            },
+            {
+              "name": "필러 + 리프팅기기",
+              "combo": [
+                "필러",
+                "리프팅기기"
+              ],
+              "reason": "볼륨 + 타이트닝 = 근본 해결",
+              "evidence": "처짐 원인까지 해결"
+            },
+            {
+              "name": "스킨부스터 + 리프팅기기",
+              "combo": [
+                "스킨부스터",
+                "리프팅기기"
+              ],
+              "reason": "재생·수분 + 타이트닝 = 목주름 복합 개선",
+              "evidence": "고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+            }
+          ],
+          "alternatives": [
+            "효과 부족 시 리프팅기기 추가"
+          ]
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[111]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "스킨부스터 + 리프팅기기 — 재생·수분 + 타이트닝 = 목주름 복합 개선 / 고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1817,
+          1820
+        ],
+        "operation": "verbatim name/reason/evidence join"
+      },
+      "impact": "팔자주름 CC 안에 목주름 role/reason이 원장부터 존재한다; Silver 텍스트 오기라고 단정할 수 없다. CC 기반 attachment가 문장 자체의 부위 범위를 증명하지 않는다.",
+      "required_metadata": [
+        "container_scope",
+        "statement_scope",
+        "scope_conflict",
+        "origin_question_id"
+      ],
+      "proposed_fix": "팔자 컨테이너와 목주름 원문을 모두 보존하고 scope_conflict를 열어 원장 담당자에게 재확인한다.",
+      "confirmation_question": "이 스킨부스터+리프팅 조합은 팔자 CC에 속하는가, 목주름 행을 잘못 복사한 것인가?",
+      "proposed_record": null
+    },
+    {
+      "id": "CAND-volume",
+      "stage": 7,
+      "systemic_group": "comparison-candidate-scope",
+      "classification": "mapping_undetermined",
+      "certainty": "confirmed_undetermined",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+        "jsonpath": "$.comparisons[2]",
+        "sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+        "value": {
+          "id": "volume",
+          "title": "볼륨 회복 비교",
+          "subtitle": "볼/관자/이마 볼륨 충전 비교",
+          "evidence_notes": [
+            "바이오스티뮬레이터: 18-24개월+ 지속, 연간 비용 최저, 자연스러운 결과. 즉각 효과는 없지만 장기적으로 가장 경제적",
+            "HA 필러: 즉각적이지만 6-18개월 지속, 유지비용 높음. 가역적(히알루로니다아제로 용해 가능)이 최대 장점",
+            "지방이식: 생착 부분 영구적이나 흡수율 변동(30-70%), 수술적 위험(마취, 감염, 지방색전증). 대량 볼륨 복원에 유리"
+          ],
+          "procedures": [
+            {
+              "name": "히알루론산 필러",
+              "category": "M2",
+              "mechanism_simple": "HA 겔로 즉각 볼륨 충전",
+              "pain": "★★☆☆☆",
+              "downtime": "1-3일 부종",
+              "onset": "즉시",
+              "duration": "6-18개월",
+              "cost_range": "30-100만원",
+              "best_for": "즉각적 볼륨, 정밀 조각",
+              "limitations": "반복 시술 필요, 필러 이동. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+              "pih_risk": "none"
+            },
+            {
+              "name": "스컬트라 (PLLA)",
+              "category": "M3",
+              "mechanism_simple": "PLLA로 자가 콜라겐 생성 유도",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 부종",
+              "onset": "1-3개월 점진",
+              "duration": "18-24개월",
+              "cost_range": "30-80만원/바이알",
+              "best_for": "전체적 볼륨 회복, 자연스러움",
+              "limitations": "즉각 효과 없음, 결절 가능",
+              "pih_risk": "none"
+            },
+            {
+              "name": "엘란쎄 (PCL)",
+              "category": "M3",
+              "mechanism_simple": "PCL 마이크로스피어 + CMC 겔",
+              "pain": "★★☆☆☆",
+              "downtime": "1-3일 부종",
+              "onset": "즉시 + 점진적",
+              "duration": "12-48개월 (타입별)",
+              "cost_range": "30-70만원/시린지",
+              "best_for": "즉각+장기 볼륨, 콜라겐 유도",
+              "limitations": "녹지 않아 교정 어려움",
+              "pih_risk": "none"
+            },
+            {
+              "name": "자가지방이식",
+              "category": "M6",
+              "mechanism_simple": "본인 지방 채취 후 이식",
+              "pain": "★★★☆☆",
+              "downtime": "7-14일 부종/멍",
+              "onset": "2-3개월 (생착 후)",
+              "duration": "반영구 (생착분)",
+              "cost_range": "100-400만원",
+              "best_for": "대량 볼륨, 자연스러움, 반영구",
+              "limitations": "생착률 변동 (30-70%), 채취부 통증",
+              "pih_risk": "none"
+            }
+          ]
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.combos[72].members[0]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "order": 1,
+          "text": "히알루론산 필러",
+          "source_family": "M2",
+          "status": "부위 없음 · 후보 전부 · 후보 여럿(필러 부위 못 정함 · 판단 ②)",
+          "units": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "basis": "계열 M2 — 원천에 부위 없음",
+          "flag": "ambiguous",
+          "family_mismatch": false,
+          "attrs_text": {
+            "mechanism_simple": "HA 겔로 즉각 볼륨 충전",
+            "pain": "★★☆☆☆",
+            "downtime": "1-3일 부종",
+            "onset": "즉시",
+            "duration": "6-18개월",
+            "cost_range": "30-100만원",
+            "best_for": "즉각적 볼륨, 정밀 조각",
+            "limitations": "반복 시술 필요, 필러 이동. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+            "pih_risk": "none"
+          },
+          "concern_region_check": "고민 영역 없음(R22 · 셈만)"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1780,
+          1791
+        ],
+        "operation": "member name resolver; text attrs stored separately; no exact member site approval"
+      },
+      "impact": "U5-082..089는 후보8개이며 확정 부위8개가 아니다; 비교 subtitle와 best_for 부위 원문은 존재하지만 비교 맥락/멤버 주장/개별 부위 적용을 나눠 표현하지 않는다.",
+      "required_metadata": [
+        "mapping state",
+        "candidate set semantics",
+        "context scope",
+        "member field scope",
+        "source locator"
+      ],
+      "proposed_fix": "member 후보군과 비교 앵커를 보존하고 candidate membership을 단독 unit 적용 승인으로 소비하지 못하게 한다.",
+      "confirmation_question": "subtitle의 부위가 모든 멤버·모든 잎의 적용 범위인가? 원장에 없는 정확한 단독 부위는 미확정으로 둔다.",
+      "proposed_record": {
+        "mapping": {
+          "state": "candidate",
+          "candidates": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "selected": null,
+          "quantifier": "one_or_more_not_all_approved"
+        },
+        "context_raw": "볼/관자/이마 볼륨 충전 비교",
+        "member_scope": {
+          "knowledge": "unresolved"
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "CAND-wrinkle",
+      "stage": 7,
+      "systemic_group": "comparison-candidate-scope",
+      "classification": "mapping_undetermined",
+      "certainty": "confirmed_undetermined",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+        "jsonpath": "$.comparisons[1]",
+        "sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+        "value": {
+          "id": "wrinkle",
+          "title": "주름 개선 비교",
+          "subtitle": "이마/미간/눈가 주름 치료 비교",
+          "procedures": [
+            {
+              "name": "보톡스 (보툴리눔톡신)",
+              "category": "M1",
+              "mechanism_simple": "근육 수축 차단으로 표정주름 완화",
+              "pain": "★★☆☆☆",
+              "downtime": "없음",
+              "onset": "3-7일",
+              "duration": "3-6개월",
+              "cost_range": "5-30만원",
+              "best_for": "표정주름 (이마, 미간, 눈가)",
+              "limitations": "정적 주름에는 효과 제한",
+              "pih_risk": "none"
+            },
+            {
+              "name": "히알루론산 필러",
+              "category": "M2",
+              "mechanism_simple": "필러로 주름 골 채움",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 부종",
+              "onset": "즉시",
+              "duration": "6-18개월",
+              "cost_range": "20-80만원",
+              "best_for": "팔자, 마리오넷, 정적 주름",
+              "limitations": "필러 이동, 뭉침 가능. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+              "pih_risk": "none"
+            },
+            {
+              "name": "프락셀 (프랙셔널 레이저)",
+              "category": "M8",
+              "mechanism_simple": "미세 열 기둥으로 콜라겐 리모델링",
+              "pain": "★★★☆☆",
+              "downtime": "3-5일 각질/붉은기",
+              "onset": "2-4주",
+              "duration": "12-24개월",
+              "cost_range": "20-50만원",
+              "best_for": "잔주름, 피부 텍스처",
+              "limitations": "깊은 주름은 여러 회 필요",
+              "pih_risk": "moderate"
+            },
+            {
+              "name": "리쥬란 (PN주사)",
+              "category": "M4",
+              "mechanism_simple": "폴리뉴클레오타이드로 진피 재생",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 잔뾰루지",
+              "onset": "2-4주",
+              "duration": "6-12개월",
+              "cost_range": "15-40만원",
+              "best_for": "눈밑 잔주름, 피부 탄력",
+              "limitations": "깊은 주름에는 단독 효과 부족",
+              "pih_risk": "none"
+            }
+          ]
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.combos[71].members[1]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "order": 2,
+          "text": "히알루론산 필러",
+          "source_family": "M2",
+          "status": "부위 없음 · 후보 전부 · 후보 여럿(필러 부위 못 정함 · 판단 ②)",
+          "units": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "basis": "계열 M2 — 원천에 부위 없음",
+          "flag": "ambiguous",
+          "family_mismatch": false,
+          "attrs_text": {
+            "mechanism_simple": "필러로 주름 골 채움",
+            "pain": "★★☆☆☆",
+            "downtime": "1-2일 부종",
+            "onset": "즉시",
+            "duration": "6-18개월",
+            "cost_range": "20-80만원",
+            "best_for": "팔자, 마리오넷, 정적 주름",
+            "limitations": "필러 이동, 뭉침 가능. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+            "pih_risk": "none"
+          },
+          "concern_region_check": "고민 영역 안(R22)"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1780,
+          1791
+        ],
+        "operation": "member name resolver; text attrs stored separately; no exact member site approval"
+      },
+      "impact": "U5-082..089는 후보8개이며 확정 부위8개가 아니다; 비교 subtitle와 best_for 부위 원문은 존재하지만 비교 맥락/멤버 주장/개별 부위 적용을 나눠 표현하지 않는다.",
+      "required_metadata": [
+        "mapping state",
+        "candidate set semantics",
+        "context scope",
+        "member field scope",
+        "source locator"
+      ],
+      "proposed_fix": "member 후보군과 비교 앵커를 보존하고 candidate membership을 단독 unit 적용 승인으로 소비하지 못하게 한다.",
+      "confirmation_question": "subtitle의 부위가 모든 멤버·모든 잎의 적용 범위인가? 원장에 없는 정확한 단독 부위는 미확정으로 둔다.",
+      "proposed_record": {
+        "mapping": {
+          "state": "candidate",
+          "candidates": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "selected": null,
+          "quantifier": "one_or_more_not_all_approved"
+        },
+        "context_raw": "이마/미간/눈가 주름 치료 비교",
+        "member_scope": {
+          "knowledge": "unresolved"
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-109",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[1].complaints[3].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "보톡스 + 필러",
+          "combo": [
+            "보톡스",
+            "필러"
+          ],
+          "reason": "근이완 + 볼륨 = 깊은 주름 해결",
+          "evidence": "동적+정적 주름 동시 해결"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[109]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "보톡스 + 필러 — 근이완 + 볼륨 = 깊은 주름 해결 / 동적+정적 주름 동시 해결"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0277도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0277와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0277",
+          "silver_path": "$.claims[276]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[1].complaints[3].combos[0]"
+        },
+        "claim_refs": [
+          "R8-0277"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M1"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-009"
+            ],
+            "n_units": 1,
+            "flag": "7단계 상위 부위로 내림(얼굴 전체)",
+            "text": "보톡스"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-082"
+            ],
+            "n_units": 1,
+            "flag": "7단계 부위로 내림",
+            "text": "필러"
+          }
+        },
+        "source_condition": {
+          "cc": "팔자주름",
+          "problem": "P2",
+          "concern_ids": [
+            "auto-83-1774737181584"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-110",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[1].complaints[3].combos[1]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "필러 + 리프팅기기",
+          "combo": [
+            "필러",
+            "리프팅기기"
+          ],
+          "reason": "볼륨 + 타이트닝 = 근본 해결",
+          "evidence": "처짐 원인까지 해결"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[110]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "필러 + 리프팅기기 — 볼륨 + 타이트닝 = 근본 해결 / 처짐 원인까지 해결"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0278도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0278와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0278",
+          "silver_path": "$.claims[277]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[1].complaints[3].combos[1]"
+        },
+        "claim_refs": [
+          "R8-0278"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-082"
+            ],
+            "n_units": 1,
+            "flag": "7단계 부위로 내림",
+            "text": "필러"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M9"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-091",
+              "U5-102"
+            ],
+            "n_units": 2,
+            "flag": "7단계 상위 부위로 내림(얼굴 전체 · 계열 코드) · 원천 제품 하위 HIFU/RF 밖 2 뺌(R31)",
+            "text": "리프팅기기"
+          }
+        },
+        "source_condition": {
+          "cc": "팔자주름",
+          "problem": "P2",
+          "concern_ids": [
+            "auto-83-1774737181584"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-111",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[1].complaints[3].combos[2]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "스킨부스터 + 리프팅기기",
+          "combo": [
+            "스킨부스터",
+            "리프팅기기"
+          ],
+          "reason": "재생·수분 + 타이트닝 = 목주름 복합 개선",
+          "evidence": "고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[111]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "스킨부스터 + 리프팅기기 — 재생·수분 + 타이트닝 = 목주름 복합 개선 / 고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0279도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0279와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0279",
+          "silver_path": "$.claims[278]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[1].complaints[3].combos[2]"
+        },
+        "claim_refs": [
+          "R8-0279"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M4"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-018",
+              "U5-037"
+            ],
+            "n_units": 2,
+            "flag": "7단계 상위 부위로 내림(얼굴 전체) · 후보 여럿",
+            "text": "스킨부스터"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M9"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-091",
+              "U5-102"
+            ],
+            "n_units": 2,
+            "flag": "7단계 상위 부위로 내림(얼굴 전체 · 계열 코드) · 원천 제품 하위 HIFU/RF 밖 2 뺌(R31)",
+            "text": "리프팅기기"
+          }
+        },
+        "source_condition": {
+          "cc": "팔자주름",
+          "problem": "P2",
+          "concern_ids": [
+            "auto-83-1774737181584"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-132",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[3].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "필러 + 보톡스",
+          "combo": [
+            "필러",
+            "보톡스"
+          ],
+          "reason": "볼륨 + 근이완 = 시너지",
+          "evidence": "보톡스가 근육 움직임 줄여 필러 유지력 향상"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[132]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 필러볼륨",
+          "text": "필러 + 보톡스 — 볼륨 + 근이완 = 시너지 / 보톡스가 근육 움직임 줄여 필러 유지력 향상"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0298도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0298와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0298",
+          "silver_path": "$.claims[297]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[3].complaints[3].combos[0]"
+        },
+        "claim_refs": [
+          "R8-0298"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-082",
+              "U5-083",
+              "U5-084",
+              "U5-085",
+              "U5-086",
+              "U5-087",
+              "U5-088",
+              "U5-089"
+            ],
+            "n_units": 8,
+            "flag": "7단계 제품으로 좁힘",
+            "text": "필러"
+          },
+          "b": {
+            "level": "계열",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M1"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [],
+            "n_units": 0,
+            "flag": "7단계 제품으로 좁힘 · 고민 · 목적과 맞는 용도 단위 시술 없음(R23) → 계열만",
+            "text": "보톡스"
+          }
+        },
+        "source_condition": {
+          "cc": "필러볼륨",
+          "problem": "P4",
+          "concern_ids": [
+            "목적:볼륨 회복(충전)"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-133",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[3].combos[1]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "필러 + 바이오스티뮬레이터",
+          "combo": [
+            "필러",
+            "바이오스티뮬레이터"
+          ],
+          "reason": "즉각 볼륨 + 장기 재생",
+          "evidence": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[133]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 필러볼륨",
+          "text": "필러 + 바이오스티뮬레이터 — 즉각 볼륨 + 장기 재생 / 필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0299도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0299와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0299",
+          "silver_path": "$.claims[298]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[3].complaints[3].combos[1]"
+        },
+        "claim_refs": [
+          "R8-0299"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-082",
+              "U5-083",
+              "U5-084",
+              "U5-085",
+              "U5-086",
+              "U5-087",
+              "U5-088",
+              "U5-089"
+            ],
+            "n_units": 8,
+            "flag": "7단계 제품으로 좁힘",
+            "text": "필러"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M3"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-090"
+            ],
+            "n_units": 1,
+            "flag": "7단계 복합 · 나눠 풂",
+            "text": "바이오스티뮬레이터"
+          }
+        },
+        "source_condition": {
+          "cc": "필러볼륨",
+          "problem": "P4",
+          "concern_ids": [
+            "목적:볼륨 회복(충전)"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-134",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[4].combos[0]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "지방이식 + PRP",
+          "combo": [
+            "지방이식",
+            "PRP"
+          ],
+          "reason": "자가지방 + 성장인자 = 생착률 향상",
+          "evidence": "PRP가 지방세포 생존율 높임"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[134]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 지방이식",
+          "text": "지방이식 + PRP — 자가지방 + 성장인자 = 생착률 향상 / PRP가 지방세포 생존율 높임"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0300도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0300와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0300",
+          "silver_path": "$.claims[299]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[3].complaints[4].combos[0]"
+        },
+        "claim_refs": [
+          "R8-0300"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M6"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-021",
+              "U5-092",
+              "U5-093",
+              "U5-094",
+              "U5-095",
+              "U5-096"
+            ],
+            "n_units": 6,
+            "flag": "7단계 부위 없음 · 후보 전부",
+            "text": "지방이식"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M5"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-020"
+            ],
+            "n_units": 1,
+            "flag": "7단계 복합 · 나눠 풂 · 두피 단위 시술 1 뺌 — 두피 고민 아님(R25)",
+            "text": "PRP"
+          }
+        },
+        "source_condition": {
+          "cc": "지방이식",
+          "problem": "P4",
+          "concern_ids": [
+            "목적:볼륨 회복(충전)"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "NOTE-LINK-135",
+      "stage": [
+        7,
+        8
+      ],
+      "systemic_group": "note-claim-lineage",
+      "classification": "silver_provenance_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "jsonpath": "$.problems[3].complaints[4].combos[1]",
+        "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+        "value": {
+          "name": "필러 + 바이오스티뮬레이터",
+          "combo": [
+            "필러",
+            "바이오스티뮬레이터"
+          ],
+          "reason": "즉각 볼륨 + 장기 재생",
+          "evidence": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "jsonpath": "$.step8_notes[135]",
+        "sha256": "b2fa90915876de1d06e6ff7d374c62291d7d95c05d8fd569b6457160c8d12694",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 지방이식",
+          "text": "필러 + 바이오스티뮬레이터 — 즉각 볼륨 + 장기 재생 / 필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-apply.py",
+        "lines": [
+          1820
+        ],
+        "consumer": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py:1358-1380",
+        "operation": "step7 note stores flattened text; step8 independently emits canonical claim"
+      },
+      "impact": "이 메모의 원천 pair/구성은 원장에 있고 R8-0301도 이미 존재한다; 메모에 claim_refs와 exact 원문 locator가 없어 연결을 재발명하게 된다. 해당 pair 존재는 단독 unit 효과 승인과 별개다.",
+      "required_metadata": [
+        "source_record_id",
+        "claim_refs",
+        "relation arity",
+        "attachment rule",
+        "applicability status"
+      ],
+      "proposed_fix": "동일 원문 locator로 R8-0301와 연결하고 claim 양끝/조건을 재사용한다; text 유사도나 where만으로 승인하지 않는다.",
+      "confirmation_question": "새 임상 pair 질문은 불필요; [111] 원천 부위 상충 등 명시 불일치는 별도 질문을 유지한다.",
+      "proposed_record": {
+        "note_origin": {
+          "id": "R8-0301",
+          "silver_path": "$.claims[300]",
+          "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+          "source_path": "$.problems[3].complaints[4].combos[1]"
+        },
+        "claim_refs": [
+          "R8-0301"
+        ],
+        "relation_endpoints": {
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-082",
+              "U5-083",
+              "U5-084",
+              "U5-085",
+              "U5-086",
+              "U5-087",
+              "U5-088",
+              "U5-089"
+            ],
+            "n_units": 8,
+            "flag": "7단계 제품으로 좁힘",
+            "text": "필러"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M3"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-090"
+            ],
+            "n_units": 1,
+            "flag": "7단계 복합 · 나눠 풂",
+            "text": "바이오스티뮬레이터"
+          }
+        },
+        "source_condition": {
+          "cc": "지방이식",
+          "problem": "P4",
+          "concern_ids": [
+            "목적:볼륨 회복(충전)"
+          ]
+        },
+        "application_decision": null
+      }
+    },
+    {
+      "id": "PRODUCT-SCOPE-01",
+      "stage": 5,
+      "systemic_group": "multi-family-override",
+      "classification": "silver_scope_metadata",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "jsonpath": "$.modality[3].subcategories[3].items[4]",
+        "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+        "value": {
+          "id": "auto-M4-1775361378128",
+          "name": "바이리즌",
+          "detail": "휴젤 · 주사/도포/화장품 라인업",
+          "extracted": {
+            "overview": "휴젤의 바이리즌은 피부 재생과 탄력 개선을 위한 복합 미용 시술 라인업",
+            "mechanism": "다양한 활성 성분이 진피층에 작용하여 콜라겐 합성을 촉진하고 세포 재생을 활성화합니다. 피부 장벽 강화와 수분 보유력 향상을 통해 전반적인 피부 컨디션을 개선합니다.",
+            "indications": {
+              "primary": [
+                "피부 탄력 저하 및 잔주름 개선",
+                "피부 톤 균일화 및 광채 개선"
+              ]
+            },
+            "safety": {
+              "common": [
+                "시술 부위 일시적 발적 및 부종"
+              ]
+            },
+            "onset_duration": {
+              "onset": "2-4주",
+              "duration": "3-6개월"
+            },
+            "aftercare": [
+              "시술 후 24시간 세안 시 자극 최소화",
+              "주입 부위 당일 자극적 제품 자제",
+              "멍/부종은 수일 내 자연 소실",
+              "[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+            ]
+          }
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "jsonpath": "$.product_links[243]",
+        "sha256": "38bcc0853547edb751cdb6c8c2e13b6525ee4999c9d4346d304574dd3e2b6cd1",
+        "value": {
+          "product": "auto-M4-1775361378128",
+          "name": "바이리즌",
+          "family": "M4",
+          "sub_family": "폴리뉴클레오타이드(PN·PDRN)",
+          "recommendable": true,
+          "stored_units": [],
+          "inherited_candidates": [
+            "U5-018",
+            "U5-041",
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "technique_excluded": [
+            {
+              "unit": "U5-037",
+              "reason": "기법 근거 없음(K01c)"
+            }
+          ],
+          "technique_attrs": null,
+          "guard": null,
+          "link": "조회 때 상속 후보",
+          "side_effect_override": [
+            {
+              "source": "taxonomy 항목 extracted",
+              "id": "auto-M4-1775361378128",
+              "name": "바이리즌",
+              "level": "제품 × 계열",
+              "values": {
+                "common": [
+                  "시술 부위 일시적 발적 및 부종"
+                ]
+              },
+              "sub_family": null,
+              "override_of": "family:M4",
+              "priority": 1
+            }
+          ]
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-apply.py",
+        "lines": [
+          674,
+          699
+        ],
+        "operation": "product has M4 primary and M2 secondary; inherited candidates include M2 units but safety override_of remains family:M4"
+      },
+      "impact": "M2 후보 연결과 M4 범위 override는 서로 다르다; 저장44/상속1379쌍은 제품 선택 사건이나 모든 제품원문의 M2 승인 근거가 아니다. 기존276은 재집계한 결함 수가 아니다.",
+      "required_metadata": [
+        "product+family scope",
+        "selected product state",
+        "override_of",
+        "inheritance evidence",
+        "fact attachment vs application"
+      ],
+      "proposed_fix": "기존 override_of/priority/level을 유지하고 product mapping과 임상 주장 범위·실제 선택을 분리한다.",
+      "confirmation_question": "이 M4 원문이 이 라인의 M2 허가 제품에도 적용되는가? 원천만으로 닫히지 않으면 미확정이다.",
+      "proposed_record": {
+        "mapping": {
+          "product": "auto-M4-1775361378128",
+          "candidate_units": [
+            "U5-018",
+            "U5-041",
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "state": "compatible_candidate"
+        },
+        "claim_scope": {
+          "family": "M4"
+        },
+        "selected_product": null,
+        "apply_to_M2": "unknown"
+      }
+    },
+    {
+      "id": "PROJECTION-K8-0028",
+      "stage": 8,
+      "systemic_group": "K8-projection",
+      "classification": "gold_projection_metadata",
+      "certainty": "confirmed_in_code",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+        "jsonpath": "$.category_specific[1].checks[5].label",
+        "sha256": "0de87bff91f721fe685884025d31749017d44da250492b2db9d49109a61e4086",
+        "value": "히알루로니다아제 비상 비치 확인"
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.conditions.not_condition[2]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "source": "pre-procedure-checklist.category_specific",
+          "source_index": "M2#5",
+          "target": "family:M2",
+          "target_level": "계열",
+          "text": "히알루로니다아제 비상 비치 확인",
+          "grade_original": "safety_protocol",
+          "grade_site": "시술 준비",
+          "grade3": "조건 아님(시술 준비)",
+          "conditions": [],
+          "kind": "시술 준비 항목",
+          "id": "K8-0028"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/build.py",
+        "lines": [
+          774,
+          783
+        ],
+        "public_consumer": "app/modules/gold/tools.py:_walk_row"
+      },
+      "impact": "실버에 target family:M2, conditions:[], kind가 이미 존재한다; metadata를 보이지 않는 것은 실버 임상 원문 누락과 다르다. live API/DB 상태는 이번에 검증하지 않았다.",
+      "required_metadata": [
+        "target",
+        "not_condition",
+        "conditions knowledge",
+        "source origin and canonical fact locator"
+      ],
+      "proposed_fix": "추후 허용된 Gold 변경에서 이미 저장된 target/conditions/kind metadata를 보존해 소비하도록 계약을 정한다.",
+      "confirmation_question": "의료 조건을 새로 만들 필요 없음; []는 이 원천 항목의 사람 조건 부재이며 위험 없음이 아니다.",
+      "proposed_record": {
+        "claim_type": "시술 준비 항목",
+        "target": "family:M2",
+        "conditions": {
+          "knowledge": "not_applicable",
+          "included": []
+        },
+        "source_claim_id": "K8-0028"
+      }
+    },
+    {
+      "id": "PROJECTION-K8-0029",
+      "stage": 8,
+      "systemic_group": "K8-projection",
+      "classification": "gold_projection_metadata",
+      "certainty": "confirmed_in_code",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+        "jsonpath": "$.category_specific[1].checks[6].label",
+        "sha256": "0de87bff91f721fe685884025d31749017d44da250492b2db9d49109a61e4086",
+        "value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.conditions.not_condition[3]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "source": "pre-procedure-checklist.category_specific",
+          "source_index": "M2#6",
+          "target": "family:M2",
+          "target_level": "계열",
+          "text": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명",
+          "grade_original": "counseling",
+          "grade_site": "상담",
+          "grade3": "조건 아님(상담)",
+          "conditions": [],
+          "kind": "상담 항목",
+          "id": "K8-0029"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-recommend/backend/app/modules/gold/build.py",
+        "lines": [
+          774,
+          783
+        ],
+        "public_consumer": "app/modules/gold/tools.py:_walk_row"
+      },
+      "impact": "실버에 target family:M2, conditions:[], kind가 이미 존재한다; metadata를 보이지 않는 것은 실버 임상 원문 누락과 다르다. live API/DB 상태는 이번에 검증하지 않았다.",
+      "required_metadata": [
+        "target",
+        "not_condition",
+        "conditions knowledge",
+        "source origin and canonical fact locator"
+      ],
+      "proposed_fix": "추후 허용된 Gold 변경에서 이미 저장된 target/conditions/kind metadata를 보존해 소비하도록 계약을 정한다.",
+      "confirmation_question": "의료 조건을 새로 만들 필요 없음; []는 이 원천 항목의 사람 조건 부재이며 위험 없음이 아니다.",
+      "proposed_record": {
+        "claim_type": "상담 항목",
+        "target": "family:M2",
+        "conditions": {
+          "knowledge": "not_applicable",
+          "included": []
+        },
+        "source_claim_id": "K8-0029"
+      }
+    },
+    {
+      "id": "PATIENT-LANG-01",
+      "stage": 8,
+      "systemic_group": "language-claim-variant",
+      "classification": "origin_qualifier_difference",
+      "certainty": "confirmed",
+      "origin": {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+        "jsonpath": "$.categories.M2.adverse_effects[2]",
+        "sha256": "6e179872a9c234491ca62c20899757fca3aa5388833aa6bc4d1ac28a032aebfd",
+        "value": {
+          "statement": "Allergic reactions occur rarely with hyaluronic acid fillers.",
+          "citations": [
+            {
+              "authors": "de Maio M",
+              "title": "MD Codes™: A Methodological Approach to Facial Aesthetic Treatment with Injectable Hyaluronic Acid Fillers.",
+              "journal": "Aesthetic plastic surgery",
+              "year": 2021,
+              "pmid": "32445044",
+              "doi": "10.1007/s00266-020-01762-7",
+              "pmc": "PMC8012343",
+              "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8012343/"
+            }
+          ],
+          "patient_ko": "히알루론산 필러는 완벽하게 안전하지는 않지만 알레르기 반응은 드물게 나타나며, 시술 직후가 아닌 몇 개월 후에 지연성으로 생길 수 있습니다.",
+          "patient_en": "Allergic reactions to hyaluronic acid are quite uncommon but possible.",
+          "patient_zh": "对透明质酸产生过敏反应的情况非常罕见，但仍存在可能性。",
+          "patient_ja": "ヒアルロン酸によるアレルギーは非常に稀ですが、起こる可能性はあります。",
+          "added_at": "2026-04-19"
+        }
+      },
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "jsonpath": "$.evidence.statements[19]",
+        "sha256": "4f91a2abe7e3aae2a1b5beedf9902daac76873df221eaf6f61d59cf3fc8bbb11",
+        "value": {
+          "id": "ST-M2-adverse_effects-03",
+          "family": "M2",
+          "field": "adverse_effects",
+          "statement": "Allergic reactions occur rarely with hyaluronic acid fillers.",
+          "accuracy_score": null,
+          "accuracy_note": null,
+          "patient": {
+            "ko": "히알루론산 필러는 완벽하게 안전하지는 않지만 알레르기 반응은 드물게 나타나며, 시술 직후가 아닌 몇 개월 후에 지연성으로 생길 수 있습니다.",
+            "en": "Allergic reactions to hyaluronic acid are quite uncommon but possible.",
+            "zh": "对透明质酸产生过敏反应的情况非常罕见，但仍存在可能性。",
+            "ja": "ヒアルロン酸によるアレルギーは非常に稀ですが、起こる可能性はあります。"
+          },
+          "evidence": [
+            "EV-LIT-005"
+          ],
+          "added_at": "2026-04-19",
+          "edge": "family:M2 —근거 문장→ ST-M2-adverse_effects-03"
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-apply.py",
+        "operation": "statement/patient_{lang} values copied into statements.patient; Gold emits each leaf"
+      },
+      "impact": "patient.ko에 수개월 뒤 지연성이라는 한정이 있으나 statement와 다른 언어 잎에는 그 구절이 없다; 번역/동일 의미로 자동 접으면 한정이 사라진다. Silver는 원문을 보존했다.",
+      "required_metadata": [
+        "language",
+        "variant_of",
+        "equivalence review status",
+        "qualifier original text"
+      ],
+      "proposed_fix": "언어별 별도 claim variant로 보존하고 검토 없이 의미 동일/중복 제거하지 않는다.",
+      "confirmation_question": "ko의 지연성 설명이 인용 statement의 승인된 보충인가? 이번에는 문헌을 새로 조회하지 않는다.",
+      "proposed_record": null
+    },
+    {
+      "id": "RESOLUTION-01",
+      "stage": 9,
+      "systemic_group": "source-claims-vs-policy-resolution",
+      "classification": "resolution_policy_visibility",
+      "certainty": "confirmed",
+      "origin": [
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": "3-6개월 유지, 정기적 시술로 지속 효과"
+        },
+        {
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+          "jsonpath": "$.modality[9].subcategories[0].items[1].extracted.onset_duration.duration",
+          "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6",
+          "value": "6-9개월"
+        }
+      ],
+      "silver": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json",
+        "jsonpath": "$.node_slots[280]",
+        "sha256": "5d394f87dca53602902a557e20c0a9cfe33efd485ced27901929bbe26c635d1b",
+        "value": {
+          "node": "product:M10-1-1",
+          "slot": "onset_duration.duration",
+          "section": "recovery",
+          "sources": 2,
+          "records": [
+            "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+            "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+          ],
+          "class": "②",
+          "resolved": "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+          "resolved_by": "짧은 쪽",
+          "alternatives": [
+            "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+          ],
+          "emit": [
+            "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration"
+          ],
+          "same_as": {},
+          "fact_ids": [
+            "product:M10-1-1#recovery#step9[taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration]"
+          ]
+        }
+      },
+      "transformation_rule": {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-apply.py",
+        "lines": [
+          375,
+          401
+        ],
+        "decision": "D9-3 ② 짧은 쪽"
+      },
+      "impact": "3-6개월과6-9개월 원문 둘 다 실버에 있으나 짧은 쪽만 emit된다; 이는 승인된 보수 규칙의 결과이지 새 원천 합의나 원장 정정이 아니다. 전체196②슬롯/343 alternatives가 같은 분리 원칙의 대상이다.",
+      "required_metadata": [
+        "resolution rule/version",
+        "source claim IDs",
+        "alternatives",
+        "policy vs clinical review"
+      ],
+      "proposed_fix": "원천 claim 집합과 resolved view를 별도 식별하고 resolved view만 내보낼 때 충돌·대안 존재를 표시한다.",
+      "confirmation_question": "두 기간의 제품/횟수/조건 차이가 원장에 없는 경우 보수 선택과 임상 확인 상태를 분리한다.",
+      "proposed_record": {
+        "source_claims": [
+          {
+            "id": "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+            "text": "3-6개월 유지, 정기적 시술로 지속 효과"
+          },
+          {
+            "id": "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration",
+            "text": "6-9개월"
+          }
+        ],
+        "resolution": {
+          "rule": "D9-3",
+          "selection": "shorter_duration",
+          "selected": "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+          "alternatives": [
+            "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+          ],
+          "clinical_consensus": false
+        }
+      }
+    }
+  ]
+}

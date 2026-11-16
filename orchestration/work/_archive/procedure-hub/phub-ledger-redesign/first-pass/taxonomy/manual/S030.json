@@ -1,0 +1,43 @@
+{"section":"S030","state":"read","last_pointer":"/modality/8/products/5/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/8/subcategories/4/label","/modality/8/subcategories/4/items/0/detail","/modality/8/subcategories/4/items/1/detail"],"note":"M9-SIG '시그니처 프로그램' — 여러 시술을 묶은 판매 구성. detail 에 구성요소를 '+' 로 잇고 가격('950만원', '2000만원')을 ' · ' 뒤에 적는다. 이 원장에서 가격 값이 나오는 자리. 구성요소는 다른 모달리티 항목명(써마지·BBL·튠·소프웨이브·리투오·줄기세포)에 수량이 붙은 형태."},
+ {"status":"B","pointers":["/modality/8/subcategories/4/items/0/detail","/modality/8/subcategories/4/items/1/detail"],"note":"구성요소 수량 '써마지600', '소프웨이브200' 은 단위가 없다(샷 수로 보이나 원문에 없음 — 단위 추가하지 않음). '리투오2병', '줄기세포24cc' 는 단위 있음. '튠' 은 튠페이스인지 원문만으로 불명."},
+ {"status":"I","pointers":["/modality/8/subcategories/4/items/1/extracted/overview","/modality/8/subcategories/4/items/1/extracted/mechanism","/modality/8/subcategories/4/items/1/detail"],"note":"DNA리셋프로그램 detail 은 써마지(RF)+소프웨이브+리투오+줄기세포 구성인데 overview 'HIFU 집속 초음파 리프팅', mechanism 은 HIFU 상용 서술만. 구성과 설명이 맞지 않는다."},
+ {"status":"P","pointers":["/modality/8/subcategories/4/items/0/extracted/indications/primary/4"],"note":"셀리부트프로그램 indications '전체적인 피부 재생 원하는 고객' — 적응증 칸에 고객 표현."},
+ {"status":"I","pointers":["/modality/8/products/5/type","/modality/8/products/5/extracted/overview"],"note":"제품 인모드 type 'RF+EMS', overview 'InMode Bipolar RF + IR 복합 기기' — type 의 EMS 와 서술의 IR 불일치."},
+ {"status":"I","pointers":["/modality/8/products/4/manufacturer","/modality/8/subcategories/1/items/1/detail"],"note":"올리지오 제품 manufacturer '클래시스', 항목 detail '원텍'."},
+ {"status":"P","pointers":["/modality/8/products/3/extracted/mechanism","/modality/8/subcategories/0/items/0/extracted/aftercare/3"],"note":"써마지FLX 제품 mechanism '깊은 층의 지방위축을 통한 강력한 리프팅 효과' — 지방위축을 효과로 서술. 고출력 상용구는 '지방위축 위험'으로 서술. 같은 현상에 상반된 평가."},
+ {"status":"P","pointers":["/modality/8/extracted/contraindications/absolute","/modality/8/extracted/contraindications/relative/2"],"note":"M9 모달리티 금기: 금속·임플란트가 절대(부위)와 상대(제거 후 시술) 양쪽에 다른 조건으로 나온다."},
+ {"status":"P","pointers":["/modality/8/products/5/country"],"note":"country 'IL'."}
+],
+"expressions":[
+ {"pointer":"/modality/8/subcategories/3/items/4/detail","text":"RF+초음파목","kinds":["기호","부위"],"note":"부위가 붙어 쓰임"},
+ {"pointer":"/modality/8/subcategories/3/items/5/extracted/mechanism","text":"캐비테이션으로 지방세포를 파괴","kinds":["수식"],"note":""},
+ {"pointer":"/modality/8/subcategories/3/items/6/extracted/mechanism","text":"RF, 초음파, 적외선 등 다중 에너지","kinds":["기호"],"note":"열린 목록"},
+ {"pointer":"/modality/8/subcategories/4/items/0/detail","text":"써마지600+BBL+튠+줄기세포 · 950만원","kinds":["시술·제품명","기호","수량·단위·시간","참조"],"note":"구성+가격"},
+ {"pointer":"/modality/8/subcategories/4/items/0/extracted/mechanism","text":"BBL과 튠의 가벼운 에너지로는 얕은 층 개선을 안전하게 진행","kinds":["수식","참조"],"note":""},
+ {"pointer":"/modality/8/subcategories/4/items/0/extracted/aftercare/3","text":"줄기세포 효과 극대화를 위해 3회 시술 권장","kinds":["수량·단위·시간","조건"],"note":""},
+ {"pointer":"/modality/8/subcategories/4/items/0/extracted/safety/serious/2","text":"흉터 형성 (부적절한 관리 시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/8/subcategories/4/items/1/detail","text":"써마지600+소프웨이브200+리투오2병+줄기세포24cc · 2000만원","kinds":["시술·제품명","기호","수량·단위·시간","참조"],"note":"구성+수량+가격"},
+ {"pointer":"/modality/8/extracted/overview","text":"한국에서는 '써마지', '울쎄라', '슈링크', '올리지오' 등의 브랜드명으로 잘 알려져 있다","kinds":["시술·제품명","참조"],"note":""},
+ {"pointer":"/modality/8/extracted/mechanism","text":"감각신경 및 운동신경을 자극하지 않아, 근육수축을 일으키지 않으면서","kinds":["부정"],"note":""},
+ {"pointer":"/modality/8/extracted/contraindications/relative/2","text":"금속 물질을 몸 안에 착용한 경우 (금속 제거 후 시술)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/8/extracted/contraindications/relative/3","text":"피부가 얇은 부위 (이마, 관자놀이 등)는 조심해서 시술","kinds":["조건","부위"],"note":""},
+ {"pointer":"/modality/8/extracted/safety/common/1","text":"부종 (붓기) -- 경우에 따라 2~3일 지속","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/8/extracted/safety/serious/1","text":"피부위축 (수 주~수 개월 후, 특히 단극성 장비에서 지방층 경계면의 과도한 열 작용 시)","kinds":["수량·단위·시간","조건","범위"],"note":""},
+ {"pointer":"/modality/8/extracted/safety/serious/2","text":"심한 함몰이나 흉터는 진피하 절제술, 지방이식, 필러 등으로 교정 필요","kinds":["조건","참조"],"note":"safety 칸의 교정 방법"},
+ {"pointer":"/modality/8/extracted/onset_duration/duration","text":"6~12개월 유지 (장비와 에너지 강도에 따라 다름)","kinds":["조건","범위"],"note":""},
+ {"pointer":"/modality/8/products/1/extracted/mechanism","text":"HIFU 전용 기기로 RF는 사용하지 않는다","kinds":["부정"],"note":""},
+ {"pointer":"/modality/8/products/2/extracted/safety/common/5","text":"드물게 신경 손상","kinds":["가능성·빈도"],"note":"common 안 '드물게'"},
+ {"pointer":"/modality/8/products/3/extracted/onset_duration/duration","text":"6-12개월 지속, 개인차에 따라 1-2년까지 효과 유지","kinds":["조건","범위"],"note":""},
+ {"pointer":"/modality/8/products/3/extracted/aftercare/0","text":"시술 후 3일간 찬바람/찬물 노출 피하기","kinds":["수량·단위·시간","부정"],"note":"다른 항목은 고온 회피"},
+ {"pointer":"/modality/8/products/4/extracted/mechanism","text":"콜라겐을 40-60°C로 가열","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/8/products/4/extracted/aftercare/0","text":"시술 후 최소 4-6시간 물 접촉 금지","kinds":["범위","수량·단위·시간","부정"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S030-B01","status":"B","pointers":["/modality/8/subcategories/4/items/0/detail","/modality/8/subcategories/4/items/1/detail"],"note":"구성 수량(써마지600, 소프웨이브200)의 단위·'튠' 대상 불명.","impact":"패키지 구성 해석 제한"},
+ {"id":"S030-I01","status":"I","pointers":["/modality/8/subcategories/4/items/1/extracted/overview","/modality/8/subcategories/4/items/1/detail"],"note":"DNA리셋프로그램 구성 vs HIFU 서술.","impact":"패키지 설명 채택 시 확인"},
+ {"id":"S030-I02","status":"I","pointers":["/modality/8/products/5/type","/modality/8/products/4/manufacturer"],"note":"인모드 type, 올리지오 제조사 불일치.","impact":"제품 속성 정규화 후속"},
+ {"id":"S030-F01","status":"F","pointers":["/modality/8/subcategories/4"],"note":"가격·구성 수량을 담은 판매 패키지가 시술 분류 트리 안에 있다.","impact":"판매 구성 개체 분리 설계 과제"}
+]}

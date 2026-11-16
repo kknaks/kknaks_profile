@@ -1,0 +1,275 @@
+{
+ "segment": "S07",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/6/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "실리프팅",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "실 리프팅 (얼굴 당김 시술)",
+    "name,paraphrase,site",
+    "name 과 띄어쓰기 다름"
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "녹는 실을 피부 아래에 넣어 처진 살을 당겨 올리는 시술입니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "녹는 실",
+    "device,course",
+    "재질 이름 미기재"
+   ],
+   [
+    "피부 아래에",
+    "site,depth",
+    ""
+   ],
+   [
+    "처진 살을 당겨 올리는",
+    "concern,effect",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "가는 바늘로 특수한 녹는 실을 피부 아래에 삽입합니다.",
+    "sentence,device,degree,site",
+    ""
+   ],
+   [
+    "가는 바늘",
+    "device,degree",
+    ""
+   ],
+   [
+    "특수한 녹는 실",
+    "device",
+    "재질 미기재"
+   ],
+   [
+    "실이 처진 조직을 물리적으로 잡아 올려주고, 시간이 지나며 실 주변에 콜라겐이 만들어져 탄력도 개선됩니다.",
+    "sentence,mechanism,time,effect",
+    ""
+   ],
+   [
+    "물리적으로 잡아 올려주고",
+    "manner,mechanism",
+    ""
+   ],
+   [
+    "시간이 지나며",
+    "time",
+    "수치 없음"
+   ],
+   [
+    "실 주변에 콜라겐이 만들어져",
+    "site,mechanism,substance",
+    ""
+   ],
+   [
+    "탄력도 개선됩니다",
+    "effect",
+    ""
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "실 종류에 따라 6개월-3년 지속됩니다.",
+    "sentence,condition,time,range,quantity",
+    "단위가 다른 범위(개월-년)"
+   ],
+   [
+    "실 종류에 따라",
+    "condition",
+    "종류별 값 미기재"
+   ],
+   [
+    "6개월-3년",
+    "range,quantity",
+    ""
+   ]
+  ],
+  "/pain_level": [
+   [
+    "국소 마취 후 시술, 삽입 시 당김감",
+    "time,condition,sensory",
+    ""
+   ],
+   [
+    "국소 마취 후",
+    "time,condition",
+    ""
+   ],
+   [
+    "삽입 시 당김감",
+    "time,sensory",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "붓기 3-5일, 일상생활 2-3일 후 복귀 가능",
+    "adverse,time,range,quantity,possibility",
+    "시간 역할 두 개"
+   ],
+   [
+    "붓기 3-5일",
+    "adverse,time,range,quantity",
+    ""
+   ],
+   [
+    "일상생활 2-3일 후 복귀 가능",
+    "time,range,quantity,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "실이 만져지거나 튀어나오나요?",
+    "sentence,adverse",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "제대로 시술하면 만져지지 않아요.",
+    "sentence,condition,negation",
+    ""
+   ],
+   [
+    "제대로 시술하면",
+    "condition,actor",
+    "기준 미기재"
+   ],
+   [
+    "극히 드물게 실 끝이 느껴질 수 있는데, 이때는 병원에서 간단히 조치할 수 있습니다.",
+    "sentence,frequency,adverse,possibility,management",
+    ""
+   ],
+   [
+    "극히 드물게",
+    "frequency,degree",
+    "수치 없음"
+   ],
+   [
+    "실 끝이 느껴질 수 있는데",
+    "adverse,possibility",
+    ""
+   ],
+   [
+    "병원에서 간단히 조치할 수 있습니다",
+    "actor,degree,management,possibility",
+    "조치 내용 미기재"
+   ],
+   [
+    "이때는",
+    "reference,condition",
+    "앞 절(실 끝이 느껴질 때) 참조 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "실이 녹으면 다시 처지나요?",
+    "sentence,condition,course",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "실이 녹는 동안 주변에 콜라겐이 만들어지므로 즉시 원래로 돌아가지는 않아요.",
+    "sentence,time,rationale,negation",
+    ""
+   ],
+   [
+    "실이 녹는 동안",
+    "time",
+    ""
+   ],
+   [
+    "즉시 원래로 돌아가지는 않아요",
+    "time,negation,course",
+    ""
+   ],
+   [
+    "다만 시간이 지나면 자연스러운 노화는 진행됩니다.",
+    "sentence,time,condition,course",
+    ""
+   ],
+   [
+    "시간이 지나면 자연스러운 노화는 진행됩니다",
+    "time,condition,course",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "다만",
+    "contrast",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "실리프팅 후 표정이 어색하지 않나요?",
+    "sentence,time,adverse,negation",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "시술 직후에는 약간 당기는 느낌이 있지만, 1-2주면 자연스러워집니다.",
+    "sentence,time,degree,sensory,range,quantity,course",
+    ""
+   ],
+   [
+    "시술 직후에는",
+    "time",
+    ""
+   ],
+   [
+    "약간 당기는 느낌",
+    "degree,sensory",
+    ""
+   ],
+   [
+    "1-2주면 자연스러워집니다",
+    "time,range,quantity,course",
+    "소실 시점"
+   ],
+   [
+    "일상 표정에는 영향이 없어요.",
+    "sentence,negation,scope",
+    ""
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/simple_explanation",
+   "B",
+   "「녹는 실」의 재질·종류 미기재(duration_simple 은 「실 종류에 따라」만)"
+  ],
+  [
+   "/duration_simple",
+   "B",
+   "실 종류별 지속 값 미기재"
+  ],
+  [
+   "/common_concerns/0/a",
+   "B",
+   "「제대로」의 기준, 「간단히 조치」의 내용 미기재"
+  ],
+  [
+   "/common_concerns/2/a",
+   "P",
+   "시간 역할: 당김감 소실(1-2주). downtime 의 붓기 3-5일·복귀 2-3일 후와 다른 역할"
+  ]
+ ]
+}

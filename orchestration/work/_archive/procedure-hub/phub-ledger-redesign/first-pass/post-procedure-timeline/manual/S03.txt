@@ -1,0 +1,56 @@
+# S03 /timelines/2 hifu-rf — 직접 읽기 2026-11-09
+id | hifu-rf | id_code |
+category | M9 | id_code |
+name | HIFU/RF 리프팅 | procedure_name,alt,mixed_script | 「/」 대안(README 규칙상 둘 중 하나). 한 타임라인이 두 계열을 함께 다룸
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 홍반/온감 (수시간 내 소실) | alt,resolution,approx_time |
+phases/0/normal/1 | 시술 부위 따끔거림/화끈감 | site,alt |
+phases/0/normal/2 | 경미한 부종 | severity |
+phases/0/normal/3 | 근육통 유사 불편감 | similarity | 「유사」 비유
+phases/0/abnormal/0 | 뚜렷한 부종 (24시간 이상) | degree,duration_threshold | 24시간 이상이 지속 시간이라는 것은 잠정. 「지속」 말이 없음
+phases/0/abnormal/1 | 시술 라인 따라 선형 발적 | site,pattern | 「시술 라인」 = 시술 경로(잠정)
+phases/0/caution/0 | 수포/물집 형성 | alt,synonym_pair | 수포와 물집은 같은 뜻 병기로 보임(잠정)
+phases/0/caution/1 | 비정상적 심한 통증 (진통제 미반응) | degree,severity,negation |
+phases/0/emergency/0 | 화상/물집 (2도 이상) | alt,grade_threshold | 「2도」 = 화상 등급(잠정). 체온 「도」 와 다름
+phases/0/emergency/1 | 안면 신경 손상 증상 (안면 비대칭/마비) | site,gloss,alt |
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 초기 회복기 | phase_label |
+phases/1/normal/0 | 홍반 소실 | resolution |
+phases/1/normal/1 | 시술 부위 압통/뻐근함 | site,alt |
+phases/1/normal/2 | 미세한 타이트닝 느낌 시작 | degree,subjective,onset,loanword |
+phases/1/normal/3 | 일상생활 가능 | possibility,activity | 활동 재개 가능
+phases/1/abnormal/0 | 지속 홍반 (3일 이상) | persistence,duration_threshold |
+phases/1/abnormal/1 | 경미한 저림/감각 둔화 | severity,alt |
+phases/1/caution/0 | 물집/수포 악화 | alt,worsening |
+phases/1/caution/1 | 심한 부종 지속 | severity,persistence |
+phases/1/emergency/0 | 안면 함몰 징후 (지방위축 시작) | site,early_sign,onset |
+phases/1/emergency/1 | 안면 비대칭/신경 마비 | site,alt |
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 회복기 | phase_label |
+phases/2/normal/0 | 압통 감소 | change |
+phases/2/normal/1 | 피부 질감 개선 시작 | onset,change |
+phases/2/normal/2 | 저림/감각변화 점차 정상화 | alt,speed,recovery |
+phases/2/abnormal/0 | 지속적 감각 둔화 | persistence |
+phases/2/abnormal/1 | 불편감 1주 이상 지속 | duration_threshold,persistence | 「1주」 단위. 기간 Day 3-7 안의 값이 1주 이상 지속을 말함
+phases/2/caution/0 | 감각 소실 지속 | persistence |
+phases/2/caution/1 | 비대칭적 부종/경결 | asymmetry,alt |
+phases/2/emergency/0 | 안면 함몰 진행 (지방위축) | site,progress,cause_label |
+phases/2/emergency/1 | 화상 반흔 형성 시작 | onset,formation |
+phases/3/period | Day 7-30 | period,time_range |
+phases/3/label | 콜라겐 리모델링기 | phase_label,mechanism |
+phases/3/normal/0 | 점진적 리프팅 효과 발현 (2-4주) | speed,onset,time_range | 「2-4주」 는 효과 발현 시기. 기간(Day 7-30)과 단위가 다름
+phases/3/normal/1 | 피부 탄력 개선 체감 | subjective,change |
+phases/3/normal/2 | 저림/감각변화 완전 소실 (2-4주) | alt,degree,resolution,time_range | 「완전」. 같은 「2-4주」 가 소실 시점으로 쓰임
+phases/3/normal/3 | 콜라겐 생성 진행 중 | mechanism,progress |
+phases/3/abnormal/0 | 효과 미미 (추가 시술 고려 시점) | insufficiency,recommendation,retreatment_decision |
+phases/3/abnormal/1 | 일부 감각 변화 잔존 | proportion_approx,persistence | 「일부」
+phases/3/caution/0 | 안면 비대칭 지속 | site,persistence |
+phases/3/caution/1 | 불규칙한 피부 표면 | texture |
+phases/3/emergency/0 | 진행성 안면 함몰 (지방위축 -- HIFU 심부 에너지 과다 시) | progress,cause,condition,depth,procedure_ref | 「HIFU」 만 지목 — 이름의 HIFU/RF 중 하나에만 해당(잠정). 「심부」 깊이, 「과다 시」 조건
+phases/3/emergency/1 | 지연성 신경 손상 | delayed_onset |
+O | 타임라인 이름이 「HIFU/RF 리프팅」 으로 두 계열을 한 줄에 묶었다. phases/3/emergency/0 만 「HIFU 심부 에너지 과다 시」 로 한쪽을 지목한다. 나머지 값이 둘 다에 해당하는지는 원문에 없다.
+O | 기간 4개(Day 0 / 1-3 / 3-7 / 7-30). 마지막 기간 안의 값은 주 단위(2-4주, 1주 이상)를 쓴다.
+O | 「도」 가 화상 등급(2도)으로 쓰였다. ha-filler 의 체온(37.5도)과 같은 글자이며 다른 대상이다(잠정).
+Q | B | name phases/*/* | HIFU 와 RF 중 어느 쪽에 해당하는 반응인지 phases/3/emergency/0 외에는 원문에 없다.
+Q | P | phases/0/abnormal/0 | 「(24시간 이상)」 이 부종 지속 시간인지 원문 표현이 생략돼 있다.

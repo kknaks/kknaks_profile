@@ -1,0 +1,47 @@
+{
+  "source": "modifier-scale/modifier-scale-draft.md §4 (2026-11-06) — 사용자 채팅 결정, 하나씩",
+  "status": "paused",
+  "decisions": [
+    {
+      "id": "MS-1",
+      "topic": "빈도 수치 → 단계 경계",
+      "rows": [
+        "1%",
+        "N% 미만·이하·이내(표현)",
+        "10%",
+        "1.5%",
+        "25.5%",
+        "38.8%",
+        "50%",
+        "5-10%"
+      ],
+      "choice": "A",
+      "rule": "수치는 단계로 바꾸지 않는다. 원문 수치는 값 그대로 보존, 단계 점수는 원장 빈도 말이 있을 때만. pih-risk risk_levels 띠는 빌려 쓰지 않는다.",
+      "user_said": "응"
+    },
+    {
+      "id": "MS-2",
+      "topic": "「매우 드묾」 단계",
+      "rows": [
+        "매우 드묾(표현)"
+      ],
+      "choice": "A",
+      "rule": "매우 드묾 → 드묾(2). 근거 없이 극히 드묾(1)로 내리지 않는다(보수).",
+      "user_said": "응"
+    },
+    {
+      "id": "MS-3",
+      "topic": "safety 칸 이름(common/uncommon/serious/long_term) → 빈도 단계",
+      "choice": "A",
+      "rule": "칸 이름은 R15 frequency_class 분류로 그대로 보존(ERD v3.3 기존). 원장 말은 부연(parsed · incidence_text). 칸 이름에서 1~5 빈도 점수를 만들지 않는다 — 빈도 단계는 원장 빈도 말이 있을 때만. 분류=common · 부연=드물게/1% 같은 어긋남은 원장대로 보인다.",
+      "evidence": "common 칸 안: 드물게 10 · 1% 4 · N% 미만 3 · 드물음 1 · 드문 1 / uncommon 칸 안: 흔함 2",
+      "user_said": "분류를 common으로 하고 부연 설명 개념으로 원장 말들을 써도 되나 ? → 응"
+    }
+  ],
+  "paused_note": "2026-11-06 사용자: 단어별 결정(§4) 대신 컬럼 기준으로 — R15 incidence·degree·timing·course 에 무엇이 들어가는지 먼저 정하고 규칙 드라이런으로 자리 수 확인. 결정 4(비교·평가 말)는 단어 단위라 철회. 사용자 제안으로 시술 축·미해결(⑧ 480 · ⑨ 240) 먼저 처리 후 재개.",
+  "pending_proposal": {
+    "incidence_text": "그 자리에서 발생(얼마나 자주)을 꾸미는 조각 전부 — 단어가 아니라 꾸밈 대상으로 가름(미정 · 드라이런 필요)",
+    "frequency_score": "incidence/incidence_text 조각에 원장 단계 말이 있을 때만 1~5(미정)",
+    "observed": "극히 드묾 20 · 매우 드묾 8 = R15 컬럼 없음 / 흔함 2 = explanation / 대부분 6 = incidence_text(회복 비율) / 낮은 = degree_text"
+  }
+}

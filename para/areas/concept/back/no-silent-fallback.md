@@ -12,6 +12,7 @@ up:
   - 2026-09-12-sc-meeting
   - 2026-10-02-strong-hajin-polish
   - 2026-10-15-strong-hajin-attach-read
+  - 2026-11-16-ext-api-charty1
 tags:
   - reliability
   - failure-handling
@@ -59,3 +60,4 @@ tags:
 - 2026-09-12-sc-meeting §2·§3 · ax-workspace 커밋 e252dee · SCAX-SPEC-004 0.4.8 D44 정정
 - [[2026-10-02-strong-hajin-polish]] §2 — Strong Hajin WORK-008 Phase 4(`finalize_service.py` 세션 없음 → 콜드스타트, `codex_cli.py` stderr 요약)
 - [[2026-10-15-strong-hajin-attach-read]] §2 — Strong Hajin 자료 추출의 이미지 판정이 예외를 False 로 삼켜 「빈 파일」 사유에 합쳐지는 자리(`platform/document_parsers.py:513-514`)
+- [[2026-11-16-ext-api-charty1]] §2 — 반대 방향의 조용함: KOS 상담 메모는 `""` · `null` 쓰기에 200 을 주고 값을 그대로 둔다 → 「빈 값 = 비움」 계약이 거짓이 됨 → KOS 를 부르지 않고 400 으로 드러냄(오더 메모는 비워져 그대로) (DEC-012 D-47 · `fix-e2e2-instructions.md`)

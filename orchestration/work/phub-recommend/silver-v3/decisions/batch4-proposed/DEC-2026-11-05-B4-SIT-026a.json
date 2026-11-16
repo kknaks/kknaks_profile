@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/2(unlinked → auto) · 근거 조각 「피부색」 ⊃ 「피부」",
+ "gate_item": "b4-sit/026",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-026a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "피부",
+  "category": null,
+  "synonyms": [
+   "피부색"
+  ]
+ },
+ "proposal_item": "b4-sit/026",
+ "reason": "결정 묶음 4 — 문구 조각 「피부색」 을 site 「피부」 의 동의어로(근거: 조각 「피부색」 ⊃ 「피부」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@5/0/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "site"
+ }
+}

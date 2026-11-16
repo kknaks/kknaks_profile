@@ -1,0 +1,10250 @@
+{
+ "brief": "../../silver-dryrun-brief.md",
+ "slots_total": 432,
+ "table": {
+  "ledger-nodes": {
+   "slots": 260,
+   "R2": 16,
+   "R1": 13,
+   "R3": 1,
+   "R4": 1,
+   "S": 23,
+   "remaining": 206,
+   "ambiguous": 33
+  },
+  "dup-strong": {
+   "slots": 96,
+   "R2": 13,
+   "R1": 12,
+   "R3": 1,
+   "R4": 0,
+   "S": 25,
+   "remaining": 45,
+   "ambiguous": 8
+  },
+  "seeds": {
+   "slots": 61,
+   "R2": 0,
+   "R1": 0,
+   "R3": 0,
+   "R4": 0,
+   "S": 0,
+   "remaining": 61,
+   "ambiguous": 0
+  },
+  "batch3": {
+   "slots": 15,
+   "R2": 0,
+   "R1": 0,
+   "R3": 0,
+   "R4": 0,
+   "S": 0,
+   "remaining": 15,
+   "ambiguous": 0
+  }
+ },
+ "node_rows": [
+  {
+   "slot": "node/DIC-5aaeb6a419",
+   "node": "홍조",
+   "n": 99,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 100,
+   "name_after": "홍조",
+   "solo_strict": 79,
+   "solo_loose": 100,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e3b3a94751",
+   "node": "알레르기 반응",
+   "n": 45,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R4: 「심한 알레르기 반응(아나필락시스)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「아나필락시스」=「알레르기 반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "n_after": 46,
+   "name_after": "알레르기 반응",
+   "solo_strict": 45,
+   "solo_loose": 46,
+   "sole": null,
+   "partners": [
+    "반응(word_contains)",
+    "알레르기(word_contains)"
+   ],
+   "edge_words": [
+    "반응",
+    "알레르기"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6d7d122da6",
+   "node": "건조감",
+   "n": 42,
+   "rule": "S",
+   "to": "건조",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 42,
+   "name_after": "건조감",
+   "solo_strict": 41,
+   "solo_loose": 42,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9f432298e5",
+   "node": "신경 손상",
+   "n": 37,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「신경」가 띄어쓰기 없이 붙음(「신경손상」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 6,
+   "name_after": "신경손상",
+   "solo_strict": 5,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "손상",
+    "신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-10346e1f05",
+   "node": "딱지",
+   "n": 23,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 23,
+   "name_after": "딱지",
+   "solo_strict": 3,
+   "solo_loose": 23,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "가피형성",
+    "가피"
+   ]
+  },
+  {
+   "slot": "node/DIC-be7e18035d",
+   "node": "흉터",
+   "n": 23,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 23,
+   "name_after": "흉터",
+   "solo_strict": 9,
+   "solo_loose": 23,
+   "sole": null,
+   "partners": [
+    "흉터 악화(word_contains)"
+   ],
+   "edge_words": [],
+   "group": [
+    "흉터형성"
+   ]
+  },
+  {
+   "slot": "node/DIC-ce878aa28e",
+   "node": "경결감",
+   "n": 22,
+   "rule": "S",
+   "to": "경결",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 22,
+   "name_after": "경결감",
+   "solo_strict": 22,
+   "solo_loose": 22,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-24e707738d",
+   "node": "각질",
+   "n": 21,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 21,
+   "name_after": "각질",
+   "solo_strict": 14,
+   "solo_loose": 21,
+   "sole": null,
+   "partners": [
+    "각질 탈락(word_contains)",
+    "필링 각질(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9077a7d667",
+   "node": "안검하수",
+   "n": 19,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R4: 7차 병기 「눈꺼풀 처짐(안검하수)」의 한쪽이 R2 로 (사건, 부위)가 됨 — 병기 쌍이 그 꼴과 같은지 애매",
+    "R4: 「눈꺼풀 처짐 (경미한 안검하수)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「안검하수」=「처짐」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "n_after": 19,
+   "name_after": "안검하수",
+   "solo_strict": 19,
+   "solo_loose": 19,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-83efd6dfe2",
+   "node": "따가움",
+   "n": 18,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 18,
+   "name_after": "따가움",
+   "solo_strict": 18,
+   "solo_loose": 18,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "따가움감"
+   ]
+  },
+  {
+   "slot": "node/DIC-d36f417100",
+   "node": "실명",
+   "n": 15,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 15,
+   "name_after": "실명",
+   "solo_strict": 13,
+   "solo_loose": 15,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6b50e616e7",
+   "node": "근력 약화",
+   "n": 14,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 14,
+   "name_after": "근력 약화",
+   "solo_strict": 13,
+   "solo_loose": 14,
+   "sole": null,
+   "partners": [
+    "약화(word_contains)"
+   ],
+   "edge_words": [
+    "근력",
+    "약화"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ab72243150",
+   "node": "색소 변화",
+   "n": 14,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 14,
+   "name_after": "색소 변화",
+   "solo_strict": 14,
+   "solo_loose": 14,
+   "sole": null,
+   "partners": [
+    "색소(word_contains)"
+   ],
+   "edge_words": [
+    "변화",
+    "색소"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-de24228c8a",
+   "node": "색소탈실",
+   "n": 13,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 14,
+   "name_after": "색소탈실",
+   "solo_strict": 14,
+   "solo_loose": 14,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-001124cf23",
+   "node": "가려움증",
+   "n": 11,
+   "rule": "S",
+   "to": "소양감",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 11,
+   "name_after": "가려움증",
+   "solo_strict": 11,
+   "solo_loose": 11,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-bc234a0ba6",
+   "node": "근육통",
+   "n": 10,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 10,
+   "name_after": "근육통",
+   "solo_strict": 7,
+   "solo_loose": 10,
+   "sole": null,
+   "partners": [
+    "근육통 유사 감각(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-debeafd66f",
+   "node": "연하곤란",
+   "n": 10,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 10,
+   "name_after": "연하곤란",
+   "solo_strict": 10,
+   "solo_loose": 10,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-98167136a6",
+   "node": "하악변연신경 손상",
+   "n": 10,
+   "rule": "R2",
+   "to": "손상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "손상",
+    "하악변연신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-166a24c4ee",
+   "node": "피로감",
+   "n": 9,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 9,
+   "name_after": "피로감",
+   "solo_strict": 8,
+   "solo_loose": 9,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-58650e472d",
+   "node": "박리",
+   "n": 7,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 8,
+   "name_after": "박리",
+   "solo_strict": 8,
+   "solo_loose": 8,
+   "sole": null,
+   "partners": [
+    "박피(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1b79ff4310",
+   "node": "어지러움",
+   "n": 7,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 7,
+   "name_after": "어지러움",
+   "solo_strict": 7,
+   "solo_loose": 7,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2e26181014",
+   "node": "눈꺼풀 처짐",
+   "n": 6,
+   "rule": "R2",
+   "to": "처짐",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "눈꺼풀",
+    "처짐"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7c25386955",
+   "node": "따뜻함",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "따뜻함",
+   "solo_strict": 5,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9c03cb9438",
+   "node": "메스꺼움",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "메스꺼움",
+   "solo_strict": 6,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [
+    "미량원소 과잉 메스꺼움(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6c0d7ef9f8",
+   "node": "출혈",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 7,
+   "name_after": "출혈",
+   "solo_strict": 5,
+   "solo_loose": 7,
+   "sole": null,
+   "partners": [
+    "점상 출혈(word_contains)",
+    "충혈(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ea083999b0",
+   "node": "표정 부자연스러움",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "표정 부자연스러움",
+   "solo_strict": 6,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [
+    "표정(word_contains)"
+   ],
+   "edge_words": [
+    "부자연스러움",
+    "표정"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6779a130ca",
+   "node": "필링",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "필링",
+   "solo_strict": 6,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [
+    "필링 각질(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-847434baab",
+   "node": "화끈거림",
+   "n": 6,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "화끈거림",
+   "solo_strict": 4,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-de3fc3bae5",
+   "node": "가피",
+   "n": 5,
+   "rule": "R4",
+   "to": "딱지",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "가피",
+   "solo_strict": 1,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-578cbe0214",
+   "node": "물집",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "물집",
+   "solo_strict": 1,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-707a8f65f4",
+   "node": "민감성",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "민감성",
+   "solo_strict": 4,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [
+    "민감성 자극반응(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-58b480e83a",
+   "node": "색소이상",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R1 말 「이상」가 띄어쓰기 없이 붙음(「색소이상」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 5,
+   "name_after": "색소이상",
+   "solo_strict": 5,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-24e4059375",
+   "node": "실 촉감",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "실 촉감",
+   "solo_strict": 5,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "실",
+    "촉감"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c84f08bc39",
+   "node": "약화",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "약화",
+   "solo_strict": 5,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [
+    "근력 약화(word_contains)",
+    "약화 확산(word_contains)",
+    "확산 인접 약화(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-468c3b7dee",
+   "node": "염증 반응",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 7,
+   "name_after": "염증 반응",
+   "solo_strict": 7,
+   "solo_loose": 7,
+   "sole": null,
+   "partners": [
+    "염증(word_contains)",
+    "반응(word_contains)"
+   ],
+   "edge_words": [
+    "반응",
+    "염증"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7574b3df12",
+   "node": "자극",
+   "n": 5,
+   "rule": "S",
+   "to": "자극감",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 6,
+   "name_after": "자극",
+   "solo_strict": 6,
+   "solo_loose": 6,
+   "sole": null,
+   "partners": [
+    "자국(jamo1)",
+    "부위 자극(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7c530310c4",
+   "node": "접촉성 피부염",
+   "n": 5,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "접촉성 피부염",
+   "solo_strict": 4,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "접촉성",
+    "피부염"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6e6b168e3f",
+   "node": "막힘",
+   "n": 4,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "막힘",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d35ae5313c",
+   "node": "민감도 증가",
+   "n": 4,
+   "rule": "R1",
+   "to": "민감도",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "민감도",
+    "증가"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9ebcc19f1d",
+   "node": "소화불편",
+   "n": 4,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "소화불편",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c08266ccae",
+   "node": "이물감",
+   "n": 4,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "이물감",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-662939e59a",
+   "node": "호흡곤란",
+   "n": 4,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "호흡곤란",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-41289c81e9",
+   "node": "각질 탈락",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "각질 탈락",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [
+    "각질(word_contains)"
+   ],
+   "edge_words": [
+    "각질",
+    "탈락"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5f97dc5132",
+   "node": "건조증",
+   "n": 3,
+   "rule": "S",
+   "to": "건조",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "건조증",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-79b3ade2fd",
+   "node": "경화감",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "경화감",
+   "solo_strict": 2,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "경화"
+   ]
+  },
+  {
+   "slot": "node/DIC-59b98160f8",
+   "node": "광과민성",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "광과민성",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [
+    "광과민성 반응(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b063cf28e5",
+   "node": "손상",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 50,
+   "name_after": "손상",
+   "solo_strict": 50,
+   "solo_loose": 50,
+   "sole": null,
+   "partners": [
+    "깊이 손상(word_contains)",
+    "손상 색소 변화(word_contains)",
+    "표정 손상(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-670a5e5c52",
+   "node": "압박감",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "압박감",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-29483818ec",
+   "node": "염증",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R4: 「이물 반응 (광범위 염증)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「염증」=「이물반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "n_after": 3,
+   "name_after": "염증",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [
+    "염증 반응(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f424d86394",
+   "node": "온감",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "온감",
+   "solo_strict": 1,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-872311b8ef",
+   "node": "자국",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "자국",
+   "solo_strict": 2,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [
+    "자극(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-279b46c105",
+   "node": "전해질 불균형",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "전해질 불균형",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "불균형",
+    "전해질"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-4ee357e06d",
+   "node": "점상 출혈",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "점상 출혈",
+   "solo_strict": 2,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [
+    "출혈(word_contains)"
+   ],
+   "edge_words": [
+    "점상",
+    "출혈"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5f899011b4",
+   "node": "혈관염",
+   "n": 3,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "혈관염",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1d42d08e00",
+   "node": "감각신경 손상",
+   "n": 2,
+   "rule": "R2",
+   "to": "손상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "감각신경",
+    "손상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9cbc2acc33",
+   "node": "감기",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 2(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 2,
+   "name_after": "감기",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-717edda617",
+   "node": "거부반응",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "거부반응",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": "본인 혈액을 사용하므로 알레르기·거부반응이 거의 없음 (매우 안전한 시술)",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b604039fdc",
+   "node": "건성",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "건성",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2b287b23f3",
+   "node": "결절감",
+   "n": 2,
+   "rule": "S",
+   "to": "결절",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "결절감",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d1b1761a4a",
+   "node": "경련",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "경련",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-beaf942d7a",
+   "node": "과교정",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "과교정",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-49e23bafe9",
+   "node": "관절",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "관절",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-14e5d9c478",
+   "node": "궤양",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "궤양",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ba76c3e5de",
+   "node": "낭종",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "낭종",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a3d755b51b",
+   "node": "냉감",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "냉감",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-111c0d0579",
+   "node": "농양",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "농양",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3ede1d97ad",
+   "node": "눈 손상",
+   "n": 2,
+   "rule": "R2",
+   "to": "손상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "눈",
+    "손상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0f1b1a51c7",
+   "node": "눈썹",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「눈썹」 뒤가 용언 꼴(무거운)뿐 — 「사건 앞」인지 애매(「이마나 눈썹이 무거운 느낌」)"
+   ],
+   "n_after": 2,
+   "name_after": "눈썹",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "이마나 눈썹이 무거운 느낌",
+   "partners": [
+    "윗눈꺼풀이나 눈썹(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b9506180bf",
+   "node": "눈이",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「눈」 뒤가 용언 꼴(건조해지는)뿐 — 「사건 앞」인지 애매(「눈이 건조해지는 증상 (눈물 분비 감소)」)"
+   ],
+   "n_after": 2,
+   "name_after": "눈이",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "눈이 건조해지는 증상 (눈물 분비 감소)",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-298c3757e9",
+   "node": "당기는",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 2(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 2,
+   "name_after": "당기는",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b3925d25b1",
+   "node": "따뜻한 감각",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "따뜻한 감각",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "감각(word_contains)"
+   ],
+   "edge_words": [
+    "감각",
+    "따뜻한"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-505217bd3f",
+   "node": "무감각",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 단독 2 자리가 전부 괄호 안(「일시적 감각 저하 (저림, 무감각)」) · 모든 자리에 다른 사건 있음 — 괄호 안 단독을 「그 말 하나」로 볼지 애매"
+   ],
+   "n_after": 2,
+   "name_after": "무감각",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-25875386af",
+   "node": "박피",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "박피",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "박리(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0fbaf19021",
+   "node": "반응",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "반응",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "알레르기 반응(word_contains)",
+    "염증 반응(word_contains)",
+    "이물질 반응(word_contains)",
+    "광과민성 반응(word_contains)",
+    "면역 반응(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c27843b7e6",
+   "node": "발진",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 단독 2 자리가 전부 괄호 안(「알레르기 반응 (피부 발진, 가려움)」) · 모든 자리에 다른 사건 있음 — 괄호 안 단독을 「그 말 하나」로 볼지 애매"
+   ],
+   "n_after": 2,
+   "name_after": "발진",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e432d417d7",
+   "node": "본인 혈액 알레르기",
+   "n": 2,
+   "rule": "R3",
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "본인 혈액 알레르기",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "본인",
+    "알레르기"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3a8be17990",
+   "node": "부은",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "부은",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": "얼굴이 약간 부은 느낌",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-531d5d613f",
+   "node": "뻣뻣한",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 2(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 2,
+   "name_after": "뻣뻣한",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "뻣뻣함(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-cdf1f4f977",
+   "node": "사라짐",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 2(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 2,
+   "name_after": "사라짐",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-276644df4b",
+   "node": "삽입 지점 볼록함",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "삽입 지점 볼록함",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "볼록함",
+    "삽입"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9fa0ee5ca0",
+   "node": "색전증",
+   "n": 2,
+   "rule": "S",
+   "to": "색전",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "색전증",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-8fc6c57c4d",
+   "node": "석회화",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "석회화",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-00d04673a8",
+   "node": "수축감",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "수축감",
+   "solo_strict": 1,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-65f0849917",
+   "node": "수포형성",
+   "n": 2,
+   "rule": "S",
+   "to": "수포",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "수포형성",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-8c337e6910",
+   "node": "실의 이동",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "실의 이동",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "실의(word_contains)"
+   ],
+   "edge_words": [
+    "실의",
+    "이동"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-55e4c6f87e",
+   "node": "실이 밖으로",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "실이 밖으로",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "실이 피부 밖으로 튀어나오는 현상",
+   "partners": [],
+   "edge_words": [
+    "밖으로",
+    "실이"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-345e90fa2d",
+   "node": "안면신경 마비",
+   "n": 2,
+   "rule": "R2",
+   "to": "마비",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "마비",
+    "안면신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-45739619e4",
+   "node": "안면신경 손상",
+   "n": 2,
+   "rule": "R2",
+   "to": "손상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "손상",
+    "안면신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7818e7e865",
+   "node": "알레르기성 접촉피부염",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "알레르기성 접촉피부염",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "접촉피부염(word_contains)"
+   ],
+   "edge_words": [
+    "알레르기성",
+    "접촉피부염"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9beb5cea81",
+   "node": "온열감",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "온열감",
+   "solo_strict": 1,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-66badf641a",
+   "node": "울퉁불퉁",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 3,
+   "name_after": "울퉁불퉁",
+   "solo_strict": 3,
+   "solo_loose": 3,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f0f1821ba7",
+   "node": "위축",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "위축",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-37b4de8e20",
+   "node": "윗눈꺼풀이나 눈썹",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「눈썹」 뒤가 용언 꼴(처지는)뿐 — 「사건 앞」인지 애매(「윗눈꺼풀이나 눈썹이 처지는 현상」)"
+   ],
+   "n_after": 2,
+   "name_after": "윗눈꺼풀이나 눈썹",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "윗눈꺼풀이나 눈썹이 처지는 현상",
+   "partners": [
+    "눈썹(word_contains)"
+   ],
+   "edge_words": [
+    "눈썹",
+    "윗눈꺼풀이나"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a391452cc9",
+   "node": "이물질 반응",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "이물질 반응",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "반응(word_contains)"
+   ],
+   "edge_words": [
+    "반응",
+    "이물질"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-537ed1201b",
+   "node": "이완",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "이완",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-89453db373",
+   "node": "저림감",
+   "n": 2,
+   "rule": "S",
+   "to": "감각 이상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "저림감",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-de5b364d47",
+   "node": "저혈당",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "저혈당",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-11cb591d2a",
+   "node": "제한 가동범위",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "제한 가동범위",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "가동범위",
+    "제한"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5c92aa4285",
+   "node": "주름",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "주름",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": "주름이 덜 펴지는 경우",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f3720e2d70",
+   "node": "주름 덜",
+   "n": 2,
+   "rule": "R1",
+   "to": "주름",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "덜",
+    "주름"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1d52985bc1",
+   "node": "지나면",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "지나면",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b23a58a59f",
+   "node": "진물",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "진물",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2a42c22139",
+   "node": "채취 부위",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "채취 부위",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "부위",
+    "채취"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3795a868a4",
+   "node": "출혈점",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "출혈점",
+   "solo_strict": 1,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a7c97fdfc1",
+   "node": "침샘 관통",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "침샘 관통",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "관통",
+    "침샘"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-bf94dad298",
+   "node": "커지는",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 2(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 2,
+   "name_after": "커지는",
+   "solo_strict": 0,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ed21d5216d",
+   "node": "쾨브너현상",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "쾨브너현상",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6cb0d2c52f",
+   "node": "태아 기형",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "태아 기형",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "기형",
+    "태아"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-03b7dfe38d",
+   "node": "통증감",
+   "n": 2,
+   "rule": "S",
+   "to": "통증",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "통증감",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0bdd8b7898",
+   "node": "표정",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "표정",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "표정이 어색해지는 느낌 (마스크 쓴 것 같은 얼굴)",
+   "partners": [
+    "표정 부자연스러움(word_contains)",
+    "표정 경직(word_contains)",
+    "표정 손상(word_contains)",
+    "표정 어색함(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-72dcec72c6",
+   "node": "표정 경직",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "표정 경직",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [
+    "표정(word_contains)",
+    "경직(word_contains)"
+   ],
+   "edge_words": [
+    "경직",
+    "표정"
+   ],
+   "group": [
+    "표정 경직감"
+   ]
+  },
+  {
+   "slot": "node/DIC-2295b0271a",
+   "node": "표정근 이완",
+   "n": 2,
+   "rule": "R2",
+   "to": "이완",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "이완",
+    "표정근"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-54d8329f72",
+   "node": "피부색소침착",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「피부」가 띄어쓰기 없이 붙음(「피부색소침착」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 2,
+   "name_after": "피부색소침착",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-37ab1908d1",
+   "node": "피부위축",
+   "n": 2,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「피부」가 띄어쓰기 없이 붙음(「피부위축」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 2,
+   "name_after": "피부위축",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c57cdbdd5c",
+   "node": "화상감",
+   "n": 2,
+   "rule": "S",
+   "to": "화상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 2,
+   "name_after": "화상감",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-baaaa4e14b",
+   "node": "CO2",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 단독 2 자리가 전부 괄호 안(「색소침착이상(PIH: CO2는 50% 발생률로 높음)」) · 모든 자리에 다른 사건 있음 — 괄호 안 단독을 「그 말 하나」로 볼지 애매"
+   ],
+   "n_after": 2,
+   "name_after": "CO2",
+   "solo_strict": 2,
+   "solo_loose": 2,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-456a30bf4f",
+   "node": "CO2 높음",
+   "n": 1,
+   "rule": "R1",
+   "to": "CO2",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "CO2",
+    "높음"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-30b9322f71",
+   "node": "가스감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "가스감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-eeba5e4c6d",
+   "node": "가피형성",
+   "n": 1,
+   "rule": "S",
+   "to": "딱지",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "가피형성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-208db329ff",
+   "node": "간기능 이상",
+   "n": 1,
+   "rule": "R1",
+   "to": "간기능",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "간기능",
+    "이상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e053b73c60",
+   "node": "간독성",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "간독성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1b448206f1",
+   "node": "간수치 상승",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "간수치 상승",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "간수치",
+    "상승"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2fc3b02412",
+   "node": "감각",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "감각",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "따가운 감각",
+   "partners": [
+    "따뜻한 감각(word_contains)",
+    "근육통 유사 감각(word_contains)",
+    "마늘 냄새 감각(word_contains)",
+    "감각 변화(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d6f0df9316",
+   "node": "감각 변화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "감각 변화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "감각(word_contains)"
+   ],
+   "edge_words": [
+    "감각",
+    "변화"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2f5734ac83",
+   "node": "감염위험",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "감염위험",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f50c1834c1",
+   "node": "건성피부",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "건성피부",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5e76482ed1",
+   "node": "결막",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "결막",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-fa04ba0a09",
+   "node": "결막 충혈",
+   "n": 1,
+   "rule": "R2",
+   "to": "충혈",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "결막",
+    "충혈"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d601bfbb51",
+   "node": "결막염",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "결막염",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3d021885ce",
+   "node": "결절형성",
+   "n": 1,
+   "rule": "S",
+   "to": "결절",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "결절형성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6d2c6fbd52",
+   "node": "경직",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "경직",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "표정 경직(word_contains)"
+   ],
+   "edge_words": [],
+   "group": [
+    "경직감"
+   ]
+  },
+  {
+   "slot": "node/DIC-266dbb4e11",
+   "node": "경직감",
+   "n": 1,
+   "rule": "S",
+   "to": "경직",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "경직감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b6e8e90045",
+   "node": "경화",
+   "n": 1,
+   "rule": "S",
+   "to": "경화감",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "경화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6ca21f5d0d",
+   "node": "고칼슘혈증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "고칼슘혈증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3de12b781a",
+   "node": "광과민성 반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "광과민성 반응",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "치료 후 광과민성 반응",
+   "partners": [
+    "광과민성(word_contains)",
+    "반응(word_contains)"
+   ],
+   "edge_words": [
+    "광과민성",
+    "반응"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5d3031097c",
+   "node": "광민감성 증가",
+   "n": 1,
+   "rule": "R1",
+   "to": "광민감성",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "광민감성",
+    "증가"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e9546302e9",
+   "node": "구순염",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "구순염",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-422d042c3c",
+   "node": "근력 저하",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "근력 저하",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "근력",
+    "저하"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1e86f4a121",
+   "node": "근육통 유사 감각",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "근육통 유사 감각",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "근육통(word_contains)",
+    "감각(word_contains)"
+   ],
+   "edge_words": [
+    "감각",
+    "근육통"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ca2e4b96c3",
+   "node": "기존 기미 악화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "기존 기미 악화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "기존",
+    "악화"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-602e6005d6",
+   "node": "기형유발",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "기형유발",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "기형유발 위험",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-bda52e43e5",
+   "node": "깊이 진피 손상",
+   "n": 1,
+   "rule": "R2",
+   "to": "깊이 손상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "깊이",
+    "손상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0047669db2",
+   "node": "냉각 창백",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 1(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 1,
+   "name_after": "냉각 창백",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "냉각",
+    "창백"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0af6b6a297",
+   "node": "냉감각 둔화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "냉감각 둔화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "냉감각",
+    "둔화"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-21f372e87d",
+   "node": "냉동주머니증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "냉동주머니증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-befe8987ae",
+   "node": "눈 건조증",
+   "n": 1,
+   "rule": "R2",
+   "to": "건조증",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "건조증",
+    "눈"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-68ec6dbd05",
+   "node": "눈부심",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "눈부심",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "치료 중 눈부심",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-736a2cfe43",
+   "node": "대비 수준",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 단독 1 자리가 전부 괄호 안(「색소탈실(PIH: QS 대비 10% 수준)」) · 모든 자리에 다른 사건 있음 — 괄호 안 단독을 「그 말 하나」로 볼지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "대비 수준",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "대비",
+    "수준"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-050d8e5f30",
+   "node": "동맥 폐색",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "동맥 폐색",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "동맥",
+    "폐색"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-bc3c8e5d10",
+   "node": "들어올림",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "들어올림",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-27ff871708",
+   "node": "따가움감",
+   "n": 1,
+   "rule": "S",
+   "to": "따가움",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "따가움감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9ad9a3b490",
+   "node": "마늘 냄새 감각",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "마늘 냄새 감각",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "주입 중 마늘 냄새 감각 (일시적)",
+   "partners": [
+    "감각(word_contains)"
+   ],
+   "edge_words": [
+    "감각",
+    "마늘"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-dd4488925f",
+   "node": "마늘 냄새 입냄새",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "마늘 냄새 입냄새",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "마늘",
+    "입냄새"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-cd195a1d5f",
+   "node": "마비",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 4,
+   "name_after": "마비",
+   "solo_strict": 4,
+   "solo_loose": 4,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "마비감"
+   ]
+  },
+  {
+   "slot": "node/DIC-eb31b6cdf3",
+   "node": "마비감",
+   "n": 1,
+   "rule": "S",
+   "to": "마비",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "마비감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c5177b3faa",
+   "node": "만져질 미세입자",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R1 말 「미세」가 띄어쓰기 없이 붙음(「미세입자」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "만져질 미세입자",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "만져질 수 있는 미세입자",
+   "partners": [],
+   "edge_words": [
+    "만져질",
+    "미세입자"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f2351c7dbb",
+   "node": "만져질 입자",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "만져질 입자",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "만져질 수 있는 입자",
+   "partners": [],
+   "edge_words": [
+    "만져질",
+    "입자"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5ea0c422ff",
+   "node": "면역 반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "면역 반응",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "반응(word_contains)"
+   ],
+   "edge_words": [
+    "면역",
+    "반응"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2426d77563",
+   "node": "모공막힘",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "모공막힘",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ec85c0b5ca",
+   "node": "모낭염",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "모낭염",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d3010fae97",
+   "node": "미량원소 과잉 메스꺼움",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "미량원소 과잉 메스꺼움",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "미량원소 과잉 시 메스꺼움",
+   "partners": [
+    "메스꺼움(word_contains)"
+   ],
+   "edge_words": [
+    "메스꺼움",
+    "미량원소"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-84adddaa3d",
+   "node": "미세출혈",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R1 말 「미세」가 띄어쓰기 없이 붙음(「미세출혈」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "미세출혈",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-8e0cae5fb6",
+   "node": "미열감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "미열감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e320d54ede",
+   "node": "미온감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "미온감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-da39c5aa4a",
+   "node": "민감도",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 5,
+   "name_after": "민감도",
+   "solo_strict": 5,
+   "solo_loose": 5,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7c4f39caaa",
+   "node": "민감성 자극반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "민감성 자극반응",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "민감성(word_contains)"
+   ],
+   "edge_words": [
+    "민감성",
+    "자극반응"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f217b23aca",
+   "node": "민감성 증가",
+   "n": 1,
+   "rule": "R1",
+   "to": "민감성",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "민감성",
+    "증가"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ef508ace8c",
+   "node": "박탈",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "박탈",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "박탈감"
+   ]
+  },
+  {
+   "slot": "node/DIC-aa0c2277e0",
+   "node": "박탈감",
+   "n": 1,
+   "rule": "S",
+   "to": "박탈",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "박탈감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3c569f9750",
+   "node": "반드 사전 고지",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "반드 사전 고지",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "고지",
+    "반드"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5c02efac57",
+   "node": "반응성 색소이상증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "반응성 색소이상증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "반응성",
+    "색소이상증"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-91052ba47a",
+   "node": "반흔형성",
+   "n": 1,
+   "rule": "S",
+   "to": "반흔",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "반흔형성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2dbdf84ae9",
+   "node": "발열감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "발열감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ba7bdff9c9",
+   "node": "복시",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "복시",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d6a2b6f60d",
+   "node": "부당한 거상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "부당한 거상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "거상",
+    "부당한"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-520c3bbf28",
+   "node": "부위 자극",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "부위 자극",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "도포 부위 자극",
+   "partners": [
+    "자극(word_contains)"
+   ],
+   "edge_words": [
+    "부위",
+    "자극"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a6fe78363f",
+   "node": "부정맥",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "부정맥",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-37b6b5f0a2",
+   "node": "불규칙 출혈",
+   "n": 1,
+   "rule": "R1",
+   "to": "출혈",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "불규칙",
+    "출혈"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-8aab46c379",
+   "node": "불균일감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "불균일감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9f529186b5",
+   "node": "붉어짐",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "붉어짐",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-fb5e544e1a",
+   "node": "뻣뻣함",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "뻣뻣함",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "뻣뻣한(jamo1)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-693fe0e445",
+   "node": "색변화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "색변화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-be11e61408",
+   "node": "색소침착감소",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "색소침착감소",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-132de9ef5a",
+   "node": "색소침착과다",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "색소침착과다",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5ef39dee00",
+   "node": "색소침착이상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R1 말 「이상」가 띄어쓰기 없이 붙음(「색소침착이상」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "색소침착이상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-714b6b77a3",
+   "node": "성기능 저하",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "성기능 저하",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "성기능",
+    "저하"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-f91ef20f2b",
+   "node": "세포 배양",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "세포 배양",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "배양",
+    "세포"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-4b07ccbcbf",
+   "node": "세포 배양 불순물",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "세포 배양 불순물",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "세포 배양 관련 불순물",
+   "partners": [],
+   "edge_words": [
+    "불순물",
+    "세포"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1588406f73",
+   "node": "세포 증식 변이",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "세포 증식 변이",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "세포 증식 관련 변이 위험",
+   "partners": [
+    "증식(word_contains)"
+   ],
+   "edge_words": [
+    "변이",
+    "세포"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-58be479ed3",
+   "node": "셀레늄 독성",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "셀레늄 독성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "독성",
+    "셀레늄"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d7447bdbe4",
+   "node": "소화불량",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "소화불량",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b08eb5ac37",
+   "node": "손상 색소 변화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "손상 색소 변화",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "과도한 손상으로 인한 색소 변화",
+   "partners": [
+    "손상(word_contains)",
+    "색소(word_contains)"
+   ],
+   "edge_words": [
+    "변화",
+    "손상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b3815900d5",
+   "node": "수분",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "수분",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6c35948d19",
+   "node": "수액 따끔",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "수액 따끔",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "수액 주입 중 혈관 따끔함",
+   "partners": [],
+   "edge_words": [
+    "따끔",
+    "수액"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-dbabb8abdb",
+   "node": "수액 비린내 트림",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "수액 비린내 트림",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "수액",
+    "트림"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7de8fc53e2",
+   "node": "수액 팔 무거움",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "수액 팔 무거움",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "수액 주입 중 팔 무거움",
+   "partners": [],
+   "edge_words": [
+    "무거움",
+    "수액"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-5135a9e372",
+   "node": "스레드 촉지감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "스레드 촉지감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "스레드",
+    "촉지감"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0a25f65048",
+   "node": "시력상실",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "시력상실",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "시력상실 위험",
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-63c6504809",
+   "node": "신경 과민",
+   "n": 1,
+   "rule": "R2",
+   "to": "과민",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "과민",
+    "신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-da12dec7d0",
+   "node": "신경 마비",
+   "n": 1,
+   "rule": "R2",
+   "to": "마비",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "마비",
+    "신경"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-25ce5f8eaf",
+   "node": "신경독성반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「신경」가 띄어쓰기 없이 붙음(「신경독성반응」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "신경독성반응",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3718bed77f",
+   "node": "신경혈관손상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「신경」가 띄어쓰기 없이 붙음(「신경혈관손상」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "신경혈관손상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-922eb76b72",
+   "node": "신장 결석",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "신장 결석",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "결석",
+    "신장"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-826a8eaffb",
+   "node": "신장 기능 악화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "신장 기능 악화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "신장",
+    "악화"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b8f92da365",
+   "node": "실 돌출감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "실 돌출감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "돌출감",
+    "실"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a9afbbf47f",
+   "node": "실 매듭 촉감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "실 매듭 촉감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "실",
+    "촉감"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-959345b27f",
+   "node": "실 촉지감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "실 촉지감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "실",
+    "촉지감"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-870a35e174",
+   "node": "실밥",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 1(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 1,
+   "name_after": "실밥",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-244b797b99",
+   "node": "실의",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "실의",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "실의 노출",
+   "partners": [
+    "실의 이동(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a9a69c34c9",
+   "node": "안구 자극",
+   "n": 1,
+   "rule": "R2",
+   "to": "자극",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "안구",
+    "자극"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-85e617d2c8",
+   "node": "알레르기",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "알레르기",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "알레르기 반응(word_contains)",
+    "화학적 차단제 알레르기(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-59ef282afc",
+   "node": "압통감",
+   "n": 1,
+   "rule": "S",
+   "to": "통증",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "압통감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-eccfc62c28",
+   "node": "약화 확산",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "약화 확산",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "약화(word_contains)"
+   ],
+   "edge_words": [
+    "약화",
+    "확산"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-6752550a9d",
+   "node": "역설적 비대",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 단독 1 자리가 전부 괄호 안(「PAH(역설적 지방 비대, paradoxical adipose hyperplasia) — 반드시 사전 고지」) · 모든 자리에 다른 사건 있음 — 괄호 안 단독을 「그 말 하나」로 볼지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "역설적 비대",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "비대",
+    "역설적"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3b541595e8",
+   "node": "요철감",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "요철감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-fd76e61dd3",
+   "node": "용혈성 빈혈",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "용혈성 빈혈",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "빈혈",
+    "용혈성"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a2a1acf5ca",
+   "node": "우울증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "우울증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-04d939c0f3",
+   "node": "월경불순",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "월경불순",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b207df2204",
+   "node": "음성 변화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "음성 변화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "변화",
+    "음성"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-38c284cc4e",
+   "node": "이상 염증반응",
+   "n": 1,
+   "rule": "R1",
+   "to": "염증반응",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "염증반응",
+    "이상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-e28017e9ef",
+   "node": "임시 색소탈실",
+   "n": 1,
+   "rule": "R1",
+   "to": "색소탈실",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "색소탈실",
+    "임시"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-743c125264",
+   "node": "입과 움직임 제한",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "입과 움직임 제한",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "입과",
+    "제한"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-95f161c127",
+   "node": "자반",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "자반",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": [
+    "자반증"
+   ]
+  },
+  {
+   "slot": "node/DIC-8cce111439",
+   "node": "자반증",
+   "n": 1,
+   "rule": "S",
+   "to": "자반",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "자반증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3937482a1a",
+   "node": "자살충동",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "자살충동",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-2d9c66fc8d",
+   "node": "장기간 홍조",
+   "n": 1,
+   "rule": "R1",
+   "to": "홍조",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "장기간",
+    "홍조"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0c527b0332",
+   "node": "장기적 색소이상",
+   "n": 1,
+   "rule": "R1",
+   "to": "색소이상",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "색소이상",
+    "장기적"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ffb6ca84df",
+   "node": "저혈압",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "저혈압",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-846d12b070",
+   "node": "전신 알레르기 반응",
+   "n": 1,
+   "rule": "R2",
+   "to": "알레르기 반응",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "반응",
+    "전신"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-64296132f6",
+   "node": "전신독성반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「전신」가 띄어쓰기 없이 붙음(「전신독성반응」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "전신독성반응",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-fc2935035f",
+   "node": "접촉 화학화상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "접촉 화학화상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "화학화상(word_contains)"
+   ],
+   "edge_words": [
+    "접촉",
+    "화학화상"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-af74e4a3a7",
+   "node": "접촉피부염",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "접촉피부염",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "알레르기성 접촉피부염(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9176c2352c",
+   "node": "제품 최저 수준",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 1(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 1,
+   "name_after": "제품 최저 수준",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "수준",
+    "제품"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-559c19ecc3",
+   "node": "조직반응",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "조직반응",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-fb0f92a585",
+   "node": "중등도 박리",
+   "n": 1,
+   "rule": "R1",
+   "to": "박리",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "박리",
+    "중등도"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ce7d5d8853",
+   "node": "중증 염증 반응",
+   "n": 1,
+   "rule": "R1",
+   "to": "염증 반응",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "반응",
+    "중증"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d40362dda6",
+   "node": "증식",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 1(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 1,
+   "name_after": "증식",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "세포 증식 변이(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-d2ee5df26a",
+   "node": "찌릿함",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "찌릿함",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3d488f9bcc",
+   "node": "최소",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "최소",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": "최소 부작용",
+   "partners": [
+    "최소 반응성(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-da634820ae",
+   "node": "최소 반응성",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "최소 반응성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "최소(word_contains)"
+   ],
+   "edge_words": [
+    "반응성",
+    "최소"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-7ee8fff15d",
+   "node": "탈색",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R3: 엄격 단독 0 · 느슨 단독 1(정도·경과·빈도 밖 수식어까지 빼면 단독) — 「그 말 하나」 기준이 애매"
+   ],
+   "n_after": 1,
+   "name_after": "탈색",
+   "solo_strict": 0,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a18ce6bff4",
+   "node": "턱밑 처짐",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "턱밑 처짐",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "처짐(word_contains)"
+   ],
+   "edge_words": [
+    "처짐",
+    "턱밑"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-393ba4dd16",
+   "node": "표면 울퉁불퉁",
+   "n": 1,
+   "rule": "R2",
+   "to": "울퉁불퉁",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "울퉁불퉁",
+    "표면"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-c583690519",
+   "node": "표정 경직감",
+   "n": 1,
+   "rule": "S",
+   "to": "표정 경직",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "표정 경직감",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "경직감",
+    "표정"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-ebfb7ad54e",
+   "node": "표정 손상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "표정 손상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "손상(word_contains)",
+    "표정(word_contains)"
+   ],
+   "edge_words": [
+    "손상",
+    "표정"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a564af5b8b",
+   "node": "표정 어색함",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "표정 어색함",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "표정(word_contains)"
+   ],
+   "edge_words": [
+    "어색함",
+    "표정"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-1706bdb9a7",
+   "node": "표정근 과도이완",
+   "n": 1,
+   "rule": "R2",
+   "to": "과도이완",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 0,
+   "name_after": null,
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": null,
+   "partners": [],
+   "edge_words": [
+    "과도이완",
+    "표정근"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-8f382319b6",
+   "node": "피부건조",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「피부」가 띄어쓰기 없이 붙음(「피부건조」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "피부건조",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-183c66c8f9",
+   "node": "피부화상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [
+    "R2 말 「피부」가 띄어쓰기 없이 붙음(「피부화상」) — 「앞뒤 말」인지 애매"
+   ],
+   "n_after": 1,
+   "name_after": "피부화상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-930f304567",
+   "node": "필링 각질",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "필링 각질",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "각질(word_contains)",
+    "필링(word_contains)"
+   ],
+   "edge_words": [
+    "각질",
+    "필링"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a388886fb4",
+   "node": "합병증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "합병증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "혈관계 합병증(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-9eb340cbbe",
+   "node": "헤르페스",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "헤르페스",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-293593f69b",
+   "node": "혈관계 합병증",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "혈관계 합병증",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "합병증(word_contains)"
+   ],
+   "edge_words": [
+    "합병증",
+    "혈관계"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3fefa6adec",
+   "node": "혈압저하",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "혈압저하",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-a3b10572b4",
+   "node": "화학적 차단제 알레르기",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "화학적 차단제 알레르기",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "알레르기(word_contains)"
+   ],
+   "edge_words": [
+    "알레르기",
+    "화학적"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-0e75018c1d",
+   "node": "화학화상",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "화학화상",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "접촉 화학화상(word_contains)"
+   ],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-3944bede55",
+   "node": "확산 인접 약화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "확산 인접 약화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "약화(word_contains)"
+   ],
+   "edge_words": [
+    "약화",
+    "확산"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-238f716e76",
+   "node": "흉터 악화",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "흉터 악화",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [
+    "흉터(word_contains)"
+   ],
+   "edge_words": [
+    "악화",
+    "흉터"
+   ],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-b8a88e6f9e",
+   "node": "흉터형성",
+   "n": 1,
+   "rule": "S",
+   "to": "흉터",
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "흉터형성",
+   "solo_strict": 1,
+   "solo_loose": 1,
+   "sole": null,
+   "partners": [],
+   "edge_words": [],
+   "group": []
+  },
+  {
+   "slot": "node/DIC-80b7fcd3e2",
+   "node": "힘 감소",
+   "n": 1,
+   "rule": null,
+   "to": null,
+   "why": null,
+   "ambiguous": [],
+   "n_after": 1,
+   "name_after": "힘 감소",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "sole": "씹는 힘 감소",
+   "partners": [],
+   "edge_words": [
+    "감소",
+    "힘"
+   ],
+   "group": []
+  }
+ ],
+ "dup_rows": [
+  {
+   "slot": "dup/6c0f2b1c6c",
+   "a": "홍조",
+   "b": "장기간 홍조",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "홍조",
+    "홍조"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/444138e4cb",
+   "a": "반응",
+   "b": "알레르기 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "반응",
+    "알레르기 반응"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「알레르기 반응」: R4: 「심한 알레르기 반응(아나필락시스)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「아나필락시스」=「알레르기 반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": null,
+   "_k": [
+    "반응",
+    "알레르기반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/eea7489e2e",
+   "a": "알레르기 반응",
+   "b": "알레르기",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "알레르기 반응",
+    "알레르기"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「알레르기 반응」: R4: 「심한 알레르기 반응(아나필락시스)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「아나필락시스」=「알레르기 반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": null,
+   "_k": [
+    "알레르기반응",
+    "알레르기"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/f7f105b912",
+   "a": "건조감",
+   "b": "건조",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "건조감",
+    "건조"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/893eb34eb8",
+   "a": "신경 손상",
+   "b": "손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "신경손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「신경손상」: R2 말 「신경」가 띄어쓰기 없이 붙음(「신경손상」) — 「앞뒤 말」인지 애매"
+   ],
+   "_changed": null,
+   "_k": [
+    "신경손상",
+    "손상"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/2e46a8750a",
+   "a": "안검하수",
+   "b": "눈꺼풀 처짐",
+   "b_kind": "ledger",
+   "rules": [
+    "paren_pair"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "안검하수",
+    "눈꺼풀 처짐"
+   ],
+   "why": null,
+   "ambiguous": [
+    "R4 병기 쌍인데 R2 로 한쪽이 (사건, 부위)가 됨: 「안검하수」→「안검하수」 / 「눈꺼풀 처짐」→「처짐」"
+   ],
+   "_changed": "R2",
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/43c5d93af2",
+   "a": "각질",
+   "b": "각질 탈락",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "각질",
+    "각질 탈락"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "각질",
+    "각질탈락"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/e002a159b9",
+   "a": "흉터",
+   "b": "흉터 악화",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "흉터",
+    "흉터 악화"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "흉터",
+    "흉터악화"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/686eda419a",
+   "a": "흉터",
+   "b": "흉터형성",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_형성"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "흉터",
+    "흉터형성"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/48d66cc720",
+   "a": "각질",
+   "b": "필링 각질",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "각질",
+    "필링 각질"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "각질",
+    "필링각질"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/a4b3c448d0",
+   "a": "경결감",
+   "b": "경결",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "경결감",
+    "경결"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/4e9eb60e4f",
+   "a": "따가움",
+   "b": "따가움감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "따가움",
+    "따가움감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/48410b75db",
+   "a": "약화",
+   "b": "근력 약화",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "약화",
+    "근력 약화"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "약화",
+    "근력약화"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/47e15c0678",
+   "a": "색소탈실",
+   "b": "임시 색소탈실",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "색소탈실",
+    "색소탈실"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/4b905fa336",
+   "a": "손상",
+   "b": "하악변연신경 손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/5921f8e52f",
+   "a": "가려움증",
+   "b": "소양감",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "가려움증",
+    "소양감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/137ca7783c",
+   "a": "근육통",
+   "b": "근육통 유사 감각",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "근육통",
+    "근육통 유사 감각"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "근육통",
+    "근육통유사감각"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/db3801e2e2",
+   "a": "박피",
+   "b": "박리",
+   "b_kind": "ledger",
+   "rules": [
+    "jamo1"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "박피",
+    "박리"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "박피",
+    "박리"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/58907b6158",
+   "a": "출혈",
+   "b": "점상 출혈",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "출혈",
+    "점상 출혈"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "출혈",
+    "점상출혈"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/cdbe52f3ed",
+   "a": "박리",
+   "b": "중등도 박리",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "박리",
+    "박리"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/f293e2a233",
+   "a": "염증 반응",
+   "b": "염증",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "염증 반응",
+    "염증"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「염증」: R4: 「이물 반응 (광범위 염증)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「염증」=「이물반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": null,
+   "_k": [
+    "염증반응",
+    "염증"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/356a3fd406",
+   "a": "자국",
+   "b": "자극",
+   "b_kind": "ledger",
+   "rules": [
+    "jamo1"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "자국",
+    "자극"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "자국",
+    "자극"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/a2e3a26fec",
+   "a": "표정",
+   "b": "표정 부자연스러움",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정",
+    "표정 부자연스러움"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정",
+    "표정부자연스러움"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/024b883ce9",
+   "a": "메스꺼움",
+   "b": "미량원소 과잉 메스꺼움",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "메스꺼움",
+    "미량원소 과잉 메스꺼움"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "메스꺼움",
+    "미량원소과잉메스꺼움"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/6cfe76a1ab",
+   "a": "반응",
+   "b": "염증 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "반응",
+    "염증 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "반응",
+    "염증반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/6972d3d09f",
+   "a": "출혈",
+   "b": "불규칙 출혈",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "출혈",
+    "출혈"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/124c23fee7",
+   "a": "필링",
+   "b": "필링 각질",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "필링",
+    "필링 각질"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "필링",
+    "필링각질"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/67ad9e9afe",
+   "a": "가피형성",
+   "b": "가피",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_형성"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "가피형성",
+    "가피"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/4249f0d72d",
+   "a": "민감성",
+   "b": "민감성 자극반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "민감성",
+    "민감성 자극반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "민감성",
+    "민감성자극반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/c06e25b7c9",
+   "a": "민감성",
+   "b": "민감성 증가",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "민감성",
+    "민감성"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/5688258318",
+   "a": "안구 자극",
+   "b": "자극",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "자극",
+    "자극"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/9d910e58d1",
+   "a": "약화",
+   "b": "약화 확산",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "약화",
+    "약화 확산"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "약화",
+    "약화확산"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/86816ee7ea",
+   "a": "약화",
+   "b": "확산 인접 약화",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "약화",
+    "확산 인접 약화"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "약화",
+    "확산인접약화"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/b6843a8fbc",
+   "a": "염증 반응",
+   "b": "이상 염증반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "염증 반응",
+    "염증반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/b3b88a5921",
+   "a": "자극",
+   "b": "부위 자극",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "자극",
+    "부위 자극"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "자극",
+    "부위자극"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/1e6bb21a47",
+   "a": "장기적 색소이상",
+   "b": "색소이상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "색소이상",
+    "색소이상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/231e5aec46",
+   "a": "감각신경 손상",
+   "b": "손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/f9e75ed6db",
+   "a": "눈 손상",
+   "b": "손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/4395c497bf",
+   "a": "민감도 증가",
+   "b": "민감도",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "민감도",
+    "민감도"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/a82e0e3744",
+   "a": "안면신경 손상",
+   "b": "손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/7058f6b1f1",
+   "a": "자극",
+   "b": "자극감",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "자극",
+    "자극감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/44a34d8e50",
+   "a": "경화감",
+   "b": "경화",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "경화감",
+    "경화"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/b342b12cc2",
+   "a": "광과민성",
+   "b": "광과민성 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "광과민성",
+    "광과민성 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "광과민성",
+    "광과민성반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/e972cf5740",
+   "a": "눈 건조증",
+   "b": "건조증",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "건조증",
+    "건조증"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/b7bf6a5caf",
+   "a": "눈썹",
+   "b": "윗눈꺼풀이나 눈썹",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "눈썹",
+    "윗눈꺼풀이나 눈썹"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「눈썹」: R2 말 「눈썹」 뒤가 용언 꼴(무거운)뿐 — 「사건 앞」인지 애매(「이마나 눈썹이 무거운 느낌」)",
+    "「윗눈꺼풀이나 눈썹」: R2 말 「눈썹」 뒤가 용언 꼴(처지는)뿐 — 「사건 앞」인지 애매(「윗눈꺼풀이나 눈썹이 처지는 현상」)"
+   ],
+   "_changed": null,
+   "_k": [
+    "눈썹",
+    "윗눈꺼풀이나눈썹"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/3a7480b539",
+   "a": "반응",
+   "b": "이물질 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "반응",
+    "이물질 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "반응",
+    "이물질반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/b19ede339f",
+   "a": "손상",
+   "b": "깊이 진피 손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "손상",
+    "깊이 손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": "R2",
+   "_k": [
+    "손상",
+    "깊이손상"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/8de7d93f35",
+   "a": "손상",
+   "b": "손상 색소 변화",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "손상",
+    "손상 색소 변화"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "손상",
+    "손상색소변화"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/038549f9dc",
+   "a": "염증",
+   "b": "중증 염증 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "duplicate_of:염증 반응↔염증",
+   "now": [
+    "염증",
+    "염증 반응"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「염증」: R4: 「이물 반응 (광범위 염증)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「염증」=「이물반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": "R1",
+   "_k": [
+    "염증",
+    "염증반응"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/e50712e9d0",
+   "a": "이완",
+   "b": "표정근 이완",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "이완",
+    "이완"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/657526bc3c",
+   "a": "주름 덜",
+   "b": "주름",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "주름",
+    "주름"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/8bf6ad9806",
+   "a": "표정",
+   "b": "표정 경직",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정",
+    "표정 경직"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정",
+    "표정경직"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/f0200d181c",
+   "a": "표정 손상",
+   "b": "손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정 손상",
+    "손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정손상",
+    "손상"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/d137eb79e8",
+   "a": "감각",
+   "b": "따뜻한 감각",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "감각",
+    "따뜻한 감각"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "감각",
+    "따뜻한감각"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/86cbd3f0b2",
+   "a": "건조증",
+   "b": "건조",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "건조증",
+    "건조"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/e5b78f02ab",
+   "a": "반응",
+   "b": "광과민성 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "반응",
+    "광과민성 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "반응",
+    "광과민성반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/9dfc2e4291",
+   "a": "반응",
+   "b": "면역 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "반응",
+    "면역 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "반응",
+    "면역반응"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/2a14fdd5c2",
+   "a": "반응",
+   "b": "전신 알레르기 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "duplicate_of:반응↔알레르기 반응",
+   "now": [
+    "반응",
+    "알레르기 반응"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「알레르기 반응」: R4: 「심한 알레르기 반응(아나필락시스)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「아나필락시스」=「알레르기 반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": "R2",
+   "_k": [
+    "반응",
+    "알레르기반응"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/eb2c0a1096",
+   "a": "반응",
+   "b": "중증 염증 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "duplicate_of:반응↔염증 반응",
+   "now": [
+    "반응",
+    "염증 반응"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": "R1",
+   "_k": [
+    "반응",
+    "염증반응"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/8dec7a6c69",
+   "a": "본인 혈액 알레르기",
+   "b": "알레르기",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R3",
+   "how": "dropped",
+   "now": [
+    "본인 혈액 알레르기",
+    "알레르기"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/4afe1163ec",
+   "a": "뻣뻣한",
+   "b": "뻣뻣함",
+   "b_kind": "ledger",
+   "rules": [
+    "jamo1"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "뻣뻣한",
+    "뻣뻣함"
+   ],
+   "why": null,
+   "ambiguous": [
+    "R3 단독 기준 애매(한쪽)"
+   ],
+   "_changed": null,
+   "_k": [
+    "뻣뻣한",
+    "뻣뻣함"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/1d98f2a5b2",
+   "a": "실의 이동",
+   "b": "실의",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "실의 이동",
+    "실의"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "실의이동",
+    "실의"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/e59c6af0f0",
+   "a": "안면신경 마비",
+   "b": "마비",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "마비",
+    "마비"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/3679c65b08",
+   "a": "알레르기성 접촉피부염",
+   "b": "접촉피부염",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "알레르기성 접촉피부염",
+    "접촉피부염"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "알레르기성접촉피부염",
+    "접촉피부염"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/56aff2f6bc",
+   "a": "울퉁불퉁",
+   "b": "표면 울퉁불퉁",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "울퉁불퉁",
+    "울퉁불퉁"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/1ed0555397",
+   "a": "표정",
+   "b": "표정 경직감",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "S",
+   "how": "duplicate_of:표정↔표정 경직",
+   "now": [
+    "표정",
+    "표정 경직감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정",
+    "표정경직감"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/f03638917f",
+   "a": "표정",
+   "b": "표정 손상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정",
+    "표정 손상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정",
+    "표정손상"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/fd10c6aa06",
+   "a": "표정",
+   "b": "표정 어색함",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정",
+    "표정 어색함"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정",
+    "표정어색함"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/de86e0166d",
+   "a": "표정 경직",
+   "b": "경직",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "표정 경직",
+    "경직"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "표정경직",
+    "경직"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/fbd97e69ae",
+   "a": "표정 경직",
+   "b": "표정 경직감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "표정 경직",
+    "표정 경직감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/eb1e0527f8",
+   "a": "CO2 높음",
+   "b": "CO2",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R1",
+   "how": "merged",
+   "now": [
+    "CO2",
+    "CO2"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/d5a5710b25",
+   "a": "감각",
+   "b": "근육통 유사 감각",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "감각",
+    "근육통 유사 감각"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "감각",
+    "근육통유사감각"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/ab1e401557",
+   "a": "감각",
+   "b": "마늘 냄새 감각",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "감각",
+    "마늘 냄새 감각"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "감각",
+    "마늘냄새감각"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/53724b025b",
+   "a": "감각 변화",
+   "b": "감각",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "감각 변화",
+    "감각"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "감각변화",
+    "감각"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/d8d51209b3",
+   "a": "결막 충혈",
+   "b": "결막",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "dissolved",
+   "now": [
+    "충혈",
+    "결막"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/d978179e34",
+   "a": "결절감",
+   "b": "결절",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "결절감",
+    "결절"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/33f834a480",
+   "a": "경직감",
+   "b": "경직",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "경직감",
+    "경직"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/cc54034bb5",
+   "a": "경직감",
+   "b": "표정 경직감",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "S",
+   "how": "duplicate_of:표정 경직↔경직",
+   "now": [
+    "경직감",
+    "표정 경직감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "경직감",
+    "표정경직감"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/8f7df500bc",
+   "a": "마비",
+   "b": "마비감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "마비",
+    "마비감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/d81b0a0625",
+   "a": "마비",
+   "b": "신경 마비",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "merged",
+   "now": [
+    "마비",
+    "마비"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/93cd15a122",
+   "a": "박탈",
+   "b": "박탈감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "박탈",
+    "박탈감"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/c45909b035",
+   "a": "색전증",
+   "b": "색전",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "색전증",
+    "색전"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/266cd58ec8",
+   "a": "수포형성",
+   "b": "수포",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "수포형성",
+    "수포"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/71e524cee6",
+   "a": "알레르기",
+   "b": "전신 알레르기 반응",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": "R2",
+   "how": "duplicate_of:알레르기 반응↔알레르기",
+   "now": [
+    "알레르기",
+    "알레르기 반응"
+   ],
+   "why": null,
+   "ambiguous": [
+    "「알레르기 반응」: R4: 「심한 알레르기 반응(아나필락시스)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「아나필락시스」=「알레르기 반응」 병기 — 괄호 앞 범위가 애매"
+   ],
+   "_changed": "R2",
+   "_k": [
+    "알레르기",
+    "알레르기반응"
+   ],
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/8795f32d7d",
+   "a": "알레르기",
+   "b": "화학적 차단제 알레르기",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "알레르기",
+    "화학적 차단제 알레르기"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "알레르기",
+    "화학적차단제알레르기"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/e055a3bc3b",
+   "a": "자반증",
+   "b": "자반",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_증"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "자반증",
+    "자반"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/6e6cd80627",
+   "a": "저림감",
+   "b": "감각 이상",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "저림감",
+    "감각 이상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/d836cac3a0",
+   "a": "증식",
+   "b": "세포 증식 변이",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "증식",
+    "세포 증식 변이"
+   ],
+   "why": null,
+   "ambiguous": [
+    "R3 단독 기준 애매(한쪽)"
+   ],
+   "_changed": null,
+   "_k": [
+    "증식",
+    "세포증식변이"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/7eb862548c",
+   "a": "최소 반응성",
+   "b": "최소",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "최소 반응성",
+    "최소"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "최소반응성",
+    "최소"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/59227834ae",
+   "a": "통증감",
+   "b": "통증",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "통증감",
+    "통증"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/088bdcdb32",
+   "a": "혈관계 합병증",
+   "b": "합병증",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "혈관계 합병증",
+    "합병증"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "혈관계합병증",
+    "합병증"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/3ca4eac179",
+   "a": "화상감",
+   "b": "화상",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "화상감",
+    "화상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/0e14a1f588",
+   "a": "화학화상",
+   "b": "접촉 화학화상",
+   "b_kind": "ledger",
+   "rules": [
+    "word_contains"
+   ],
+   "rule": null,
+   "how": null,
+   "now": [
+    "화학화상",
+    "접촉 화학화상"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": [
+    "화학화상",
+    "접촉화학화상"
+   ],
+   "in_recalc": true
+  },
+  {
+   "slot": "dup/bf3db08020",
+   "a": "결절형성",
+   "b": "결절",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "결절형성",
+    "결절"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/9ca04b42d3",
+   "a": "반흔형성",
+   "b": "반흔",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "반흔형성",
+    "반흔"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  },
+  {
+   "slot": "dup/556f9f017f",
+   "a": "압통감",
+   "b": "통증",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "rule": "S",
+   "how": "folded",
+   "now": [
+    "압통감",
+    "통증"
+   ],
+   "why": null,
+   "ambiguous": [],
+   "_changed": null,
+   "_k": null,
+   "in_recalc": false
+  }
+ ],
+ "seed_slots": [
+  [
+   "seed-site",
+   "seed-site/bcd2ac0970",
+   "부위 씨앗 「눈밑」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/e28d218d36",
+   "부위 씨앗 「눈꺼풀」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/f5c16732f4",
+   "부위 씨앗 「코끝」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/5f98b7ad46",
+   "부위 씨앗 「목주름」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/f1c4169745",
+   "부위 씨앗 「얼굴 전체」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/900509b909",
+   "부위 씨앗 「바디 전체」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/19ecb14176",
+   "부위 씨앗 「복부」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/6e5fdeb049",
+   "부위 씨앗 「옆구리」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/2eb8371425",
+   "부위 씨앗 「팔뚝」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/222c29f317",
+   "부위 씨앗 「허벅지」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/3916a2b34e",
+   "부위 씨앗 「종아리」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/e3cdcd02d3",
+   "부위 씨앗 「힙」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/a498d28344",
+   "부위 씨앗 「가슴」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/352c9d2bbb",
+   "부위 씨앗 「겨드랑이」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-site",
+   "seed-site/545a69b9b2",
+   "부위 씨앗 「두피」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/3282320dea",
+   "성분 씨앗 「HA」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/55f5496a58",
+   "성분 씨앗 「LED」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/86cad7dcd1",
+   "성분 씨앗 「심부」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/281322fb63",
+   "성분 씨앗 「TCA」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/c1808de006",
+   "성분 씨앗 「글리콜산」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/972ba1938c",
+   "성분 씨앗 「살리실산」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/2e088d608b",
+   "성분 씨앗 「페놀」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/5fe0530d6a",
+   "성분 씨앗 「주입」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/e4cc326933",
+   "성분 씨앗 「동일」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/ccbbba4f28",
+   "성분 씨앗 「딥」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/6ef07849a8",
+   "성분 씨앗 「별도」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/ae46b8d5a1",
+   "성분 씨앗 「부자연스러운」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/f4ed977260",
+   "성분 씨앗 「약한」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/48107f35c3",
+   "성분 씨앗 「얕은」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/46e480e971",
+   "성분 씨앗 「자연스러운」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/26e6c3b06d",
+   "성분 씨앗 「코그」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-ingredient_material",
+   "seed-ingredient_material/5c0161e567",
+   "성분 씨앗 「히알루론산」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/a6e5153d99",
+   "줄임말·옛 이름 씨앗 「크라이오→크라이오듀얼」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/a12a119700",
+   "줄임말·옛 이름 씨앗 「MTS→MTS롤러」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/42e89e2b84",
+   "줄임말·옛 이름 씨앗 「CO2→CO2프락셔널」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/7922c8517b",
+   "줄임말·옛 이름 씨앗 「리쥬란→리쥬란 힐러」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/2306751877",
+   "줄임말·옛 이름 씨앗 「리쥬란→리쥬란 HB+」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/7332c5e25c",
+   "줄임말·옛 이름 씨앗 「리쥬란→리쥬란아이」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/6f07d84298",
+   "줄임말·옛 이름 씨앗 「써마지→써마지FLX」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/48d9dae9f0",
+   "줄임말·옛 이름 씨앗 「알렉→알렉산드라이트」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/ec79c3054b",
+   "줄임말·옛 이름 씨앗 「울쎄라급→울쎄라」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/b0b8966c3b",
+   "줄임말·옛 이름 씨앗 「ASCE→ASCEplus」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/379aea4a96",
+   "줄임말·옛 이름 씨앗 「LDM초음파관리→LDM」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/fa4a67aed1",
+   "줄임말·옛 이름 씨앗 「더마펜→더마펜4」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/0f7feaa5a2",
+   "줄임말·옛 이름 씨앗 「더채움프리미어→더채움」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/739970e293",
+   "줄임말·옛 이름 씨앗 「레스틸렌스킨부스터→레스틸렌」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/b3c54b2d3c",
+   "줄임말·옛 이름 씨앗 「미라클필링→미라클」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/119a23c9db",
+   "줄임말·옛 이름 씨앗 「민트→민트리프트」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/c8144d0bed",
+   "줄임말·옛 이름 씨앗 「엘라비에프라임→엘라비에」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/c289e40e10",
+   "줄임말·옛 이름 씨앗 「울트라→울트라펄스」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/64bd9824f8",
+   "줄임말·옛 이름 씨앗 「울트라→울트라포머MPT」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/aeb2bd59d2",
+   "줄임말·옛 이름 씨앗 「울트라→울트라셀Q+」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/8f60cfa1cd",
+   "줄임말·옛 이름 씨앗 「울트라→울트라셀」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/1884285cb3",
+   "줄임말·옛 이름 씨앗 「인모드FX→인모드」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/ad20b43457",
+   "줄임말·옛 이름 씨앗 「피코→피코슈어」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/caa5c0fe47",
+   "줄임말·옛 이름 씨앗 「피코→피코웨이」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/833dc448b7",
+   "줄임말·옛 이름 씨앗 「피코→피코케어」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/eb3275633d",
+   "줄임말·옛 이름 씨앗 「피코→피코코어」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/4db82a1a1a",
+   "줄임말·옛 이름 씨앗 「피코→피코슈어 프락셀」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/a9e62bab7f",
+   "줄임말·옛 이름 씨앗 「피코→피코프락셀」 — 사전에 넣을까?"
+  ],
+  [
+   "seed-product_abbrev",
+   "seed-product_abbrev/a7c72947bf",
+   "줄임말·옛 이름 씨앗 「피코→피코플러스」 — 사전에 넣을까?"
+  ]
+ ],
+ "b3_slots": [
+  [
+   "m5-rename",
+   "m5-rename",
+   "계열 M5 정준 이름을 「자가혈 유래 시술」로 바꿀까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-1",
+   "M16 하위분류 M16-1 「미백/항산화」 항목 7 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-2",
+   "M16 하위분류 M16-2 「피로회복」 항목 8 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-3",
+   "M16 하위분류 M16-3 「재생/면역」 항목 9 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-4",
+   "M16 하위분류 M16-4 「영양보충」 항목 5 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-DCA",
+   "M16 하위분류 M16-DCA 「DCA (지방세포파괴)」 항목 11 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "m16-technique",
+   "m16-technique/M16-LIPO",
+   "M16 하위분류 M16-LIPO 「지방분해주사 (마케팅명)」 항목 9 의 기법을 무엇으로 둘까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/01",
+   "해부 이름 「턱라인」 를 부위 「턱선」로 읽을까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/02",
+   "해부 이름 「코끝」 를 부위 「코」로 읽을까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/03",
+   "해부 이름 「눈밑」, 「눈꺼풀」 를 부위 「눈 주변」로 읽을까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/04",
+   "해부 이름 「턱밑」, 「이중턱」 를 부위 「이중턱/턱밑」로 읽을까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/05",
+   "해부 이름 「광경근」 를 부위 「목」로 읽을까?"
+  ],
+  [
+   "site-synonyms",
+   "site-synonyms/06",
+   "부위 사전에 region 「바디」을 세울까?"
+  ],
+  [
+   "air-embolism-qualifier",
+   "air-embolism-qualifier",
+   "complications 「공기색전·카테터 관련 감염」[M16]에 (색전, none, 공기) 수식 단위를 세울까?"
+  ],
+  [
+   "records",
+   "records/NEC-01",
+   "피부 괴사 → (괴사, 피부) — 기록으로 남길까?"
+  ]
+ ],
+ "r1_table": [
+  {
+   "word": "장기간",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 1,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "장기간 홍조"
+   ]
+  },
+  {
+   "word": "장기적",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 3,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "장기적 색소이상"
+   ]
+  },
+  {
+   "word": "임시",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 1,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "임시 색소탈실"
+   ]
+  },
+  {
+   "word": "일시",
+   "in_138": null,
+   "course_dict": true,
+   "adjacent_to_event": 1,
+   "token_total": 1,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "일시적",
+   "in_138": null,
+   "course_dict": true,
+   "adjacent_to_event": 428,
+   "token_total": 449,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "지속",
+   "in_138": "timing",
+   "course_dict": true,
+   "adjacent_to_event": 29,
+   "token_total": 55,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "지속적",
+   "in_138": "timing",
+   "course_dict": true,
+   "adjacent_to_event": 9,
+   "token_total": 12,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "영구",
+   "in_138": null,
+   "course_dict": true,
+   "adjacent_to_event": 5,
+   "token_total": 5,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "영구적",
+   "in_138": null,
+   "course_dict": true,
+   "adjacent_to_event": 7,
+   "token_total": 10,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "중등도",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 1,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "중등도 박리"
+   ]
+  },
+  {
+   "word": "중증",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 1,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "중증 염증 반응"
+   ]
+  },
+  {
+   "word": "심한",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 51,
+   "token_total": 57,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "경미",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 0,
+   "token_total": 0,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "경미한",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 167,
+   "token_total": 172,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "과도",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 3,
+   "token_total": 4,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "과도한",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 31,
+   "token_total": 42,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "이상",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 23,
+   "token_total": 46,
+   "stripped_in_dryrun": 3,
+   "from_names": [
+    "간기능 이상",
+    "색소 이상",
+    "이상 염증반응"
+   ]
+  },
+  {
+   "word": "불규칙",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 2,
+   "token_total": 3,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "불규칙 출혈"
+   ]
+  },
+  {
+   "word": "미세",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 16,
+   "token_total": 17,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "미세한",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 11,
+   "token_total": 14,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "약간",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 2,
+   "token_total": 4,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "약간의",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 30,
+   "token_total": 31,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "광범위",
+   "in_138": "degree",
+   "course_dict": false,
+   "adjacent_to_event": 7,
+   "token_total": 8,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "광범위한",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 1,
+   "token_total": 2,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "초기",
+   "in_138": "timing",
+   "course_dict": false,
+   "adjacent_to_event": 12,
+   "token_total": 14,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "드문",
+   "in_138": "incidence",
+   "course_dict": false,
+   "adjacent_to_event": 3,
+   "token_total": 10,
+   "stripped_in_dryrun": 0,
+   "from_names": []
+  },
+  {
+   "word": "높음",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 0,
+   "token_total": 1,
+   "stripped_in_dryrun": 1,
+   "from_names": [
+    "CO2 높음"
+   ]
+  },
+  {
+   "word": "증가",
+   "in_138": "misc",
+   "course_dict": false,
+   "adjacent_to_event": 10,
+   "token_total": 16,
+   "stripped_in_dryrun": 6,
+   "from_names": [
+    "광민감성 증가",
+    "민감도 증가",
+    "민감성 증가"
+   ]
+  },
+  {
+   "word": "덜",
+   "in_138": null,
+   "course_dict": false,
+   "adjacent_to_event": 2,
+   "token_total": 2,
+   "stripped_in_dryrun": 2,
+   "from_names": [
+    "주름 덜"
+   ]
+  }
+ ],
+ "r2_table": [
+  {
+   "word": "신경",
+   "existing_dict": null,
+   "temp_site": "tmp-site:신경",
+   "stripped_in_dryrun": 33,
+   "names": [
+    [
+     "신경 과민",
+     "과민"
+    ],
+    [
+     "신경 마비",
+     "마비"
+    ],
+    [
+     "신경 손상",
+     "손상"
+    ]
+   ]
+  },
+  {
+   "word": "하악변연신경",
+   "existing_dict": null,
+   "temp_site": "tmp-site:하악변연신경",
+   "stripped_in_dryrun": 10,
+   "names": [
+    [
+     "하악변연신경 손상",
+     "손상"
+    ]
+   ]
+  },
+  {
+   "word": "안면신경",
+   "existing_dict": null,
+   "temp_site": "tmp-site:안면신경",
+   "stripped_in_dryrun": 4,
+   "names": [
+    [
+     "안면신경 마비",
+     "마비"
+    ],
+    [
+     "안면신경 손상",
+     "손상"
+    ]
+   ]
+  },
+  {
+   "word": "감각신경",
+   "existing_dict": null,
+   "temp_site": "tmp-site:감각신경",
+   "stripped_in_dryrun": 2,
+   "names": [
+    [
+     "감각신경 손상",
+     "손상"
+    ]
+   ]
+  },
+  {
+   "word": "눈",
+   "existing_dict": null,
+   "temp_site": "tmp-site:눈",
+   "stripped_in_dryrun": 3,
+   "names": [
+    [
+     "눈 건조증",
+     "건조증"
+    ],
+    [
+     "눈 손상",
+     "손상"
+    ]
+   ]
+  },
+  {
+   "word": "안구",
+   "existing_dict": null,
+   "temp_site": "tmp-site:안구",
+   "stripped_in_dryrun": 1,
+   "names": [
+    [
+     "안구 자극",
+     "자극"
+    ]
+   ]
+  },
+  {
+   "word": "결막",
+   "existing_dict": null,
+   "temp_site": "tmp-site:결막",
+   "stripped_in_dryrun": 1,
+   "names": [
+    [
+     "결막 충혈",
+     "충혈"
+    ]
+   ]
+  },
+  {
+   "word": "눈썹",
+   "existing_dict": null,
+   "temp_site": "tmp-site:눈썹",
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "눈꺼풀",
+   "existing_dict": null,
+   "temp_site": "tmp-site:눈꺼풀",
+   "stripped_in_dryrun": 6,
+   "names": [
+    [
+     "눈꺼풀 처짐",
+     "처짐"
+    ]
+   ]
+  },
+  {
+   "word": "표정근",
+   "existing_dict": null,
+   "temp_site": "tmp-site:표정근",
+   "stripped_in_dryrun": 3,
+   "names": [
+    [
+     "표정근 과도이완",
+     "과도이완"
+    ],
+    [
+     "표정근 이완",
+     "이완"
+    ]
+   ]
+  },
+  {
+   "word": "근육",
+   "existing_dict": "site:근육",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "두피",
+   "existing_dict": "site:두피",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "피부",
+   "existing_dict": "site:피부",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "진피",
+   "existing_dict": null,
+   "temp_site": "tmp-site:진피",
+   "stripped_in_dryrun": 1,
+   "names": [
+    [
+     "깊이 진피 손상",
+     "깊이 손상"
+    ]
+   ]
+  },
+  {
+   "word": "혈관",
+   "existing_dict": "site:혈관",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "전신",
+   "existing_dict": null,
+   "temp_site": "tmp-site:전신",
+   "stripped_in_dryrun": 1,
+   "names": [
+    [
+     "전신 알레르기 반응",
+     "알레르기 반응"
+    ]
+   ]
+  },
+  {
+   "word": "표면",
+   "existing_dict": null,
+   "temp_site": "tmp-site:표면",
+   "stripped_in_dryrun": 1,
+   "names": [
+    [
+     "표면 울퉁불퉁",
+     "울퉁불퉁"
+    ]
+   ]
+  },
+  {
+   "word": "주사 부위",
+   "existing_dict": "relative_site:주사 부위",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  },
+  {
+   "word": "시술 부위",
+   "existing_dict": "relative_site:시술 부위",
+   "temp_site": null,
+   "stripped_in_dryrun": 0,
+   "names": []
+  }
+ ],
+ "r3_dropped": [
+  {
+   "node": "본인 혈액 알레르기",
+   "solo_strict": 0,
+   "solo_loose": 0,
+   "occurrences": [
+    [
+     "extracted.json:{code}.safety.serious[]@M5/0",
+     "본인 혈액을 사용하므로 알레르기·거부반응이 거의 없음 (매우 안전한 시술)",
+     [
+      "거부반응"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.serious[]@M5/0",
+     "본인 혈액을 사용하므로 알레르기·거부반응이 거의 없음 (매우 안전한 시술)",
+     [
+      "거부반응"
+     ]
+    ]
+   ]
+  }
+ ],
+ "r3_sole_kept": [
+  {
+   "node": "감각",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M8/96",
+   "text": "따가운 감각"
+  },
+  {
+   "node": "거부반응",
+   "locator": "extracted.json:{code}.safety.serious[]@M5/0",
+   "text": "본인 혈액을 사용하므로 알레르기·거부반응이 거의 없음 (매우 안전한 시술)"
+  },
+  {
+   "node": "광과민성 반응",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/256",
+   "text": "치료 후 광과민성 반응"
+  },
+  {
+   "node": "기형유발",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/250",
+   "text": "기형유발 위험"
+  },
+  {
+   "node": "깊이 손상",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M12/5",
+   "text": "과도한 깊이 설정 시 진피 손상"
+  },
+  {
+   "node": "눈부심",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/257",
+   "text": "치료 중 눈부심"
+  },
+  {
+   "node": "눈썹",
+   "locator": "extracted.json:{code}.safety.common[]@M1/5",
+   "text": "이마나 눈썹이 무거운 느낌"
+  },
+  {
+   "node": "눈이",
+   "locator": "extracted.json:{code}.safety.uncommon[]@M1/3",
+   "text": "눈이 건조해지는 증상 (눈물 분비 감소)"
+  },
+  {
+   "node": "마늘 냄새 감각",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M16/126",
+   "text": "주입 중 마늘 냄새 감각 (일시적)"
+  },
+  {
+   "node": "만져질 미세입자",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.common[]@M3/0",
+   "text": "만져질 수 있는 미세입자"
+  },
+  {
+   "node": "만져질 입자",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.common[]@M3/14",
+   "text": "만져질 수 있는 입자"
+  },
+  {
+   "node": "미량원소 과잉 메스꺼움",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M16/54",
+   "text": "미량원소 과잉 시 메스꺼움"
+  },
+  {
+   "node": "부위 자극",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/197",
+   "text": "도포 부위 자극"
+  },
+  {
+   "node": "부은",
+   "locator": "extracted.json:{code}.safety.common[]@M1/6",
+   "text": "얼굴이 약간 부은 느낌"
+  },
+  {
+   "node": "세포 배양 불순물",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.serious[]@M17/1",
+   "text": "세포 배양 관련 불순물"
+  },
+  {
+   "node": "세포 증식 변이",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.serious[]@M17/5",
+   "text": "세포 증식 관련 변이 위험"
+  },
+  {
+   "node": "손상 색소 변화",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M12/3",
+   "text": "과도한 손상으로 인한 색소 변화"
+  },
+  {
+   "node": "수액 따끔",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M16/30",
+   "text": "수액 주입 중 혈관 따끔함"
+  },
+  {
+   "node": "수액 팔 무거움",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M16/31",
+   "text": "수액 주입 중 팔 무거움"
+  },
+  {
+   "node": "시력상실",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.serious[]@M2/3",
+   "text": "시력상실 위험"
+  },
+  {
+   "node": "실의",
+   "locator": "taxonomy.json:modality[].products[].extracted.safety.serious[]@M7/2",
+   "text": "실의 노출"
+  },
+  {
+   "node": "실이 밖으로",
+   "locator": "extracted.json:{code}.safety.uncommon[]@M7/2",
+   "text": "실이 피부 밖으로 튀어나오는 현상"
+  },
+  {
+   "node": "윗눈꺼풀이나 눈썹",
+   "locator": "extracted.json:{code}.safety.uncommon[]@M1/2",
+   "text": "윗눈꺼풀이나 눈썹이 처지는 현상"
+  },
+  {
+   "node": "주름",
+   "locator": "extracted.json:{code}.safety.uncommon[]@M1/1",
+   "text": "주름이 덜 펴지는 경우"
+  },
+  {
+   "node": "최소",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M2/20",
+   "text": "최소 부작용"
+  },
+  {
+   "node": "표정",
+   "locator": "extracted.json:{code}.safety.uncommon[]@M1/0",
+   "text": "표정이 어색해지는 느낌 (마스크 쓴 것 같은 얼굴)"
+  },
+  {
+   "node": "힘 감소",
+   "locator": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M1/63",
+   "text": "씹는 힘 감소"
+  }
+ ],
+ "r3_ambiguous_paren": [
+  {
+   "node": "CO2",
+   "solo": 2,
+   "texts": [
+    "색소침착(PIH: CO2 50% > QS 10% > LP 1%)",
+    "색소침착이상(PIH: CO2는 50% 발생률로 높음)"
+   ]
+  },
+  {
+   "node": "대비 수준",
+   "solo": 1,
+   "texts": [
+    "색소탈실(PIH: QS 대비 10% 수준)"
+   ]
+  },
+  {
+   "node": "무감각",
+   "solo": 2,
+   "texts": [
+    "일시적 감각 저하 (저림, 무감각)"
+   ]
+  },
+  {
+   "node": "발진",
+   "solo": 2,
+   "texts": [
+    "알레르기 반응 (피부 발진, 가려움)"
+   ]
+  },
+  {
+   "node": "역설적 비대",
+   "solo": 1,
+   "texts": [
+    "PAH(역설적 지방 비대, paradoxical adipose hyperplasia) — 반드시 사전 고지"
+   ]
+  }
+ ],
+ "r3_ambiguous": [
+  {
+   "node": "감기",
+   "solo_loose": 2,
+   "contexts": [
+    [
+     "extracted.json:{code}.safety.serious[]@M1/0",
+     [
+      "감기",
+      "증상"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.serious[]@M1/0",
+     [
+      "감기",
+      "증상"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "냉각 창백",
+   "solo_loose": 1,
+   "contexts": [
+    [
+     "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/173",
+     [
+      "냉각 창백",
+      "시"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "당기는",
+   "solo_loose": 2,
+   "contexts": [
+    [
+     "extracted.json:{code}.safety.common[]@M14/4",
+     [
+      "당기는",
+      "시술",
+      "중",
+      "느낌"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.common[]@M14/4",
+     [
+      "당기는",
+      "시술",
+      "중",
+      "느낌"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "뻣뻣한",
+   "solo_loose": 2,
+   "contexts": [
+    [
+     "extracted.json:{code}.safety.common[]@M7/0",
+     [
+      "뻣뻣한",
+      "느낌"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.common[]@M7/0",
+     [
+      "뻣뻣한",
+      "느낌"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "사라짐",
+   "solo_loose": 2,
+   "contexts": [
+    [
+     "extracted.json:{code}.safety.common[]@M9/0",
+     [
+      "사라짐",
+      "수"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.common[]@M9/0",
+     [
+      "사라짐",
+      "수"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "실밥",
+   "solo_loose": 1,
+   "contexts": [
+    [
+     "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M7/39",
+     [
+      "실밥",
+      "노출",
+      "가능성"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "제품 최저 수준",
+   "solo_loose": 1,
+   "contexts": [
+    [
+     "taxonomy.json:modality[].products[].extracted.safety.common[]@M8/1",
+     [
+      "제품 최저 수준",
+      "중"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "증식",
+   "solo_loose": 1,
+   "contexts": [
+    [
+     "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M17/6",
+     [
+      "증식",
+      "관련",
+      "부작용"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "커지는",
+   "solo_loose": 2,
+   "contexts": [
+    [
+     "extracted.json:{code}.safety.serious[]@M14/0",
+     [
+      "커지는",
+      "오히려",
+      "현상"
+     ]
+    ],
+    [
+     "taxonomy.json:modality[].extracted.safety.serious[]@M14/0",
+     [
+      "커지는",
+      "오히려",
+      "현상"
+     ]
+    ]
+   ]
+  },
+  {
+   "node": "탈색",
+   "solo_loose": 1,
+   "contexts": [
+    [
+     "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M8/193",
+     [
+      "탈색",
+      "가능성"
+     ]
+    ]
+   ]
+  }
+ ],
+ "r4_pairs": [
+  {
+   "a": "가피",
+   "b": "딱지",
+   "texts": [
+    "Day 2-3: 가피(딱지) 형성 시작"
+   ]
+  }
+ ],
+ "r4_ambiguous": [
+  {
+   "a": "눈꺼풀 처짐",
+   "b": "안검하수",
+   "kind": "changed",
+   "texts": [
+    "눈꺼풀 처짐(안검하수)",
+    "안검하수(눈꺼풀 처짐)"
+   ]
+  },
+  {
+   "a": "아나필락시스",
+   "b": "알레르기 반응",
+   "kind": "stripped",
+   "texts": [
+    "심한 알레르기 반응(아나필락시스)"
+   ]
+  },
+  {
+   "a": "안검하수",
+   "b": "처짐",
+   "kind": "stripped",
+   "texts": [
+    "눈꺼풀 처짐 (경미한 안검하수)",
+    "눈꺼풀 처짐(안검하수)",
+    "안검하수(눈꺼풀 처짐)"
+   ]
+  },
+  {
+   "a": "염증",
+   "b": "이물반응",
+   "kind": "stripped",
+   "texts": [
+    "이물 반응 (광범위 염증)"
+   ]
+  }
+ ],
+ "s_pairs": [
+  {
+   "a": "건조감",
+   "b": "건조",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "건조"
+  },
+  {
+   "a": "흉터",
+   "b": "흉터형성",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_형성"
+   ],
+   "kept": "흉터"
+  },
+  {
+   "a": "경결감",
+   "b": "경결",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "경결"
+  },
+  {
+   "a": "따가움",
+   "b": "따가움감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "따가움"
+  },
+  {
+   "a": "가려움증",
+   "b": "소양감",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "kept": "소양감"
+  },
+  {
+   "a": "가피형성",
+   "b": "가피",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_형성"
+   ],
+   "kept": "딱지"
+  },
+  {
+   "a": "자극",
+   "b": "자극감",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "자극감"
+  },
+  {
+   "a": "경화감",
+   "b": "경화",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "경화감"
+  },
+  {
+   "a": "건조증",
+   "b": "건조",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "kept": "건조"
+  },
+  {
+   "a": "표정 경직",
+   "b": "표정 경직감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "표정 경직"
+  },
+  {
+   "a": "결절감",
+   "b": "결절",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "결절"
+  },
+  {
+   "a": "경직감",
+   "b": "경직",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "경직"
+  },
+  {
+   "a": "마비",
+   "b": "마비감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "마비"
+  },
+  {
+   "a": "박탈",
+   "b": "박탈감",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "박탈"
+  },
+  {
+   "a": "색전증",
+   "b": "색전",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_증"
+   ],
+   "kept": "색전"
+  },
+  {
+   "a": "수포형성",
+   "b": "수포",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "kept": "수포"
+  },
+  {
+   "a": "자반증",
+   "b": "자반",
+   "b_kind": "ledger",
+   "rules": [
+    "suffix_증"
+   ],
+   "kept": "자반"
+  },
+  {
+   "a": "저림감",
+   "b": "감각 이상",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "감각 이상"
+  },
+  {
+   "a": "통증감",
+   "b": "통증",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "통증"
+  },
+  {
+   "a": "화상감",
+   "b": "화상",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "화상"
+  },
+  {
+   "a": "결절형성",
+   "b": "결절",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "kept": "결절"
+  },
+  {
+   "a": "반흔형성",
+   "b": "반흔",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_형성"
+   ],
+   "kept": "반흔"
+  },
+  {
+   "a": "압통감",
+   "b": "통증",
+   "b_kind": "dictionary",
+   "rules": [
+    "suffix_감"
+   ],
+   "kept": "통증"
+  }
+ ],
+ "s_ambiguous": [],
+ "groups": [
+  {
+   "members": [
+    "건조감",
+    "건조증",
+    "건조"
+   ],
+   "dict": [
+    "건조"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "따가움",
+    "따가움감"
+   ],
+   "dict": [],
+   "kept": "따가움"
+  },
+  {
+   "members": [
+    "색전증",
+    "색전"
+   ],
+   "dict": [
+    "색전"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "마비",
+    "마비감"
+   ],
+   "dict": [],
+   "kept": "마비"
+  },
+  {
+   "members": [
+    "딱지",
+    "가피형성",
+    "가피"
+   ],
+   "dict": [],
+   "kept": "딱지"
+  },
+  {
+   "members": [
+    "흉터",
+    "흉터형성"
+   ],
+   "dict": [],
+   "kept": "흉터"
+  },
+  {
+   "members": [
+    "표정 경직",
+    "표정 경직감"
+   ],
+   "dict": [],
+   "kept": "표정 경직"
+  },
+  {
+   "members": [
+    "경직감",
+    "경직"
+   ],
+   "dict": [],
+   "kept": "경직"
+  },
+  {
+   "members": [
+    "결절감",
+    "결절형성",
+    "결절"
+   ],
+   "dict": [
+    "결절"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "가려움증",
+    "소양감"
+   ],
+   "dict": [
+    "소양감"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "경화감",
+    "경화"
+   ],
+   "dict": [],
+   "kept": "경화감"
+  },
+  {
+   "members": [
+    "경결감",
+    "경결"
+   ],
+   "dict": [
+    "경결"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "압통감",
+    "통증감",
+    "통증"
+   ],
+   "dict": [
+    "통증"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "자극",
+    "자극감"
+   ],
+   "dict": [
+    "자극감"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "수포형성",
+    "수포"
+   ],
+   "dict": [
+    "수포"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "화상감",
+    "화상"
+   ],
+   "dict": [
+    "화상"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "반흔형성",
+    "반흔"
+   ],
+   "dict": [
+    "반흔"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "자반증",
+    "자반"
+   ],
+   "dict": [],
+   "kept": "자반"
+  },
+  {
+   "members": [
+    "저림감",
+    "감각 이상"
+   ],
+   "dict": [
+    "감각 이상"
+   ],
+   "kept": null
+  },
+  {
+   "members": [
+    "박탈",
+    "박탈감"
+   ],
+   "dict": [],
+   "kept": "박탈"
+  }
+ ],
+ "nodes": {
+  "dict_events": 43,
+  "nodes_7th": 260,
+  "strong_7th": 96,
+  "weak_7th": 207,
+  "nodes_after_R2": 249,
+  "nodes_after_R2R1": 239,
+  "r3_dropped": 1,
+  "alive_after_R3": 238,
+  "node_groups_after_R4S": 214,
+  "new_node_names": [
+   {
+    "node": "처짐",
+    "n": 6,
+    "from": [
+     "눈꺼풀 처짐"
+    ],
+    "solo_strict": 6,
+    "partners": [
+     "턱밑 처짐(word_contains)"
+    ],
+    "ambiguous": [
+     "R4: 7차 병기 「눈꺼풀 처짐(안검하수)」의 한쪽이 R2 로 (사건, 부위)가 됨 — 병기 쌍이 그 꼴과 같은지 애매",
+     "R4: 「눈꺼풀 처짐 (경미한 안검하수)」는 괄호 앞·안에서 R1/R2 말을 떼야만 「안검하수」=「처짐」 병기 — 괄호 앞 범위가 애매"
+    ]
+   },
+   {
+    "node": "간기능",
+    "n": 1,
+    "from": [
+     "간기능 이상"
+    ],
+    "solo_strict": 1,
+    "partners": [],
+    "ambiguous": []
+   },
+   {
+    "node": "과도이완",
+    "n": 1,
+    "from": [
+     "표정근 과도이완"
+    ],
+    "solo_strict": 1,
+    "partners": [],
+    "ambiguous": [
+     "R1 말 「과도」가 띄어쓰기 없이 붙음(「과도이완」) — 「앞뒤 말」인지 애매"
+    ]
+   },
+   {
+    "node": "과민",
+    "n": 1,
+    "from": [
+     "신경 과민"
+    ],
+    "solo_strict": 1,
+    "partners": [],
+    "ambiguous": []
+   },
+   {
+    "node": "광민감성",
+    "n": 1,
+    "from": [
+     "광민감성 증가"
+    ],
+    "solo_strict": 1,
+    "partners": [],
+    "ambiguous": []
+   },
+   {
+    "node": "깊이 손상",
+    "n": 1,
+    "from": [
+     "깊이 진피 손상"
+    ],
+    "solo_strict": 0,
+    "partners": [
+     "손상(word_contains)"
+    ],
+    "ambiguous": []
+   },
+   {
+    "node": "색소",
+    "n": 1,
+    "from": [
+     "색소 이상"
+    ],
+    "solo_strict": 1,
+    "partners": [
+     "색소 변화(word_contains)",
+     "손상 색소 변화(word_contains)"
+    ],
+    "ambiguous": []
+   },
+   {
+    "node": "충혈",
+    "n": 1,
+    "from": [
+     "결막 충혈"
+    ],
+    "solo_strict": 1,
+    "partners": [
+     "출혈(jamo1)"
+    ],
+    "ambiguous": []
+   }
+  ],
+  "dict_events_names": [
+   "PAH",
+   "감각 이상",
+   "감염",
+   "건조",
+   "결절",
+   "경결",
+   "과민반응",
+   "괴사",
+   "구형구축",
+   "낙설",
+   "당김감",
+   "독감 유사 증상",
+   "동상",
+   "두통",
+   "딤플링",
+   "멍",
+   "바이오필름",
+   "반흔",
+   "부종",
+   "비대칭",
+   "색소침착",
+   "색전",
+   "섬유화",
+   "소양감",
+   "수포",
+   "실 노출",
+   "실 이동",
+   "실신",
+   "아나필락시스",
+   "열감",
+   "육아종",
+   "이물반응",
+   "자극감",
+   "작열감",
+   "전해질 과부하",
+   "정맥염",
+   "통증",
+   "항체 내성",
+   "혈관 폐색",
+   "혈관외유출",
+   "혈종",
+   "홍반",
+   "화상"
+  ],
+  "erd_base_events": [
+   "통증",
+   "멍",
+   "홍반",
+   "부종",
+   "혈종",
+   "열감",
+   "당김감",
+   "자극감",
+   "작열감",
+   "건조",
+   "낙설",
+   "소양감",
+   "두통",
+   "독감 유사 증상",
+   "항체 내성",
+   "아나필락시스",
+   "실신",
+   "전해질 과부하",
+   "감염",
+   "바이오필름",
+   "정맥염",
+   "혈관 폐색",
+   "색전",
+   "혈관외유출",
+   "감각 이상",
+   "색소침착",
+   "결절",
+   "육아종",
+   "이물반응",
+   "경결",
+   "구형구축",
+   "실 노출",
+   "실 이동",
+   "딤플링",
+   "비대칭",
+   "반흔",
+   "화상",
+   "수포",
+   "괴사",
+   "PAH"
+  ]
+ },
+ "strong_recalc": {
+  "strong_after_rules": 47,
+  "of_which_new": 4,
+  "weak_after_rules": 176,
+  "new_pairs": [
+   {
+    "a": "색소 변화",
+    "b": "색소",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ],
+    "ambiguous": []
+   },
+   {
+    "a": "출혈",
+    "b": "충혈",
+    "b_kind": "ledger",
+    "rules": [
+     "jamo1"
+    ],
+    "ambiguous": []
+   },
+   {
+    "a": "처짐",
+    "b": "턱밑 처짐",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ],
+    "ambiguous": []
+   },
+   {
+    "a": "색소",
+    "b": "손상 색소 변화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ],
+    "ambiguous": []
+   }
+  ],
+  "remaining_slots_in_recalc": 43,
+  "remaining_slots_not_in_recalc": [
+   {
+    "a": "신경 손상",
+    "b": "손상",
+    "now": [
+     "신경손상",
+     "손상"
+    ]
+   },
+   {
+    "a": "안검하수",
+    "b": "눈꺼풀 처짐",
+    "now": [
+     "안검하수",
+     "눈꺼풀 처짐"
+    ]
+   }
+  ],
+  "all_pairs": [
+   {
+    "a": "손상",
+    "b": "깊이 손상",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "손상",
+    "b": "손상 색소 변화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "손상",
+    "b": "표정 손상",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "반응",
+    "b": "알레르기 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "알레르기 반응",
+    "b": "알레르기",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "각질",
+    "b": "각질 탈락",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "흉터",
+    "b": "흉터 악화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "각질",
+    "b": "필링 각질",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "약화",
+    "b": "근력 약화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "색소 변화",
+    "b": "색소",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "근육통",
+    "b": "근육통 유사 감각",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "박피",
+    "b": "박리",
+    "b_kind": "ledger",
+    "rules": [
+     "jamo1"
+    ]
+   },
+   {
+    "a": "염증 반응",
+    "b": "염증",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "출혈",
+    "b": "점상 출혈",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "반응",
+    "b": "염증 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "자국",
+    "b": "자극",
+    "b_kind": "ledger",
+    "rules": [
+     "jamo1"
+    ]
+   },
+   {
+    "a": "출혈",
+    "b": "충혈",
+    "b_kind": "ledger",
+    "rules": [
+     "jamo1"
+    ]
+   },
+   {
+    "a": "표정",
+    "b": "표정 부자연스러움",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "메스꺼움",
+    "b": "미량원소 과잉 메스꺼움",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "민감성",
+    "b": "민감성 자극반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "자극",
+    "b": "부위 자극",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "처짐",
+    "b": "턱밑 처짐",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "필링",
+    "b": "필링 각질",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "약화",
+    "b": "약화 확산",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "약화",
+    "b": "확산 인접 약화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "광과민성",
+    "b": "광과민성 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "눈썹",
+    "b": "윗눈꺼풀이나 눈썹",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "반응",
+    "b": "이물질 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "표정",
+    "b": "표정 경직",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "감각",
+    "b": "따뜻한 감각",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "반응",
+    "b": "광과민성 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "반응",
+    "b": "면역 반응",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "뻣뻣한",
+    "b": "뻣뻣함",
+    "b_kind": "ledger",
+    "rules": [
+     "jamo1"
+    ]
+   },
+   {
+    "a": "실의 이동",
+    "b": "실의",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "알레르기성 접촉피부염",
+    "b": "접촉피부염",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "표정",
+    "b": "표정 손상",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "표정",
+    "b": "표정 어색함",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "표정 경직",
+    "b": "경직",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "감각",
+    "b": "근육통 유사 감각",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "감각",
+    "b": "마늘 냄새 감각",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "감각 변화",
+    "b": "감각",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "색소",
+    "b": "손상 색소 변화",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "알레르기",
+    "b": "화학적 차단제 알레르기",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "증식",
+    "b": "세포 증식 변이",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "최소 반응성",
+    "b": "최소",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "혈관계 합병증",
+    "b": "합병증",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   },
+   {
+    "a": "화학화상",
+    "b": "접촉 화학화상",
+    "b_kind": "ledger",
+    "rules": [
+     "word_contains"
+    ]
+   }
+  ]
+ },
+ "edge_words_outside_rules": [
+  {
+   "word": "반응",
+   "nodes": [
+    "광과민성 반응",
+    "면역 반응",
+    "알레르기 반응",
+    "염증 반응",
+    "이물질 반응"
+   ]
+  },
+  {
+   "word": "변화",
+   "nodes": [
+    "감각 변화",
+    "색소 변화",
+    "손상 색소 변화",
+    "음성 변화"
+   ]
+  },
+  {
+   "word": "표정",
+   "nodes": [
+    "표정 경직",
+    "표정 부자연스러움",
+    "표정 손상",
+    "표정 어색함"
+   ]
+  },
+  {
+   "word": "실",
+   "nodes": [
+    "실 돌출감",
+    "실 매듭 촉감",
+    "실 촉감",
+    "실 촉지감"
+   ]
+  },
+  {
+   "word": "감각",
+   "nodes": [
+    "감각 변화",
+    "근육통 유사 감각",
+    "따뜻한 감각",
+    "마늘 냄새 감각"
+   ]
+  },
+  {
+   "word": "손상",
+   "nodes": [
+    "손상 색소 변화",
+    "신경 손상",
+    "표정 손상"
+   ]
+  },
+  {
+   "word": "약화",
+   "nodes": [
+    "근력 약화",
+    "약화 확산",
+    "확산 인접 약화"
+   ]
+  },
+  {
+   "word": "악화",
+   "nodes": [
+    "기존 기미 악화",
+    "신장 기능 악화",
+    "흉터 악화"
+   ]
+  },
+  {
+   "word": "세포",
+   "nodes": [
+    "세포 배양",
+    "세포 배양 불순물",
+    "세포 증식 변이"
+   ]
+  },
+  {
+   "word": "수액",
+   "nodes": [
+    "수액 따끔",
+    "수액 비린내 트림",
+    "수액 팔 무거움"
+   ]
+  },
+  {
+   "word": "알레르기",
+   "nodes": [
+    "알레르기 반응",
+    "화학적 차단제 알레르기"
+   ]
+  },
+  {
+   "word": "근력",
+   "nodes": [
+    "근력 약화",
+    "근력 저하"
+   ]
+  },
+  {
+   "word": "촉감",
+   "nodes": [
+    "실 매듭 촉감",
+    "실 촉감"
+   ]
+  },
+  {
+   "word": "각질",
+   "nodes": [
+    "각질 탈락",
+    "필링 각질"
+   ]
+  },
+  {
+   "word": "제한",
+   "nodes": [
+    "입과 움직임 제한",
+    "제한 가동범위"
+   ]
+  },
+  {
+   "word": "부위",
+   "nodes": [
+    "부위 자극",
+    "채취 부위"
+   ]
+  },
+  {
+   "word": "저하",
+   "nodes": [
+    "근력 저하",
+    "성기능 저하"
+   ]
+  },
+  {
+   "word": "수준",
+   "nodes": [
+    "대비 수준",
+    "제품 최저 수준"
+   ]
+  },
+  {
+   "word": "마늘",
+   "nodes": [
+    "마늘 냄새 감각",
+    "마늘 냄새 입냄새"
+   ]
+  },
+  {
+   "word": "만져질",
+   "nodes": [
+    "만져질 미세입자",
+    "만져질 입자"
+   ]
+  },
+  {
+   "word": "반응성",
+   "nodes": [
+    "반응성 색소이상증",
+    "최소 반응성"
+   ]
+  },
+  {
+   "word": "촉지감",
+   "nodes": [
+    "스레드 촉지감",
+    "실 촉지감"
+   ]
+  },
+  {
+   "word": "신장",
+   "nodes": [
+    "신장 결석",
+    "신장 기능 악화"
+   ]
+  },
+  {
+   "word": "확산",
+   "nodes": [
+    "약화 확산",
+    "확산 인접 약화"
+   ]
+  },
+  {
+   "word": "신경",
+   "nodes": [
+    "신경 손상"
+   ]
+  },
+  {
+   "word": "색소",
+   "nodes": [
+    "색소 변화"
+   ]
+  },
+  {
+   "word": "부자연스러움",
+   "nodes": [
+    "표정 부자연스러움"
+   ]
+  },
+  {
+   "word": "염증",
+   "nodes": [
+    "염증 반응"
+   ]
+  },
+  {
+   "word": "접촉성",
+   "nodes": [
+    "접촉성 피부염"
+   ]
+  },
+  {
+   "word": "피부염",
+   "nodes": [
+    "접촉성 피부염"
+   ]
+  },
+  {
+   "word": "탈락",
+   "nodes": [
+    "각질 탈락"
+   ]
+  },
+  {
+   "word": "전해질",
+   "nodes": [
+    "전해질 불균형"
+   ]
+  },
+  {
+   "word": "불균형",
+   "nodes": [
+    "전해질 불균형"
+   ]
+  },
+  {
+   "word": "점상",
+   "nodes": [
+    "점상 출혈"
+   ]
+  },
+  {
+   "word": "출혈",
+   "nodes": [
+    "점상 출혈"
+   ]
+  },
+  {
+   "word": "따뜻한",
+   "nodes": [
+    "따뜻한 감각"
+   ]
+  },
+  {
+   "word": "삽입",
+   "nodes": [
+    "삽입 지점 볼록함"
+   ]
+  },
+  {
+   "word": "볼록함",
+   "nodes": [
+    "삽입 지점 볼록함"
+   ]
+  },
+  {
+   "word": "실의",
+   "nodes": [
+    "실의 이동"
+   ]
+  },
+  {
+   "word": "이동",
+   "nodes": [
+    "실의 이동"
+   ]
+  },
+  {
+   "word": "실이",
+   "nodes": [
+    "실이 밖으로"
+   ]
+  },
+  {
+   "word": "밖으로",
+   "nodes": [
+    "실이 밖으로"
+   ]
+  },
+  {
+   "word": "알레르기성",
+   "nodes": [
+    "알레르기성 접촉피부염"
+   ]
+  },
+  {
+   "word": "접촉피부염",
+   "nodes": [
+    "알레르기성 접촉피부염"
+   ]
+  },
+  {
+   "word": "윗눈꺼풀이나",
+   "nodes": [
+    "윗눈꺼풀이나 눈썹"
+   ]
+  },
+  {
+   "word": "눈썹",
+   "nodes": [
+    "윗눈꺼풀이나 눈썹"
+   ]
+  },
+  {
+   "word": "이물질",
+   "nodes": [
+    "이물질 반응"
+   ]
+  },
+  {
+   "word": "가동범위",
+   "nodes": [
+    "제한 가동범위"
+   ]
+  },
+  {
+   "word": "채취",
+   "nodes": [
+    "채취 부위"
+   ]
+  },
+  {
+   "word": "침샘",
+   "nodes": [
+    "침샘 관통"
+   ]
+  },
+  {
+   "word": "관통",
+   "nodes": [
+    "침샘 관통"
+   ]
+  },
+  {
+   "word": "태아",
+   "nodes": [
+    "태아 기형"
+   ]
+  },
+  {
+   "word": "기형",
+   "nodes": [
+    "태아 기형"
+   ]
+  },
+  {
+   "word": "경직",
+   "nodes": [
+    "표정 경직"
+   ]
+  },
+  {
+   "word": "간수치",
+   "nodes": [
+    "간수치 상승"
+   ]
+  },
+  {
+   "word": "상승",
+   "nodes": [
+    "간수치 상승"
+   ]
+  },
+  {
+   "word": "광과민성",
+   "nodes": [
+    "광과민성 반응"
+   ]
+  },
+  {
+   "word": "근육통",
+   "nodes": [
+    "근육통 유사 감각"
+   ]
+  },
+  {
+   "word": "기존",
+   "nodes": [
+    "기존 기미 악화"
+   ]
+  },
+  {
+   "word": "냉각",
+   "nodes": [
+    "냉각 창백"
+   ]
+  },
+  {
+   "word": "창백",
+   "nodes": [
+    "냉각 창백"
+   ]
+  },
+  {
+   "word": "냉감각",
+   "nodes": [
+    "냉감각 둔화"
+   ]
+  },
+  {
+   "word": "둔화",
+   "nodes": [
+    "냉감각 둔화"
+   ]
+  },
+  {
+   "word": "대비",
+   "nodes": [
+    "대비 수준"
+   ]
+  },
+  {
+   "word": "동맥",
+   "nodes": [
+    "동맥 폐색"
+   ]
+  },
+  {
+   "word": "폐색",
+   "nodes": [
+    "동맥 폐색"
+   ]
+  },
+  {
+   "word": "입냄새",
+   "nodes": [
+    "마늘 냄새 입냄새"
+   ]
+  },
+  {
+   "word": "미세입자",
+   "nodes": [
+    "만져질 미세입자"
+   ]
+  },
+  {
+   "word": "입자",
+   "nodes": [
+    "만져질 입자"
+   ]
+  },
+  {
+   "word": "면역",
+   "nodes": [
+    "면역 반응"
+   ]
+  },
+  {
+   "word": "미량원소",
+   "nodes": [
+    "미량원소 과잉 메스꺼움"
+   ]
+  },
+  {
+   "word": "메스꺼움",
+   "nodes": [
+    "미량원소 과잉 메스꺼움"
+   ]
+  },
+  {
+   "word": "민감성",
+   "nodes": [
+    "민감성 자극반응"
+   ]
+  },
+  {
+   "word": "자극반응",
+   "nodes": [
+    "민감성 자극반응"
+   ]
+  },
+  {
+   "word": "반드",
+   "nodes": [
+    "반드 사전 고지"
+   ]
+  },
+  {
+   "word": "고지",
+   "nodes": [
+    "반드 사전 고지"
+   ]
+  },
+  {
+   "word": "색소이상증",
+   "nodes": [
+    "반응성 색소이상증"
+   ]
+  },
+  {
+   "word": "부당한",
+   "nodes": [
+    "부당한 거상"
+   ]
+  },
+  {
+   "word": "거상",
+   "nodes": [
+    "부당한 거상"
+   ]
+  },
+  {
+   "word": "자극",
+   "nodes": [
+    "부위 자극"
+   ]
+  },
+  {
+   "word": "성기능",
+   "nodes": [
+    "성기능 저하"
+   ]
+  },
+  {
+   "word": "배양",
+   "nodes": [
+    "세포 배양"
+   ]
+  },
+  {
+   "word": "불순물",
+   "nodes": [
+    "세포 배양 불순물"
+   ]
+  },
+  {
+   "word": "변이",
+   "nodes": [
+    "세포 증식 변이"
+   ]
+  },
+  {
+   "word": "셀레늄",
+   "nodes": [
+    "셀레늄 독성"
+   ]
+  },
+  {
+   "word": "독성",
+   "nodes": [
+    "셀레늄 독성"
+   ]
+  },
+  {
+   "word": "따끔",
+   "nodes": [
+    "수액 따끔"
+   ]
+  },
+  {
+   "word": "트림",
+   "nodes": [
+    "수액 비린내 트림"
+   ]
+  },
+  {
+   "word": "무거움",
+   "nodes": [
+    "수액 팔 무거움"
+   ]
+  },
+  {
+   "word": "스레드",
+   "nodes": [
+    "스레드 촉지감"
+   ]
+  },
+  {
+   "word": "결석",
+   "nodes": [
+    "신장 결석"
+   ]
+  },
+  {
+   "word": "돌출감",
+   "nodes": [
+    "실 돌출감"
+   ]
+  },
+  {
+   "word": "역설적",
+   "nodes": [
+    "역설적 비대"
+   ]
+  },
+  {
+   "word": "비대",
+   "nodes": [
+    "역설적 비대"
+   ]
+  },
+  {
+   "word": "용혈성",
+   "nodes": [
+    "용혈성 빈혈"
+   ]
+  },
+  {
+   "word": "빈혈",
+   "nodes": [
+    "용혈성 빈혈"
+   ]
+  },
+  {
+   "word": "음성",
+   "nodes": [
+    "음성 변화"
+   ]
+  },
+  {
+   "word": "입과",
+   "nodes": [
+    "입과 움직임 제한"
+   ]
+  },
+  {
+   "word": "접촉",
+   "nodes": [
+    "접촉 화학화상"
+   ]
+  },
+  {
+   "word": "화학화상",
+   "nodes": [
+    "접촉 화학화상"
+   ]
+  },
+  {
+   "word": "제품",
+   "nodes": [
+    "제품 최저 수준"
+   ]
+  },
+  {
+   "word": "최소",
+   "nodes": [
+    "최소 반응성"
+   ]
+  },
+  {
+   "word": "턱밑",
+   "nodes": [
+    "턱밑 처짐"
+   ]
+  },
+  {
+   "word": "처짐",
+   "nodes": [
+    "턱밑 처짐"
+   ]
+  },
+  {
+   "word": "어색함",
+   "nodes": [
+    "표정 어색함"
+   ]
+  },
+  {
+   "word": "필링",
+   "nodes": [
+    "필링 각질"
+   ]
+  },
+  {
+   "word": "혈관계",
+   "nodes": [
+    "혈관계 합병증"
+   ]
+  },
+  {
+   "word": "합병증",
+   "nodes": [
+    "혈관계 합병증"
+   ]
+  },
+  {
+   "word": "화학적",
+   "nodes": [
+    "화학적 차단제 알레르기"
+   ]
+  },
+  {
+   "word": "흉터",
+   "nodes": [
+    "흉터 악화"
+   ]
+  },
+  {
+   "word": "힘",
+   "nodes": [
+    "힘 감소"
+   ]
+  },
+  {
+   "word": "감소",
+   "nodes": [
+    "힘 감소"
+   ]
+  }
+ ],
+ "phrases": {
+  "occurrences": 2285,
+  "by_status_after": {
+   "new": 835,
+   "exact": 1409,
+   "sentence": 11,
+   "note": 30
+  },
+  "by_status_7th": {
+   "new": 835,
+   "exact": 1409,
+   "sentence": 11,
+   "note": 30
+  },
+  "empty_event_cell": [],
+  "names_empty_event_cell": []
+ },
+ "r2_before_pred": [
+  [
+   "눈썹",
+   "눈썹",
+   [
+    "무거운"
+   ],
+   "이마나 눈썹이 무거운 느낌"
+  ],
+  [
+   "눈썹",
+   "윗눈꺼풀이나 눈썹",
+   [
+    "처지는"
+   ],
+   "윗눈꺼풀이나 눈썹이 처지는 현상"
+  ],
+  [
+   "눈",
+   "눈이",
+   [
+    "건조해지는"
+   ],
+   "눈이 건조해지는 증상 (눈물 분비 감소)"
+  ],
+  [
+   "눈썹",
+   "눈썹",
+   [
+    "무거운"
+   ],
+   "이마나 눈썹이 무거운 느낌"
+  ],
+  [
+   "눈썹",
+   "윗눈꺼풀이나 눈썹",
+   [
+    "처지는"
+   ],
+   "윗눈꺼풀이나 눈썹이 처지는 현상"
+  ],
+  [
+   "눈",
+   "눈이",
+   [
+    "건조해지는"
+   ],
+   "눈이 건조해지는 증상 (눈물 분비 감소)"
+  ]
+ ],
+ "r2_alone": [
+  [
+   "결막",
+   "결막",
+   "경미한 결막"
+  ]
+ ],
+ "r1_middle": [],
+ "out_hash_before": "4df65564c7e7f940018276ea7f65fab77fae411ea74c50a84beac9b2ad89fbc1",
+ "out_hash_after_analysis": "4df65564c7e7f940018276ea7f65fab77fae411ea74c50a84beac9b2ad89fbc1"
+}

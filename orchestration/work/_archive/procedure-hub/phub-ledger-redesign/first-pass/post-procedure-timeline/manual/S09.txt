@@ -1,0 +1,62 @@
+# S09 /timelines/8 biostimulator — 직접 읽기 2026-11-09
+id | biostimulator | id_code |
+category | M3 | id_code |
+name | 바이오스티뮬레이터/콜라겐부스터 | procedure_name,alt,loanword | 「/」 두 이름 병기(동의어인지 대안인지 원문 불분명)
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 즉각적 볼륨 (희석액에 의한 것, 수일 내 흡수됨) | onset_speed,cause,resolution,approx_time | 원인 = 희석액. 흡수 = 수일 내
+phases/0/normal/1 | 주사 부위 발적/부종 | site,alt |
+phases/0/normal/2 | 경미한 통증/압통 | severity,alt |
+phases/0/abnormal/0 | 멍 | event |
+phases/0/abnormal/1 | 주사 부위 경결 | site |
+phases/0/caution/0 | 심한 통증 지속 | severity,persistence |
+phases/0/caution/1 | 비정상적 부종 | degree |
+phases/0/emergency/0 | 아나필락시스 | label |
+phases/0/emergency/1 | 혈관폐색 (극히 드묾) | frequency |
+phases/1/period | Day 1-7 | period,time_range | 다른 시술처럼 1-3/3-7 로 나누지 않음
+phases/1/label | 초기 흡수기 | phase_label |
+phases/1/normal/0 | Day 2-3: 볼륨 감소 (희석액 흡수, 정상) | time_anchor,time_range,change,cause,judgment |
+phases/1/normal/1 | 부종/발적 소실 | alt,resolution |
+phases/1/normal/2 | '원래대로 돌아간' 느낌 (정상) | quotation,subjective,judgment | ASCII 작은따옴표로 감싼 인용 표현
+phases/1/normal/3 | 시술 부위 부드러운 스무딩 | site,management,degree | 관리 행위(스무딩). 누가 하는지 원문 없음
+phases/1/normal/3 | (선택 — 결절 예방 효과는 미입증) | optional,evidence_negation | 「선택」 + 「미입증」 근거 부정. EM DASH
+phases/1/abnormal/0 | 결절 촉지 | detection |
+phases/1/abnormal/0 | 자가 마사지로 해결할 대상이 아님 | avoidance,negation,management | 「아님」 부정 — 자가 마사지 비권고
+phases/1/abnormal/0 | 주입 깊이·농도 문제 | depth,concentration,cause | 깊이·농도 = 원인. 수치 없음
+phases/1/abnormal/0 | 시술 병원에 문의 | action,recommendation |
+phases/1/abnormal/0 | — | punctuation | 값 안 EM DASH(U+2014). 앞 절(아님)과 뒤 절(원인·대응)을 가름
+phases/1/normal/3 | — | punctuation | 값 안 EM DASH(U+2014)
+phases/1/abnormal/1 | 멍 지속 | persistence |
+phases/1/caution/0 | 비대칭 결절 | asymmetry |
+phases/1/caution/1 | 감염 징후 (발적 + 열감) | early_sign,co_occurrence |
+phases/1/emergency/0 | 감염 (농/고열) | gloss,alt |
+phases/1/emergency/1 | 이물 반응 초기 | early_sign |
+phases/2/period | Day 7-30 | period,time_range |
+phases/2/label | 콜라겐 유도기 | phase_label,mechanism |
+phases/2/normal/0 | 볼륨 최저점 (희석액 완전 흡수) | trough,degree,cause | 「최저점」
+phases/2/normal/1 | 눈에 보이는 변화 아직 없음 (정상) | negation,temporal,judgment |
+phases/2/normal/2 | 콜라겐 생성 진행 중 (체내에서) | mechanism,progress,location |
+phases/2/normal/3 | 점진적 개선 시작 (3-4주) | speed,onset,time_range |
+phases/2/abnormal/0 | 결절 지속 | persistence |
+phases/2/abnormal/1 | 비대칭 | asymmetry | 단독 값
+phases/2/caution/0 | 결절 크기 증가 | size,worsening |
+phases/2/caution/1 | 지연성 염증 반응 | delayed_onset |
+phases/2/emergency/0 | 육아종 형성 (단단한 결절 + 발적) | formation,texture,co_occurrence |
+phases/2/emergency/1 | 이물 반응 (광범위 염증) | extent,gloss |
+phases/3/period | Day 30-90 | period,time_range | 원장에서 가장 긴 기간
+phases/3/label | 콜라겐 효과 발현기 | phase_label,onset |
+phases/3/normal/0 | 콜라겐 볼륨 점진적 증가 | speed,change |
+phases/3/normal/1 | 피부 탄력/질감 개선 | alt,change |
+phases/3/normal/2 | 자연스러운 리프팅 효과 | quality |
+phases/3/normal/3 | 최종 효과 판단 시점 (8-12주) | evaluation_time,time_range |
+phases/3/abnormal/0 | 효과 미미 (추가 세션 필요) | insufficiency,retreatment,recommendation | dca 는 「필요 가능」, 여기는 「필요」
+phases/3/abnormal/1 | 볼륨 비대칭 | asymmetry |
+phases/3/caution/0 | 지연성 육아종 | delayed_onset |
+phases/3/caution/1 | 비대칭 콜라겐 생성 | asymmetry,mechanism |
+phases/3/emergency/0 | 육아종 (수개월 후에도 발생 가능) | onset_time,approx_time,sequence,concessive,possibility | 「후에도」 — 기간(Day 30-90) 밖 발생 언급
+phases/3/emergency/1 | 만성 이물 반응 | chronicity |
+O | 기간 Day 0 / 1-7 / 7-30 / 30-90. 값 안의 시간은 Day 2-3, 3-4주, 8-12주, 수일, 수개월 후.
+O | 관리 표현: 스무딩(선택, 예방 효과 미입증), 자가 마사지 비권고, 시술 병원 문의. dca 의 「임의 마사지 금기」 와 표현·강도가 다르다(구획 간 비교, 잠정).
+O | phases/3/emergency/0 「수개월 후에도 발생 가능」 은 해당 기간 끝(Day 90) 이후 발생을 말한다.
+Q | B | name | 「바이오스티뮬레이터/콜라겐부스터」 의 「/」 가 동의어 병기인지 대안인지 원문에 없다.
+Q | B | phases/1/abnormal/0 | 「주입 깊이·농도 문제」 의 기준 깊이·농도가 원문에 없다.

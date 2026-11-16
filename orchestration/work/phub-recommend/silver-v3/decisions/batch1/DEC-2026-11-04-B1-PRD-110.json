@@ -1,0 +1,88 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 20-148 호 · 범용전기수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@230/0"
+  },
+  {
+   "detail": "제허 24-257 호 · 범용 전기 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@230/1"
+  },
+  {
+   "detail": "https://www.fnnews.com/news/202303280835421150",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@230/4/0"
+  },
+  {
+   "detail": "https://magazine.hankyung.com/business/article/202003176913b",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@230/4/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-110",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "실펌 X",
+  "category": null,
+  "code": "M11",
+  "synonyms": [
+   "SYLFIRM X",
+   "SYLFIRM X™",
+   "SYLFIRM X PRO",
+   "SYLFIRM"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 2 허가 건 · 2 웹 · ledger_id M11-1-3 · 분류 항목 「실펌X」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@230"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@230/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@230/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@230/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@230/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@230/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@230/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@230/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@230/4"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

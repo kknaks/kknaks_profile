@@ -1,0 +1,140 @@
+{
+ "total": 10,
+ "passed": 10,
+ "cases": [
+  {
+   "id": "B0",
+   "type": "none",
+   "input": "원천 · 결정 그대로",
+   "expect": [],
+   "actual": [],
+   "note": "원천 · 결정 그대로 = open 0",
+   "pass": true
+  },
+  {
+   "id": "P1",
+   "type": "remove_decision",
+   "input": "결정 packages 에서 {'id': 'P6-01'} 뺌",
+   "expect": [
+    "결정 없는 패키지 원천 행:auto-4-1774737181584"
+   ],
+   "actual": [
+    "결정 없는 패키지 원천 행:auto-4-1774737181584"
+   ],
+   "note": "원장 패키지(풀페이스큐레이션) 결정을 빼면 그 원천 행이 open",
+   "pass": true
+  },
+  {
+   "id": "P2",
+   "type": "remove_decision",
+   "input": "결정 packages 에서 {'name': 'MTS + PRP (전체얼굴)'} 뺌",
+   "expect": [
+    "결정 없는 패키지 원천 행:MTS + PRP (전체얼굴)",
+    "결정 없는 패키지 원천 행:PRP + MTS 콤보"
+   ],
+   "actual": [
+    "결정 없는 패키지 원천 행:MTS + PRP (전체얼굴)",
+    "결정 없는 패키지 원천 행:PRP + MTS 콤보"
+   ],
+   "note": "시장가 두 행을 합친 패키지(R6)를 빼면 두 행 다 open",
+   "pass": true
+  },
+  {
+   "id": "P3",
+   "type": "remove_decision",
+   "input": "결정 packages 에서 {'name': '스컬트라 (3회 패키지)'} 뺌",
+   "expect": [
+    "결정 없는 패키지 원천 행:스컬트라 (3회 패키지)"
+   ],
+   "actual": [
+    "결정 없는 패키지 원천 행:스컬트라 (3회 패키지)"
+   ],
+   "note": "회차 묶음(U4 — 5단계에서 옮긴 시장가 행)",
+   "pass": true
+  },
+  {
+   "id": "Q1",
+   "type": "remove_decision",
+   "input": "결정 origin_questions 에서 {'id': 'Q01'} 뺌",
+   "expect": [
+    "결정이 가리키는 원천 질문 없음:P6-01|Q01",
+    "구성 키도 질문도 없음:P6-01"
+   ],
+   "actual": [
+    "결정이 가리키는 원천 질문 없음:P6-01|Q01",
+    "구성 키도 질문도 없음:P6-01"
+   ],
+   "note": "슬롯의 원천 질문을 빼면 「키도 질문도 없음」",
+   "pass": true
+  },
+  {
+   "id": "Q2",
+   "type": "remove_decision",
+   "input": "결정 origin_questions 에서 {'id': 'Q05'} 뺌",
+   "expect": [
+    "결정이 가리키는 원천 질문 없음:P6-08|Q05",
+    "결정이 가리키는 원천 질문 없음:P6-09|Q05",
+    "근거 약 구성인데 원천 질문 없음:P6-08",
+    "근거 약 구성인데 원천 질문 없음:P6-09"
+   ],
+   "actual": [
+    "결정이 가리키는 원천 질문 없음:P6-08|Q05",
+    "결정이 가리키는 원천 질문 없음:P6-09|Q05",
+    "근거 약 구성인데 원천 질문 없음:P6-08",
+    "근거 약 구성인데 원천 질문 없음:P6-09"
+   ],
+   "note": "근거 약 엣지(R5)의 질문을 빼면 open",
+   "pass": true
+  },
+  {
+   "id": "N1",
+   "type": "remove_decision",
+   "input": "결정 non_packages 에서 {'id': 'M8-1'} 뺌",
+   "expect": [
+    "넘겨받은 것 행선지 키 없음:M8-1"
+   ],
+   "actual": [
+    "넘겨받은 것 행선지 키 없음:M8-1"
+   ],
+   "note": "묶음 이름(R9) 결정을 빼면 넘겨받은 것 행선지가 빔",
+   "pass": true
+  },
+  {
+   "id": "H1",
+   "type": "remove_decision",
+   "input": "결정 handoffs 에서 {'source': 'M16-1~4 미백/항산화 · 피로회복 · 재생/면역 · 영양보충'} 뺌",
+   "expect": [
+    "넘겨받은 것 행선지 없음:M16-1~4 미백/항산화 · 피로회복 · 재생/면역 · 영양보충"
+   ],
+   "actual": [
+    "넘겨받은 것 행선지 없음:M16-1~4 미백/항산화 · 피로회복 · 재생/면역 · 영양보충"
+   ],
+   "note": "5단계 handoffs → 6단계 행선지",
+   "pass": true
+  },
+  {
+   "id": "G1",
+   "type": "remove_decision",
+   "input": "결정 packages 에서 {'id': 'P6-12'} 뺌",
+   "expect": [
+    "결정 없는 패키지 원천 행:auto-M15-1775402626587",
+    "묶음 이름 행선지 번호 어긋남:auto-1775402620"
+   ],
+   "actual": [
+    "결정 없는 패키지 원천 행:auto-M15-1775402626587",
+    "묶음 이름 행선지 번호 어긋남:auto-1775402620"
+   ],
+   "note": "묶음 이름 행선지 번호(P6-12~16)와 packages[].menu_group 이 어긋나면 open(검수 F1)",
+   "pass": true
+  },
+  {
+   "id": "S1",
+   "type": "remove_decision",
+   "input": "결정 backport_step5 에서 {'id': 'U1'} 뺌",
+   "expect": [],
+   "actual": [],
+   "note": "5단계 보강 확인 줄을 빼도 6단계 원천은 5단계 정본(포토나4D = 단위 시술)이라 open 없음 — 5단계가 되돌아가면 B0 에서 「결정 없는 패키지 원천 행」으로 잡힘",
+   "pass": true
+  }
+ ]
+}

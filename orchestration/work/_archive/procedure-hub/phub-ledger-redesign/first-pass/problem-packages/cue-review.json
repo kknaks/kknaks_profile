@@ -1,0 +1,4886 @@
+{
+ "about": "정규식 단서(부정·한정·가능성·조건·범위·수량단위·시간·정도·지시) 출현마다 수동 표현 구간이 덮는지 대조. 덮이지 않은 단서는 manual/cue-decisions.json 에 판단 사유를 남긴다.",
+ "counts": {
+  "cue_hits": 375,
+  "covered": 360,
+  "decided": 15,
+  "unresolved": 0
+ },
+ "rows": [
+  {
+   "pointer": "/problems/0/complaints/0/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/1/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "피할",
+   "span": [
+    20,
+    22
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/1/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    7,
+    10
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/1/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/2/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/4/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/5/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    11,
+    13
+   ],
+   "value": "근이완 + 피부재생 동시 개선",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/5/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "없",
+   "span": [
+    72,
+    73
+   ],
+   "value": "보톡스는 동적주름 완화, 스킨부스터는 피부결·재생 개선으로 상호 보완 (근이완이 스킨부스터 흡수·효능을 높인다는 직접 임상근거는 없음)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/5/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/5/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/6/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "피할",
+   "span": [
+    20,
+    22
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/6/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    7,
+    10
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/6/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "실 시술 후 2개월간 HIFU/RF 피할 것",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/7/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/8/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/9/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    11,
+    13
+   ],
+   "value": "근이완 + 피부재생 동시 개선",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/9/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "없",
+   "span": [
+    72,
+    73
+   ],
+   "value": "보톡스는 동적주름 완화, 스킨부스터는 피부결·재생 개선으로 상호 보완 (근이완이 스킨부스터 흡수·효능을 높인다는 직접 임상근거는 없음)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/9/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/9/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/10/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/11/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/13/cc",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    3,
+    5
+   ],
+   "value": "눈썹반영구",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/13/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/13/procedures/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/13/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 색소 시술",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/13/combos/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 단독",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/13/combos/0/combo/0",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/13/alternatives/0",
+   "pattern_name": "range",
+   "text": "3-6",
+   "span": [
+    4,
+    7
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/13/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "6개월",
+   "span": [
+    6,
+    9
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/13/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/14/cc",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    5,
+    7
+   ],
+   "value": "아이라인반영구",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/14/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/14/procedures/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/14/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 색소 시술",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/14/combos/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 단독",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/14/combos/0/combo/0",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/14/alternatives/0",
+   "pattern_name": "range",
+   "text": "3-6",
+   "span": [
+    4,
+    7
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/14/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "6개월",
+   "span": [
+    6,
+    9
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/14/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/15/cc",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    3,
+    5
+   ],
+   "value": "입술반영구",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/15/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/15/procedures/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/15/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 색소 시술",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/15/combos/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 단독",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/15/combos/0/combo/0",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/15/alternatives/0",
+   "pattern_name": "range",
+   "text": "3-6",
+   "span": [
+    4,
+    7
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/15/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "6개월",
+   "span": [
+    6,
+    9
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/15/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/cc",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    5,
+    7
+   ],
+   "value": "헤어라인반영구",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/16/procedures/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/16/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 색소 시술",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/combos/0/name",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구 단독",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/combos/0/combo/0",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    1,
+    3
+   ],
+   "value": "반영구화장",
+   "covered_by_manual": false,
+   "decision": "정도 단서 아님(이름 일부)",
+   "reason": "'반영구' 는 시술명 '반영구화장'·cc 복합어의 일부다. 지속성 정도 진술이 아니며 값 전체가 이름으로 source-map·morphology 에 보존된다. 이름형 값 '반영구화장' 표기는 S01 OB-S01-03 에서 관찰."
+  },
+  {
+   "pointer": "/problems/0/complaints/16/alternatives/0",
+   "pattern_name": "range",
+   "text": "3-6",
+   "span": [
+    4,
+    7
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/alternatives/0",
+   "pattern_name": "number_unit",
+   "text": "6개월",
+   "span": [
+    6,
+    9
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/0/complaints/16/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "터치업 3-6개월 후",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/0/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/0/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/1/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/1/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/2/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/2/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/3/combos/2/evidence",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    18,
+    19
+   ],
+   "value": "고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/3/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/3/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/4/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/4/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/4/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/5/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/5/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/5/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/6/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    9,
+    11
+   ],
+   "value": "동적+정적 주름 동시 해결",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/6/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/1/complaints/6/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2주",
+   "span": [
+    5,
+    7
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    3,
+    4
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "뒤",
+   "span": [
+    8,
+    9
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    3,
+    6
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    7,
+    9
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    10,
+    12
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/0/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2주",
+   "span": [
+    5,
+    7
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    3,
+    4
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "뒤",
+   "span": [
+    8,
+    9
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    3,
+    6
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    7,
+    9
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    10,
+    12
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/1/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2주",
+   "span": [
+    5,
+    7
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    3,
+    4
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "뒤",
+   "span": [
+    8,
+    9
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    3,
+    6
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    7,
+    9
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    10,
+    12
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/2/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2주",
+   "span": [
+    5,
+    7
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    3,
+    4
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "뒤",
+   "span": [
+    8,
+    9
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    3,
+    6
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    7,
+    9
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    10,
+    12
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/3/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2주",
+   "span": [
+    5,
+    7
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    3,
+    4
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "뒤",
+   "span": [
+    8,
+    9
+   ],
+   "value": "기기 후 2주 뒤 스킨부스터",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "2개월",
+   "span": [
+    3,
+    6
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    7,
+    9
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    10,
+    12
+   ],
+   "value": "시술 2개월 간격 권장",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/2/complaints/4/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "즉각",
+   "span": [
+    0,
+    2
+   ],
+   "value": "즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "수개월",
+   "span": [
+    8,
+    11
+   ],
+   "value": "즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/procedures/2/role",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    0,
+    2
+   ],
+   "value": "장기 콜라겐",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "즉각",
+   "span": [
+    0,
+    2
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    8,
+    10
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    20,
+    22
+   ],
+   "value": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/3/alternatives/1",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/4/procedures/3/role",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    0,
+    2
+   ],
+   "value": "장기 콜라겐",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/4/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "즉각",
+   "span": [
+    0,
+    2
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/4/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    8,
+    10
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/4/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    20,
+    22
+   ],
+   "value": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/4/alternatives/1",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/5/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    5,
+    7
+   ],
+   "value": "안팎으로 동시 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/6/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    5,
+    7
+   ],
+   "value": "안팎으로 동시 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/3/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    7,
+    9
+   ],
+   "value": "단계별 접근 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/cc_detail",
+   "pattern_name": "number_unit",
+   "text": "1064nm",
+   "span": [
+    0,
+    6
+   ],
+   "value": "1064nm 반복",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    48,
+    50
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    116,
+    117
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "2-4",
+   "span": [
+    153,
+    156
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "1064nm",
+   "span": [
+    90,
+    96
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "4주",
+   "span": [
+    155,
+    157
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    113,
+    115
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    150,
+    152
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "저출력",
+   "span": [
+    86,
+    89
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "과다",
+   "span": [
+    107,
+    109
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "보수적",
+   "span": [
+    143,
+    146
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "정밀",
+   "span": [
+    4,
+    6
+   ],
+   "value": "피코초 정밀",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    48,
+    50
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    116,
+    117
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "2-4",
+   "span": [
+    153,
+    156
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "1064nm",
+   "span": [
+    90,
+    96
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "4주",
+   "span": [
+    155,
+    157
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    113,
+    115
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    150,
+    152
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "저출력",
+   "span": [
+    86,
+    89
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "과다",
+   "span": [
+    107,
+    109
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "보수적",
+   "span": [
+    143,
+    146
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    48,
+    50
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    116,
+    117
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "2-4",
+   "span": [
+    153,
+    156
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "1064nm",
+   "span": [
+    90,
+    96
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "4주",
+   "span": [
+    155,
+    157
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    10,
+    11
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    113,
+    115
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "간격",
+   "span": [
+    150,
+    152
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "저출력",
+   "span": [
+    86,
+    89
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "과다",
+   "span": [
+    107,
+    109
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "보수적",
+   "span": [
+    143,
+    146
+   ],
+   "value": "스킨부스터는 시술 후 재생·보습을 보조하나 색소침착(PIH) 예방 효과의 임상 근거는 제한적임(근거 확립된 PIH 예방책은 국소 스테로이드·트라넥삼산). 저출력 1064nm 토닝은 누적 조사 과다·짧은 간격 시 반동성 색소침착·반점상 저색소증 위험이 있어 보수적 세션 간격(2-4주) 필요.",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/3/cc_detail",
+   "pattern_name": "range",
+   "text": "1~2",
+   "span": [
+    0,
+    3
+   ],
+   "value": "1~2회 집중",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/3/cc_detail",
+   "pattern_name": "number_unit",
+   "text": "2회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "1~2회 집중",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진으로 색소침착 방지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/3/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/4/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진으로 색소침착 방지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/4/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/5/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진으로 색소침착 방지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "허가 외",
+   "span": [
+    6,
+    10
+   ],
+   "value": "미백 목적 허가 외 사용(유효성 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    21,
+    23
+   ],
+   "value": "미백 목적 허가 외 사용(유효성 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진으로 색소침착 방지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/1/reason",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    32,
+    34
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/1/reason",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    47,
+    50
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "단기",
+   "span": [
+    37,
+    39
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/1/evidence",
+   "pattern_name": "negation_limit",
+   "text": "없",
+   "span": [
+    3,
+    4
+   ],
+   "value": "근거 없는 시너지 주장은 배제하며, 아나필락시스·간/신장 부담 등 안전성 경고 필요",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/combos/1/evidence",
+   "pattern_name": "negation_limit",
+   "text": "배제",
+   "span": [
+    14,
+    16
+   ],
+   "value": "근거 없는 시너지 주장은 배제하며, 아나필락시스·간/신장 부담 등 안전성 경고 필요",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/alternatives/1",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    12,
+    14
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/alternatives/1",
+   "pattern_name": "negation_limit",
+   "text": "허가 외",
+   "span": [
+    15,
+    19
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/6/alternatives/1",
+   "pattern_name": "time_order",
+   "text": "사전",
+   "span": [
+    49,
+    51
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/cc_detail",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    57,
+    58
+   ],
+   "value": "항산화/미백. 고용량 정맥 투여 전 G6PD 결핍 스크리닝 권고(급성 용혈 위험), 고용량·반복 투여 시 옥살산 신병증·급성신손상 위험",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/cc_detail",
+   "pattern_name": "time_order",
+   "text": "전",
+   "span": [
+    18,
+    19
+   ],
+   "value": "항산화/미백. 고용량 정맥 투여 전 G6PD 결핍 스크리닝 권고(급성 용혈 위험), 고용량·반복 투여 시 옥살산 신병증·급성신손상 위험",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "고용량",
+   "span": [
+    8,
+    11
+   ],
+   "value": "항산화/미백. 고용량 정맥 투여 전 G6PD 결핍 스크리닝 권고(급성 용혈 위험), 고용량·반복 투여 시 옥살산 신병증·급성신손상 위험",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "권고",
+   "span": [
+    33,
+    35
+   ],
+   "value": "항산화/미백. 고용량 정맥 투여 전 G6PD 결핍 스크리닝 권고(급성 용혈 위험), 고용량·반복 투여 시 옥살산 신병증·급성신손상 위험",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "고용량",
+   "span": [
+    47,
+    50
+   ],
+   "value": "항산화/미백. 고용량 정맥 투여 전 G6PD 결핍 스크리닝 권고(급성 용혈 위험), 고용량·반복 투여 시 옥살산 신병증·급성신손상 위험",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "허가 외",
+   "span": [
+    6,
+    10
+   ],
+   "value": "미백 목적 허가 외 사용(유효성 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    21,
+    23
+   ],
+   "value": "미백 목적 허가 외 사용(유효성 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진으로 색소침착 방지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/1/reason",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    32,
+    34
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/1/reason",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    47,
+    50
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/1/reason",
+   "pattern_name": "time_order",
+   "text": "단기",
+   "span": [
+    37,
+    39
+   ],
+   "value": "미용 목적 정맥 글루타치온/비타민C의 미백 유효성 근거는 부족하며 단기 효과에 그칠 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/1/evidence",
+   "pattern_name": "negation_limit",
+   "text": "없",
+   "span": [
+    3,
+    4
+   ],
+   "value": "근거 없는 시너지 주장은 배제하며, 아나필락시스·간/신장 부담 등 안전성 경고 필요",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/combos/1/evidence",
+   "pattern_name": "negation_limit",
+   "text": "배제",
+   "span": [
+    14,
+    16
+   ],
+   "value": "근거 없는 시너지 주장은 배제하며, 아나필락시스·간/신장 부담 등 안전성 경고 필요",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "자외선 차단 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/alternatives/1",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    12,
+    14
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/alternatives/1",
+   "pattern_name": "negation_limit",
+   "text": "허가 외",
+   "span": [
+    15,
+    19
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/4/complaints/7/alternatives/1",
+   "pattern_name": "time_order",
+   "text": "사전",
+   "span": [
+    49,
+    51
+   ],
+   "value": "정맥 미백주사는 근거 부족·허가 외 사용과 알레르기·아나필락시스, 간·신장 부담 위험을 사전 고지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/3/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/4/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/4/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/4/alternatives/1",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/7/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "아닌",
+   "span": [
+    29,
+    31
+   ],
+   "value": "리쥬란/엑소좀. 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 미용 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/7/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "미허가",
+   "span": [
+    58,
+    61
+   ],
+   "value": "리쥬란/엑소좀. 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 미용 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/7/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    100,
+    102
+   ],
+   "value": "리쥬란/엑소좀. 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 미용 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/5/complaints/7/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/0/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "과다",
+   "span": [
+    2,
+    4
+   ],
+   "value": "피지과다형",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/0/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/0/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/1/cc_group",
+   "pattern_name": "degree_directive",
+   "text": "과다",
+   "span": [
+    2,
+    4
+   ],
+   "value": "피지과다형",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/2/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    14,
+    16
+   ],
+   "value": "원인(처짐)+결과(모공) 동시 치료",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/6/complaints/3/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    14,
+    16
+   ],
+   "value": "원인(처짐)+결과(모공) 동시 치료",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/0/cc_detail",
+   "pattern_name": "number_unit",
+   "text": "595nm",
+   "span": [
+    0,
+    5
+   ],
+   "value": "595nm PDL",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/3/cc_detail",
+   "pattern_name": "number_unit",
+   "text": "1064nm",
+   "span": [
+    4,
+    10
+   ],
+   "value": "532+1064nm",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/7/complaints/4/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    4,
+    5
+   ],
+   "value": "레이저 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/0/combos/0/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/0/combos/1/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/0/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/0/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/1/combos/0/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/1/combos/1/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/1/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/1/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/2/combos/0/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/2/combos/1/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/2/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/2/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/3/combos/0/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/3/combos/1/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/3/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/3/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/4/combos/0/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/4/combos/1/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/4/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/4/combos/1/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/5/combos/1/reason",
+   "pattern_name": "number_unit",
+   "text": "2배",
+   "span": [
+    17,
+    19
+   ],
+   "value": "미세구멍 + 성장인자 = 재생 2배",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/5/combos/2/reason",
+   "pattern_name": "degree_directive",
+   "text": "최대",
+   "span": [
+    14,
+    16
+   ],
+   "value": "박리+리서페이싱+재생 = 최대 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/5/combos/2/evidence",
+   "pattern_name": "degree_directive",
+   "text": "가장",
+   "span": [
+    0,
+    2
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/5/combos/2/evidence",
+   "pattern_name": "degree_directive",
+   "text": "강력",
+   "span": [
+    3,
+    5
+   ],
+   "value": "가장 강력한 흉터 콤보",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/5/alternatives/0",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    11,
+    13
+   ],
+   "value": "바이오스티뮬레이터로 장기 관리",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/6/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    14,
+    16
+   ],
+   "value": "보조요법(두께 축소 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/6/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    50,
+    52
+   ],
+   "value": "트리암시놀론(±5-FU)이 1차 치료이며 PDL은 보조 치료; 보톡스의 두께 축소 근거는 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/7/procedures/2/role",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    14,
+    16
+   ],
+   "value": "보조요법(두께 축소 근거 제한)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/7/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    50,
+    52
+   ],
+   "value": "트리암시놀론(±5-FU)이 1차 치료이며 PDL은 보조 치료; 보톡스의 두께 축소 근거는 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/8/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "프락셔널 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/9/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "프락셔널 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/10/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "프락셔널 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/8/complaints/11/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "후",
+   "span": [
+    5,
+    6
+   ],
+   "value": "프락셔널 후 재생 촉진",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    8,
+    10
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    19,
+    21
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "않",
+   "span": [
+    28,
+    29
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    46,
+    49
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "5~8",
+   "span": [
+    0,
+    3
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "8회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "주기",
+   "span": [
+    32,
+    34
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    9,
+    11
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "완전",
+   "span": [
+    13,
+    15
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/0/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    16,
+    18
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    8,
+    10
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    19,
+    21
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "않",
+   "span": [
+    28,
+    29
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    46,
+    49
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "5~8",
+   "span": [
+    0,
+    3
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "8회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "주기",
+   "span": [
+    32,
+    34
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    9,
+    11
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "완전",
+   "span": [
+    13,
+    15
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    16,
+    18
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/1/evidence",
+   "pattern_name": "possibility",
+   "text": "가능",
+   "span": [
+    6,
+    8
+   ],
+   "value": "동시 시술 가능",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/1/combos/1/evidence",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    0,
+    2
+   ],
+   "value": "동시 시술 가능",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    8,
+    10
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    19,
+    21
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "않",
+   "span": [
+    28,
+    29
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    46,
+    49
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "5~8",
+   "span": [
+    0,
+    3
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "8회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "주기",
+   "span": [
+    32,
+    34
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    9,
+    11
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "완전",
+   "span": [
+    13,
+    15
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/2/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    16,
+    18
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    8,
+    10
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    19,
+    21
+   ],
+   "value": "다회차 시술로 영구적 모발 감소(반영구)",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "negation_limit",
+   "text": "않",
+   "span": [
+    28,
+    29
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "possibility",
+   "text": "수 있",
+   "span": [
+    46,
+    49
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "5~8",
+   "span": [
+    0,
+    3
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "8회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "time_order",
+   "text": "주기",
+   "span": [
+    32,
+    34
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "권장",
+   "span": [
+    9,
+    11
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "완전",
+   "span": [
+    13,
+    15
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/9/complaints/3/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    16,
+    18
+   ],
+   "value": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/0/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    11,
+    13
+   ],
+   "value": "근이완 + 피부재생 동시 개선",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/0/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/0/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/3/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    11,
+    13
+   ],
+   "value": "근이완 + 피부재생 동시 개선",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/3/combos/1/evidence",
+   "pattern_name": "range",
+   "text": "3~6",
+   "span": [
+    0,
+    3
+   ],
+   "value": "3~6개월 유지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/3/combos/1/evidence",
+   "pattern_name": "number_unit",
+   "text": "6개월",
+   "span": [
+    2,
+    5
+   ],
+   "value": "3~6개월 유지",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/3/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/3/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/5/procedures/1/role",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    0,
+    2
+   ],
+   "value": "장기 콜라겐",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/5/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "즉각",
+   "span": [
+    0,
+    2
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/5/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    8,
+    10
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/6/procedures/1/role",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    0,
+    2
+   ],
+   "value": "장기 콜라겐",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/6/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "즉각",
+   "span": [
+    0,
+    2
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/10/complaints/6/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "장기",
+   "span": [
+    8,
+    10
+   ],
+   "value": "즉각 볼륨 + 장기 재생",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/2/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "고농도",
+   "span": [
+    0,
+    3
+   ],
+   "value": "고농도 지방분해",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/3/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/4/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "허가 외",
+   "span": [
+    36,
+    40
+   ],
+   "value": "턱밑 지방 전용 국내 허가(데옥시콜산); 바디·체간 지방 사용은 허가 외. FDA 승인 제품은 미국 Kybella이며 동일 성분 Belkyra는 국가별 허가를 구분",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/4/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/7/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "4~6",
+   "span": [
+    0,
+    3
+   ],
+   "value": "4~6회 시리즈",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/7/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "6회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "4~6회 시리즈",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/7/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/8/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/9/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/10/combos/0/reason",
+   "pattern_name": "time_order",
+   "text": "동시",
+   "span": [
+    8,
+    10
+   ],
+   "value": "피부 + 근육 동시 개선",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/11/complaints/10/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    9,
+    11
+   ],
+   "value": "운동·식단 병행 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/2/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "아닌",
+   "span": [
+    28,
+    30
+   ],
+   "value": "ASCE+ 등 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 발모 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/2/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "미허가",
+   "span": [
+    57,
+    60
+   ],
+   "value": "ASCE+ 등 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 발모 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/2/cc_detail",
+   "pattern_name": "negation_limit",
+   "text": "제한",
+   "span": [
+    99,
+    101
+   ],
+   "value": "ASCE+ 등 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 발모 효과의 임상 검증은 제한적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/3/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "저출력",
+   "span": [
+    0,
+    3
+   ],
+   "value": "저출력레이저 · LED · FDA",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/3/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/4/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/7/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/8/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/9/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    0,
+    2
+   ],
+   "value": "영구적 모발 복원",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/9/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/10/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    0,
+    2
+   ],
+   "value": "영구적 모발 복원",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/12/complaints/10/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "추천",
+   "span": [
+    8,
+    10
+   ],
+   "value": "약물치료 병행 추천",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/0/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "정밀",
+   "span": [
+    5,
+    7
+   ],
+   "value": "레이저로 정밀 제거",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/0/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/1/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "정밀",
+   "span": [
+    5,
+    7
+   ],
+   "value": "레이저로 정밀 제거",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/1/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/2/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/3/alternatives/0",
+   "pattern_name": "negation_limit",
+   "text": "부족",
+   "span": [
+    3,
+    5
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/3/alternatives/0",
+   "pattern_name": "condition",
+   "text": "시",
+   "span": [
+    6,
+    7
+   ],
+   "value": "효과 부족 시 리프팅기기 추가",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/3/alternatives/1",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/cc_detail",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    10,
+    12
+   ],
+   "value": "마이크로웨이브 · 영구적",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/procedures/0/role",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    0,
+    2
+   ],
+   "value": "영구적 한선 파괴",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/combos/0/reason",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    10,
+    12
+   ],
+   "value": "마이크로파로 한선 영구 파괴",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/combos/0/evidence",
+   "pattern_name": "range",
+   "text": "1~2",
+   "span": [
+    0,
+    3
+   ],
+   "value": "1~2회로 영구 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/combos/0/evidence",
+   "pattern_name": "number_unit",
+   "text": "2회",
+   "span": [
+    2,
+    4
+   ],
+   "value": "1~2회로 영구 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/combos/0/evidence",
+   "pattern_name": "degree_directive",
+   "text": "영구",
+   "span": [
+    6,
+    8
+   ],
+   "value": "1~2회로 영구 효과",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/4/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/5/cc_detail",
+   "pattern_name": "number_unit",
+   "text": "308nm",
+   "span": [
+    4,
+    9
+   ],
+   "value": "엑시머 308nm",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/5/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  },
+  {
+   "pointer": "/problems/13/complaints/6/alternatives/0",
+   "pattern_name": "degree_directive",
+   "text": "필수",
+   "span": [
+    7,
+    9
+   ],
+   "value": "전문의 상담 필수",
+   "covered_by_manual": true,
+   "decision": null,
+   "reason": null
+  }
+ ]
+}

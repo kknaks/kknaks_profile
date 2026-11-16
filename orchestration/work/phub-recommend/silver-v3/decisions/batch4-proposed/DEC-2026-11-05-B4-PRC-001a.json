@@ -1,0 +1,69 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 0/7(원장 자리 0) · 근거 영문 낱말 「HA」 ↔ 「HA (물광)」",
+ "gate_item": "b4-prc/001",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-001a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-1ba847a855"
+ },
+ "proposal_item": "b4-prc/001",
+ "reason": "결정 묶음 4 — 참조 조각 「HA」 을 그 참조들(⑨ 5)에서 modality_subcategory_label 「HA (물광)」(SUB-1ba847a855)로 읽는다(근거: 영문 낱말 「HA」 ↔ 「HA (물광)」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@5/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].from@0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].from@1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "HA",
+  "scope": [
+   "REF-55570b4a55",
+   "REF-8bca08cd7d",
+   "REF-a175d8be6c",
+   "REF-d3bcd921bc",
+   "REF-dd55c3196d"
+  ]
+ }
+}

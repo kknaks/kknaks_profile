@@ -1,0 +1,862 @@
+{
+ "note": "products.json 형태소 출력 전체(적용 값의 모든 토큰)를 작성자가 한 번 직접 열람해 발견한 알려진 오분절·오태깅. 교정하지 않고 출현별로 표시만 한다. 여기 없는 토큰의 정답을 보장하지 않는다.",
+ "reviewed": "morphology.json values[] 전 토큰 1회 열람(작성자). 별도 검토자 없음",
+ "occurrences": [
+  {
+   "id": "K00",
+   "pointer": "/botulinum_toxin/products/3/manufacturer",
+   "text": "휴젤",
+   "tokens": [
+    [
+     "휴",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "젤",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 한 단위가 둘로 쪼개짐. 토큰으로 제조사를 묶으면 누락",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K01",
+   "pointer": "/botulinum_toxin/products/10/manufacturer",
+   "text": "휴젤",
+   "tokens": [
+    [
+     "휴",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "젤",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 한 단위가 둘로 쪼개짐. 토큰으로 제조사를 묶으면 누락",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K02",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "휴젤",
+   "tokens": [
+    [
+     "휴",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "젤",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 한 단위가 둘로 쪼개짐. 토큰으로 제조사를 묶으면 누락",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K03",
+   "pointer": "/filler_ha/products/5/manufacturer",
+   "text": "휴젤",
+   "tokens": [
+    [
+     "휴",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "젤",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 한 단위가 둘로 쪼개짐. 토큰으로 제조사를 묶으면 누락",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K04",
+   "pointer": "/filler_ha/products/6/manufacturer",
+   "text": "휴젤",
+   "tokens": [
+    [
+     "휴",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "젤",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 한 단위가 둘로 쪼개짐. 토큰으로 제조사를 묶으면 누락",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K05",
+   "pointer": "/botulinum_toxin/products/5/manufacturer",
+   "text": "메디톡스",
+   "tokens": [
+    [
+     "메",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "디톡스",
+     "NNP",
+     [
+      1,
+      4
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "'디톡스' 가 독립 명사로 보여 오탐 위험",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K06",
+   "pointer": "/botulinum_toxin/products/9/manufacturer",
+   "text": "메디톡스",
+   "tokens": [
+    [
+     "메",
+     "NNG",
+     [
+      13,
+      14
+     ]
+    ],
+    [
+     "디톡스",
+     "NNP",
+     [
+      14,
+      17
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "계열 참조 대상 이름이 쪼개져 참조 연결 시 토큰 매칭 불가",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K07",
+   "pointer": "/botulinum_toxin/products/7/manufacturer",
+   "text": "제테마",
+   "tokens": [
+    [
+     "저",
+     "NP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "의",
+     "JKG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "테마",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "오분석(대명사+조사 복원)",
+   "impact": "'제' 를 '저+의' 로 복원 — 원문에 없는 대명사·조사 생성. 기본형 '저' 는 원문 표면형과 다름",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K08",
+   "pointer": "/filler_ha/products/3/name",
+   "text": "벨로테로",
+   "tokens": [
+    [
+     "벨로테",
+     "NNG",
+     [
+      0,
+      3
+     ]
+    ],
+    [
+     "로",
+     "JKB",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절(조사 오인)",
+   "impact": "이름 끝 '로' 가 부사격조사로 떨어져 제품명 토큰 불완전",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K09",
+   "pointer": "/filler_ha/products/5/name",
+   "text": "채움",
+   "tokens": [
+    [
+     "채우",
+     "VV",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "ᆷ",
+     "EF",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(용언 활용)",
+   "impact": "제품명이 동사 '채우다' 로 분석. 기본형 lemma 는 도메인 이름이 아님. ᆷ 은 EF 로 태깅(명사형이라면 ETN)",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K10",
+   "pointer": "/filler_ha/products/6/name",
+   "text": "더채움",
+   "tokens": [
+    [
+     "더",
+     "MAG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "채우",
+     "VV",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "ᆷ",
+     "EF",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석 + 수식어 오탐",
+   "impact": "'더' 가 비교 부사(MAG)로 분석 — 수식어 수집 시 비교 표현 오탐",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K11",
+   "pointer": "/skin_booster/products/0/name",
+   "text": "리쥬란",
+   "tokens": [
+    [
+     "리쥬",
+     "NNP",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "란",
+     "ETM",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(서술격 복원·길이 0 토큰)",
+   "impact": "'리쥬란' 이 '리쥬+이+란' 으로 분석. 이/VCP 는 원문 길이 0 구간 [2,2) — 원문에 없는 형태소",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K12",
+   "pointer": "/skin_booster/products/1/name",
+   "text": "리쥬란",
+   "tokens": [
+    [
+     "리쥬",
+     "NNP",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "란",
+     "ETM",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(서술격 복원·길이 0 토큰)",
+   "impact": "'리쥬란' 이 '리쥬+이+란' 으로 분석. 이/VCP 는 원문 길이 0 구간 [2,2) — 원문에 없는 형태소",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K13",
+   "pointer": "/skin_booster/products/2/name",
+   "text": "리쥬란",
+   "tokens": [
+    [
+     "리쥬",
+     "NNP",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "란",
+     "ETM",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(서술격 복원·길이 0 토큰)",
+   "impact": "'리쥬란' 이 '리쥬+이+란' 으로 분석. 이/VCP 는 원문 길이 0 구간 [2,2) — 원문에 없는 형태소",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K14",
+   "pointer": "/skin_booster/products/4/name",
+   "text": "벨피엔",
+   "tokens": [
+    [
+     "벨피",
+     "NNG",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "에",
+     "JKB",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "ᆫ",
+     "JX",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(조사 복원)",
+   "impact": "'엔' 을 '에+ㄴ' 조사로 분석",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K15",
+   "pointer": "/energy_device/products/0/name",
+   "text": "울쎄라",
+   "tokens": [
+    [
+     "울쎄",
+     "NNG",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "라",
+     "EC",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(서술격 복원·길이 0 토큰)",
+   "impact": "이/VCP 길이 0 구간 [2,2)",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K16",
+   "pointer": "/energy_device/products/4/name",
+   "text": "볼뉴머",
+   "tokens": [
+    [
+     "볼",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "뉴",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "머",
+     "EC",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "'볼'(신체 부위로 읽힐 수 있는 명사) 오탐 위험",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K17",
+   "pointer": "/energy_device/products/6/name",
+   "text": "인모드",
+   "tokens": [
+    [
+     "인",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "모드",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제품명 분절",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K18",
+   "pointer": "/energy_device/products/6/manufacturer",
+   "text": "인모드",
+   "tokens": [
+    [
+     "인",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "모드",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "제조사명 분절",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K19",
+   "pointer": "/energy_device/products/9/manufacturer",
+   "text": "아이닉",
+   "tokens": [
+    [
+     "아이",
+     "NNG",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      2,
+      2
+     ]
+    ],
+    [
+     "니",
+     "EC",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "ᆨ",
+     "Z_CODA",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "고유명 오분석(서술격 복원·길이 0 토큰)",
+   "impact": "'아이'(일반명사) 오탐, 이/VCP 길이 0",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K20",
+   "pointer": "/thread_lift/products/3/name",
+   "text": "에버라인",
+   "tokens": [
+    [
+     "에버",
+     "NNP",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "라인",
+     "NNG",
+     [
+      2,
+      4
+     ]
+    ]
+   ],
+   "kind": "고유명 과분절",
+   "impact": "'라인' 이 일반명사로 떨어짐(경미)",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K21",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "경피",
+   "tokens": [
+    [
+     "경",
+     "NNG",
+     [
+      107,
+      108
+     ]
+    ],
+    [
+     "피",
+     "NNG",
+     [
+      108,
+      109
+     ]
+    ]
+   ],
+   "kind": "전문어 오분절",
+   "impact": "'경피(전달)' 가 '경'+'피'(혈액으로 읽힐 수 있는 명사) 로 쪼개져 전달 경로 표현 소실·오탐",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K22",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "허가 없음",
+   "tokens": [
+    [
+     "음",
+     "EF",
+     [
+      34,
+      35
+     ]
+    ]
+   ],
+   "kind": "어미 오태깅",
+   "impact": "'없음' 의 '음' 이 EF. 명사형 전성(ETN)으로 보이나 부정(없/VA)은 보존됨 — 영향 경미",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K23",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "경피",
+   "tokens": [
+    [
+     "경",
+     "NNG",
+     [
+      107,
+      108
+     ]
+    ],
+    [
+     "피",
+     "NNG",
+     [
+      108,
+      109
+     ]
+    ]
+   ],
+   "kind": "전문어 오분절",
+   "impact": "'경피(전달)' 가 '경'+'피'(혈액으로 읽힐 수 있는 명사) 로 쪼개져 전달 경로 표현 소실·오탐",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K24",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "허가 없음",
+   "tokens": [
+    [
+     "음",
+     "EF",
+     [
+      34,
+      35
+     ]
+    ]
+   ],
+   "kind": "어미 오태깅",
+   "impact": "'없음' 의 '음' 이 EF. 명사형 전성(ETN)으로 보이나 부정(없/VA)은 보존됨 — 영향 경미",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K25",
+   "pointer": "/description",
+   "text": "제조사",
+   "tokens": [
+    [
+     "제조",
+     "NNG",
+     [
+      8,
+      10
+     ]
+    ],
+    [
+     "사",
+     "NNG",
+     [
+      10,
+      11
+     ]
+    ]
+   ],
+   "kind": "분절 불일치",
+   "impact": "같은 값 [23,26) 의 '제조사' 는 한 토큰(NNG). 같은 말이 위치마다 다르게 분절",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K26",
+   "pointer": "/description",
+   "text": "매핑",
+   "tokens": [
+    [
+     "매핑",
+     "NNP",
+     [
+      12,
+      14
+     ]
+    ]
+   ],
+   "kind": "품사 오태깅",
+   "impact": "일반명사를 고유명사(NNP)로",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K27",
+   "pointer": "/prp_exosome/products/0/type",
+   "text": "키트",
+   "tokens": [
+    [
+     "키트",
+     "NNP",
+     [
+      3,
+      5
+     ]
+    ]
+   ],
+   "kind": "품사 오태깅",
+   "impact": "일반명사를 고유명사(NNP)로",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K28",
+   "pointer": "/prp_exosome/products/1/type",
+   "text": "키트",
+   "tokens": [
+    [
+     "키트",
+     "NNP",
+     [
+      3,
+      5
+     ]
+    ]
+   ],
+   "kind": "품사 오태깅",
+   "impact": "일반명사를 고유명사(NNP)로",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K29",
+   "pointer": "/prp_exosome/products/2/type",
+   "text": "키트",
+   "tokens": [
+    [
+     "키트",
+     "NNP",
+     [
+      3,
+      5
+     ]
+    ]
+   ],
+   "kind": "품사 오태깅",
+   "impact": "일반명사를 고유명사(NNP)로",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K30",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "보톡스",
+   "tokens": [
+    [
+     "보톡스",
+     "NNP",
+     [
+      0,
+      3
+     ]
+    ]
+   ],
+   "kind": "품사 불일치",
+   "impact": "name 값의 '보톡스'(/botulinum_toxin/products/0/name·/skin_booster/products/3/name)는 NNG — 같은 말이 위치마다 다른 품사",
+   "status": "표시됨(교정 아님)"
+  },
+  {
+   "id": "K31",
+   "pointer": "/energy_device/products/17/type",
+   "text": "초음파",
+   "tokens": [
+    [
+     "초",
+     "XPN",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "음파",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "전문어 분해(정오 판단 보류)",
+   "impact": "'초-' 접두 분해. 의미 손실은 확인되지 않았으나 전문어 한 단위가 아님",
+   "status": "표시됨(교정 아님)"
+  }
+ ]
+}

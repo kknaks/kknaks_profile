@@ -1,0 +1,38 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/1(unlinked → auto) · 근거 영문 낱말 「PDRN」 ↔ 「PN/PDRN」",
+ "gate_item": "b4-sit/032",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-032a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "PN/PDRN",
+  "category": null,
+  "synonyms": [
+   "PDRN"
+  ]
+ },
+ "proposal_item": "b4-sit/032",
+ "reason": "결정 묶음 4 — 문구 조각 「PDRN」 을 ingredient_material 「PN/PDRN」 의 동의어로(근거: 영문 낱말 「PDRN」 ↔ 「PN/PDRN」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@3/4"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "ingredient_material"
+ }
+}

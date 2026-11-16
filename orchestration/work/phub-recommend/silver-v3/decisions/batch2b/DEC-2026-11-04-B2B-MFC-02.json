@@ -1,0 +1,54 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "mface-like/라라젯",
+  "label": "같은 것 — 합친다(keep CAT-494e06af10)",
+  "note": "사용자 2026-11-05: 같은 시술 → 접기. 라라젯 = 음압+고압 물줄기 클렌징·미세자극·용액 전달을 한 번에(blsclinic). 출처 sources/2026-11-05-lhalajet-blsclinic.md",
+  "option": "fold"
+ },
+ "id": "DEC-2026-11-04-B2B-MFC-02",
+ "kind": "fold_approve",
+ "new_value": {
+  "keep_anchor": "CAT-494e06af10"
+ },
+ "reason": "결정 묶음 2B — 「라라젯」 두 분류 항목은 같은 시술 · 사용자 메모: 사용자 2026-11-05: 같은 시술 → 접기. 라라젯 = 음압+고압 물줄기 클렌징·미세자극·용액 전달을 한 번에(blsclinic). 출처 sources/2026-11-05-lhalajet-blsclinic.md",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/5/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].detail@14/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].detail@14/5/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@14/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@14/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "anchors": [
+   "CAT-494e06af10",
+   "CAT-53cb7ccd54"
+  ]
+ }
+}

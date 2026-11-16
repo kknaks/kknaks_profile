@@ -1,0 +1,67 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 2/7(원장 자리 2) · 근거 원장 이름 병기 「인모드(바디)」",
+ "gate_item": "b4-prc/002",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-002a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "PRD-034f572396"
+ },
+ "proposal_item": "b4-prc/002",
+ "reason": "결정 묶음 4 — 참조 조각 「바디」 을 그 참조들(⑨ 7)에서 product_name 「인모드」(PRD-034f572396)로 읽는다(근거: 원장 이름 병기 「인모드(바디)」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@20"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@21"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@9/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "바디",
+  "scope": [
+   "REF-6416534ee8",
+   "REF-65195c4396",
+   "REF-6633e9a989",
+   "REF-73140eefc2",
+   "REF-85dcc44f0d",
+   "REF-dc7d00f619",
+   "REF-e4e3b3c211"
+  ]
+ }
+}

@@ -1,0 +1,250 @@
+{
+ "cases": [
+  {
+   "id": "none",
+   "kind": "none",
+   "what": "원천 · 결정 그대로 → open 0 · 사람 확인 0"
+  },
+  {
+   "id": "det",
+   "kind": "determinism",
+   "what": "두 번 실행 → json · md 바이트 같음"
+  },
+  {
+   "id": "R9-1-unit",
+   "kind": "record",
+   "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "section": "recovery"
+   },
+   "what": "원장 항목 → 5단계 attach(단위 시술)"
+  },
+  {
+   "id": "R9-1-product",
+   "kind": "record",
+   "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "product:auto-40-1774737181584"
+    ],
+    "section": "method"
+   },
+   "what": "원장 항목 → 제품 × 계열 × 키 하위"
+  },
+  {
+   "id": "R9-2-S8",
+   "kind": "record",
+   "path": "taxonomy.modality[3].products[3].note",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "unit_procedure:U5-009"
+    ],
+    "section": "overview"
+   },
+   "what": "taxonomy products 스킨보톡스 = 5단계 S8 단위 시술"
+  },
+  {
+   "id": "R9-2a-same",
+   "kind": "record",
+   "path": "products.skin_booster.products[3].note",
+   "expect": {
+    "status": "대조본 같음(same_as taxonomy products)",
+    "nodes": []
+   },
+   "what": "products.json 같은 값 = same_as · 싣지 않음"
+  },
+  {
+   "id": "R9-2b",
+   "kind": "record",
+   "path": "products.energy_device.products[4].type",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "product:M9-2-3"
+    ]
+   },
+   "what": "taxonomy products 에 없는 이름 → 원장 항목 이름 → 같은 제품"
+  },
+  {
+   "id": "D9-8",
+   "kind": "record",
+   "path": "products.prp_exosome.products[3].legal_warning",
+   "expect": {
+    "status": "붙음",
+    "section": "disclosure"
+   },
+   "what": "legal_warning → disclosure"
+  },
+  {
+   "id": "D9-9",
+   "kind": "record",
+   "path": "taxonomy.modality[2].subcategories[5].description",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "family:M3"
+    ],
+    "flags": [
+     "sub_family:무세포동종진피(hADM)"
+    ],
+    "section": "overview"
+   },
+   "what": "하위 분류 설명 → 계열 + sub_family"
+  },
+  {
+   "id": "D9-5",
+   "kind": "record",
+   "path": "problem-packages.problems[5].complaints[1].alternatives[0]",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "unit_procedure:U5-049"
+    ],
+    "flags": [
+     "cc:PDT [감광제+LED]"
+    ]
+   },
+   "what": "쁘띠 CC 대안 → 단위 시술 + cc 조건"
+  },
+  {
+   "id": "R9-5b",
+   "kind": "record",
+   "path": "taxonomy.problem[3].subcategories[2].items[1].detail",
+   "expect": {
+    "status": "붙음",
+    "nodes": [
+     "family:M17"
+    ]
+   },
+   "what": "단위 시술 없는 시술 이름 항목 → 7단계 resolve 계열"
+  },
+  {
+   "id": "D9-6",
+   "kind": "record_status_prefix",
+   "rule": "R9-1",
+   "status_prefix": "붙이지 않음(원문 보관",
+   "min": 1,
+   "what": "5단계 원문 보관 항목은 붙이지 않음"
+  },
+  {
+   "id": "D9-4",
+   "kind": "source_conflict",
+   "path": "extracted.M12.mechanism",
+   "rule": "D9-4",
+   "what": "extracted.json 이 정본과 다르면 source_conflict · 싣지 않음"
+  },
+  {
+   "id": "D9-1",
+   "kind": "section_map",
+   "path": "complications.categories[1].complications[0].management",
+   "expect": {
+    "section": "safety.management",
+    "silver_id": "SE-M2-01",
+    "node": "family:M2"
+   },
+   "what": "관리 · 예방 → 새 section safety.management(8단계 실버 그대로)"
+  },
+  {
+   "id": "D9-7",
+   "kind": "value_dictionary",
+   "expect": {
+    "reaction_levels": 4,
+    "severity_levels": 4
+   },
+   "what": "값 사전 8 → 시맨틱 value_dictionary"
+  },
+  {
+   "id": "D9-3-1",
+   "kind": "slot",
+   "node": "product:M1-1-1",
+   "slot": "onset_duration.duration",
+   "expect": {
+    "class": "①",
+    "emit": [
+     "S9:taxonomy.modality[0].products[4].extracted.onset_duration.duration"
+    ]
+   },
+   "what": "포함 관계 → 긴 쪽 하나"
+  },
+  {
+   "id": "D9-3-2-short",
+   "kind": "slot",
+   "node": "product:M10-1-1",
+   "slot": "onset_duration.duration",
+   "expect": {
+    "class": "②",
+    "resolved_by": "짧은 쪽",
+    "resolved_text_has": "3-6개월"
+   },
+   "what": "지속 = 짧은 쪽 · 다른 값 alternatives"
+  },
+  {
+   "id": "D9-3-2-late",
+   "kind": "slot",
+   "node": "product:M1-2-3",
+   "slot": "onset_duration.onset",
+   "expect": {
+    "class": "②",
+    "resolved_by": "늦은 쪽",
+    "resolved_text_has": "3-7일"
+   },
+   "what": "시작 = 늦은 쪽"
+  },
+  {
+   "id": "D9-3-3",
+   "kind": "slot",
+   "node": "product:M1-1-1",
+   "slot": "overview",
+   "expect": {
+    "class": "③",
+    "emit_n": 2,
+    "multi_source": true
+   },
+   "what": "숫자 없는 다른 문장 → 둘 다"
+  },
+  {
+   "id": "D9-3-gold-one",
+   "kind": "guard_resolved_one",
+   "what": "② 칸은 emit 에 숫자 있는 레코드가 하나뿐(resolved) · alternatives 는 emit 밖"
+  },
+  {
+   "id": "rm-section",
+   "kind": "remove_decision",
+   "path": "section_map.onset_duration",
+   "expect_open": "section 없는 칸",
+   "what": "section 표 한 줄 빼면 open"
+  },
+  {
+   "id": "rm-unattached",
+   "kind": "remove_decision",
+   "path": "attach_status_unattached",
+   "value": "원문 보관(값)",
+   "expect_open": "붙는 노드 없음",
+   "what": "원문 보관 행선지 한 줄 빼면 open"
+  },
+  {
+   "id": "rm-kind-unat",
+   "kind": "remove_decision",
+   "path": "concern_item_unattached_kinds",
+   "value": "부위",
+   "expect_open": "붙는 노드 없음",
+   "what": "붙지 않는 고민 항목 종류 빼면 open"
+  },
+  {
+   "id": "canon-unit",
+   "kind": "canon_mutate",
+   "file": "step5-units.json",
+   "remove_unit": "U5-049",
+   "expect_open": "붙는 노드 없음",
+   "what": "5단계 단위 시술이 없어지면 그 레코드는 open(실버 노드만 붙임)"
+  }
+ ]
+}

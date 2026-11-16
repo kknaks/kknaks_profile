@@ -1,0 +1,74 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/10(unlinked → auto) · 근거 「안면 비대칭」 ⊃ 조각 「안면」",
+ "gate_item": "b4-adv/050",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-ADV-050a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "비대칭",
+  "category": null,
+  "synonyms": [
+   "안면"
+  ]
+ },
+ "proposal_item": "b4-adv/050",
+ "reason": "결정 묶음 4 — 문구 조각 「안면」 을 adverse_event_type 「비대칭」 의 동의어로(근거: 「안면 비대칭」 ⊃ 조각 「안면」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@5/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@2/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@2/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@2/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@4/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@7/0/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_event_type"
+ }
+}

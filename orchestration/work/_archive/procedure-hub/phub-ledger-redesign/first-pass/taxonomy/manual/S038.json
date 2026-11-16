@@ -1,0 +1,341 @@
+{
+ "section": "S038",
+ "state": "read",
+ "last_pointer": "/modality/14/subcategories/0/items/18/extracted/aftercare/2",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/group",
+    "/modality/14/subcategories"
+   ],
+   "note": "M15 group '관리'(세 번째 group 값). 하위분류 16개, 그중 M15-1 케미컬필링이 61항목으로 원장 최대 하위분류."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/0/extracted/aftercare",
+    "/modality/14/subcategories/0/items/18/extracted/aftercare"
+   ],
+   "note": "M15-1 항목 aftercare 에는 '[시술 주기 참고]' 상용구가 없다(이 구획 범위)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/6/name",
+    "/modality/14/subcategories/0/items/6/extracted/mechanism",
+    "/modality/14/subcategories/0/items/7/name",
+    "/modality/14/subcategories/0/items/7/extracted/overview"
+   ],
+   "note": "라라필 mechanism '호박 추출물의 프로테아제 효소', 호박필 overview '유산 기반 온순 필링' — 이름 '호박필' 과 '호박 추출물' 서술이 서로 다른 항목에 있다(내용이 뒤바뀐 듯 보이나 판단 안 함)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/8/name",
+    "/modality/14/subcategories/0/items/8/extracted/overview"
+   ],
+   "note": "밀크필 overview '워터제트 기반 물리적 클렌징' — 이름과 서술 종류(화학필링 하위분류 안의 물리 클렌징)가 맞지 않음. mechanism '정소하므로' 오기 의심."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/4/detail",
+    "/modality/14/subcategories/0/items/4/extracted/overview",
+    "/modality/14/subcategories/0/items/4/extracted/mechanism"
+   ],
+   "note": "GA필 detail '글리콜산' vs overview '복합 산 기반', mechanism 'AHA, BHA, 그리고 레소르신 등 복합 산'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/2/detail",
+    "/modality/14/subcategories/0/items/3/detail",
+    "/modality/14/subcategories/0/items/5/detail",
+    "/modality/14/subcategories/0/items/6/detail",
+    "/modality/14/subcategories/0/items/7/detail",
+    "/modality/14/subcategories/0/items/8/detail"
+   ],
+   "note": "알라딘필링·블랙필·핑크필·라라필·호박필·밀크필 detail 빈 문자열."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/15/detail",
+    "/modality/14/subcategories/0/items/15/extracted/overview",
+    "/modality/14/subcategories/0/items/4/extracted/mechanism"
+   ],
+   "note": "성분명 표기 변형: '레소시놀'(detail), '레조시놀'(overview), '레소르신'(GA필). '락틱'/'락트산'/'유산(젖산)'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/9/detail",
+    "/modality/14/subcategories/0/items/10/detail"
+   ],
+   "note": "detail 에 '계열 · 농도 범위 · 용도' 형식('AHA 계열 · 30-70% · 표재성')."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/0/extracted/safety/common/1",
+    "/modality/14/subcategories/0/items/3/extracted/safety/common/1"
+   ],
+   "note": "safety/common 에 '필링'(박리) — 시술명과 같은 낱말이 부작용 값으로 쓰인다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/14/detail"
+   ],
+   "note": "닥토필 '5세대 내추럴필링+엑소좀 · 페이스/바디/두피' — 필링+엑소좀(M4-3 계열) 결합, 적용 부위 3개 '/' 나열."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/14/subcategories/0/items/0/extracted/mechanism",
+   "text": "pH, 농도, 작용시간에 따라 필링 깊이가 결정되며",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/0/extracted/safety/serious/0",
+   "text": "화학화상(고농도/장시간)",
+   "kinds": [
+    "조건",
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/0/extracted/aftercare/2",
+   "text": "필링 중 산 제품 병용 자제",
+   "kinds": [
+    "조건",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/1/extracted/mechanism",
+   "text": "깊이는 농도(10-50%)에 따라 결정됩니다",
+   "kinds": [
+    "조건",
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/1/extracted/mechanism",
+   "text": "프로스팅 단계(홍반→점상→구름→융합→백색)",
+   "kinds": [
+    "기호",
+    "수량·단위·시간"
+   ],
+   "note": "'→' 단계 순서"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/1/extracted/mechanism",
+   "text": "전신흡수가 없으며",
+   "kinds": [
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/1/extracted/safety/serious/0",
+   "text": "흉터형성(과도한 깊이)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/2/extracted/mechanism",
+   "text": "100% TCA를 위축성 반흔 바닥에 직접 정밀 적용",
+   "kinds": [
+    "수량·단위·시간",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/2/extracted/safety/serious/0",
+   "text": "과도한 응고시 비후성 반흔",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/2/extracted/aftercare/0",
+   "text": "반복 시술(4주 간격)",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/3/extracted/mechanism",
+   "text": "매주 시술 가능한 온순한 표재 필링",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/5/extracted/aftercare/2",
+   "text": "주1-2회 반복 가능",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/7/extracted/mechanism",
+   "text": "글리콜산보다 분자량이 커 표피 표층에 천천히 작용",
+   "kinds": [
+    "비교"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/8/extracted/mechanism",
+   "text": "화학약품 없이 순수 물의 물리력만으로",
+   "kinds": [
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/9/detail",
+   "text": "AHA 계열 · 30-70% · 표재성",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/10/detail",
+   "text": "BHA 계열 · 20-30% · 모공/여드름",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/11/detail",
+   "text": "AHA 계열 · 항균+각질제거 · 민감피부 가능",
+   "kinds": [
+    "기호",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/11/extracted/overview",
+   "text": "다른 산성 필링보다 자극이 적어 민감피부도 시술 가능한",
+   "kinds": [
+    "비교",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/16/extracted/onset_duration/duration",
+   "text": "5-10년",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/16/extracted/safety/common/1",
+   "text": "장기간 홍조",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/16/extracted/aftercare/0",
+   "text": "엄격한 상처 관리",
+   "kinds": [
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/14/detail",
+   "text": "5세대 내추럴필링+엑소좀 · 페이스/바디/두피",
+   "kinds": [
+    "기호",
+    "부위",
+    "참조"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "삼염화초산",
+   "issue": "삼/NR 염화/NNG 초산/NNG — 화합물명 접두 '삼(tri)'을 수사 3 으로",
+   "impact": "수량 오탐(3)"
+  },
+  {
+   "scope": "all",
+   "surface": "레소르신",
+   "issue": "레소르/NNP 신/NNG",
+   "impact": "성분명 분해"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S038-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/6/extracted/mechanism",
+    "/modality/14/subcategories/0/items/7/extracted/overview"
+   ],
+   "note": "라라필/호박필 이름-성분 서술 엇갈림.",
+   "impact": "항목 내용 혼입 의심 — 원본 확인 후보"
+  },
+  {
+   "id": "S038-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/8/extracted/overview",
+    "/modality/14/subcategories/0/items/4/detail",
+    "/modality/14/subcategories/0/items/4/extracted/mechanism"
+   ],
+   "note": "밀크필(물리 클렌징), GA필(글리콜산 vs 복합산) 서술 불일치.",
+   "impact": "성분 축 분류 시 확인"
+  },
+  {
+   "id": "S038-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/14/subcategories/0/items/2/detail",
+    "/modality/14/subcategories/0/items/3/detail",
+    "/modality/14/subcategories/0/items/5/detail",
+    "/modality/14/subcategories/0/items/6/detail",
+    "/modality/14/subcategories/0/items/7/detail",
+    "/modality/14/subcategories/0/items/8/detail"
+   ],
+   "note": "브랜드성 필링 6항목 detail 빈 문자열.",
+   "impact": "제조사·성분 식별 정보 부족"
+  }
+ ]
+}

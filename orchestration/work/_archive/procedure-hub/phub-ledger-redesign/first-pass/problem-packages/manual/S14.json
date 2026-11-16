@@ -1,0 +1,43 @@
+{
+  "section": "S14",
+  "read_status": "done",
+  "read_note": "reading/S14.txt 로 c0~c6 전부(procedures 7·combos 6·alternatives 8) 읽음. c3 combos 빈 배열 확인.",
+  "observations": [
+    {"id": "OB-S14-01", "at": ["c3.combos"], "status": "P", "text": "원장 전체에서 유일한 빈 combos 배열(c3 cc '보톡스', cc_group '다한증'). 조합 없음인지 미기재인지 원문에 정보가 없다(B-04 와 같은 성격)."},
+    {"id": "OB-S14-02", "at": ["c3.A0", "c3.cc_group"], "status": "P", "text": "다한증 보톡스 complaint 의 alternatives 에 '효과 부족 시 리프팅기기 추가' 가 있다. S01·S02 의 주름 템플릿 문장과 같고 다한증 문맥과의 관계가 원문에 없다(B-02 템플릿 반복)."},
+    {"id": "OB-S14-03", "at": ["c4.cc_detail", "c4.P0.role", "c4.B0.reason", "c4.B0.evidence"], "status": "P", "text": "미라드라이는 cc_detail '마이크로웨이브 · 영구적', role '영구적 한선 파괴', reason '마이크로파로 한선 영구 파괴', evidence '1~2회로 영구 효과' 로 영구성 진술이 네 칸에 반복된다. '마이크로웨이브'·'마이크로파' 두 표기. 임상 사실로 승인하지 않는다."},
+    {"id": "OB-S14-04", "at": ["c5.P0.name", "c5.B0.reason", "c6.cc_detail"], "status": "P", "text": "백반증·건선 complaint 의 procedures name 은 '레이저'(M8), role '광선치료', reason '자외선 치료', cc_detail '엑시머 308nm'·'UVB 광치료' 다. name 과 다른 칸의 표현이 서로 다른 범주어를 쓴다. 동일성을 판단하지 않는다."},
+    {"id": "OB-S14-05", "at": ["c1.cc_detail"], "status": "I", "text": "cc_detail '냉동/CO2' 중 '냉동' 처치는 procedures 에 없다(I-03 같은 유형)."},
+    {"id": "OB-S14-06", "at": ["c0.P0.products.0", "c0.B0.evidence"], "status": "P", "text": "products 'CO2레이저' 는 장비 종류 표현이며 evidence 'CO2 레이저 사용' 은 띄어 쓴 같은 말이다. 근거 칸에 사용 장비가 적혀 있다(F-06)."},
+    {"id": "OB-S14-07", "at": ["c3.P0.role"], "status": "P", "text": "role '땀샘(한선) 신경전달 차단으로 발한 억제' — 괄호로 동의 표기(한선)를 병기한다. c4 는 '한선' 만 쓴다."},
+    {"id": "OB-S14-08", "at": ["c0.A0"], "status": "P", "text": "alternatives '전문의 상담 필수' — 7개 complaint 전부. 상담 지시이며 대안이 아니다(F-04). S01 '전문 시술자 필요' 와 표현이 다르다."},
+    {"id": "OB-S14-09", "at": ["c2.B0.evidence", "c5.B0.evidence"], "status": "B", "text": "'다회차 필요', '다회차 시리즈' — 회수 막연. 수치로 바꾸지 않는다."}
+  ],
+  "expressions": [
+    {"text": "CO2 레이저", "at": ["c0.cc_detail"], "aspects": ["장비 표현", "혼합 표기"]},
+    {"text": "냉동/CO2", "at": ["c1.cc_detail"], "aspects": ["방법 표현", "기호(/)", "혼합 표기"]},
+    {"text": "점/사마귀", "at": ["c0.cc_group", "c1.cc_group"], "aspects": ["병변 표현", "기호(/)"]},
+    {"text": "겨드랑이/손/발", "at": ["c3.cc_detail"], "aspects": ["부위 표현", "기호(/)"]},
+    {"text": "마이크로웨이브 · 영구적", "at": ["c4.cc_detail"], "aspects": ["기전 표현", "기호(· 띄어 씀)", "정도 수식(영구적)"]},
+    {"text": "엑시머 308nm", "at": ["c5.cc_detail"], "aspects": ["장비 표현", "수량·단위(nm)"]},
+    {"text": "UVB 광치료", "at": ["c6.cc_detail"], "aspects": ["약어(UVB)", "치료 표현"]},
+    {"text": "병변 제거", "at": ["c0.P0.role", "c1.P0.role"], "aspects": ["role 표현"]},
+    {"text": "레이저로 정밀 제거", "at": ["c0.B0.reason", "c1.B0.reason"], "aspects": ["수단(-로)", "정도 수식(정밀)"]},
+    {"text": "CO2 레이저 사용", "at": ["c0.B0.evidence", "c1.B0.evidence"], "aspects": ["장비 표현", "근거 칸의 사용 장비"]},
+    {"text": "레이저 제거", "at": ["c0.B0.name", "c1.B0.name"], "aspects": ["combo name(단독)"]},
+    {"text": "문신 색소 파괴", "at": ["c2.P0.role"], "aspects": ["role 표현", "기전 표현"]},
+    {"text": "피코레이저 시리즈", "at": ["c2.B0.name"], "aspects": ["combo name(단독)", "회차 표현(시리즈)"]},
+    {"text": "피코초 레이저로 색소 분해", "at": ["c2.B0.reason"], "aspects": ["단위 표현(피코초)", "수단(-로)", "기전 표현"]},
+    {"text": "다회차 필요", "at": ["c2.B0.evidence"], "aspects": ["회차(막연)", "필요 지시"]},
+    {"text": "땀샘(한선) 신경전달 차단으로 발한 억제", "at": ["c3.P0.role"], "aspects": ["role 표현", "괄호 병기", "수단(-으로)+결과", "억제 표현"]},
+    {"text": "효과 부족 시 리프팅기기 추가", "at": ["c3.A0"], "aspects": ["조건(-시)", "부족 표현", "추가 표현"]},
+    {"text": "영구적 한선 파괴", "at": ["c4.P0.role"], "aspects": ["role 표현", "정도 수식(영구적)"]},
+    {"text": "마이크로파로 한선 영구 파괴", "at": ["c4.B0.reason"], "aspects": ["수단(-로)", "정도 수식(영구)", "기전 표현"]},
+    {"text": "1~2회로 영구 효과", "at": ["c4.B0.evidence"], "aspects": ["범위(~)", "회차", "정도 수식(영구)"]},
+    {"text": "광선치료", "at": ["c5.P0.role", "c6.P0.role", "c5.B0.name", "c6.B0.name"], "aspects": ["치료 표현"]},
+    {"text": "자외선 치료", "at": ["c5.B0.reason", "c6.B0.reason"], "aspects": ["치료 표현"]},
+    {"text": "다회차 시리즈", "at": ["c5.B0.evidence", "c6.B0.evidence"], "aspects": ["회차(막연)"]},
+    {"text": "전문의 상담 필수", "at": ["c0.A0", "c1.A0", "c2.A0", "c3.A1", "c4.A0", "c5.A0", "c6.A0"], "aspects": ["상담 지시", "필수 지시"]}
+  ],
+  "issues": []
+}

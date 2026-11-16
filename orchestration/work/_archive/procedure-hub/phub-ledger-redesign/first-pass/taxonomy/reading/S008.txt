@@ -1,0 +1,264 @@
+# S008  scope=M3 바이오스티뮬레이터/콜라겐부스터  units=id | category | category_en | group | subcategories 컨테이너 | M3-1 items/0 | M3-1 items/1 | M3-1 items/2 | M3-1 items/3 | M3-2 items/0 | M3-2 items/1 | M3-2 items/2 | M3-5 items/0 | M3-5 items/1 | M3-5 items/2 | M3-5 items/3 | M3-3 items/0 | M3-3 items/1 | M3-3 items/2
+# 상위 문맥: []
+@ /modality/2 M3 바이오스티뮬레이터/콜라겐부스터 바이오스티뮬레이터/콜라겐부스터
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M3"
+  /category = "바이오스티뮬레이터/콜라겐부스터"
+  /category_en = "Biostimulator / Collagen Stimulator"
+  /group = "주사/주입"
+  /subcategories [7]
+@ /modality/2/subcategories/0 M3-1 PLLA (폴리-L-락틱산)
+  . {id,label,items}
+  /id = "M3-1"
+  /label = "PLLA (폴리-L-락틱산)"
+  /items [4]
+@ /modality/2/subcategories/0/items/0 M3-1-1 스컬트라
+  . {id,name,detail,extracted}
+  /id = "M3-1-1"
+  /name = "스컬트라"
+  /detail = "갈더마 · 대표 PLLA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PLLA 기반 콜라겐 부스터"
+  /extracted/mechanism = "poly-L-lactic acid(PLLA) 미세입자가 진피 내 이물반응을 유도하여 자체 콜라겐 생성을 촉진. 점진적 흡수되며 신생 콜라겐이 그 자리를 대체하여 장기 볼륨 회복."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"팔자주름" ‖ 1:"얼굴 전체 위축" ‖ 2:"볼 함몰"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"압통" ‖ 2:"미세 결절 형성"
+  /extracted/safety/serious [2] = 0:"지연성 육아종 반응" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주(점진적)"
+  /extracted/onset_duration/duration = "24-36개월"
+  /extracted/aftercare [3] = 0:"5-5-5 마사지는 선택 (결절 예방효과 RCT 미입증; 결절 예방의 핵심은 희석·수화·주입 깊이)" ‖ 1:"시술 후 부종은 수일 내 소실" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/0/items/1 auto-10-1774737181584 올리디아
+  . {id,name,detail,extracted}
+  /id = "auto-10-1774737181584"
+  /name = "올리디아"
+  /detail = "PRP사이언스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PRP사이언스 PLLA 기반 바이오스티뮬레이터"
+  /extracted/mechanism = "PLLA 미세입자가 진피 내 이물반응을 유도하여 콜라겐 신생을 촉진한다. 주입 후 점진적으로 PLLA가 분해되면서 자가 콜라겐으로 대체된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 탄력 저하" ‖ 1:"미세주름" ‖ 2:"피부 톤 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 부종" ‖ 1:"일시적 홍반" ‖ 2:"가려움증"
+  /extracted/safety/serious [1] = 0:"감염(혈액유래 시술)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"자극적 제품 사용 자제(3일)" ‖ 1:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 2:"결절 발생 시 내원 상담" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/0/items/2 auto-11-1774737181584 에스테필
+  . {id,name,detail,extracted}
+  /id = "auto-11-1774737181584"
+  /name = "에스테필"
+  /detail = "레지메드/휴메딕스 유통 · PDLLA 콜라겐 부스터"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDLLA(폴리디엘락틱애시드) 미립자 기반의 생분해성 콜라겐 부스터 — HA 필러가 아니며 즉시 볼륨 효과는 제한적이고 수주에 걸친 신생 콜라겐 형성으로 서서히 볼륨이 나타남"
+  /extracted/mechanism = "PDLLA 미세입자가 진피 내 이물반응(foreign body reaction)을 통해 I형/III형 콜라겐 합성을 자극한다. 입자가 점진적으로 생분해되면서 신생 콜라겐으로 대체된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얕은 주름" ‖ 1:"입술 확대" ‖ 2:"광대뼈 보강"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"멍" ‖ 2:"압통"
+  /extracted/safety/serious [2] = 0:"혈관 폐색" ‖ 1:"과민반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-2일"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"48시간 냉찜질" ‖ 1:"과도한 안면 운동 피하기" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/0/items/3 auto-M3-1775364775145 PLLA-SCA
+  . {id,name,detail,extracted}
+  /id = "auto-M3-1775364775145"
+  /name = "PLLA-SCA"
+  /detail = "수용성콜라겐"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "수용성 콜라겐과 폴리락틱산의 콜라겐 부스터"
+  /extracted/mechanism = "폴리락틱산이 서서히 분해되면서 섬유아세포를 자극합니다. 자체 콜라겐 생성을 촉진하여 점진적인 볼륨 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"콜라겐 재생" ‖ 1:"자연스러운 볼륨 증대" ‖ 2:"피부 탄력 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"주사 부위 발적" ‖ 2:"결절 형성 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 섭취" ‖ 1:"마사지 권장" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/1 M3-2 CaHA (칼슘하이드록시아파타이트)
+  . {id,label,items}
+  /id = "M3-2"
+  /label = "CaHA (칼슘하이드록시아파타이트)"
+  /items [3]
+@ /modality/2/subcategories/1/items/0 M3-2-1 래디어스
+  . {id,name,detail,extracted}
+  /id = "M3-2-1"
+  /name = "래디어스"
+  /detail = "멀츠"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "CaHA 기반 장기 콜라겐 부스터"
+  /extracted/mechanism = "칼슘하이드록시아파타이트(CaHA) 미세구와 카복시메틸셀룰로오스(CMC) 겔 복합체. 즉각적 볼륨 제공 후 CMC 흡수되면서 CaHA 입자가 이물반응을 통해 콜라겐 생성 지속."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"심한 팔자주름" ‖ 1:"턱 선 강화" ‖ 2:"얼굴 윤곽 교정"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"경미한 부종" ‖ 1:"일시적 압통"
+  /extracted/safety/serious [2] = 0:"육아종" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-1주"
+  /extracted/onset_duration/duration = "12-24개월"
+  /extracted/aftercare [4] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"결절 발생 시 내원 상담" ‖ 2:"멍/부종은 수일 내 자연 소실" ‖ 3:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/1/items/1 auto-12-1774737181584 디클래씨
+  . {id,name,detail,extracted}
+  /id = "auto-12-1774737181584"
+  /name = "디클래씨"
+  /detail = "대웅제약"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDLLA/HA 복합 바이오스티뮬레이터"
+  /extracted/mechanism = "칼슘하이드록시아파타이트(CaHA) 미세구와 카복시메틸셀룰로오스(CMC) 겔 캐리어로 구성. CaHA 미세구가 즉각적 구조 지지를 제공하고, 이물반응을 통해 콜라겐 합성을 자극한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 위축" ‖ 1:"볼 함몰" ‖ 2:"전체 얼굴 리프팅"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"미세 결절" ‖ 2:"일시적 홍반"
+  /extracted/safety/serious [2] = 0:"감염" ‖ 1:"지연성 이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "18-24개월"
+  /extracted/aftercare [3] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"고강도 운동 3주 피하기" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/1/items/2 auto-M3-1775364775147 HArmonyCa
+  . {id,name,detail,extracted}
+  /id = "auto-M3-1775364775147"
+  /name = "HArmonyCa"
+  /detail = "CaHA+HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "칼슘하이드록시아파타이트와 히알루론산의 복합 바이오스티뮬레이터"
+  /extracted/mechanism = "CaHA 마이크로스피어가 콜라겐 생성을 자극하고 HA가 즉시 볼륨을 제공합니다. 이중 작용으로 즉각적이면서도 지속적인 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"즉각적 볼륨 증대" ‖ 1:"콜라겐 재생" ‖ 2:"피부 질감 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"주사 부위 부종" ‖ 1:"일시적 압통" ‖ 2:"발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "15-18개월"
+  /extracted/aftercare [4] = 0:"24시간 메이크업 자제" ‖ 1:"일주일간 사우나 피하기" ‖ 2:"부드러운 마사지" ‖ 3:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/2 M3-5 콜라겐
+  . {id,label,items}
+  /id = "M3-5"
+  /label = "콜라겐"
+  /items [4]
+@ /modality/2/subcategories/2/items/0 auto-13-1774737181584 콜라쥬
+  . {id,name,detail,extracted}
+  /id = "auto-13-1774737181584"
+  /name = "콜라쥬"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콜라겐 기반 필러"
+  /extracted/mechanism = "생체 유래 콜라겐 단백질이 직접 진피 내 볼륨 제공 및 구조 지지. 타입 I/III 콜라겐으로 천연 세포외기질 모방."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얕은 주름" ‖ 1:"입술 풍만" ‖ 2:"미세 흉터"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"멍" ‖ 2:"일시적 결절"
+  /extracted/safety/serious [2] = 0:"알레르기 반응" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-3일"
+  /extracted/onset_duration/duration = "3-6개월(상대적 단기)"
+  /extracted/aftercare [3] = 0:"사전 패치테스트 권장" ‖ 1:"48시간 냉찜질" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/2/items/1 auto-14-1774737181584 레티젠
+  . {id,name,detail,extracted}
+  /id = "auto-14-1774737181584"
+  /name = "레티젠"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "정제 콜라겐 기반 조직충전제"
+  /extracted/mechanism = "인체/동물 유래 정제 콜라겐을 진피에 주입하여 볼륨을 회복하고 조직 재건을 지원한다. 숙주 조직과 생체적합적으로 통합되어 자연스러운 볼륨을 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"전체 피부 탄력 저하" ‖ 1:"주름" ‖ 2:"피부 품질 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [2] = 0:"주사 부위 부종" ‖ 1:"가려움증"
+  /extracted/safety/serious [1] = 0:"감염(배양 과정)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [5] = 0:"세포 배양 기간 필수(2-3주)" ‖ 1:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 2:"결절 발생 시 내원 상담" ‖ 3:"멍/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/2/items/2 auto-15-1774737181584 미라콜
+  . {id,name,detail,extracted}
+  /id = "auto-15-1774737181584"
+  /name = "미라콜"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콜라겐 기반 볼륨 충전제"
+  /extracted/mechanism = "정제된 콜라겐 매트릭스를 진피에 주입하여 즉각적 볼륨을 제공한다. 생체적합성 콜라겐이 조직에 통합되면서 자가 세포의 침투와 리모델링을 촉진한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 위축" ‖ 1:"넓은 주름" ‖ 2:"볼 함몰"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"결절 형성" ‖ 2:"압통"
+  /extracted/safety/serious [1] = 0:"육아종 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6주"
+  /extracted/onset_duration/duration = "18-24개월"
+  /extracted/aftercare [3] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"과도한 근육 운동 제한" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/2/items/3 auto-M3-1775364775146 콜라겐핀
+  . {id,name,detail,extracted}
+  /id = "auto-M3-1775364775146"
+  /name = "콜라겐핀"
+  /detail = "인체유래주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "인체 유래 콜라겐을 이용한 자가 콜라겐 부스터"
+  /extracted/mechanism = "인체에서 추출한 콜라겐을 직접 주입하여 조직을 보강합니다. 생체 적합성이 높아 자연스러운 콜라겐 재생을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"자연스러운 콜라겐 보충" ‖ 1:"피부 재생" ‖ 2:"잔주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"주사 부위 발적" ‖ 2:"가벼운 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"감염 예방 관리" ‖ 1:"충분한 보습" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/3 M3-3 PCL (폴리카프로락톤)
+  . {id,label,items}
+  /id = "M3-3"
+  /label = "PCL (폴리카프로락톤)"
+  /items [4]
+@ /modality/2/subcategories/3/items/0 M3-3-1 엘란쎄
+  . {id,name,detail,extracted}
+  /id = "M3-3-1"
+  /name = "엘란쎄"
+  /detail = "싱클레어"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PCL 기반 장기 콜라겐 부스터"
+  /extracted/mechanism = "Polycaprolactone(PCL) 미세입자의 1:4 희석액을 진피 내 주사 시 이물반응으로 콜라겐 신생 촉진. 진피 두께 1년 내 26.7% 증가, 4년간 48% 증가. PCL 입자는 4년 이상 생분해 가능."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"심한 주름" ‖ 1:"얼굴 위축" ‖ 2:"피부 탄력 재생"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"미세 결절" ‖ 2:"일시적 홍반"
+  /extracted/safety/serious [2] = 0:"지연성 육아종" ‖ 1:"이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "36-48개월(장기)"
+  /extracted/aftercare [3] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"반복 시술 가능" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/3/items/1 M3-3-2 고우리
+  . {id,name,detail,extracted}
+  /id = "M3-3-2"
+  /name = "고우리"
+  /detail = "덱스레보 액상 PCL"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "액상형 PCL 콜라겐 부스터"
+  /extracted/mechanism = "액상 형태의 Polycaprolactone(PCL) 입자 현탁액으로 균등한 분배 가능. PCL의 이물반응 유도 콜라겐 생성 메커니즘과 시술 용이성 결합."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"전면 주름" ‖ 1:"피부 처짐" ‖ 2:"넓은 영역 위축"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"결절" ‖ 2:"가벼운 멍"
+  /extracted/safety/serious [1] = 0:"과도한 이물반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-8주"
+  /extracted/onset_duration/duration = "36-48개월"
+  /extracted/aftercare [3] = 0:"시술 후 가벼운 마사지로 균일한 분포 유도 (의사 지시에 따라)" ‖ 1:"규칙적 추적 관찰" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/2/subcategories/3/items/2 auto-16-1774737181584 라풀렌
+  . {id,name,detail,extracted}
+  /id = "auto-16-1774737181584"
+  /name = "라풀렌"
+  /detail = "삼양홀딩스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "바이오스티뮬레이터 기반 장기 리프팅"
+  /extracted/mechanism = "고함량 생분해성 바이오폴리머 입자로 조직 내 이물반응을 유도하여 자체 콜라겐 생성 메커니즘 활성화. 장기간 진피 구조 강화 및 탄력성 회복."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"중등도 이상 주름" ‖ 1:"얼굴 전체 위축" ‖ 2:"팔자주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"부종" ‖ 1:"경미한 결절" ‖ 2:"압통"
+  /extracted/safety/serious [2] = 0:"이물반응" ‖ 1:"감염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-6주"
+  /extracted/onset_duration/duration = "24-36개월"
+  /extracted/aftercare [3] = 0:"격렬한 운동 제한(초기)" ‖ 1:"정기 추적 관찰" ‖ 2:"[시술 주기 참고] 반복 시술 권장. 1개월 간격, 3회 이상 코스. 콜라겐 생성 완료까지 2-6개월 소요. 소재별 지속: PLLA 24개월+, CaHA 12-24개월, PCL 36개월+ (개인차 있으며, 의사와 상의하여 결정)"

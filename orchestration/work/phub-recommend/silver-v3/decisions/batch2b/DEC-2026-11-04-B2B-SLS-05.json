@@ -1,0 +1,120 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "slash-together-or/05",
+  "label": "「또는」 — 기록만(ERD 규칙 개정 사유)",
+  "note": "규칙: 제품 대안 → 또는. 스컬트라 또는 엘란쎄",
+  "option": "or_record"
+ },
+ "id": "DEC-2026-11-04-B2B-SLS-05",
+ "kind": "scope_review",
+ "new_value": {
+  "disposition": "「바이오스티뮬레이터(스컬트라/엘란쎄)」의 `/` 는 「또는」"
+ },
+ "reason": "결정 묶음 2B — 「바이오스티뮬레이터(스컬트라/엘란쎄)」의 `/` 해석 기록 · 사용자 메모: 규칙: 제품 대안 → 또는. 스컬트라 또는 엘란쎄",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@2/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@40"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@41"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@42"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@43"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@44"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@68"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/1/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/3/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/4/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@10/5/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@10/6/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@2/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@35"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@36"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@37"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@40"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/3/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@3/4/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@10/5/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].products[]@10/6/1/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§1.4 조합 규칙 `/` · REF-142d95cd7e",
+  "review_item": "§12 `/`"
+ }
+}

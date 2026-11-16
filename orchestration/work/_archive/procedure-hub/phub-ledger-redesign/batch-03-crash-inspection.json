@@ -1,0 +1,936 @@
+{
+  "event": "user_reported_system_crash",
+  "inspection": "read_only; no worker stopped/retried/resumed",
+  "runtime_id_observed": "715c10ec-e945-482e-9871-0550195e23f1",
+  "ledgers": [
+    {
+      "ledger": "taxonomy",
+      "dispatchId": "ctx_ef30575e94c1",
+      "source_hash_matches_dispatch": true,
+      "saved_files": [
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/render_reading.py",
+          "bytes": 2296,
+          "sha256": "828e8668ebd9ce3230dc88e7fe86e873fd0c8056a466cf973c025036ad7d02ec"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/progress.md",
+          "bytes": 1979,
+          "sha256": "ecd0718697fa2e7a4311841cc6f1149783f6dc943956819b6dfa5757f8033fe2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/tx_common.py",
+          "bytes": 10724,
+          "sha256": "2242e130f5e0f0fe94b64910451d3fbf880f30be9961c914ffd25470cc084119"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S008.txt",
+          "bytes": 1470,
+          "sha256": "07532fb1dde855c963387bcf2d5a3cd7d75ab52b995bcdbc4b91ab4dea8a7802"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S020.txt",
+          "bytes": 8024,
+          "sha256": "2b9ee8dfa6191f85ba1267259670f0c63d7347c1f91dc57f539d178f08ab684d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S034.txt",
+          "bytes": 14380,
+          "sha256": "c7ad7a05717f105e48bccde03fc882f52b23132677b6395fda0e79464ca43d35"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S035.txt",
+          "bytes": 13739,
+          "sha256": "5e1e79e1defe74890ddd4469ec4c6f64f9056b76e9de1980da4182842b2a49d7"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S021.txt",
+          "bytes": 3408,
+          "sha256": "c92d24e03d0479d96d76fce3ab39e149f7282f3984352cbd8efb2cce9bc724f4"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S009.txt",
+          "bytes": 4311,
+          "sha256": "8bfca298b6ab35676225fcff68e094f00b4ab3402b8f1f00ff9411a727fbb520"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S037.txt",
+          "bytes": 7851,
+          "sha256": "dd7ec9a8550862890cab54c7c4e3c1a71f7e54e3c1e901a8632685171aa015a3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S023.txt",
+          "bytes": 13510,
+          "sha256": "1655d1ed81a9619add3632bff34021a42bddfbaa6f722fe7873c3b0b8656bf3d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S022.txt",
+          "bytes": 10314,
+          "sha256": "e3d2cf37b1b70a544edfd1a30cbc6d36575e03767284820dab3af7354da4978b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S036.txt",
+          "bytes": 6307,
+          "sha256": "1875eed5b6c091368fbfa7b8e224ea996038ba96c086e8218669d2527550ddfb"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S032.txt",
+          "bytes": 8938,
+          "sha256": "1f1bc7aeeadb611b391a4d4b484f5b4bdba6d643c3d52286bb6a265fa2f03b28"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S026.txt",
+          "bytes": 8770,
+          "sha256": "55d9cc08c948df53d3ae4f846f9653221af74b5d6772d4b3e82d59af280ed3b3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S027.txt",
+          "bytes": 5619,
+          "sha256": "d827ef3410faaab8c2b7453f95886988a3de882ea6272c87cd7d81ba5da2b253"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S033.txt",
+          "bytes": 5132,
+          "sha256": "1ab33226fcc7bd05f7c442c90af003700d81f4d08208dc8c836f17e10ac52b67"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S025.txt",
+          "bytes": 6447,
+          "sha256": "b4901cf386b89fc36085907804c1a98ae95f857cf94ef54e719d3d97dc224357"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S031.txt",
+          "bytes": 4103,
+          "sha256": "af65029eee07b8ce04d5ccaf4407f063bc927c5222479cf41bffe97757fa1bd1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S019.txt",
+          "bytes": 9819,
+          "sha256": "5de3ffa957a324fc1c34221f1ed39147849b976b3e00fca9b4f817daa5ad89e1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S018.txt",
+          "bytes": 8239,
+          "sha256": "86b1e02852cda047813ce162fc41b707d5272c2b90049622f3d6aaad1cff7fe2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S030.txt",
+          "bytes": 8519,
+          "sha256": "724e260043e77b218f0bc20b28a710804732c08ca2948754e5818179b46fb0a2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S024.txt",
+          "bytes": 8077,
+          "sha256": "807b3405fec72fbbf0d7f85d75e413a04a65f03dd912862078e587b1429646e1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S043.txt",
+          "bytes": 10684,
+          "sha256": "d6e5a18b9cc627c370ec2616b630f6f41c3db1216da9abee4c499378224c25e8"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S057.txt",
+          "bytes": 9687,
+          "sha256": "4ebdba523e093bfbc25ad2d63e263c97e9ccfa55bcab8434216c3723cdae2405"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S080.txt",
+          "bytes": 8414,
+          "sha256": "bc5ea842dc93e0076830c2bf498791da67e713cfe1b2f84c8e00a53d0fc2d30b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S094.txt",
+          "bytes": 8854,
+          "sha256": "2efd7815a8ac8e3709700d1d7b0121efa611e53b3d9697f43bc54dee0e86f31a"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S095.txt",
+          "bytes": 13405,
+          "sha256": "5e71140de8fa090854802031afeeb3de38f677237a72d54965f97d9ecc515174"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S081.txt",
+          "bytes": 12765,
+          "sha256": "681fc5d6d7b503ad7bea8ba79bf4c3dfa7ad0204dcfcdb192af77e9da79d757b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S056.txt",
+          "bytes": 3117,
+          "sha256": "cd84787aba94ae8fb685ec34761d537eeac388a0718d8abf45dd73f1eaecf8af"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S042.txt",
+          "bytes": 2538,
+          "sha256": "128e6dc26ed770edb5f3c37c09abd0540328484edde9f7919cfda23335e54119"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S068.txt",
+          "bytes": 10596,
+          "sha256": "c289e0000ed82ea1cac21fc8d54083800ae13c90b90e6afc401a9808e908fb4c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S054.txt",
+          "bytes": 13919,
+          "sha256": "696d9e757862cfc9165a953708084804d68fda618aba454ee0ee6ad04cbcff6b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S040.txt",
+          "bytes": 9303,
+          "sha256": "8d18caa6973e8516ffa2f8cb7d39973aab98ecfa8737fbd9062171533b651e43"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S097.txt",
+          "bytes": 9771,
+          "sha256": "66376c00f5133b2dedcdef59f7e0d39622411f28eff41733905d57ecda731af4"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S083.txt",
+          "bytes": 6561,
+          "sha256": "5494f964d526bbfbe9a3378612fd65d250eb81bf6371bf2c11c5b1aeb511475d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S082.txt",
+          "bytes": 2490,
+          "sha256": "45a27155ddd84977d367a4f1de510f0ba3ebc0b9db35e42f82fcc18d07c23676"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S096.txt",
+          "bytes": 1161,
+          "sha256": "a7bef45c4f6726acada888a79f92bdef9920f035f41309c9701d76f1bd453135"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S041.txt",
+          "bytes": 14238,
+          "sha256": "3ecb487529bd9654e8ca57c26d23c626bba025a2e9b2c0ed8694bcd84a43a21c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S055.txt",
+          "bytes": 11304,
+          "sha256": "09d741ec31330c5b45699e3beb5fcfb140b2ed13c6d32ad2a6eccedbd1391e15"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S069.txt",
+          "bytes": 4381,
+          "sha256": "3edc223ca56a32f501f36341dc74a0142835843f3d22265c814ef0bdd483d415"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S051.txt",
+          "bytes": 4053,
+          "sha256": "580f7533d4e515bd46100644b79548d063b1c8410c3c35634c986c9d76e5bd7e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S045.txt",
+          "bytes": 2333,
+          "sha256": "0315070097c623829bb4e49ea0516ec716913ec7ac546c1357874367b4623b34"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S079.txt",
+          "bytes": 5719,
+          "sha256": "becd0f2afbda81b552c92b1e19b2807bb05335544a262bd618fab44565721e83"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S092.txt",
+          "bytes": 12205,
+          "sha256": "3d1c9f89772d04adee6297f36a007aa400e558c69816489356e7b22e87015514"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S086.txt",
+          "bytes": 650,
+          "sha256": "e52f7dad276d5c20d0c3a2c84009832e34368e9b7a1f8f77a65bf55bf700e4b1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S087.txt",
+          "bytes": 3335,
+          "sha256": "ab8d478757030bad8a6d63d7380257437719b5b159c677192b7397034a416177"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S093.txt",
+          "bytes": 3030,
+          "sha256": "4822f8760d254efd18d0f3986c0221fa826f1481553a92e18a5a38775b0c352f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S078.txt",
+          "bytes": 10151,
+          "sha256": "32999037ea96dacc5f4656511b2dcb9cb6617856bb2d9f332ef592c4dfdea7fe"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S044.txt",
+          "bytes": 12975,
+          "sha256": "6ef8bc98bff9f2e05625504861670fe4137853d2c7e0fa05e543d500d7eb28c0"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S050.txt",
+          "bytes": 8953,
+          "sha256": "6e3249b96e551b8e16a6c541525914edc6d8a25838a2ba25d067761281d2e17e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S046.txt",
+          "bytes": 13472,
+          "sha256": "c1e8f09e9b399d9e2a2b9b9012521de93e6003b14d28f2ab23072663466c9a04"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S052.txt",
+          "bytes": 13239,
+          "sha256": "9f8b35842046f0c80621cbe8015ea6e1e736becdd39d38c7655eb20f9e1ad2c9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S085.txt",
+          "bytes": 8375,
+          "sha256": "824b0510e3c341a85870ca4300958168db70fd5ee7e6f02810dd1bfb937068da"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S091.txt",
+          "bytes": 5160,
+          "sha256": "b8dc89fda269d9e7b725ccb2f268618c1234742b3f1bc5da27df4f6a4b88c0fa"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S090.txt",
+          "bytes": 9254,
+          "sha256": "aa0e929b67e7b9a0f25ef3973540e1e9a6f5abb47e4a660006463cf4371062ff"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S084.txt",
+          "bytes": 7036,
+          "sha256": "a2dda9e58f976dd042926d30ae584588bf59eb257eb6691a3685c8e32c60a2ae"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S053.txt",
+          "bytes": 11108,
+          "sha256": "14974f6c3d26dd82d6006317d91f1e8a88d446dc3985bb2ee2c2f077cacb06bf"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S047.txt",
+          "bytes": 6296,
+          "sha256": "9676e554d5d877a132ce0c8774f91c4367f9d7185c963688d9b87620fd0258d8"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S062.txt",
+          "bytes": 3546,
+          "sha256": "1368a92f96ec05c0927ed5bc4f0c388fc7b6ef3f9dbc889d36d2220a86ee1877"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S076.txt",
+          "bytes": 7033,
+          "sha256": "fe4982897f0d184b24542523ebde203674611c5cf2e7347619d7dc21af0e2fe7"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S089.txt",
+          "bytes": 9014,
+          "sha256": "40f0e36b2fe26e46745abd1a92b3f387f08816a835ff4998d17b42ed7ad6ec31"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S102.txt",
+          "bytes": 7335,
+          "sha256": "64b4d3bb01dc500e779410655eceb0626e612cdc4dff5e1c76a5687d32ec18d4"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S088.txt",
+          "bytes": 7200,
+          "sha256": "6a49a30858259e60a7d006de71aea800cbc50fb2d5daefaa9b967985342792ea"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S077.txt",
+          "bytes": 3451,
+          "sha256": "78deb5c25489514624f63febdc47e2ee0a50a181ad78c815a415f6f8410a715d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S063.txt",
+          "bytes": 13203,
+          "sha256": "831fb5490511662940fe1cbaefe7ed0ea622d39620a0fe95855cd9f183554700"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S049.txt",
+          "bytes": 7371,
+          "sha256": "7d354bd7881359f55f5091e17b05d74c8b4ab5dfd1da2d6e6a5a5be28c703662"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S075.txt",
+          "bytes": 9024,
+          "sha256": "eaac0ee3271d910184d1037296e30825a4f85f2cfd8ee51f86694fb04a23d19c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S061.txt",
+          "bytes": 10847,
+          "sha256": "da25a1969eee73d8df77b90d737e2358da69c73fb83f470ab59396e63e7c7ae2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S101.txt",
+          "bytes": 8168,
+          "sha256": "daba0443a3b8300a203e63490b8f232c59993cbf6deacc8737a4100a624cdb99"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S100.txt",
+          "bytes": 8196,
+          "sha256": "b289c1f1f57dcd83a5046a8c19438816a728a991283ad5630a662befa3320c6a"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S060.txt",
+          "bytes": 5661,
+          "sha256": "93fa020e5a517a4e5d59847df4f3ee91d9c32c6811130b379aec163eee37910d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S074.txt",
+          "bytes": 13496,
+          "sha256": "06505daca6961e828532a1510108e814a8a6c4d1bea446a189ef81923ab204e0"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S048.txt",
+          "bytes": 12752,
+          "sha256": "0f7a0de8a7c169bf67ebdd36358309fa946c958246b62f6b32be850099c3e808"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S070.txt",
+          "bytes": 12216,
+          "sha256": "fa5a496f0057e92b6d1265acbc72b9ece54fb234a30b0f2dd76c14187d0aa6fd"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S064.txt",
+          "bytes": 9109,
+          "sha256": "d656d7003a7bfa91955e9309dcbc63425c6cbb6ac5b4020a2581787590c14200"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S058.txt",
+          "bytes": 3545,
+          "sha256": "6cdc5b134f55594f1070257aa711470b26aa5fe58b6ae09f1e3b566234bc8af1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S059.txt",
+          "bytes": 10190,
+          "sha256": "03f61bb33cb4e08a246fcddcdcabf51d6cc695789af189934938a7ebabe5872a"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S065.txt",
+          "bytes": 8749,
+          "sha256": "6267400ab061d9cedf9aca9545223ad1a6bcedc3e7aa2bfd806f79e0a8e94761"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S071.txt",
+          "bytes": 12526,
+          "sha256": "966fbc71ee72813b917735d46f5f273c10590f93da9703b7d5c096f186e944c2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S067.txt",
+          "bytes": 7775,
+          "sha256": "f3402b503274e190e91104e3e54c8f1dbcb75900ef41073f657cb7b5294f00e1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S073.txt",
+          "bytes": 13398,
+          "sha256": "d0e82164e8a1edae51a315f12411305334af3ac7044030f46c6796f65d8b33c7"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S098.txt",
+          "bytes": 4907,
+          "sha256": "070196cba24760f10c6d22be478d7e860480a709dd41fd2ee9ec58d6d4be61c7"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S099.txt",
+          "bytes": 7832,
+          "sha256": "02aefa5053fe21d8a89141d6cc25c028be989b873402013825d8d796191f3a74"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S072.txt",
+          "bytes": 14000,
+          "sha256": "54b5522ac31dccdec2b24fa35e3e4c09efd8c897af239714de767c0f959699d1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S066.txt",
+          "bytes": 6173,
+          "sha256": "74b8ae4866e0dbe4ef04b1cf378627b1368ac7205102fb58caab3780bc750a45"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S029.txt",
+          "bytes": 6875,
+          "sha256": "8b6b9bfa96bd84cfd21859f4381e0f26b5d04e4540e4467eb11b366c74458f2c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S001.txt",
+          "bytes": 3983,
+          "sha256": "9d85d3ee0fcd8fe1189637ac06d7b7265bf115c882291d68e675e73b779d8986"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S015.txt",
+          "bytes": 9972,
+          "sha256": "aa76dfbf39f9a6814ce8967c99c6a8382e87437c610aadf28b03edff57c94cb5"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S014.txt",
+          "bytes": 8800,
+          "sha256": "49d9ddb3cc54b066ecb5f359c9fa6ba15e86082ac08b689c2776002f67910861"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S000.txt",
+          "bytes": 103,
+          "sha256": "ea0e0692122b4fa8a4b8955a6b15547f25e51a2d95a9faa0d0ee2f9f63d20f48"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S028.txt",
+          "bytes": 9417,
+          "sha256": "72aab01f2de1fce53cebd765bab4e14c53c17f744056251476d44a66007eaf81"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S016.txt",
+          "bytes": 4243,
+          "sha256": "ca38ad05300919dca010c2fef3db0806d4cbb49e1c51f238ee89187f55f60fbf"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S002.txt",
+          "bytes": 6411,
+          "sha256": "042cc0a93500675777ba90a9ca120198374ddadc4cb6cc57bf9363c77ad03b9e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S003.txt",
+          "bytes": 13129,
+          "sha256": "f3239981d49cec2c9c84c937ec17600532496ede208e61557289fe65760b52fc"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S017.txt",
+          "bytes": 5102,
+          "sha256": "00a477585918819edbc34c8c4ea40a6ce4e64929f6067876a8f7120a2beb11b2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S013.txt",
+          "bytes": 2835,
+          "sha256": "6f1e2706c180d16a3a71848263eb0cd6b71918c6694c6d761e16070a81a28bc9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S007.txt",
+          "bytes": 14033,
+          "sha256": "a9dc4d2f25d5c095bc88fc8d1ce41042db8718a3e92241e081f357fe2e4b5cb9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S006.txt",
+          "bytes": 8491,
+          "sha256": "6de7d563d984bf0bae005e15af7cdc04f95c0d396aaf3c97abef4c4fe33627fe"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S012.txt",
+          "bytes": 13079,
+          "sha256": "2ad251474f3a8854df13e8c4a807100f9f683360ca2977a21b6a1c966a711945"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S004.txt",
+          "bytes": 7883,
+          "sha256": "a29571bacd7added09a1756fb5ebc4299d794008ef7a91fd6ed24959853a4ae8"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S010.txt",
+          "bytes": 12202,
+          "sha256": "7579411ccc19784e770aecef5394015d922ad9772cbf6ee33b21d1d594d29913"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S038.txt",
+          "bytes": 4496,
+          "sha256": "f42b474b9e13223d8d2d32a9f510f6b33274d157a6a6fc5206ab44b9807f34c3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S039.txt",
+          "bytes": 14640,
+          "sha256": "243425ff147b0e97f8fab6074b933e73d1965d9ba69505d76025d2aa44f00fc0"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S011.txt",
+          "bytes": 11059,
+          "sha256": "2e56161d8e2d2df95b407c8820edf70ca7ddd1e0418ba5583dd36d68001509e2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/reading/S005.txt",
+          "bytes": 12985,
+          "sha256": "19cfd758b4826a34d84e2e085b2a0b299cf5ac974a2c0c56b1c448641a912114"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S008.txt",
+          "bytes": 644,
+          "sha256": "002f4dca5b1b65e9f8e90c126e8b0e4ca2294845d471faeb3e80098a6d68896b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S001.txt",
+          "bytes": 3962,
+          "sha256": "2d32370e8340fe1ce331da761b2f5f24b2150f421267a4ca736548c1726b9c0e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S000.txt",
+          "bytes": 427,
+          "sha256": "be115ab0560c56fdbe5100cbefa3e7019f0e8c7392fd87c117ea805e2341141f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S002.txt",
+          "bytes": 3844,
+          "sha256": "2d1fd48cb34a3efb4cfe9cbe8d9446677ff64b483bc536793b54a5c914eb3902"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S003.txt",
+          "bytes": 4833,
+          "sha256": "7928d561624d86aa087158f4d1870a0e716c4224299ed2e2fd5d930f7bf4617c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S007.txt",
+          "bytes": 5079,
+          "sha256": "834660ea3ead68c568413cdfdd774fc850994604ecd4224c047247dc7b6ddcd2"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S006.txt",
+          "bytes": 2943,
+          "sha256": "625534f681f853e062034e2edd414340342545f21580e4726a957cb7a9948058"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S004.txt",
+          "bytes": 2951,
+          "sha256": "a05dbae0dcea50b7418935fbbba7ccc5630bb30645183d622d735b90ee23062a"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/manual/S005.txt",
+          "bytes": 5448,
+          "sha256": "b6a7df5cc9924245fd3488ed1ebb1d245f45424eafdb7dacece70a778e74daae"
+        }
+      ],
+      "fleet_liveness": "unverifiable: missing_status",
+      "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+      "resume_session_id_from_terminal": "d5b3b31f-d7a6-45b6-89b1-3a9922b31e63"
+    },
+    {
+      "ledger": "literature-evidence",
+      "dispatchId": "ctx_7d9775918e33",
+      "source_hash_matches_dispatch": true,
+      "saved_files": [
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/coverage-plan.json",
+          "bytes": 2687,
+          "sha256": "30fae8a4d2697e277a648efab7e5556e5f7b41abc64cc73ae6f5b24830fab796"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/progress.md",
+          "bytes": 482,
+          "sha256": "38c61dbe47a064c1e6a4309c5bdc64d17b9ad8d4043323c3d98c440d5ea1ff5b"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S08.json",
+          "bytes": 8005,
+          "sha256": "172b8309cc3421bbf711c2edaabf6aceaa18fe00fb1570501731cdf3e188691c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S12.json",
+          "bytes": 7326,
+          "sha256": "7e4bb94537c81774284788d2b6ab86ef5e1e08d85af3b04e327aed344444902e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S04.json",
+          "bytes": 4538,
+          "sha256": "4336e35e13e70b343349a7ba529b6e9e8d357cf527e06f01503a142d4fa6eb61"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S05.json",
+          "bytes": 4353,
+          "sha256": "4b4c051ab5f44c3822ba4f25a0566edce8c1101757e13dbfdd37fabffa912fe9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S13.json",
+          "bytes": 480,
+          "sha256": "be96be45f2ac7d323ec58b9507afc20f6b529e24aef3476d9d300f1fccf5ea56"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S09.json",
+          "bytes": 3294,
+          "sha256": "94ca90d75717d5de69653c26596079eb87057d7a26d2cb7520551a4cf8704a24"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S14.json",
+          "bytes": 472,
+          "sha256": "61371d89525bf3490c5b9aa7e595cf38fc622693dcbdfed063fdbf8e9fb89832"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S02.json",
+          "bytes": 4964,
+          "sha256": "3dbe3c466f3edf8d10aa0543299c896963ea24eccf5b76a64f5025d75c5230eb"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S03.json",
+          "bytes": 4354,
+          "sha256": "4e80224c2417bb9a3f74f79c0fec54e6a5c6b1b4c9525fdf8f4db2c11e6e2d8e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S15.json",
+          "bytes": 4192,
+          "sha256": "1fe991356febf5636d617dcc0edd3ec6138d1abf6d266bf93936be7954348a27"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S16.json",
+          "bytes": 3357,
+          "sha256": "bb57aad5a47a7906bc8311f0a16d6ce0800dbfc184616dfa2aa3ef87c85227d3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S17.json",
+          "bytes": 1996,
+          "sha256": "3a8cf6a50d73fa635d5abfe16ce2acaf33ab262b032b30394a7aadb8eaa2d149"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S01.json",
+          "bytes": 5998,
+          "sha256": "5d8694f48e29062828c3ac1ec37f992155f689902664bb1e76bfe905cd139a4f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S06.json",
+          "bytes": 820,
+          "sha256": "480a202f43c1df7268203697b46ba90f1e23be2fea3f70b8850d5b1829b8c744"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S10.json",
+          "bytes": 653,
+          "sha256": "b08339929e09f08ba0d9172193ae41a7d80ec6bfa27aa1e3cc9b083fe619acd1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S11.json",
+          "bytes": 653,
+          "sha256": "945c4722a663da83adeb62738269c46e5aadafd942f92b2e5d8ce8470a14b104"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/manual/S07.json",
+          "bytes": 7258,
+          "sha256": "63d2144717787127b8c2be8b5839d7edfcebe72a5c6af789cc8aa81bd56d0eb2"
+        }
+      ],
+      "fleet_liveness": "unverifiable: missing_status",
+      "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+      "resume_session_id_from_terminal": "0e0fe7e4-d368-40c1-a39c-165b2b290cf7"
+    },
+    {
+      "ledger": "problem-packages",
+      "dispatchId": "ctx_d0477ee7b6f4",
+      "source_hash_matches_dispatch": true,
+      "saved_files": [
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/progress.md",
+          "bytes": 1447,
+          "sha256": "abfe38e21a6e7d5ea777c12360d74d2fb98ea3b5310016ae0547b326185b391d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/add_manual.py",
+          "bytes": 925,
+          "sha256": "fed54c2a2df6bdc32ea2fa248c4d7fff7bacb0e0f5d6fad18d352fe1825dbbcf"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual-review.json",
+          "bytes": 66654,
+          "sha256": "91e2a55661a31a0dd09dd271b1523cb7c6b62582960b72c5db5e40f732bb4446"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/read_section.py",
+          "bytes": 1126,
+          "sha256": "7a957d8a0f05bb689e707a27cf423c2a280c3f4cee80b3f04a70ef4dc1c42cf9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S08.json",
+          "bytes": 1733,
+          "sha256": "49710a04ac150f11b2d46c0f2547524c22a843d84d76d3b28c6ff881e1feb844"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S12.json",
+          "bytes": 3305,
+          "sha256": "58ce3c4b82a13e8f4cfe869e3291592882c6be12ed1247d108945c9eb0fca20f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S04.json",
+          "bytes": 3972,
+          "sha256": "c869eee498c7402f19fa163f0bb96b22443aa92fbd6da1bdee5d7f2291f2be2f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S05.json",
+          "bytes": 6471,
+          "sha256": "c5d2c533ee2715f39cc4e8efb841c21b780db8704ca993febe627ed1bebbe1f6"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S13.json",
+          "bytes": 3342,
+          "sha256": "cd95a1eb5d9fe9ec54a941e77a00b3adbe3b12fd585592d2a82a56d10662ff57"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S09.json",
+          "bytes": 4862,
+          "sha256": "48100b404553305545acc8412596bd79e31347141729c5a2e999c9f7e15b1a32"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S14.json",
+          "bytes": 3281,
+          "sha256": "5aba4c7f2fee4e93bdfe3c51b082f0ec6b9c78b73dec3068173252f33677a991"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S02.json",
+          "bytes": 3920,
+          "sha256": "89137cd2eb126361f896a41c9e2d5b9e0c45daa69fb14feb26ec5a52872da84d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S03.json",
+          "bytes": 2618,
+          "sha256": "9a647b69d57c2214887d2f7ddb90525c934f772a812696cc9b26df8852cf28e3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S00.json",
+          "bytes": 1079,
+          "sha256": "689aacd5ba96986b50176ba98c7d129a7531e4e0edf4cc27520f4b83f7d483db"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S01.json",
+          "bytes": 6687,
+          "sha256": "634d9b0313a9476d5bc929105241274df8593c602308a2141ac8d85dad450de9"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S06.json",
+          "bytes": 4749,
+          "sha256": "7382336e8f93388ad4da2cf0de0bc1a43a594acbd76ccc595110aeb0a16e8994"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S10.json",
+          "bytes": 2779,
+          "sha256": "fff7cb8c8fa2f6ab1fa76a8f15399924850e2b09771f917db56e62343fd2c069"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S11.json",
+          "bytes": 3892,
+          "sha256": "4179014209fe7868e8b5cbe7a3d1a7b1465c1146ba5d519d749f066701d11f61"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/manual/S07.json",
+          "bytes": 2231,
+          "sha256": "4097c6e3d64bf3805bacf88a5bb92617940c13c7939e3e6cb433878e93da2b34"
+        }
+      ],
+      "fleet_liveness": "unverifiable: missing_status",
+      "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+      "resume_session_id_from_terminal": "fd4f8f7e-288d-4123-bf84-1fb769525868"
+    },
+    {
+      "ledger": "problem-combos",
+      "dispatchId": "ctx_372d65f15bdb",
+      "source_hash_matches_dispatch": true,
+      "saved_files": [
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-combos/manual-S4-S8.json",
+          "bytes": 31019,
+          "sha256": "3e8f2225b432b6d71d6d96b4f3494c28866ffbc129972a02d4131b4a60f38a41"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-combos/progress.md",
+          "bytes": 592,
+          "sha256": "6837a0a7c5bf7248246811b2e138b61d8bb776f188821296e09d04f3de0b0c26"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/problem-combos/manual-S1-S3.json",
+          "bytes": 20695,
+          "sha256": "315928bb2b7eea00915098adca8ce271d40bc261889f47557f5730b11930662c"
+        }
+      ],
+      "fleet_liveness": "unverifiable: missing_status",
+      "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+      "resume_session_id_from_terminal": "f02c58d4-9c1f-4537-b531-6e5fd13ebd8a"
+    },
+    {
+      "ledger": "pih-risk",
+      "dispatchId": "ctx_58102b90356e",
+      "source_hash_matches_dispatch": true,
+      "saved_files": [
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/build.py",
+          "bytes": 29568,
+          "sha256": "5fa35c2a6f4d96947dd871f33d528ea53e7eddddd285fbcf0593cbb337af62b1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/expressions.json",
+          "bytes": 108435,
+          "sha256": "073f0e93861061c18f75a470e612ee17fb38e66f2210568587d3bd9f29f75c90"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S4.md",
+          "bytes": 4558,
+          "sha256": "e69bb9707817dbcf0458563aef999f86fe72d224caf9a3efccfd78726c8a2578"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S0.md",
+          "bytes": 9963,
+          "sha256": "e17e6d176890a397f20c3cb3a5c4ceb6cf70441c30822e6ec3585ef39b36148d"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/progress.md",
+          "bytes": 456,
+          "sha256": "4e1a880e009c6e23dd333261b7ea20d426c74544a0c122f3968158b9f5ee570f"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S1.md",
+          "bytes": 17057,
+          "sha256": "fce837d816c7581988a5b137ad81b30d6841bb5a3f1670bc2dd12c6ac12b8b4e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/segments.json",
+          "bytes": 2605,
+          "sha256": "ed3af336e5e0cac719421077e39f6a43980318ec75c207941d5673d37c4e64ac"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S5.md",
+          "bytes": 4353,
+          "sha256": "3a995e37346ed35c6d058d5a67c786a2474047b91f88b585ec830d2fc627a389"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S2.md",
+          "bytes": 7224,
+          "sha256": "243cb5b7ec41424dc282a61640bb6650e06b399b1454d869ab047aa088f3fc6e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S6.md",
+          "bytes": 4728,
+          "sha256": "a1133ab3cafa171887a8a20a5ea776309c26b5cd11ac7c318982a11173b52d5c"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/morphology.json",
+          "bytes": 644495,
+          "sha256": "bb65982560a34daa6958f4a756b87f4c2055e9a9b70453789dac1fe0d6d3def3"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S7.md",
+          "bytes": 3448,
+          "sha256": "24596d7d691b8bce8cc5569b6440668ca1aff03390921ec496e2d6c8ac6d85b1"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/coverage.json",
+          "bytes": 53006,
+          "sha256": "ab47bdf6b3e67030bdc53432743b3bce27382da43918eca40ef6a2387d2b61fb"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S3.md",
+          "bytes": 4692,
+          "sha256": "3e1bfba2630a4b4384bc5d0c71e46d837c4949d422f9a64ee635f006dddf3dfe"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review-part-S8.md",
+          "bytes": 4697,
+          "sha256": "e2b47b2dfcefddf9032e40f1f09424243cc51d262708bff7ea1fd25c7daafc36"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review.md",
+          "bytes": 5712,
+          "sha256": "fd1c6453056c957730295174c4847a3711a033e38badcb65dc14f11817c06bbb"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/source-map.json",
+          "bytes": 346788,
+          "sha256": "2117fe8edb799d994c04bdd7f6d855668c5d199a6f5c6dab651d6ca5741352ac"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/manual/facets.json",
+          "bytes": 1353,
+          "sha256": "f3ede124cc8c6f88aadd7144c27bdd95d1f75c2efc883e29fd18a24b2f878de8"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/manual/S1.json",
+          "bytes": 10817,
+          "sha256": "fb081b61927a3570513d4e0b7b15e06b80887c9d12768ade4845267fca22170e"
+        },
+        {
+          "path": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/manual/S0.json",
+          "bytes": 7400,
+          "sha256": "f6afbc190a72b7791e9d277b8e19d1c23a26a40c614d621b9814303cc6e1414e"
+        }
+      ],
+      "fleet_liveness": "live",
+      "terminal_observation": "Claude input prompt; no completion report yet"
+    }
+  ]
+}

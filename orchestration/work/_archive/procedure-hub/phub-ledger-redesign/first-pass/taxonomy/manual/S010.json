@@ -1,0 +1,31 @@
+{"section":"S010","state":"read","last_pointer":"/modality/2/name",
+"observations":[
+ {"status":"P","pointers":["/modality/2/products/0/ingredient","/modality/2/products/5/ingredient"],"note":"M3 products 에만 ingredient 필드가 있다(PCL, PLLA, CaHA, PDLLA, PDLLA, PDLLA+HA). M1·M2 products 에는 없음. '+' 는 성분 복합."},
+ {"status":"I","pointers":["/modality/2/products/3/manufacturer","/modality/2/subcategories/4/items/1/detail"],"note":"쥬베룩 제조사가 제품 'LG화학', 항목 detail '바임 PDLLA+HA' 로 다르다(쥬베룩볼륨도 같음)."},
+ {"status":"I","pointers":["/modality/2/products/5/ingredient","/modality/2/products/5/extracted/overview","/modality/2/products/5/extracted/mechanism"],"note":"글로벨라 ingredient 'PDLLA+HA' 인데 overview·mechanism 은 'PLLA(폴리-L-락트산)'. 한 제품 안 성분 서술 충돌."},
+ {"status":"P","pointers":["/modality/2/products/5/extracted/indications/primary/0","/modality/2/products/5/name"],"note":"제품명 '글로벨라'와 적응증 '글로벨라 주름(눈썹 사이 수직주름)'(glabella)이 같은 문자열을 공유한다. 문자열 일치를 관계로 보지 않음."},
+ {"status":"P","pointers":["/modality/2/products/0/country"],"note":"엘란쎄 country 'NL'. 항목 쪽 엘란쎄 detail '싱클레어' 와 제조사 일치."},
+ {"status":"P","pointers":["/modality/2/products/1/extracted/aftercare","/modality/2/products/0/extracted/aftercare/0"],"note":"products aftercare 는 마사지 '금지/제한'(엘란쎄 4~6주 금지, 래디어스 2주 제한) — 같은 재질 항목 상용구의 '가벼운 마사지로 균일한 분포 유도' 와 방향이 반대."}
+],
+"expressions":[
+ {"pointer":"/modality/2/products/0/extracted/overview","text":"PCL 마이크로캡슐 4년 지속형","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/2/products/0/extracted/mechanism","text":"4년 이상 입자 잔존","kinds":["범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/2/products/0/extracted/safety/common/0","text":"만져질 수 있는 미세입자","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/2/products/0/extracted/aftercare/0","text":"마사지 4~6주 금지","kinds":["부정","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/2/products/1/extracted/overview","text":"PLLA 미세구 2년+ 장기형","kinds":["수량·단위·시간","기호"],"note":"'+' = 이상"},
+ {"pointer":"/modality/2/products/1/extracted/aftercare/1","text":"5일간 냉찜질","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/2/products/2/extracted/overview","text":"CaHA 미세구 + CMC 겔 볼륨제","kinds":["기호"],"note":"'+' 구성 결합"},
+ {"pointer":"/modality/2/products/4/extracted/mechanism","text":"대용량 주입 시에도 균일한 분산과 자연스러운 결과","kinds":["조건","주장"],"note":""},
+ {"pointer":"/modality/2/products/5/extracted/safety/common/3","text":"경미한 딤플링(수개월 내 소실)","kinds":["수식","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/2/products/5/extracted/safety/serious/0","text":"이물반응성 육아종(드물음)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/2/products/5/extracted/onset_duration/onset","text":"즉각적 볼륨(주입 직후) ~ 콜라겐 유도 효과 4-8주","kinds":["범위","수량·단위·시간"],"note":"'~' 가 두 효과의 시점을 잇는다"},
+ {"pointer":"/modality/2/products/5/extracted/onset_duration/duration","text":"24-36개월(개별차이 있음)","kinds":["수량·단위·시간","조건"],"note":""},
+ {"pointer":"/modality/2/products/5/extracted/aftercare/1","text":"부종 관리: 냉찜질(처음 24시간), 온찜질(48시간 후)","kinds":["수량·단위·시간","조건"],"note":"시점별 상반 지시"},
+ {"pointer":"/modality/2/products/5/extracted/aftercare/2","text":"마사지 금지(4주간) - 입자 이동 방지","kinds":["부정","수량·단위·시간"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S010-I01","status":"I","pointers":["/modality/2/products/5/ingredient","/modality/2/products/5/extracted/mechanism"],"note":"글로벨라 성분 PDLLA+HA vs PLLA 서술.","impact":"성분 축 채택 시 원본 확인 후보"},
+ {"id":"S010-I02","status":"I","pointers":["/modality/2/products/3/manufacturer","/modality/2/subcategories/4/items/1/detail"],"note":"쥬베룩 제조사 LG화학 vs 바임.","impact":"제조사 식별 후속"},
+ {"id":"S010-F01","status":"F","pointers":["/modality/2/products/0/extracted/aftercare/0","/modality/2/subcategories/3/items/0/extracted/aftercare/0"],"note":"같은 제품의 products/items 사이 마사지 지시 방향 반대.","impact":"관리 지시 정리 시 후속"}
+]}

@@ -1,0 +1,410 @@
+{
+ "note": "step5-fixture-test.py 사례 — 결정 한 줄을 빼거나 원천에 행 하나를 더해 돌리고 open[] 이 기대와 같은지 본다(「결정 빼면 open」)",
+ "cases": [
+  {
+   "id": "B0",
+   "type": "none",
+   "expect": [],
+   "note": "원천 · 결정 그대로 = open 0"
+  },
+  {
+   "id": "L1",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "M1-3-1"
+   },
+   "expect": [
+    "결정 없는 원장 항목:M1-3-1",
+    "원천 근거 없는 키:U5-005"
+   ],
+   "note": "원장 「주름」 결정을 빼면 그 행 + 그 행만 근거인 콧등 보톡스 키가 open"
+  },
+  {
+   "id": "L2",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "auto-M16-1775361069392"
+   },
+   "expect": [
+    "결정 없는 원장 항목:auto-M16-1775361069392",
+    "원천 근거 없는 키:U5-123"
+   ],
+   "note": "카복시테라피(F1 · U1)"
+  },
+  {
+   "id": "L3",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "auto-55-1774737181584"
+   },
+   "expect": [
+    "결정 없는 원장 항목:auto-55-1774737181584",
+    "원천 근거 없는 키:U5-133"
+   ],
+   "note": "성분 미상 수액(U7)"
+  },
+  {
+   "id": "U1",
+   "type": "remove_decision",
+   "section": "units",
+   "match": {
+    "id": "U5-130"
+   },
+   "expect": [
+    "결정이 가리키는 키 없음:auto-M15-1775364775178|U5-130",
+    "시술인데 단위 시술 없음:auto-M15-1775364775178",
+    "원장 「단위 시술」인데 키 없음:auto-M15-1775364775178",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775364775178"
+   ],
+   "note": "N7 키를 빼면 헤어셀 행이 키 없는 시술이 됨 · v2 F1(step5-fix4): 그 결과 단위 시술 0 이 된 추천 가능 제품도 open(예외 결정 없음)"
+  },
+  {
+   "id": "M1",
+   "type": "remove_decision",
+   "section": "market",
+   "match": {
+    "name": "점 제거 (1개당)"
+   },
+   "expect": [
+    "결정 없는 시장가 행:점 제거 (1개당)"
+   ],
+   "note": "F3 시장가"
+  },
+  {
+   "id": "M2",
+   "type": "add_market_row",
+   "category": "M8",
+   "row": {
+    "name": "zz 시험 레이저 (1회)",
+    "unit": "1회",
+    "low": 1,
+    "mid": 2,
+    "high": 3
+   },
+   "expect": [
+    "결정 없는 시장가 행:zz 시험 레이저 (1회)"
+   ],
+   "note": "원천에 새 시장가 행"
+  },
+  {
+   "id": "P1",
+   "type": "remove_decision",
+   "section": "problem_P1",
+   "match": {
+    "id": "auto-76-1774737181584"
+   },
+   "expect": [
+    "결정 없는 쁘띠시술 메뉴:auto-76-1774737181584",
+    "원천 근거 없는 키:U5-124"
+   ],
+   "note": "눈썹반영구(F1 · U1 · U3)"
+  },
+  {
+   "id": "H1",
+   "type": "remove_decision",
+   "section": "pih",
+   "match": {
+    "index": 0
+   },
+   "expect": [
+    "결정 없는 PIH 행:0"
+   ],
+   "note": "PIH 첫 행"
+  },
+  {
+   "id": "H2",
+   "type": "remove_decision",
+   "section": "handoffs.step2_deferred",
+   "match": {
+    "family": "M16",
+    "source": "M16-new 기타(카복시 · 미녹시딜 두피 메조 · LDM · 성장호르몬 …)"
+   },
+   "expect": [
+    "넘겨받은 것 행선지 없음:2단계 deferred|M16"
+   ],
+   "note": "2단계 넘김"
+  },
+  {
+   "id": "H3",
+   "type": "remove_decision",
+   "section": "handoffs.step4_handoffs",
+   "match": {
+    "id": "H03"
+   },
+   "expect": [
+    "넘겨받은 것 행선지 없음:4단계 handoffs|H03"
+   ],
+   "note": "4단계 H03 카복시"
+  },
+  {
+   "id": "A1",
+   "type": "remove_decision",
+   "section": "step4_attrs",
+   "match": {
+    "attr": "safe_layers",
+    "site": "이마"
+   },
+   "expect": [
+    "결정 없는 4단계 속성:safe_layers|이마"
+   ],
+   "note": "4단계 속성"
+  },
+  {
+   "id": "Z1",
+   "type": "remove_decision",
+   "section": "dose_range",
+   "match": {
+    "zone": "forehead"
+   },
+   "expect": [
+    "결정 없는 위험 부위 용량:forehead"
+   ],
+   "note": "위험 부위 용량"
+  },
+  {
+   "id": "T1",
+   "type": "remove_decision",
+   "section": "taxonomy_products",
+   "match": {
+    "id": "M4-P-3"
+   },
+   "expect": [
+    "taxonomy 제품이 1단계 행 없음:M4-P-3"
+   ],
+   "note": "1단계 행 없는 taxonomy 제품"
+  },
+  {
+   "id": "F1",
+   "type": "remove_decision",
+   "section": "product_link_rule.technique_compat.requires",
+   "match": {
+    "technique": "K04b"
+   },
+   "expect": [
+    "기법 호환 결정 없는 기법:K04b",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M8-2-4",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M8-1775361850481"
+   ],
+   "note": "기법 호환 조건(F1 · 10-29) — 기법이 갈리는 계열의 키 기법에 조건 결정이 없으면 open · v2 F1(step5-fix4): 그 결과 단위 시술 0 이 된 추천 가능 제품도 open(예외 결정 없음)"
+  },
+  {
+   "id": "F2",
+   "type": "remove_decision",
+   "section": "product_link_rule.technique_compat.requires",
+   "match": {
+    "technique": "K04c"
+   },
+   "expect": [
+    "기법 호환 결정 없는 기법:K04c"
+   ],
+   "note": "「근거 없음 = 상속 안 함」도 결정 한 줄(F1)"
+  },
+  {
+   "id": "W1",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "M9-3-1"
+   },
+   "expect": [
+    "결정 없는 원장 항목:M9-3-1",
+    "원천 근거 없는 키:U5-139"
+   ],
+   "note": "온다 장비 행(W1)을 빼면 마이크로웨이브 키가 원천 근거 없음"
+  },
+  {
+   "id": "F3",
+   "type": "remove_decision",
+   "section": "product_link_rule.technique_compat.family_evidence",
+   "match": {
+    "family": "M15"
+   },
+   "expect": [
+    "기법 호환 결정 없는 기법:K08",
+    "기법 호환 결정 없는 기법:K09",
+    "기법 호환 결정 없는 기법:K10",
+    "기법 호환 결정 없는 기법:K11",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-1-3",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-1-4",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-1-6",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-1-7",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-2-2",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:M15-6-4",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-46-1774737181584",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-47-1774737181584",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775361455669",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775362971889",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775364775116",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775364775171",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401624105",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401631147",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401638316",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401662170",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401677251",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401685107",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401716456",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401722628",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401745461",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775401788467",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775402083474",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775402100474",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775402107402",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M15-1775402654237",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:new-DEV-045",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:new-DEV-049",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:new-DEV-056"
+   ],
+   "note": "F1 확장(step5-fix3) — 기법 갈리는 계열(M15)의 계열 근거를 빼면 그 계열 키 기법마다 open · v2 F1(step5-fix4): 그 결과 단위 시술 0 이 된 추천 가능 제품도 open(예외 결정 없음)"
+  },
+  {
+   "id": "F4",
+   "type": "remove_decision",
+   "section": "product_link_rule.technique_compat.family_evidence",
+   "match": {
+    "family": "N4"
+   },
+   "expect": [
+    "기법 호환 결정 없는 기법:K01",
+    "기법 호환 결정 없는 기법:K08",
+    "기법 호환 결정 없는 기법:K12a",
+    "기법 호환 결정 없는 기법:K12b",
+    "기법 호환 결정 없는 기법:K12c"
+   ],
+   "note": "제품 없는 N4 도 「근거 없음 = 상속 안 함」 결정 한 줄 · 10-29 J7 G5: N4 병변 냉동치료(K08) 키 생김"
+  },
+  {
+   "id": "P2",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "auto-M17-1775364775191"
+   },
+   "expect": [
+    "결정 없는 원장 항목:auto-M17-1775364775191"
+   ],
+   "note": "AAPE 제품 행(step5-fix3)을 빼면 그 행만 open — U5-143 은 원장 「줄기세포배양액」(detail 「도포/주사」 · M17 후보 해석)이 후보로도 부름"
+  },
+  {
+   "id": "F5",
+   "type": "remove_decision",
+   "section": "product_link_rule.technique_compat.product_evidence",
+   "match": {
+    "product": "auto-M8-1775362912344"
+   },
+   "expect": [
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M8-1775362912344"
+   ],
+   "note": "v2 F1(step5-fix4) — 젠틀레이즈 제모 출처 근거를 빼면 알렉산드라이트 매질만으로는 상속 안 되어(K04a · K04b 조건) 추천 가능 제품 단위 시술 0 이 open"
+  },
+  {
+   "id": "F6",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "auto-M8-1775364775123"
+   },
+   "expect": [
+    "결정 없는 원장 항목:auto-M8-1775364775123",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M8-1775364775123"
+   ],
+   "note": "v2 F1(step5-fix4) — 스마트사이드(탄산가스 · 프락셔널 근거 없음) 예외 결정(원천 질문)을 빼면 open"
+  },
+  {
+   "id": "F7",
+   "type": "remove_decision",
+   "section": "ledger",
+   "match": {
+    "id": "auto-M4-1775361371619"
+   },
+   "expect": [
+    "결정 없는 원장 항목:auto-M4-1775361371619",
+    "추천 가능 제품인데 단위 시술 0 · 예외 결정 없음:auto-M4-1775361371619"
+   ],
+   "note": "v2 F1(step5-fix4) — M5 확인 불가 셀엑소좀은 매질(엑소좀 K01 · K09)만으로 상속 안 함 · 예외 결정을 빼면 open"
+  },
+  {
+   "id": "F8",
+   "type": "remove_decision",
+   "section": "units",
+   "match": {
+    "id": "U5-100"
+   },
+   "expect": [
+    "결정이 가리키는 키 없음:auto-141-1774737181584|U5-100",
+    "결정이 가리키는 키 없음:hair_removal|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:product_evidence|U5-100",
+    "결정이 가리키는 키 없음:레이저 제모 (겨드랑이)|U5-100",
+    "결정이 가리키는 키 없음:제모|중증|U5-100",
+    "시술 1회인데 키 없음:레이저 제모 (겨드랑이)"
+   ],
+   "note": "코디 추가(step5-fix4) — 제품 출처(product_evidence)가 가리키는 제모 키를 빼면 출처 근거 11제품마다 「결정이 가리키는 키 없음」 + 그 키를 부르는 시장가 행 open · 10-29 J7: 7단계 이름 「겨드랑이/팔/다리」(step7_names)도 U5-100 을 가리킴 · J7 G9: IPL 제모 후보 동의어(비교 hair_removal · 최적화 제모|중증)도 U5-100 을 가리킴"
+  },
+  {
+   "id": "S7",
+   "type": "remove_decision",
+   "section": "step7_names",
+   "match": {
+    "id": "auto-142-1774737181584"
+   },
+   "expect": [
+    "원천 근거 없는 키:U5-148"
+   ],
+   "note": "10-29 J7 — 7단계가 넘긴 이름(비키니 · 제모레이저)이 새 키의 유일한 원천 근거 → 빼면 그 키가 open"
+  },
+  {
+   "id": "QJ",
+   "type": "source_text_check",
+   "item": "auto-M15-1775361951923",
+   "expect": [
+    "common=원문 같음",
+    "extracted 행 521/521 원문 있음",
+    "serious=원문 같음"
+   ],
+   "note": "품질 J — taxonomy 항목 extracted 안전 칸(1차 실버에 키만 · 원문 220행 누락) → 붙는 수준 extracted 행에 원문 그대로(예 아큐탄 serious 「간독성」)"
+  },
+  {
+   "id": "QG1a",
+   "type": "override_check",
+   "item": "M1-2-1",
+   "host_kind": "product",
+   "host": "M1-2-1",
+   "expect": [
+    "common=원문 같음",
+    "level=제품 × 계열",
+    "override_of=family:M1",
+    "serious=원문 같음",
+    "행 543"
+   ],
+   "note": "골드 빈틈 ① — 제품 × 계열 덮어쓰기 값(보톡스 엘러간) = taxonomy extracted safety 원문 그대로 · 덮이는 계열 값은 override_of · 붙은 행 543(제품×계열 207 · ×키 하위 111 · 단위 시술 148 · 후보 19 · taxonomy products 58)"
+  },
+  {
+   "id": "QG1b",
+   "type": "override_check",
+   "item": "M1-3-1",
+   "host_kind": "unit",
+   "host": "U5-001",
+   "expect": [
+    "common=원문 같음",
+    "level=단위 시술",
+    "long_term=원문 같음",
+    "override_of=family:M1",
+    "serious=원문 같음",
+    "행 543"
+   ],
+   "note": "골드 빈틈 ① — 단위 시술 덮어쓰기 값(원장 「주름」 → 이마 보톡스)"
+  }
+ ]
+}

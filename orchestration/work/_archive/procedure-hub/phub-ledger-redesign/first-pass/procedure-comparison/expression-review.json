@@ -1,0 +1,533 @@
+{
+ "note": "regex·keyword·manual 후보 중 직접 판정한 오탐·부분일치. 판정되지 않은 후보는 미판정(후보)이며 정답이라는 뜻이 아니다.",
+ "items": [
+  {
+   "pointer": "/comparisons/0/evidence_notes/0",
+   "span": [
+    21,
+    22
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/0/evidence_notes/1",
+   "span": [
+    13,
+    17
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "SMAS",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/evidence_notes/2",
+   "span": [
+    13,
+    14
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/0/mechanism_simple",
+   "span": [
+    5,
+    9
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "SMAS",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/0/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/1/name",
+   "span": [
+    3,
+    6
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "FLX",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/1/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/2/name",
+   "span": [
+    6,
+    9
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "PDO",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/2/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/3/name",
+   "span": [
+    0,
+    3
+   ],
+   "category_candidate": "reference_to_other_item_candidate",
+   "text": "인모드",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/3/name",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "FX",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/0/procedures/3/name",
+   "span": [
+    7,
+    9
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "RF",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/1/procedures/1/limitations",
+   "span": [
+    17,
+    18
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/1/procedures/1/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/1/procedures/3/name",
+   "span": [
+    5,
+    7
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "PN",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/2/evidence_notes/0",
+   "span": [
+    53,
+    54
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/2/evidence_notes/1",
+   "span": [
+    12,
+    13
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/2/evidence_notes/2",
+   "span": [
+    60,
+    61
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/0/best_for",
+   "span": [
+    4,
+    5
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/0/limitations",
+   "span": [
+    20,
+    21
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/0/mechanism_simple",
+   "span": [
+    9,
+    10
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/0/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/1/best_for",
+   "span": [
+    4,
+    5
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/2/best_for",
+   "span": [
+    6,
+    7
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/2/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/3/best_for",
+   "span": [
+    3,
+    4
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/procedures/3/name",
+   "span": [
+    2,
+    6
+   ],
+   "category_candidate": "reference_to_other_item_candidate",
+   "text": "지방이식",
+   "verdict": "partial_match",
+   "note": "'자가지방이식'의 일부. evidence_notes 의 '지방이식'과 같은 대상인지 정하지 않음"
+  },
+  {
+   "pointer": "/comparisons/2/subtitle",
+   "span": [
+    8,
+    9
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/2/title",
+   "span": [
+    0,
+    1
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/3/evidence_notes/0",
+   "span": [
+    2,
+    4
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "RF",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/3/evidence_notes/1",
+   "span": [
+    2,
+    3
+   ],
+   "category_candidate": "quantity_range_unit",
+   "text": "2",
+   "verdict": "false_positive",
+   "note": "명칭 'CO2' 안의 숫자. 수량 아님"
+  },
+  {
+   "pointer": "/comparisons/3/evidence_notes/1",
+   "span": [
+    34,
+    35
+   ],
+   "category_candidate": "condition_scope",
+   "text": "만",
+   "verdict": "false_positive",
+   "note": "regex '만 ' 이 양보 연결어미 '-지만'의 끝을 한정 '만'으로 잡음"
+  },
+  {
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "span": [
+    31,
+    33
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "RF",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/3/evidence_notes/3",
+   "span": [
+    48,
+    49
+   ],
+   "category_candidate": "quantity_range_unit",
+   "text": "2",
+   "verdict": "false_positive",
+   "note": "명칭 'CO2' 안의 숫자. 수량 아님"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/0/asian_skin_note",
+   "span": [
+    23,
+    24
+   ],
+   "category_candidate": "quantity_range_unit",
+   "text": "1",
+   "verdict": "false_positive",
+   "note": "'1차 선택'의 서수 '1'. 수량·단위 아님(1차 선택 전체는 manual 로 별도 수집)"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/0/name",
+   "span": [
+    4,
+    8
+   ],
+   "category_candidate": "reference_to_other_item_candidate",
+   "text": "니들RF",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/0/name",
+   "span": [
+    6,
+    8
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "RF",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/1/mechanism_simple",
+   "span": [
+    2,
+    3
+   ],
+   "category_candidate": "quantity_range_unit",
+   "text": "2",
+   "verdict": "false_positive",
+   "note": "명칭 'CO2' 안의 숫자. 수량 아님"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/1/name",
+   "span": [
+    2,
+    3
+   ],
+   "category_candidate": "quantity_range_unit",
+   "text": "2",
+   "verdict": "false_positive",
+   "note": "명칭 'CO2' 안의 숫자. 수량 아님"
+  },
+  {
+   "pointer": "/comparisons/3/procedures/4/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/7/procedures/2/mechanism_simple",
+   "span": [
+    1,
+    3
+   ],
+   "category_candidate": "abbreviation_or_code_in_text",
+   "text": "HA",
+   "verdict": "false_positive",
+   "note": "'BHA' 안의 부분 문자열. HA 와 다른 약어"
+  },
+  {
+   "pointer": "/comparisons/7/procedures/3/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/7/procedures/4/best_for",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "term_candidate.concern_or_indication",
+   "text": "홍조",
+   "verdict": "partial_match",
+   "note": "'홍조성 여드름'의 일부. 여드름 유형 수식어이며 고민 '홍조'와 같은지 정하지 않음"
+  },
+  {
+   "pointer": "/comparisons/8/procedures/0/limitations",
+   "span": [
+    0,
+    1
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  },
+  {
+   "pointer": "/comparisons/8/procedures/3/onset",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "condition_scope",
+   "text": "즉시",
+   "verdict": "false_positive",
+   "note": "regex '[가-힣]+시' 가 시점 표현 '즉시'를 조건 '…시'로 잡음"
+  },
+  {
+   "pointer": "/comparisons/8/procedures/4/best_for",
+   "span": [
+    10,
+    12
+   ],
+   "category_candidate": "term_candidate.concern_or_indication",
+   "text": "탄력",
+   "verdict": "partial_match_ok",
+   "note": "복합 명칭 안의 구성 요소(예: SMAS층·써마지FLX·PN주사·니들RF). 구성 요소로서는 원문 그대로"
+  },
+  {
+   "pointer": "/comparisons/8/procedures/4/name",
+   "span": [
+    11,
+    14
+   ],
+   "category_candidate": "reference_to_other_item_candidate",
+   "text": "쥬베룩",
+   "verdict": "partial_match",
+   "note": "'쥬베룩볼륨'의 일부. 별도 제품명일 수 있어 같은 대상으로 정하지 않음"
+  },
+  {
+   "pointer": "/comparisons/8/procedures/4/name",
+   "span": [
+    14,
+    15
+   ],
+   "category_candidate": "term_candidate.anatomy_or_target",
+   "text": "볼",
+   "verdict": "false_positive",
+   "note": "'볼륨'의 첫 글자. 부위 '볼'이 아님"
+  }
+ ]
+}

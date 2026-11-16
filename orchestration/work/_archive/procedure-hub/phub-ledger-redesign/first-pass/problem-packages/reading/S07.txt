@@ -1,0 +1,63 @@
+/problems/6  problem_id='P7' problem='모공' complaints[6]
+
+## c0 /problems/6/complaints/0  cc='스킨보톡스' | cc_detail='피지↓' | cc_group='피지과다형'
+  P0 name='보톡스' category='M1' role='진피내 피지선·입모근의 콜린성 신호 차단' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  P2 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P3 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='마이크로보톡스로 피지·모공 감소 + 스킨부스터로 피부 재생 보조'
+     evidence='마이크로보톡스는 피지선의 콜린성 신호 차단으로 피지·모공을 감소시킴'
+  B1 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  A0 '효과 부족 시 리프팅기기 추가'
+  A1 'MTS + 스킨부스터도 가벼운 대안'
+
+## c1 /problems/6/complaints/1  cc='아그네스' | cc_detail='피지선 파괴' | cc_group='피지과다형'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  A0 'MTS + 스킨부스터도 가벼운 대안'
+
+## c2 /problems/6/complaints/2  cc='프락셔널레이저' | cc_detail='콜라겐리모델링' | cc_group='탄력저하형'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  P2 name='리프팅기기' category='M9' role='처짐 개선' products=['울쎄라', '써마지FLX']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  B1 name='니들RF + 리프팅기기' combo=['니들RF', '리프팅기기']
+     reason='수축 + 리프팅 = 처진 모공 해결'
+     evidence='원인(처짐)+결과(모공) 동시 치료'
+  A0 'MTS + 스킨부스터도 가벼운 대안'
+
+## c3 /problems/6/complaints/3  cc='니들RF' | cc_detail='진피 타이트닝' | cc_group='탄력저하형'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  P2 name='리프팅기기' category='M9' role='처짐 개선' products=['울쎄라', '써마지FLX']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  B1 name='니들RF + 리프팅기기' combo=['니들RF', '리프팅기기']
+     reason='수축 + 리프팅 = 처진 모공 해결'
+     evidence='원인(처짐)+결과(모공) 동시 치료'
+  A0 'MTS + 스킨부스터도 가벼운 대안'
+
+## c4 /problems/6/complaints/4  cc='CO2프락셀' | cc_detail='박피성 재생' | cc_group='흉터형(열린모공)'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  A0 'MTS + 스킨부스터도 가벼운 대안'
+
+## c5 /problems/6/complaints/5  cc='서브시전' | cc_detail='유착 해제' | cc_group='흉터형(열린모공)'
+  P0 name='니들RF' category='M11' role='모공 수축' products=['포텐자', '시크릿']
+  P1 name='스킨부스터' category='M4' role='콜라겐 재생' products=['쥬베룩']
+  B0 name='니들RF + 스킨부스터' combo=['니들RF', '스킨부스터']
+     reason='열 수축 + 콜라겐 재생'
+     evidence='쥬베룩 PDLLA가 모공에 특화'
+  A0 'MTS + 스킨부스터도 가벼운 대안'

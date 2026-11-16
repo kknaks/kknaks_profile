@@ -1,0 +1,14 @@
+{
+  "_doc": "수동 작성 구획 계획. 구조 확인(상위 5키 + procedures 26항목 × 각 9키, 이스케이프 0, 한 줄 minified) 뒤 상위 문맥(category·subcategory)이 끊기지 않게 나눴다. build.py 가 이 계획과 원문 말단 집합을 대조해 coverage.json 을 만든다. 각 구획이 '소유'하는 것은 prefixes 아래 모든 노드(말단·컨테이너)이며, context_refs 는 공동 참조(소유 아님)다.",
+  "segments": [
+    {"id": "S0", "title": "상위 메타데이터 — version·updated·description·risk_levels·notes + 루트·procedures 배열 컨테이너", "owns_exact": ["", "/procedures"], "prefixes": ["/version", "/updated", "/description", "/risk_levels", "/notes"], "context_refs": [], "review_file": "review-part-S0.md"},
+    {"id": "S1", "title": "procedures 0–3 · M8 색소/토닝", "prefixes": ["/procedures/0", "/procedures/1", "/procedures/2", "/procedures/3"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S1.md"},
+    {"id": "S2", "title": "procedures 4–8 · M8 프락셔널", "prefixes": ["/procedures/4", "/procedures/5", "/procedures/6", "/procedures/7", "/procedures/8"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S2.md"},
+    {"id": "S3", "title": "procedures 9–11 · M8 IPL·혈관", "prefixes": ["/procedures/9", "/procedures/10", "/procedures/11"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S3.md"},
+    {"id": "S4", "title": "procedures 12–14 · M8 제모", "prefixes": ["/procedures/12", "/procedures/13", "/procedures/14"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S4.md"},
+    {"id": "S5", "title": "procedures 15–17 · M9 HIFU·RF·복합 에너지", "prefixes": ["/procedures/15", "/procedures/16", "/procedures/17"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S5.md"},
+    {"id": "S6", "title": "procedures 18–20 · M11 니들RF·M12 MTS", "prefixes": ["/procedures/18", "/procedures/19", "/procedures/20"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S6.md"},
+    {"id": "S7", "title": "procedures 21–22 · M13 플라즈마", "prefixes": ["/procedures/21", "/procedures/22"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S7.md"},
+    {"id": "S8", "title": "procedures 23–25 · M15 케미컬필링", "prefixes": ["/procedures/23", "/procedures/24", "/procedures/25"], "context_refs": ["/description", "/risk_levels"], "review_file": "review-part-S8.md"}
+  ]
+}

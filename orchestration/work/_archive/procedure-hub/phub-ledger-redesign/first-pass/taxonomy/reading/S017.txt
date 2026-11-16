@@ -1,0 +1,210 @@
+# S017  scope=M7 실리프팅  units=M7-3 items/3 | M7-3 items/4 | M7-3 items/5 | M7-3 items/6 | M7-3 items/7 | M7-3 items/8 | M7-3 items/9 | M7-3 items/10 | M7-3 items/11 | M7-3 items/12 | M7-3 items/13 | M7-3 items/14 | M7-3 items/15
+# 상위 문맥: [{"pointer": "/modality/6", "id": "M7", "category": "실리프팅", "name": "실리프팅"}, {"pointer": "/modality/6/subcategories/2", "id": "M7-3", "label": "브랜드"}]
+@ /modality/6/subcategories/2/items/3 auto-M7-1775361076707 잼버실
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775361076707"
+  /name = "잼버실"
+  /detail = "PCA 소재 · 콜라겐 장기 유도"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PCA(Polycaprolactone) 소재의 생분해성 실을 이용해 콜라겐 생성을 장기간 유도하는 리프팅 시술"
+  /extracted/mechanism = "PCA 실이 피부 조직에 삽입되어 물리적 리프팅 효과를 즉시 제공합니다. 실이 서서히 분해되면서 콜라겐 합성을 촉진하여 장기적인 탄력 개선과 볼륨 증대 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 처짐 개선 및 리프팅" ‖ 1:"피부 탄력 저하 및 주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 (물리적 리프팅)"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 2주간 과도한 안면 강한 마사지·사우나 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/4 auto-M7-1775362506463 미스코
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362506463"
+  /name = "미스코"
+  /detail = "PDO 코그실 · 한국제품"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO(폴리디옥사논) 코그실을 이용한 한국산 실리프팅 시술로 피부 리프팅과 탄력 개선을 위한 미용의학 시술"
+  /extracted/mechanism = "PDO 코그실의 미세한 돌기가 피부 조직을 물리적으로 끌어올려 즉각적인 리프팅 효과를 제공합니다. 삽입된 실이 생분해되는 과정에서 콜라겐 합성을 촉진하여 장기적인 피부 탄력 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안면 처짐 개선 및 리프팅" ‖ 1:"턱선 정리 및 V라인 형성"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 1주일간 과도한 표정 짓기 및 강한 마사지 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/5 auto-M7-1775362513156 해피리프트
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362513156"
+  /name = "해피리프트"
+  /detail = "PLLA 코그실"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PLLA(폴리-L-락틱산) 재질의 코그실을 이용한 비수술적 페이스리프트 시술"
+  /extracted/mechanism = "PLLA 코그실이 피하조직에 삽입되어 즉시적인 리프팅 효과를 제공합니다. 시간이 지나면서 PLLA가 콜라겐 합성을 촉진하여 지속적인 볼륨 증가와 피부 탄력 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"중안면부 처짐 개선" ‖ 1:"턱선 리프팅"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 붓기 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 (최종 효과는 2-3개월)"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 24시간 세안 및 화장 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/6 auto-M7-1775362521999 리드파인
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362521999"
+  /name = "리드파인"
+  /detail = "PDO 모노+코그 라인업"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO(polydioxanone) 실을 이용한 리프팅 및 피부재생 시술로 모노실과 코그실을 조합하여 주름개선과 탄력증진을 동시에 제공"
+  /extracted/mechanism = "PDO 모노실은 피부 내 삽입되어 콜라겐 합성을 촉진하고 피부 질감을 개선한다. 코그실의 돌기 구조는 조직을 물리적으로 리프팅하며 섬유아세포 활성화를 통해 장기적인 탄력 개선을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"팔자주름 및 목주름"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-2주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 2-3일간 과도한 표정 및 강한 마사지 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/7 auto-M7-1775362528963 V리프트
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362528963"
+  /name = "V리프트"
+  /detail = "PDO 코그실 · 전방향 코그"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 코그실을 이용하여 피부를 물리적으로 리프팅하고 콜라겐 생성을 촉진하는 비수술적 안면거상술"
+  /extracted/mechanism = "코그(갈고리) 구조의 PDO 실이 피부 조직을 물리적으로 당겨 올려 즉시 리프팅 효과를 제공한다. 실이 서서히 분해되면서 콜라겐 합성을 자극하여 장기적인 피부 탄력 개선과 볼륨 증가를 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"중안면부 처짐 개선" ‖ 1:"볼살 리프팅 및 윤곽 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 2주간 과도한 안면 마사지 및 운동 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/8 auto-M7-1775362537962 앵커리프트
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362537962"
+  /name = "앵커리프트"
+  /detail = "PDO 코그 · 강력 고정형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 코그 실을 이용하여 피부와 연조직을 물리적으로 끌어올려 리프팅하는 강력 고정형 시술"
+  /extracted/mechanism = "바브(미늘) 구조의 PDO 실이 피부 깊숙이 삽입되어 처진 조직을 즉각적으로 끌어올리고 고정합니다. 시간이 지나면서 PDO 실 주변에 콜라겐 합성이 촉진되어 추가적인 리프팅 효과와 피부 탄력 개선을 가져옵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"심한 얼굴 처짐과 턱선 개선" ‖ 1:"깊은 팔자주름과 마리오네트 라인 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"부종, 멍, 당김감, 실밥 노출 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"2주간 과도한 표정 변화와 강한 마사지 자제" ‖ 1:"감염 예방을 위한 시술 부위 청결 유지" ‖ 2:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/9 auto-M7-1775362555891 블루로즈클레어
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362555891"
+  /name = "블루로즈클레어"
+  /detail = "휴젤 · PCL 코그실"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PCL(폴리카프로락톤) 소재의 흡수성 코그실로 리프팅과 콜라겐 재생을 동시에 제공하는 실리프팅 시술용 의료기기"
+  /extracted/mechanism = "PCL 코그(cog) 구조가 피부 조직을 물리적으로 끌어올려 즉각적인 리프팅 효과를 제공한다. 시간이 지나면서 PCL이 서서히 분해되며 주변 조직의 콜라겐 합성을 촉진하여 장기적인 탄력 개선 효과를 나타낸다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 처짐 개선 및 리프팅" ‖ 1:"목과 턱선 탄력 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종과 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 2-3일간 과도한 표정 변화 및 강한 마사지 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/10 auto-M7-1775362563387 몰드리프트
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362563387"
+  /name = "몰드리프트"
+  /detail = "성형 몰드+실 결합"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "흡수성 실과 몰드를 결합하여 피부 리프팅과 볼륨 개선을 동시에 제공하는 복합 시술"
+  /extracted/mechanism = "몰드(필러)가 즉각적인 볼륨 증대와 구조적 지지를 제공합니다. 흡수성 실이 피부 조직을 물리적으로 리프팅하면서 콜라겐 합성을 촉진하여 장기적인 탄력 개선 효과를 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"중안면부 처짐과 볼륨 소실" ‖ 1:"턱선 개선 및 V라인 형성"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 (몰드), 2-4주 (실 효과)"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"2주간 과도한 안면 강한 마사지 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/11 auto-M7-1775362571755 N코그
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362571755"
+  /name = "N코그"
+  /detail = "PDO 코그 · 다방향"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 실을 이용하여 코 모양을 교정하고 높이를 개선하는 비수술적 성형술"
+  /extracted/mechanism = "Polydioxanone(PDO) 소재의 실을 코 내부에 삽입하여 즉시적인 리프팅 효과를 제공합니다. 시간이 지나면서 실 주변에 콜라겐이 생성되어 자연스러운 볼륨감과 지속적인 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"낮은 코 높이 개선" ‖ 1:"콧등 라인 교정" ‖ 2:"코끝 모양 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종 및 멍" ‖ 1:"시술 부위 압통" ‖ 2:"실 촉감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [3] = 0:"시술 후 1주일간 코 강한 마사지 자제" ‖ 1:"사우나/찜질방 2주간 자제" ‖ 2:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/12 auto-M7-1775362579841 오메가리프트
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362579841"
+  /name = "오메가리프트"
+  /detail = "PDO · 오메가 형태 코그"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "오메가 형태의 PDO 코그 실을 이용한 리프팅 시술로 강력한 당김력과 볼륨 효과를 제공하는 미용 시술"
+  /extracted/mechanism = "오메가(Ω) 형태로 제작된 PDO 실이 피부 진피층에 삽입되어 즉각적인 리프팅 효과를 제공합니다. 시간이 지나면서 실 주변에 콜라겐 생성이 촉진되어 자연스러운 볼륨감과 탄력 개선이 지속됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"중안면부 처짐 개선 및 리프팅" ‖ 1:"깊은 팔자주름 및 볼 볼륨 감소 교정"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"시술 후 2주간 과도한 안면 강한 마사지·사우나 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/13 auto-M7-1775362729861 캐번실
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775362729861"
+  /name = "캐번실"
+  /detail = "PDO 캐번디시"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 코그실 캐번디시 라인"
+  /extracted/mechanism = "폴리디옥사논(PDO) 실을 피하조직에 삽입하여 물리적 리프팅과 함께 이물반응을 통한 콜라겐 신생을 유도한다. 약 6개월에 걸쳐 생분해되며 그 과정에서 주변 조직의 섬유화와 콜라겐 합성이 촉진된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"안면 처짐" ‖ 1:"턱선 개선" ‖ 2:"법령선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"당김감" ‖ 1:"부종" ‖ 2:"멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [6] = 0:"2주간 강한 표정 자제" ‖ 1:"며칠간 강한 안면 마사지 자제 (실 고정 안정화 목적)" ‖ 2:"크게 입 벌리거나 강한 저작 며칠 자제" ‖ 3:"당김감/부종은 수일 내 자연 완화" ‖ 4:"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원" ‖ 5:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/14 auto-M7-1775364775156 코그실루프
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775364775156"
+  /name = "코그실루프"
+  /detail = "PDO루프형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 루프형 리프팅 실"
+  /extracted/mechanism = "루프 구조의 PDO 실이 조직을 강력하게 잡아당겨 즉각적인 리프팅을 제공합니다. 실이 분해되면서 콜라겐 생성을 촉진하여 지속적인 탄력 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"중안면 리프팅" ‖ 1:"볼처짐 개선" ‖ 2:"턱선 정리"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 부위 당김감" ‖ 1:"경미한 부종" ‖ 2:"일시적 비대칭"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "12-15개월"
+  /extracted/aftercare [3] = 0:"2주간 큰 입벌리기 자제" ‖ 1:"딱딱한 음식 피하기" ‖ 2:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/6/subcategories/2/items/15 auto-M7-1775364775157 투와이실
+  . {id,name,detail,extracted}
+  /id = "auto-M7-1775364775157"
+  /name = "투와이실"
+  /detail = "PDO2방향"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PDO 2방향 리프팅 실"
+  /extracted/mechanism = "양방향 톱니구조가 조직을 안전하게 고정하여 자연스러운 리프팅을 제공합니다. PDO 소재가 서서히 분해되면서 콜라겐 재생을 촉진하여 점진적인 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"자연스러운 리프팅" ‖ 1:"법령선 개선" ‖ 2:"얼굴 윤곽 정리"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"경미한 부종" ‖ 1:"일시적 멍" ‖ 2:"당김감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 (최대 효과 2-4주)"
+  /extracted/onset_duration/duration = "10-12개월"
+  /extracted/aftercare [4] = 0:"1주일 강한 표정 자제" ‖ 1:"뜨거운 사우나 자제" ‖ 2:"부드러운 세안" ‖ 3:"[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장. 기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단 (개인차 있으며, 의사와 상의하여 결정)"

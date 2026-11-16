@@ -1,0 +1,26 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(워커 처리안 일괄 확정)",
+ "erd_pointer": "erd-v2.4.json#/decisions/10",
+ "id": "DEC-2026-11-04-11",
+ "kind": "conflict_resolution",
+ "new_value": {
+  "disposition": "항목+제품 겹침은 procedure 우선(B overlap_rule 로 데이터화)"
+ },
+ "reason": "재검토 8-11: synergy 노드 이름이 항목과 제품 양쪽에 있을 때 항목 우선 — v1.1 발주서 §A 처분",
+ "source_refs": [
+  {
+   "kind": "brief",
+   "ref": "erd-v1.1-brief.md §A (사용자 승인 「그렇게 진행하자」) — 「나머지 15건은 워커 처리대로 확정」"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v1.md §8-11"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§1.3 overlap_rule · R18",
+  "review_item": "8-11"
+ }
+}

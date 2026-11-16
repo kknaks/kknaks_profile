@@ -1,0 +1,42 @@
+{
+ "id": "DEC-2026-11-05-B3-PRD-01",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "product_name"
+ },
+ "new_value": {
+  "canonical": "시크릿",
+  "category": null,
+  "code": "M11",
+  "synonyms": [
+   "시크릿RF"
+  ]
+ },
+ "reason": "제품 「시크릿」(M11 니들RF · name_en Secret RF)의 동의어 「시크릿RF」 — 분류 항목 시크릿RF 와 같은 기기. 「시크릿맥스」(M9 클래시스)는 별개라 섞지 않는다.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].name@10/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "products.json:energy_device.products[].name_en@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@10/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@7"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 동의어 「시크릿」→ 「시크릿RF」(M11) · 「시크릿맥스」는 별개"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

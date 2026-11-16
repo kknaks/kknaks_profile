@@ -138,6 +138,21 @@
     ],
     "history": "orchestration/work/_archive/day/day-app/_RESUME.md (Apple 줄)"
   },
+  "google_play": {
+    "_doc": "DAY Android 앱의 Google Play 설정이 어디 있는지(2026-11-13). 값(계정 이메일 · 개발자 id · 서비스 계정 · 키 · keystore 비밀번호)은 이 공개 레포에 두지 않는다 — 사용자 로컬 ~/.config/day/android/(폴더 700 · 파일 600)이 정본. 여기에는 경로 · 비밀이 아닌 값만. 워커 · 코디는 값을 리포트 · 로그 · 브리프에 출력하지 않는다.",
+    "account": "회사(조직) 명의 Play Console — 권한 받음(사용자 2026-11-13)",
+    "dir": "~/.config/day/android/",
+    "upload": "Google Play Developer API — CENTURION_DAY app/android/play_upload.py(dev → internal · 정식 → alpha 만 · 프로덕션은 Console 손 단계) · 서비스 계정 키 ~/.config/day/android/play-service-account.json(600 · 조직 정책상 키 생성은 막혀 있어 프로젝트 한정 재정의로 발급 후 되돌림). 새 앱의 첫 AAB 는 Play Console 에서 손으로",
+    "signing": "Play 앱 서명(앱 서명 키 = Google 보관) · 업로드 키 ~/.config/day/android/upload-keystore.jks + upload-key.properties(개발 · 정식 공유 · 빌드 -PDAY_UPLOAD_KEY_PROPERTIES) · 업로드 키 백업 위치 — 미정",
+    "apps": {
+      "dev": "day.medisolveai.dev · DAY Dev → day-dev 서버 · Play 내부 테스트",
+      "prod": "day.medisolveai · DAY → prod 서버(데모 계정 → dev) · Play 비공개 테스트 → 프로덕션(공개 · 대한민국)"
+    },
+    "state": [
+      "2026-11-13 Play Console 권한 받음(사용자)",
+      "2026-11-16 DAY Dev internal vc3 · DAY alpha vc3 출시 · 프로덕션 vc3 심사 중(2026-11-15 제출) — 회고 para/projects/company/day/log/2026-11-16-android-app.md"
+    ]
+  },
   "workers": {
     "researcher": {
       "repo": "app",

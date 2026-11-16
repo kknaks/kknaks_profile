@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-05-B3-P-SIT-05",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "목",
+  "category": null,
+  "synonyms": [
+   "광경근"
+  ]
+ },
+ "reason": "해부 이름 → 부위 동의어(미등록 조각에서 추출 · 사람 확인) — 광경근(platysma) — 목 zone 의 근육(원장 미등록 조각 0 · 사전 정합용).",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "anatomy-danger-zones.json:zones[].botox_specific.target_muscle@10"
+  },
+  {
+   "kind": "ledger",
+   "ref": "anatomy-danger-zones.json:zones[].clinical_pearls[]@10/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 해부 이름 → 부위 라벨 동의어 묶음(광경근→목 · 코끝→코 등) — 「교근」과 같은 원칙"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

@@ -1,0 +1,304 @@
+{
+ "section": "S044",
+ "state": "read",
+ "last_pointer": "/modality/14/subcategories/13/items/2/extracted/aftercare/3",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/11/label",
+    "/modality/14/subcategories/12/label",
+    "/modality/14/subcategories/13/label"
+   ],
+   "note": "M15 하위분류 축이 고민 축('흉터 전용','여드름 전용', 앞의 '탈모(비수술)')과 판매 구성('시그니처프로그램')까지 섞인다. M9-SIG '시그니처 프로그램'(띄어씀)과 같은 개념 이름이 두 모달리티에."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/11/items/2/name",
+    "/modality/14/subcategories/11/items/3/extracted/overview",
+    "/modality/14/subcategories/12/items/0/name",
+    "/modality/14/subcategories/12/items/1/extracted/overview"
+   ],
+   "note": "'관리' 그룹 모달리티에 주사(스테로이드 병변내 주사)·외과적 시술(펀치시술 '외과적 시술')·경구약(이소트레티노인, 스피로노락톤 '경구용')이 포함된다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/12/items/2/detail",
+    "/modality/14/subcategories/12/items/0/name"
+   ],
+   "note": "아큐탄 detail '이소트레티노인 브랜드' — 같은 하위분류의 이소트레티노인 항목과 성분-브랜드 관계를 원문이 적는다(연결 키 없음). M8 모달리티 상대금기에도 이소트레티노인 언급."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/11/items/0/name",
+    "/modality/1/extracted/related_techniques/2",
+    "/modality/10/subcategories/0/items/5/detail"
+   ],
+   "note": "서브시전 항목(M15 흉터 전용)이 있고, M2 related_techniques·M11 텍스쳐스무딩 detail 에서도 서브시전을 언급."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/11/items/0/extracted/indications/primary"
+   ],
+   "note": "서브시전 indications 가 영어 원문('rolling type acne scar','bound down scar with tethering bands') — 한국어 형태소 분석은 SL 토큰."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/13/items/0/detail",
+    "/modality/14/subcategories/13/items/2/detail"
+   ],
+   "note": "시그니처프로그램 항목은 다른 모달리티 시술 조합('토닝+필링+스킨부스터 조합','IPL+토닝+물광'). '+' 함께, 도자기피부관리 overview 는 '순차적으로 시행' — 순서 정보가 있다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/10/items/13/name",
+    "/modality/14/subcategories/10/items/13/extracted/indications/primary"
+   ],
+   "note": "'선크림SPF50' 이 약물/토피컬 항목 — 다른 항목 aftercare 의 '자외선 차단(SPF 50+)' 지시와 같은 대상."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/14/subcategories/10/items/11/extracted/mechanism",
+   "text": "하이드로퀴논과 유사한 구조로 안전성은 높으면서",
+   "kinds": [
+    "비교",
+    "참조",
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/10/items/11/extracted/onset_duration/duration",
+   "text": "사용기간에 비례",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/10/items/12/extracted/overview",
+   "text": "분자량이 가장 작은 AHA로",
+   "kinds": [
+    "비교"
+   ],
+   "note": "최상급"
+  },
+  {
+   "pointer": "/modality/14/subcategories/10/items/12/extracted/aftercare/1",
+   "text": "주 2-3회 사용",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/10/items/13/extracted/aftercare/0",
+   "text": "2-3시간마다 재도포",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/0/detail",
+   "text": "18G Nokor 니들 · rolling scar 섬유 밴드 절단",
+   "kinds": [
+    "수량·단위·시간",
+    "시술·제품명"
+   ],
+   "note": "게이지 18G"
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/1/extracted/aftercare/0",
+   "text": "하루 12-24시간 착용",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/2/detail",
+   "text": "트리암시놀론 10-40mg/mL · 비후성 반흔/켈로이드",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "기호"
+   ],
+   "note": "농도 단위 mg/mL"
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/2/extracted/safety/common/0",
+   "text": "주사 부위 일시적 위축",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/4/extracted/aftercare/1",
+   "text": "최소 3개월 이상 사용",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/11/items/5/extracted/aftercare/0",
+   "text": "하루 2-3회 얇게 도포",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/0/extracted/indications/primary/1",
+   "text": "기존 치료에 불응하는 중증 여드름",
+   "kinds": [
+    "조건",
+    "부정",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/0/extracted/aftercare/0",
+   "text": "철저한 피임 (치료 중 및 치료 후 1개월)",
+   "kinds": [
+    "조건",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/2/extracted/mechanism",
+   "text": "피지 분비를 최대 90% 감소",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/2/extracted/mechanism",
+   "text": "유일하게 여드름 4대 병인을 모두 타격하는 약물",
+   "kinds": [
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/2/extracted/safety/serious/1",
+   "text": "우울증/자살충동(모니터링)",
+   "kinds": [
+    "기호",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/2/extracted/onset_duration/onset",
+   "text": "4-8주 악화 후 개선",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "초기 악화"
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/2/extracted/aftercare/3",
+   "text": "헌혈 금지",
+   "kinds": [
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/12/items/4/extracted/aftercare/0",
+   "text": "48시간 강한 빛 노출 자제",
+   "kinds": [
+    "수량·단위·시간",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/13/items/0/detail",
+   "text": "토닝+필링+스킨부스터 조합 · 투명 광채",
+   "kinds": [
+    "기호",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/13/items/1/detail",
+   "text": "옥시제네오+초음파+네오마사지 · 산소+영양 3in1",
+   "kinds": [
+    "기호",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/13/items/2/extracted/overview",
+   "text": "IPL, 토닝, 물광주사를 순차적으로 시행하여",
+   "kinds": [
+    "참조",
+    "수량·단위·시간"
+   ],
+   "note": "순서"
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "이소트레티노인",
+   "issue": "문맥별 이소트레티노인/NNG·NNP 또는 이소트레티노/NNG 이/VCP ᆫ/ETM",
+   "impact": "약물명이 서술격+어미로 분해되는 출현 있음"
+  },
+  {
+   "scope": "all",
+   "surface": "면포압출",
+   "issue": "면/NNG 포/NNG 압출/NNG — '면포(comedo)'를 면+포로",
+   "impact": "병변명 분해"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S044-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/14/subcategories/11/items/2",
+    "/modality/14/subcategories/11/items/3",
+    "/modality/14/subcategories/12/items/0",
+    "/modality/14/subcategories/12/items/1"
+   ],
+   "note": "'관리' 모달리티에 주사·외과적 시술·경구약 항목.",
+   "impact": "시술 방식 축과 group 값의 관계 재검토 필요(설계)"
+  },
+  {
+   "id": "S044-F02",
+   "status": "F",
+   "pointers": [
+    "/modality/14/subcategories/13",
+    "/modality/8/subcategories/4"
+   ],
+   "note": "시그니처 프로그램이 M9·M15 두 곳.",
+   "impact": "판매 구성 개체 분리(S030-F01 과 묶음)"
+  }
+ ]
+}

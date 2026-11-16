@@ -1,0 +1,379 @@
+{
+ "segment_id": "S3",
+ "read_pointers_prefix": "/combos/2",
+ "observations": [
+  {
+   "pointer": "/combos/2/problem",
+   "status": "P",
+   "note": "\"처짐/탄력\" — problem 값에 \"/\"가 쓰임. README의 '/ = 둘 중 하나' 규칙이 problem 이름에도 적용되는지 원문에 정의 없음(F)."
+  },
+  {
+   "pointer": "/combos/2/packages/0/clinicalRationale",
+   "status": "P",
+   "note": "\"국산 HIFU(슈링크/더블로)\" — 괄호 안 '/' 대안 예시로 README 규칙 형태와 일치. products는 \"슈링크유니버스 or 더블로골드\"로 다른 표면형(더블로 vs 더블로골드)."
+  },
+  {
+   "pointer": "/combos/2/packages/1/products/0",
+   "status": "P",
+   "note": "\"울쎄라 + 보톡스(엘러간) or 나보타\" — or가 '보톡스(엘러간)'과 '나보타' 사이 대안인지 결합 전체 대안인지 괄호가 없어 원문상 모호(B)."
+  },
+  {
+   "pointer": "/combos/2/packages/1/clinicalRationale",
+   "status": "P",
+   "note": "\"올리는 힘 + 당기는 힘 제거\" — '제거'가 '당기는 힘'에만 걸리는지 전체에 걸리는지 모호. HIFU=올리는 힘, 보톡스=당기는 힘 제거로 읽히나 잠정."
+  },
+  {
+   "pointer": "/combos/2/packages/3/expectedResult",
+   "status": "P",
+   "note": "P3-4의 expectedResult·salesPitch는 다른 항목과 달리 '(개인차 있음)', '기대', '보장하지는 않습니다' 같은 유보·고지 문체. 문체 차이 관찰만."
+  },
+  {
+   "pointer": "/combos/2/packages/3/procedures",
+   "status": "P",
+   "note": "procedures 순서 M7,M9,M2,M1 이 name 순서(실리프팅+울쎄라+필러+보톡스)와 일치. P2-3과 달리 name 순서=배열 순서."
+  },
+  {
+   "pointer": "/combos/2/packages/3/riskBenefit",
+   "status": "P",
+   "note": "\"2~3개월 간격 필요 (같은 날이면 다른 부위)\" — 간격 규칙과 같은 날 예외 조건이 한 칸 안에 있음."
+  },
+  {
+   "pointer": "/combos/2/packages/0/upsellHook",
+   "status": "P",
+   "note": "\"유지력이 2배!\" — 수치 주장, 근거 미기재. 임상 사실 판단 안 함."
+  },
+  {
+   "pointer": "/combos/2/packages/0/name",
+   "status": "P",
+   "note": "name \"국산 HIFU 리프팅\" — 제품 등급(국산)이 name에 들어감."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/2/packages/0/products/0",
+   "text": "슈링크유니버스 or 더블로골드",
+   "kind": "제품 대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/priceRange",
+   "text": "15~30만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/expectedResult",
+   "text": "턱선 정리, 가벼운 리프팅",
+   "kind": "부위+정도",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/expectedResult",
+   "text": "시술 다음날부터 일상 가능",
+   "kind": "시간·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/salesPitch",
+   "text": "다운타임이 거의 없어서",
+   "kind": "부정·정도",
+   "note": "'거의 없어서'"
+  },
+  {
+   "pointer": "/combos/2/packages/0/salesPitch",
+   "text": "부담 없이 시작하실 수 있어요",
+   "kind": "부정·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/upsellHook",
+   "text": "울쎄라가 깊은 층까지 닿아서 효과가 더 확실해요",
+   "kind": "비교·깊이",
+   "note": "'깊은 층' 수치화 금지"
+  },
+  {
+   "pointer": "/combos/2/packages/0/upsellHook",
+   "text": "보톡스도 같이 하시면 유지력이 2배",
+   "kind": "조건·수치",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/clinicalRationale",
+   "text": "국산 HIFU(슈링크/더블로)",
+   "kind": "계열+장비 대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/clinicalRationale",
+   "text": "울쎄라 대비 에너지가 낮지만 가격 대비 효과 우수",
+   "kind": "비교·양보",
+   "note": "'-지만'"
+  },
+  {
+   "pointer": "/combos/2/packages/0/clinicalRationale",
+   "text": "리프팅 입문 환자에게 적합",
+   "kind": "대상",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/riskBenefit",
+   "text": "위험 매우 낮음",
+   "kind": "정도",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/0/riskBenefit",
+   "text": "효과는 울쎄라 대비 약하지만 반복 시술로 보완 가능",
+   "kind": "비교·양보·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/products/0",
+   "text": "울쎄라 + 보톡스(엘러간) or 나보타",
+   "kind": "제품 결합+대안",
+   "note": "범위 모호"
+  },
+  {
+   "pointer": "/combos/2/packages/1/priceRange",
+   "text": "60~120만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/expectedResult",
+   "text": "확실한 리프팅 + 장기 유지",
+   "kind": "정도·시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/expectedResult",
+   "text": "SMAS층 콜라겐 수축으로 자연스러운 턱선",
+   "kind": "층+부위",
+   "note": "SMAS층 혼합어"
+  },
+  {
+   "pointer": "/combos/2/packages/1/salesPitch",
+   "text": "효과가 6개월 이상 가요",
+   "kind": "시간·범위",
+   "note": "'이상'"
+  },
+  {
+   "pointer": "/combos/2/packages/1/salesPitch",
+   "text": "가장 인기 있는 리프팅 조합",
+   "kind": "최상급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/upsellHook",
+   "text": "볼이 꺼져 보이시면 필러 1cc만 추가해도",
+   "kind": "조건·부위·수량",
+   "note": "1cc"
+  },
+  {
+   "pointer": "/combos/2/packages/1/upsellHook",
+   "text": "탄력 후 볼륨까지",
+   "kind": "순서",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/clinicalRationale",
+   "text": "보톡스(광경근 이완)",
+   "kind": "시술-부위-기전",
+   "note": "광경근 해부 용어"
+  },
+  {
+   "pointer": "/combos/2/packages/1/clinicalRationale",
+   "text": "올리는 힘 + 당기는 힘 제거",
+   "kind": "기전",
+   "note": "수식 범위 모호"
+  },
+  {
+   "pointer": "/combos/2/packages/1/clinicalRationale",
+   "text": "가장 검증된 비수술 리프팅 조합",
+   "kind": "최상급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/1/riskBenefit",
+   "text": "울쎄라 열응고 후 보톡스 주입 순서 준수",
+   "kind": "순서 제약",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/products/0",
+   "text": "울쎄라 + 보톡스(엘러간) + 쥬비덤 + 리쥬란",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/priceRange",
+   "text": "120~200만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/expectedResult",
+   "text": "탄력·볼륨·피부결 트리플 개선",
+   "kind": "수량",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/salesPitch",
+   "text": "처짐은 당기는 것만으로 안 돼요",
+   "kind": "부정",
+   "note": "'안 돼요'"
+  },
+  {
+   "pointer": "/combos/2/packages/2/salesPitch",
+   "text": "피부결까지 관리해야 자연스러워요",
+   "kind": "조건(필요)",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/upsellHook",
+   "text": "확실한 구조 변화를 원하시면 실리프팅을 추가하세요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/clinicalRationale",
+   "text": "처짐의 4대 원인(이완·근긴장·볼륨감소·피부노화) 동시 해결",
+   "kind": "원인 나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/2/riskBenefit",
+   "text": "HIFU→보톡스→필러→스킨부스터",
+   "kind": "순서",
+   "note": "공백 없는 →"
+  },
+  {
+   "pointer": "/combos/2/packages/2/riskBenefit",
+   "text": "각 시술이 서로 다른 층·메커니즘이라 부작용 중복 없음",
+   "kind": "부정·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/products/0",
+   "text": "실루엣소프트 + 울쎄라 + 쥬비덤 + 보톡스(엘러간)",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/priceRange",
+   "text": "250~400만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/expectedResult",
+   "text": "하안면 라인 및 처짐의 현저한 개선 기대(개인차 있음)",
+   "kind": "부위·가능성·유보",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/salesPitch",
+   "text": "수술 전 단계에서 고려해볼 수 있는 통합 관리 프로그램",
+   "kind": "가능성·순서",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/salesPitch",
+   "text": "수술과 동일한 결과를 보장하지는 않습니다",
+   "kind": "부정·고지",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/upsellHook",
+   "text": "6개월 간격으로 유지하시면 연간 프로그램 할인이 적용돼요",
+   "kind": "주기·조건·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/clinicalRationale",
+   "text": "실(물리적 거상·뼈대) + HIFU(열 타이트닝·고정) + 필러(볼륨 보충) + 보톡스(근이완·유지)",
+   "kind": "시술-기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/clinicalRationale",
+   "text": "실이 구조를 잡으면 HIFU·필러의 효과가 배가됨",
+   "kind": "조건·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/riskBenefit",
+   "text": "실리프팅 후 HIFU는 2~3개월 간격 필요 (같은 날이면 다른 부위)",
+   "kind": "순서·간격·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/riskBenefit",
+   "text": "실 부위와 HIFU 부위 겹침 주의",
+   "kind": "부위·주의",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/2/packages/3/riskBenefit",
+   "text": "각각의 시술 강도를 낮춰도 시너지로 우수한 결과",
+   "kind": "양보·조건",
+   "note": "'-도'"
+  },
+  {
+   "pointer": "/combos/2/packages/1/salesPitch",
+   "text": "리프팅하면 울쎄라+보톡스죠",
+   "kind": "조건·결합",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/2/packages/2/salesPitch",
+   "text": "이 조합이 가장 완성도가 높아요",
+   "kind": "최상급",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/2/packages/3/clinicalRationale",
+   "text": "4가지 메커니즘의 상보적 조합",
+   "kind": "수량",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/2/problem",
+   "text": "처짐/탄력",
+   "kind": "problem 값 / 나열",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/2/packages/1/clinicalRationale",
+   "text": "HIFU(SMAS 열응고) + 보톡스(광경근 이완)",
+   "kind": "시술-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/2/packages/2/clinicalRationale",
+   "text": "HIFU(타이트닝) + 보톡스(근이완) + 필러(볼륨손실 보충) + 스킨부스터(재생)",
+   "kind": "시술-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-06",
+   "status": "B",
+   "pointer": "/combos/2/packages/1/products/0",
+   "note": "'울쎄라 + 보톡스(엘러간) or 나보타' or 적용 범위 원문 괄호 없음"
+  },
+  {
+   "id": "I-PC-07",
+   "status": "I",
+   "pointer": "/combos/2/packages/0",
+   "note": "같은 항목 안 제품 표면형 차이: products '더블로골드' vs clinicalRationale '더블로' (원문 내 표기 차이, 동일 대상 여부 미확정)"
+  }
+ ]
+}

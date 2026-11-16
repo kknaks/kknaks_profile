@@ -1,0 +1,14 @@
+{"section":"S031","state":"read","last_pointer":"/modality/8/name",
+"observations":[
+ {"status":"I","pointers":["/modality/8/products/6/type","/modality/8/products/6/extracted/overview","/modality/8/products/6/extracted/mechanism"],"note":"LDM 제품 type '초음파' 인데 overview 'RF 기술 기반', mechanism '이온진동 … 심부 열'(RF 서술). type 과 서술의 에너지원이 다르다."},
+ {"status":"P","pointers":["/modality/8/products/6/name","/modality/8/products/6/name_en"],"note":"name 'LDM', name_en 'LDM-MED' — 영문명이 더 길다. M9 subcategories items 에 LDM 항목은 없다(제품만)."}
+],
+"expressions":[
+ {"pointer":"/modality/8/products/6/extracted/safety/common/3","text":"화상(부적절한 사용 시)","kinds":["조건"],"note":"common 칸의 조건부 화상"},
+ {"pointer":"/modality/8/products/6/extracted/onset_duration/onset","text":"즉시 효과 + 점진적 개선(2-3개월)","kinds":["기호","수량·단위·시간","범위"],"note":"'+' = 그리고"},
+ {"pointer":"/modality/8/products/6/extracted/aftercare/1","text":"자극적 화장품 최소 1주일 사용 금지","kinds":["범위","수량·단위·시간","부정"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S031-I01","status":"I","pointers":["/modality/8/products/6/type","/modality/8/products/6/extracted/overview"],"note":"LDM type(초음파) vs RF 서술.","impact":"에너지원 속성 채택 시 확인"}
+]}

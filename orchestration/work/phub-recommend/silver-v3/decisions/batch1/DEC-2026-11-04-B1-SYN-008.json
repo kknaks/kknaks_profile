@@ -1,0 +1,110 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "HIFES",
+  "fragment_count": 4,
+  "fragment_occurrence_locators": [
+   "synergy.json:links[].from@5",
+   "synergy.json:links[].to@20",
+   "problem-packages.json:problems[].complaints[].procedures[].name@11/7/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@11/7/0/0"
+  ],
+  "label_locators": [
+   "taxonomy.json:modality[].category@9",
+   "taxonomy.json:modality[].category_en@9",
+   "consent-checklist.json:categories[].name@9",
+   "market-pricing.json:categories[].name@9",
+   "patient-education.json:categories[].name@9",
+   "pre-procedure-checklist.json:category_specific[].name@9",
+   "procedure-profiles.json:profiles[].name@11",
+   "procedure-profiles.json:profiles[].name_en@11",
+   "extracted.json:{code}.name@M10"
+  ],
+  "target": {
+   "canonical": "HIFES/EMS",
+   "code": "M10",
+   "dictionary": "modality",
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/9/canonical",
+   "rule": "조합 멤버 일치 「HIFES/EMS」",
+   "value": "HIFES/EMS"
+  }
+ },
+ "id": "DEC-2026-11-04-B1-SYN-008",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "HIFES/EMS",
+  "category": null,
+  "synonyms": [
+   "HIFES"
+  ]
+ },
+ "reason": "발주서: 해당 하위분류 라벨(근거가 계열 라벨뿐이면 계열) — 조각 「HIFES」 ↔ modality 「HIFES/EMS」(M10) : 조합 멤버 일치 「HIFES/EMS」 · 하위분류 라벨 근거는 없고 계열 라벨에만 근거가 있어 계열 동의어로 제안",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category_en@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].name@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].name@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "patient-education.json:categories[].name@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "pre-procedure-checklist.json:category_specific[].name@9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].name@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-profiles.json:profiles[].name_en@11"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.name@M10"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/9/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@20"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@11/7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@11/7/0/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-2"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

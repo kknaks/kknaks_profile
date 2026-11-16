@@ -1,0 +1,36 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "slash-together-or/01",
+  "label": "「또는」 — 기록만(ERD 규칙 개정 사유)",
+  "note": "규칙: 대안(계열) 둘 → 또는. HIFU 또는 RF",
+  "option": "or_record"
+ },
+ "id": "DEC-2026-11-04-B2B-SLS-01",
+ "kind": "scope_review",
+ "new_value": {
+  "disposition": "「HIFU/RF」의 `/` 는 「또는」"
+ },
+ "reason": "결정 묶음 2B — 「HIFU/RF」의 `/` 해석 기록 · 사용자 메모: 규칙: 대안(계열) 둘 → 또는. HIFU 또는 RF",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].recommended_base[]@2/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "erd_ref": "§1.4 조합 규칙 `/` · REF-50f29f975a",
+  "review_item": "§12 `/`"
+ }
+}

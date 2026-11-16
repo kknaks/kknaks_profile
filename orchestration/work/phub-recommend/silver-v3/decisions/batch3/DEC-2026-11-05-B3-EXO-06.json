@@ -1,0 +1,37 @@
+{
+ "id": "DEC-2026-11-05-B3-EXO-06",
+ "kind": "dictionary_remove",
+ "target": {
+  "dictionary": "modality",
+  "canonical": "PRP/자가혈",
+  "synonym": "PRP/엑소좀"
+ },
+ "new_value": {
+  "removed": true
+ },
+ "reason": "엑소좀 통합 ⑥ — 시장가 카테고리 이름 「PRP/엑소좀」을 M5(PRP/자가혈) 계열 동의어에서 뺀다(엑소좀은 자가혈 아님 · 메뉴 2 는 batch3 TUP-03·04 로 M4).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].name@4"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2 dictionary_remove"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ②⑤⑥"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md A — 엑소좀 EXO-02·05·06 approved 로 올려 적용"
+  }
+ ],
+ "batch": "결정 묶음 3 (엑소좀 · ERD v3.1 반영 뒤 approved)",
+ "approval_note": "발주서 silver-build-6-brief.md — 엑소좀 EXO-02·05·06 을 ERD v3.1 kind·관계로 올려 적용(사용자 확정 방향 2026-11-05 「엑소좀 통합」)",
+ "supersedes_proposal": "DEC-2026-11-05-B3-P-EXO-06"
+}

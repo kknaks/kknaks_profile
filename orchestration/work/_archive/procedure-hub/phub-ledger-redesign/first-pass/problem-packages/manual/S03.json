@@ -1,0 +1,40 @@
+{
+  "section": "S03",
+  "read_status": "done",
+  "read_note": "reading/S03.txt 로 c0~c4 전부(procedures 16·combos 11·alternatives 5) 읽음.",
+  "observations": [
+    {"id": "OB-S03-01", "at": ["/problems/2/problem", "S02:c3.B1.evidence"], "status": "P", "text": "problem 값 '쳐짐' 과 S02 evidence 의 '처짐 원인까지 해결' — 같은 증상으로 보이는 말이 두 표기로 나온다. 표기 통일 여부는 판단하지 않는다(F-07)."},
+    {"id": "OB-S03-02", "at": ["c0.P0", "c1.P0", "c2.P0", "c3.P0", "c4.P0"], "status": "P", "text": "다섯 complaint 가 procedures 0~2(리프팅기기·실리프팅·스킨부스터)·products·combos 0~1·alternatives 를 글자 그대로 공유한다. c4 는 cc '팔뚝/복부/허벅지'·cc_group '바디 쳐짐'·cc_detail '바디리프팅 기기' 인데 procedures·products 가 얼굴 complaint 와 같다. 부위별 차이 정보가 원문에 없다(B-02)."},
+    {"id": "OB-S03-03", "at": ["c0.B0.evidence", "c0.B1.evidence"], "status": "P", "text": "evidence 칸에 근거가 아니라 순서·간격 지시가 들어 있다: '기기 후 2주 뒤 스킨부스터', '시술 2개월 간격 권장'. '2개월 간격' 이 어느 시술 사이 간격인지 문장 안에 대상이 없다(B-06 · F-06)."},
+    {"id": "OB-S03-04", "at": ["c2.cc_detail"], "status": "I", "text": "cc_detail '윤곽주사/크라이오/기기리프팅' 중 '윤곽주사' 는 c2 procedures 에 없다(I-03 같은 유형)."},
+    {"id": "OB-S03-05", "at": ["c0.cc", "c4.cc"], "status": "P", "text": "cc 값 안에도 '/' 가 쓰였다: '볼쳐짐/불독살'(증상 둘), '팔뚝/복부/허벅지'(부위 셋)."},
+    {"id": "OB-S03-06", "at": ["c2.B2.evidence"], "status": "P", "text": "'이중턱 원인(지방) 해결' — 괄호로 원인을 보충한다. 괄호 안 '지방' 이 원인이라는 원문 단정이며, 임상 사실로 승인하지 않는다."},
+    {"id": "OB-S03-07", "at": ["c1.cc"], "status": "K", "text": "'턱선무너짐' 붙여 쓴 복합 증상 표현. 형태소 분절 확인(K-02)."}
+  ],
+  "expressions": [
+    {"text": "볼쳐짐/불독살", "at": ["c0.cc"], "aspects": ["증상 표현", "기호(/)"]},
+    {"text": "턱선무너짐", "at": ["c1.cc"], "aspects": ["부위+증상 표현", "붙여 쓴 복합어"]},
+    {"text": "팔뚝/복부/허벅지", "at": ["c4.cc"], "aspects": ["부위 표현", "기호(/)"]},
+    {"text": "기기리프팅/실리프팅", "at": ["c0.cc_detail", "c3.cc_detail"], "aspects": ["시술명 표현", "기호(/)"]},
+    {"text": "실리프팅/기기리프팅", "at": ["c1.cc_detail"], "aspects": ["시술명 표현", "기호(/)", "나열 순서 차이"]},
+    {"text": "윤곽주사/크라이오/기기리프팅", "at": ["c2.cc_detail"], "aspects": ["시술명 표현", "기호(/)"]},
+    {"text": "바디리프팅 기기", "at": ["c4.cc_detail"], "aspects": ["시술명 표현", "부위 수식(바디)"]},
+    {"text": "얼굴 쳐짐", "at": ["c0.cc_group", "c1.cc_group", "c2.cc_group"], "aspects": ["부위+증상 표현"]},
+    {"text": "눈가 쳐짐", "at": ["c3.cc_group"], "aspects": ["부위+증상 표현"]},
+    {"text": "바디 쳐짐", "at": ["c4.cc_group"], "aspects": ["부위+증상 표현"]},
+    {"text": "타이트닝 + 재생", "at": ["c0.B0.reason", "c1.B0.reason", "c2.B0.reason", "c3.B0.reason", "c4.B0.reason"], "aspects": ["기호(+)", "결과 없는 공식형"]},
+    {"text": "기기 후 2주 뒤 스킨부스터", "at": ["c0.B0.evidence", "c1.B0.evidence", "c2.B0.evidence", "c3.B0.evidence", "c4.B0.evidence"], "aspects": ["시간 순서(후·뒤)", "수량·단위·시간", "순서 지시"]},
+    {"text": "2주 뒤", "at": ["c0.B0.evidence", "c1.B0.evidence", "c2.B0.evidence", "c3.B0.evidence", "c4.B0.evidence"], "aspects": ["수량·단위·시간", "시간 순서(뒤)"]},
+    {"text": "물리적 거상 + 열 타이트닝", "at": ["c0.B1.reason", "c1.B1.reason", "c2.B1.reason", "c3.B1.reason", "c4.B1.reason"], "aspects": ["기호(+)", "기전 수식(물리적·열)"]},
+    {"text": "시술 2개월 간격 권장", "at": ["c0.B1.evidence", "c1.B1.evidence", "c2.B1.evidence", "c3.B1.evidence", "c4.B1.evidence"], "aspects": ["수량·단위·시간", "간격", "권고(권장)", "대상 생략"]},
+    {"text": "지방감소 + 타이트닝", "at": ["c2.B2.reason"], "aspects": ["기호(+)", "감소 표현"]},
+    {"text": "이중턱 원인(지방) 해결", "at": ["c2.B2.evidence"], "aspects": ["원인 표현", "괄호 보충", "효과 강도(해결)"]},
+    {"text": "지방 감소", "at": ["c2.P3.role"], "aspects": ["role 표현", "감소 표현"]},
+    {"text": "바이오스티뮬레이터로 장기 관리", "at": ["c0.A0", "c1.A0", "c2.A0", "c3.A0", "c4.A0"], "aspects": ["시술명 표현", "기간 표현(장기)"]}
+  ],
+  "issues": [
+    {"id": "B-06", "status": "B", "at": ["S03:c0.B1.evidence"], "summary": "'시술 2개월 간격 권장' 에 간격의 앞뒤 시술이 명시되지 않았다(combo 실리프팅 + 리프팅기기 문맥만 있음). 순서도 없다.", "impact": "간격 규칙의 대상·방향을 확정할 수 없다."},
+    {"id": "F-06", "status": "F", "at": ["S03:c0.B0.evidence", "S03:c0.B1.evidence"], "summary": "combos.evidence 에 근거 진술·기전·순서/간격 지시·시술자 요건 등 정보 종류가 섞여 있다.", "impact": "evidence 를 '근거' 칸으로만 쓰면 일정 지시가 근거로 오분류된다."},
+    {"id": "F-07", "status": "F", "at": ["S03:/problems/2/problem", "S02:c3.B1.evidence"], "summary": "'쳐짐' / '처짐' 두 표기 공존(problem·cc_group 은 '쳐짐', evidence 는 '처짐').", "impact": "문자열 일치 기반 연결에서 갈라진다. 표기 통일은 후속 결정 후보이며 지금 원본을 바꾸지 않는다."}
+  ]
+}

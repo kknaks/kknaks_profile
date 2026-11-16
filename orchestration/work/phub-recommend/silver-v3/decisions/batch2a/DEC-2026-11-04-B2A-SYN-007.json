@@ -1,0 +1,128 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "Nd:YAG",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@4/1",
+   "procedure-comparison.json:comparisons[].procedures[].name@4/3",
+   "procedure-comparison.json:comparisons[].procedures[].name@5/2",
+   "procedure-comparison.json:comparisons[].procedures[].name@7/4",
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {},
+  "target": {
+   "canonical": "레이저",
+   "code": "M8",
+   "dictionary": "modality",
+   "entity_id": "MOD-59360be607",
+   "label_locators": [
+    "taxonomy.json:modality[].category@7",
+    "taxonomy.json:modality[].id@7"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/7/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": "M8",
+    "label": "Nd:YAG (1064nm)",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@5/2"
+    ],
+    "ref_id": "REF-ba9c484fac",
+    "relation": "R12"
+   },
+   {
+    "hint": "M8",
+    "label": "Q-스위치 Nd:YAG",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@4/1"
+    ],
+    "ref_id": "REF-654a4f7928",
+    "relation": "R12"
+   },
+   {
+    "hint": "M8",
+    "label": "레이저토닝 (저출력 Nd:YAG)",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@4/3"
+    ],
+    "ref_id": "REF-e6351579d0",
+    "relation": "R12"
+   },
+   {
+    "hint": "M8",
+    "label": "제네시스 (Nd:YAG 롱펄스)",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@7/4"
+    ],
+    "ref_id": "REF-962faee154",
+    "relation": "R12"
+   },
+   {
+    "hint": null,
+    "label": "듀얼파장(알렉+다이오드 or 다이오드+Nd:YAG)",
+    "locators": [
+     "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+    ],
+    "ref_id": "REF-16dcc3a613",
+    "relation": "R12"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-007",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "레이저",
+  "category": null,
+  "synonyms": [
+   "Nd:YAG"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「Nd:YAG」 → 계열 M8 「레이저」(하위분류 미지정). 사전 modality 정준값 「레이저」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「Nd:YAG」는 시술 축 미등록 조각 5 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].id@7"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/7/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@5/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@7/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ }
+}

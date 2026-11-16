@@ -1,0 +1,41 @@
+{
+ "id": "DEC-2026-11-05-B3-SIT-03",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "두피",
+  "category": null,
+  "site_kind": "taxonomy_site_label",
+  "kind": "region",
+  "synonyms": []
+ },
+ "reason": "부위 사전에 넓은 구역(region) 「두피」 — 사용자가 엑소좀 두피주사를 (엑소좀, 두피, 주사)로 정했다(엑소좀 통합 ④). ERD §2.8 이 region 후보로 적은 값.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@14/9/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@4/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 **확정 방향 — 엑소좀 통합** ④ 「엑소좀 두피주사」→ (엑소좀, 두피, 주사)"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §2.8 site.kind region(바디·두피는 미등록 조각 · dictionary_add 후보)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

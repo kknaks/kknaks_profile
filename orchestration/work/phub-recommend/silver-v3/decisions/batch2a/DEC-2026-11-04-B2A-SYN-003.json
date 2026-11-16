@@ -1,0 +1,167 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "줄기세포",
+  "fragment_count": 7,
+  "fragment_occurrence_locators": [
+   "market-pricing.json:categories[].items[].name@16/1",
+   "market-pricing.json:categories[].items[].name@16/2",
+   "market-pricing.json:categories[].items[].name@16/3",
+   "market-pricing.json:categories[].items[].name@16/4",
+   "market-pricing.json:categories[].items[].name@16/5",
+   "procedure-comparison.json:comparisons[].procedures[].name@8/2",
+   "synergy.json:links[].from@27"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {
+   "adverse": [
+    "extracted.json:{code}.safety.serious[]@M17/0",
+    "taxonomy.json:modality[].extracted.safety.serious[]@16/0"
+   ]
+  },
+  "target": {
+   "canonical": "줄기세포치료",
+   "code": "M17",
+   "dictionary": "modality",
+   "entity_id": "MOD-60b0cfe62d",
+   "label_locators": [
+    "taxonomy.json:modality[].category@16",
+    "taxonomy.json:modality[].id@16"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/16/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": "M17",
+    "label": "줄기세포 + MTS (전체얼굴)",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@16/2"
+    ],
+    "ref_id": "REF-0763982425",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M17",
+    "label": "줄기세포 3회 패키지 (전체얼굴)",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@16/5"
+    ],
+    "ref_id": "REF-ce59a9fdff",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M17",
+    "label": "줄기세포 관절치료",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@16/4"
+    ],
+    "ref_id": "REF-eb2a9f118a",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M17",
+    "label": "줄기세포 두피치료 (탈모)",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@16/3"
+    ],
+    "ref_id": "REF-977e15a7e4",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M17",
+    "label": "줄기세포 엑소좀 (전체얼굴)",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@16/1"
+    ],
+    "ref_id": "REF-69c2516d1d",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M17",
+    "label": "엑소좀 (줄기세포 유래)",
+    "locators": [
+     "procedure-comparison.json:comparisons[].procedures[].name@8/2"
+    ],
+    "ref_id": "REF-4c15343489",
+    "relation": "R12"
+   },
+   {
+    "hint": "M17",
+    "label": "줄기세포",
+    "locators": [
+     "synergy.json:links[].from@27",
+     "synergy.json:links[].from@28",
+     "synergy.json:links[].from@29",
+     "synergy.json:links[].to@59",
+     "synergy.json:links[].to@64",
+     "synergy.json:links[].to@76",
+     "synergy.json:links[].to@87"
+    ],
+    "ref_id": "REF-480f587dcf",
+    "relation": "R18"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-003",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "줄기세포치료",
+  "category": null,
+  "synonyms": [
+   "줄기세포"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「줄기세포」 → 계열 M17 「줄기세포치료」. 사전 modality 정준값 「줄기세포치료」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「줄기세포」는 시술 축 미등록 조각 7 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@16"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].id@16"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/16/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@8/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@27"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 「탈모(비수술)」 ⊃ 조각 「탈모」",
+ "gate_item": "b4-prc/050",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-050a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-ec89ca8924"
+ },
+ "proposal_item": "b4-prc/050",
+ "reason": "결정 묶음 4 — 참조 조각 「탈모」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「탈모(비수술)」(SUB-ec89ca8924)로 읽는다(근거: 「탈모(비수술)」 ⊃ 조각 「탈모」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@11/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@16/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "탈모",
+  "scope": [
+   "REF-977e15a7e4",
+   "REF-bacbdbcaf9"
+  ]
+ }
+}

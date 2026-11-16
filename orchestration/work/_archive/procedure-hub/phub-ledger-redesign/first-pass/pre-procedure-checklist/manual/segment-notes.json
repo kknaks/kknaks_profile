@@ -1,0 +1,2582 @@
+{
+ "_note": "직접 읽기 기록(수동). build.py 가 이 파일을 읽어 coverage.json·review-part-*.md·expressions.json(manual)·issues.md 에 반영한다. 재생성해도 보완이 소실되지 않도록 수동 기록은 여기에만 둔다.",
+ "segments": [
+  {
+   "id": "S00",
+   "title": "최상위 메타 + 루트/카테고리 배열 컨테이너",
+   "owns_prefixes": [
+    "",
+    "/version",
+    "/updated",
+    "/description",
+    "/category_specific"
+   ],
+   "owns_exact_only": [
+    "",
+    "/category_specific"
+   ],
+   "context_refs": [],
+   "read_status": "read",
+   "observations": [
+    "P: `/version` 은 문자열 \"1.1\"(숫자 아님), `/updated` 는 \"2026-04-05\" 문자열. 형식 규칙은 원문에 없다.",
+    "P: `/description` 이 말하는 'universal'·'category-specific' 은 실제 키 `universal_checks`·`category_specific` 과 표기가 다르다(밑줄/하이픈, _checks 접미). 구조적 대응은 잠정.",
+    "P: '카테고리'(M1–M17)가 다른 원장의 어떤 분류와 같은지 이 파일 안에서는 정의되지 않는다(이름만 있음)."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/description",
+     "text": "시술 전 체크리스트",
+     "perspectives": [
+      "시점(시술 전)",
+      "문서 성격"
+     ],
+     "note": "원장 전체의 시점 범위 진술"
+    },
+    {
+     "pointer": "/description",
+     "text": "카테고리별 universal + category-specific 확인 항목",
+     "perspectives": [
+      "구조 진술",
+      "기호(+)"
+     ],
+     "note": "'+' 는 두 구획 이름을 잇는다. README 의 시술 '+' 규칙 적용 대상인지 원문에 없음"
+    },
+    {
+     "pointer": "/description",
+     "text": "category-specific",
+     "perspectives": [
+      "필드명 대응"
+     ],
+     "note": "키는 category_specific(밑줄), 설명문은 하이픈 표기"
+    }
+   ],
+   "issues": [
+    {
+     "code": "F",
+     "id": "S00-1",
+     "status": "deferred",
+     "text": "category_specific 의 id(M1–M17)·name 이 어떤 분류 체계를 가리키는지 원문 안에 정의 없음 — 다른 원장과의 연결은 21개 비교 후 과제",
+     "pointers": [
+      "/category_specific"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "루트 키 5개·/version·/updated·/description·/category_specific 컨테이너(자식17) 확인"
+  },
+  {
+   "id": "S01",
+   "title": "universal_checks 전체 (12항목)",
+   "owns_prefixes": [
+    "/universal_checks"
+   ],
+   "owns_exact_only": [],
+   "context_refs": [
+    "/description"
+   ],
+   "read_status": "read",
+   "observations": [
+    "P: 12항목은 `id` 알파벳순(allergies→skin_condition)으로 놓여 있다(원문 배열 순서 그대로 보존).",
+    "P: 항목 간 내용 겹침 — `/universal_checks/7/description` 에 '자가면역질환'(=`/universal_checks/2` label), `/universal_checks/8/description` 에 '항응고제'·'이소트레티노인'(=`/universal_checks/1`·`/6`), `/universal_checks/11/description` '헤르페스 활성' 과 `/universal_checks/5` '헤르페스 병력'. 같은 대상인지·상하 관계인지 확정하지 않음.",
+    "P: `/universal_checks/6/type` 은 inform 인데 같은 주제가 category_specific(M8·M11·M12·M15)에서는 must_check 로 나온다(S03~S05 참조).",
+    "P: `/universal_checks/9` type absolute_contraindication 과 description '대부분의 시술 불가'(일부 예외 여지) 가 공존. `/universal_checks/3` relative_contraindication 은 '일부 시술 제한'.",
+    "P: description 은 문장(마침표)·명사 나열·구절이 섞여 있다. 마침표가 있는 값: /1, /3, /6."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/universal_checks/0/description",
+     "text": "약물/식품/라텍스 알레르기",
+     "perspectives": [
+      "슬래시 나열",
+      "대상 범위"
+     ],
+     "note": "'알레르기' 가 세 항목 모두에 걸리는지는 잠정"
+    },
+    {
+     "pointer": "/universal_checks/1/label",
+     "text": "항응고제/항혈소판제",
+     "perspectives": [
+      "슬래시 나열",
+      "약물군"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/1/description",
+     "text": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등",
+     "perspectives": [
+      "열린 나열(등)",
+      "약물·보충제 혼합",
+      "영문 약어"
+     ],
+     "note": "label 은 약물군인데 예시에 보충제(오메가3·은행잎 추출물)가 섞임"
+    },
+    {
+     "pointer": "/universal_checks/1/description",
+     "text": "멍/출혈 위험 안내",
+     "perspectives": [
+      "위험",
+      "행위(안내)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/1/description",
+     "text": "중단 여부는 처방의와 상의 필수",
+     "perspectives": [
+      "의무(필수)",
+      "조건(중단 여부)",
+      "행위 주체(처방의)"
+     ],
+     "note": "중단을 지시하지 않고 상의를 필수로 둔다 — 회피/중단 지시와 구분"
+    },
+    {
+     "pointer": "/universal_checks/2/description",
+     "text": "루푸스, 류마티스, 경피증 등",
+     "perspectives": [
+      "열린 나열(등)",
+      "질환 예시"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/2/description",
+     "text": "시술 반응 예측 어려움",
+     "perspectives": [
+      "불확실성"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/2/description",
+     "text": "이물반응/상처 회복 지연 위험 증가",
+     "perspectives": [
+      "슬래시 범위",
+      "위험",
+      "증가(정도)"
+     ],
+     "note": "'위험 증가' 가 이물반응·상처 회복 지연 둘 다에 걸리는지 잠정. 자동 AP-SLASH 는 «이물반응/상처» 까지만 잡음"
+    },
+    {
+     "pointer": "/universal_checks/3/description",
+     "text": "수유 중인 경우 일부 시술 제한",
+     "perspectives": [
+      "조건(경우)",
+      "범위(일부)",
+      "제한"
+     ],
+     "note": "어떤 시술인지 원문 없음"
+    },
+    {
+     "pointer": "/universal_checks/3/description",
+     "text": "시술별 개별 판단 필요",
+     "perspectives": [
+      "판단 유보",
+      "필요"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/4/label",
+     "text": "기대치 확인",
+     "perspectives": [
+      "행위"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/4/description",
+     "text": "현실적인 결과 설명",
+     "perspectives": [
+      "형용사(현실적인)",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/5/description",
+     "text": "구순포진 병력 시 항바이러스 예방 투여 필요",
+     "perspectives": [
+      "조건(병력 시)",
+      "필요",
+      "예방"
+     ],
+     "note": "label '헤르페스 병력' 과 description '구순포진 병력' 의 범위 차이"
+    },
+    {
+     "pointer": "/universal_checks/5/description",
+     "text": "발라시클로비르 500mg x2 또는 아시클로비르 400mg x2",
+     "perspectives": [
+      "대안(또는)",
+      "용량",
+      "x표기"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/5/description",
+     "text": "발라시클로비르 500mg x2",
+     "perspectives": [
+      "약물+용량"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/5/description",
+     "text": "아시클로비르 400mg x2",
+     "perspectives": [
+      "약물+용량"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/5/description",
+     "text": "시술 3일 전부터",
+     "perspectives": [
+      "시점(시술 전)",
+      "기간 시작"
+     ],
+     "note": "종료 시점·기간은 이 항목에 없음"
+    },
+    {
+     "pointer": "/universal_checks/6/label",
+     "text": "이소트레티노인 복용력",
+     "perspectives": [
+      "약물 이력"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "프락셔널/얕은 필링은 중단 후 최소 6개월",
+     "perspectives": [
+      "슬래시 범위",
+      "시점(중단 후)",
+      "최소",
+      "기간"
+     ],
+     "note": "자동 AP-SLASH 는 «프락셔널/얕은» 까지만"
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "프락셔널/얕은 필링",
+     "perspectives": [
+      "슬래시 범위",
+      "형용사(얕은)"
+     ],
+     "note": "'프락셔널 [레이저]' 인지 '프락셔널 필링' 인지 원문에 없음"
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "박리성(ablative) 레이저는 12개월 대기 원칙",
+     "perspectives": [
+      "괄호 영문 병기",
+      "기간",
+      "원칙"
+     ],
+     "note": "'중단 후' 가 생략된 병렬 구조로 보임(잠정)"
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "상처 회복 지연·비후성 반흔 위험",
+     "perspectives": [
+      "가운뎃점 나열",
+      "위험"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "2017 AAD Task Force 이후",
+     "perspectives": [
+      "연도",
+      "출처 언급",
+      "시점(이후)"
+     ],
+     "note": "외부 출처 언급 — 내용 확인하지 않음"
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능",
+     "perspectives": [
+      "부정 접두(비-)",
+      "형용사(얕은)",
+      "조건(상태에 따라)",
+      "주체(의사 판단)",
+      "가능성"
+     ],
+     "note": "원칙의 예외 진술"
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "조기 시행 고려 가능",
+     "perspectives": [
+      "가능성",
+      "시점(조기)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/6/description",
+     "text": "중단 후 기간 반드시 확인",
+     "perspectives": [
+      "의무(반드시)",
+      "시점(중단 후)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/7/description",
+     "text": "자가면역질환, 켈로이드 체질, 당뇨, 간질환",
+     "perspectives": [
+      "닫힌 나열(등 없음)",
+      "질환"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/8/description",
+     "text": "항응고제, NSAIDs, 이소트레티노인 등",
+     "perspectives": [
+      "열린 나열(등)",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/9/description",
+     "text": "임신 중이거나 임신 가능성이 있는 경우",
+     "perspectives": [
+      "조건(경우)",
+      "가능성",
+      "선언(이거나)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/9/description",
+     "text": "대부분의 시술 불가",
+     "perspectives": [
+      "범위(대부분)",
+      "부정(불가)"
+     ],
+     "note": "type absolute_contraindication 과 '대부분' 의 범위가 함께 있음"
+    },
+    {
+     "pointer": "/universal_checks/10/description",
+     "text": "최근 받은 시술과 시기",
+     "perspectives": [
+      "시점(최근)",
+      "기간 미정"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/11/description",
+     "text": "감염, 염증, 상처, 헤르페스 활성",
+     "perspectives": [
+      "닫힌 나열",
+      "상태"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/5/label",
+     "text": "헤르페스 병력",
+     "perspectives": [
+      "이력(병력)"
+     ],
+     "note": "description 은 '구순포진 병력' 으로 범위가 다름"
+    },
+    {
+     "pointer": "/universal_checks/8/label",
+     "text": "현재 복용 약물",
+     "perspectives": [
+      "시점(현재)"
+     ]
+    },
+    {
+     "pointer": "/universal_checks/10/label",
+     "text": "최근 시술 이력",
+     "perspectives": [
+      "시점(최근)",
+      "이력"
+     ]
+    }
+   ],
+   "issues": [
+    {
+     "code": "B",
+     "id": "S01-1",
+     "status": "open",
+     "text": "'x2' 의 뜻(1일 2회 등)과 투여 기간이 `/universal_checks/5/description` 에 없다 — 단위·횟수 해석 불가(채우지 않음)",
+     "pointers": [
+      "/universal_checks/5/description"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S01-2",
+     "status": "open",
+     "text": "'일부 시술'(수유)·'대부분의 시술'(임신)이 어떤 시술인지 원문에 없다",
+     "pointers": [
+      "/universal_checks/3/description",
+      "/universal_checks/9/description"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S01-3",
+     "status": "open",
+     "text": "'최근' 의 기간 기준 없음",
+     "pointers": [
+      "/universal_checks/10/label",
+      "/universal_checks/10/description"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S01-4",
+     "status": "open",
+     "text": "'프락셔널/얕은 필링' 의 슬래시 범위(프락셔널 레이저 vs 필링)가 원문만으로 결정되지 않음",
+     "pointers": [
+      "/universal_checks/6/description"
+     ]
+    },
+    {
+     "code": "I",
+     "id": "S01-5",
+     "status": "open",
+     "text": "임신 항목 type=absolute_contraindication 인데 description 은 '대부분의 시술 불가'. type 정의가 원문에 없어 불일치인지 확정 못 함 — 원문 변경 제안 아님, 후속 확인 후보",
+     "pointers": [
+      "/universal_checks/9/type",
+      "/universal_checks/9/description"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S01-6",
+     "status": "deferred",
+     "text": "universal 항목 간 겹침(기저질환⊃자가면역질환?, 복용 약물⊃항응고제·이소트레티노인?) 관계 판단은 의미 조사 단계",
+     "pointers": [
+      "/universal_checks/7/description",
+      "/universal_checks/8/description"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S01-7",
+     "status": "deferred",
+     "text": "헤르페스 예방 투여 문구가 M8 항목과 순서·세부(7-10일 복용)가 다르다 — 같은 지침의 변형인지 후속 비교",
+     "pointers": [
+      "/universal_checks/5/description",
+      "/category_specific/7/checks/4/label"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "/universal_checks/0 … /universal_checks/11 의 id·label·type·description 48말단 전부"
+  },
+  {
+   "id": "S02",
+   "title": "category_specific M1–M4 (index 0–3)",
+   "owns_prefixes": [
+    "/category_specific/0",
+    "/category_specific/1",
+    "/category_specific/2",
+    "/category_specific/3"
+   ],
+   "owns_exact_only": [],
+   "context_refs": [
+    "/description",
+    "/category_specific"
+   ],
+   "read_status": "read",
+   "observations": [
+    "P: type 분포 — M1 [absolute_contraindication, must_check, inform, must_check×4], M2 [must_check×4, safety_protocol×2, counseling, must_check, inform, must_check], M3 [absolute_contraindication, must_check×2, counseling×2, must_check], M4 [must_check×2, inform, must_check, counseling].",
+    "P: `safety_protocol` 2건(`/category_specific/1/checks/4`·`/5`)은 환자 상태 확인이 아니라 시술자 측 준비 진술이다 — 같은 checks 배열 안에 환자 확인·설명·준비가 섞여 있다.",
+    "P: '항응고제' 확인이 M1 에서는 inform('멍 위험 안내'), M4 에서도 inform('항응고제/아스피린 … 멍 위험'), universal 에서는 must_check. 같은 주제 다른 type.",
+    "P: '켈로이드 체질 확인' 이 M3 에서는 absolute_contraindication(`/category_specific/2/checks/0/type`). 다른 카테고리(M7·M8·M11·M12·M13)에서는 must_check(S03~S05).",
+    "P: `/category_specific/1/checks/8/label` 은 확인 항목이면서 '이동시키지는 않으나' 로 오해를 부정하고 영향을 '(미용상)' 으로 한정한다 — 금기 관계로 읽으면 안 되는 예.",
+    "P: 괄호 안에 줄표가 다시 들어가는 이중 구조: `/category_specific/0/checks/4/label`·`/5/label`.",
+    "P: `/category_specific/3/checks/2/label` '항응고제/아스피린' 은 약물군과 개별 약물을 슬래시로 나란히 둔다(universal 에서 아스피린은 항응고제/항혈소판제의 예시)."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/category_specific/0/checks/0/label",
+     "text": "신경근접합부 질환(중증근무력증 등) 확인",
+     "perspectives": [
+      "질환군+괄호 예시",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/1/label",
+     "text": "이전 보툴리눔 독소 시술 후 이상반응 여부",
+     "perspectives": [
+      "시점(이전·시술 후)",
+      "이력"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/2/label",
+     "text": "항응고제 복용 여부 (멍 위험 안내)",
+     "perspectives": [
+      "괄호 목적",
+      "위험",
+      "행위(안내)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/3/label",
+     "text": "최근 보톡스 시술 시기 확인 (항체 내성)",
+     "perspectives": [
+      "시점(최근)",
+      "괄호 사유"
+     ],
+     "note": "'항체 내성' 과 시기 확인의 관계(사유)는 원문에 서술 없음"
+    },
+    {
+     "pointer": "/category_specific/0/checks/4/label",
+     "text": "아미노글리코시드 항생제 복용 여부",
+     "perspectives": [
+      "약물군"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/4/label",
+     "text": "보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등",
+     "perspectives": [
+      "위험",
+      "증강(정도)",
+      "괄호 안 줄표",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/5/label",
+     "text": "D-페니실라민 복용 여부",
+     "perspectives": [
+      "약물"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/5/label",
+     "text": "신경근접합부 기능 감소 — 보톡스 효과 예측 불가",
+     "perspectives": [
+      "감소(정도)",
+      "불확실성",
+      "부정(불가)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/0/checks/6/label",
+     "text": "시술 부위 감염/염증 여부",
+     "perspectives": [
+      "부위(시술 부위)",
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/0/label",
+     "text": "히알루로니다아제 알레르기 여부",
+     "perspectives": [
+      "알레르기"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/1/label",
+     "text": "이전 필러 시술 부위 및 제품 확인 (잔여 필러)",
+     "perspectives": [
+      "시점(이전)",
+      "부위",
+      "제품",
+      "괄호 목적"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/2/label",
+     "text": "잔여 영구필러(실리콘/PMMA) 존재 여부",
+     "perspectives": [
+      "괄호 예시",
+      "슬래시 나열",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/2/label",
+     "text": "이물반응, 합병증 위험 대폭 증가",
+     "perspectives": [
+      "위험",
+      "정도(대폭)",
+      "증가"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/3/label",
+     "text": "자가면역질환 여부 (육아종 위험)",
+     "perspectives": [
+      "괄호 위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/4/label",
+     "text": "혈관폐색 응급 프로토콜 준비 확인",
+     "perspectives": [
+      "시술자 준비",
+      "응급"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/5/label",
+     "text": "히알루로니다아제 비상 비치 확인",
+     "perspectives": [
+      "시술자 준비",
+      "비상"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/6/label",
+     "text": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명",
+     "perspectives": [
+      "비교(vs)",
+      "부정 접두(비HA)",
+      "가능 여부",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/7/label",
+     "text": "최근 치과 시술 여부 확인",
+     "perspectives": [
+      "시점(최근)",
+      "다른 시술 이력"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/7/label",
+     "text": "구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음",
+     "perspectives": [
+      "기전 서술",
+      "가능성(수 있음)",
+      "부위(구강 내)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/8/label",
+     "text": "48시간 이내 비행기 탑승 예정 여부",
+     "perspectives": [
+      "시간(48시간 이내)",
+      "예정",
+      "시점 기준 미기재"
+     ],
+     "note": "48시간이 시술 전후 어느 쪽 기준인지 원문 없음"
+    },
+    {
+     "pointer": "/category_specific/1/checks/8/label",
+     "text": "기내 기압이 필러를 이동시키지는 않으나",
+     "perspectives": [
+      "부정(않으나)",
+      "양보",
+      "오해 반박"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/8/label",
+     "text": "장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)",
+     "perspectives": [
+      "조건(비행 시)",
+      "정도(장시간·더)",
+      "가능성",
+      "괄호 한정(미용상)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/1/checks/9/label",
+     "text": "피부결핵/매독 등 만성감염 여부",
+     "perspectives": [
+      "슬래시 나열",
+      "열린 나열(등)",
+      "상위어(만성감염)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/name",
+     "text": "바이오스티뮬레이터/콜라겐부스터",
+     "perspectives": [
+      "카테고리명 슬래시"
+     ],
+     "note": "두 이름이 같은 것인지 대안인지 원문 없음"
+    },
+    {
+     "pointer": "/category_specific/2/checks/0/label",
+     "text": "켈로이드 체질 확인",
+     "perspectives": [
+      "체질"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/checks/1/label",
+     "text": "자가면역질환 여부 (이물반응 위험)",
+     "perspectives": [
+      "괄호 위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/checks/2/label",
+     "text": "이전 바이오스티뮬레이터 시술 이력 및 제품 확인",
+     "perspectives": [
+      "시점(이전)",
+      "이력",
+      "제품"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/checks/3/label",
+     "text": "결절/육아종 발생 가능성 설명",
+     "perspectives": [
+      "슬래시 나열",
+      "가능성",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/checks/4/label",
+     "text": "효과 발현 시기 안내 (1-3개월 점진적)",
+     "perspectives": [
+      "시간 범위",
+      "형용사(점진적)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/2/checks/5/label",
+     "text": "시술 부위 감염/활동성 피부질환 여부",
+     "perspectives": [
+      "부위",
+      "슬래시 나열",
+      "형용사(활동성)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/3/checks/0/label",
+     "text": "HA 성분 알레르기 여부",
+     "perspectives": [
+      "성분",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/3/checks/1/label",
+     "text": "최근 피부 시술 이력 (레이저, 필링 등)",
+     "perspectives": [
+      "시점(최근)",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/3/checks/2/label",
+     "text": "항응고제/아스피린 복용 여부 (멍 위험)",
+     "perspectives": [
+      "슬래시(약물군/개별 약물)",
+      "괄호 위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/3/checks/3/label",
+     "text": "시술 부위 활동성 여드름/감염 여부",
+     "perspectives": [
+      "부위",
+      "형용사(활동성)",
+      "슬래시 범위"
+     ],
+     "note": "'활동성' 이 감염까지 걸리는지 잠정"
+    },
+    {
+     "pointer": "/category_specific/3/checks/4/label",
+     "text": "다운타임 안내 (붉어짐, 구진 1-3일)",
+     "perspectives": [
+      "시간 범위",
+      "증상 나열"
+     ],
+     "note": "'1-3일' 이 붉어짐까지 걸리는지 잠정"
+    }
+   ],
+   "issues": [
+    {
+     "code": "B",
+     "id": "S02-1",
+     "status": "open",
+     "text": "'최근' 기간 기준 없음(보톡스·치과·피부 시술)",
+     "pointers": [
+      "/category_specific/0/checks/3/label",
+      "/category_specific/1/checks/7/label",
+      "/category_specific/3/checks/1/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S02-2",
+     "status": "open",
+     "text": "'48시간 이내' 의 기준 시점(시술 전/후)이 없음",
+     "pointers": [
+      "/category_specific/1/checks/8/label"
+     ]
+    },
+    {
+     "code": "P",
+     "id": "S02-3",
+     "status": "open",
+     "text": "'(항체 내성)'·'(잔여 필러)'·'(육아종 위험)' 등 괄호가 사유·목적·예시 중 무엇인지 문법적으로 표시되지 않음 — 잠정 관점 태그만 붙임",
+     "pointers": [
+      "/category_specific/0/checks/3/label",
+      "/category_specific/1/checks/1/label",
+      "/category_specific/1/checks/3/label"
+     ]
+    },
+    {
+     "code": "K",
+     "id": "S02-4",
+     "status": "recorded",
+     "text": "자동 패턴 AP-DEGREE «이상» 이 '이상반응'(abnormal reaction) 안에서 일치 — 오탐(정도 표현 아님). 자동 후보는 패턴 일치분일 뿐임을 재확인",
+     "pointers": [
+      "/category_specific/0/checks/1/label"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S02-5",
+     "status": "deferred",
+     "text": "type 값(must_check·inform·safety_protocol·counseling·absolute_contraindication)이 같은 주제에서 카테고리마다 다르다 — type 의미·용도는 21개 비교 후 설계 과제",
+     "pointers": [
+      "/category_specific/0/checks/2/type",
+      "/category_specific/2/checks/0/type",
+      "/category_specific/3/checks/2/type"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "/category_specific/0 … /3 (M1 보톡스 7·M2 필러 10·M3 6·M4 5 = checks 28) id·name·label·type 전부"
+  },
+  {
+   "id": "S03",
+   "title": "category_specific M5–M8 (index 4–7)",
+   "owns_prefixes": [
+    "/category_specific/4",
+    "/category_specific/5",
+    "/category_specific/6",
+    "/category_specific/7"
+   ],
+   "owns_exact_only": [],
+   "context_refs": [
+    "/description",
+    "/category_specific"
+   ],
+   "read_status": "read",
+   "observations": [
+    "P: type 분포 — M5 [absolute_contraindication, must_check, absolute_contraindication, must_check×2, counseling], M6 [absolute_contraindication, must_check×2, safety_protocol, counseling×2, safety_protocol], M7 [absolute_contraindication, must_check×3, counseling×2, inform], M8 [must_check×9, safety_protocol, counseling].",
+    "P: `/category_specific/5/checks/3` '지방색전증 위험 설명' 은 설명 행위인데 type 이 safety_protocol(counseling 아님).",
+    "P: `/category_specific/6/checks/6` 은 시술 후 행동 제한을 시술 전 체크리스트에 담은 항목(type inform).",
+    "P: 이소트레티노인 문구 변형 — universal(`/universal_checks/6/description`)은 '중단 후 최소 6개월'·'피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능'·'(ablative)', M8(`/category_specific/7/checks/2/label`)은 '6개월'(최소 없음)·'의사 판단 하에 조기 고려 가능'·'(ablative)' 없음.",
+    "P: 'ablative' 표기가 '박리성(ablative)'·'박리성'·'어블레이티브' 로 나뉜다(`/universal_checks/6/description`, `/category_specific/7/checks/2/label`, `/category_specific/7/checks/5/label`). 같은 개념인지 확정하지 않음.",
+    "P: 헤르페스 예방 문구 — universal 은 발라시클로비르→아시클로비르 순·'시술 3일 전부터'; M8 은 아시클로비르→발라시클로비르 순·'시술 3일 전부터 시작, 7-10일 복용'·'구순/안면 레이저 시' 조건 추가.",
+    "P: 레이저 카테고리 안에서 RF/HIFU(다른 장비 계열로 보이는 이름)를 '병행 시' 조건으로 참조한다(`/category_specific/7/checks/8/label`). 참조 표현만 보존."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/category_specific/4/name",
+     "text": "PRP/자가혈",
+     "perspectives": [
+      "카테고리명 슬래시",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/4/checks/0/label",
+     "text": "혈소판감소증/혈액질환 여부",
+     "perspectives": [
+      "슬래시(개별 질환/상위군)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/4/checks/1/label",
+     "text": "항응고제/항혈소판제 복용 여부",
+     "perspectives": [
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/4/checks/2/label",
+     "text": "활동성 감염/패혈증 여부",
+     "perspectives": [
+      "형용사(활동성)",
+      "슬래시 범위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/4/checks/4/label",
+     "text": "NSAIDs 복용 중단 여부 (시술 1주 전)",
+     "perspectives": [
+      "중단",
+      "시점(시술 1주 전)",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/4/checks/5/label",
+     "text": "채혈량 및 원심분리 과정 설명",
+     "perspectives": [
+      "행위(설명)",
+      "절차"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/0/label",
+     "text": "마취 알레르기 여부 (리도카인 등)",
+     "perspectives": [
+      "괄호 예시",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/1/label",
+     "text": "출혈 경향/응고장애 여부",
+     "perspectives": [
+      "슬래시 나열",
+      "경향"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/2/label",
+     "text": "공여 부위 충분한 지방량 확인",
+     "perspectives": [
+      "부위(공여 부위)",
+      "형용사(충분한)",
+      "양 기준 미기재"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/3/label",
+     "text": "지방색전증 위험 설명",
+     "perspectives": [
+      "위험",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/4/label",
+     "text": "생착률 안내 (30-70%, 개인차)",
+     "perspectives": [
+      "수치 범위(%)",
+      "개인차"
+     ]
+    },
+    {
+     "pointer": "/category_specific/5/checks/5/label",
+     "text": "비대칭/과교정/흡수 가능성 설명",
+     "perspectives": [
+      "슬래시 나열",
+      "가능성"
+     ],
+     "note": "'비대칭' 의 '비' 는 부정 접두 형태이나 결과 상태어 — 부정 표현으로 분류하지 않음"
+    },
+    {
+     "pointer": "/category_specific/5/checks/6/label",
+     "text": "감염 예방 항생제 준비 확인",
+     "perspectives": [
+      "시술자 준비",
+      "예방"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/name",
+     "text": "실리프팅",
+     "perspectives": [
+      "카테고리명"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/0/label",
+     "text": "시술 부위 활동성 감염 여부",
+     "perspectives": [
+      "부위",
+      "형용사(활동성)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/2/label",
+     "text": "이전 실리프팅 이력 확인 (잔여 실)",
+     "perspectives": [
+      "시점(이전)",
+      "괄호 목적"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/3/label",
+     "text": "켈로이드 체질 확인",
+     "perspectives": [
+      "체질"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/4/label",
+     "text": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명",
+     "perspectives": [
+      "비교(vs)",
+      "부정 접두(비녹는)",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/5/label",
+     "text": "실 돌출/감염/비대칭 가능성 설명",
+     "perspectives": [
+      "슬래시 나열",
+      "가능성"
+     ]
+    },
+    {
+     "pointer": "/category_specific/6/checks/6/label",
+     "text": "시술 후 크게 입벌리기/마사지 제한 안내",
+     "perspectives": [
+      "시점(시술 후)",
+      "부사(크게)",
+      "제한",
+      "슬래시 범위"
+     ],
+     "note": "시술 전 체크리스트 안의 시술 후 지시. '크게' 가 마사지까지 걸리지 않는 것으로 보임(잠정)"
+    },
+    {
+     "pointer": "/category_specific/7/checks/0/label",
+     "text": "Fitzpatrick 피부타입 확인 (I-VI)",
+     "perspectives": [
+      "분류 체계 언급",
+      "로마숫자 범위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/1/label",
+     "text": "최근 일광노출/태닝 여부",
+     "perspectives": [
+      "시점(최근)",
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/1/label",
+     "text": "2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단",
+     "perspectives": [
+      "시간 범위(2-4주 이내)",
+      "조건(노출 시)",
+      "대안(or)",
+      "감소",
+      "연기",
+      "판단"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/1/label",
+     "text": "에너지 감소 or 시술 연기",
+     "perspectives": [
+      "대안 행위",
+      "영문 접속사"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/2/label",
+     "text": "이소트레티노인 복용 여부/중단 시점 확인",
+     "perspectives": [
+      "슬래시(여부/시점)",
+      "중단"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/2/label",
+     "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+     "perspectives": [
+      "기간",
+      "원칙",
+      "슬래시 범위"
+     ],
+     "note": "universal 문구와 달리 '중단 후 최소' 가 없음"
+    },
+    {
+     "pointer": "/category_specific/7/checks/2/label",
+     "text": "2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+     "perspectives": [
+      "연도·출처",
+      "부정 접두(비-)",
+      "주체(의사 판단 하에)",
+      "가능성"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/3/label",
+     "text": "광과민성 약물 복용 여부 (독시사이클린, 아미오다론 등)",
+     "perspectives": [
+      "약물군",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/4/label",
+     "text": "구순/안면 레이저 시 예방적 항바이러스제",
+     "perspectives": [
+      "부위(구순/안면)",
+      "조건(레이저 시)",
+      "예방"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/4/label",
+     "text": "아시클로비르 400mg x2 또는 발라시클로비르 500mg x2",
+     "perspectives": [
+      "대안(또는)",
+      "용량",
+      "x표기"
+     ],
+     "note": "universal 과 약물 순서 반대"
+    },
+    {
+     "pointer": "/category_specific/7/checks/4/label",
+     "text": "시술 3일 전부터 시작, 7-10일 복용",
+     "perspectives": [
+      "시점(시술 전)",
+      "기간 범위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/5/label",
+     "text": "켈로이드 체질 확인 (어블레이티브 레이저)",
+     "perspectives": [
+      "괄호 조건/범위",
+      "외래어 표기(어블레이티브)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/6/label",
+     "text": "PIH 위험도 평가 (고위험군 사전 미백 치료)",
+     "perspectives": [
+      "위험도",
+      "대상(고위험군)",
+      "시점(사전)",
+      "선행 처치"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/7/label",
+     "text": "중등도 이상 필링 후 최소 2주 대기 확인",
+     "perspectives": [
+      "정도(중등도 이상)",
+      "시점(필링 후)",
+      "최소",
+      "기간"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/7/label",
+     "text": "피부 장벽 회복 전 레이저 시 합병증 위험",
+     "perspectives": [
+      "조건(회복 전·레이저 시)",
+      "위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/8/label",
+     "text": "RF/HIFU 병행 시 금속 발열 위험",
+     "perspectives": [
+      "다른 시술 참조",
+      "조건(병행 시)",
+      "위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/9/label",
+     "text": "보호안경/눈 보호 준비 확인",
+     "perspectives": [
+      "시술자 준비",
+      "슬래시"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/10/label",
+     "text": "레이저 종류별 다운타임 설명",
+     "perspectives": [
+      "종류별(범위)",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/4/label",
+     "text": "헤르페스 병력 확인",
+     "perspectives": [
+      "이력(병력)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/7/checks/8/label",
+     "text": "금속 임플란트 확인",
+     "perspectives": [
+      "기기·재질"
+     ]
+    }
+   ],
+   "issues": [
+    {
+     "code": "B",
+     "id": "S03-1",
+     "status": "open",
+     "text": "'충분한 지방량' 의 기준값 없음",
+     "pointers": [
+      "/category_specific/5/checks/2/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S03-2",
+     "status": "open",
+     "text": "'에너지 감소 or 시술 연기 판단' 의 선택 기준·감소 정도 없음",
+     "pointers": [
+      "/category_specific/7/checks/1/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S03-3",
+     "status": "open",
+     "text": "'x2' 의 뜻이 M8 헤르페스 문구에도 없음(S01-1 과 같은 원인)",
+     "pointers": [
+      "/category_specific/7/checks/4/label"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S03-4",
+     "status": "deferred",
+     "text": "ablative 표기 3종(박리성(ablative)/박리성/어블레이티브)의 동일성 — 후속 의미 조사",
+     "pointers": [
+      "/universal_checks/6/description",
+      "/category_specific/7/checks/2/label",
+      "/category_specific/7/checks/5/label"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S03-5",
+     "status": "deferred",
+     "text": "M8 안 'RF/HIFU 병행 시' 는 다른 카테고리(M9 기기 리프팅 등) 참조로 보임 — 연결은 후속",
+     "pointers": [
+      "/category_specific/7/checks/8/label"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S03-6",
+     "status": "deferred",
+     "text": "시술 전 체크리스트 안의 시술 후 지시(입벌리기/마사지 제한) — 시점 범위 모델링은 후속",
+     "pointers": [
+      "/category_specific/6/checks/6/label"
+     ]
+    },
+    {
+     "code": "K",
+     "id": "S03-7",
+     "status": "recorded",
+     "text": "kiwi 가 '안내' 를 '안/MAG 내/VV' 로 나눠 원문에 없는 부정(안)을 만든다 — 형태소 기반 부정 탐지 시 오탐",
+     "pointers": [
+      "/category_specific/6/checks/6/label"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "/category_specific/4 … /7 (M5 PRP/자가혈 6·M6 지방이식 7·M7 실리프팅 7·M8 레이저 11 = checks 31) id·name·label·type 전부"
+  },
+  {
+   "id": "S04",
+   "title": "category_specific M9–M13 (index 8–12)",
+   "owns_prefixes": [
+    "/category_specific/8",
+    "/category_specific/9",
+    "/category_specific/10",
+    "/category_specific/11",
+    "/category_specific/12"
+   ],
+   "owns_exact_only": [],
+   "context_refs": [
+    "/description",
+    "/category_specific"
+   ],
+   "read_status": "read",
+   "observations": [
+    "P: type 분포 — M9 [absolute_contraindication, must_check, absolute_contraindication, must_check, counseling, must_check], M10 [absolute_contraindication×2, must_check, absolute_contraindication, inform, counseling], M11 [absolute_contraindication, must_check×4, inform, counseling], M12 [absolute_contraindication, must_check×4, counseling, inform], M13 [absolute_contraindication, must_check×4, counseling].",
+    "P: 금속 임플란트·페이스메이커 문구 변형 — M9·M10 '체내 금속 임플란트/페이스메이커 여부'(absolute_contraindication), M11 '체내 금속 임플란트 여부 (시술 부위)'(absolute_contraindication), M13 '시술 부위 금속 임플란트 여부'(must_check)·'페이스메이커/전자 의료기기 여부'(absolute_contraindication), M8 '금속 임플란트 확인 — RF/HIFU 병행 시'(must_check).",
+    "P: 이소트레티노인 문구 — M11·M12 는 서로 같은 문자열이고 예외를 괄호에 넣으며 '2017 AAD Task Force' 가 없다. M8·M15 는 마침표 뒤 문장·출처 언급 있음.",
+    "P: M12 '시술 후 자외선 차단 필수 안내', M11 '시술 후 붉어짐/부종 다운타임 설명' — 시술 후 내용이 시술 전 체크리스트에 있음(S03 관찰과 같은 유형).",
+    "P: 깊이·두께·시간처럼 수치가 들어갈 자리를 말하지만 값은 없다: '지방층 두께', '니들 깊이별', '마취크림 도포 및 시간'."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/category_specific/8/checks/0/label",
+     "text": "체내 금속 임플란트/페이스메이커 여부",
+     "perspectives": [
+      "부위(체내)",
+      "슬래시 나열",
+      "기기"
+     ]
+    },
+    {
+     "pointer": "/category_specific/8/checks/1/label",
+     "text": "시술 부위 필러/실리콘 존재 여부",
+     "perspectives": [
+      "부위",
+      "다른 시술 잔여물"
+     ]
+    },
+    {
+     "pointer": "/category_specific/8/checks/2/label",
+     "text": "최근 골드 실/금속 실 시술 이력",
+     "perspectives": [
+      "시점(최근)",
+      "슬래시 나열",
+      "재질"
+     ]
+    },
+    {
+     "pointer": "/category_specific/8/checks/3/label",
+     "text": "신경계 질환 여부 (간질 등)",
+     "perspectives": [
+      "괄호 예시",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/8/checks/4/label",
+     "text": "초음파/RF 에너지별 특성 및 통증 수준 설명",
+     "perspectives": [
+      "슬래시(에너지 종류)",
+      "별(범위)",
+      "수준",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/8/checks/5/label",
+     "text": "지방층 두께 확인 (HIFU 시 화상 위험)",
+     "perspectives": [
+      "두께(기준 미기재)",
+      "조건(HIFU 시)",
+      "위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/name",
+     "text": "HIFES/EMS",
+     "perspectives": [
+      "카테고리명 슬래시",
+      "영문 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/checks/0/label",
+     "text": "체내 금속 임플란트/페이스메이커 여부",
+     "perspectives": [
+      "부위(체내)",
+      "슬래시 나열"
+     ],
+     "note": "`/category_specific/8/checks/0/label` 과 같은 문자열"
+    },
+    {
+     "pointer": "/category_specific/9/checks/1/label",
+     "text": "간질/경련성 질환 여부",
+     "perspectives": [
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/checks/2/label",
+     "text": "최근 복부/시술 부위 수술 이력",
+     "perspectives": [
+      "시점(최근)",
+      "부위(복부/시술 부위)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/checks/3/label",
+     "text": "임신 여부 (복부 시술 시 특히 중요)",
+     "perspectives": [
+      "조건(복부 시술 시)",
+      "강조(특히)"
+     ],
+     "note": "type absolute_contraindication 과 조건적 강조가 함께 있음"
+    },
+    {
+     "pointer": "/category_specific/9/checks/4/label",
+     "text": "횡문근융해증 위험 설명 (과도한 세팅)",
+     "perspectives": [
+      "위험",
+      "괄호 조건/원인",
+      "형용사(과도한)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/checks/5/label",
+     "text": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)",
+     "perspectives": [
+      "한계",
+      "부정 대조(아닌)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/9/checks/5/label",
+     "text": "지방감소가 아닌 근육강화",
+     "perspectives": [
+      "부정 대조"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/name",
+     "text": "니들RF",
+     "perspectives": [
+      "카테고리명",
+      "한영 혼합"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/0/label",
+     "text": "체내 금속 임플란트 여부 (시술 부위)",
+     "perspectives": [
+      "부위(체내 vs 괄호 시술 부위)",
+      "괄호 한정"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/2/label",
+     "text": "이소트레티노인 복용 여부/중단 시점 확인",
+     "perspectives": [
+      "슬래시(여부/시점)",
+      "중단"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/2/label",
+     "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+     "perspectives": [
+      "기간",
+      "원칙"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/2/label",
+     "text": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+     "perspectives": [
+      "괄호 예외",
+      "부정 접두(비-)",
+      "가능성"
+     ],
+     "note": "'2017 AAD Task Force' 언급 없음"
+    },
+    {
+     "pointer": "/category_specific/10/checks/3/label",
+     "text": "항응고제 복용 여부 (출혈 위험)",
+     "perspectives": [
+      "괄호 위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/4/label",
+     "text": "활동성 여드름/감염 부위 확인",
+     "perspectives": [
+      "형용사(활동성)",
+      "슬래시 범위",
+      "부위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/5/label",
+     "text": "마취크림 도포 및 시간 안내",
+     "perspectives": [
+      "절차",
+      "시간(값 미기재)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/10/checks/6/label",
+     "text": "시술 후 붉어짐/부종 다운타임 설명",
+     "perspectives": [
+      "시점(시술 후)",
+      "증상 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/name",
+     "text": "마이크로니들링(MTS)",
+     "perspectives": [
+      "카테고리명",
+      "괄호 약어"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/0/label",
+     "text": "활동성 여드름/감염/헤르페스 여부",
+     "perspectives": [
+      "형용사(활동성)",
+      "슬래시 범위"
+     ],
+     "note": "'활동성' 이 세 항목 모두에 걸리는지 잠정"
+    },
+    {
+     "pointer": "/category_specific/11/checks/2/label",
+     "text": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+     "perspectives": [
+      "괄호 예외",
+      "부정 접두(비-)",
+      "가능성"
+     ],
+     "note": "`/category_specific/10/checks/2/label` 과 같은 문자열"
+    },
+    {
+     "pointer": "/category_specific/11/checks/3/label",
+     "text": "항응고제/항혈소판제 복용 여부",
+     "perspectives": [
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/4/label",
+     "text": "당뇨/면역저하 상태 (감염 위험 증가)",
+     "perspectives": [
+      "슬래시 나열",
+      "괄호 위험",
+      "증가"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/5/label",
+     "text": "니들 깊이별 다운타임 설명",
+     "perspectives": [
+      "깊이(값 미기재)",
+      "별(범위)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/6/label",
+     "text": "시술 후 자외선 차단 필수 안내",
+     "perspectives": [
+      "시점(시술 후)",
+      "의무(필수)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/12/checks/0/label",
+     "text": "페이스메이커/전자 의료기기 여부",
+     "perspectives": [
+      "슬래시(개별/상위)",
+      "기기"
+     ]
+    },
+    {
+     "pointer": "/category_specific/12/checks/1/label",
+     "text": "시술 부위 금속 임플란트 여부",
+     "perspectives": [
+      "부위(시술 부위)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/12/checks/2/label",
+     "text": "광과민성 질환/약물 복용 여부",
+     "perspectives": [
+      "슬래시 범위"
+     ],
+     "note": "'복용' 이 질환에는 걸리지 않음 — 슬래시가 '질환/약물 복용' 의 축약으로 보임(잠정)"
+    },
+    {
+     "pointer": "/category_specific/12/checks/4/label",
+     "text": "시술 부위 활동성 감염 여부",
+     "perspectives": [
+      "부위",
+      "형용사(활동성)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/12/checks/5/label",
+     "text": "크러스트(딱지) 형성 및 관리 방법 설명",
+     "perspectives": [
+      "괄호 풀이(동의 표기)",
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/2/label",
+     "text": "이소트레티노인 복용 여부/중단 시점 확인",
+     "perspectives": [
+      "슬래시(여부/시점)",
+      "중단"
+     ],
+     "note": "읽기 검토에서 누락 발견 후 추가(A-S04-6)"
+    },
+    {
+     "pointer": "/category_specific/11/checks/2/label",
+     "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+     "perspectives": [
+      "기간",
+      "원칙",
+      "슬래시 범위"
+     ],
+     "note": "읽기 검토에서 누락 발견 후 추가(A-S04-6)"
+    },
+    {
+     "pointer": "/category_specific/10/checks/1/label",
+     "text": "켈로이드 체질 확인",
+     "perspectives": [
+      "체질"
+     ]
+    },
+    {
+     "pointer": "/category_specific/11/checks/1/label",
+     "text": "켈로이드 체질 확인",
+     "perspectives": [
+      "체질"
+     ]
+    },
+    {
+     "pointer": "/category_specific/12/checks/3/label",
+     "text": "켈로이드 체질 확인",
+     "perspectives": [
+      "체질"
+     ]
+    }
+   ],
+   "issues": [
+    {
+     "code": "B",
+     "id": "S04-1",
+     "status": "open",
+     "text": "수치 자리만 있고 값이 없음 — 지방층 두께 기준, 니들 깊이별 구분, 마취크림 시간, '과도한 세팅' 기준",
+     "pointers": [
+      "/category_specific/8/checks/5/label",
+      "/category_specific/11/checks/5/label",
+      "/category_specific/10/checks/5/label",
+      "/category_specific/9/checks/4/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S04-2",
+     "status": "open",
+     "text": "'최근' 기간 기준 없음(골드 실/금속 실, 복부/시술 부위 수술)",
+     "pointers": [
+      "/category_specific/8/checks/2/label",
+      "/category_specific/9/checks/2/label"
+     ]
+    },
+    {
+     "code": "I",
+     "id": "S04-3",
+     "status": "open",
+     "text": "한 문자열 안에서 '체내'(전신) 와 '(시술 부위)'(국소) 범위가 함께 쓰임 — 범위 불일치 후보. 원문 변경 제안 아님, 후속 확인 후보",
+     "pointers": [
+      "/category_specific/10/checks/0/label"
+     ]
+    },
+    {
+     "code": "P",
+     "id": "S04-4",
+     "status": "open",
+     "text": "M10 임신 항목은 type absolute_contraindication 인데 '(복부 시술 시 특히 중요)' 로 조건적 강조 — type 과 문구의 범위 관계 잠정",
+     "pointers": [
+      "/category_specific/9/checks/3/label",
+      "/category_specific/9/checks/3/type"
+     ]
+    },
+    {
+     "code": "F",
+     "id": "S04-5",
+     "status": "deferred",
+     "text": "금속 임플란트/페이스메이커 계열 확인이 카테고리마다 문구·type 이 다름 — 같은 확인 대상인지 후속 비교",
+     "pointers": [
+      "/category_specific/7/checks/8/label",
+      "/category_specific/8/checks/0/label",
+      "/category_specific/9/checks/0/label",
+      "/category_specific/10/checks/0/label",
+      "/category_specific/12/checks/0/label",
+      "/category_specific/12/checks/1/label"
+     ]
+    },
+    {
+     "code": "A",
+     "id": "S04-6",
+     "status": "fixed",
+     "text": "수동 표현 누락 — M12 이소트레티노인 문구의 괄호 앞 구절(복용 여부/중단 시점 확인 · 6개월/12개월 대기 원칙)을 직접 읽기 기록에서 빠뜨렸다. 자동 후보↔수동 표현 대조(읽기 검토)에서 발견, 추가 후 verify 재통과",
+     "pointers": [
+      "/category_specific/11/checks/2/label"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "/category_specific/8 … /12 (M9 기기 리프팅 6·M10 HIFES/EMS 6·M11 니들RF 7·M12 마이크로니들링(MTS) 7·M13 플라즈마 6 = checks 32) id·name·label·type 전부"
+  },
+  {
+   "id": "S05",
+   "title": "category_specific M14–M17 (index 13–16)",
+   "owns_prefixes": [
+    "/category_specific/13",
+    "/category_specific/14",
+    "/category_specific/15",
+    "/category_specific/16"
+   ],
+   "owns_exact_only": [],
+   "context_refs": [
+    "/description",
+    "/category_specific"
+   ],
+   "read_status": "read",
+   "observations": [
+    "P: type 분포 — M14 [absolute_contraindication×2, must_check×3, counseling, inform, counseling], M15 [must_check, absolute_contraindication, must_check×6, inform], M16 [absolute_contraindication, must_check×2, absolute_contraindication, must_check×2, counseling], M17 [absolute_contraindication×2, must_check×2, counseling×3, inform].",
+    "P: `/category_specific/14/checks/1` '임신 테스트 (레티노이드 처방 시 필수)' 는 검사 행위 문구인데 type 이 absolute_contraindication — 문구 종류와 type 이 다른 축으로 보임(잠정).",
+    "P: M15 의 간기능·지질 확인은 '(… 처방 시)' 조건이 붙는다 — 시술이 아니라 처방이 조건이다.",
+    "P: `/category_specific/15/checks/3/label` 은 문구 안에 '금기' 를 명시한 유일한 값이다(원문 전체에서 '금기' 출현 1회).",
+    "P: 수치가 원문에 있는 곳은 범위·백분율 형태(0.005-0.39%·2-4개월). 모집단·출처 미기재.",
+    "P: '이소트레티노인' 문구는 원장 전체 5곳(`/universal_checks/6/description`, M8·M11·M12·M15)에 있고 M8 과 M15 는 같은 문자열, M11 과 M12 는 같은 문자열이다."
+   ],
+   "manual_expressions": [
+    {
+     "pointer": "/category_specific/13/checks/0/label",
+     "text": "한냉두드러기/한냉글로불린혈증 여부",
+     "perspectives": [
+      "슬래시 나열",
+      "질환"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/1/label",
+     "text": "발작성 한냉혈색소뇨증 여부",
+     "perspectives": [
+      "형용사(발작성)",
+      "질환"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/2/label",
+     "text": "레이노 증후군 여부",
+     "perspectives": [
+      "질환"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/3/label",
+     "text": "BMI/체형 적합성 평가 (피하지방 두께 측정)",
+     "perspectives": [
+      "영문 약어",
+      "적합성",
+      "두께(기준 미기재)",
+      "측정"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/4/label",
+     "text": "탈장 여부 (복부 시술 시)",
+     "perspectives": [
+      "조건(복부 시술 시)",
+      "부위(복부)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/5/label",
+     "text": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)",
+     "perspectives": [
+      "형용사(역설적)",
+      "괄호 약어",
+      "가능성",
+      "수치 범위(%)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/13/checks/5/label",
+     "text": "0.005-0.39%",
+     "perspectives": [
+      "수치 범위",
+      "백분율"
+     ],
+     "note": "모집단·출처는 원문에 없음"
+    },
+    {
+     "pointer": "/category_specific/13/checks/6/label",
+     "text": "시술 부위 피부 감각 이상/무감각 가능성 안내",
+     "perspectives": [
+      "부위",
+      "부정 접두(무-)",
+      "가능성"
+     ],
+     "note": "'감각 이상' 의 '이상' 은 정도 표현 아님(자동 AP-DEGREE 오탐)"
+    },
+    {
+     "pointer": "/category_specific/13/checks/7/label",
+     "text": "효과 발현 시기 안내 (2-4개월 점진적)",
+     "perspectives": [
+      "시간 범위",
+      "형용사(점진적)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/name",
+     "text": "메디컬스킨케어",
+     "perspectives": [
+      "카테고리명"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/0/label",
+     "text": "이소트레티노인 복용 여부/중단 시점 확인",
+     "perspectives": [
+      "슬래시(여부/시점)",
+      "중단"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/0/label",
+     "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+     "perspectives": [
+      "기간",
+      "원칙"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/0/label",
+     "text": "2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+     "perspectives": [
+      "연도·출처",
+      "부정 접두(비-)",
+      "가능성"
+     ],
+     "note": "`/category_specific/7/checks/2/label` 과 같은 문자열"
+    },
+    {
+     "pointer": "/category_specific/14/checks/1/label",
+     "text": "임신 테스트 (레티노이드 처방 시 필수)",
+     "perspectives": [
+      "검사 행위",
+      "조건(처방 시)",
+      "의무(필수)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/2/label",
+     "text": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)",
+     "perspectives": [
+      "검사",
+      "조건(처방 시)",
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/3/label",
+     "text": "지질 수치 확인 (이소트레티노인 처방 시)",
+     "perspectives": [
+      "검사 수치(값 미기재)",
+      "조건(처방 시)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/4/label",
+     "text": "현재 사용 중인 스킨케어 제품 확인",
+     "perspectives": [
+      "시점(현재)",
+      "제품"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/5/label",
+     "text": "활동성 피부염/습진/건선 여부",
+     "perspectives": [
+      "형용사(활동성)",
+      "슬래시 범위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/6/label",
+     "text": "화학적 필링 제제 알레르기 여부 (살리실산, 글리콜산 등)",
+     "perspectives": [
+      "형용사(화학적)",
+      "열린 나열(등)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/7/label",
+     "text": "최근 레이저/시술 이력 (필링 간격)",
+     "perspectives": [
+      "시점(최근)",
+      "간격(값 미기재)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/14/checks/8/label",
+     "text": "자외선 차단 생활습관 확인",
+     "perspectives": [
+      "생활습관"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/0/label",
+     "text": "심부전/신부전 여부 (수분 과부하 위험)",
+     "perspectives": [
+      "슬래시 나열",
+      "괄호 위험"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/1/label",
+     "text": "약물 알레르기 여부 (비타민제 포함)",
+     "perspectives": [
+      "괄호 범위 확장(포함)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/2/label",
+     "text": "신장 기능 확인 (고용량 비타민 C 시)",
+     "perspectives": [
+      "조건(고용량 … 시)",
+      "정도(고용량, 기준 미기재)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/3/label",
+     "text": "G6PD 결핍증 여부 (고용량 비타민 C 금기)",
+     "perspectives": [
+      "금기(명시어)",
+      "정도(고용량)",
+      "영문·숫자 혼합 명칭"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/4/label",
+     "text": "현재 복용 중인 영양제/약물 확인 (상호작용)",
+     "perspectives": [
+      "시점(현재)",
+      "슬래시",
+      "괄호 목적"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/5/label",
+     "text": "혈관 접근 상태 확인",
+     "perspectives": [
+      "상태"
+     ]
+    },
+    {
+     "pointer": "/category_specific/15/checks/6/label",
+     "text": "수액 조성 및 기대 효과 설명",
+     "perspectives": [
+      "행위(설명)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/0/label",
+     "text": "악성종양 병력/활동성 암 여부",
+     "perspectives": [
+      "슬래시(병력/활동성)",
+      "형용사(활동성)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/1/label",
+     "text": "활동성 감염/패혈증 여부",
+     "perspectives": [
+      "형용사(활동성)",
+      "슬래시 범위"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/3/label",
+     "text": "혈액질환/응고장애 여부",
+     "perspectives": [
+      "슬래시 나열"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/4/label",
+     "text": "줄기세포 유래(자가/동종) 및 채취 부위 설명",
+     "perspectives": [
+      "괄호 대안(자가/동종)",
+      "부위(채취 부위)"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/5/label",
+     "text": "규제 현황 및 근거 수준 설명",
+     "perspectives": [
+      "규제",
+      "근거 수준"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/6/label",
+     "text": "기대 효과의 한계 및 부작용 가능성 설명",
+     "perspectives": [
+      "한계",
+      "가능성"
+     ]
+    },
+    {
+     "pointer": "/category_specific/16/checks/7/label",
+     "text": "감염/종양 발생 위험성 고지",
+     "perspectives": [
+      "위험",
+      "행위(고지)"
+     ]
+    }
+   ],
+   "issues": [
+    {
+     "code": "B",
+     "id": "S05-1",
+     "status": "open",
+     "text": "'고용량' 비타민 C 기준 없음",
+     "pointers": [
+      "/category_specific/15/checks/2/label",
+      "/category_specific/15/checks/3/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S05-2",
+     "status": "open",
+     "text": "'피하지방 두께'·'지질 수치'·'필링 간격' 기준값 없음(S04-1 과 같은 유형)",
+     "pointers": [
+      "/category_specific/13/checks/3/label",
+      "/category_specific/14/checks/3/label",
+      "/category_specific/14/checks/7/label"
+     ]
+    },
+    {
+     "code": "B",
+     "id": "S05-3",
+     "status": "open",
+     "text": "PAH '0.005-0.39%' 의 분모·출처 없음(값은 그대로 보존, 해석하지 않음)",
+     "pointers": [
+      "/category_specific/13/checks/5/label"
+     ]
+    },
+    {
+     "code": "P",
+     "id": "S05-4",
+     "status": "open",
+     "text": "검사 행위 문구(임신 테스트)에 absolute_contraindication — type 이 문구 종류가 아니라 다른 축(중대도 등)일 가능성. 확정하지 않음",
+     "pointers": [
+      "/category_specific/14/checks/1/label",
+      "/category_specific/14/checks/1/type"
+     ]
+    },
+    {
+     "code": "K",
+     "id": "S05-5",
+     "status": "recorded",
+     "text": "자동 AP-DEGREE «이상» 이 '감각 이상'(abnormality) 에서 일치 — 오탐",
+     "pointers": [
+      "/category_specific/13/checks/6/label"
+     ]
+    },
+    {
+     "code": "K",
+     "id": "S05-6",
+     "status": "recorded",
+     "text": "kiwi 가 '금기' 를 '금/NNG 기/XSN' 로 나눔 — 원문의 유일한 '금기' 명시어가 토큰에서 깨짐. 자동 AP-NEG 는 원문 문자열에서 '금기' 를 잡았다",
+     "pointers": [
+      "/category_specific/15/checks/3/label"
+     ]
+    }
+   ],
+   "read_by": "agent 직접 읽기(원문 cat + review-part 표 대조)",
+   "read_note": "/category_specific/13 … /16 (M14 크라이오리포라이시스 8·M15 메디컬스킨케어 9·M16 수액치료 7·M17 줄기세포치료 8 = checks 32) id·name·label·type 전부"
+  }
+ ],
+ "morph_known_errors": [
+  {
+   "pointer": "/description",
+   "surface": "체크리스트",
+   "span": [
+    5,
+    10
+   ],
+   "raw_tokens": "체크/NNG 리스트/NNG",
+   "impact": "외래 복합어가 둘로 나뉨 — 의미 손실은 작음(K)"
+  },
+  {
+   "pointer": "/universal_checks/1/description",
+   "surface": "처방의와",
+   "span": [
+    54,
+    58
+   ],
+   "raw_tokens": "처방/NNG 의/JKG 와/JKB",
+   "impact": "'처방의'(처방한 의사, 명사)가 '처방'+관형격 조사로 오분석 — 행위 주체 명사 소실"
+  },
+  {
+   "pointer": "/universal_checks/3/label",
+   "surface": "수유",
+   "span": [
+    0,
+    2
+   ],
+   "raw_tokens": "수유/NNP",
+   "impact": "일반명사가 고유명사(NNP)로 태깅 — 품사만 오류"
+  },
+  {
+   "pointer": "/universal_checks/3/description",
+   "surface": "수유",
+   "span": [
+    0,
+    2
+   ],
+   "raw_tokens": "수유/NNP",
+   "impact": "일반명사가 고유명사(NNP)로 태깅 — 품사만 오류"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "surface": "구순포진",
+   "span": [
+    0,
+    4
+   ],
+   "raw_tokens": "구/NNP 순/NNB 포진/NNG",
+   "impact": "'구순(입술)' 이 사라져 부위 정보가 토큰에서 소실 — 원문 구절로만 보존"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "surface": "항바이러스",
+   "span": [
+    10,
+    15
+   ],
+   "raw_tokens": "항/NNG 바이러스/NNG",
+   "impact": "접두 '항-' 이 명사로 분리 — '항바이러스'(약효군) 단위 소실"
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "surface": "비박리성",
+   "span": [
+    99,
+    103
+   ],
+   "raw_tokens": "비/XPN 박/NNG 리/XSN 성/NNG",
+   "impact": "'박리성' 어간이 박/리/성 으로 깨짐. 부정 접두 '비' 는 XPN 으로 남음 — 같은 문장의 '박리성/NNP' 와 토큰 대응 불가"
+  },
+  {
+   "pointer": "/category_specific/0/checks/0/label",
+   "surface": "신경근접합부",
+   "span": [
+    0,
+    6
+   ],
+   "raw_tokens": "신경/NNG 근/NNG 접합부/NNG",
+   "impact": "'신경근' 단위가 '신경'+'근' 으로 나뉨 — 의미 손실 작음"
+  },
+  {
+   "pointer": "/category_specific/0/checks/0/label",
+   "surface": "중증근무력증",
+   "span": [
+    10,
+    16
+   ],
+   "raw_tokens": "중증 근무력증/NNP",
+   "impact": "kiwi form 에 원문에 없는 공백이 들어감(surface≠form). 구간은 원문 6자를 덮음"
+  },
+  {
+   "pointer": "/category_specific/0/checks/5/label",
+   "surface": "D-페니실라민",
+   "span": [
+    0,
+    7
+   ],
+   "raw_tokens": "D/SL -/SO 페니실라민/NNG",
+   "impact": "약물명이 셋으로 나뉨 — 원문 구절로만 약물명 보존"
+  },
+  {
+   "pointer": "/category_specific/0/checks/5/label",
+   "surface": "신경근접합부",
+   "span": [
+    15,
+    21
+   ],
+   "raw_tokens": "신경/NNG 근/NNG 접합부/NNG",
+   "impact": "'신경근' 단위 분리"
+  },
+  {
+   "pointer": "/category_specific/1/checks/1/label",
+   "surface": "이전",
+   "span": [
+    0,
+    2
+   ],
+   "raw_tokens": "이/NNP 전/MM",
+   "impact": "시점어 '이전' 이 고유명사+관형사로 오분석 — 시점 정보가 토큰에서 소실"
+  },
+  {
+   "pointer": "/category_specific/1/checks/2/label",
+   "surface": "이물반응",
+   "span": [
+    26,
+    30
+   ],
+   "raw_tokens": "이/MM 물/NNG 반응/NNG",
+   "impact": "'이물'(foreign body) 이 관형사 '이'+'물' 로 오분석 — 위험 대상 소실(같은 단어가 `/universal_checks/2/description` 에서는 이물/NNG)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/7/label",
+   "surface": "혈행성",
+   "span": [
+    26,
+    29
+   ],
+   "raw_tokens": "혈/NNG 행/NNG 성/XSN",
+   "impact": "'혈행성' 이 혈/행/성 으로 깨짐"
+  },
+  {
+   "pointer": "/category_specific/1/checks/7/label",
+   "surface": "필러",
+   "span": [
+    34,
+    36
+   ],
+   "raw_tokens": "피/VV ᆯ러/EC",
+   "impact": "시술 대상 명사 '필러' 가 동사 '피-'+어미로 오분석 — 대상 명사 소실(심각)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/8/label",
+   "surface": "기압이",
+   "span": [
+    26,
+    29
+   ],
+   "raw_tokens": "기압/NNG 이/MM",
+   "impact": "주격조사 '이' 가 관형사로 태깅 — 주어 표시 소실"
+  },
+  {
+   "pointer": "/category_specific/2/checks/4/label",
+   "surface": "1-3",
+   "span": [
+    13,
+    16
+   ],
+   "raw_tokens": "1-3/W_SERIAL",
+   "impact": "수치 범위가 일련번호(W_SERIAL) 단일 토큰 — 범위 구조 없음"
+  },
+  {
+   "pointer": "/category_specific/3/checks/4/label",
+   "surface": "1-3",
+   "span": [
+    17,
+    20
+   ],
+   "raw_tokens": "1-3/W_SERIAL",
+   "impact": "수치 범위가 일련번호(W_SERIAL) 단일 토큰"
+  },
+  {
+   "pointer": "/category_specific/3/checks/4/label",
+   "surface": "구진",
+   "span": [
+    14,
+    16
+   ],
+   "raw_tokens": "구/NR 진/NNG",
+   "impact": "증상명 '구진'(papule) 이 수사 '구'+'진' 으로 오분석 — 증상 소실"
+  },
+  {
+   "pointer": "/category_specific/5/checks/4/label",
+   "surface": "30-70",
+   "span": [
+    8,
+    13
+   ],
+   "raw_tokens": "30-70/W_SERIAL",
+   "impact": "수치 범위가 일련번호 단일 토큰 — 범위·% 결합 구조 없음(%/SW 별도)"
+  },
+  {
+   "pointer": "/category_specific/5/checks/5/label",
+   "surface": "비대칭",
+   "span": [
+    0,
+    3
+   ],
+   "raw_tokens": "비대칭/NNP",
+   "impact": "고유명사 태깅. 같은 단어가 `/category_specific/6/checks/5/label` 에서는 비/XPN 대칭/NNG — 출현마다 분석 다름"
+  },
+  {
+   "pointer": "/category_specific/6/checks/4/label",
+   "surface": "비녹는",
+   "span": [
+    13,
+    16
+   ],
+   "raw_tokens": "비/NNG 녹/VV 는/ETM",
+   "impact": "부정 접두 '비' 가 명사(NNG)로 태깅 — 부정 의미가 토큰에서 소실('비HA' 는 XPN 으로 분석됨)"
+  },
+  {
+   "pointer": "/category_specific/6/checks/6/label",
+   "surface": "안내",
+   "span": [
+    20,
+    22
+   ],
+   "raw_tokens": "안/MAG 내/VV 어/EF",
+   "impact": "명사 '안내' 가 부정 부사 '안'+동사 '내다' 로 오분석 — 원문에 없는 부정 생성(심각, 오탐)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/0/label",
+   "surface": "I-VI",
+   "span": [
+    21,
+    25
+   ],
+   "raw_tokens": "I/SL -/SO VI/SL",
+   "impact": "로마숫자 범위가 셋으로 나뉨 — 범위 구조 없음"
+  },
+  {
+   "pointer": "/category_specific/7/checks/1/label",
+   "surface": "2-4",
+   "span": [
+    16,
+    19
+   ],
+   "raw_tokens": "2-4/W_SERIAL",
+   "impact": "수치 범위가 일련번호 단일 토큰"
+  },
+  {
+   "pointer": "/category_specific/7/checks/2/label",
+   "surface": "비박리성",
+   "span": [
+    84,
+    88
+   ],
+   "raw_tokens": "비/XPN 박/NNG 리/XSN 성/NNG",
+   "impact": "'박리성' 어간 깨짐(S01 과 같은 패턴)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/4/label",
+   "surface": "7-10",
+   "span": [
+    88,
+    92
+   ],
+   "raw_tokens": "7-10/W_SERIAL",
+   "impact": "수치 범위가 일련번호 단일 토큰"
+  },
+  {
+   "pointer": "/category_specific/7/checks/7/label",
+   "surface": "중등도",
+   "span": [
+    0,
+    3
+   ],
+   "raw_tokens": "중등/NNG 도/JX",
+   "impact": "정도어 '중등도' 의 '도' 가 보조사(도)로 오분석 — '중등도 이상' 정도 표현이 토큰에서 깨짐"
+  },
+  {
+   "pointer": "/category_specific/7/checks/10/label",
+   "surface": "다운타임",
+   "span": [
+    8,
+    12
+   ],
+   "raw_tokens": "다운/NNG 타임/NNG",
+   "impact": "같은 단어가 `/category_specific/3/checks/4/label` 에서는 다운타임/NNP — 출현마다 분석 다름"
+  },
+  {
+   "pointer": "/category_specific/8/checks/0/label",
+   "surface": "페이스메이커",
+   "span": [
+    11,
+    17
+   ],
+   "raw_tokens": "페이스/NNG 메이커/NNG",
+   "impact": "기기명이 둘로 나뉨 — 의미 손실 작음"
+  },
+  {
+   "pointer": "/category_specific/9/checks/0/label",
+   "surface": "페이스메이커",
+   "span": [
+    11,
+    17
+   ],
+   "raw_tokens": "페이스/NNG 메이커/NNG",
+   "impact": "기기명이 둘로 나뉨"
+  },
+  {
+   "pointer": "/category_specific/12/checks/0/label",
+   "surface": "페이스메이커",
+   "span": [
+    0,
+    6
+   ],
+   "raw_tokens": "페이스/NNG 메이커/NNG",
+   "impact": "기기명이 둘로 나뉨"
+  },
+  {
+   "pointer": "/category_specific/8/checks/1/label",
+   "surface": "필러",
+   "span": [
+    6,
+    8
+   ],
+   "raw_tokens": "필/NNG 러/EC",
+   "impact": "'필러' 가 명사+어미로 깨짐 — 대상 명사 소실(같은 단어가 다른 곳에서는 필러/NNP)"
+  },
+  {
+   "pointer": "/category_specific/8/checks/4/label",
+   "surface": "초음파",
+   "span": [
+    0,
+    3
+   ],
+   "raw_tokens": "초/XPN 음파/NNG",
+   "impact": "'초음파' 가 접두+명사로 분리 — 에너지 종류 단위 소실"
+  },
+  {
+   "pointer": "/category_specific/10/checks/2/label",
+   "surface": "비박리성",
+   "span": [
+    61,
+    65
+   ],
+   "raw_tokens": "비/XPN 박/NNG 리/XSN 성/NNG",
+   "impact": "'박리성' 어간 깨짐"
+  },
+  {
+   "pointer": "/category_specific/11/checks/2/label",
+   "surface": "비박리성",
+   "span": [
+    61,
+    65
+   ],
+   "raw_tokens": "비/XPN 박/NNG 리/XSN 성/NNG",
+   "impact": "'박리성' 어간 깨짐"
+  },
+  {
+   "pointer": "/category_specific/11/checks/5/label",
+   "surface": "니들",
+   "span": [
+    0,
+    2
+   ],
+   "raw_tokens": "니/NP 들/XSN",
+   "impact": "'니들'(needle) 이 대명사 '니'+복수 접미 '들' 로 오분석 — 기구 명사 소실(심각). 카테고리명 '니들RF' 에서는 니들/NNP"
+  },
+  {
+   "pointer": "/category_specific/11/checks/5/label",
+   "surface": "다운타임",
+   "span": [
+    7,
+    11
+   ],
+   "raw_tokens": "다운/NNG 타임/NNG",
+   "impact": "출현마다 분석 다름(다운타임/NNP 인 곳도 있음)"
+  },
+  {
+   "pointer": "/category_specific/13/checks/0/label",
+   "surface": "한냉두드러기",
+   "span": [
+    0,
+    6
+   ],
+   "raw_tokens": "한/MM 냉/NNG 두드러기/NNG",
+   "impact": "'한냉' 이 관형사 '한'(one)+'냉' 으로 오분석 — 질환명 단위 소실"
+  },
+  {
+   "pointer": "/category_specific/13/checks/7/label",
+   "surface": "2-4",
+   "span": [
+    13,
+    16
+   ],
+   "raw_tokens": "2-4/W_SERIAL",
+   "impact": "수치 범위가 일련번호 단일 토큰"
+  },
+  {
+   "pointer": "/category_specific/14/checks/0/label",
+   "surface": "비박리성",
+   "span": [
+    84,
+    88
+   ],
+   "raw_tokens": "비/XPN 박/NNG 리/XSN 성/NNG",
+   "impact": "'박리성' 어간 깨짐"
+  },
+  {
+   "pointer": "/category_specific/15/checks/3/label",
+   "surface": "G6PD",
+   "span": [
+    0,
+    4
+   ],
+   "raw_tokens": "G/SL 6/SN PD/SL",
+   "impact": "효소명 식별자가 셋으로 나뉨 — 원문 구절로만 보존"
+  },
+  {
+   "pointer": "/category_specific/15/checks/3/label",
+   "surface": "금기",
+   "span": [
+    23,
+    25
+   ],
+   "raw_tokens": "금/NNG 기/XSN",
+   "impact": "금지 명시어 '금기' 가 깨짐 — 형태소 기반 금기 탐지 실패"
+  },
+  {
+   "pointer": "/category_specific/15/checks/2/label",
+   "surface": "시",
+   "span": [
+    20,
+    21
+   ],
+   "raw_tokens": "시/NNG",
+   "impact": "조건 의존명사 '시' 가 다른 곳(NNB)과 달리 NNG — 조건 표지 태그가 출현마다 다름"
+  }
+ ],
+ "global_issues": [
+  {
+   "code": "B",
+   "id": "G-1",
+   "status": "open",
+   "text": "type 값 6종(must_check·inform·counseling·safety_protocol·relative_contraindication·absolute_contraindication)의 뜻·판정 기준이 원장 안에 없다",
+   "pointers": [
+    "/universal_checks/0/type",
+    "/category_specific/0/checks/0/type"
+   ]
+  },
+  {
+   "code": "F",
+   "id": "G-2",
+   "status": "deferred",
+   "text": "확인 항목을 금기 관계로 일괄 확정하지 않는다 — 항목은 확인·설명·준비·시술 후 지시가 섞여 있고 type 도 그와 1:1 이 아니다. 관계 모델은 21개 비교 후",
+   "pointers": [
+    "/universal_checks",
+    "/category_specific"
+   ]
+  },
+  {
+   "code": "F",
+   "id": "G-3",
+   "status": "deferred",
+   "text": "같은 주제가 카테고리마다 반복(항응고제·켈로이드·활동성 감염·자가면역질환·이소트레티노인·금속 임플란트)되며 type 이 다르다 — universal 과 category 항목의 관계(대체·보강·중복)는 후속",
+   "pointers": [
+    "/universal_checks",
+    "/category_specific"
+   ]
+  },
+  {
+   "code": "K",
+   "id": "G-4",
+   "status": "recorded",
+   "text": "kiwi 는 영문 약어·영단어(NOAC·NSAIDs·AAD Task Force·ablative·Fitzpatrick·PIH·RF·HIFU·HA·PMMA·BMI·PAH·MTS·HIFES/EMS·mg·or·vs)를 SL 토큰으로만 보존하고 영어 형태 분석을 하지 않는다. 다른 언어 없음",
+   "pointers": []
+  },
+  {
+   "code": "K",
+   "id": "G-5",
+   "status": "recorded",
+   "text": "kiwi 는 하이픈 수치 범위를 W_SERIAL 단일 토큰으로 만들어 범위 구조를 주지 않는다(1-3·2-4·7-10·30-70). 소수 범위(0.005-0.39)는 SN/SO/SN 으로 분리. 동음이의(예: '상의')·의미 sense 는 분석하지 않았다",
+   "pointers": []
+  },
+  {
+   "code": "K",
+   "id": "G-6",
+   "status": "recorded",
+   "text": "자동 표현 후보는 build.py AUTO_PATTERNS 정규식에 실제로 일치한 구간뿐이다. 슬래시 범위는 공백에서 끊겨 «프락셔널/얕은»·«이물반응/상처» 처럼 구절 일부만 잡는다. 패턴 밖 수식·조건은 구획별 수동 표현으로 보완했으나 그것도 전수 의미 해석은 아니다",
+   "pointers": []
+  },
+  {
+   "code": "K",
+   "id": "G-7",
+   "status": "recorded",
+   "text": "같은 일반명사·약물명의 품사가 출현마다 NNP/NNG 로 갈린다(항응고제: `/universal_checks/1/label` NNP vs `/category_specific/4/checks/1/label` NNG · 필러 NNP/NNG/오분절 · 아시클로비르·발라시클로비르 NNP/NNG 교차 · 다운타임 NNP/NNG+NNG). 분절은 맞고 태그만 다름 — 태그로 고유명 여부를 판단하지 않는다",
+   "pointers": [
+    "/universal_checks/1/label",
+    "/category_specific/4/checks/1/label",
+    "/universal_checks/5/description",
+    "/category_specific/7/checks/4/label"
+   ]
+  }
+ ],
+ "c_zero_reason": "C 0 — 모든 잔여 항목을 검토한 결과 원문 부족(B)·잠정(P)·후속(F)·불일치 후보(I)·분석 한계(K)로 분류됐고, 지금 사용자 선택이 있어야 1차 수집을 계속하거나 마칠 수 있는 항목은 없다. 설계 선택은 21개 원장 비교 후 묶어 제시하며, 원본 변경 제안(I)은 선택 대기로 올리지 않는다. 도구·패턴 선택은 에이전트 판단으로 처리했다.",
+ "first_pass_closed": true
+}

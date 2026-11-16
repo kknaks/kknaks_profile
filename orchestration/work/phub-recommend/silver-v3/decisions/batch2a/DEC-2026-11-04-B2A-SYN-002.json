@@ -1,0 +1,136 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "수액",
+  "fragment_count": 5,
+  "fragment_occurrence_locators": [
+   "market-pricing.json:categories[].items[].name@15/4",
+   "market-pricing.json:categories[].items[].name@15/5",
+   "market-pricing.json:categories[].items[].name@15/7",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@3/5/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@3/5/0"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {
+   "adverse": [
+    "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@15/1/6/0",
+    "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@15/1/7/0",
+    "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@15/2/6/0"
+   ]
+  },
+  "target": {
+   "canonical": "수액치료",
+   "code": "M16",
+   "dictionary": "modality",
+   "entity_id": "MOD-dfa9bda3f5",
+   "label_locators": [
+    "taxonomy.json:modality[].category@15",
+    "taxonomy.json:modality[].id@15"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/15/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": "M16",
+    "label": "고농도 비타민C 수액",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@15/4"
+    ],
+    "ref_id": "REF-0586eaa695",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M16",
+    "label": "다이어트 수액",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@15/7"
+    ],
+    "ref_id": "REF-14208f8d02",
+    "relation": "price_items"
+   },
+   {
+    "hint": "M16",
+    "label": "면역 수액 (종합 비타민)",
+    "locators": [
+     "market-pricing.json:categories[].items[].name@15/5"
+    ],
+    "ref_id": "REF-38a34d29a2",
+    "relation": "price_items"
+   },
+   {
+    "hint": null,
+    "label": "수액",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@3/5/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@3/6/0/0"
+    ],
+    "ref_id": "REF-ddfaf91b1f",
+    "relation": "R12"
+   },
+   {
+    "hint": "M16",
+    "label": "수액",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].procedures[].name@3/5/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@3/6/0"
+    ],
+    "ref_id": "REF-61ff61835c",
+    "relation": "R9"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-002",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "수액치료",
+  "category": null,
+  "synonyms": [
+   "수액"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「수액」 → 계열 M16 「수액치료」. 사전 modality 정준값 「수액치료」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「수액」는 시술 축 미등록 조각 5 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].category@15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].id@15"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/0/entries/15/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@15/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@15/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@15/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@3/5/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@3/5/0"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality"
+ }
+}

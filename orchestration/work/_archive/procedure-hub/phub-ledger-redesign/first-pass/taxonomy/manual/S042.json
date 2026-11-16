@@ -1,0 +1,38 @@
+{"section":"S042","state":"read","last_pointer":"/modality/14/subcategories/8/items/1/extracted/aftercare/1",
+"observations":[
+ {"status":"P","pointers":["/modality/14/subcategories/3/items/0/name","/modality/8/products/6/name"],"note":"'LDM' 이 M15-4-1(초음파관리, '초음파 보습/재생')과 M9 products(LDM, type 초음파, RF 서술)에 각각 있다. 같은 이름 다른 레코드·다른 서술."},
+ {"status":"P","pointers":["/modality/14/subcategories/5/items/5/name","/modality/14/subcategories/1/items/2/name"],"note":"'라라젯'(M15-6 주입장비, 공기압 약물주입)과 '라라젯 (클렌징)'(M15-2 딥클렌징) — 같은 장비명이 용도별 두 항목. S041-I01 의 클렌징 항목 값 혼입과 연결해 볼 후보."},
+ {"status":"P","pointers":["/modality/14/subcategories/6/label","/modality/14/subcategories/7/label"],"note":"M15-7, M15-8 두 하위분류 label 이 모두 '추가' — 이름으로 구분 불가, 각 1항목(파셀라 메디컬 경락 / 크라이오셀)."},
+ {"status":"P","pointers":["/modality/14/subcategories/4/label","/modality/14/subcategories/4/items/0/name"],"note":"M15-5 label·항목 name 모두 '이온토포레시스'."},
+ {"status":"P","pointers":["/modality/14/subcategories/5/items/7/extracted/indications/primary","/modality/14/subcategories/8/items/1/extracted/indications/primary"],"note":"주입 장비(노보젯·비타인젝터)의 indications 가 고민이 아니라 주입하는 시술·성분('메조테라피 약물 주입','히알루론산 주입','물광주사','스킨부스터 주입'). 장비-시술 관계가 적응증 칸에 표현된다."},
+ {"status":"P","pointers":["/modality/14/subcategories/7/items/0/extracted/mechanism","/modality/13/subcategories/0/items/0/extracted/mechanism"],"note":"크라이오셀 '극저온(약 -196°C) … 액화질소' — 같은 원장 M14 크라이오리포라이시스(영하 10도 전후)와 '크라이오' 접두 공유, 용도 다름(진정)."},
+ {"status":"P","pointers":["/modality/14/subcategories/3/items/0/extracted/mechanism","/modality/14/subcategories/7/items/0/extracted/aftercare/3"],"note":"'각질층 … 15-20%' 수치가 LDM mechanism 과 크라이오셀 aftercare 에 반복."},
+ {"status":"P","pointers":["/modality/14/subcategories/8/label"],"note":"auto-M15-1775360912 label '물광/메조건' — M4 '물광' 과 겹치는 통칭, 항목은 '메소건'(label 은 '메조건') 표기 차이."}
+],
+"expressions":[
+ {"pointer":"/modality/14/subcategories/3/items/0/extracted/mechanism","text":"각질층의 수분 흡수율을 증가(15-20% 정상 수준 유지)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/3/items/0/extracted/onset_duration/duration","text":"3-5일(누적 시술로 연장)","kinds":["수량·단위·시간","조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/4/items/0/extracted/mechanism","text":"이온화된 저분자 약물(MW<500Da)에만 적용 가능하며","kinds":["조건","범위","수량·단위·시간"],"note":"'에만' 한정"},
+ {"pointer":"/modality/14/subcategories/4/items/0/extracted/mechanism","text":"비타민C는 인산형(MAP) 유도체만 사용 가능하다","kinds":["조건","가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/4/items/0/extracted/mechanism","text":"투과 경로: 한선, 피지선, 모낭.","kinds":["부위"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/0/extracted/mechanism","text":"주사 없이 침투성을 극대화합니다","kinds":["부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/1/extracted/mechanism","text":"약물을 표피~진피 경계층까지 전달하여 침투 깊이를 제어","kinds":["부위","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/3/extracted/indications/primary/0","text":"여드름 흉터(박스카)","kinds":["수식"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/3/extracted/aftercare/2","text":"5-7일 메이크업 자제","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/6/extracted/mechanism","text":"바늘을 사용하지 않아 통증과 감염 위험을 최소화하면서","kinds":["부정","조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/5/items/8/extracted/mechanism","text":"바늘 주사 대비 통증과 조직 손상을 최소화하면서도","kinds":["비교"],"note":""},
+ {"pointer":"/modality/14/subcategories/6/items/0/extracted/mechanism","text":"이후 시술의 효과성을 극대화하는 준비 단계로 작용","kinds":["조건","참조"],"note":"선행 시술 성격"},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/mechanism","text":"극저온(약 -196°C)에서 표피 혈관 수축","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/indications/primary/0","text":"케미컬 필링(TCA, AHA/BHA, Jessner) 직후 진정","kinds":["조건","참조"],"note":"다른 시술 후 관리"},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/safety/common/1","text":"과도한 냉각 시 일시적 창백함 또는 저온 화상(frostbite) 위험","kinds":["조건","가능성·빈도"],"note":"common 칸의 조건부 위험"},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/safety/serious/0","text":"반복 노출 시 신경손상 및 만성 냉감각 둔화","kinds":["조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/onset_duration/onset","text":"즉시~5분 이내 진정 및 홍반 감소","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/aftercare/0","text":"시술 직후 2-3시간 동안 찬 자극(냉수, 에어컨) 피하기","kinds":["수량·단위·시간","범위","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/7/items/0/extracted/aftercare/4","text":"과도한 냉각 피하기(누적 노출 시간 제한)","kinds":["수식","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/8/items/1/extracted/onset_duration/duration","text":"2-4주 간격 반복","kinds":["수량·단위·시간","범위"],"note":"duration 칸에 간격"}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S042-F01","status":"F","pointers":["/modality/14/subcategories/3/items/0","/modality/8/products/6","/modality/14/subcategories/5/items/5","/modality/14/subcategories/1/items/2"],"note":"같은 이름 장비가 다른 계열·하위분류에(LDM, 라라젯).","impact":"장비 개체 병합·용도 분리는 설계 단계"},
+ {"id":"S042-B01","status":"B","pointers":["/modality/14/subcategories/6/label","/modality/14/subcategories/7/label"],"note":"하위분류 label '추가' 2개 — 분류 의미 정보 없음.","impact":"하위분류 의미 판단 불가"}
+]}

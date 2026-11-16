@@ -1,0 +1,75 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 17-350 호 · 범용전기수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@214/0"
+  },
+  {
+   "detail": "https://doctornow.co.kr/content/magazine/7b2234daa4ec4aeda7953a95227fae93",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@214/2/0"
+  },
+  {
+   "detail": "https://www.etoday.co.kr/news/view/1739349",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@214/2/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-103",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "어센트 프라임",
+  "category": null,
+  "code": "M9",
+  "synonyms": [
+   "Accent Prime",
+   "ACCENT"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 1 허가 건 · 2 웹 · ledger_id auto-M9-1775360627229",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@214"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@214/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@214/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@214/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@214/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@214/2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@214",
+   "value": "튠페이스",
+   "why": "다른 분류 항목 이름 「튠페이스」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

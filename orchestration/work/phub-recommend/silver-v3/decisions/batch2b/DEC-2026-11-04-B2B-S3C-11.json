@@ -1,0 +1,622 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "same-three-cells-21/11",
+  "label": "같은 시술 — 합친다(keep REF-3c63756361)",
+  "note": "추천대로 — 스킨부스터",
+  "option": "fold"
+ },
+ "id": "DEC-2026-11-04-B2B-S3C-11",
+ "kind": "fold_approve",
+ "new_value": {
+  "keep_anchor": "REF-3c63756361"
+ },
+ "reason": "결정 묶음 2B — 같은 세 칸(스킨부스터 × none × none)의 anchor 6 을 하나로(검토 1-E) · 사용자 메모: 추천대로 — 스킨부스터",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@12"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@15"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@18"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@24"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@25"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@28"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@31"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@39"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@42"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@45"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@53"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@54"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@55"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@56"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@57"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@60"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@69"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@77"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@82"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@84"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@88"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@92"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@94"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@98"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@104"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@111"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@114"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@0/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@0/9/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@1/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@1/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@1/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@1/3/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@1/6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/3/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@2/4/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@3/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@3/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@3/6/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/6/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@4/7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/6/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@5/7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/0/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@6/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@8/8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@8/9/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@8/10/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@8/11/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].name@7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@0/9/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/0/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/1/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/2/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@1/6/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@3/0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@3/5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@3/6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@4/7/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/4/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@5/7/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/0/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@6/5/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/4/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/8/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/9/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/10/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@8/11/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].recommended_base[]@0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_age_group[].recommended_base[]@1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@1/3/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@1/7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@1/10/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/10/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@2/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/7/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/10/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "anchors": [
+   "REF-3c63756361",
+   "REF-0f4c716b29",
+   "REF-0baa3a11da",
+   "REF-325b31ad75",
+   "REF-cf7ba13db2",
+   "REF-61c9368e47"
+  ]
+ }
+}

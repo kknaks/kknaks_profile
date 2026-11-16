@@ -1,0 +1,78 @@
+# S02 /timelines/1 ha-filler — 직접 읽기 2026-11-09
+id | ha-filler | id_code |
+category | M2 | id_code |
+name | HA 필러 | procedure_name,mixed_script | 영문 약어 HA + 한글
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 즉각적인 볼륨 증가 | onset_speed,change | 「즉각적인」 발현 속도
+phases/0/normal/0 | (과교정 상태 정상) | judgment | 과교정 상태가 정상이라는 판정
+phases/0/normal/1 | 주사 부위 발적/부종 | site,alt |
+phases/0/normal/2 | 경미한 압통/통증 | severity,alt |
+phases/0/abnormal/0 | (혈관 천자 시, 흔함) | condition,frequency | 「시」 조건 + 빈도 「흔함」. 빈도가 조건부인지 전체인지 불분명
+phases/0/abnormal/1 | 딱딱한 느낌 (젤 뭉침) | texture,subjective,cause_gloss |
+phases/0/caution/0 | 비정상적으로 심한 통증 | degree,severity | 「비정상적으로」 부사
+phases/0/caution/0 | (통증 스케일 7 이상) | scale_threshold | 「통증 스케일」 척도 이름·만점 원문 없음. 「이상」 비교
+phases/0/caution/1 | 피부색 변화 (창백/청색 -- blanching 초기 징후) | color_change,alt,mixed_script,early_sign | 영어 「blanching」 병기. 「초기 징후」
+phases/0/emergency/0 | ** 혈관폐색 (blanching/하얗게 변함) -- 골든타임 Day 0-1 ** | emphasis_markup,mixed_script,action_window | 앞뒤 「**」 강조 기호가 값 안에 있다(원문 그대로)
+phases/0/emergency/0 | 골든타임 Day 0-1 | action_window,time_range | 대응 시한. 무엇의 골든타임인지(처치) 원문 생략
+phases/0/emergency/1 | 심한 통증 + 피부 창백/청색 변화 | severity,co_occurrence,alt | 「+」 = 동반. README 의 「+」 는 시술 규칙이므로 여기선 증상 동반(잠정)
+phases/0/emergency/2 | 시야 변화/시력 저하 (안동맥 폐색) | alt,cause_label |
+phases/0/emergency/3 | 아나필락시스 (두드러기/호흡곤란) | label,gloss,alt | botox 와 달리 빈도 표현 없음
+phases/1/period | Day 1-2 | period,time_range |
+phases/1/label | 부종 피크기 | phase_label,peak |
+phases/1/normal/0 | 부종 피크 (Day 2가 가장 심함, 정상) | peak,peak_time,superlative,judgment | 「가장」 최상급
+phases/1/normal/1 | 멍 변색 (보라→노랑 진행) | color_change,sequence_arrow | botox 「보라색→황색」 과 표기 다름
+phases/1/normal/2 | 주사 부위 약간의 경결감 | site,degree |
+phases/1/abnormal/0 | 예상보다 큰 부종 | comparison,size | 「예상보다」 비교 기준 = 예상(미정의)
+phases/1/abnormal/1 | 비대칭 부종 | asymmetry |
+phases/1/caution/0 | 지속적 심한 통증 (진통제 미반응) | persistence,severity,negation | 「미반응」 부정
+phases/1/caution/1 | 부종 범위 급격 확대 | extent,speed,worsening | 「급격」 속도
+phases/1/emergency/0 | ** 지연성 혈관폐색 -- 여전히 골든타임 ** | emphasis_markup,delayed_onset,action_window | 「여전히」 = 앞 기간 골든타임과 연속(잠정). Day 범위 명시 없음
+phases/1/emergency/1 | 피부 괴사 징후 (검은색/보라색 변색) | early_sign,color_change,alt |
+phases/1/emergency/2 | 시야 변화/두통 + 주사 부위 변색 | alt,co_occurrence,site |
+phases/1/emergency/3 | 고열 + 급격한 부종 (감염) | co_occurrence,speed,cause_label |
+phases/2/period | Day 3-5 | period,time_range |
+phases/2/label | 회복기 | phase_label |
+phases/2/normal/0 | 부종 점차 감소 | speed,change | 「점차」 속도
+phases/2/normal/1 | 멍 황색으로 변화 (흡수 진행) | color_change,progress |
+phases/2/normal/2 | 볼륨이 자연스러워짐 | quality,change |
+phases/2/normal/3 | 주사 부위 압통 감소 | site,change |
+phases/2/abnormal/0 | 부종 소실 느린 편 | speed,hedge | 「느린 편」 완곡
+phases/2/abnormal/1 | 주사 부위 딱딱한 결절 촉지 | site,texture,detection | 「촉지」 = 만져짐
+phases/2/caution/0 | 부종 감소 없이 오히려 증가 | negation,contrast,worsening | 「없이 오히려」
+phases/2/caution/1 | 발열 (37.5도 이상) | numeric_threshold,unit | 도 = 체온 단위(원문 「도」)
+phases/2/caution/2 | 주사 부위 발적 확대 | site,extent |
+phases/2/emergency/0 | 피부 괴사 (피부 검게 변함) | gloss,color_change |
+phases/2/emergency/1 | 농 배출/고열 (감염) | alt,cause_label |
+phases/3/period | Day 5-7 | period,time_range |
+phases/3/label | 안정기 | phase_label |
+phases/3/normal/0 | 부종 대부분 소실 | proportion_approx,resolution | 「대부분」 근사
+phases/3/normal/1 | 멍 거의 소실 | approx,resolution | 「거의」
+phases/3/normal/2 | 최종 결과에 가까운 상태 | approx |
+phases/3/normal/3 | 촉감 자연스러워짐 | quality,change |
+phases/3/abnormal/0 | 미세 결절 촉지 (마사지로 개선 가능) | size,detection,management,possibility | 관리 방법 「마사지」. 누가·언제 하는지 원문 없음
+phases/3/abnormal/1 | 경미한 비대칭 | severity |
+phases/3/caution/0 | 결절 크기 증가 | size,worsening |
+phases/3/caution/1 | 지연성 부종 재발 | delayed_onset,recurrence |
+phases/3/emergency/0 | 지연성 감염 (발열/농/발적) | delayed_onset,gloss,alt |
+phases/3/emergency/1 | 피부 변색 지속 | persistence |
+phases/4/period | Day 8-14 | period,time_range | 앞 기간 Day 5-7 과 경계가 겹치지 않음(다른 시술은 겹침)
+phases/4/label | 최종 평가기 | phase_label |
+phases/4/normal/0 | 최종 결과 확인 가능 | possibility,evaluation |
+phases/4/normal/1 | 필러 안정화 완료 | completion |
+phases/4/normal/2 | 터치업 필요 여부 판단 시점 | retreatment_decision |
+phases/4/abnormal/0 | 볼륨 비대칭 (재시술 고려) | asymmetry,recommendation,retreatment |
+phases/4/abnormal/1 | 미세 결절 잔존 | size,persistence |
+phases/4/caution/0 | 지연성 과민반응 (부종/발적 재발) | delayed_onset,recurrence,alt |
+phases/4/caution/1 | 육아종 초기 징후 (단단한 결절) | early_sign,texture |
+phases/4/emergency/0 | 지연성 감염/농양 | delayed_onset,alt |
+phases/4/emergency/1 | 육아종 형성 | formation | 같은 기간 caution/1 은 「초기 징후」, emergency/1 은 「형성」
+O | 기간이 Day 0 / 1-2 / 3-5 / 5-7 / 8-14 이다. 1-2 와 3-5 사이에 Day 2.x~3 공백이, 5-7 과 8-14 사이에 경계 비겹침이 있다. Day 5 는 두 기간에 걸린다. 다른 구획과 기간 분할이 다르다.
+O | emergency 값 두 개(phases/0/emergency/0, phases/1/emergency/0)가 「** … **」 로 감싸여 있다. 강조 의도로 보이나(잠정) 원문 기호를 그대로 보존한다.
+O | 「골든타임」 이 두 기간에 나온다. phases/0 은 「Day 0-1」 범위, phases/1 은 「여전히」 만 있고 범위가 없다.
+O | 「+」 가 증상 동반 나열에 쓰였다(phases/0/emergency/1, phases/1/emergency/2·3). 시술 결합 규칙과 다른 용법이다(잠정).
+O | 관리·대응 표현: 마사지로 개선 가능, 터치업 필요 여부 판단, 재시술 고려. 재시술 간격 수치는 없다.
+Q | B | phases/0/emergency/0 phases/1/emergency/0 | 「골든타임」 이 어떤 처치의 시한인지 원문에 없다. phases/1 은 범위도 없다.
+Q | B | phases/0/caution/0 | 「통증 스케일 7 이상」 의 척도 정의(0-10 등)가 원문에 없다.
+Q | I | phases/*/period | 같은 원장 안에서 기간 경계 방식이 시술마다 다르다(겹침·공백). 원문 내 불일치로 기록(I-PERIOD).
+Q | P | phases/0/abnormal/0 | 「흔함」 이 혈관 천자 시 조건부 빈도인지 멍 전체 빈도인지 잠정.

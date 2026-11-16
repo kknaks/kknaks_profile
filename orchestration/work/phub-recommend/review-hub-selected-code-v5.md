@@ -1,0 +1,22 @@
+# Hub 전역 출처 결속 5차 코드 검수
+
+**종합 FAIL — 앱 WP-4 인계 보류.** Hub HEAD `2edc190`의 현재 미커밋 diff를 SPEC-005 0.3.9 §5-5·§6-9, WORK-011, 4차 리뷰·수정 보고에 대조했다. 이번 검수는 코드·서버·DB·평가를 변경/실행하지 않았으며, 메모리 Gold의 소수 격리 시험만 실행했다. `/Users/marin/AGENTS.md`는 현재 환경에 없어 읽지 못했다.
+
+| 항목 | 판정 | 근거 · 실제 영향 · 최소 수정안 |
+|---|---|---|
+| Q139 ID/owner/section/source 결속 | **PASS** | `backend/app/modules/gold/selected.py:328-362`가 `scope:all#evidence#step8_notes[26]`의 owner, section, `step7-concerns.json/step8_notes[26]`를 확인한다. 다른 존재 경로 `[25]`를 대입한 `backend/tests/test_gold_selected.py:77-92`와 REST/MCP 동일 오류 `backend/tests/test_gold_mcp.py:94-111`가 있다. 원문을 다른 메모로 바꾸면 `selected.py:293-325,403-405`의 조합 시퀀스 확인에서 인용이 차단된다. 최소 수정안 없음(상태 열거 문제는 별도 항목). |
+| 다른 전역 fact ID/file/path/owner/section | **FAIL — K8 section 예외** | `selected.py:330-335`의 `K8-` 조기 반환이 section 검사를 건너뛴다. `backend/app/modules/gold/build.py:775-783`은 전역 K8을 `checks` section으로 생성한다. 실물 `K8-0027`을 `checks`→`evidence`로 바꾼 메모리 음성 사례에서 `global_claims(scope:all)` 9쪽을 끝까지 읽으면 해당 행을 포함한 채 최종 `status=found, scope_complete=true`다. ID와 section이 불일치한 전역 범위를 완료로 인정한다. **최소 수정:** K8 분기에서도 `fact.section == "checks"`를 검사하고, 존재하는 다른 section 변조 시 `error/scope_complete=false` 시험을 추가한다. `scope:all#...` 계열은 `selected.py:336-361`에서 ID의 section/file/path를 검사한다. |
+| 전역 원문 변조 음성 | **WARN** | 값 사전은 `selected.py:352-359`에서 `g.globals`의 동일 ID와 text를 대조하고 `test_gold_selected.py:113-117`이 다른 원문을 오류로 고정한다. Q139은 실물 조합 노드의 `sequence_text_8`과 대조한다(`selected.py:299-325`, `test_gold_selected.py:120-126`). 반면 `principles_text_only`, `optimization_principles`, `sequence_rank`, `extracted`, 일반 `step8_notes`, `K8`은 `selected.py:343-361`에서 ID/file/path만 확인한다. 메모리에서 원문을 임의로 바꿔도 source 검증은 통과했다. 이들 대부분은 확정 pair mapping이 없어 `quotable=false`라 즉시 인용으로 이어지지는 않지만, `scope:all` 완료 응답의 `text`가 정본 원문이라는 증거는 없다. **최소 수정:** 전역 원문을 인용 가능한 범위로 승격할 때 원천 값 또는 독립 검증 가능한 결속 자료와 대조하고, 종류별 원문 변조 음성을 시험한다. 현재 불가한 종류는 원문 검증 한계를 계약에 명시한다. |
+| Q139 원문 변조 응답 status | **FAIL — 공개 상태 열거 불일치** | SPEC-005 §5-5와 WORK-011은 `found|empty|truncated|error`만 정의한다. `selected.py:403-405`는 Q139 원문을 다른 실제 메모로 바꾼 경우 `status=unresolved_scope, scope_complete=false, quotable=false`를 반환한다(`test_gold_selected.py:120-126`도 이 상태를 고정). 인용은 차단되지만 앱이 계약의 네 상태로 분기하면 이 결과는 미정의다. **최소 수정:** 이 경우 `error`와 명시적인 `unresolved_scope` 사유를 반환하거나 공개 계약과 앱 파서를 함께 확장한다. 음성 시험은 계약 상태와 인용 금지를 동시에 확인한다. |
+| 선택 쌍 claim/conditional/resolved/대안 | **PASS** | `selected.py:57-89,245-283`은 R8 ID의 `claims[ID]` source와 선택·원 owner edge를 확인하고, 원 owner 쌍이 다르면 인용을 막는다. 조건 차원은 `selected.py:160-203`에서 출처 branch/qualifier에 결속한다. `test_gold_selected.py:215-330`의 다른 존재 claim path/owner, 공유 claim, resolved/대안, 다른 키 음성이 있다. 이번 재실행에서 공유 claim·interval 3사례 통과. 최소 수정안 없음. |
+| REST/MCP 동일 미완료 응답 | **PASS(제출 증거·코드)** | `backend/app/router/gold.py:80-90`, `backend/app/modules/gold/mcp_server.py:93-102`, `backend/app/modules/gold/service.py:85-89`는 같은 selected 코어를 호출한다. `test_gold_mcp.py:94-111`은 Q139 다른 존재 path에 REST/MCP JSON 동일성과 미완료를 검사하고 수정 보고는 1 passed를 기록한다. 이번 워커는 DB fixture를 쓰는 통합 시험을 재실행하지 않았다. 최소 수정안 없음. |
+| 550행 페이지·기존 expand 회귀 | **PASS(해당 소수 시험), WARN(전체 관문)** | `test_gold_selected.py:144-164`의 전역 550행 회수·9쪽 수·`more` 및 `:332-349`의 뒤 페이지 ID/12줄 시험은 이번 격리 재실행 통과. `backend/app/modules/gold/tools.py`는 diff에 없다. 4차 리뷰의 6,626 section 첫 페이지 digest와 수정 보고의 광범위 suite 결과는 제출 증거로 확인했다. 이번 워커는 186 첫 쪽/전체 suite, build·서버·앱 동일 hash를 독립 재실행하지 않았다. 최소 수정안 없음; 인계 전 코디가 해당 관문을 확인한다. |
+
+## 검증과 인계
+
+- `backend/.venv/bin/pytest -q backend/tests/test_gold_selected.py -k 'global_existing_other_source_path_is_incomplete or global_extracted_source_file_owner_and_value_text_are_bound or q139_other_note_text_cannot_be_quoted_with_valid_source or representative_later_pages'` → **13 passed, 19 deselected**.
+- 같은 파일에서 `global_scope_pages_recover_all_source_and_text or explicit_shared_claim_keeps_both_edges_without_quoting_other_pair or interval_condition_requires_source_bound_site_key` → **4 passed, 28 deselected**.
+- 별도 메모리 음성: K8-0027 section 변조 후 `scope:all` 9쪽 완료가 `found/true`; Q139 다른 메모 원문 변조가 `unresolved_scope/false/quotable=false`. Gold build hash `567677edfe7123e9`.
+- `git diff --check 2edc190` 통과. 기존 4차 수정 보고의 DB 비사용 504 passed/14 xfailed, REST/MCP 통합 1 passed는 제출 기록이며 이번 워커가 재실행한 결과가 아니다.
+
+**앱 WP-4 인계는 아직 불가.** K8 section 결속과 Q139 변조 시 공개 status를 고친 뒤 관련 음성 시험을 통과시키고, 코디가 WORK-011의 build/서버/앱 동일 hash 관문을 확인해야 한다. 전역 다른 종류의 원문 결속 범위는 앱 인용 정책에 명시해야 한다.

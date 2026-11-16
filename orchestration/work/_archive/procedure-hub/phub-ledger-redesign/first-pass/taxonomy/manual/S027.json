@@ -1,0 +1,275 @@
+{
+ "section": "S027",
+ "state": "read",
+ "last_pointer": "/modality/8/subcategories/0/items/11/extracted/aftercare/3",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/label",
+    "/modality/8/category_en"
+   ],
+   "note": "M9 category '기기 리프팅'(category_en 'Energy Based Device Lifting'). 하위분류 label 'HIFU (초음파)' — 에너지원 축."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/8/subcategories/0/items/2/extracted/aftercare/3",
+    "/modality/8/subcategories/0/items/9/extracted/aftercare/3"
+   ],
+   "note": "M9 상용구가 출력 등급별 3종이다: 고출력 EBD('최소 6개월 이상 간격 … 아무리 빨라도 1개월 이상 간격 필수'), 중출력 EBD('3-6개월 간격 권장'), 저출력 EBD('최소 1개월 이상 간격, 보통 3개월 간격'). 항목마다 어느 등급인지는 상용구로만 드러난다(울쎄라·울쎄라피프라임·슈링크유니버스=고출력, 슈링크·더블로·더블로골드·리프테라·리니어펌·텐쎄라·울트라포머MPT·울트라셀Q+=중출력, 쿨소닉=저출력). 등급 판정 근거는 원문에 없음(B)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/2/extracted/mechanism",
+    "/modality/8/subcategories/0/items/6/extracted/mechanism",
+    "/modality/8/subcategories/0/items/7/extracted/mechanism"
+   ],
+   "note": "HIFU 항목 다수가 같은 mechanism 문장('고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)…')과 같은 overview('HIFU(고강도 집속 초음파) 리프팅 기기')를 공유한다. 장비별 차이는 indications·onset_duration·aftercare 일부에만."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/0/extracted/mechanism"
+   ],
+   "note": "울쎄라 mechanism '유일하게 US FDA 승인된 HIFU 기기로 실시간 초음파 영상화' — 배타적 규제 주장(승인하지 않음)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/1/extracted/indications/primary/4",
+    "/modality/8/subcategories/0/items/2/extracted/indications/primary/2"
+   ],
+   "note": "얼굴 외 부위(팔뚝/허벅지, 복부)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/11/extracted/mechanism",
+    "/modality/8/subcategories/0/items/0/extracted/mechanism"
+   ],
+   "note": "온도 표기 '60°C', '60°C 이상', '65-75℃' — 기호(°C/℃) 혼용."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/8/subcategories/0/items/6/id",
+    "/modality/8/subcategories/0/items/5/id"
+   ],
+   "note": "id 가 M9-1-6 다음 M9-1-8 (M9-1-7 없음)."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/8/subcategories/0/items/0/extracted/mechanism",
+   "text": "60°C의 고열을 발생시켜 표적 조직을 응고괴사",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/0/extracted/mechanism",
+   "text": "유일하게 US FDA 승인된 HIFU 기기",
+   "kinds": [
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+   "text": "고출력 EBD — 최소 6개월 이상 간격 권장",
+   "kinds": [
+    "범위",
+    "수량·단위·시간",
+    "조건"
+   ],
+   "note": "상용구 고출력판"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+   "text": "리모델링 중 재시술은 과도한 열 누적/지방위축 위험",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+   "text": "아무리 빨라도 1개월 이상 간격 필수",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": "양보 표현 + 하한"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/1/extracted/mechanism",
+   "text": "피부 진피-피하층(3mm)과 SMAS층(4.5mm)",
+   "kinds": [
+    "부위",
+    "수량·단위·시간"
+   ],
+   "note": "깊이"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/1/extracted/safety/serious/1",
+   "text": "피부화상(깊이 조절 오류시)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/1/extracted/onset_duration/onset",
+   "text": "즉시 효과 인지 가능, 최적 효과는 8주-3개월",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "단위 다른 양끝"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/2/extracted/mechanism",
+   "text": "진피 1.5/3.0mm, SMAS 4.5mm",
+   "kinds": [
+    "부위",
+    "수량·단위·시간",
+    "기호"
+   ],
+   "note": "'/' 두 깊이"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/2/extracted/aftercare/3",
+   "text": "중출력 EBD — 3-6개월 간격 권장",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "조건"
+   ],
+   "note": "상용구 중출력판"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/3/extracted/mechanism",
+   "text": "Pre-focal zone에서도 추가 열손상이 발생하여",
+   "kinds": [
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/3/extracted/safety/serious/1",
+   "text": "화상(부적절한 설정 시)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/4/extracted/onset_duration/duration",
+   "text": "3-6개월 지속, 개인차에 따라 최대 12개월",
+   "kinds": [
+    "조건",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/6/extracted/onset_duration/duration",
+   "text": "3-6개월 지속, 반복 시 누적 효과 가능",
+   "kinds": [
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/9/extracted/aftercare/3",
+   "text": "저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장",
+   "kinds": [
+    "범위",
+    "가능성·빈도",
+    "수량·단위·시간"
+   ],
+   "note": "상용구 저출력판"
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/10/extracted/aftercare/1",
+   "text": "홍반/부종은 수시간~수일 내 자연 소실",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/11/extracted/mechanism",
+   "text": "65-75℃의 열 응고점",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/8/subcategories/0/items/11/detail",
+   "text": "제이시스 · HIFU+DOT",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "울쎄라",
+   "issue": "단독 '울쎄라' 를 울쎄/NNG 이/VCP 라/EC 로(텐쎄라도 같은 패턴)",
+   "impact": "장비명 끝 '라' 를 서술격+어미로 — 장비명 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "텐쎄라",
+   "issue": "텐쎄/NNG 이/VCP 라/EC",
+   "impact": "장비명 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "더블로",
+   "issue": "단독 '더블로' 를 더블/NNG 로/JKB",
+   "impact": "장비명 절단"
+  },
+  {
+   "scope": "all",
+   "surface": "리니어펌",
+   "issue": "리니어/NNG 퍼/NNG ᆷ/EF",
+   "impact": "장비명 소실"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S027-B01",
+   "status": "B",
+   "pointers": [
+    "/modality/8/subcategories/0/items/0/extracted/aftercare/3",
+    "/modality/8/subcategories/0/items/2/extracted/aftercare/3",
+    "/modality/8/subcategories/0/items/9/extracted/aftercare/3"
+   ],
+   "note": "장비의 고/중/저출력 등급이 상용구로만 표시되고 판정 기준이 원문에 없다.",
+   "impact": "출력 등급을 속성으로 쓸 때 근거 부족"
+  },
+  {
+   "id": "S027-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/8/subcategories/0/items/2/extracted/mechanism",
+    "/modality/8/subcategories/0/items/6/extracted/mechanism"
+   ],
+   "note": "다수 항목이 같은 mechanism·overview 문장을 공유(템플릿 채움 흔적으로 보임).",
+   "impact": "항목별 차이 판단 시 상용구 구분 필요"
+  }
+ ]
+}

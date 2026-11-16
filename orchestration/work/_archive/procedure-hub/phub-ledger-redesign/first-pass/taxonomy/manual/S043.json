@@ -1,0 +1,39 @@
+{"section":"S043","state":"read","last_pointer":"/modality/14/subcategories/10/items/10/extracted/aftercare/2",
+"observations":[
+ {"status":"P","pointers":["/modality/14/subcategories/9/label","/modality/14/subcategories/9/items/1/name","/modality/14/subcategories/9/items/3/name","/modality/14/subcategories/9/items/7/name"],"note":"auto-M15-1775360998 '탈모(비수술)' — 고민(탈모) 축 하위분류가 시술 방식(관리) 모달리티 안에 있다. 항목은 다른 계열 시술의 두피 판(엑소좀 두피주사=M4-3/M17 계열, 두피 PRP=M5, 두피 메조테라피, 두피LED, LLLT)과 외용약(피나스테리드도포)."},
+ {"status":"P","pointers":["/modality/14/subcategories/9/items/0/name","/modality/7/subcategories/5/items/13/name"],"note":"'LLLT (저출력 레이저)'(M15 탈모, 내용 있음)와 M8-6 '저출력레이저(LLLT)'(extracted {}) — 같은 기법명 두 항목."},
+ {"status":"P","pointers":["/modality/14/subcategories/9/items/6/extracted/overview"],"note":"헤어셀 '가정용 탈모 치료 기기' — 의료기관 시술이 아닌 가정용 기기 항목."},
+ {"status":"P","pointers":["/modality/14/subcategories/10/label","/modality/14/subcategories/10/items/0/name"],"note":"auto-1775361777 '약물/토피컬' — 시술이 아닌 외용 성분·약물 항목(하이드로퀴논, 아젤라산, 아다팔렌, 트레티노인, 벤조일퍼옥사이드, 레티놀, 나이아신아마이드, 세라마이드, EGF크림, 코직산, 트라넥삼산)."},
+ {"status":"P","pointers":["/modality/14/subcategories/10/items/0/detail","/modality/14/subcategories/10/items/9/extracted/mechanism"],"note":"효소명 표기 변형: '타이로시나아제'(하이드로퀴논·아젤라산), '티로시나제'(코직산). 같은 원장 다른 곳은 '멜라닌'."},
+ {"status":"P","pointers":["/modality/14/subcategories/9/items/2/extracted/onset_duration/duration","/modality/14/subcategories/9/items/3/extracted/onset_duration/duration"],"note":"duration 칸에 시술 계획('주 1회 10-20회 권장','월 1회 3-6회 권장')."},
+ {"status":"P","pointers":["/modality/14/subcategories/10/items/7/extracted/safety/common/0"],"note":"세라마이드 safety/common '매우 낮은 부작용' — 부작용 값 대신 평가."}
+],
+"expressions":[
+ {"pointer":"/modality/14/subcategories/9/items/0/detail","text":"두피 모낭 세포 활성화 · 비열성 광자극","kinds":["부위","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/0/extracted/mechanism","text":"660-670nm 파장의 저출력 레이저","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/1/extracted/aftercare/2","text":"1주일간 염색/파마 자제","kinds":["수량·단위·시간","부정","기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/2/extracted/mechanism","text":"멀티니들 또는 메소건으로 두피 진피층에","kinds":["조건","참조","부위"],"note":"다른 항목(메소건) 참조"},
+ {"pointer":"/modality/14/subcategories/9/items/2/extracted/onset_duration/duration","text":"주 1회 10-20회 권장","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/3/extracted/indications/primary/2","text":"모발이식 후 생착률 향상","kinds":["조건","참조"],"note":"수술 후 보조"},
+ {"pointer":"/modality/14/subcategories/9/items/3/extracted/onset_duration/duration","text":"월 1회 3-6회 권장","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/6/extracted/safety/common/1","text":"드물게 두통","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/6/extracted/aftercare/3","text":"다른 탈모 치료와 병행 가능","kinds":["가능성·빈도","참조"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/7/extracted/safety/common/2","text":"드물게 성기능 저하","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/7/extracted/aftercare/2","text":"임신 가능 여성 접촉 금지","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/9/items/7/extracted/indications/primary/3","text":"여성 남성형 탈모","kinds":["조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/0/detail","text":"타이로시나아제 억제 · 미백 · 최대 4%","kinds":["범위","수량·단위·시간"],"note":"농도 상한"},
+ {"pointer":"/modality/14/subcategories/10/items/0/extracted/aftercare/2","text":"장기간 사용 시 주기적 휴약기 필요","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/1/extracted/aftercare/1","text":"초기 2주간 격일 적용 후 점진적 증량","kinds":["수량·단위·시간"],"note":"투약 일정"},
+ {"pointer":"/modality/14/subcategories/10/items/2/extracted/indications/primary/1","text":"경증-중등도 염증성 여드름","kinds":["범위","수식"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/3/extracted/safety/serious/0","text":"태아 기형(임신 금기)","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/4/extracted/mechanism","text":"항생제와 달리 내성 발생이 없다","kinds":["비교","부정"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/4/extracted/aftercare/0","text":"옷/침구 표백 주의","kinds":["기호"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/7/extracted/onset_duration/duration","text":"사용중단시 점진적 감소","kinds":["조건"],"note":""},
+ {"pointer":"/modality/14/subcategories/10/items/8/extracted/aftercare/0","text":"냉장보관","kinds":[],"note":"제품 보관 지시"},
+ {"pointer":"/modality/14/subcategories/10/items/9/extracted/aftercare/2","text":"패치테스트 선행","kinds":["수량·단위·시간"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S043-F01","status":"F","pointers":["/modality/14/subcategories/9","/modality/14/subcategories/10"],"note":"M15 안에 고민 축(탈모)과 외용약 성분 하위분류.","impact":"시술/성분/고민 개체 분리는 설계 단계"},
+ {"id":"S043-F02","status":"F","pointers":["/modality/14/subcategories/9/items/0","/modality/7/subcategories/5/items/13"],"note":"LLLT 항목 두 곳(하나는 빈 extracted).","impact":"개체 병합 후속"}
+]}

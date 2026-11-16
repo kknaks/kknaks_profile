@@ -1,0 +1,125 @@
+{
+ "note": "regex·keyword 후보를 문맥과 함께 읽어 확인한 오탐. 후보는 지우지 않고 expressions.json 에 review.verdict=false_positive 로 표시한다. 오탐 아님으로 본 주요 판단: timing '같은 날 시술 가능'의 '가능'은 가능성 추정이 아니라 허용 진술로 읽히나(잠정) possibility_hedge 후보로 남긴다.",
+ "false_positives": [
+  {
+   "pointer": "/links/84/target",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "name_candidate",
+   "text": "혈관",
+   "note": "시술 명칭이 아니라 대상(혈관) 또는 목적 라벨의 일부. from 값 '혈관'(/links/84/from)과 표기만 같음"
+  },
+  {
+   "pointer": "/links/92/reason",
+   "span": [
+    8,
+    10
+   ],
+   "category_candidate": "name_candidate",
+   "text": "혈관",
+   "note": "시술 명칭이 아니라 대상(혈관) 또는 목적 라벨의 일부. from 값 '혈관'(/links/84/from)과 표기만 같음"
+  },
+  {
+   "pointer": "/links/93/from",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/93/reason",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/93/timing",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/94/from",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/94/reason",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/94/timing",
+   "span": [
+    0,
+    2
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/99/to",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/99/reason",
+   "span": [
+    5,
+    7
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/106/to",
+   "span": [
+    3,
+    5
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  },
+  {
+   "pointer": "/links/106/reason",
+   "span": [
+    21,
+    23
+   ],
+   "category_candidate": "degree_intensity",
+   "text": "더블",
+   "note": "명칭 '더블로'의 일부. 정도 수식('더블=이중') 아님"
+  }
+ ]
+}

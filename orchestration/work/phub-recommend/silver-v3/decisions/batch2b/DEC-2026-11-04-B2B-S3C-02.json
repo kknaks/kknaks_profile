@@ -1,0 +1,48 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "same-three-cells-21/02",
+  "label": "같은 시술 — 합친다(keep CAT-78dc378af5)",
+  "note": "추천대로 — 쥬베룩볼륨",
+  "option": "fold"
+ },
+ "id": "DEC-2026-11-04-B2B-S3C-02",
+ "kind": "fold_approve",
+ "new_value": {
+  "keep_anchor": "CAT-78dc378af5"
+ },
+ "reason": "결정 묶음 2B — 같은 세 칸(쥬베룩볼륨 × none × none)의 anchor 4 을 하나로(검토 1-E) · 사용자 메모: 추천대로 — 쥬베룩볼륨",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@2/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@8/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@2/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@2/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "anchors": [
+   "CAT-78dc378af5",
+   "REF-bdcd60620c",
+   "REF-80d4932bc2",
+   "REF-5c9b162938"
+  ]
+ }
+}

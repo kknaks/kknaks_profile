@@ -1,0 +1,62 @@
+# S10 /timelines/9 chemical-peel-mid — 직접 읽기 2026-11-09
+id | chemical-peel-mid | id_code |
+category | M15 | id_code |
+name | 케미컬 필링 (중간 깊이) | procedure_name,depth,loanword | 「중간 깊이」 = 시술 강도/침투 깊이 구분(잠정). 수치 없음
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 시술 중 작열감/따끔 | reference_point,alt | 「시술 중」
+phases/0/normal/0 | (TCA 도포 시) | condition,ingredient_ref,mixed_script | 「시」 조건. 성분 약어 TCA
+phases/0/normal/1 | 즉각적 홍반/발적 | onset_speed,alt |
+phases/0/normal/2 | 피부 하얗게 변함 (frost, TCA 반응) | color_change,mixed_script,cause |
+phases/0/normal/3 | 시술 후 열감/조임감 | reference_point,sequence,alt | 「시술 후」
+phases/0/abnormal/0 | 예상보다 깊은 frost (과도한 침투) | comparison,depth,degree,cause | 「깊은」 깊이 = frost 의 깊이(침투). 「과도한」
+phases/0/abnormal/1 | 심한 부종 | severity |
+phases/0/caution/0 | 수포 형성 (깊은 침투 시사) | formation,depth,inference | 「시사」 추정
+phases/0/caution/1 | 비정상적 통증 (진통제 미반응) | degree,negation |
+phases/0/emergency/0 | 광범위 화학 화상 | extent |
+phases/0/emergency/1 | 아나필락시스 | label |
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 염증/가피기 | phase_label,alt |
+phases/1/normal/0 | 강한 홍반/부종 지속 | degree,alt,persistence |
+phases/1/normal/1 | 피부 갈색 변화 시작 (가피 형성) | color_change,onset,gloss |
+phases/1/normal/2 | 조임감/건조감 | alt |
+phases/1/normal/3 | 세안/보습 주의 기간 | management,caution_period,alt | 관리 시점 표현. 구체 방법 원문 없음
+phases/1/abnormal/0 | 예상보다 심한 부종 (특히 눈 주위) | comparison,severity,site,emphasis |
+phases/1/abnormal/1 | 통증 증가 | worsening |
+phases/1/caution/0 | 농성 분비물 | event |
+phases/1/caution/1 | 발열 (37.5도 이상) | numeric_threshold,unit |
+phases/1/caution/2 | 수포 확대 | extent |
+phases/1/emergency/0 | 감염 (고열 + 농 + 발적 확대) | co_occurrence,extent |
+phases/1/emergency/1 | 헤르페스 재활성화 (수포 군집) | recurrence,pattern |
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 필링기 | phase_label |
+phases/2/normal/0 | Day 3-4: 각질/가피 벗겨짐 시작 | time_anchor,time_range,alt,onset |
+phases/2/normal/1 | 가려움 (정상 치유 반응) | judgment |
+phases/2/normal/2 | 분홍빛 새 피부 노출 | color |
+phases/2/normal/3 | 자연스러운 각질 탈락 | quality |
+phases/2/normal/3 | (강제 제거 금지) | avoidance,management | 「금지」 회피 지시
+phases/2/abnormal/0 | 필링 불균일 | quality_negative |
+phases/2/abnormal/1 | 가피 조기 탈락 | timing |
+phases/2/caution/0 | 감염 (필링 중 감염 취약) | vulnerability,reference_point | 「필링 중」 기간 조건
+phases/2/caution/1 | 화상 깊이 과도 (재상피화 지연) | depth,degree,consequence |
+phases/2/emergency/0 | 감염 확산 (봉와직염) | extent,label |
+phases/2/emergency/1 | 반흔 형성 시작 | onset,formation |
+phases/3/period | Day 7-14 | period,time_range |
+phases/3/label | 재상피화/회복기 | phase_label,alt |
+phases/3/normal/0 | Day 7-10: 새 피부 형성 완료 | time_anchor,time_range,completion |
+phases/3/normal/1 | 분홍빛 홍반 지속 (정상, 수주-수개월 소요) | color,persistence,judgment,approx_time,duration,time_range | 「수주-수개월」 근사 범위
+phases/3/normal/2 | 메이크업 가능 (재상피화 후) | activity,possibility,condition,sequence |
+phases/3/normal/3 | 자외선 차단 필수 기간 | management,obligation | 「필수」 강한 권고. 기간 길이 원문 없음
+phases/3/abnormal/0 | 지속적 깊은 홍반 | persistence,color_degree | 「깊은」 은 여기서 색 정도(잠정) — 주입·침투 깊이와 다름
+phases/3/abnormal/1 | PIH (염증 후 과색소침착) 시작 | abbreviation,gloss,onset |
+phases/3/caution/0 | PIH 진행 (특히 피부 타입 III-V) | abbreviation,progress,emphasis,population,range | 피부 타입 III-V 로마 숫자 범위. 분류 체계 이름 원문 없음
+phases/3/caution/1 | 재상피화 지연 (10일 이상) | delay,duration_threshold |
+phases/3/caution/2 | 비후성 반흔 초기 | early_sign |
+phases/3/emergency/0 | 켈로이드/비후성 반흔 | alt |
+phases/3/emergency/1 | 지연성 감염 | delayed_onset |
+phases/3/emergency/2 | 화상 확장 (화학물질 잔류에 의한) | extent,cause |
+O | 「깊」 이 세 가지 대상에 쓰였다: 시술명 「중간 깊이」, frost/침투 「깊은」, 홍반 「깊은」(색 정도로 보임), 「화상 깊이」. 대상이 다르므로 하나로 묶지 않는다(잠정).
+O | 관리 표현: 세안/보습 주의 기간, 강제 제거 금지, 메이크업 가능(재상피화 후), 자외선 차단 필수 기간. 기간 길이는 소속 period 로만 짐작되며 원문에 따로 없다.
+O | 「피부 타입 III-V」 는 대상 집단 조건이다. 분류 체계(예: 어느 척도인지)는 원문에 없다.
+Q | B | phases/3/caution/0 | 「피부 타입 III-V」 의 분류 체계 이름이 원문에 없다.
+Q | B | phases/1/normal/3 phases/3/normal/3 | 「주의 기간」「필수 기간」 의 시작·끝이 소속 period 외에 원문에 없다.

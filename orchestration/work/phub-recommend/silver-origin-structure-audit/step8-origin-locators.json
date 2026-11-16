@@ -1,0 +1,4630 @@
+[
+  {
+    "id": "R8-0001",
+    "silver_path": "$.claims[0]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[0]"
+  },
+  {
+    "id": "R8-0002",
+    "silver_path": "$.claims[1]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[1]"
+  },
+  {
+    "id": "R8-0003",
+    "silver_path": "$.claims[2]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[2]"
+  },
+  {
+    "id": "R8-0004",
+    "silver_path": "$.claims[3]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[3]"
+  },
+  {
+    "id": "R8-0005",
+    "silver_path": "$.claims[4]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[4]"
+  },
+  {
+    "id": "R8-0006",
+    "silver_path": "$.claims[5]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[5]"
+  },
+  {
+    "id": "R8-0007",
+    "silver_path": "$.claims[6]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[6]"
+  },
+  {
+    "id": "R8-0008",
+    "silver_path": "$.claims[7]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[7]"
+  },
+  {
+    "id": "R8-0009",
+    "silver_path": "$.claims[8]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[8]"
+  },
+  {
+    "id": "R8-0010",
+    "silver_path": "$.claims[9]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[9]"
+  },
+  {
+    "id": "R8-0011",
+    "silver_path": "$.claims[10]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[10]"
+  },
+  {
+    "id": "R8-0012",
+    "silver_path": "$.claims[11]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[11]"
+  },
+  {
+    "id": "R8-0013",
+    "silver_path": "$.claims[12]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[12]"
+  },
+  {
+    "id": "R8-0014",
+    "silver_path": "$.claims[13]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[13]"
+  },
+  {
+    "id": "R8-0015",
+    "silver_path": "$.claims[14]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[14]"
+  },
+  {
+    "id": "R8-0016",
+    "silver_path": "$.claims[15]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[15]"
+  },
+  {
+    "id": "R8-0017",
+    "silver_path": "$.claims[16]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[16]"
+  },
+  {
+    "id": "R8-0018",
+    "silver_path": "$.claims[17]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[17]"
+  },
+  {
+    "id": "R8-0019",
+    "silver_path": "$.claims[18]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[18]"
+  },
+  {
+    "id": "R8-0020",
+    "silver_path": "$.claims[19]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[19]"
+  },
+  {
+    "id": "R8-0021",
+    "silver_path": "$.claims[20]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[20]"
+  },
+  {
+    "id": "R8-0022",
+    "silver_path": "$.claims[21]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[21]"
+  },
+  {
+    "id": "R8-0023",
+    "silver_path": "$.claims[22]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[22]"
+  },
+  {
+    "id": "R8-0024",
+    "silver_path": "$.claims[23]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[23]"
+  },
+  {
+    "id": "R8-0025",
+    "silver_path": "$.claims[24]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[24]"
+  },
+  {
+    "id": "R8-0026",
+    "silver_path": "$.claims[25]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[25]"
+  },
+  {
+    "id": "R8-0027",
+    "silver_path": "$.claims[26]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+    "source_path": "$.rules[26]"
+  },
+  {
+    "id": "R8-0028",
+    "silver_path": "$.claims[27]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[0]"
+  },
+  {
+    "id": "R8-0029",
+    "silver_path": "$.claims[28]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[1]"
+  },
+  {
+    "id": "R8-0030",
+    "silver_path": "$.claims[29]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[2]"
+  },
+  {
+    "id": "R8-0031",
+    "silver_path": "$.claims[30]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[3]"
+  },
+  {
+    "id": "R8-0032",
+    "silver_path": "$.claims[31]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[4]"
+  },
+  {
+    "id": "R8-0033",
+    "silver_path": "$.claims[32]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[5]"
+  },
+  {
+    "id": "R8-0034",
+    "silver_path": "$.claims[33]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[6]"
+  },
+  {
+    "id": "R8-0035",
+    "silver_path": "$.claims[34]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[7]"
+  },
+  {
+    "id": "R8-0036",
+    "silver_path": "$.claims[35]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[8]"
+  },
+  {
+    "id": "R8-0037",
+    "silver_path": "$.claims[36]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[9]"
+  },
+  {
+    "id": "R8-0038",
+    "silver_path": "$.claims[37]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[10]"
+  },
+  {
+    "id": "R8-0039",
+    "silver_path": "$.claims[38]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[11]"
+  },
+  {
+    "id": "R8-0040",
+    "silver_path": "$.claims[39]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[12]"
+  },
+  {
+    "id": "R8-0041",
+    "silver_path": "$.claims[40]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[13]"
+  },
+  {
+    "id": "R8-0042",
+    "silver_path": "$.claims[41]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[14]"
+  },
+  {
+    "id": "R8-0043",
+    "silver_path": "$.claims[42]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[15]"
+  },
+  {
+    "id": "R8-0044",
+    "silver_path": "$.claims[43]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[16]"
+  },
+  {
+    "id": "R8-0045",
+    "silver_path": "$.claims[44]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[17]"
+  },
+  {
+    "id": "R8-0046",
+    "silver_path": "$.claims[45]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[18]"
+  },
+  {
+    "id": "R8-0047",
+    "silver_path": "$.claims[46]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[19]"
+  },
+  {
+    "id": "R8-0048",
+    "silver_path": "$.claims[47]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[20]"
+  },
+  {
+    "id": "R8-0049",
+    "silver_path": "$.claims[48]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[21]"
+  },
+  {
+    "id": "R8-0050",
+    "silver_path": "$.claims[49]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[22]"
+  },
+  {
+    "id": "R8-0051",
+    "silver_path": "$.claims[50]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[23]"
+  },
+  {
+    "id": "R8-0052",
+    "silver_path": "$.claims[51]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[24]"
+  },
+  {
+    "id": "R8-0053",
+    "silver_path": "$.claims[52]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[25]"
+  },
+  {
+    "id": "R8-0054",
+    "silver_path": "$.claims[53]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[26]"
+  },
+  {
+    "id": "R8-0055",
+    "silver_path": "$.claims[54]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[27]"
+  },
+  {
+    "id": "R8-0056",
+    "silver_path": "$.claims[55]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[28]"
+  },
+  {
+    "id": "R8-0057",
+    "silver_path": "$.claims[56]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[29]"
+  },
+  {
+    "id": "R8-0058",
+    "silver_path": "$.claims[57]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[30]"
+  },
+  {
+    "id": "R8-0059",
+    "silver_path": "$.claims[58]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[31]"
+  },
+  {
+    "id": "R8-0060",
+    "silver_path": "$.claims[59]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[32]"
+  },
+  {
+    "id": "R8-0061",
+    "silver_path": "$.claims[60]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[33]"
+  },
+  {
+    "id": "R8-0062",
+    "silver_path": "$.claims[61]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[34]"
+  },
+  {
+    "id": "R8-0063",
+    "silver_path": "$.claims[62]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[35]"
+  },
+  {
+    "id": "R8-0064",
+    "silver_path": "$.claims[63]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[36]"
+  },
+  {
+    "id": "R8-0065",
+    "silver_path": "$.claims[64]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[37]"
+  },
+  {
+    "id": "R8-0066",
+    "silver_path": "$.claims[65]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[38]"
+  },
+  {
+    "id": "R8-0067",
+    "silver_path": "$.claims[66]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[39]"
+  },
+  {
+    "id": "R8-0068",
+    "silver_path": "$.claims[67]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[40]"
+  },
+  {
+    "id": "R8-0069",
+    "silver_path": "$.claims[68]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[41]"
+  },
+  {
+    "id": "R8-0070",
+    "silver_path": "$.claims[69]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[42]"
+  },
+  {
+    "id": "R8-0071",
+    "silver_path": "$.claims[70]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[43]"
+  },
+  {
+    "id": "R8-0072",
+    "silver_path": "$.claims[71]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[44]"
+  },
+  {
+    "id": "R8-0073",
+    "silver_path": "$.claims[72]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[45]"
+  },
+  {
+    "id": "R8-0074",
+    "silver_path": "$.claims[73]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[46]"
+  },
+  {
+    "id": "R8-0075",
+    "silver_path": "$.claims[74]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[47]"
+  },
+  {
+    "id": "R8-0076",
+    "silver_path": "$.claims[75]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[48]"
+  },
+  {
+    "id": "R8-0077",
+    "silver_path": "$.claims[76]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[49]"
+  },
+  {
+    "id": "R8-0078",
+    "silver_path": "$.claims[77]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[50]"
+  },
+  {
+    "id": "R8-0079",
+    "silver_path": "$.claims[78]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[51]"
+  },
+  {
+    "id": "R8-0080",
+    "silver_path": "$.claims[79]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[52]"
+  },
+  {
+    "id": "R8-0081",
+    "silver_path": "$.claims[80]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[53]"
+  },
+  {
+    "id": "R8-0082",
+    "silver_path": "$.claims[81]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[54]"
+  },
+  {
+    "id": "R8-0083",
+    "silver_path": "$.claims[82]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[55]"
+  },
+  {
+    "id": "R8-0084",
+    "silver_path": "$.claims[83]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[56]"
+  },
+  {
+    "id": "R8-0085",
+    "silver_path": "$.claims[84]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[57]"
+  },
+  {
+    "id": "R8-0086",
+    "silver_path": "$.claims[85]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[58]"
+  },
+  {
+    "id": "R8-0087",
+    "silver_path": "$.claims[86]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[59]"
+  },
+  {
+    "id": "R8-0088",
+    "silver_path": "$.claims[87]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[60]"
+  },
+  {
+    "id": "R8-0089",
+    "silver_path": "$.claims[88]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[61]"
+  },
+  {
+    "id": "R8-0090",
+    "silver_path": "$.claims[89]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[62]"
+  },
+  {
+    "id": "R8-0091",
+    "silver_path": "$.claims[90]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[63]"
+  },
+  {
+    "id": "R8-0092",
+    "silver_path": "$.claims[91]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[64]"
+  },
+  {
+    "id": "R8-0093",
+    "silver_path": "$.claims[92]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[65]"
+  },
+  {
+    "id": "R8-0094",
+    "silver_path": "$.claims[93]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[66]"
+  },
+  {
+    "id": "R8-0095",
+    "silver_path": "$.claims[94]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[67]"
+  },
+  {
+    "id": "R8-0096",
+    "silver_path": "$.claims[95]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[68]"
+  },
+  {
+    "id": "R8-0097",
+    "silver_path": "$.claims[96]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[69]"
+  },
+  {
+    "id": "R8-0098",
+    "silver_path": "$.claims[97]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[70]"
+  },
+  {
+    "id": "R8-0099",
+    "silver_path": "$.claims[98]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[71]"
+  },
+  {
+    "id": "R8-0100",
+    "silver_path": "$.claims[99]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[72]"
+  },
+  {
+    "id": "R8-0101",
+    "silver_path": "$.claims[100]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[73]"
+  },
+  {
+    "id": "R8-0102",
+    "silver_path": "$.claims[101]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[74]"
+  },
+  {
+    "id": "R8-0103",
+    "silver_path": "$.claims[102]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[75]"
+  },
+  {
+    "id": "R8-0104",
+    "silver_path": "$.claims[103]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[76]"
+  },
+  {
+    "id": "R8-0105",
+    "silver_path": "$.claims[104]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[77]"
+  },
+  {
+    "id": "R8-0106",
+    "silver_path": "$.claims[105]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[78]"
+  },
+  {
+    "id": "R8-0107",
+    "silver_path": "$.claims[106]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[79]"
+  },
+  {
+    "id": "R8-0108",
+    "silver_path": "$.claims[107]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[80]"
+  },
+  {
+    "id": "R8-0109",
+    "silver_path": "$.claims[108]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[81]"
+  },
+  {
+    "id": "R8-0110",
+    "silver_path": "$.claims[109]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[82]"
+  },
+  {
+    "id": "R8-0111",
+    "silver_path": "$.claims[110]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[83]"
+  },
+  {
+    "id": "R8-0112",
+    "silver_path": "$.claims[111]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[84]"
+  },
+  {
+    "id": "R8-0113",
+    "silver_path": "$.claims[112]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[85]"
+  },
+  {
+    "id": "R8-0114",
+    "silver_path": "$.claims[113]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[86]"
+  },
+  {
+    "id": "R8-0115",
+    "silver_path": "$.claims[114]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[87]"
+  },
+  {
+    "id": "R8-0116",
+    "silver_path": "$.claims[115]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[88]"
+  },
+  {
+    "id": "R8-0117",
+    "silver_path": "$.claims[116]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[89]"
+  },
+  {
+    "id": "R8-0118",
+    "silver_path": "$.claims[117]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[90]"
+  },
+  {
+    "id": "R8-0119",
+    "silver_path": "$.claims[118]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[91]"
+  },
+  {
+    "id": "R8-0120",
+    "silver_path": "$.claims[119]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[92]"
+  },
+  {
+    "id": "R8-0121",
+    "silver_path": "$.claims[120]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[93]"
+  },
+  {
+    "id": "R8-0122",
+    "silver_path": "$.claims[121]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[94]"
+  },
+  {
+    "id": "R8-0123",
+    "silver_path": "$.claims[122]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[95]"
+  },
+  {
+    "id": "R8-0124",
+    "silver_path": "$.claims[123]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[96]"
+  },
+  {
+    "id": "R8-0125",
+    "silver_path": "$.claims[124]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[97]"
+  },
+  {
+    "id": "R8-0126",
+    "silver_path": "$.claims[125]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[98]"
+  },
+  {
+    "id": "R8-0127",
+    "silver_path": "$.claims[126]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[99]"
+  },
+  {
+    "id": "R8-0128",
+    "silver_path": "$.claims[127]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[100]"
+  },
+  {
+    "id": "R8-0129",
+    "silver_path": "$.claims[128]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[101]"
+  },
+  {
+    "id": "R8-0130",
+    "silver_path": "$.claims[129]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[102]"
+  },
+  {
+    "id": "R8-0131",
+    "silver_path": "$.claims[130]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[103]"
+  },
+  {
+    "id": "R8-0132",
+    "silver_path": "$.claims[131]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[104]"
+  },
+  {
+    "id": "R8-0133",
+    "silver_path": "$.claims[132]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[105]"
+  },
+  {
+    "id": "R8-0134",
+    "silver_path": "$.claims[133]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[106]"
+  },
+  {
+    "id": "R8-0135",
+    "silver_path": "$.claims[134]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[107]"
+  },
+  {
+    "id": "R8-0136",
+    "silver_path": "$.claims[135]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[108]"
+  },
+  {
+    "id": "R8-0137",
+    "silver_path": "$.claims[136]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[109]"
+  },
+  {
+    "id": "R8-0138",
+    "silver_path": "$.claims[137]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[110]"
+  },
+  {
+    "id": "R8-0139",
+    "silver_path": "$.claims[138]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[111]"
+  },
+  {
+    "id": "R8-0140",
+    "silver_path": "$.claims[139]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[112]"
+  },
+  {
+    "id": "R8-0141",
+    "silver_path": "$.claims[140]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[113]"
+  },
+  {
+    "id": "R8-0142",
+    "silver_path": "$.claims[141]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/synergy.json",
+    "source_path": "$.links[114]"
+  },
+  {
+    "id": "R8-0143",
+    "silver_path": "$.claims[142]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[0]"
+  },
+  {
+    "id": "R8-0144",
+    "silver_path": "$.claims[143]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[1]"
+  },
+  {
+    "id": "R8-0145",
+    "silver_path": "$.claims[144]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[2]"
+  },
+  {
+    "id": "R8-0146",
+    "silver_path": "$.claims[145]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[4]"
+  },
+  {
+    "id": "R8-0147",
+    "silver_path": "$.claims[146]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[5]"
+  },
+  {
+    "id": "R8-0148",
+    "silver_path": "$.claims[147]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[6]"
+  },
+  {
+    "id": "R8-0149",
+    "silver_path": "$.claims[148]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[0]"
+  },
+  {
+    "id": "R8-0150",
+    "silver_path": "$.claims[149]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[1]"
+  },
+  {
+    "id": "R8-0151",
+    "silver_path": "$.claims[150]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[4]"
+  },
+  {
+    "id": "R8-0152",
+    "silver_path": "$.claims[151]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[5]"
+  },
+  {
+    "id": "R8-0153",
+    "silver_path": "$.claims[152]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[6]"
+  },
+  {
+    "id": "R8-0154",
+    "silver_path": "$.claims[153]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[7]"
+  },
+  {
+    "id": "R8-0155",
+    "silver_path": "$.claims[154]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[8]"
+  },
+  {
+    "id": "R8-0156",
+    "silver_path": "$.claims[155]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[1]"
+  },
+  {
+    "id": "R8-0157",
+    "silver_path": "$.claims[156]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[2]"
+  },
+  {
+    "id": "R8-0158",
+    "silver_path": "$.claims[157]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[2]"
+  },
+  {
+    "id": "R8-0159",
+    "silver_path": "$.claims[158]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[2]"
+  },
+  {
+    "id": "R8-0160",
+    "silver_path": "$.claims[159]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[2]"
+  },
+  {
+    "id": "R8-0161",
+    "silver_path": "$.claims[160]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[2]"
+  },
+  {
+    "id": "R8-0162",
+    "silver_path": "$.claims[161]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[3]"
+  },
+  {
+    "id": "R8-0163",
+    "silver_path": "$.claims[162]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[8]"
+  },
+  {
+    "id": "R8-0164",
+    "silver_path": "$.claims[163]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[9]"
+  },
+  {
+    "id": "R8-0165",
+    "silver_path": "$.claims[164]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[10]"
+  },
+  {
+    "id": "R8-0166",
+    "silver_path": "$.claims[165]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[11]"
+  },
+  {
+    "id": "R8-0167",
+    "silver_path": "$.claims[166]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[11]"
+  },
+  {
+    "id": "R8-0168",
+    "silver_path": "$.claims[167]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.principles[12]"
+  },
+  {
+    "id": "R8-0169",
+    "silver_path": "$.claims[168]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0170",
+    "silver_path": "$.claims[169]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0171",
+    "silver_path": "$.claims[170]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0172",
+    "silver_path": "$.claims[171]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0173",
+    "silver_path": "$.claims[172]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0174",
+    "silver_path": "$.claims[173]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0175",
+    "silver_path": "$.claims[174]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0176",
+    "silver_path": "$.claims[175]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[0]"
+  },
+  {
+    "id": "R8-0177",
+    "silver_path": "$.claims[176]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[1]"
+  },
+  {
+    "id": "R8-0178",
+    "silver_path": "$.claims[177]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[3]"
+  },
+  {
+    "id": "R8-0179",
+    "silver_path": "$.claims[178]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[5]"
+  },
+  {
+    "id": "R8-0180",
+    "silver_path": "$.claims[179]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[6]"
+  },
+  {
+    "id": "R8-0181",
+    "silver_path": "$.claims[180]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.combination_rules[7]"
+  },
+  {
+    "id": "R8-0182",
+    "silver_path": "$.claims[181]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0183",
+    "silver_path": "$.claims[182]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0184",
+    "silver_path": "$.claims[183]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0185",
+    "silver_path": "$.claims[184]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0186",
+    "silver_path": "$.claims[185]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0187",
+    "silver_path": "$.claims[186]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0188",
+    "silver_path": "$.claims[187]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0189",
+    "silver_path": "$.claims[188]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[0].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0190",
+    "silver_path": "$.claims[189]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0191",
+    "silver_path": "$.claims[190]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0192",
+    "silver_path": "$.claims[191]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0193",
+    "silver_path": "$.claims[192]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0194",
+    "silver_path": "$.claims[193]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0195",
+    "silver_path": "$.claims[194]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0196",
+    "silver_path": "$.claims[195]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[1].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0197",
+    "silver_path": "$.claims[196]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[2].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0198",
+    "silver_path": "$.claims[197]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[2].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0199",
+    "silver_path": "$.claims[198]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[2].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0200",
+    "silver_path": "$.claims[199]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[2].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0201",
+    "silver_path": "$.claims[200]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0202",
+    "silver_path": "$.claims[201]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0203",
+    "silver_path": "$.claims[202]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0204",
+    "silver_path": "$.claims[203]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[1].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0205",
+    "silver_path": "$.claims[204]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0206",
+    "silver_path": "$.claims[205]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0207",
+    "silver_path": "$.claims[206]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0208",
+    "silver_path": "$.claims[207]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[3].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0209",
+    "silver_path": "$.claims[208]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0210",
+    "silver_path": "$.claims[209]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0211",
+    "silver_path": "$.claims[210]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0212",
+    "silver_path": "$.claims[211]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0213",
+    "silver_path": "$.claims[212]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0214",
+    "silver_path": "$.claims[213]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0215",
+    "silver_path": "$.claims[214]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[4].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0216",
+    "silver_path": "$.claims[215]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0217",
+    "silver_path": "$.claims[216]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0218",
+    "silver_path": "$.claims[217]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0219",
+    "silver_path": "$.claims[218]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0220",
+    "silver_path": "$.claims[219]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0221",
+    "silver_path": "$.claims[220]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0222",
+    "silver_path": "$.claims[221]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0223",
+    "silver_path": "$.claims[222]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0224",
+    "silver_path": "$.claims[223]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[6].severity_levels[1].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0225",
+    "silver_path": "$.claims[224]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[6].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0226",
+    "silver_path": "$.claims[225]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[6].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0227",
+    "silver_path": "$.claims[226]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[0].sequence"
+  },
+  {
+    "id": "R8-0228",
+    "silver_path": "$.claims[227]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0229",
+    "silver_path": "$.claims[228]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[1].sequence"
+  },
+  {
+    "id": "R8-0230",
+    "silver_path": "$.claims[229]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[1].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0231",
+    "silver_path": "$.claims[230]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0232",
+    "silver_path": "$.claims[231]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[2].sequence"
+  },
+  {
+    "id": "R8-0233",
+    "silver_path": "$.claims[232]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[7].severity_levels[2].contraindicated_combos[0]"
+  },
+  {
+    "id": "R8-0234",
+    "silver_path": "$.claims[233]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.common_combos[5]"
+  },
+  {
+    "id": "R8-0235",
+    "silver_path": "$.claims[234]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.common_combos[5]"
+  },
+  {
+    "id": "R8-0236",
+    "silver_path": "$.claims[235]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.common_combos[6]"
+  },
+  {
+    "id": "R8-0237",
+    "silver_path": "$.claims[236]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.common_combos[6]"
+  },
+  {
+    "id": "R8-0238",
+    "silver_path": "$.claims[237]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.common_combos[7]"
+  },
+  {
+    "id": "R8-0239",
+    "silver_path": "$.claims[238]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[1].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0240",
+    "silver_path": "$.claims[239]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[2].packages[1].riskBenefit"
+  },
+  {
+    "id": "R8-0241",
+    "silver_path": "$.claims[240]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[2].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0242",
+    "silver_path": "$.claims[241]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[2].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0243",
+    "silver_path": "$.claims[242]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[2].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0244",
+    "silver_path": "$.claims[243]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[2].packages[3].riskBenefit"
+  },
+  {
+    "id": "R8-0245",
+    "silver_path": "$.claims[244]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[3].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0246",
+    "silver_path": "$.claims[245]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[3].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0247",
+    "silver_path": "$.claims[246]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[3].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0248",
+    "silver_path": "$.claims[247]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[4].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0249",
+    "silver_path": "$.claims[248]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[4].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0250",
+    "silver_path": "$.claims[249]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[4].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0251",
+    "silver_path": "$.claims[250]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[5].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0252",
+    "silver_path": "$.claims[251]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[5].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0253",
+    "silver_path": "$.claims[252]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[5].packages[2].riskBenefit"
+  },
+  {
+    "id": "R8-0254",
+    "silver_path": "$.claims[253]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[7].packages[1].riskBenefit"
+  },
+  {
+    "id": "R8-0255",
+    "silver_path": "$.claims[254]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-combos.json",
+    "source_path": "$.combos[7].packages[1].riskBenefit"
+  },
+  {
+    "id": "R8-0256",
+    "silver_path": "$.claims[255]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0257",
+    "silver_path": "$.claims[256]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0258",
+    "silver_path": "$.claims[257]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[1].alternatives[0]"
+  },
+  {
+    "id": "R8-0259",
+    "silver_path": "$.claims[258]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0260",
+    "silver_path": "$.claims[259]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0261",
+    "silver_path": "$.claims[260]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0262",
+    "silver_path": "$.claims[261]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0263",
+    "silver_path": "$.claims[262]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0264",
+    "silver_path": "$.claims[263]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[6].alternatives[0]"
+  },
+  {
+    "id": "R8-0265",
+    "silver_path": "$.claims[264]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[7].combos[0]"
+  },
+  {
+    "id": "R8-0266",
+    "silver_path": "$.claims[265]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[8].combos[0]"
+  },
+  {
+    "id": "R8-0267",
+    "silver_path": "$.claims[266]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[9].combos[0]"
+  },
+  {
+    "id": "R8-0268",
+    "silver_path": "$.claims[267]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[10].combos[0]"
+  },
+  {
+    "id": "R8-0269",
+    "silver_path": "$.claims[268]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[11].combos[0]"
+  },
+  {
+    "id": "R8-0270",
+    "silver_path": "$.claims[269]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[0].complaints[12].combos[0]"
+  },
+  {
+    "id": "R8-0271",
+    "silver_path": "$.claims[270]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0272",
+    "silver_path": "$.claims[271]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0273",
+    "silver_path": "$.claims[272]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0274",
+    "silver_path": "$.claims[273]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0275",
+    "silver_path": "$.claims[274]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0276",
+    "silver_path": "$.claims[275]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0277",
+    "silver_path": "$.claims[276]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0278",
+    "silver_path": "$.claims[277]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0279",
+    "silver_path": "$.claims[278]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[3].combos[2]"
+  },
+  {
+    "id": "R8-0280",
+    "silver_path": "$.claims[279]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0281",
+    "silver_path": "$.claims[280]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0282",
+    "silver_path": "$.claims[281]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0283",
+    "silver_path": "$.claims[282]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[5].combos[1]"
+  },
+  {
+    "id": "R8-0284",
+    "silver_path": "$.claims[283]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0285",
+    "silver_path": "$.claims[284]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[1].complaints[6].combos[1]"
+  },
+  {
+    "id": "R8-0286",
+    "silver_path": "$.claims[285]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0287",
+    "silver_path": "$.claims[286]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0288",
+    "silver_path": "$.claims[287]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0289",
+    "silver_path": "$.claims[288]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0290",
+    "silver_path": "$.claims[289]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0291",
+    "silver_path": "$.claims[290]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0292",
+    "silver_path": "$.claims[291]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[2].combos[2]"
+  },
+  {
+    "id": "R8-0293",
+    "silver_path": "$.claims[292]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0294",
+    "silver_path": "$.claims[293]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0295",
+    "silver_path": "$.claims[294]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0296",
+    "silver_path": "$.claims[295]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[2].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0297",
+    "silver_path": "$.claims[296]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0298",
+    "silver_path": "$.claims[297]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0299",
+    "silver_path": "$.claims[298]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0300",
+    "silver_path": "$.claims[299]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0301",
+    "silver_path": "$.claims[300]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0302",
+    "silver_path": "$.claims[301]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0303",
+    "silver_path": "$.claims[302]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[3].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0304",
+    "silver_path": "$.claims[303]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0305",
+    "silver_path": "$.claims[304]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0306",
+    "silver_path": "$.claims[305]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0307",
+    "silver_path": "$.claims[306]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0308",
+    "silver_path": "$.claims[307]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0309",
+    "silver_path": "$.claims[308]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0310",
+    "silver_path": "$.claims[309]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0311",
+    "silver_path": "$.claims[310]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[6].combos[1]"
+  },
+  {
+    "id": "R8-0312",
+    "silver_path": "$.claims[311]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[7].combos[0]"
+  },
+  {
+    "id": "R8-0313",
+    "silver_path": "$.claims[312]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[4].complaints[7].combos[1]"
+  },
+  {
+    "id": "R8-0314",
+    "silver_path": "$.claims[313]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0315",
+    "silver_path": "$.claims[314]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0316",
+    "silver_path": "$.claims[315]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0317",
+    "silver_path": "$.claims[316]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0318",
+    "silver_path": "$.claims[317]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0319",
+    "silver_path": "$.claims[318]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0320",
+    "silver_path": "$.claims[319]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0321",
+    "silver_path": "$.claims[320]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0322",
+    "silver_path": "$.claims[321]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[5].complaints[7].combos[0]"
+  },
+  {
+    "id": "R8-0323",
+    "silver_path": "$.claims[322]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0324",
+    "silver_path": "$.claims[323]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0325",
+    "silver_path": "$.claims[324]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0326",
+    "silver_path": "$.claims[325]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0327",
+    "silver_path": "$.claims[326]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0328",
+    "silver_path": "$.claims[327]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0329",
+    "silver_path": "$.claims[328]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0330",
+    "silver_path": "$.claims[329]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0331",
+    "silver_path": "$.claims[330]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[6].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0332",
+    "silver_path": "$.claims[331]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[7].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0333",
+    "silver_path": "$.claims[332]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[7].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0334",
+    "silver_path": "$.claims[333]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[7].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0335",
+    "silver_path": "$.claims[334]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[7].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0336",
+    "silver_path": "$.claims[335]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[7].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0337",
+    "silver_path": "$.claims[336]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0338",
+    "silver_path": "$.claims[337]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0339",
+    "silver_path": "$.claims[338]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0340",
+    "silver_path": "$.claims[339]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0341",
+    "silver_path": "$.claims[340]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0342",
+    "silver_path": "$.claims[341]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0343",
+    "silver_path": "$.claims[342]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0344",
+    "silver_path": "$.claims[343]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0345",
+    "silver_path": "$.claims[344]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0346",
+    "silver_path": "$.claims[345]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0347",
+    "silver_path": "$.claims[346]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0348",
+    "silver_path": "$.claims[347]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[2].combos[1]"
+  },
+  {
+    "id": "R8-0349",
+    "silver_path": "$.claims[348]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0350",
+    "silver_path": "$.claims[349]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0351",
+    "silver_path": "$.claims[350]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0352",
+    "silver_path": "$.claims[351]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[3].combos[1]"
+  },
+  {
+    "id": "R8-0353",
+    "silver_path": "$.claims[352]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[4].combos[0]",
+    "legacy_locator_candidates": [
+      "$.problems[8].complaints[4].combos[0]",
+      "$.problems[8].complaints[11].combos[0]"
+    ],
+    "audit_content_match_not_canonical_identity": true
+  },
+  {
+    "id": "R8-0354",
+    "silver_path": "$.claims[353]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0355",
+    "silver_path": "$.claims[354]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0356",
+    "silver_path": "$.claims[355]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[4].combos[1]"
+  },
+  {
+    "id": "R8-0357",
+    "silver_path": "$.claims[356]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0358",
+    "silver_path": "$.claims[357]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[5].combos[1]"
+  },
+  {
+    "id": "R8-0359",
+    "silver_path": "$.claims[358]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[5].combos[2]"
+  },
+  {
+    "id": "R8-0360",
+    "silver_path": "$.claims[359]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[5].combos[2]"
+  },
+  {
+    "id": "R8-0361",
+    "silver_path": "$.claims[360]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[5].combos[2]"
+  },
+  {
+    "id": "R8-0362",
+    "silver_path": "$.claims[361]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0363",
+    "silver_path": "$.claims[362]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[7].combos[0]"
+  },
+  {
+    "id": "R8-0364",
+    "silver_path": "$.claims[363]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[8].combos[0]",
+    "legacy_locator_candidates": [
+      "$.problems[8].complaints[8].combos[0]",
+      "$.problems[8].complaints[10].combos[0]"
+    ],
+    "audit_content_match_not_canonical_identity": true
+  },
+  {
+    "id": "R8-0365",
+    "silver_path": "$.claims[364]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[9].combos[0]"
+  },
+  {
+    "id": "R8-0366",
+    "silver_path": "$.claims[365]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[8].combos[0]",
+    "legacy_locator_candidates": [
+      "$.problems[8].complaints[8].combos[0]",
+      "$.problems[8].complaints[10].combos[0]"
+    ],
+    "audit_content_match_not_canonical_identity": true
+  },
+  {
+    "id": "R8-0367",
+    "silver_path": "$.claims[366]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[8].complaints[11].combos[0]",
+    "legacy_locator_candidates": [
+      "$.problems[8].complaints[4].combos[0]",
+      "$.problems[8].complaints[11].combos[0]"
+    ],
+    "audit_content_match_not_canonical_identity": true
+  },
+  {
+    "id": "R8-0368",
+    "silver_path": "$.claims[367]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[9].complaints[1].combos[1]"
+  },
+  {
+    "id": "R8-0369",
+    "silver_path": "$.claims[368]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0370",
+    "silver_path": "$.claims[369]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[0].combos[1]"
+  },
+  {
+    "id": "R8-0371",
+    "silver_path": "$.claims[370]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0372",
+    "silver_path": "$.claims[371]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0373",
+    "silver_path": "$.claims[372]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0374",
+    "silver_path": "$.claims[373]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0375",
+    "silver_path": "$.claims[374]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[10].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0376",
+    "silver_path": "$.claims[375]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0377",
+    "silver_path": "$.claims[376]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0378",
+    "silver_path": "$.claims[377]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0379",
+    "silver_path": "$.claims[378]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0380",
+    "silver_path": "$.claims[379]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0381",
+    "silver_path": "$.claims[380]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0382",
+    "silver_path": "$.claims[381]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0383",
+    "silver_path": "$.claims[382]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[11].complaints[10].combos[0]"
+  },
+  {
+    "id": "R8-0384",
+    "silver_path": "$.claims[383]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[0].combos[0]"
+  },
+  {
+    "id": "R8-0385",
+    "silver_path": "$.claims[384]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[1].combos[0]"
+  },
+  {
+    "id": "R8-0386",
+    "silver_path": "$.claims[385]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[2].combos[0]"
+  },
+  {
+    "id": "R8-0387",
+    "silver_path": "$.claims[386]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[3].combos[0]"
+  },
+  {
+    "id": "R8-0388",
+    "silver_path": "$.claims[387]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[4].combos[0]"
+  },
+  {
+    "id": "R8-0389",
+    "silver_path": "$.claims[388]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[5].combos[0]"
+  },
+  {
+    "id": "R8-0390",
+    "silver_path": "$.claims[389]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[6].combos[0]"
+  },
+  {
+    "id": "R8-0391",
+    "silver_path": "$.claims[390]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[7].combos[0]"
+  },
+  {
+    "id": "R8-0392",
+    "silver_path": "$.claims[391]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[8].combos[0]"
+  },
+  {
+    "id": "R8-0393",
+    "silver_path": "$.claims[392]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[9].combos[0]"
+  },
+  {
+    "id": "R8-0394",
+    "silver_path": "$.claims[393]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "source_path": "$.problems[12].complaints[10].combos[0]"
+  },
+  {
+    "id": "R8-0395",
+    "silver_path": "$.claims[394]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].products[2].extracted.safety.contraindications[0]"
+  },
+  {
+    "id": "K8-0001",
+    "silver_path": "$.conditions.claims[0]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[1].contraindicated_combos[0]"
+  },
+  {
+    "id": "K8-0002",
+    "silver_path": "$.conditions.claims[1]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[5].severity_levels[2].contraindicated_combos[1]"
+  },
+  {
+    "id": "K8-0003",
+    "silver_path": "$.conditions.claims[2]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_concern[6].severity_levels[2].contraindicated_combos[1]"
+  },
+  {
+    "id": "K8-0004",
+    "silver_path": "$.conditions.claims[3]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[0]"
+  },
+  {
+    "id": "K8-0005",
+    "silver_path": "$.conditions.claims[4]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[1]"
+  },
+  {
+    "id": "K8-0006",
+    "silver_path": "$.conditions.claims[5]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[2]"
+  },
+  {
+    "id": "K8-0007",
+    "silver_path": "$.conditions.claims[6]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[3]"
+  },
+  {
+    "id": "K8-0009",
+    "silver_path": "$.conditions.claims[7]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[5]"
+  },
+  {
+    "id": "K8-0010",
+    "silver_path": "$.conditions.claims[8]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[6]"
+  },
+  {
+    "id": "K8-0011",
+    "silver_path": "$.conditions.claims[9]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[7]"
+  },
+  {
+    "id": "K8-0012",
+    "silver_path": "$.conditions.claims[10]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[8]"
+  },
+  {
+    "id": "K8-0013",
+    "silver_path": "$.conditions.claims[11]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[9]"
+  },
+  {
+    "id": "K8-0014",
+    "silver_path": "$.conditions.claims[12]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[10]"
+  },
+  {
+    "id": "K8-0015",
+    "silver_path": "$.conditions.claims[13]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[11]"
+  },
+  {
+    "id": "K8-0016",
+    "silver_path": "$.conditions.claims[14]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[0]"
+  },
+  {
+    "id": "K8-0017",
+    "silver_path": "$.conditions.claims[15]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[1]"
+  },
+  {
+    "id": "K8-0018",
+    "silver_path": "$.conditions.claims[16]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[2]"
+  },
+  {
+    "id": "K8-0019",
+    "silver_path": "$.conditions.claims[17]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[3]"
+  },
+  {
+    "id": "K8-0020",
+    "silver_path": "$.conditions.claims[18]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[4]"
+  },
+  {
+    "id": "K8-0021",
+    "silver_path": "$.conditions.claims[19]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[5]"
+  },
+  {
+    "id": "K8-0022",
+    "silver_path": "$.conditions.claims[20]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[0].checks[6]"
+  },
+  {
+    "id": "K8-0023",
+    "silver_path": "$.conditions.claims[21]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[0]"
+  },
+  {
+    "id": "K8-0024",
+    "silver_path": "$.conditions.claims[22]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[1]"
+  },
+  {
+    "id": "K8-0025",
+    "silver_path": "$.conditions.claims[23]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[2]"
+  },
+  {
+    "id": "K8-0026",
+    "silver_path": "$.conditions.claims[24]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[3]"
+  },
+  {
+    "id": "K8-0030",
+    "silver_path": "$.conditions.claims[25]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[7]"
+  },
+  {
+    "id": "K8-0031",
+    "silver_path": "$.conditions.claims[26]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[8]"
+  },
+  {
+    "id": "K8-0032",
+    "silver_path": "$.conditions.claims[27]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[9]"
+  },
+  {
+    "id": "K8-0033",
+    "silver_path": "$.conditions.claims[28]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[0]"
+  },
+  {
+    "id": "K8-0034",
+    "silver_path": "$.conditions.claims[29]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[1]"
+  },
+  {
+    "id": "K8-0035",
+    "silver_path": "$.conditions.claims[30]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[2]"
+  },
+  {
+    "id": "K8-0038",
+    "silver_path": "$.conditions.claims[31]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[5]"
+  },
+  {
+    "id": "K8-0039",
+    "silver_path": "$.conditions.claims[32]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[3].checks[0]"
+  },
+  {
+    "id": "K8-0040",
+    "silver_path": "$.conditions.claims[33]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[3].checks[1]"
+  },
+  {
+    "id": "K8-0041",
+    "silver_path": "$.conditions.claims[34]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[3].checks[2]"
+  },
+  {
+    "id": "K8-0042",
+    "silver_path": "$.conditions.claims[35]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[3].checks[3]"
+  },
+  {
+    "id": "K8-0044",
+    "silver_path": "$.conditions.claims[36]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[0]"
+  },
+  {
+    "id": "K8-0045",
+    "silver_path": "$.conditions.claims[37]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[1]"
+  },
+  {
+    "id": "K8-0046",
+    "silver_path": "$.conditions.claims[38]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[2]"
+  },
+  {
+    "id": "K8-0047",
+    "silver_path": "$.conditions.claims[39]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[3]"
+  },
+  {
+    "id": "K8-0048",
+    "silver_path": "$.conditions.claims[40]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[4]"
+  },
+  {
+    "id": "K8-0050",
+    "silver_path": "$.conditions.claims[41]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[0]"
+  },
+  {
+    "id": "K8-0051",
+    "silver_path": "$.conditions.claims[42]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[1]"
+  },
+  {
+    "id": "K8-0052",
+    "silver_path": "$.conditions.claims[43]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[2]"
+  },
+  {
+    "id": "K8-0057",
+    "silver_path": "$.conditions.claims[44]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[0]"
+  },
+  {
+    "id": "K8-0058",
+    "silver_path": "$.conditions.claims[45]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[1]"
+  },
+  {
+    "id": "K8-0059",
+    "silver_path": "$.conditions.claims[46]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[2]"
+  },
+  {
+    "id": "K8-0060",
+    "silver_path": "$.conditions.claims[47]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[3]"
+  },
+  {
+    "id": "K8-0064",
+    "silver_path": "$.conditions.claims[48]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[0]"
+  },
+  {
+    "id": "K8-0065",
+    "silver_path": "$.conditions.claims[49]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[1]"
+  },
+  {
+    "id": "K8-0066",
+    "silver_path": "$.conditions.claims[50]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[2]"
+  },
+  {
+    "id": "K8-0067",
+    "silver_path": "$.conditions.claims[51]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[3]"
+  },
+  {
+    "id": "K8-0068",
+    "silver_path": "$.conditions.claims[52]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[4]"
+  },
+  {
+    "id": "K8-0069",
+    "silver_path": "$.conditions.claims[53]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[5]"
+  },
+  {
+    "id": "K8-0070",
+    "silver_path": "$.conditions.claims[54]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[6]"
+  },
+  {
+    "id": "K8-0071",
+    "silver_path": "$.conditions.claims[55]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[7]"
+  },
+  {
+    "id": "K8-0072",
+    "silver_path": "$.conditions.claims[56]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[8]"
+  },
+  {
+    "id": "K8-0075",
+    "silver_path": "$.conditions.claims[57]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[0]"
+  },
+  {
+    "id": "K8-0076",
+    "silver_path": "$.conditions.claims[58]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[1]"
+  },
+  {
+    "id": "K8-0077",
+    "silver_path": "$.conditions.claims[59]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[2]"
+  },
+  {
+    "id": "K8-0078",
+    "silver_path": "$.conditions.claims[60]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[3]"
+  },
+  {
+    "id": "K8-0080",
+    "silver_path": "$.conditions.claims[61]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[5]"
+  },
+  {
+    "id": "K8-0081",
+    "silver_path": "$.conditions.claims[62]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[0]"
+  },
+  {
+    "id": "K8-0082",
+    "silver_path": "$.conditions.claims[63]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[1]"
+  },
+  {
+    "id": "K8-0083",
+    "silver_path": "$.conditions.claims[64]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[2]"
+  },
+  {
+    "id": "K8-0084",
+    "silver_path": "$.conditions.claims[65]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[3]"
+  },
+  {
+    "id": "K8-0087",
+    "silver_path": "$.conditions.claims[66]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[0]"
+  },
+  {
+    "id": "K8-0088",
+    "silver_path": "$.conditions.claims[67]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[1]"
+  },
+  {
+    "id": "K8-0089",
+    "silver_path": "$.conditions.claims[68]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[2]"
+  },
+  {
+    "id": "K8-0090",
+    "silver_path": "$.conditions.claims[69]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[3]"
+  },
+  {
+    "id": "K8-0091",
+    "silver_path": "$.conditions.claims[70]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[4]"
+  },
+  {
+    "id": "K8-0094",
+    "silver_path": "$.conditions.claims[71]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[0]"
+  },
+  {
+    "id": "K8-0095",
+    "silver_path": "$.conditions.claims[72]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[1]"
+  },
+  {
+    "id": "K8-0096",
+    "silver_path": "$.conditions.claims[73]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[2]"
+  },
+  {
+    "id": "K8-0097",
+    "silver_path": "$.conditions.claims[74]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[3]"
+  },
+  {
+    "id": "K8-0098",
+    "silver_path": "$.conditions.claims[75]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[4]"
+  },
+  {
+    "id": "K8-0101",
+    "silver_path": "$.conditions.claims[76]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[0]"
+  },
+  {
+    "id": "K8-0102",
+    "silver_path": "$.conditions.claims[77]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[1]"
+  },
+  {
+    "id": "K8-0103",
+    "silver_path": "$.conditions.claims[78]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[2]"
+  },
+  {
+    "id": "K8-0104",
+    "silver_path": "$.conditions.claims[79]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[3]"
+  },
+  {
+    "id": "K8-0105",
+    "silver_path": "$.conditions.claims[80]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[4]"
+  },
+  {
+    "id": "K8-0107",
+    "silver_path": "$.conditions.claims[81]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[0]"
+  },
+  {
+    "id": "K8-0108",
+    "silver_path": "$.conditions.claims[82]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[1]"
+  },
+  {
+    "id": "K8-0109",
+    "silver_path": "$.conditions.claims[83]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[2]"
+  },
+  {
+    "id": "K8-0110",
+    "silver_path": "$.conditions.claims[84]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[3]"
+  },
+  {
+    "id": "K8-0111",
+    "silver_path": "$.conditions.claims[85]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[4]"
+  },
+  {
+    "id": "K8-0115",
+    "silver_path": "$.conditions.claims[86]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[0]"
+  },
+  {
+    "id": "K8-0116",
+    "silver_path": "$.conditions.claims[87]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[1]"
+  },
+  {
+    "id": "K8-0117",
+    "silver_path": "$.conditions.claims[88]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[2]"
+  },
+  {
+    "id": "K8-0118",
+    "silver_path": "$.conditions.claims[89]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[3]"
+  },
+  {
+    "id": "K8-0119",
+    "silver_path": "$.conditions.claims[90]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[4]"
+  },
+  {
+    "id": "K8-0120",
+    "silver_path": "$.conditions.claims[91]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[5]"
+  },
+  {
+    "id": "K8-0121",
+    "silver_path": "$.conditions.claims[92]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[6]"
+  },
+  {
+    "id": "K8-0122",
+    "silver_path": "$.conditions.claims[93]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[7]"
+  },
+  {
+    "id": "K8-0124",
+    "silver_path": "$.conditions.claims[94]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[0]"
+  },
+  {
+    "id": "K8-0125",
+    "silver_path": "$.conditions.claims[95]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[1]"
+  },
+  {
+    "id": "K8-0126",
+    "silver_path": "$.conditions.claims[96]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[2]"
+  },
+  {
+    "id": "K8-0127",
+    "silver_path": "$.conditions.claims[97]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[3]"
+  },
+  {
+    "id": "K8-0128",
+    "silver_path": "$.conditions.claims[98]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[4]"
+  },
+  {
+    "id": "K8-0129",
+    "silver_path": "$.conditions.claims[99]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[5]"
+  },
+  {
+    "id": "K8-0131",
+    "silver_path": "$.conditions.claims[100]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[0]"
+  },
+  {
+    "id": "K8-0132",
+    "silver_path": "$.conditions.claims[101]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[1]"
+  },
+  {
+    "id": "K8-0133",
+    "silver_path": "$.conditions.claims[102]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[2]"
+  },
+  {
+    "id": "K8-0134",
+    "silver_path": "$.conditions.claims[103]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[3]"
+  },
+  {
+    "id": "K8-0138",
+    "silver_path": "$.conditions.claims[104]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[7]"
+  },
+  {
+    "id": "K8-0139",
+    "silver_path": "$.conditions.claims[105]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[0]"
+  },
+  {
+    "id": "K8-0140",
+    "silver_path": "$.conditions.claims[106]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[1]"
+  },
+  {
+    "id": "K8-0141",
+    "silver_path": "$.conditions.claims[107]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[2]"
+  },
+  {
+    "id": "K8-0142",
+    "silver_path": "$.conditions.claims[108]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[3]"
+  },
+  {
+    "id": "K8-0143",
+    "silver_path": "$.conditions.claims[109]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[4]"
+  },
+  {
+    "id": "K8-0144",
+    "silver_path": "$.conditions.claims[110]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[0].contraindications[5]"
+  },
+  {
+    "id": "K8-0145",
+    "silver_path": "$.conditions.claims[111]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[0]"
+  },
+  {
+    "id": "K8-0146",
+    "silver_path": "$.conditions.claims[112]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[1]"
+  },
+  {
+    "id": "K8-0147",
+    "silver_path": "$.conditions.claims[113]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[2]"
+  },
+  {
+    "id": "K8-0148",
+    "silver_path": "$.conditions.claims[114]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[3]"
+  },
+  {
+    "id": "K8-0149",
+    "silver_path": "$.conditions.claims[115]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[4]"
+  },
+  {
+    "id": "K8-0150",
+    "silver_path": "$.conditions.claims[116]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[1].contraindications[5]"
+  },
+  {
+    "id": "K8-0151",
+    "silver_path": "$.conditions.claims[117]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[0]"
+  },
+  {
+    "id": "K8-0152",
+    "silver_path": "$.conditions.claims[118]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[1]"
+  },
+  {
+    "id": "K8-0153",
+    "silver_path": "$.conditions.claims[119]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[2]"
+  },
+  {
+    "id": "K8-0154",
+    "silver_path": "$.conditions.claims[120]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[3]"
+  },
+  {
+    "id": "K8-0155",
+    "silver_path": "$.conditions.claims[121]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[4]"
+  },
+  {
+    "id": "K8-0157",
+    "silver_path": "$.conditions.claims[122]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[3].contraindications[0]"
+  },
+  {
+    "id": "K8-0158",
+    "silver_path": "$.conditions.claims[123]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[3].contraindications[1]"
+  },
+  {
+    "id": "K8-0159",
+    "silver_path": "$.conditions.claims[124]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[3].contraindications[2]"
+  },
+  {
+    "id": "K8-0160",
+    "silver_path": "$.conditions.claims[125]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[3].contraindications[3]"
+  },
+  {
+    "id": "K8-0161",
+    "silver_path": "$.conditions.claims[126]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[3].contraindications[4]"
+  },
+  {
+    "id": "K8-0162",
+    "silver_path": "$.conditions.claims[127]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[0]"
+  },
+  {
+    "id": "K8-0163",
+    "silver_path": "$.conditions.claims[128]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[1]"
+  },
+  {
+    "id": "K8-0164",
+    "silver_path": "$.conditions.claims[129]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[2]"
+  },
+  {
+    "id": "K8-0165",
+    "silver_path": "$.conditions.claims[130]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[3]"
+  },
+  {
+    "id": "K8-0166",
+    "silver_path": "$.conditions.claims[131]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[4]"
+  },
+  {
+    "id": "K8-0167",
+    "silver_path": "$.conditions.claims[132]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[4].contraindications[5]"
+  },
+  {
+    "id": "K8-0168",
+    "silver_path": "$.conditions.claims[133]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[0]"
+  },
+  {
+    "id": "K8-0169",
+    "silver_path": "$.conditions.claims[134]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[1]"
+  },
+  {
+    "id": "K8-0170",
+    "silver_path": "$.conditions.claims[135]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[2]"
+  },
+  {
+    "id": "K8-0171",
+    "silver_path": "$.conditions.claims[136]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[3]"
+  },
+  {
+    "id": "K8-0172",
+    "silver_path": "$.conditions.claims[137]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[4]"
+  },
+  {
+    "id": "K8-0173",
+    "silver_path": "$.conditions.claims[138]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[5].contraindications[5]"
+  },
+  {
+    "id": "K8-0174",
+    "silver_path": "$.conditions.claims[139]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[0]"
+  },
+  {
+    "id": "K8-0175",
+    "silver_path": "$.conditions.claims[140]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[1]"
+  },
+  {
+    "id": "K8-0176",
+    "silver_path": "$.conditions.claims[141]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[2]"
+  },
+  {
+    "id": "K8-0177",
+    "silver_path": "$.conditions.claims[142]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[3]"
+  },
+  {
+    "id": "K8-0178",
+    "silver_path": "$.conditions.claims[143]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[4]"
+  },
+  {
+    "id": "K8-0179",
+    "silver_path": "$.conditions.claims[144]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[6].contraindications[5]"
+  },
+  {
+    "id": "K8-0180",
+    "silver_path": "$.conditions.claims[145]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[0]"
+  },
+  {
+    "id": "K8-0181",
+    "silver_path": "$.conditions.claims[146]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[1]"
+  },
+  {
+    "id": "K8-0182",
+    "silver_path": "$.conditions.claims[147]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[2]"
+  },
+  {
+    "id": "K8-0183",
+    "silver_path": "$.conditions.claims[148]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[3]"
+  },
+  {
+    "id": "K8-0184",
+    "silver_path": "$.conditions.claims[149]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[4]"
+  },
+  {
+    "id": "K8-0185",
+    "silver_path": "$.conditions.claims[150]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[5]"
+  },
+  {
+    "id": "K8-0186",
+    "silver_path": "$.conditions.claims[151]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[6]"
+  },
+  {
+    "id": "K8-0187",
+    "silver_path": "$.conditions.claims[152]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[7].contraindications[7]"
+  },
+  {
+    "id": "K8-0188",
+    "silver_path": "$.conditions.claims[153]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[0]"
+  },
+  {
+    "id": "K8-0189",
+    "silver_path": "$.conditions.claims[154]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[1]"
+  },
+  {
+    "id": "K8-0190",
+    "silver_path": "$.conditions.claims[155]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[2]"
+  },
+  {
+    "id": "K8-0191",
+    "silver_path": "$.conditions.claims[156]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[3]"
+  },
+  {
+    "id": "K8-0192",
+    "silver_path": "$.conditions.claims[157]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[4]"
+  },
+  {
+    "id": "K8-0193",
+    "silver_path": "$.conditions.claims[158]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[5]"
+  },
+  {
+    "id": "K8-0194",
+    "silver_path": "$.conditions.claims[159]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[8].contraindications[6]"
+  },
+  {
+    "id": "K8-0195",
+    "silver_path": "$.conditions.claims[160]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[0]"
+  },
+  {
+    "id": "K8-0196",
+    "silver_path": "$.conditions.claims[161]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[1]"
+  },
+  {
+    "id": "K8-0197",
+    "silver_path": "$.conditions.claims[162]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[2]"
+  },
+  {
+    "id": "K8-0198",
+    "silver_path": "$.conditions.claims[163]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[3]"
+  },
+  {
+    "id": "K8-0199",
+    "silver_path": "$.conditions.claims[164]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[4]"
+  },
+  {
+    "id": "K8-0200",
+    "silver_path": "$.conditions.claims[165]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[5]"
+  },
+  {
+    "id": "K8-0201",
+    "silver_path": "$.conditions.claims[166]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[9].contraindications[6]"
+  },
+  {
+    "id": "K8-0202",
+    "silver_path": "$.conditions.claims[167]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[0]"
+  },
+  {
+    "id": "K8-0203",
+    "silver_path": "$.conditions.claims[168]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[1]"
+  },
+  {
+    "id": "K8-0204",
+    "silver_path": "$.conditions.claims[169]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[2]"
+  },
+  {
+    "id": "K8-0205",
+    "silver_path": "$.conditions.claims[170]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[3]"
+  },
+  {
+    "id": "K8-0206",
+    "silver_path": "$.conditions.claims[171]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[4]"
+  },
+  {
+    "id": "K8-0207",
+    "silver_path": "$.conditions.claims[172]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[5]"
+  },
+  {
+    "id": "K8-0208",
+    "silver_path": "$.conditions.claims[173]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[10].contraindications[6]"
+  },
+  {
+    "id": "K8-0209",
+    "silver_path": "$.conditions.claims[174]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[0]"
+  },
+  {
+    "id": "K8-0210",
+    "silver_path": "$.conditions.claims[175]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[1]"
+  },
+  {
+    "id": "K8-0211",
+    "silver_path": "$.conditions.claims[176]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[2]"
+  },
+  {
+    "id": "K8-0212",
+    "silver_path": "$.conditions.claims[177]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[3]"
+  },
+  {
+    "id": "K8-0213",
+    "silver_path": "$.conditions.claims[178]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[4]"
+  },
+  {
+    "id": "K8-0214",
+    "silver_path": "$.conditions.claims[179]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[11].contraindications[5]"
+  },
+  {
+    "id": "K8-0215",
+    "silver_path": "$.conditions.claims[180]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[12].contraindications[0]"
+  },
+  {
+    "id": "K8-0216",
+    "silver_path": "$.conditions.claims[181]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[12].contraindications[1]"
+  },
+  {
+    "id": "K8-0217",
+    "silver_path": "$.conditions.claims[182]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[12].contraindications[2]"
+  },
+  {
+    "id": "K8-0218",
+    "silver_path": "$.conditions.claims[183]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[12].contraindications[3]"
+  },
+  {
+    "id": "K8-0219",
+    "silver_path": "$.conditions.claims[184]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[12].contraindications[4]"
+  },
+  {
+    "id": "K8-0220",
+    "silver_path": "$.conditions.claims[185]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[0]"
+  },
+  {
+    "id": "K8-0221",
+    "silver_path": "$.conditions.claims[186]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[1]"
+  },
+  {
+    "id": "K8-0222",
+    "silver_path": "$.conditions.claims[187]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[2]"
+  },
+  {
+    "id": "K8-0223",
+    "silver_path": "$.conditions.claims[188]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[3]"
+  },
+  {
+    "id": "K8-0224",
+    "silver_path": "$.conditions.claims[189]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[4]"
+  },
+  {
+    "id": "K8-0225",
+    "silver_path": "$.conditions.claims[190]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[5]"
+  },
+  {
+    "id": "K8-0226",
+    "silver_path": "$.conditions.claims[191]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[13].contraindications[6]"
+  },
+  {
+    "id": "K8-0227",
+    "silver_path": "$.conditions.claims[192]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[0]"
+  },
+  {
+    "id": "K8-0228",
+    "silver_path": "$.conditions.claims[193]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[1]"
+  },
+  {
+    "id": "K8-0229",
+    "silver_path": "$.conditions.claims[194]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[2]"
+  },
+  {
+    "id": "K8-0230",
+    "silver_path": "$.conditions.claims[195]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[3]"
+  },
+  {
+    "id": "K8-0231",
+    "silver_path": "$.conditions.claims[196]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[4]"
+  },
+  {
+    "id": "K8-0232",
+    "silver_path": "$.conditions.claims[197]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[14].contraindications[5]"
+  },
+  {
+    "id": "K8-0233",
+    "silver_path": "$.conditions.claims[198]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[15].contraindications[0]"
+  },
+  {
+    "id": "K8-0234",
+    "silver_path": "$.conditions.claims[199]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[15].contraindications[1]"
+  },
+  {
+    "id": "K8-0235",
+    "silver_path": "$.conditions.claims[200]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[15].contraindications[2]"
+  },
+  {
+    "id": "K8-0236",
+    "silver_path": "$.conditions.claims[201]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[15].contraindications[3]"
+  },
+  {
+    "id": "K8-0237",
+    "silver_path": "$.conditions.claims[202]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[15].contraindications[4]"
+  },
+  {
+    "id": "K8-0238",
+    "silver_path": "$.conditions.claims[203]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[0]"
+  },
+  {
+    "id": "K8-0239",
+    "silver_path": "$.conditions.claims[204]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[1]"
+  },
+  {
+    "id": "K8-0240",
+    "silver_path": "$.conditions.claims[205]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[2]"
+  },
+  {
+    "id": "K8-0241",
+    "silver_path": "$.conditions.claims[206]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[3]"
+  },
+  {
+    "id": "K8-0242",
+    "silver_path": "$.conditions.claims[207]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[4]"
+  },
+  {
+    "id": "K8-0243",
+    "silver_path": "$.conditions.claims[208]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[16].contraindications[5]"
+  },
+  {
+    "id": "K8-0244",
+    "silver_path": "$.conditions.claims[209]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0245",
+    "silver_path": "$.conditions.claims[210]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0246",
+    "silver_path": "$.conditions.claims[211]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0247",
+    "silver_path": "$.conditions.claims[212]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.absolute[3]"
+  },
+  {
+    "id": "K8-0248",
+    "silver_path": "$.conditions.claims[213]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0249",
+    "silver_path": "$.conditions.claims[214]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0250",
+    "silver_path": "$.conditions.claims[215]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0251",
+    "silver_path": "$.conditions.claims[216]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0252",
+    "silver_path": "$.conditions.claims[217]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0253",
+    "silver_path": "$.conditions.claims[218]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.absolute[3]"
+  },
+  {
+    "id": "K8-0254",
+    "silver_path": "$.conditions.claims[219]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0255",
+    "silver_path": "$.conditions.claims[220]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0256",
+    "silver_path": "$.conditions.claims[221]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[1].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0257",
+    "silver_path": "$.conditions.claims[222]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0258",
+    "silver_path": "$.conditions.claims[223]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0259",
+    "silver_path": "$.conditions.claims[224]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0260",
+    "silver_path": "$.conditions.claims[225]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0261",
+    "silver_path": "$.conditions.claims[226]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0262",
+    "silver_path": "$.conditions.claims[227]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[2].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0263",
+    "silver_path": "$.conditions.claims[228]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0264",
+    "silver_path": "$.conditions.claims[229]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0265",
+    "silver_path": "$.conditions.claims[230]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0266",
+    "silver_path": "$.conditions.claims[231]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.absolute[3]"
+  },
+  {
+    "id": "K8-0267",
+    "silver_path": "$.conditions.claims[232]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0268",
+    "silver_path": "$.conditions.claims[233]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0269",
+    "silver_path": "$.conditions.claims[234]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[3].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0270",
+    "silver_path": "$.conditions.claims[235]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0271",
+    "silver_path": "$.conditions.claims[236]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0272",
+    "silver_path": "$.conditions.claims[237]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0273",
+    "silver_path": "$.conditions.claims[238]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0274",
+    "silver_path": "$.conditions.claims[239]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0276",
+    "silver_path": "$.conditions.claims[240]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[5].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0277",
+    "silver_path": "$.conditions.claims[241]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[5].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0278",
+    "silver_path": "$.conditions.claims[242]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[5].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0279",
+    "silver_path": "$.conditions.claims[243]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[5].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0280",
+    "silver_path": "$.conditions.claims[244]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[5].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0281",
+    "silver_path": "$.conditions.claims[245]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0282",
+    "silver_path": "$.conditions.claims[246]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0283",
+    "silver_path": "$.conditions.claims[247]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0284",
+    "silver_path": "$.conditions.claims[248]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0285",
+    "silver_path": "$.conditions.claims[249]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0286",
+    "silver_path": "$.conditions.claims[250]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0287",
+    "silver_path": "$.conditions.claims[251]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.relative[3]"
+  },
+  {
+    "id": "K8-0288",
+    "silver_path": "$.conditions.claims[252]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].extracted.contraindications.relative[4]"
+  },
+  {
+    "id": "K8-0289",
+    "silver_path": "$.conditions.claims[253]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0290",
+    "silver_path": "$.conditions.claims[254]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0291",
+    "silver_path": "$.conditions.claims[255]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0292",
+    "silver_path": "$.conditions.claims[256]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0293",
+    "silver_path": "$.conditions.claims[257]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0294",
+    "silver_path": "$.conditions.claims[258]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0295",
+    "silver_path": "$.conditions.claims[259]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[7].extracted.contraindications.relative[3]"
+  },
+  {
+    "id": "K8-0296",
+    "silver_path": "$.conditions.claims[260]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0297",
+    "silver_path": "$.conditions.claims[261]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0298",
+    "silver_path": "$.conditions.claims[262]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0299",
+    "silver_path": "$.conditions.claims[263]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.absolute[3]"
+  },
+  {
+    "id": "K8-0300",
+    "silver_path": "$.conditions.claims[264]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0301",
+    "silver_path": "$.conditions.claims[265]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0302",
+    "silver_path": "$.conditions.claims[266]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0304",
+    "silver_path": "$.conditions.claims[267]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0305",
+    "silver_path": "$.conditions.claims[268]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0306",
+    "silver_path": "$.conditions.claims[269]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0307",
+    "silver_path": "$.conditions.claims[270]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0308",
+    "silver_path": "$.conditions.claims[271]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0309",
+    "silver_path": "$.conditions.claims[272]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[9].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0310",
+    "silver_path": "$.conditions.claims[273]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0311",
+    "silver_path": "$.conditions.claims[274]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0312",
+    "silver_path": "$.conditions.claims[275]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0313",
+    "silver_path": "$.conditions.claims[276]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0314",
+    "silver_path": "$.conditions.claims[277]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0315",
+    "silver_path": "$.conditions.claims[278]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[10].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0316",
+    "silver_path": "$.conditions.claims[279]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0317",
+    "silver_path": "$.conditions.claims[280]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0318",
+    "silver_path": "$.conditions.claims[281]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0319",
+    "silver_path": "$.conditions.claims[282]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.absolute[3]"
+  },
+  {
+    "id": "K8-0320",
+    "silver_path": "$.conditions.claims[283]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0321",
+    "silver_path": "$.conditions.claims[284]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[11].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0322",
+    "silver_path": "$.conditions.claims[285]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[12].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0323",
+    "silver_path": "$.conditions.claims[286]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[12].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0324",
+    "silver_path": "$.conditions.claims[287]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[12].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0325",
+    "silver_path": "$.conditions.claims[288]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[12].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0326",
+    "silver_path": "$.conditions.claims[289]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0327",
+    "silver_path": "$.conditions.claims[290]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0328",
+    "silver_path": "$.conditions.claims[291]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0329",
+    "silver_path": "$.conditions.claims[292]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0330",
+    "silver_path": "$.conditions.claims[293]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0331",
+    "silver_path": "$.conditions.claims[294]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[13].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0332",
+    "silver_path": "$.conditions.claims[295]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0333",
+    "silver_path": "$.conditions.claims[296]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0334",
+    "silver_path": "$.conditions.claims[297]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0335",
+    "silver_path": "$.conditions.claims[298]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0336",
+    "silver_path": "$.conditions.claims[299]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0337",
+    "silver_path": "$.conditions.claims[300]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0338",
+    "silver_path": "$.conditions.claims[301]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[3]"
+  },
+  {
+    "id": "K8-0339",
+    "silver_path": "$.conditions.claims[302]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[4]"
+  },
+  {
+    "id": "K8-0340",
+    "silver_path": "$.conditions.claims[303]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[14].extracted.contraindications.relative[5]"
+  },
+  {
+    "id": "K8-0341",
+    "silver_path": "$.conditions.claims[304]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0342",
+    "silver_path": "$.conditions.claims[305]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0343",
+    "silver_path": "$.conditions.claims[306]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.absolute[2]"
+  },
+  {
+    "id": "K8-0344",
+    "silver_path": "$.conditions.claims[307]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0345",
+    "silver_path": "$.conditions.claims[308]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0346",
+    "silver_path": "$.conditions.claims[309]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[15].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0347",
+    "silver_path": "$.conditions.claims[310]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[16].extracted.contraindications.absolute[0]"
+  },
+  {
+    "id": "K8-0348",
+    "silver_path": "$.conditions.claims[311]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[16].extracted.contraindications.absolute[1]"
+  },
+  {
+    "id": "K8-0349",
+    "silver_path": "$.conditions.claims[312]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[16].extracted.contraindications.relative[0]"
+  },
+  {
+    "id": "K8-0350",
+    "silver_path": "$.conditions.claims[313]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[16].extracted.contraindications.relative[1]"
+  },
+  {
+    "id": "K8-0352",
+    "silver_path": "$.conditions.claims[314]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].subcategories[1].items[7].extracted.safety.contraindications[0]"
+  },
+  {
+    "id": "K8-0353",
+    "silver_path": "$.conditions.claims[315]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].subcategories[1].items[7].extracted.safety.contraindications[1]"
+  },
+  {
+    "id": "K8-0354",
+    "silver_path": "$.conditions.claims[316]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].subcategories[1].items[7].extracted.safety.contraindications[2]"
+  },
+  {
+    "id": "K8-0355",
+    "silver_path": "$.conditions.claims[317]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].subcategories[2].items[11].extracted.safety.contraindications[0]"
+  },
+  {
+    "id": "K8-0356",
+    "silver_path": "$.conditions.claims[318]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[0].subcategories[2].items[11].extracted.safety.contraindications[1]"
+  },
+  {
+    "id": "K8-0357",
+    "silver_path": "$.conditions.claims[319]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].subcategories[0].items[3].extracted.safety.contraindications[0]"
+  },
+  {
+    "id": "K8-0358",
+    "silver_path": "$.conditions.claims[320]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].subcategories[0].items[3].extracted.safety.contraindications[1]"
+  },
+  {
+    "id": "K8-0359",
+    "silver_path": "$.conditions.claims[321]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[6].subcategories[0].items[3].extracted.safety.contraindications[2]"
+  },
+  {
+    "id": "K8-0360",
+    "silver_path": "$.conditions.claims[322]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].subcategories[1].items[3].extracted.safety.contraindications[0]"
+  },
+  {
+    "id": "K8-0361",
+    "silver_path": "$.conditions.claims[323]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].subcategories[1].items[3].extracted.safety.contraindications[1]"
+  },
+  {
+    "id": "K8-0362",
+    "silver_path": "$.conditions.claims[324]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].subcategories[1].items[3].extracted.safety.contraindications[2]"
+  },
+  {
+    "id": "K8-0363",
+    "silver_path": "$.conditions.claims[325]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[3]"
+  },
+  {
+    "id": "K8-0364",
+    "silver_path": "$.conditions.claims[326]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[7]"
+  },
+  {
+    "id": "K8-0365",
+    "silver_path": "$.conditions.claims[327]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.incompatible_same_day[8]"
+  },
+  {
+    "id": "K8-0366",
+    "silver_path": "$.conditions.claims[328]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[2]"
+  },
+  {
+    "id": "K8-0367",
+    "silver_path": "$.conditions.claims[329]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-sequence.json",
+    "source_path": "$.minimum_intervals[3]"
+  },
+  {
+    "id": "K8-0368",
+    "silver_path": "$.conditions.claims[330]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[0].avoid[0]"
+  },
+  {
+    "id": "K8-0369",
+    "silver_path": "$.conditions.claims[331]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[0].avoid[1]"
+  },
+  {
+    "id": "K8-0370",
+    "silver_path": "$.conditions.claims[332]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[1].avoid[0]"
+  },
+  {
+    "id": "K8-0371",
+    "silver_path": "$.conditions.claims[333]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[2].avoid[0]"
+  },
+  {
+    "id": "K8-0372",
+    "silver_path": "$.conditions.claims[334]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[3].avoid[0]"
+  },
+  {
+    "id": "K8-0373",
+    "silver_path": "$.conditions.claims[335]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/treatment-optimization.json",
+    "source_path": "$.by_age_group[3].avoid[1]"
+  },
+  {
+    "id": "K8-0008",
+    "silver_path": "$.conditions.not_condition[0]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.universal_checks[4]"
+  },
+  {
+    "id": "K8-0027",
+    "silver_path": "$.conditions.not_condition[1]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[4]"
+  },
+  {
+    "id": "K8-0028",
+    "silver_path": "$.conditions.not_condition[2]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[5]"
+  },
+  {
+    "id": "K8-0029",
+    "silver_path": "$.conditions.not_condition[3]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[1].checks[6]"
+  },
+  {
+    "id": "K8-0036",
+    "silver_path": "$.conditions.not_condition[4]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[3]"
+  },
+  {
+    "id": "K8-0037",
+    "silver_path": "$.conditions.not_condition[5]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[2].checks[4]"
+  },
+  {
+    "id": "K8-0043",
+    "silver_path": "$.conditions.not_condition[6]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[3].checks[4]"
+  },
+  {
+    "id": "K8-0049",
+    "silver_path": "$.conditions.not_condition[7]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[4].checks[5]"
+  },
+  {
+    "id": "K8-0053",
+    "silver_path": "$.conditions.not_condition[8]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[3]"
+  },
+  {
+    "id": "K8-0054",
+    "silver_path": "$.conditions.not_condition[9]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[4]"
+  },
+  {
+    "id": "K8-0055",
+    "silver_path": "$.conditions.not_condition[10]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[5]"
+  },
+  {
+    "id": "K8-0056",
+    "silver_path": "$.conditions.not_condition[11]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[5].checks[6]"
+  },
+  {
+    "id": "K8-0061",
+    "silver_path": "$.conditions.not_condition[12]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[4]"
+  },
+  {
+    "id": "K8-0062",
+    "silver_path": "$.conditions.not_condition[13]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[5]"
+  },
+  {
+    "id": "K8-0063",
+    "silver_path": "$.conditions.not_condition[14]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[6].checks[6]"
+  },
+  {
+    "id": "K8-0073",
+    "silver_path": "$.conditions.not_condition[15]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[9]"
+  },
+  {
+    "id": "K8-0074",
+    "silver_path": "$.conditions.not_condition[16]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[7].checks[10]"
+  },
+  {
+    "id": "K8-0079",
+    "silver_path": "$.conditions.not_condition[17]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[8].checks[4]"
+  },
+  {
+    "id": "K8-0085",
+    "silver_path": "$.conditions.not_condition[18]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[4]"
+  },
+  {
+    "id": "K8-0086",
+    "silver_path": "$.conditions.not_condition[19]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[9].checks[5]"
+  },
+  {
+    "id": "K8-0092",
+    "silver_path": "$.conditions.not_condition[20]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[5]"
+  },
+  {
+    "id": "K8-0093",
+    "silver_path": "$.conditions.not_condition[21]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[10].checks[6]"
+  },
+  {
+    "id": "K8-0099",
+    "silver_path": "$.conditions.not_condition[22]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[5]"
+  },
+  {
+    "id": "K8-0100",
+    "silver_path": "$.conditions.not_condition[23]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[11].checks[6]"
+  },
+  {
+    "id": "K8-0106",
+    "silver_path": "$.conditions.not_condition[24]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[12].checks[5]"
+  },
+  {
+    "id": "K8-0112",
+    "silver_path": "$.conditions.not_condition[25]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[5]"
+  },
+  {
+    "id": "K8-0113",
+    "silver_path": "$.conditions.not_condition[26]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[6]"
+  },
+  {
+    "id": "K8-0114",
+    "silver_path": "$.conditions.not_condition[27]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[13].checks[7]"
+  },
+  {
+    "id": "K8-0123",
+    "silver_path": "$.conditions.not_condition[28]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[14].checks[8]"
+  },
+  {
+    "id": "K8-0130",
+    "silver_path": "$.conditions.not_condition[29]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[15].checks[6]"
+  },
+  {
+    "id": "K8-0135",
+    "silver_path": "$.conditions.not_condition[30]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[4]"
+  },
+  {
+    "id": "K8-0136",
+    "silver_path": "$.conditions.not_condition[31]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[5]"
+  },
+  {
+    "id": "K8-0137",
+    "silver_path": "$.conditions.not_condition[32]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+    "source_path": "$.category_specific[16].checks[6]"
+  },
+  {
+    "id": "K8-0156",
+    "silver_path": "$.conditions.not_condition[33]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/consent-checklist.json",
+    "source_path": "$.categories[2].contraindications[5]"
+  },
+  {
+    "id": "K8-0275",
+    "silver_path": "$.conditions.not_condition[34]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[4].extracted.contraindications.relative[2]"
+  },
+  {
+    "id": "K8-0303",
+    "silver_path": "$.conditions.not_condition[35]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[8].extracted.contraindications.relative[3]"
+  },
+  {
+    "id": "K8-0351",
+    "silver_path": "$.conditions.not_condition[36]",
+    "source_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+    "source_path": "$.modality[16].extracted.contraindications.relative[2]"
+  }
+]

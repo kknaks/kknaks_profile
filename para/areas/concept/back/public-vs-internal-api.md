@@ -25,6 +25,7 @@ up:
   - 2026-10-19-cc-nav-resv
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-28-overall-board
+  - 2026-11-16-ext-api-charty1
 tags:
   - 외부 연동
   - api
@@ -90,3 +91,4 @@ tags:
 - [[2026-11-06-kos-client-headers]] §2 · §3 — KOS 내부 API 가 비브라우저 UA 를 403 으로 막아 운영 연동이 하루 멈춤 → 운영 pod 에서 헤더 소거로 원인 확인 · 내부 요청에 UA · Origin · `kos-client-uri`(코드 #20 `77173cf`)
 - [[2026-11-11-day-procedure-board-2]] §2 — 시작 취소 · 집도의 변경 · 방 이동 · 차트 메모를 KOS 웹 HAR(경로 · 칸만) + 데모 실물로 확인 · 의사차트는 집도의를 골라야 쓰이고 고르면 수락 → 진행 중 · 완료 시술은 안 바뀜 → 시술 전 의사차트는 DAY 에만(`research-har-room-chart-report.md` · SPEC-002 KOS 쓰기 표)
 - [[2026-11-12-api-swagger-docs]] §2 · §7 — 공개 API 고객에 email 이 없어 이름+이메일 조회를 내부 `get-visitors` 이름 검색 → 우리 쪽 이메일 거르기로 · 한 페이지 1000 · 정확 일치 · 내부 조건이 바뀌면 외부 조회 · 예약 · 과거 시술 · 예약 내역이 502 로 멈추는 위험을 남김(`research-name-email-lookup.md` · DEC-010 D-15)
+- [[2026-11-16-ext-api-charty1]] §2 · §3 — 시술권 원천을 공개 → 내부로(공개는 사용 중 묶음을 빠뜨림) 바꾸자 내부 protobuf JSON 이 금액 0 의 `value` 를 빼서 lookup 502 · 같은 고객 공개 조회엔 `value` 있음 → 원천 차이로 확인 · 「값 없음 = 0」 · 거르기 먼저(DEC-012 D-46 · 커밋 `1c3a340`)

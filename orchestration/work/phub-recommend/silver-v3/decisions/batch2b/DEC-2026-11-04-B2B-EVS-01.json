@@ -1,0 +1,81 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "event-split/과민반응",
+  "label": "「과민반응」을 새 사건으로",
+  "note": "사용자 2026-11-05: 과민반응과 아나필락시스는 다른 사건",
+  "option": "split"
+ },
+ "id": "DEC-2026-11-04-B2B-EVS-01",
+ "kind": "event_split",
+ "new_value": {
+  "new_events": [
+   {
+    "canonical": "과민반응",
+    "category": "전신",
+    "synonyms": []
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 사건 사전 「아나필락시스」에서 「과민반응」을 따로 세운다(검토 2-C) · 사용자 메모: 사용자 2026-11-05: 과민반응과 아나필락시스는 다른 사건",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M16/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].caution[]@M2/9"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M3/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M3/23"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.serious[]@M3/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M4/25"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M4/27"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M15/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M15/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@M15/174"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M17/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@M17/12"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "event": "아나필락시스"
+ }
+}

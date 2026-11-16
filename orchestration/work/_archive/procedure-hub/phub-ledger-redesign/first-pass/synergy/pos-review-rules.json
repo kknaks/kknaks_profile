@@ -1,0 +1,212 @@
+{
+ "note": "수식·부정·수량·범위 신호를 담는 품사의 모든 토큰 출현을 (form,tag) 서명으로 판정한다. 같은 서명 안에서 판정이 다른 출현은 exceptions 에 pointer·span 으로 적는다. build.py 는 서명이 없는 출현이 하나라도 있으면 실패한다.",
+ "review_tags": [
+  "MAG",
+  "MAJ",
+  "MM",
+  "NR",
+  "NP",
+  "VCN",
+  "XPN",
+  "VX"
+ ],
+ "signatures": [
+  {
+   "form": "함께",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "/links/*/type 값 '함께' 50출현 전부. 관계 유형 라벨로 쓰인 부사. 품사는 맞으나 '함께'가 '같은 날 시행'을 뜻하는지 '보완'을 뜻하는지는 원문 라벨만으로 정할 수 없음(issues 후속)"
+  },
+  {
+   "form": "또는",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "timing 5출현. 대안(같은 날 / 2주 간격, 직후 / 1주 후) 접속 신호 보존"
+  },
+  {
+   "form": "먼저",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "선후 신호 보존"
+  },
+  {
+   "form": "모두",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "범위(양쪽 모두) 신호 보존"
+  },
+  {
+   "form": "다",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "'둘 다'의 '다'. 범위 신호 보존(#113 은 '둘'이 VV 로 오분석 — SR23)"
+  },
+  {
+   "form": "주로",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "가능성·한정 수식('주로 줄기세포 배양액 유래') 보존"
+  },
+  {
+   "form": "바로",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "시간·즉시성 수식 보존('바로 흡수시킴')"
+  },
+  {
+   "form": "깊이",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "깊이 수식 부사 4출현('피부 속 깊이', '깊이 전달', '피부 깊이 침투'). 무엇의 깊이인지는 문맥 연결 필요(전달·침투 대상). 수치 없음"
+  },
+  {
+   "form": "직접",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "방식 수식 보존"
+  },
+  {
+   "form": "실로",
+   "tag": "MAG",
+   "verdict": "issue",
+   "note": "SR15 와 같은 출현. 실(thread)+로 가 부사 '실로'로 오분석. 수식어 수집에서 오탐"
+  },
+  {
+   "form": "서로",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "비교 범위 보존('서로 다른')"
+  },
+  {
+   "form": "오래",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "지속 수식 6출현('효과 오래 유지' 등). 시간 기준 없음 — 수치로 바꾸지 않음"
+  },
+  {
+   "form": "점차",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "변화 속도 수식 보존('흉터를 점차 채움')"
+  },
+  {
+   "form": "더",
+   "tag": "MAG",
+   "verdict": "ok",
+   "note": "비교 수식 보존('가격이 더 합리적인')"
+  },
+  {
+   "form": "한",
+   "tag": "MM",
+   "verdict": "ok",
+   "note": "'한번에'의 '한'. 수 관형사. 수량이 아니라 '동시에 한꺼번에'의 관용 구성"
+  },
+  {
+   "form": "전",
+   "tag": "MM",
+   "verdict": "ok",
+   "note": "'전층'의 전(全) 관형사(#55)",
+   "exceptions": [
+    {
+     "pointer": "/links/14/reason",
+     "span": [
+      81,
+      82
+     ],
+     "verdict": "issue",
+     "note": "SR21 과 같은 출현. '전달'이 전/MM+달/NNG 로 오분절"
+    }
+   ]
+  },
+  {
+   "form": "주",
+   "tag": "MM",
+   "verdict": "ok",
+   "note": "'주 시술'(主) 관형사. 기간 단위 '주'와 다름"
+  },
+  {
+   "form": "다른",
+   "tag": "MM",
+   "verdict": "ok",
+   "note": "비교 신호 보존"
+  },
+  {
+   "form": "둘",
+   "tag": "NR",
+   "verdict": "ok",
+   "note": "'둘 다' 범위 표현의 수사. 수량이 아니라 두 link 끝점 모두를 가리킴"
+  },
+  {
+   "form": "열",
+   "tag": "NR",
+   "verdict": "issue",
+   "note": "SR12 와 같은 출현. 熱이 수사로 오분석"
+  },
+  {
+   "form": "아니",
+   "tag": "VCN",
+   "verdict": "ok",
+   "note": "부정 신호 보존 3출현('제제가 아닌', '택1이 아니라')"
+  },
+  {
+   "form": "하",
+   "tag": "VX",
+   "verdict": "ok",
+   "note": "사동 보조용언('쉬게 하다') 보존"
+  },
+  {
+   "form": "않",
+   "tag": "VX",
+   "verdict": "ok",
+   "note": "부정 보조용언 6출현 보존('사용하지 않음', '시행하지 않음', '입증되지 않았으며')"
+  },
+  {
+   "form": "주",
+   "tag": "VX",
+   "verdict": "ok",
+   "note": "보조용언 '주다'('조여줌')"
+  },
+  {
+   "form": "내",
+   "tag": "VX",
+   "verdict": "ok",
+   "note": "보조용언 '내다'('만들어내는')"
+  },
+  {
+   "form": "마",
+   "tag": "VX",
+   "verdict": "issue",
+   "note": "SR05 와 같은 출현. '써마지' 오분석에서 생긴 허위 '말다' 보조용언 — 부정 신호 오탐"
+  },
+  {
+   "form": "가",
+   "tag": "VX",
+   "verdict": "ok",
+   "note": "보조용언 '가다'('이어가면')"
+  },
+  {
+   "form": "미",
+   "tag": "XPN",
+   "verdict": "ok",
+   "note": "부정 접두 '미허가'의 '미' 4출현. 부정 신호 보존"
+  },
+  {
+   "form": "저",
+   "tag": "XPN",
+   "verdict": "ok",
+   "note": "'저출력' 접두. 정도 신호(낮은 출력) 보존"
+  },
+  {
+   "form": "고",
+   "tag": "XPN",
+   "verdict": "ok",
+   "note": "'고주파' 접두"
+  },
+  {
+   "form": "초",
+   "tag": "XPN",
+   "verdict": "ok",
+   "note": "'초음파' 접두"
+  }
+ ]
+}

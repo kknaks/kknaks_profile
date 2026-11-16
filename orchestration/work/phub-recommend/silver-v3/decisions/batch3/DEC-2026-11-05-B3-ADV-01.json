@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-05-B3-ADV-01",
+ "kind": "adverse_tuple_assign",
+ "target": {
+  "locator": "complications.json:categories[].complications[].name@M9/4",
+  "kind": "raw_name"
+ },
+ "new_value": {
+  "tuples": [
+   {
+    "event_id": "DIC-db962671c9",
+    "site_id": "DIC-f4bd839bbf",
+    "course_id": "DIC-ff4e6c4fd1",
+    "qualifier_id": "none"
+   }
+  ]
+ },
+ "reason": "「일시적 감각이상 (따끔거림·저림·감각둔화)」[M9] = (감각 이상, 시술 부위, 일시) 하나. 괄호 안 세부 증상은 별도 사건이 아니라 표현. 묶음 2B PAR-01(부위 none)을 대신한다.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M9/4"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「감각이상이 시술 부위 일시적으로 나오는 거 아니야? 감각이상에는 따끔거림·저림·둔화가 있는 거 아니고?」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

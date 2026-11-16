@@ -1,0 +1,61 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "mface-like/엠페이스",
+  "label": "같은 것 — 합친다(keep CAT-05d25fb165)",
+  "option": "fold"
+ },
+ "id": "DEC-2026-11-04-B2B-MFC-01",
+ "kind": "fold_approve",
+ "new_value": {
+  "keep_anchor": "CAT-05d25fb165"
+ },
+ "reason": "결정 묶음 2B — 「엠페이스」 두 분류 항목은 같은 시술",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@9/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@9/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].detail@9/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].detail@9/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@9/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@218"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@218/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@218/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "anchors": [
+   "CAT-05d25fb165",
+   "CAT-96a86bdbe8"
+  ]
+ }
+}

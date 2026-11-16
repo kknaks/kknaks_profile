@@ -1,0 +1,1241 @@
+{
+ "meta": {
+  "build_hash": "b031371c4c69cea1",
+  "facts": 14898,
+  "pairs": 6140,
+  "form": {
+   "n": 40,
+   "k": 12,
+   "owner_mode": "omit_self",
+   "contract": "rule"
+  },
+  "budget": 20000,
+  "max_steps": 4,
+  "v4_batch": "b202611011148-c6ed3a",
+  "no_data_pattern": "자료에 없|정보 없음|없다고|찾지 못",
+  "cut_share": 0.1388
+ },
+ "a_all_pairs": {
+  "old": {
+   "n": 6140,
+   "median": 6733.0,
+   "p95": 20863,
+   "max": 59277
+  },
+  "new": {
+   "n": 6140,
+   "median": 1902.0,
+   "p95": 2710,
+   "max": 3228
+  },
+  "peek_bytes_old_sum_text": {
+   "n": 6140,
+   "median": 692.0,
+   "p95": 3975,
+   "max": 16053
+  },
+  "ratio_old_over_peekbytes": {
+   "n": 6140,
+   "median": 10.0,
+   "p95": 165,
+   "max": 1201
+  },
+  "grid": {
+   "N40-K8-omit_self-rule": {
+    "n": 6140,
+    "median": 1438.5,
+    "p95": 2056,
+    "max": 2298
+   },
+   "N40-K8-omit_self-ids": {
+    "n": 6140,
+    "median": 1616.0,
+    "p95": 2495,
+    "max": 2884
+   },
+   "N40-K8-always-rule": {
+    "n": 6140,
+    "median": 1466.0,
+    "p95": 2075,
+    "max": 2298
+   },
+   "N40-K8-always-ids": {
+    "n": 6140,
+    "median": 1646.0,
+    "p95": 2508,
+    "max": 3244
+   },
+   "N40-K12-omit_self-rule": {
+    "n": 6140,
+    "median": 1902.0,
+    "p95": 2710,
+    "max": 3228
+   },
+   "N40-K12-omit_self-ids": {
+    "n": 6140,
+    "median": 2202.5,
+    "p95": 3579,
+    "max": 4267
+   },
+   "N40-K12-always-rule": {
+    "n": 6140,
+    "median": 1934.5,
+    "p95": 2753,
+    "max": 3255
+   },
+   "N40-K12-always-ids": {
+    "n": 6140,
+    "median": 2209.0,
+    "p95": 3634,
+    "max": 4807
+   },
+   "N60-K8-omit_self-rule": {
+    "n": 6140,
+    "median": 1475.0,
+    "p95": 2174,
+    "max": 2377
+   },
+   "N60-K8-omit_self-ids": {
+    "n": 6140,
+    "median": 1735.0,
+    "p95": 2651,
+    "max": 2968
+   },
+   "N60-K8-always-rule": {
+    "n": 6140,
+    "median": 1500.0,
+    "p95": 2190,
+    "max": 2377
+   },
+   "N60-K8-always-ids": {
+    "n": 6140,
+    "median": 1752.0,
+    "p95": 2704,
+    "max": 3244
+   },
+   "N60-K12-omit_self-rule": {
+    "n": 6140,
+    "median": 1930.0,
+    "p95": 2830,
+    "max": 3313
+   },
+   "N60-K12-omit_self-ids": {
+    "n": 6140,
+    "median": 2314.0,
+    "p95": 3691,
+    "max": 4267
+   },
+   "N60-K12-always-rule": {
+    "n": 6140,
+    "median": 1970.0,
+    "p95": 2847,
+    "max": 3313
+   },
+   "N60-K12-always-ids": {
+    "n": 6140,
+    "median": 2351.0,
+    "p95": 3710,
+    "max": 4807
+   },
+   "N80-K8-omit_self-rule": {
+    "n": 6140,
+    "median": 1497.5,
+    "p95": 2188,
+    "max": 2428
+   },
+   "N80-K8-omit_self-ids": {
+    "n": 6140,
+    "median": 1793.5,
+    "p95": 2839,
+    "max": 3162
+   },
+   "N80-K8-always-rule": {
+    "n": 6140,
+    "median": 1520.0,
+    "p95": 2201,
+    "max": 2428
+   },
+   "N80-K8-always-ids": {
+    "n": 6140,
+    "median": 1807.0,
+    "p95": 2853,
+    "max": 3244
+   },
+   "N80-K12-omit_self-rule": {
+    "n": 6140,
+    "median": 1940.0,
+    "p95": 2891,
+    "max": 3382
+   },
+   "N80-K12-omit_self-ids": {
+    "n": 6140,
+    "median": 2373.5,
+    "p95": 3770,
+    "max": 4286
+   },
+   "N80-K12-always-rule": {
+    "n": 6140,
+    "median": 1993.0,
+    "p95": 2925,
+    "max": 3382
+   },
+   "N80-K12-always-ids": {
+    "n": 6140,
+    "median": 2443.0,
+    "p95": 3811,
+    "max": 4807
+   }
+  },
+  "composition_old": {
+   "facts": 18640285,
+   "sections": 16584906,
+   "claude_contract": 10310353,
+   "request": 948290,
+   "build": 779780,
+   "node": 486250,
+   "sections_used": 84144,
+   "more": 58548,
+   "intent_used": 24560,
+   "must_show_flags": 12365,
+   "names": 12280
+  },
+  "composition_new": {
+   "facts": 8603780,
+   "node": 486250,
+   "request": 352710,
+   "claude_contract": 282525,
+   "build": 202620,
+   "more": 44539,
+   "intent_used": 24560
+  }
+ },
+ "b_v4_calls": {
+  "recorded": {
+   "n": 476,
+   "median": 7986.5,
+   "p95": 13220,
+   "max": 60732
+  },
+  "old_recomputed": {
+   "n": 476,
+   "median": 7986.5,
+   "p95": 13220,
+   "max": 60732
+  },
+  "new": {
+   "n": 476,
+   "median": 2014.0,
+   "p95": 3676,
+   "max": 4720
+  },
+  "new_app_bytes": {
+   "n": 476,
+   "median": 2146.0,
+   "p95": 3879,
+   "max": 5070
+  },
+  "new_section_only": {
+   "n": 231,
+   "median": 1882,
+   "p95": 2524,
+   "max": 2887
+  },
+  "lines": 3842,
+  "cut_lines": 1208,
+  "cut_line_ratio": 0.3144,
+  "mismatch_n": 1,
+  "mismatch_head": [
+   [
+    "Q113",
+    "unit_procedure:U5-023",
+    [
+     "checks"
+    ],
+    8901,
+    8934
+   ]
+  ],
+  "peek_old": {
+   "n": 311,
+   "median": 2845,
+   "p95": 8408,
+   "max": 8907
+  },
+  "peek_new": {
+   "n": 311,
+   "median": 3054,
+   "p95": 8926,
+   "max": 9477
+  }
+ },
+ "e_other": {
+  "full_true_per_section": {
+   "n": 6140,
+   "median": 2981.5,
+   "p95": 4256,
+   "max": 5210
+  },
+  "peek_all_old": {
+   "n": 1071,
+   "median": 2183,
+   "p95": 6788,
+   "max": 8907
+  },
+  "peek_all_new": {
+   "n": 1071,
+   "median": 2257,
+   "p95": 7171,
+   "max": 9477
+  },
+  "pages_per_section": {
+   "n": 6140,
+   "median": 1.0,
+   "p95": 4,
+   "max": 28
+  },
+  "sections_over_k": 2752,
+  "sections_over_8": 3654,
+  "fact_chars": {
+   "n": 14898,
+   "median": 11.0,
+   "p95": 92,
+   "max": 330,
+   "le40": 0.8612,
+   "le60": 0.9082,
+   "le80": 0.9337
+  },
+  "facts_per_section": {
+   "n": 6140,
+   "median": 11.0,
+   "p95": 47,
+   "max": 328
+  },
+  "pairs_page1_cut_line_ratio": 0.2851,
+  "precompute_bytes_seconds": 0.1
+ },
+ "c_676_touched": {
+  "pairs": 481,
+  "old": {
+   "n": 481,
+   "median": 7350,
+   "p95": 20800,
+   "max": 57151
+  },
+  "new": {
+   "n": 481,
+   "median": 1890,
+   "p95": 2647,
+   "max": 2928
+  }
+ },
+ "d_walk": {
+  "recorded": {
+   "walks": 148,
+   "steps_mean": 1.84,
+   "stop": {
+    "budget": 104,
+    "enough": 22,
+    "empty": 13,
+    "steps": 9
+   }
+  },
+  "old_replay": {
+   "walks": 148,
+   "steps_mean": 1.84,
+   "steps_median": 2.0,
+   "steps_dist": {
+    "1": 69,
+    "2": 47,
+    "3": 18,
+    "4": 14
+   },
+   "neighbor_reached": 79,
+   "neighbor_reached_ratio": 0.534,
+   "bytes": {
+    "n": 148,
+    "median": 15876.5,
+    "p95": 19512,
+    "max": 19818
+   },
+   "stop": {
+    "budget": 110,
+    "empty": 13,
+    "enough": 15,
+    "steps": 10
+   },
+   "listed_facts": {
+    "n": 148,
+    "median": 37.0,
+    "p95": 75,
+    "max": 163
+   },
+   "full_facts": {
+    "n": 148,
+    "median": 14.0,
+    "p95": 26,
+    "max": 30
+   },
+   "continued_walks": 0,
+   "cut_fetch_bytes": {
+    "n": 148,
+    "median": 0.0,
+    "p95": 0,
+    "max": 0
+   },
+   "cut_n": {
+    "n": 148,
+    "median": 0.0,
+    "p95": 0,
+    "max": 0
+   },
+   "bytes_plus_cut_fetch": {
+    "n": 148,
+    "median": 15876.5,
+    "p95": 19512,
+    "max": 19818
+   },
+   "cut_line_ratio": 0.0
+  },
+  "new_replay": {
+   "walks": 148,
+   "steps_mean": 3.03,
+   "steps_median": 3.0,
+   "steps_dist": {
+    "1": 17,
+    "2": 28,
+    "3": 37,
+    "4": 66
+   },
+   "neighbor_reached": 131,
+   "neighbor_reached_ratio": 0.885,
+   "bytes": {
+    "n": 148,
+    "median": 10087.0,
+    "p95": 19153,
+    "max": 19878
+   },
+   "stop": {
+    "budget": 28,
+    "empty": 13,
+    "enough": 21,
+    "frontier_empty": 28,
+    "steps": 58
+   },
+   "listed_facts": {
+    "n": 148,
+    "median": 38.0,
+    "p95": 76,
+    "max": 90
+   },
+   "full_facts": {
+    "n": 148,
+    "median": 27.5,
+    "p95": 58,
+    "max": 80
+   },
+   "continued_walks": 90,
+   "cut_fetch_bytes": {
+    "n": 148,
+    "median": 5388.5,
+    "p95": 14376,
+    "max": 19233
+   },
+   "cut_n": {
+    "n": 148,
+    "median": 14.0,
+    "p95": 35,
+    "max": 49
+   },
+   "bytes_plus_cut_fetch": {
+    "n": 148,
+    "median": 16000.0,
+    "p95": 32634,
+    "max": 37406
+   },
+   "cut_line_ratio": 0.377
+  },
+  "reach_case3": {
+   "rows": 68,
+   "by_tag": {
+    "걸음 없음(되돌아감 · fallback)": 6,
+    "골드 fact 없음(인용이 fact 와 안 맞음)": 23,
+    "새 꼴 줄로 닿음 · cut": 3,
+    "새 꼴 줄로 닿음 · 원문": 2,
+    "새 꼴로도 안 닿음": 34
+   },
+   "unreached_why": {
+    "6홉 안 연결 없음": 2,
+    "방문 노드 · 그 section 안 고름": 11,
+    "방문 노드 · 그 section 펼침 · 1쪽 밖(more)": 2,
+    "방문 노드에서 1홉": 17,
+    "방문 노드에서 2홉": 2
+   },
+   "policy_b_all_sections_same_nodes": {
+    "정책 B 닿음": 9,
+    "정책 B 안 닿음": 30
+   },
+   "hops_from_start_to_fact_node": {
+    "0": 13,
+    "1": 18,
+    "2": 6,
+    "None": 2
+   },
+   "detail": [
+    {
+     "no": "Q009",
+     "i": 18,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q015",
+     "i": 24,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M9#overview#family_text[환자 설명 가이드(patient-education)][0].common_concerns[0].a"
+     ],
+     "path": "patient-education.categories[8].common_concerns[0].a",
+     "tag": "새 꼴 줄로 닿음 · cut",
+     "why": null
+    },
+    {
+     "no": "Q020",
+     "i": 32,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0002",
+      "R8-0004",
+      "R8-0006",
+      "R8-0011",
+      "R8-0022",
+      "R8-0023"
+     ],
+     "path": "contraindications.rules[3].interval",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q025",
+     "i": 34,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-PC-P1-3#evidence#effect.expectedResult"
+     ],
+     "path": "problem-combos.combos[0].packages[2].expectedResult",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q027",
+     "i": 36,
+     "tier": "exact",
+     "fact_ids": [
+      "botox#phases[3].normal[0]"
+     ],
+     "path": "post-procedure-timeline.timelines[0].phases[3].normal[0]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q035",
+     "i": 43,
+     "tier": null,
+     "fact_ids": [],
+     "path": "complications.categories[0].complications[1].management",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q039",
+     "i": 47,
+     "tier": null,
+     "fact_ids": [],
+     "path": "products.skin_booster.products[3].note",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q040",
+     "i": 50,
+     "tier": "weak",
+     "fact_ids": [],
+     "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.indications.primary[0]",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q047",
+     "i": 54,
+     "tier": null,
+     "fact_ids": [],
+     "path": "complications.categories[1].complications[0].management",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q048",
+     "i": 55,
+     "tier": null,
+     "fact_ids": [],
+     "path": "complications.categories[1].complications[1].prevention",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q055",
+     "i": 63,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M2#disclosure#family_text[필수 고지(consent mandatory_disclosures)][6]"
+     ],
+     "path": "consent-checklist.categories[1].mandatory_disclosures[6]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q056",
+     "i": 65,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0168"
+     ],
+     "path": "treatment-sequence.principles[12]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q060",
+     "i": 70,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M1#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple",
+      "family:M4#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple"
+     ],
+     "path": "patient-education.categories[3].duration_simple",
+     "tag": "새 꼴 줄로 닿음 · 원문",
+     "why": null
+    },
+    {
+     "no": "Q064",
+     "i": 71,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0234",
+      "R8-0235",
+      "scope:all#evidence#step8_notes[49]"
+     ],
+     "path": "treatment-sequence.common_combos[5].note",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q065",
+     "i": 74,
+     "tier": "weak",
+     "fact_ids": [],
+     "path": "extracted.M4.indications.extended[4]",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q070",
+     "i": 85,
+     "tier": "exact",
+     "fact_ids": [
+      "product:M15-1-4#safety.side_effects#extracted[M15-1-4].source_text.safety.serious[0]",
+      "product:M15-1-4#safety.side_effects#product_links[M15-1-4].side_effect_override[0].values.serious[0]",
+      "unit_procedure:U5-034#safety.side_effects#extracted[M15-1-5].source_text.safety.serious[0]",
+      "unit_procedure:U5-034#safety.side_effects#units[U5-034].side_effect_override[2].values.serious[0]",
+      "unit_procedure:U5-035#safety.side_effects#extracted[auto-M15-1775360522199].source_text.safety.serious[0]",
+      "unit_procedure:U5-035#safety.side_effects#units[U5-035].side_effect_override[2].values.serious[0]"
+     ],
+     "path": "taxonomy.modality[3].subcategories[2].items[0].extracted.indications.primary[1]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q075",
+     "i": 95,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M9#method#family_text[환자 설명 가이드(patient-education)][0].how_it_works"
+     ],
+     "path": "patient-education.categories[8].how_it_works",
+     "tag": "새 꼴 줄로 닿음 · cut",
+     "why": null
+    },
+    {
+     "no": "Q078",
+     "i": 97,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M9#overview#family_text[환자 설명 가이드(patient-education)][0].pain_level"
+     ],
+     "path": "patient-education.categories[8].pain_level",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q081",
+     "i": 99,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M7.overview",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q083",
+     "i": 104,
+     "tier": "exact",
+     "fact_ids": [
+      "product:M9-1-1#aftercare#extracted[M9-1-1].source_text.aftercare[3]",
+      "product:M9-1-2#aftercare#extracted[M9-1-2].source_text.aftercare[4]",
+      "product:M9-1-4#aftercare#extracted[M9-1-4].source_text.aftercare[3]",
+      "product:M9-2-1#aftercare#extracted[M9-2-1].source_text.aftercare[3]",
+      "product:auto-M9-1775360610416#aftercare#extracted[auto-M9-1775360610416].source_text.aftercare[2]"
+     ],
+     "path": "taxonomy.modality[8].subcategories[0].items[0].extracted.aftercare[3]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q089",
+     "i": 112,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M11.indications.primary[0]",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q097",
+     "i": 119,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0002",
+      "R8-0004",
+      "R8-0006",
+      "R8-0011",
+      "R8-0022",
+      "R8-0023"
+     ],
+     "path": "contraindications.rules[21].interval",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q098",
+     "i": 120,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M11#overview#family_text[환자 설명 가이드(patient-education)][0].common_concerns[0].a"
+     ],
+     "path": "patient-education.categories[10].common_concerns[0].a",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q099",
+     "i": 122,
+     "tier": "exact",
+     "fact_ids": [
+      "K8-0313"
+     ],
+     "path": "extracted.M11.contraindications.relative[0]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q102",
+     "i": 127,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-CP-pigment#evidence#members[1].attrs_text.limitations"
+     ],
+     "path": "procedure-comparison.comparisons[4].procedures[1].limitations",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q105",
+     "i": 139,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M8.onset_duration.onset",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q106",
+     "i": 144,
+     "tier": "exact",
+     "fact_ids": [
+      "fractional-co2"
+     ],
+     "path": "problem-packages.problems[13].complaints[0].cc_detail",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q112",
+     "i": 148,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0014#reason",
+      "R8-0304",
+      "R8-0305",
+      "R8-0306",
+      "R8-0307",
+      "R8-0308"
+     ],
+     "path": "contraindications.rules[13].note",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q113",
+     "i": 152,
+     "tier": "exact",
+     "fact_ids": [
+      "unit_procedure:U5-023#safety.pih#pih[0].fitzpatrick_note"
+     ],
+     "path": "pih-risk.procedures[0].fitzpatrick_note",
+     "tag": "새 꼴 줄로 닿음 · 원문",
+     "why": null
+    },
+    {
+     "no": "Q114",
+     "i": 155,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-CP-pigment#evidence#anchor.subtitle"
+     ],
+     "path": "procedure-comparison.comparisons[4].subtitle",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q117",
+     "i": 157,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-CP-acne#evidence#members[4].attrs_text.limitations"
+     ],
+     "path": "procedure-comparison.comparisons[7].procedures[4].limitations",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 펼침 · 1쪽 밖(more)"
+    },
+    {
+     "no": "Q121",
+     "i": 168,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-CP-acne#evidence#members[4].attrs_text.best_for"
+     ],
+     "path": "procedure-comparison.comparisons[7].procedures[4].best_for",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q124",
+     "i": 180,
+     "tier": "exact",
+     "fact_ids": [
+      "product:M8-4-1#safety.side_effects#extracted[M8-4-1].source_text.safety.common[2]",
+      "product:M8-4-1#safety.side_effects#product_links[M8-4-1].side_effect_override[0].values.common[2]"
+     ],
+     "path": "taxonomy.modality[7].subcategories[3].items[1].extracted.safety",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q131",
+     "i": 188,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-CP-acne#evidence#members[3].attrs_text.limitations"
+     ],
+     "path": "procedure-comparison.comparisons[7].procedures[3].limitations",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q133",
+     "i": 190,
+     "tier": "exact",
+     "fact_ids": [
+      "ST-M12-effects-07#patient.ko"
+     ],
+     "path": "literature-evidence.categories.M12.effects[6].patient_ko",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q136",
+     "i": 197,
+     "tier": "exact",
+     "fact_ids": [
+      "chemical-peel-mid#phases[3].normal[2]",
+      "fractional-co2#phases[4].normal[3]"
+     ],
+     "path": "post-procedure-timeline.timelines[3].phases[4].normal[3]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q140",
+     "i": 206,
+     "tier": "exact",
+     "fact_ids": [
+      "fractional-co2#phases[4].normal[1]"
+     ],
+     "path": "post-procedure-timeline.timelines[3].phases[4].normal[1]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q141",
+     "i": 207,
+     "tier": "exact",
+     "fact_ids": [
+      "K8-0291"
+     ],
+     "path": "extracted.M8.contraindications.absolute[2]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q148",
+     "i": 219,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M8.indications.primary[4]",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q156",
+     "i": 230,
+     "tier": "exact",
+     "fact_ids": [
+      "7단계 추천 조합 RC-OP-Hair-경미 속성(시술 하나 · 반복 간격 원문):#evidence#attrs[1]",
+      "scope:all#evidence#step8_notes[30]"
+     ],
+     "path": "treatment-optimization.by_concern[6].severity_levels[0].sequence",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q159",
+     "i": 233,
+     "tier": "exact",
+     "fact_ids": [
+      "scope:all#evidence#step8_notes[190]",
+      "scope:all#evidence#step8_notes[191]",
+      "scope:all#evidence#step8_notes[193]",
+      "scope:all#evidence#step8_notes[194]"
+     ],
+     "path": "problem-packages.problems[9].complaints[3].combos[0].evidence",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q160",
+     "i": 236,
+     "tier": "exact",
+     "fact_ids": [
+      "product:auto-M8-1775364775126#safety.side_effects#extracted[auto-M8-1775364775126].source_text.safety.common[1]",
+      "product:auto-M8-1775364775126#safety.side_effects#product_links[auto-M8-1775364775126].side_effect_override[0].values.common[1]"
+     ],
+     "path": "taxonomy.modality[7].subcategories[4].items[12].extracted.safety.common[1]",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q161",
+     "i": 237,
+     "tier": "exact",
+     "fact_ids": [
+      "K8-0248",
+      "K8-0254",
+      "K8-0260",
+      "K8-0284",
+      "K8-0293"
+     ],
+     "path": "extracted.M8.contraindications.relative[1]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 펼침 · 1쪽 밖(more)"
+    },
+    {
+     "no": "Q168",
+     "i": 257,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M15.indications.primary[1]",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q169",
+     "i": 259,
+     "tier": "exact",
+     "fact_ids": [
+      "K8-0232"
+     ],
+     "path": "consent-checklist.categories[14].contraindications[5]",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q172",
+     "i": 266,
+     "tier": null,
+     "fact_ids": [],
+     "path": "complications.categories[8].complications[2].prevention",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q175",
+     "i": 268,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[14].subcategories[0].items[45].extracted.indications.primary",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q178",
+     "i": 272,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M2.overview",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q179",
+     "i": 274,
+     "tier": null,
+     "fact_ids": [],
+     "path": "complications.categories[3].complications[7].management",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q185",
+     "i": 277,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-RE-R2#evidence#effect.repeatCycle",
+      "combo:RC-RE-R6#evidence#effect.repeatCycle"
+     ],
+     "path": "combo-recipes.recipes[1].repeatCycle",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 2홉"
+    },
+    {
+     "no": "Q186",
+     "i": 278,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0008",
+      "R8-0012",
+      "R8-0019"
+     ],
+     "path": "contraindications.rules[18].interval",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q189",
+     "i": 281,
+     "tier": "exact",
+     "fact_ids": [],
+     "path": "complications.categories[3].complications[5].management",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q194",
+     "i": 289,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[13].subcategories[0].items[0].extracted.onset_duration.onset",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q198",
+     "i": 293,
+     "tier": "exact",
+     "fact_ids": [
+      "scope:all#evidence#step8_notes[229]"
+     ],
+     "path": "problem-packages.problems[13].complaints[4].combos[0].evidence",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q200",
+     "i": 295,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0146#reason"
+     ],
+     "path": "treatment-sequence.incompatible_same_day[4].reason",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "6홉 안 연결 없음"
+    },
+    {
+     "no": "Q201",
+     "i": 298,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0008#reason"
+     ],
+     "path": "contraindications.rules[7].note",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드 · 그 section 안 고름"
+    },
+    {
+     "no": "Q202",
+     "i": 299,
+     "tier": "exact",
+     "fact_ids": [],
+     "path": "treatment-sequence.minimum_intervals[2].reason",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q203",
+     "i": 301,
+     "tier": "exact",
+     "fact_ids": [
+      "K8-0150"
+     ],
+     "path": "consent-checklist.categories[1].contraindications[5]",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q205",
+     "i": 305,
+     "tier": "exact",
+     "fact_ids": [
+      "scope:all#evidence#step8_notes[44]"
+     ],
+     "path": "treatment-optimization.combination_rules[3].detail",
+     "tag": "걸음 없음(되돌아감 · fallback)",
+     "why": null
+    },
+    {
+     "no": "Q212",
+     "i": 313,
+     "tier": "exact",
+     "fact_ids": [
+      "combo:RC-PC-P3-1#evidence#effect.clinicalRationale"
+     ],
+     "path": "problem-combos.combos[2].packages[0].clinicalRationale",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q215",
+     "i": 320,
+     "tier": "exact",
+     "fact_ids": [
+      "scope:all#evidence#sequence_rank[1]"
+     ],
+     "path": "treatment-sequence.sequence_order[1].reason",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "6홉 안 연결 없음"
+    },
+    {
+     "no": "Q218",
+     "i": 324,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q222",
+     "i": 329,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[8].subcategories[1].items[2].extracted.mechanism",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q224",
+     "i": 333,
+     "tier": null,
+     "fact_ids": [],
+     "path": "extracted.M3.overview",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q232",
+     "i": 346,
+     "tier": null,
+     "fact_ids": [],
+     "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+     "tag": "골드 fact 없음(인용이 fact 와 안 맞음)",
+     "why": null
+    },
+    {
+     "no": "Q233",
+     "i": 348,
+     "tier": "exact",
+     "fact_ids": [
+      "R8-0299#reason",
+      "R8-0301#reason",
+      "R8-0374#reason",
+      "R8-0375#reason",
+      "scope:all#evidence#step8_notes[133]",
+      "scope:all#evidence#step8_notes[135]"
+     ],
+     "path": "problem-packages.problems[3].complaints[3].combos[1].reason",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 1홉"
+    },
+    {
+     "no": "Q235",
+     "i": 351,
+     "tier": "exact",
+     "fact_ids": [
+      "family:M9#safety.side_effects#family_text[부작용 문장 serious(근거 — 합병증 노드 아님 · B13)][1]"
+     ],
+     "path": "extracted.M9.safety.serious[1]",
+     "tag": "새 꼴 줄로 닿음 · cut",
+     "why": null
+    },
+    {
+     "no": "Q239",
+     "i": 358,
+     "tier": "exact",
+     "fact_ids": [
+      "CX-M1-05#mechanism"
+     ],
+     "path": "complications.categories[0].complications[4].mechanism",
+     "tag": "새 꼴로도 안 닿음",
+     "why": "방문 노드에서 2홉"
+    }
+   ]
+  },
+  "reach_case2_note": {
+   "걸음 없음(되돌아감 · fallback)": 8,
+   "골드 fact 없음(인용이 fact 와 안 맞음)": 20,
+   "새 꼴로도 안 닿음": 21,
+   "옛 판도 받음": 2
+  }
+ }
+}

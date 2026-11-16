@@ -1,0 +1,10 @@
+# Reproducible full-dataset probe copies; retain scripts, reports and result JSON.
+/silver-batch1-validator-fix/cli-*/
+/silver-batch1-validator-fix/positive-copy/
+/silver-batch1-validator-fix/rebuilt/
+/silver-batch1-validator-closeout-review/cli-*/
+
+# 형태소 분석기 가상환경 (재생성: python3 -m venv silver-v3/.venv-kiwi && silver-v3/.venv-kiwi/bin/pip install kiwipiepy==0.24.1)
+silver-v3/.venv-kiwi/
+.DS_Store
+**/.DS_Store

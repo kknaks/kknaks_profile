@@ -13,3 +13,4 @@
 | DEC-009 | 직원 앱 내부 채팅 — 1:1 + 그룹 · 텍스트 · 사진 · 푸시 · 앱만 · claude design 시안 먼저 | accepted | BASE-010 | SPEC-007 | [본문](decision-009-internal-chat.md) |
 | DEC-010 | 시술 · 상품 메뉴 저장 + 외부 연동 API(링키 · 차티) — 이름+이메일 조회 · 남은 시술권 · 연동처별 키 | accepted | — | SPEC-008 | [본문](decision-010-product-ext-api.md) |
 | DEC-011 | 외부 연동 API 2차(add1) — 예약 가능 시간대 · 고객 과거 시술 · 고객 예약 내역(`/api/ext` 세 경로 더함) | accepted | — | SPEC-008 | [본문](decision-011-ext-api-add1.md) |
+| DEC-012 | 외부 연동 API 3차(charty 1차 상담) — lookup 고침(customerId · 사용 중 시술권 · 선불카드) · 접수 목록 · 예약 상세 · 고객 언어 · 오더 메모 · 상담 메모 · 병원 정보 · 직원 목록 | accepted | — | SPEC-008 | [본문](decision-012-ext-api-charty1.md) |

@@ -1,0 +1,46 @@
+{"section":"S022","state":"read","last_pointer":"/modality/7/subcategories/3/items/2/extracted/aftercare/5",
+"observations":[
+ {"status":"P","pointers":["/modality/7/subcategories/2/label","/modality/7/subcategories/2/items/0/name"],"note":"M8-3 label 'IPL', 첫 항목 name 'IPL' — 하위분류와 항목이 같은 이름. 이어 BBL 계열 장비·라인(BBL, BBL포에버영, BBL히어로, BBL스킨타이트, BBL클리어)."},
+ {"status":"P","pointers":["/modality/7/subcategories/2/items/0/extracted/aftercare/5","/modality/7/subcategories/3/items/0/extracted/aftercare/5"],"note":"M8 하위분류별 상용구 3종 추가 확인: IPL판('색소 줌패스(흑자/주근깨 등): 4주 이상 간격. 기타 IPL: 3-4주 간격 누적'), 혈관판('혈관 레이저 — 보통 4-8주 간격. 자반 소실 후 재시술'). IPL 항목 aftercare 에는 '필요시 2~4주 간격으로 반복 시술' 도 함께 있어 같은 항목 안 간격 진술이 둘."},
+ {"status":"P","pointers":["/modality/7/subcategories/2/items/3/extracted/overview","/modality/7/subcategories/2/items/3/extracted/indications/primary/2"],"note":"BBL히어로 overview 'Sciton 광대역 IPL 기기 (PDL 아님)' — 원문 자체 정정 문구. indications '주사' 는 문맥상 질환명(주사비)으로 보이나 같은 원장의 '주사(injection)' 와 동형(K 위험)."},
+ {"status":"P","pointers":["/modality/7/subcategories/2/items/3/extracted/indications/primary/5","/modality/7/subcategories/2/items/4/extracted/indications/primary"],"note":"BBL히어로 적응증 '문신제거', BBL스킨타이트 '팔뚝 처짐','복부 피부 탄력 저하' — IPL 하위분류 안에서 적응증 범위가 넓다(판단 후속)."},
+ {"status":"B","pointers":["/modality/7/subcategories/2/items/1/detail"],"note":"BBL detail 빈 문자열."},
+ {"status":"I","pointers":["/modality/7/subcategories/2/items/5/extracted/mechanism","/modality/7/subcategories/3/items/2/extracted/indications/primary/5"],"note":"의미 불명 표기: '피지선 세바셈', '루주스 얼굴혈관종'. 원문 보존."},
+ {"status":"P","pointers":["/modality/7/subcategories/3/items/0/name"],"note":"'클라리티2 (혈관)' — 이름 괄호에 용도 표시. 같은 장비가 다른 하위분류(제모 등)에도 있을 가능성(후속 구획 확인)."},
+ {"status":"P","pointers":["/modality/7/subcategories/3/items/2/extracted/safety/serious/0"],"note":"엑셀브이 'PIH - CO2 대비 낮은 발생률(약 10% 이하)' — 비교 대상 CO2(M8-2 에서 50%)를 참조."}
+],
+"expressions":[
+ {"pointer":"/modality/7/subcategories/1/items/8/extracted/mechanism","text":"controlled thermal damage를 유도합니다","kinds":["수식"],"note":"영문 구절 혼용"},
+ {"pointer":"/modality/7/subcategories/1/items/8/extracted/aftercare/0","text":"재생크림 필수 사용","kinds":[],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/0/detail","text":"560~950nm · 광범위","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/0/extracted/onset_duration/duration","text":"색소 병변 3~6개월, 혈관 병변 2~4주 지속 개선","kinds":["수량·단위·시간","범위","조건"],"note":"병변별 기간"},
+ {"pointer":"/modality/7/subcategories/2/items/0/extracted/aftercare/4","text":"필요시 2~4주 간격으로 반복 시술","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/0/extracted/aftercare/5","text":"색소 줌패스(흑자/주근깨 등): 4주 이상 간격. 기타 IPL: 3-4주 간격 누적","kinds":["조건","범위","수량·단위·시간"],"note":"상용구 — 적응증별 간격"},
+ {"pointer":"/modality/7/subcategories/2/items/0/extracted/safety/serious/2","text":"영구적 색소 변화(매우 드물음)","kinds":["가능성·빈도","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/1/extracted/overview","text":"광범위 파장(515-1200nm)의 강렬한 펄스광","kinds":["수량·단위·시간","범위"],"note":"IPL 560~950nm 와 다른 범위"},
+ {"pointer":"/modality/7/subcategories/2/items/1/extracted/onset_duration/duration","text":"3-6개월(누적 시술 시 연장)","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/3/extracted/overview","text":"Sciton 광대역 IPL 기기 (PDL 아님)","kinds":["부정"],"note":"원문 정정"},
+ {"pointer":"/modality/7/subcategories/2/items/3/extracted/aftercare/0","text":"24시간 이상 찬찜질 시행","kinds":["범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/4/extracted/mechanism","text":"810nm의 근적외선","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/5/extracted/mechanism","text":"375-1400nm 광역대 스펙트럼","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/2/items/5/extracted/indications/primary/0","text":"활동성 여드름(면포, 구진, 농포)","kinds":["수식"],"note":""},
+ {"pointer":"/modality/7/subcategories/3/items/0/detail","text":"루트로닉 · 롱펄스 532+1064nm","kinds":["수량·단위·시간","기호"],"note":"'+' 두 파장"},
+ {"pointer":"/modality/7/subcategories/3/items/0/extracted/aftercare/4","text":"색소침착 우려 시 피질스테로이드 크림 고려","kinds":["조건","가능성·빈도"],"note":""},
+ {"pointer":"/modality/7/subcategories/3/items/0/extracted/aftercare/5","text":"혈관 레이저 — 보통 4-8주 간격. 자반 소실 후 재시술","kinds":["수량·단위·시간","조건"],"note":"상용구"},
+ {"pointer":"/modality/7/subcategories/3/items/1/extracted/safety/common/3","text":"경미한 색소침착 또는 색소탈실","kinds":["수식","조건"],"note":"반대 방향 두 결과"},
+ {"pointer":"/modality/7/subcategories/3/items/1/extracted/onset_duration/duration","text":"4-8주 내 최대 효과, 혈관 완전 제거까지 3-6개월 (질환에 따라 반복 시술 필요)","kinds":["수량·단위·시간","조건","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/3/items/1/extracted/aftercare/1","text":"자외선 차단 (SPF 30 이상) 최소 4주","kinds":["범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/3/items/2/extracted/safety/serious/0","text":"CO2 대비 낮은 발생률(약 10% 이하)","kinds":["비교","범위","참조"],"note":""},
+ {"pointer":"/modality/7/subcategories/3/items/2/extracted/aftercare/1","text":"48시간 이내 목욕/샤워 피하기","kinds":["범위","수량·단위·시간","부정"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"브이빔","issue":"브이/NNG 비/VV ᆷ/EF — 장비명 끝 '빔' 을 동사+어미로","impact":"장비명 소실"},
+ {"scope":"all","surface":"BBL포에버영","issue":"form '포에버 영'(공백 포함 사전어)/NNP","impact":"form ≠ 표면형"},
+ {"scope":"all","surface":"장미증","issue":"장미/NNG 증/NNG","impact":"질환명 분해"},
+ {"scope":"pointer","pointer":"/modality/7/subcategories/2/items/3/extracted/indications/primary/2","surface":"주사","issue":"질환명(주사비)으로 보이는 '주사' 가 주사/NNG — 시술 '주사(injection)' 와 형태소상 구분 불가","impact":"키워드 검색 시 오탐"}
+],
+"issues":[
+ {"id":"S022-B01","status":"B","pointers":["/modality/7/subcategories/2/items/1/detail"],"note":"BBL detail 빈 문자열.","impact":"제조사 정보 없음(형제 항목 detail 은 '사이톤')"},
+ {"id":"S022-I01","status":"I","pointers":["/modality/7/subcategories/2/items/5/extracted/mechanism","/modality/7/subcategories/3/items/2/extracted/indications/primary/5"],"note":"'세바셈', '루주스' 의미 불명 표기.","impact":"용어 식별 불가 — 원본 확인 후보"},
+ {"id":"S022-K01","status":"K","pointers":["/modality/7/subcategories/2/items/3/extracted/indications/primary/2"],"note":"'주사'(질환/시술) 동형이의.","impact":"형태소·키워드 단독 분류 금지"}
+]}

@@ -1,0 +1,47 @@
+{"section":"S046","state":"read","last_pointer":"/modality/15/subcategories/2/items/2/extracted/aftercare/2",
+"observations":[
+ {"status":"P","pointers":["/modality/15/group","/modality/15/subcategories/0/label","/modality/15/subcategories/1/label"],"note":"M16 group '관리'. 하위분류가 효과·목적 축('미백/항산화','피로회복','재생/면역')."},
+ {"status":"P","pointers":["/modality/15/subcategories/0/items/0/is_marketing_name","/modality/15/subcategories/1/items/0/is_marketing_name","/modality/15/subcategories/1/items/1/is_marketing_name"],"note":"백옥주사·마늘주사·신데렐라주사 — M4 와 같은 마케팅명 4필드(is_marketing_name, ingredient_basis, canonical_category, naming_caveat). canonical_category 'M16 수액치료 > 항산화·미백 IV' 등 '>' 경로, 하위 이름이 실제 label('미백/항산화')과 다르다."},
+ {"status":"I","pointers":["/modality/15/subcategories/1/items/0/naming_caveat","/modality/15/subcategories/1/items/0/extracted/mechanism"],"note":"마늘주사: naming_caveat '실제 마늘 추출물이 아님' 인데 mechanism '비타민B1과 마늘 추출물의 협력작용'. 같은 레코드 안 모순."},
+ {"status":"P","pointers":["/modality/15/subcategories/0/items/3/detail","/modality/15/subcategories/1/items/1/ingredient_basis"],"note":"알파리포산주사 detail '신데렐라주사 성분' — 같은 모달리티 다른 하위분류 항목(신데렐라주사, ingredient_basis 알파리포산)을 참조하는 표현. 같은 성분이 두 항목·두 하위분류(미백/항산화, 피로회복)에."},
+ {"status":"P","pointers":["/modality/15/subcategories/0/items/5/extracted/overview","/modality/15/subcategories/2/items/0/extracted/aftercare/0"],"note":"수액치료 모달리티에 근육주사(비타민D '근육주사', 태반주사 '근육/피하주사', '정맥주사 절대 금지')가 포함 — '수액(IV)' 이름과 투여 경로가 다른 항목."},
+ {"status":"P","pointers":["/modality/15/subcategories/0/items/0/naming_caveat","/modality/15/subcategories/1/items/1/naming_caveat"],"note":"naming_caveat 이 허가 범위·근거 수준 주장('FDA·식약처의 미백 목적 공식 허가 적응증 아님', '공식 미용 허가 아님') — 규제 주장(승인하지 않음)."},
+ {"status":"P","pointers":["/modality/15/subcategories/0/items/0/extracted/aftercare","/modality/15/subcategories/1/items/0/extracted/aftercare"],"note":"M16 항목 aftercare 에 '[시술 주기 참고]' 상용구 없음."}
+],
+"expressions":[
+ {"pointer":"/modality/15/subcategories/0/items/0/ingredient_basis","text":"용량은 클리닉별로 상이(600-2,000mg 범위)","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/0/naming_caveat","text":"고용량 글루타치온 IV의 미백 효과는 제한된 임상 근거이며","kinds":["주장","수식"],"note":"근거 수준"},
+ {"pointer":"/modality/15/subcategories/0/items/0/naming_caveat","text":"FDA·식약처의 미백 목적 공식 허가 적응증 아님","kinds":["부정","주장"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/0/naming_caveat","text":"의료광고 표현 주의 필요","kinds":["조건"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/0/extracted/aftercare/0","text":"주사 후 2시간 음주 자제","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/1/extracted/mechanism","text":"경구 투여 불가능한 고농도 도달","kinds":["부정","비교"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/1/extracted/safety/serious/0","text":"신장 결석(과다 투여 시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/1/extracted/safety/serious/1","text":"용혈성 빈혈(G6PD 결핍자)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/1/extracted/aftercare/1","text":"신기능 정상 확인 후 시술","kinds":["조건"],"note":"시술 전 조건"},
+ {"pointer":"/modality/15/subcategories/0/items/4/detail","text":"B1/B2/B6/B12/C","kinds":["기호"],"note":"'/' 성분 나열(함께)"},
+ {"pointer":"/modality/15/subcategories/0/items/6/detail","text":"글루타치온+트라넥삼산","kinds":["기호"],"note":""},
+ {"pointer":"/modality/15/subcategories/0/items/6/extracted/aftercare/2","text":"운전 주의","kinds":["조건"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/0/ingredient_basis","text":"주사 후 일시적 마늘향 체취가 이름의 유래","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/0/naming_caveat","text":"실제 마늘 추출물이 아님","kinds":["부정"],"note":"S046-I01"},
+ {"pointer":"/modality/15/subcategories/1/items/0/extracted/onset_duration/onset","text":"즉시~수 시간","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/1/naming_caveat","text":"당뇨병성 신경병증 등 일부 적응증 외에는 공식 미용 허가 아님","kinds":["부정","조건","주장"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/1/extracted/safety/serious/1","text":"심한 저혈당(당뇨약 병용 시)","kinds":["조건","수식"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/1/extracted/aftercare/1","text":"당뇨약 복용자 의료진 상담 필수","kinds":["조건"],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/3/extracted/safety/serious/1","text":"헤르페스 재활성화","kinds":[],"note":""},
+ {"pointer":"/modality/15/subcategories/1/items/4/extracted/overview","text":"아연을 정맥 또는 근육 주사로 투여","kinds":["조건"],"note":"투여 경로 대안"},
+ {"pointer":"/modality/15/subcategories/1/items/6/detail","text":"Mg+Ca+B/C 복합수액","kinds":["기호"],"note":"'+' 와 '/' 혼용"},
+ {"pointer":"/modality/15/subcategories/2/items/0/extracted/aftercare/0","text":"정맥주사 절대 금지(쇼크 위험)","kinds":["부정","조건","수식"],"note":""},
+ {"pointer":"/modality/15/subcategories/2/items/0/extracted/aftercare/2","text":"주 1-2회 정기적 시술 권장","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/15/subcategories/2/items/1/extracted/mechanism","text":"장수 유전자 활성화로 항노화 효과","kinds":["주장"],"note":""},
+ {"pointer":"/modality/15/subcategories/2/items/1/extracted/onset_duration/onset","text":"수 시간~1-2일","kinds":["수량·단위·시간","범위"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"비오틴주사","issue":"비오티/NNG ᆫ/JX 주사/NNG — 성분명 끝 받침을 조사로","impact":"성분명 소실"},
+ {"scope":"all","surface":"종합아미노산수액","issue":"… 수/NNG 액/NNG — '수액' 분해","impact":"시술 유형어 분해"},
+ {"scope":"all","surface":"고농도C","issue":"고/XPN 농도/NNG C/SL","impact":"수식 접두 '고' 분리(정도 표현은 유지되나 토큰 단위)"}
+],
+"issues":[
+ {"id":"S046-I01","status":"I","pointers":["/modality/15/subcategories/1/items/0/naming_caveat","/modality/15/subcategories/1/items/0/extracted/mechanism"],"note":"마늘주사 '마늘 추출물 아님' vs '마늘 추출물의 협력작용'.","impact":"성분 서술 채택 시 확인"},
+ {"id":"S046-F01","status":"F","pointers":["/modality/15/subcategories/0/items/3","/modality/15/subcategories/1/items/1"],"note":"같은 성분(알파리포산)이 두 항목·두 하위분류.","impact":"성분-마케팅명 관계 설계"},
+ {"id":"S046-F02","status":"F","pointers":["/modality/15/subcategories/0/items/0/canonical_category","/modality/15/subcategories/1/items/0/canonical_category","/modality/15/subcategories/1/items/1/canonical_category"],"note":"canonical_category 경로 하위명이 실제 label 과 불일치(S012-F02 와 같은 성격).","impact":"표준 분류 매핑 후속"}
+]}

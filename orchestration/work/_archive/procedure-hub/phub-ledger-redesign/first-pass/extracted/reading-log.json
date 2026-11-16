@@ -1,0 +1,191 @@
+{
+ "note": "직접 읽기 기록. 구획 하나 = 최상위 항목 하나(S00 은 루트). 기계 추출(build.py)과 구분한다. 재개 시 last_read 다음 구획부터 이어 읽는다.",
+ "order": [
+  "S00",
+  "S01",
+  "S02",
+  "S03",
+  "S04",
+  "S05",
+  "S06",
+  "S07",
+  "S08",
+  "S09",
+  "S10",
+  "S11",
+  "S12",
+  "S13",
+  "S14",
+  "S15",
+  "S16",
+  "S17"
+ ],
+ "last_read": {
+  "section": "S17",
+  "pointer": "/M9/related_techniques/3",
+  "pass": "3회차",
+  "note": "전 구획 3회차까지 완료. 남은 구획 없음."
+ },
+ "sections": {
+  "S00": {
+   "status": "직접 읽음",
+   "passes": [
+    "1회차: 루트 키 17개와 순서·항목별 키 구성 확인(구조 열거 출력)",
+    "2회차: 전체 키 구성 변형(updated·emergency·null) 대조"
+   ]
+  },
+  "S01": {
+   "status": "직접 읽음",
+   "top_key": "M10",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 1 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S02": {
+   "status": "직접 읽음",
+   "top_key": "M11",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 1 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S03": {
+   "status": "직접 읽음",
+   "top_key": "M12",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 1 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S04": {
+   "status": "직접 읽음",
+   "top_key": "M13",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 2 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S05": {
+   "status": "직접 읽음",
+   "top_key": "M14",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 2 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S06": {
+   "status": "직접 읽음",
+   "top_key": "M15",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 2 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S07": {
+   "status": "직접 읽음",
+   "top_key": "M16",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 3 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S08": {
+   "status": "직접 읽음",
+   "top_key": "M17",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 3 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S09": {
+   "status": "직접 읽음",
+   "top_key": "M1",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 3 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S10": {
+   "status": "직접 읽음",
+   "top_key": "M2",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 4 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S11": {
+   "status": "직접 읽음",
+   "top_key": "M3",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 4 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S12": {
+   "status": "직접 읽음",
+   "top_key": "M4",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 4 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S13": {
+   "status": "직접 읽음",
+   "top_key": "M5",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 5 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S14": {
+   "status": "직접 읽음",
+   "top_key": "M6",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 5 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S15": {
+   "status": "직접 읽음",
+   "top_key": "M7",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 5 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S16": {
+   "status": "직접 읽음",
+   "top_key": "M8",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 6 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  },
+  "S17": {
+   "status": "직접 읽음",
+   "top_key": "M9",
+   "passes": [
+    "1회차: 항목 객체 전체를 키 순서대로 출력해 위에서 아래로 읽음(읽기 묶음 6 — 2~3개 항목씩 순차)",
+    "2회차: 값마다 다시 열어 조건·부정·가능성·범위·시간·부위 역할·참조를 manual-expressions / manual-observations 에 원문 인용으로 기록(build 가 인용 실재 검사)",
+    "3회차: 이 구획 값의 형태소 토큰 중 의심 품사·전문어 출현을 원문 어절과 대조(segmentation-review.json)"
+   ]
+  }
+ }
+}

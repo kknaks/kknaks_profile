@@ -1,0 +1,349 @@
+{
+ "section": "S047",
+ "state": "read",
+ "last_pointer": "/modality/15/subcategories/4/items/5/extracted/aftercare/2",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/2/items/3/name",
+    "/modality/15/subcategories/2/items/1/name"
+   ],
+   "note": "'NAD+ 주사'(auto)와 'NAD+'(M16-3-2) — 같은 성분 두 항목. '태반주사멜스몬'·'태반주사(라엔넥)' — 태반주사 제품별 두 항목."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/3/items/1/detail",
+    "/modality/15/subcategories/1/items/6/name"
+   ],
+   "note": "'종합비타민수액'(M16-4-2) detail '마이어스칵테일' — 같은 모달리티 M16-2 의 '마이어스칵테일' 항목과 같은 대상을 가리키는 표현(연결 키 없음)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/3/items/0/extracted/mechanism",
+    "/modality/15/subcategories/0/items/5/extracted/overview"
+   ],
+   "note": "'비타민D'(M16-4-1) mechanism '정맥주사를 통해' vs '비타민D주사'(M16-1) overview '고용량 근육주사' — 같은 성분 항목 두 개, 투여 경로 서술이 다르다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/4/description",
+    "/modality/15/subcategories/4/label"
+   ],
+   "note": "M16-DCA(지방세포파괴) 는 description 을 가진 하위분류(원장 3개 중 하나). 수액치료 모달리티 안에 지방분해 주사제 하위분류. description 에 허가 연혁·금지 연혁(2014 PPC 미용목적 사용 금지)·성분 비교가 있다."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/4/items/1/extracted/overview",
+    "/modality/15/subcategories/4/items/3/detail"
+   ],
+   "note": "벨카이라 'ATX-101 … FDA 유일 승인', 카이벨라 'FDA 오리지널(2015) · 한국 철수(2020) · 세계 최초' — 같은 성분 코드 주장이 두 이름에. description 은 'FDA(2015 카이벨라)'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/4/items/3/extracted",
+    "/modality/15/subcategories/4/items/4/extracted",
+    "/modality/15/subcategories/4/items/5/extracted"
+   ],
+   "note": "카이벨라·올리핏주·펜카이라주 extracted 내용이 거의 동일(상용 블록). detail 과 overview 가 같은 문자열(제조사 · DCA · 허가 시점)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/15/subcategories/4/items/1/extracted/safety/common/0"
+   ],
+   "note": "'부종(1-2주, 거의 필발)' — '필발(必發)' 한자어 빈도 표현. 형태소 결과 확인 대상."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/15/subcategories/2/items/3/extracted/mechanism",
+   "text": "SIRT1 등의 장수 유전자를 활성화하고",
+   "kinds": [
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/2/items/4/extracted/overview",
+   "text": "셀레늄을 정맥 또는 근육 주사로 투여하여",
+   "kinds": [
+    "조건"
+   ],
+   "note": "투여 경로 대안"
+  },
+  {
+   "pointer": "/modality/15/subcategories/2/items/5/detail",
+   "text": "아스코르브산 15-25g · 항산화/콜라겐 합성",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "기호"
+   ],
+   "note": "용량 범위"
+  },
+  {
+   "pointer": "/modality/15/subcategories/2/items/5/extracted/safety/common/0",
+   "text": "주사 부위 통증 또는 혈관염",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/2/items/6/extracted/safety/common/0",
+   "text": "수액 후 비린내 트림",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/2/items/6/extracted/aftercare/1",
+   "text": "혈액 응고 검사 모니터링",
+   "kinds": [],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/0/extracted/safety/serious/0",
+   "text": "고칼슘혈증(과다 투여 시)",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/1/extracted/aftercare/2",
+   "text": "4주 간격 정기 시술 권장",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/2/extracted/safety/common/2",
+   "text": "미량원소 과잉 시 메스꺼움",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/2/extracted/aftercare/0",
+   "text": "주 1회 정도 정기 시술 권장",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "'정도' 근사"
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/3/extracted/safety/common/0",
+   "text": "주사부위 색소침착 가능성",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/4/extracted/aftercare/0",
+   "text": "천천히 주입 필요",
+   "kinds": [
+    "수식"
+   ],
+   "note": "시술자 지시"
+  },
+  {
+   "pointer": "/modality/15/subcategories/3/items/4/extracted/aftercare/1",
+   "text": "심장질환자 주의",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/description",
+   "text": "FDA(2015 카이벨라) 및 한국 식약처 허가 제품군",
+   "kinds": [
+    "주장",
+    "수량·단위·시간",
+    "참조"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/description",
+   "text": "DCA는 유일하게 턱밑 지방 적응증으로 허가된 성분",
+   "kinds": [
+    "주장",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/description",
+   "text": "PPC는 한국에서 미용목적 사용 금지(2014)",
+   "kinds": [
+    "부정",
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/description",
+   "text": "DCA: 지방세포막 직접 파괴(cytolysis) → 영구 제거",
+   "kinds": [
+    "기호",
+    "수량·단위·시간"
+   ],
+   "note": "'→' 결과"
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/description",
+   "text": "CA(콜산): DCA 대비 계면활성 낮아 부작용 감소 — 차세대 성분",
+   "kinds": [
+    "비교",
+    "주장"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/0/extracted/safety/serious/0",
+   "text": "하악변연신경 손상(일시적)",
+   "kinds": [
+    "부위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/1/extracted/safety/common/0",
+   "text": "부종(1-2주, 거의 필발)",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": "'거의 필발' 빈도"
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/1/extracted/safety/serious/0",
+   "text": "하악변연신경 손상(일시적 비대칭 미소)",
+   "kinds": [
+    "부위",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/1/extracted/indications/primary/1",
+   "text": "중등도 이상 턱밑 지방",
+   "kinds": [
+    "범위",
+    "부위"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/2/extracted/mechanism",
+   "text": "대식세포 탐식 → 림프 배출 경로로 체외 제거",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/3/detail",
+   "text": "엘러간/애브비 · FDA 오리지널(2015) · 한국 철수(2020) · 세계 최초 DCA 이중턱 주사",
+   "kinds": [
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": "연혁"
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/4/detail",
+   "text": "휴메딕스 · DCA · 2024.12 식약처 허가",
+   "kinds": [
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": "허가 연월"
+  },
+  {
+   "pointer": "/modality/15/subcategories/4/items/5/detail",
+   "text": "펜믹스 · DCA · 2025.04 식약처 허가",
+   "kinds": [
+    "주장",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "필발",
+   "issue": "필/NNG 발/NNG — 빈도어 '필발(必發)' 분해",
+   "impact": "'거의 필발' 빈도 의미가 토큰으로 드러나지 않음"
+  },
+  {
+   "scope": "all",
+   "surface": "벨카이라",
+   "issue": "벨카/NNG 이/VCP 라/EC",
+   "impact": "제품명 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "셀레늄",
+   "issue": "셀/NNP 레늄/NNP",
+   "impact": "원소명 분해"
+  },
+  {
+   "scope": "all",
+   "surface": "침침증",
+   "issue": "침/NNG 침/NNG 증/NNG — 원문 '침침증'(의미 불명 표기)",
+   "impact": "원문 표기 자체 확인 필요(I 후보)"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S047-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/15/subcategories/2/items/3",
+    "/modality/15/subcategories/2/items/1",
+    "/modality/15/subcategories/3/items/0",
+    "/modality/15/subcategories/0/items/5",
+    "/modality/15/subcategories/3/items/1",
+    "/modality/15/subcategories/1/items/6"
+   ],
+   "note": "같은 성분 항목 중복(NAD+, 비타민D, 종합비타민/마이어스칵테일).",
+   "impact": "개체 병합 후속"
+  },
+  {
+   "id": "S047-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/15/subcategories/3/items/0/extracted/mechanism",
+    "/modality/15/subcategories/0/items/5/extracted/overview"
+   ],
+   "note": "비타민D 투여 경로 서술 불일치(정맥/근육).",
+   "impact": "경로 속성 채택 시 확인"
+  },
+  {
+   "id": "S047-F02",
+   "status": "F",
+   "pointers": [
+    "/modality/15/subcategories/4"
+   ],
+   "note": "수액치료 모달리티 안 지방분해 주사제 하위분류.",
+   "impact": "계열 경계(S048 LIPO 와 묶음) 후속"
+  }
+ ]
+}

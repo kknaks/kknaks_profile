@@ -1,0 +1,67 @@
+/problems/10  problem_id='P11' problem='얼굴윤곽' complaints[7]
+
+## c0 /problems/10/complaints/0  cc='사각턱보톡스' | cc_detail='교근축소' | cc_group='사각턱'
+  P0 name='보톡스' category='M1' role='근육 이완' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  P2 name='보톡스' category='M1' role='교근 축소' products=['보톡스', '나보타', '보툴렉스']
+  P3 name='필러' category='M2' role='턱끝 볼륨' products=['쥬비덤']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 피부재생 동시 개선'
+     evidence='근이완(보톡스)과 진피재생(스킨부스터)은 목적이 다른 독립 시술로 병행'
+  B1 name='보톡스 + 턱필러' combo=['보톡스', '필러']
+     reason='교근축소 + 턱끝볼륨 = V라인'
+     evidence='위는 줄이고 아래는 늘려서 비율 교정'
+  A0 '효과 부족 시 리프팅기기 추가'
+  A1 '수술적 방법은 별도 상담'
+
+## c1 /problems/10/complaints/1  cc='윤곽주사' | cc_detail='지방분해' | cc_group='이중턱/턱밑'
+  P0 name='지방분해' category='M14' role='지방 감소' products=[]
+  P1 name='리프팅기기' category='M9' role='턱라인 타이트닝' products=['울쎄라', '올리지오']
+  B0 name='지방분해 + 리프팅기기' combo=['지방분해', '리프팅기기']
+     reason='지방감소 + 타이트닝'
+     evidence='이중턱 원인 해결'
+  A0 '수술적 방법은 별도 상담'
+
+## c2 /problems/10/complaints/2  cc='브이올렛' | cc_detail='턱밑지방 개선 허가(국내 식약처·데옥시콜산; FDA 승인 제품은 Kybella/벨카이라)' | cc_group='이중턱/턱밑'
+  P0 name='지방분해' category='M14' role='지방 감소' products=[]
+  P1 name='리프팅기기' category='M9' role='턱라인 타이트닝' products=['울쎄라', '올리지오']
+  B0 name='지방분해 + 리프팅기기' combo=['지방분해', '리프팅기기']
+     reason='지방감소 + 타이트닝'
+     evidence='이중턱 원인 해결'
+  A0 '수술적 방법은 별도 상담'
+
+## c3 /problems/10/complaints/3  cc='승모근보톡스' | cc_detail='어깨라인' | cc_group='승모근'
+  P0 name='보톡스' category='M1' role='근육 이완' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  P2 name='보톡스' category='M1' role='승모근 축소' products=['보톡스', '나보타']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 피부재생 동시 개선'
+     evidence='근이완(보톡스)과 진피재생(스킨부스터)은 목적이 다른 독립 시술로 병행'
+  B1 name='승모근 보톡스' combo=['보톡스']
+     reason='승모근 이완으로 어깨라인 개선'
+     evidence='3~6개월 유지'
+  A0 '효과 부족 시 리프팅기기 추가'
+  A1 '수술적 방법은 별도 상담'
+
+## c4 /problems/10/complaints/4  cc='광대축소주사' | cc_detail='보톡스/윤곽주사' | cc_group='광대'
+  P0 name='지방분해' category='M14' role='광대 축소' products=[]
+  B0 name='광대 축소' combo=['지방분해']
+     reason='광대 볼륨 감소'
+     evidence='주사로 간편하게'
+  A0 '수술적 방법은 별도 상담'
+
+## c5 /problems/10/complaints/5  cc='볼볼륨충전' | cc_detail='필러/지방이식/바이오스티뮬레이터' | cc_group='볼/관자놀이'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤', '레스틸렌']
+  P1 name='바이오스티뮬레이터/콜라겐부스터' category='M3' role='장기 콜라겐' products=['스컬트라', '엘란쎄']
+  B0 name='필러 + 바이오스티뮬레이터' combo=['필러', '바이오스티뮬레이터']
+     reason='즉각 볼륨 + 장기 재생'
+     evidence='스컬트라가 자연스러운 볼륨'
+  A0 '수술적 방법은 별도 상담'
+
+## c6 /problems/10/complaints/6  cc='관자놀이충전' | cc_detail='필러/지방이식' | cc_group='볼/관자놀이'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤', '레스틸렌']
+  P1 name='바이오스티뮬레이터/콜라겐부스터' category='M3' role='장기 콜라겐' products=['스컬트라', '엘란쎄']
+  B0 name='필러 + 바이오스티뮬레이터' combo=['필러', '바이오스티뮬레이터']
+     reason='즉각 볼륨 + 장기 재생'
+     evidence='스컬트라가 자연스러운 볼륨'
+  A0 '수술적 방법은 별도 상담'

@@ -1,0 +1,1245 @@
+{
+ "note": "직접 읽기(2회차)에서 적은 잠정 관찰. kind: 구조=원문 구조 사실 · 원문 참조=원장 밖 대상을 가리키는 표현 · 잠정=근거를 붙인 해석 후보 · 원문 부족=원문으로 정할 수 없는 정보. 확정 의미·관계가 아니다. build.py 가 quote 가 해당 Pointer 값 안에 실제로 있는지 검사한다. issue = issues.md 항목 ID.",
+ "observations": [
+  {
+   "id": "OB-T01",
+   "scope": "/",
+   "kind": "구조",
+   "text": "severity 값 65개는 전부 `/severity_levels` 의 키 4개 중 하나다(mild 38 · moderate 13 · severe 11 · critical 3). 코드 ↔ 정의의 연결은 같은 문자열이라는 구조 사실일 뿐, 각 항목에 이 정의를 적용해 등급을 매겼는지는 원문에 없다.",
+   "evidence": [
+    {
+     "pointer": "/severity_levels/mild",
+     "quote": "경미"
+    },
+    {
+     "pointer": "/categories/0/complications/0/severity",
+     "quote": "mild"
+    }
+   ],
+   "issue": "B1"
+  },
+  {
+   "id": "OB-T02",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`severity_levels` 정의 한 줄에 여러 축이 섞여 있다 — 경과(자연 소실·후유증·비가역 손상), 필요한 대응(경과 관찰·치료·응급), 장소(클리닉 방문).",
+   "evidence": [
+    {
+     "pointer": "/severity_levels/moderate",
+     "quote": "치료 필요, 클리닉 방문"
+    },
+    {
+     "pointer": "/severity_levels/critical",
+     "quote": "비가역적 손상 가능"
+    }
+   ],
+   "issue": "B1"
+  },
+  {
+   "id": "OB-T03",
+   "scope": "/",
+   "kind": "구조",
+   "text": "항목 객체 65개는 키 7개(name·severity·incidence·onset·mechanism·management·prevention)를 모두 갖는다. `risk_factors` 도 65개 모두에 있지만 46개는 빈 배열이다. `duration` 은 19개, `evidence` 는 38개에만 있다. 키 순서 변형은 §2.2 표에 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/0/risk_factors",
+     "quote": null
+    }
+   ],
+   "issue": "B5"
+  },
+  {
+   "id": "OB-T04",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`incidence` 는 자유 서술이다. 수치(%·범위·분수), 빈도어(흔함·드묾·대부분), 조건·하위집단(부위·기법·제품·피부형·연령), 다른 분모(치료 방문의 %, MAUDE 보고 비율), 지속 기간이 한 문자열에 섞여 있다. 단위·분모·모집단 칸이 따로 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/5/incidence",
+     "quote": "치료 방문의 약 14%"
+    },
+    {
+     "pointer": "/categories/6/complications/3/incidence",
+     "quote": "보고 비율이며 실제 발생률은 과소보고로 불명확"
+    },
+    {
+     "pointer": "/categories/3/complications/5/incidence",
+     "quote": "50세 초과에서 최대 16%"
+    }
+   ],
+   "issue": "B2"
+  },
+  {
+   "id": "OB-T05",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`onset` 에 발현 시점뿐 아니라 소실·지속·교정 시점이 함께 적힌 값이 있고, `incidence`·`management` 에도 지속·소실 기간이 있다. `duration` 키는 19개 항목에만 있다. 시간의 기준점(시술 후·주입 중 등)이 생략된 값이 많다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/6/onset",
+     "quote": "2-4주 내 자연 소실 또는 보정 주사로 교정"
+    },
+    {
+     "pointer": "/categories/6/complications/4/onset",
+     "quote": "24-72시간 내 대부분 소실"
+    },
+    {
+     "pointer": "/categories/4/complications/0/onset",
+     "quote": "2-6주"
+    }
+   ],
+   "issue": "B3"
+  },
+  {
+   "id": "OB-T06",
+   "scope": "/",
+   "kind": "원문 참조",
+   "text": "이 원장에 없는 대상을 가리키는 표현이 있다 — `site_specific`, 「별도 … 항목」, 「부위 특이 항목」, 다른 원장 파일명(taxonomy.json · anatomy-danger-zones.json). 참조 대상은 이 파일 안에 없다. 위치는 expressions.json 의 `manual.cross_reference` 로 모았다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/0/mechanism",
+     "quote": "site_specific에 별도 기재"
+    },
+    {
+     "pointer": "/categories/1/complications/5/incidence",
+     "quote": "별도 상향 항목 참조"
+    },
+    {
+     "pointer": "/categories/2/complications/4/evidence",
+     "quote": "taxonomy.json M3 각 제품 safety.common"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-T07",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`risk_factors` 가 빈 배열인 항목도 본문에서 위험을 높이는 조건을 말하는 경우가 있다. 빈 배열이 「위험인자 없음」인지 「안 적음」인지는 원문만으로 정할 수 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/1/mechanism",
+     "quote": "혈관이 풍부·표재한 부위(눈가 등)는 현저히 높음"
+    },
+    {
+     "pointer": "/categories/5/complications/0/mechanism",
+     "quote": "골 돌출부(이마·하악연·관자)와 얇은 피부에서 열 축적으로 위험이 상대적으로 높고"
+    }
+   ],
+   "issue": "B5"
+  },
+  {
+   "id": "OB-T08",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`evidence` 의 형태가 다양하다: URL 목록, 다른 원장 파일·필드 참조, 논문·기관 문헌 이름, 「clinical-standard」「임상 표준」「임상 통설」 같은 표지. 출처가 항목 안의 어느 주장(빈도·처치 등)을 뒷받침하는지는 나와 있지 않다. 27개 항목에는 evidence 키가 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/4/complications/1/evidence",
+     "quote": "clinical-standard: universal laser thermal response"
+    },
+    {
+     "pointer": "/categories/9/complications/7/evidence",
+     "quote": "임상 표준"
+    },
+    {
+     "pointer": "/categories/6/complications/4/evidence",
+     "quote": "니들RF 임상 통설"
+    }
+   ],
+   "issue": "B6"
+  },
+  {
+   "id": "OB-T09",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "기호가 여러 뜻으로 쓰인다. `~` 는 범위(「즉시~수시간」)와 근사(「~87%」, 앞이 공백)로 쓰이고, `/` 는 대안·병기(RF/HIFU)·비율(875/125mg)·횟수 단위(2회/일)·분수(1/455)로, `-` 는 수치 범위(5-10%)와 복합 약물명(아목시실린-클라불란산)으로 쓰인다. `+`·`±`·`→`·`—`·`★` 도 있다. README 의 `+`·`/` 작성 규칙이 이 원장의 기호에도 적용되는지는 확인하지 않았다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/0/incidence",
+     "quote": "~87%"
+    },
+    {
+     "pointer": "/categories/1/complications/5/management",
+     "quote": "875/125mg 2회/일"
+    },
+    {
+     "pointer": "/categories/7/complications/0/incidence",
+     "quote": "1/455"
+    },
+    {
+     "pointer": "/categories/2/complications/3/management",
+     "quote": "★HA 필러와 달리"
+    }
+   ],
+   "issue": "P1"
+  },
+  {
+   "id": "OB-T10",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "다른 카테고리에 같거나 비슷한 이름의 사건이 다시 나온다(멍·홍반·부종·감염·PIH·비대칭·통증·감각이상 등). 이름은 같아도 severity 가 다를 수 있다 — PIH 는 M8·M9·M11 에서 moderate, M14 에서 mild 다. 같은 사건인지는 정하지 않았다.",
+   "evidence": [
+    {
+     "pointer": "/categories/4/complications/0/severity",
+     "quote": "moderate"
+    },
+    {
+     "pointer": "/categories/7/complications/6/severity",
+     "quote": "mild"
+    },
+    {
+     "pointer": "/categories/7/complications/6/name",
+     "quote": "염증후 색소침착"
+    }
+   ],
+   "issue": "F1"
+  },
+  {
+   "id": "OB-T11",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "몇몇 항목은 스스로를 합병증이 아니라 「정상 반응」「예상 경과」「의도된 반응」이라고 적는다.",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/1/prevention",
+     "quote": "예방 대상이라기보다 예측 가능한 정상 반응"
+    },
+    {
+     "pointer": "/categories/6/complications/4/prevention",
+     "quote": "합병증 아닌 정상 경과"
+    },
+    {
+     "pointer": "/categories/8/complications/2/incidence",
+     "quote": "표재 필링의 의도된 반응"
+    },
+    {
+     "pointer": "/categories/9/complications/0/mechanism",
+     "quote": "정상 반응"
+    }
+   ],
+   "issue": "P2"
+  },
+  {
+   "id": "OB-T12",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "항목 이름 하나에 사건 여러 개를 묶은 경우가 있다(괄호·가운뎃점·슬래시로 병기).",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/4/name",
+     "quote": "부종·압통·멍·홍반"
+    },
+    {
+     "pointer": "/categories/9/complications/10/name",
+     "quote": "공기색전·카테터 관련 감염"
+    },
+    {
+     "pointer": "/categories/7/complications/1/name",
+     "quote": "동상·지방괴사"
+    }
+   ],
+   "issue": "P3"
+  },
+  {
+   "id": "OB-T13",
+   "scope": "/",
+   "kind": "잠정",
+   "text": "`management`·`prevention` 에는 약물·용량·횟수·기간, 조건부 처치 분기(「…시」「경증/중등도」「유형별」), 금지·금기, 순서가 자유 서술로 들어 있다. 원장에 적힌 주장일 뿐이며 이 조사에서 임상적으로 검증하지 않았다.",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/4/management",
+     "quote": "유형별 —"
+    },
+    {
+     "pointer": "/categories/2/complications/2/management",
+     "quote": "경증: 경과 관찰 + NSAID. 중등도:"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-T14",
+   "scope": "/",
+   "kind": "구조",
+   "text": "항목 이름은 한국어만 쓴 것과 한국어+괄호 영문을 쓴 것이 섞여 있다. 괄호 안에는 영문명 말고 한정어가 들어간 경우도 있다(「기저 위험」「일반 baseline」「수포 포함」).",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/5/name",
+     "quote": "기저 위험"
+    },
+    {
+     "pointer": "/categories/9/complications/9/name",
+     "quote": "일반 baseline"
+    },
+    {
+     "pointer": "/categories/5/complications/0/name",
+     "quote": "수포 포함"
+    }
+   ],
+   "issue": "F1"
+  },
+  {
+   "id": "OB-T15",
+   "scope": "/",
+   "kind": "구조",
+   "text": "세 필드가 겹치는 모양이 규칙적이다. `duration` 이 있는 19항목은 `risk_factors` 가 비지 않은 19항목과 정확히 같고, 이 19항목 중 `evidence` 가 있는 항목은 하나도 없다. `evidence` 가 있는 38항목은 모두 duration 이 없고 risk_factors 가 비었다. 나머지 8항목에는 셋 다 없다. 작성 시기나 방식이 다른 묶음이 섞였을 수 있다는 해석은 잠정이다(원문에 이력 없음). 빈 risk_factors 해석(B5)과 이어진다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/3/duration",
+     "quote": "1-3일"
+    },
+    {
+     "pointer": "/categories/0/complications/0/evidence",
+     "quote": "goodrx"
+    },
+    {
+     "pointer": "/categories/0/complications/6",
+     "quote": null
+    }
+   ],
+   "issue": "B5"
+  },
+  {
+   "id": "OB-C09",
+   "scope": "/categories/9",
+   "kind": "잠정",
+   "text": "카테고리 이름은 「수액치료」인데, complications 0~5 는 DCA(디옥시콜산)를 주입하는 지방분해 주사로 읽히고(출처가 KYBELLA·턱밑·바디), 6~11 은 정맥 주사·수액 이야기다. 카테고리 안에서 항목이 어느 시술에 해당하는지는 원문에 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/0/mechanism",
+     "quote": "DCA의 지방세포막 직접 파괴"
+    },
+    {
+     "pointer": "/categories/9/complications/0/evidence",
+     "quote": "KYBELLA"
+    },
+    {
+     "pointer": "/categories/9/complications/6/mechanism",
+     "quote": "모든 정맥/근육 주사에 공통"
+    }
+   ],
+   "issue": "B7"
+  },
+  {
+   "id": "OB-C08",
+   "scope": "/categories/8",
+   "kind": "잠정",
+   "text": "카테고리 이름은 「메디컬스킨케어」인데 항목 4개는 모두 필링(산 도포)을 말한다. 카테고리 밖의 다른 스킨케어 시술이 있는지는 이 원장으로 알 수 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/8/complications/0/mechanism",
+     "quote": "산 도포에 의한"
+    },
+    {
+     "pointer": "/categories/8/complications/1/mechanism",
+     "quote": "모든 필링에 공통"
+    }
+   ],
+   "issue": "B7"
+  },
+  {
+   "id": "OB-C00",
+   "scope": "/categories/0",
+   "kind": "구조",
+   "text": "카테고리 id 는 M1, M2, M3, M7, M8, M9, M11, M14, M15, M16 열 개다. 번호가 이어지지 않는다. 빠진 번호의 뜻(다른 원장의 시술군 코드인지)은 이 파일에 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/id",
+     "quote": "M1"
+    },
+    {
+     "pointer": "/categories/7/id",
+     "quote": "M14"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-001",
+   "scope": "/categories/0/complications/0",
+   "kind": "원문 참조",
+   "text": "부위별 강도 차이를 이 원장 밖의 `site_specific` 으로 넘긴다. `32G 이상` 은 바늘 게이지 수치에 「이상」이 붙은 것으로, 굵기 방향을 원문이 풀어 쓰지 않았다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/0/mechanism",
+     "quote": "부위별 강도 차이는 site_specific에 별도 기재"
+    },
+    {
+     "pointer": "/categories/0/complications/0/management",
+     "quote": "미세바늘(32G 이상)"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-002",
+   "scope": "/categories/0/complications/1",
+   "kind": "잠정",
+   "text": "빈도에 조건 「부위·기법에 따라」가 붙는다. risk_factors 는 비었지만 본문에서 혈관이 많은 부위(눈가 등)가 「현저히 높음」이라고 한다. 처치는 순서가 있고(24-48시간 냉찜질 → 온찜질), 「심하면」에 걸린 조건부 처치도 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/1/incidence",
+     "quote": "부위·기법에 따라"
+    },
+    {
+     "pointer": "/categories/0/complications/1/management",
+     "quote": "24-48시간 냉찜질 후 온찜질"
+    },
+    {
+     "pointer": "/categories/0/complications/1/management",
+     "quote": "심하면 레이저(PDL/KTP)"
+    }
+   ],
+   "issue": "F2"
+  },
+  {
+   "id": "OB-003",
+   "scope": "/categories/0/complications/3",
+   "kind": "잠정",
+   "text": "특정 환자군에서 반대 방향의 효과를 말한다(「만성 편두통 환자에서는 오히려 완화 효과」). 처치 안에 다른 사건(멍)의 위험 증가 경고가 들어 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/3/mechanism",
+     "quote": "만성 편두통 환자에서는 오히려 완화 효과"
+    },
+    {
+     "pointer": "/categories/0/complications/3/management",
+     "quote": "멍 위험 증가 고려"
+    }
+   ],
+   "issue": "F2"
+  },
+  {
+   "id": "OB-004",
+   "scope": "/categories/0/complications/4",
+   "kind": "잠정",
+   "text": "`duration` 칸에 경과·부정·권고가 함께 있다(「완전 영구는 아님」, 「…전환이 우선」). management 에도 부정 기대가 있다(「휴약만으로 회복을 기대하지 않음」). risk_factors 에 수치 문턱(3개월 미만·100U 이상)이 있다. `Type A → Type B` 의 화살표는 전환 방향으로 읽힌다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/4/duration",
+     "quote": "완전 영구는 아님"
+    },
+    {
+     "pointer": "/categories/0/complications/4/management",
+     "quote": "3-6개월 휴약만으로 회복을 기대하지 않음"
+    },
+    {
+     "pointer": "/categories/0/complications/4/risk_factors/0",
+     "quote": "3개월 미만"
+    },
+    {
+     "pointer": "/categories/0/complications/4/management",
+     "quote": "Type A → Type B"
+    }
+   ],
+   "issue": "F2"
+  },
+  {
+   "id": "OB-005",
+   "scope": "/categories/0/complications/5",
+   "kind": "잠정",
+   "text": "빈도가 분모가 다른 두 값이다(「1.7-20%」와 「치료 방문의 약 14%」). 처치에서는 조건이 붙으면 다른 질환 감별로 넘어간다(「호흡·연하 곤란 동반 시 의인성 보툴리즘 감별」).",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/5/incidence",
+     "quote": "1.7-20% (치료 방문의 약 14%)"
+    },
+    {
+     "pointer": "/categories/0/complications/5/management",
+     "quote": "호흡·연하 곤란 동반 시 의인성 보툴리즘 감별 위해 즉시 재진"
+    }
+   ],
+   "issue": "B2"
+  },
+  {
+   "id": "OB-006",
+   "scope": "/categories/0/complications/6",
+   "kind": "원문 참조",
+   "text": "`onset` 칸에 소실·교정 경과가 들어 있다. mechanism 은 미소 비대칭을 이 원장에 없는 다른 항목(「입꼬리/perioral의 '비대칭 미소'」)으로 나눴다고 한다. 처치에 금지(「강한 쪽 재주사는 금지」)와 기간 한정 「불필요」가 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/0/complications/6/onset",
+     "quote": "2-4주 내 자연 소실 또는 보정 주사로 교정"
+    },
+    {
+     "pointer": "/categories/0/complications/6/mechanism",
+     "quote": "입꼬리/perioral의 '비대칭 미소'로 별도 분리"
+    },
+    {
+     "pointer": "/categories/0/complications/6/management",
+     "quote": "강한 쪽 재주사는 금지(과교정 위험)"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-007",
+   "scope": "/categories/1/complications/0",
+   "kind": "원문 참조",
+   "text": "evidence 가 다른 원장(anatomy-danger-zones.json)과 문헌을 함께 가리킨다. prevention 의 중단 권고에 예외 조건이 붙어 있다(「의학적 필요 시 처방의 상의」).",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/0/evidence",
+     "quote": "anatomy-danger-zones.json (internal)"
+    },
+    {
+     "pointer": "/categories/1/complications/0/prevention",
+     "quote": "의학적 필요 시 처방의 상의"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-008",
+   "scope": "/categories/1/complications/1",
+   "kind": "원문 참조",
+   "text": "빈도 칸에 정도(「경도」)와 소실 기간이 함께 있다. 눈밑·입술의 과다 부종은 `site_specific` 으로 넘긴다.",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/1/incidence",
+     "quote": "사실상 전 사례에서 경도 발생, 수일 내 소실"
+    },
+    {
+     "pointer": "/categories/1/complications/1/mechanism",
+     "quote": "별도 부위특이 항목화(site_specific 참조)"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-009",
+   "scope": "/categories/1/complications/3",
+   "kind": "잠정",
+   "text": "처치 분기에 지속 시간 문턱이 있다(「48시간 이상 지속·확대 시」).",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/3/management",
+     "quote": "48시간 이상 지속·확대 시"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-010",
+   "scope": "/categories/1/complications/4",
+   "kind": "잠정",
+   "text": "mechanism 의 유형 번호와 management 의 번호가 서로 다른 대상을 가리킨다. mechanism (3) 은 「과민반응성」, management (3) 은 「HA 필러」다. onset 의 「평균 지연 합병증 발현 약 16.8개월」이 이 사건만의 평균인지, 지연 합병증 전체의 평균인지 원문으로 정할 수 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/4/mechanism",
+     "quote": "(3) 과민반응성"
+    },
+    {
+     "pointer": "/categories/1/complications/4/management",
+     "quote": "(3) HA 필러"
+    },
+    {
+     "pointer": "/categories/1/complications/4/onset",
+     "quote": "평균 지연 합병증 발현 약 16.8개월"
+    }
+   ],
+   "issue": "B8"
+  },
+  {
+   "id": "OB-011",
+   "scope": "/categories/1/complications/5",
+   "kind": "원문 참조",
+   "text": "이름의 「기저 위험」과 incidence 의 「전 부위 기저 위험」은 이 항목이 기본값이고, 부위별 상향 항목이 따로 있다는 뜻으로 읽힌다(잠정). 상향 항목은 이 파일에 없다. onset 은 급성과 지연성 두 갈래다.",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/5/incidence",
+     "quote": "입술 등 점막 인접 부위는 별도 상향 항목 참조"
+    },
+    {
+     "pointer": "/categories/1/complications/5/onset",
+     "quote": "수개월 (지연성/바이오필름)"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-012",
+   "scope": "/categories/1/complications/6",
+   "kind": "잠정",
+   "text": "mechanism 이 다른 사건(「이차적 필러 이동」)을 원인으로 든다.",
+   "evidence": [
+    {
+     "pointer": "/categories/1/complications/6/mechanism",
+     "quote": "이차적 필러 이동"
+    }
+   ],
+   "issue": "F1"
+  },
+  {
+   "id": "OB-013",
+   "scope": "/categories/2/complications/0",
+   "kind": "잠정",
+   "text": "빈도가 제품별로 둘이다(PLLA·CaHA). risk_factors 의 「입술/눈 주위 얇은 피부」와 prevention 의 「얇은 피부 부위(입술, 눈꺼풀) 주입 금지」는 부위 표현이 다르다(눈 주위 ↔ 눈꺼풀). 부정 진술 두 개를 보존한다(「1차 옵션으로 권고하지 않음」, 「24시간 이상 수화가 필수인 것은 아님」). 처치 문장 안에 문헌 언급(「2024 ASJ 구조적 접근법」)이 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/0/incidence",
+     "quote": "5-10% (PLLA), 2-5% (CaHA)"
+    },
+    {
+     "pointer": "/categories/2/complications/0/risk_factors/3",
+     "quote": "입술/눈 주위 얇은 피부에 주입"
+    },
+    {
+     "pointer": "/categories/2/complications/0/prevention",
+     "quote": "얇은 피부 부위(입술, 눈꺼풀) 주입 금지"
+    },
+    {
+     "pointer": "/categories/2/complications/0/management",
+     "quote": "1차 옵션으로 권고하지 않음"
+    },
+    {
+     "pointer": "/categories/2/complications/0/prevention",
+     "quote": "24시간 이상 수화가 필수인 것은 아님"
+    }
+   ],
+   "issue": "F6"
+  },
+  {
+   "id": "OB-014",
+   "scope": "/categories/2/complications/1",
+   "kind": "잠정",
+   "text": "육아종 처치 안에 CaHA 국소 집적(결절 항목 `/categories/2/complications/0` 의 처치와 비슷한 문구)이 들어 있다. 횟수와 간격이 있다(「4주 간격 3-5회」). prevention 에 시술 금지 대상과 기간 조건이 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/1/management",
+     "quote": "CaHA 국소 집적은"
+    },
+    {
+     "pointer": "/categories/2/complications/1/management",
+     "quote": "4주 간격 3-5회"
+    },
+    {
+     "pointer": "/categories/2/complications/1/prevention",
+     "quote": "이물반응/육아종 병력 환자 시술 금지"
+    },
+    {
+     "pointer": "/categories/2/complications/1/prevention",
+     "quote": "예방접종 전후 2주 시술 자제"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-015",
+   "scope": "/categories/2/complications/3",
+   "kind": "잠정",
+   "text": "`incidence` 칸에 수치가 없고 결과의 심각도(「피부괴사·실명 등 비가역적 손상 가능」)를 적었다. `duration` 칸에는 기간 대신 대응(「즉시 응급 대응 필요」)이 있다. prevention 에는 보조 수단의 한계를 적은 부정문이 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/3/incidence",
+     "quote": "드물지만 피부괴사·실명 등 비가역적 손상 가능"
+    },
+    {
+     "pointer": "/categories/2/complications/3/duration",
+     "quote": "즉시 응급 대응 필요"
+    },
+    {
+     "pointer": "/categories/2/complications/3/prevention",
+     "quote": "음성 결과가 안전을 보장하지 않는 보조 수단으로만"
+    }
+   ],
+   "issue": "B2"
+  },
+  {
+   "id": "OB-016",
+   "scope": "/categories/2/complications/4",
+   "kind": "원문 참조",
+   "text": "evidence 가 다른 원장의 필드(「taxonomy.json M3 각 제품 safety.common」)와 제품 IFU 를 가리킨다.",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/4/evidence",
+     "quote": "taxonomy.json M3 각 제품 safety.common"
+    },
+    {
+     "pointer": "/categories/2/complications/4/evidence",
+     "quote": "Galderma Sculptra IFU"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-017",
+   "scope": "/categories/2/complications/5",
+   "kind": "잠정",
+   "text": "incidence 가 다른 항목의 원인이 된다고 적는다(「지연 결절·육아종의 원인」 → 같은 카테고리의 결절·육아종 항목). 금지와 그 이유가 짝으로 나온다(「스테로이드 단독 주사 금지(악화)」).",
+   "evidence": [
+    {
+     "pointer": "/categories/2/complications/5/incidence",
+     "quote": "지연 결절·육아종의 원인"
+    },
+    {
+     "pointer": "/categories/2/complications/5/management",
+     "quote": "스테로이드 단독 주사 금지(악화)"
+    }
+   ],
+   "issue": "F1"
+  },
+  {
+   "id": "OB-018",
+   "scope": "/categories/3/complications/0",
+   "kind": "잠정",
+   "text": "`duration` 의 끝이 시간이 아니라 사건으로 정해진다(「제거 시까지 지속」). management 는 조건에 따라 단계가 나뉜다(재매몰 시도 → 불가능 시 절단·제거 → 감염 동반 시 항생제+제거).",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/0/duration",
+     "quote": "제거 시까지 지속"
+    },
+    {
+     "pointer": "/categories/3/complications/0/management",
+     "quote": "불가능 시 노출 부분 절단 또는 실 제거"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-019",
+   "scope": "/categories/3/complications/1",
+   "kind": "잠정",
+   "text": "경과 관찰의 끝도 사건으로 정해진다(「실 흡수 시까지」). prevention 에 시술 뒤 기간 제한이 있다(「시술 후 3-4주」).",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/1/management",
+     "quote": "경과 관찰(실 흡수 시까지)"
+    },
+    {
+     "pointer": "/categories/3/complications/1/prevention",
+     "quote": "시술 후 3-4주 격렬한 안면 운동·마사지·치과 시술 자제"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-020",
+   "scope": "/categories/3/complications/2",
+   "kind": "잠정",
+   "text": "duration 이 치료에 따라 달라진다고 한다(「치료 기간에 따라 다름 (2-6주)」). prevention 의 예방적 항생제는 대상 조건(고위험군)이 붙은 「고려」다.",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/2/duration",
+     "quote": "치료 기간에 따라 다름 (2-6주)"
+    },
+    {
+     "pointer": "/categories/3/complications/2/prevention",
+     "quote": "예방적 항생제 투여 고려(고위험군)"
+    }
+   ],
+   "issue": "F2"
+  },
+  {
+   "id": "OB-021",
+   "scope": "/categories/3/complications/4",
+   "kind": "잠정",
+   "text": "mechanism 의 「드문 중증 섬유성 캡슐 형성」과 severity `moderate`·incidence 「0.5-2%」를 원문 그대로 나란히 둔다. 서로 맞는지는 판단하지 않았다. 이름이 한국어 「구형구축」, 영문 「Capsular Contracture-like Reaction」, 「섬유성 결절」 셋을 같이 쓴다.",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/4/mechanism",
+     "quote": "드문 중증 섬유성 캡슐 형성"
+    },
+    {
+     "pointer": "/categories/3/complications/4/severity",
+     "quote": "moderate"
+    },
+    {
+     "pointer": "/categories/3/complications/4/name",
+     "quote": "Capsular Contracture-like Reaction / 섬유성 결절"
+    }
+   ],
+   "issue": "P4"
+  },
+  {
+   "id": "OB-022",
+   "scope": "/categories/3/complications/5",
+   "kind": "잠정",
+   "text": "하위집단 최대값이 있다(「50세 초과에서 최대 16%」). risk_factors 의 「고령」과 같은 축으로 보이지만(잠정), 기준 나이가 같은지는 원문에 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/5/incidence",
+     "quote": "50세 초과에서 최대 16%"
+    },
+    {
+     "pointer": "/categories/3/complications/5/risk_factors/3",
+     "quote": "고령"
+    }
+   ],
+   "issue": "F6"
+  },
+  {
+   "id": "OB-023",
+   "scope": "/categories/3/complications/6",
+   "kind": "잠정",
+   "text": "onset 칸에 하위 증상(당김감)의 지속 기간이 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/6/onset",
+     "quote": "당김감은 1-2주 지속"
+    }
+   ],
+   "issue": "B3"
+  },
+  {
+   "id": "OB-024",
+   "scope": "/categories/3/complications/7",
+   "kind": "원문 참조",
+   "text": "incidence 가 두 사건에 각각 빈도를 준다(멍 흔함 · 유의 혈종 드묾). 명명 혈관 손상에 의한 국소 혈종은 「부위 특이 항목」으로 넘긴다. 이 원장 안에는 그런 항목이 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/3/complications/7/incidence",
+     "quote": "멍 흔함(수일~2주), 유의 혈종은 드묾"
+    },
+    {
+     "pointer": "/categories/3/complications/7/mechanism",
+     "quote": "부위 특이 항목으로 별도 분류"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-025",
+   "scope": "/categories/4/complications/0",
+   "kind": "잠정",
+   "text": "피부형 범위가 칸마다 다르다 — incidence 「Fitzpatrick IV-VI에서 높음」, mechanism 「동아시아인(Fitzpatrick III-IV) 특히 고위험」, risk_factors 「Fitzpatrick III-VI 피부」. prevention 에 계절 조건이 있다(「여름철 절삭 레이저 자제」).",
+   "evidence": [
+    {
+     "pointer": "/categories/4/complications/0/incidence",
+     "quote": "Fitzpatrick IV-VI에서 높음"
+    },
+    {
+     "pointer": "/categories/4/complications/0/mechanism",
+     "quote": "동아시아인(Fitzpatrick III-IV) 특히 고위험"
+    },
+    {
+     "pointer": "/categories/4/complications/0/risk_factors/0",
+     "quote": "Fitzpatrick III-VI 피부"
+    },
+    {
+     "pointer": "/categories/4/complications/0/prevention",
+     "quote": "여름철 절삭 레이저 자제"
+    }
+   ],
+   "issue": "F6"
+  },
+  {
+   "id": "OB-026",
+   "scope": "/categories/4/complications/1",
+   "kind": "잠정",
+   "text": "incidence 칸에 시술 방식에 따른 지속 기간이 들어 있다(비박피 토닝/IPL ↔ 박피성 프락셔널/CO2). evidence 는 문헌이 아니라 「clinical-standard」 표지다.",
+   "evidence": [
+    {
+     "pointer": "/categories/4/complications/1/incidence",
+     "quote": "비박피 토닝/IPL 수시간~2-3일, 박피성 프락셔널/CO2 수일~수주"
+    },
+    {
+     "pointer": "/categories/4/complications/1/evidence",
+     "quote": "clinical-standard"
+    }
+   ],
+   "issue": "B3"
+  },
+  {
+   "id": "OB-027",
+   "scope": "/categories/4/complications/2",
+   "kind": "잠정",
+   "text": "「부위 무관」이라고 하면서 두드러지는 부위를 함께 적는다(「안와주위·구주위 …특히 현저하나 발생 자체는 부위 무관」). 발생과 정도를 나눠 말한 것으로 읽힌다(잠정).",
+   "evidence": [
+    {
+     "pointer": "/categories/4/complications/2/incidence",
+     "quote": "발생 자체는 부위 무관"
+    },
+    {
+     "pointer": "/categories/4/complications/2/mechanism",
+     "quote": "눈꺼풀·입술 등 성긴 결합조직 부위에서 더 눈에 띄게 나타남"
+    }
+   ],
+   "issue": "F8"
+  },
+  {
+   "id": "OB-028",
+   "scope": "/categories/5/complications/0",
+   "kind": "잠정",
+   "text": "「부위 무관 공통」이라고 하면서 위험이 높은 부위(골 돌출부·얇은 피부)를 든다. 기기에 따라 양상이 다르고(RF 표면 ↔ HIFU 심부), 에너지 조건이 붙은 하위 사건(수포)이 있다. risk_factors 는 비었다.",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/0/mechanism",
+     "quote": "부위 무관 공통"
+    },
+    {
+     "pointer": "/categories/5/complications/0/mechanism",
+     "quote": "RF는 표면 화상·HIFU는 심부 화상 양상"
+    },
+    {
+     "pointer": "/categories/5/complications/0/mechanism",
+     "quote": "너무 높은 에너지에서 수포(물집) 동반"
+    }
+   ],
+   "issue": "F8"
+  },
+  {
+   "id": "OB-029",
+   "scope": "/categories/5/complications/2",
+   "kind": "잠정",
+   "text": "incidence 칸에 지속 기간이 조건 「경우에 따라」와 함께 있다. 범위 기호가 같은 원장 안에서 `~`(2~3일)와 `-`(2-3일)로 섞여 쓰인다.",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/2/incidence",
+     "quote": "경우에 따라 2~3일 지속"
+    },
+    {
+     "pointer": "/categories/5/complications/2/management",
+     "quote": "2-3일 내 소실"
+    }
+   ],
+   "issue": "P1"
+  },
+  {
+   "id": "OB-030",
+   "scope": "/categories/5/complications/3",
+   "kind": "잠정",
+   "text": "incidence 가 시술 중과 시술 후 두 시점으로 나뉜다(「시술 중 흔함」, 「시술 후 압통 수일」).",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/3/incidence",
+     "quote": "시술 중 흔함(특히 HIFU 골막 자극 시). 시술 후 압통 수일"
+    }
+   ],
+   "issue": "B3"
+  },
+  {
+   "id": "OB-031",
+   "scope": "/categories/5/complications/4",
+   "kind": "원문 참조",
+   "text": "처치에 다른 사건으로 넘기는 문턱이 있다(「4주 이상 지속하거나 운동마비 … 동반하면 부위 특이 신경손상으로 감별」). 그 항목은 이 원장에 없다.",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/4/management",
+     "quote": "4주 이상 지속하거나 운동마비(입꼬리·눈썹 비대칭)를 동반하면 부위 특이 신경손상으로 감별 필요"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-032",
+   "scope": "/categories/5/complications/5",
+   "kind": "잠정",
+   "text": "incidence 칸에 수치가 없다. 증가 조건(피부형·과도 에너지)과 지속 기간만 있다. evidence 가 다른 원장의 `safety.uncommon` 을 가리킨다.",
+   "evidence": [
+    {
+     "pointer": "/categories/5/complications/5/incidence",
+     "quote": "짙은 피부형(Fitzpatrick IV-VI)·과도 에너지에서 증가"
+    },
+    {
+     "pointer": "/categories/5/complications/5/evidence",
+     "quote": "taxonomy.json M9 safety.uncommon"
+    }
+   ],
+   "issue": "B2"
+  },
+  {
+   "id": "OB-033",
+   "scope": "/categories/6/complications/0",
+   "kind": "잠정",
+   "text": "prevention 에 문헌 합의를 근거로 한 「더 이상 권고되지 않음」이 있다(관례적 6개월 대기). 원장에 적힌 주장으로만 보존한다. duration 은 「영구적」에 「치료로 개선 가능」이 함께 붙는다.",
+   "evidence": [
+    {
+     "pointer": "/categories/6/complications/0/prevention",
+     "quote": "관례적 6개월 대기는 근거 부족으로 더 이상 권고되지 않음"
+    },
+    {
+     "pointer": "/categories/6/complications/0/duration",
+     "quote": "영구적 (치료로 개선 가능)"
+    }
+   ],
+   "issue": "F7"
+  },
+  {
+   "id": "OB-034",
+   "scope": "/categories/6/complications/3",
+   "kind": "잠정",
+   "text": "incidence 는 발생률이 아니라 보고 비율이라고 스스로 밝히고, 「이보다」로 앞의 수치를 다시 가리킨다. 날짜 범위에 en dash(2013–2025.10)를 쓴다. evidence 에 같은 수치의 다른 표기가 있다(14/224 events ↔ 114 reports/224 events 중 burns 14건). onset 은 급성과 이차 두 단계다.",
+   "evidence": [
+    {
+     "pointer": "/categories/6/complications/3/incidence",
+     "quote": "보고 비율이며 실제 발생률은 과소보고로 불명확"
+    },
+    {
+     "pointer": "/categories/6/complications/3/incidence",
+     "quote": "경증 표재 화상은 이보다 흔함"
+    },
+    {
+     "pointer": "/categories/6/complications/3/evidence",
+     "quote": "114 reports/224 events 중 burns 14건(6.3%)"
+    },
+    {
+     "pointer": "/categories/6/complications/3/onset",
+     "quote": "이차 반흔·색소변화는 수주~수개월"
+    }
+   ],
+   "issue": "F7"
+  },
+  {
+   "id": "OB-035",
+   "scope": "/categories/7/complications/0",
+   "kind": "잠정",
+   "text": "빈도 추정치가 출처별로 여럿이다(통합 추정·독립 연구·제조사). risk_factors 한 항목에 근거 수준 한정어가 있다(「가능 인자(근거 불확실)」). 처치의 「금기」, 시기 문턱(「최소 6-9개월 이후」), prevention 의 「현재 완전한 예방법은 없음」을 보존한다.",
+   "evidence": [
+    {
+     "pointer": "/categories/7/complications/0/incidence",
+     "quote": "제조사(Allergan 2024) 추정치는 0.033%(1/3000)"
+    },
+    {
+     "pointer": "/categories/7/complications/0/risk_factors/2",
+     "quote": "높은 BMI 가능 인자(근거 불확실)"
+    },
+    {
+     "pointer": "/categories/7/complications/0/management",
+     "quote": "추가 크라이오 시술은 PAH 악화 가능 — 금기"
+    },
+    {
+     "pointer": "/categories/7/complications/0/prevention",
+     "quote": "현재 완전한 예방법은 없음"
+    }
+   ],
+   "issue": "F7"
+  },
+  {
+   "id": "OB-036",
+   "scope": "/categories/7/complications/1",
+   "kind": "잠정",
+   "text": "금기에 등급이 있다(「절대 금기」 ↔ 「상대 금기로 개별 평가」). 처치에 금지가 있다(「급격한 가온 금지」). incidence 에 사례가 난 부위(복부·사지·체부)가 함께 적혀 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/7/complications/1/prevention",
+     "quote": "절대 금기 확인, Raynaud는 상대 금기로 개별 평가"
+    },
+    {
+     "pointer": "/categories/7/complications/1/management",
+     "quote": "급격한 가온 금지"
+    },
+    {
+     "pointer": "/categories/7/complications/1/incidence",
+     "quote": "복부 전층 지방괴사 증례, 사지·체부 동상 증례 보고"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-037",
+   "scope": "/categories/7/complications/2",
+   "kind": "잠정",
+   "text": "onset 칸에 소실 기간과 일부 예외(「일부 4-8주까지」)가 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/7/complications/2/onset",
+     "quote": "대개 2주 이내 소실(일부 4-8주까지)"
+    }
+   ],
+   "issue": "B3"
+  },
+  {
+   "id": "OB-038",
+   "scope": "/categories/7/complications/5",
+   "kind": "잠정",
+   "text": "같은 항목 안에 하위 사건 두 개(시술 중 통증 · 지연성 통증 LOP)가 있고, 시점이 각각 다르다. mechanism 의 「추정」은 근거 수준 표지다.",
+   "evidence": [
+    {
+     "pointer": "/categories/7/complications/5/onset",
+     "quote": "지연성 통증은 시술 3-4일 후 발현, 대개 2주 내 자연 소실"
+    },
+    {
+     "pointer": "/categories/7/complications/5/mechanism",
+     "quote": "신경병증으로 추정"
+    }
+   ],
+   "issue": "P3"
+  },
+  {
+   "id": "OB-039",
+   "scope": "/categories/8/complications/0",
+   "kind": "원문 참조",
+   "text": "처치에서 중~심부 필링은 「별도 지속성 홍반 항목」으로 넘긴다. 이 원장에는 그 항목이 없다. 빈도에 깊이 조건(표재)이 붙어 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/8/complications/0/management",
+     "quote": "중~심부는 별도 지속성 홍반 항목 참조"
+    },
+    {
+     "pointer": "/categories/8/complications/0/incidence",
+     "quote": "약 15% (표재)"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-040",
+   "scope": "/categories/8/complications/1",
+   "kind": "잠정",
+   "text": "처치에 신호 해석과 중단 지시가 있다(「조절 불가능한 통증은 과도 침투 신호이므로 즉시 중단」).",
+   "evidence": [
+    {
+     "pointer": "/categories/8/complications/1/management",
+     "quote": "조절 불가능한 통증은 과도 침투 신호이므로 즉시 중단"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-041",
+   "scope": "/categories/9/complications/0",
+   "kind": "잠정",
+   "text": "빈도에 부위(턱밑)와 근사 표기(~87%)가 있다. 비교 주장 하나가 다른 제품(CA·뉴비쥬)에 관한 것이다(「부종이 상대적으로 경미하다는 보고」).",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/0/incidence",
+     "quote": "턱밑 임상 ~87%"
+    },
+    {
+     "pointer": "/categories/9/complications/0/prevention",
+     "quote": "CA(콜산, 뉴비쥬)는 계면활성이 낮아 부종이 상대적으로 경미하다는 보고"
+    }
+   ],
+   "issue": "F9"
+  },
+  {
+   "id": "OB-042",
+   "scope": "/categories/9/complications/3",
+   "kind": "원문 참조",
+   "text": "incidence 칸에 다른 부위의 지속 기간이 있다(「바디는 평균 18.6일 지속 보고」). 운동신경 손상은 「부위별 특이 항목」으로 넘긴다(이 원장에 없음).",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/3/incidence",
+     "quote": "바디는 평균 18.6일 지속 보고"
+    },
+    {
+     "pointer": "/categories/9/complications/3/prevention",
+     "quote": "운동신경 손상은 부위별 특이 항목 참조"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-043",
+   "scope": "/categories/9/complications/4",
+   "kind": "원문 참조",
+   "text": "바디 부위의 다른 사건(지속·대형 결절/파열)을 「별도 특이 항목」으로 넘긴다(이 원장에 없음).",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/4/mechanism",
+     "quote": "바디의 지속·대형 결절/파열은 별도 특이 항목"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-044",
+   "scope": "/categories/9/complications/5",
+   "kind": "원문 부족",
+   "text": "prevention 값이 기호 「-」 하나다. 「없음」인지 「미작성」인지 원문으로 정할 수 없다. 형태소 분석에서는 기호 단독 값으로 제외했다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/5/prevention",
+     "quote": "-"
+    }
+   ],
+   "issue": "B9"
+  },
+  {
+   "id": "OB-045",
+   "scope": "/categories/9/complications/8",
+   "kind": "잠정",
+   "text": "처치에 성분 조건별 대안이 괄호 안에 있다(냉찜질(자극성 용액) 또는 온찜질(혈관수축제)). 앞뒤 공백 없는 `—` 뒤에 지시가 이어진다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/8/management",
+     "quote": "국소 냉찜질(자극성 용액) 또는 온찜질(혈관수축제)—성분별 프로토콜 확인"
+    }
+   ],
+   "issue": "F3"
+  },
+  {
+   "id": "OB-046",
+   "scope": "/categories/9/complications/9",
+   "kind": "원문 참조",
+   "text": "이름의 「일반 baseline」과 mechanism 의 「성분별은 site_specific 참조」는 성분별 항목이 따로 있다는 뜻으로 읽힌다(잠정). 그 항목은 이 원장에 없다. prevention 에 분수 「1/2」(속도 감속)가 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/9/mechanism",
+     "quote": "성분별은 site_specific 참조"
+    },
+    {
+     "pointer": "/categories/9/complications/9/prevention",
+     "quote": "첫 투여 시 속도 1/2 감속"
+    }
+   ],
+   "issue": "B4"
+  },
+  {
+   "id": "OB-047",
+   "scope": "/categories/9/complications/10",
+   "kind": "잠정",
+   "text": "사건 두 개를 한 항목에 묶었고, onset 도 `/` 로 사건마다 나눴다. mechanism 에 양의 문턱이 있다(「공기 50mL 이상」).",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/10/onset",
+     "quote": "주입 중(공기색전) / 24-72시간(감염)"
+    },
+    {
+     "pointer": "/categories/9/complications/10/mechanism",
+     "quote": "공기 50mL 이상이 정맥 내 유입 시"
+    }
+   ],
+   "issue": "P3"
+  },
+  {
+   "id": "OB-048",
+   "scope": "/categories/9/complications/11",
+   "kind": "잠정",
+   "text": "빈도 칸이 모집단 한정이다(「기저 심부전·신부전 환자에 한해 임상적으로 의미」). 수치 문턱(eGFR<30, 100-125mL/h)이 있다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/11/incidence",
+     "quote": "기저 심부전·신부전 환자에 한해 임상적으로 의미"
+    },
+    {
+     "pointer": "/categories/9/complications/11/risk_factors/1",
+     "quote": "eGFR<30"
+    },
+    {
+     "pointer": "/categories/9/complications/11/prevention",
+     "quote": "고위험군 100-125mL/h"
+    }
+   ],
+   "issue": "F6"
+  },
+  {
+   "id": "OB-049",
+   "scope": "/categories/9/complications/7",
+   "kind": "잠정",
+   "text": "빈도가 괄호 속 「수%」다. 숫자 자리에 「수」를 쓴 근사 표기다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/7/incidence",
+     "quote": "(수%)"
+    }
+   ],
+   "issue": "B2"
+  },
+  {
+   "id": "OB-050",
+   "scope": "/categories/9/complications/6",
+   "kind": "잠정",
+   "text": "evidence 가 다른 원장의 필드와 「임상 표준」 표지를 함께 쓴다.",
+   "evidence": [
+    {
+     "pointer": "/categories/9/complications/6/evidence",
+     "quote": "taxonomy M16 safety.common (전 제제 공통 기재)"
+    }
+   ],
+   "issue": "B6"
+  }
+ ]
+}

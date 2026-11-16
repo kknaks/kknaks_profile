@@ -1,0 +1,34 @@
+{"section":"S037","state":"read","last_pointer":"/modality/13/name",
+"observations":[
+ {"status":"P","pointers":["/modality/13/subcategories","/modality/13/products"],"note":"M14 하위분류 1개(냉각지방분해), products 빈 배열."},
+ {"status":"I","pointers":["/modality/13/subcategories/0/items/1/detail","/modality/13/subcategories/0/items/1/extracted/mechanism","/modality/13/subcategories/0/items/1/extracted/aftercare/3"],"note":"바넥스는 'RF+석션 바디 컨투어링'(냉각 아님) 인데 냉각지방분해 하위분류에 있고, aftercare 에 냉각 특유 'PAH(역설적 지방 비대) 징후 시 내원' 과 M14 상용구가 있다. M10 의 '바넥스프로'(RF+EMS+석션)와 이름 유사."},
+ {"status":"P","pointers":["/modality/13/subcategories/0/items/4/detail","/modality/13/subcategories/0/items/4/extracted/aftercare"],"note":"쿨핏프로그램 = '쿨스컬프팅+인모드바디 조합' (냉각+RF 패키지). aftercare 원소 1개, 상용구 없음."},
+ {"status":"P","pointers":["/modality/13/subcategories/0/items/0/extracted/onset_duration/duration","/modality/13/subcategories/0/items/0/extracted/aftercare/5"],"note":"'1회당 약 20-25% 지방 감소' 가 duration 괄호와 상용구 양쪽에 있다. M14 상용구 '[시술 주기 참고] 1회당 약 20-25% 지방 감소. 효과 발현 2-3개월. 추가 시술은 효과 평가 후 판단'."},
+ {"status":"I","pointers":["/modality/13/subcategories/0/items/0/extracted/safety/serious/0"],"note":"'냉동주머니증 (cryolipolysis-induced panniculitis)' — 한글명 '주머니증'과 영문 panniculitis(지방층염) 대응이 원문 그대로. 번역 정확성 판단 안 함."},
+ {"status":"P","pointers":["/modality/13/subcategories/0/items/0/detail","/modality/13/subcategories/0/items/2/detail"],"note":"제조사 표기 '엘러간'(쿨스컬프팅) vs '앨러간'(쿨미니)."},
+ {"status":"P","pointers":["/modality/13/extracted/onset_duration/duration"],"note":"duration '파괴된 지방세포는 영구적으로 제거 (체중 증가 시 남은 지방세포가 커질 수 있음)' — 영구성과 조건부 반전을 함께 기술."}
+],
+"expressions":[
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/mechanism","text":"영하 10도 전후의 저온","kinds":["수량·단위·시간","범위"],"note":"'전후' 근사"},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/indications/primary/0","text":"운동/식이요법으로 빠지지 않는 국소 지방 감소 (복부, 옆구리, 허벅지)","kinds":["부정","조건","부위"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/safety/serious/0","text":"드물지만 중증 염증 반응","kinds":["가능성·빈도","수식"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/safety/serious/1","text":"PAH(역설적 지방 비대, paradoxical adipose hyperplasia) — 반드시 사전 고지","kinds":["조건","수식"],"note":"고지 의무"},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/onset_duration/duration","text":"반영구적 (제거된 지방세포는 재생되지 않음) (1회당 약 20-25% 지방 감소)","kinds":["부정","수량·단위·시간","범위"],"note":"괄호 두 개"},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/aftercare/2","text":"시술 부위 마사지 (필요시 의사 지시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/0/extracted/aftercare/4","text":"결과 평가는 3개월 이후","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/1/extracted/aftercare/2","text":"효과 발현까지 2-3개월 소요 (정상)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/2/extracted/mechanism","text":"-11°C의 저온으로 이중턱 부위 지방세포를 냉각","kinds":["수량·단위·시간","부위"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/2/extracted/aftercare/0","text":"시술 후 15분간 마사지","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/13/subcategories/0/items/4/detail","text":"쿨스컬프팅+인모드바디 조합 · 바디 컨투어링","kinds":["시술·제품명","기호","참조"],"note":""},
+ {"pointer":"/modality/13/extracted/overview","text":"'쿨스컬프팅(젤틱)', '크라이오' 등의 브랜드명","kinds":["시술·제품명","참조"],"note":"괄호 별칭(회사명)"},
+ {"pointer":"/modality/13/extracted/mechanism","text":"일정 온도 이하로 내려가면","kinds":["조건","범위"],"note":"비수치 기준"},
+ {"pointer":"/modality/13/extracted/mechanism","text":"주변의 피부, 근육, 신경 조직은 손상 없이 보존된다","kinds":["부정"],"note":""},
+ {"pointer":"/modality/13/extracted/contraindications/relative/1","text":"시술 부위에 탈장이 있는 경우","kinds":["조건","부위"],"note":""},
+ {"pointer":"/modality/13/extracted/safety/uncommon/0","text":"시술 부위 통증 (수일~수주 지속)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/13/extracted/safety/serious/0","text":"극히 드물게 시술 부위 지방이 오히려 커지는 현상","kinds":["가능성·빈도","비교"],"note":""},
+ {"pointer":"/modality/13/extracted/onset_duration/duration","text":"(체중 증가 시 남은 지방세포가 커질 수 있음)","kinds":["조건","가능성·빈도"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S037-I01","status":"I","pointers":["/modality/13/subcategories/0/items/1"],"note":"바넥스(RF+석션)가 냉각지방분해 하위분류·PAH 지시.","impact":"분류·안전 지시 정합 후속"}
+]}

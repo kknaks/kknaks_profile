@@ -1,0 +1,356 @@
+# hub-evals 질문 리스트 — 실험 화면에 넣어 볼 질문
+
+작성 2026-10-30 · 품질 측정 문항(`orchestration/work/phub-recommend/quality-eval-set.json` — 원천 근거로 정답이 있는 것)을 상담 말투로 바꾼 것. 환자 정보 없음.
+「볼 것」= 세 케이스(원장 MCP · 골드 MCP · 골드 + Jev) 차이가 드러나기 쉬운 지점. 먼저 넣어 볼 것: **1 · 3 · 4 · 11 · 17 · 22**.
+
+## 1. 고민 → 추천 시술(I-01)
+
+| # | 질문 | 볼 것 | 측정 문항 |
+|---|---|---|---|
+| 1 | 이마 주름이 신경 쓰이는데 어떤 시술이 좋아요? | 보톡스 · 스킨부스터 · 리프팅기기가 다 나오나 | Q001 |
+| 2 | 팔자주름 개선하려면 뭘 받아야 해요? | 필러 말고 다른 계열도 나오나 | Q002 |
+| 3 | 턱선이 처졌는데 어떤 시술이 있어요? | 원천 근거대로 턱선 HIFU · 소프웨이브는 원천 근거 없음(10-30 결정) | Q003 |
+| 4 | 이중턱 없애고 싶어요 | 겨드랑이 마이크로웨이브 같은 오연결 없나(R21~R31) | — |
+| 5 | 겨드랑이 땀이 너무 많아요 | 다한증 → 겨드랑이 보톡스 · 미라드라이만 | — |
+| 6 | 여드름 자국이랑 모공 때문에 고민이에요 | 여러 고민 · 니들RF · 레이저 | — |
+| 7 | 피부결이 거칠어요 | 새 「피부결」 노드(J10) | — |
+| 8 | 기미가 있는데 레이저 받아도 돼요? | 고출력 레이저 피함(조건부) · 저출력 토닝 | — |
+
+## 2. 시술 설명 · 사후관리 · 부작용 · 회복(I-02 ~ I-05)
+
+| # | 질문 | 볼 것 | 측정 문항 |
+|---|---|---|---|
+| 9 | 소프웨이브는 어떤 시술이에요? | 원리 · 시간 · 통증 | Q032 |
+| 10 | 실리프팅은 어떻게 하는 거예요? | | Q036 |
+| 11 | 소프웨이브 받고 사우나는 언제부터 가능해요? | 원천 「당일 피하기」 ↔ 샘플 「2주」 — 지어내나 원천대로인가(의료진 질문 문항) | Q042 |
+| 12 | 필러 맞고 나서 주의할 게 뭐예요? | | Q044 |
+| 13 | 보톡스 부작용이 뭐가 있어요? | 부작용(흔함) · 합병증(드묾) 구분 | Q049 |
+| 14 | 실리프팅 회복 기간이 얼마나 돼요? | | Q062 |
+
+## 3. 비교(I-06)
+
+| # | 질문 | 측정 문항 |
+|---|---|---|
+| 15 | 울쎄라랑 써마지 차이가 뭐예요? | Q065 |
+| 16 | 필러랑 스컬트라는 뭐가 달라요? | Q067 |
+
+## 4. 같이 받기 · 순서 · 간격(I-07 · I-08)
+
+| # | 질문 | 볼 것 | 측정 문항 |
+|---|---|---|---|
+| 17 | 소프웨이브랑 팔자 필러 같은 날 받아도 돼요? | 순서에 따라 갈리는 같은 날 값(by_direction) | Q071 |
+| 18 | 이마 보톡스랑 팔자 필러 같이 맞아도 돼요? | 충돌 정리 값(보수적 선택) | Q073 |
+| 19 | CO2 프락셀이랑 필러 같은 날 가능해요? | 같은 날 불가 · 간격 | Q074 |
+| 20 | 6주 전에 보톡스 맞았는데 소프웨이브 받아도 돼요? | 경과일 판정 | Q092 |
+
+## 5. 나한테 해도 되나 · 확인 조건(I-09)
+
+| # | 질문 | 볼 것 | 측정 문항 |
+|---|---|---|---|
+| 21 | 이소트레티노인(여드름약) 먹는 중인데 프락셔널 레이저 돼요? | 대기 기간 보수적(더 긴 쪽) | Q081 |
+| 22 | 임신 중인데 보톡스 맞아도 돼요? | 금기로 안내(더 엄격한 쪽) | — |
+| 23 | 통증에 민감한데 소프웨이브 많이 아파요? | 확인 조건 없음 → 시술 카드 경로 | Q101 |
+
+## 6. 제품 · 추천 조합(I-10 · I-11)
+
+| # | 질문 | 볼 것 | 측정 문항 |
+|---|---|---|---|
+| 24 | 쥬비덤 볼루마는 어디에 쓰는 필러예요? | 「Voluma」 · 「볼루마」 — 원천 품목에 없음(의료진 질문 문항) | Q102 |
+| 25 | 쁘띠시술 추천 패키지 뭐 있어요? | 메뉴 이름 → 조합(판단 ②) | Q106 |
+| 26 | 색소/미백 추천 조합 알려 주세요 | 「추천 패키지」 먼저 · 나머지 참고(판단 ③) | Q110 |
+
+---
+
+# 시술 상담 질문·답변 확장 자료 (2026-10-30)
+
+기존 26개 hub-evals 문항은 위에 원문 그대로 보존했다. 아래 219개 구조화 문항은 별도 문항이며, **자주 묻는 순위나 실제 문의 빈도**를 뜻하지 않는다. 강남언니 실제 이용자 게시글에서 확인한 6개와 공개 FAQ에서 확인한 61개는 원문을 짧게 재서술했고, 나머지 152개는 주제를 바탕으로 확장한 평가용 질문이다. 확장 문항의 질문 URL은 발상의 공개 출처를 뜻한다. 답변은 일반 안내 초안이며 진단·처방이나 병원의 실제 시술 제공 목록을 확정하지 않는다.
+
+## 수집·검증 기준
+
+- 범위: 시술의 적응 대상, 효과, 비교, 통증, 회복, 위험, 간격, 병행, 금기, 전후 관리. 주차·위치·운영시간 등 병원 일반 정보 제외.
+- 중복 제거: 동일 시술의 같은 의도와 답변이 반복되는 문항은 합치고, 부위·원인·위험 대응이 달라야 별도 문항으로 남겼다.
+- 강남언니 공개 커뮤니티의 실제 이용자 게시글, 강남언니 편집 콘텐츠와 차앤박피부과·에이비클리닉·오오피부과·바라봄피부과·원더스의원·에디션성형외과 공개 FAQ를 질문 발굴에 사용했다. 네이버 지식iN·블로그 본문은 robots.txt 접근 제한으로 직접 검증하지 못했으며 아래 문항의 수집 출처로 표기하지 않았다.
+- 실제 공개 FAQ에 의미상 대응하는 문항은 `수집·재서술`, 주제만 참고한 문항은 `확장/주제참고`로 표시했다. 해당 URL에 같은 문장이 있다는 주장이 아니다. 응급 위험 문항의 답변은 FDA 등 공적 자료를 우선 적용했다. 병원별 제품·가격·장비·시술 간격은 확인하지 못했다.
+
+## 시술별 구조화 문항
+
+| ID | 시술/주제 | 고객 질문 | 일반적 답변 | 질문 출처 URL | 답변 근거 URL | 출처유형 | 검토 필요 |
+|---|---|---|---|---|---|---|---|
+| TOX-01 | 보툴리눔 톡신 | 이마 주름 보톡스는 언제부터 티가 나나요? | 효과는 며칠에 걸쳐 나타나며 개인차가 있습니다. 깊게 패인 정적 주름은 별도 접근이 필요할 수 있습니다. | https://editionps.com/blog/forehead-glabellar-wrinkle-botox-timing | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| TOX-02 | 보툴리눔 톡신 | 표정을 지을 때만 생기는 주름에도 맞나요? | 표정근 움직임으로 생기는 주름이 주요 대상입니다. 움직이지 않아도 남는 주름은 상태를 따로 평가합니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-03 | 보툴리눔 톡신 | 사각턱 보톡스가 얼굴 지방도 줄여 주나요? | 교근을 약화시키는 시술이지 지방 제거 시술은 아닙니다. 턱선 원인을 먼저 확인해야 합니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-04 | 보툴리눔 톡신 | 보톡스를 맞으면 표정이 완전히 없어지나요? | 용량과 주입 위치에 따라 달라집니다. 자연스러운 표정 유지 목표를 시술 전 구체적으로 상의하세요. | https://editionps.com/blog/forehead-glabellar-wrinkle-botox-timing | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| TOX-05 | 보툴리눔 톡신 | 보톡스는 몇 개월마다 다시 맞아야 하나요? | 효과는 일시적이며 재시술 시기는 움직임 회복, 부위, 제품, 이전 반응을 보고 정합니다. | https://editionps.com/blog/forehead-glabellar-wrinkle-botox-timing | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| TOX-06 | 보툴리눔 톡신 | 보톡스 맞고 바로 운동해도 되나요? | 시술 직후 격한 운동은 잠시 피하라는 권고가 있습니다. 시술자의 구체적 안내를 따르세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-07 | 보툴리눔 톡신 | 보톡스 맞은 부위를 마사지해도 되나요? | 주입 부위는 문지르거나 강하게 마사지하지 않는 것이 좋습니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-08 | 보툴리눔 톡신 | 보톡스 후 눈꺼풀이 처지면 어떻게 하나요? | 드문 인접 근육 영향일 수 있으므로 시술 병원에 바로 연락해 평가받으세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-09 | 보툴리눔 톡신 | 보톡스 맞은 뒤 멍이 생겼는데 정상인가요? | 주사 부위의 일시적 멍과 붓기는 생길 수 있습니다. 심해지거나 오래가면 진료받으세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-10 | 보툴리눔 톡신 | 보톡스 맞고 숨쉬기나 삼키기가 힘들면요? | 드물지만 중대한 이상 신호입니다. 즉시 응급 진료를 받으세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-11 | 보툴리눔 톡신 | 임신 중에 미용 보톡스를 맞아도 되나요? | 태아에 대한 안전성이 확립되지 않았으므로 임신 여부를 알리고 미용 목적 시술은 연기 여부를 상담하세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-preparation | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-12 | 보툴리눔 톡신 | 수유 중 보톡스는 괜찮나요? | 제품과 개인 상황에 따른 근거가 제한적입니다. 수유 사실을 알리고 의료진과 시점을 결정하세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-preparation | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-13 | 보툴리눔 톡신 | 스킨보톡스와 근육 보톡스는 같은 건가요? | 같은 계열 약물을 쓰더라도 주입 깊이와 목표가 다릅니다. 제품과 적응증을 확인하세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-14 | 보툴리눔 톡신 | 겨드랑이 다한증도 보톡스로 치료하나요? | 국소 치료로 충분하지 않은 겨드랑이 다한증에 쓰일 수 있습니다. 원인과 적합성을 진료로 확인합니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| TOX-15 | 보툴리눔 톡신 | 보톡스를 여러 부위에 동시에 맞아도 되나요? | 총 용량, 부위별 근육, 병력과 이전 반응을 함께 검토해야 합니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-01 | 필러 | 필러와 보톡스는 무엇이 달라요? | 필러는 조직의 볼륨을 보충하고 톡신은 근육 움직임을 줄입니다. 고민의 원인이 달라 선택도 달라집니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-02 | 필러 | 팔자주름에는 무조건 필러가 맞나요? | 꺼짐, 처짐, 표정, 피부 상태에 따라 다릅니다. 부위를 직접 보고 원인을 구분해야 합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-03 | 필러 | 입술 필러는 맞자마자 완성된 모양인가요? | 대개 볼륨은 즉시 보이지만 초기 붓기가 섞여 있어 안정된 뒤 평가해야 합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-04 | 필러 | 필러는 얼마나 오래 가나요? | 성분, 부위, 대사에 따라 차이가 큽니다. 제품별 예상 유지 기간을 확인하세요. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| FILL-05 | 필러 | 필러 맞을 때 마취가 필요한가요? | 부위와 제품에 따라 냉각, 도포 마취, 국소 마취 등을 고려할 수 있습니다. | https://www.gangnamunni.com/contents/3d7d9338-d3d4-80f9-853a-c33f81223838 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| FILL-06 | 필러 | 필러 후 멍과 붓기는 얼마나 가나요? | 일시적 멍·붓기는 가능하며 대개 가라앉습니다. 점점 악화되면 진료받으세요. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-07 | 필러 | 필러 맞고 운동은 언제부터 하나요? | AAD는 격한 활동을 다음 날까지 기다리라고 안내합니다. 담당자의 지시가 우선입니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-08 | 필러 | 필러 맞은 부위를 눌러도 되나요? | 임의로 강하게 만지거나 마사지하지 마세요. 일부 제품은 별도 마사지 지시가 있어 제품 확인이 필요합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-09 | 필러 | 히알루론산 필러를 녹일 수 있나요? | 히알루론산 필러는 히알루로니다제로 분해를 시도할 수 있으나 진료 후 결정해야 합니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| FILL-10 | 필러 | 필러가 덩어리처럼 만져지면요? | 초기 붓기, 제품 분포, 염증 등 원인이 다양합니다. 지속되거나 통증·열감이 있으면 진료받으세요. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-11 | 필러 | 필러 후 피부가 하얗게 변하고 심하게 아파요 | 혈류 장애 가능성이 있어 즉시 시술 병원이나 응급 진료로 평가받아야 합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-12 | 필러 | 필러 뒤 시야가 흐려지면 기다려도 되나요? | 기다리면 안 됩니다. 드물지만 혈관 합병증 가능성이 있어 즉시 응급 진료가 필요합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-13 | 필러 | 필러와 콜라겐 자극 주사는 효과 시점이 같나요? | 볼륨 필러는 대체로 빠르게 보이고 일부 콜라겐 자극제는 시간이 걸립니다. 사용 제품을 확인하세요. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-14 | 필러 | 필러를 계속 맞으면 얼굴이 영구히 커지나요? | 누적 주입과 잔존량은 개인·제품별로 달라집니다. 이전 시술 기록을 확인한 뒤 추가 여부를 판단하세요. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| FILL-15 | 필러 | 필러 후 레이저는 바로 받을 수 있나요? | 열·압박·주사 부위 상태와 레이저 종류에 따라 달라 동일 날짜 가능 여부를 담당 의사가 정해야 합니다. | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-01 | 스킨부스터·재생주사 | 리쥬란과 히알루론산 스킨부스터는 같은 건가요? | 성분과 주입 목표가 다릅니다. 정확한 제품명, 허가 용도와 기대 효과를 확인하세요. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-02 | 스킨부스터·재생주사 | 리쥬란은 왜 아프다고 하나요? | 주사 바늘과 약물 주입 과정에서 통증이 생길 수 있습니다. 통증 체감은 개인·부위·마취에 따라 다릅니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-03 | 스킨부스터·재생주사 | 손주사와 기계주사 중 무엇이 더 좋아요? | 주입 깊이와 양의 균일성, 약물 손실, 통증 등이 달라질 수 있어 제품과 피부 상태에 맞춰 결정합니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-04 | 스킨부스터·재생주사 | 스킨부스터 한 번으로 피부가 완전히 바뀌나요? | 변화 정도는 피부 상태와 제품에 따라 다르며 한 번의 결과를 보장하기 어렵습니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-05 | 스킨부스터·재생주사 | 스킨부스터 맞은 자국은 언제 없어지나요? | 주입 자국과 붓기는 일시적일 수 있습니다. 지속·악화되면 감염 등을 평가받으세요. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-06 | 스킨부스터·재생주사 | 스킨부스터 후 세안과 화장은 언제 가능해요? | 주입 부위 상태와 제품별 안내를 따르세요. 자극과 오염을 줄이는 것이 중요합니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-07 | 스킨부스터·재생주사 | 스킨부스터 후 오돌토돌한 엠보싱이 남아도 되나요? | 주입 직후 일시적 팽진은 가능하지만 오래 지속되거나 붉고 아프면 진료받으세요. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-08 | 스킨부스터·재생주사 | 스킨부스터와 필러는 같은 날 맞을 수 있나요? | 부위, 성분, 주입층과 총 자극을 검토해야 합니다. 일괄적으로 같은 날 가능하다고 할 수 없습니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-09 | 스킨부스터·재생주사 | 스킨부스터가 여드름 흉터를 없애나요? | 피부결 보조 목적과 흉터 치료는 다릅니다. 흉터 형태에 따라 레이저·니들링 등 별도 치료가 필요합니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-10 | 스킨부스터·재생주사 | PN·PDRN 제품은 생선 알레르기가 있어도 맞나요? | 원료와 제조 공정이 제품마다 달라 알레르기 병력을 알리고 해당 제품 설명서를 확인해야 합니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-11 | 스킨부스터·재생주사 | 쥬베룩과 일반 HA 필러는 뭐가 달라요? | 성분과 작용 방식이 달라 결과 시점·결절 위험도 다를 수 있습니다. 실제 제품 정보를 확인하세요. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-12 | 스킨부스터·재생주사 | 스킨부스터 후 결절이 생기면 어떻게 하나요? | 제품·주입 깊이·염증 등 원인을 평가해야 하므로 자가 마사지나 주사 없이 진료받으세요. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-13 | 스킨부스터·재생주사 | PRP는 리쥬란과 같은 시술인가요? | PRP는 자가 혈액 유래 성분을 사용하고 PN 계열 제품과 성분·절차가 다릅니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-14 | 스킨부스터·재생주사 | 피부가 예민해도 스킨부스터를 받을 수 있나요? | 활동성 염증·감염, 알레르기, 피부 장벽 상태를 먼저 평가해야 합니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BOOST-15 | 스킨부스터·재생주사 | 스킨부스터의 정확한 주입 용량은 얼마가 맞나요? | 제품·부위·피부 상태에 따라 달라 문진과 진찰 없이 정할 수 없습니다. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-01 | 초음파·고주파 리프팅 | 울쎄라와 슈링크는 원리가 같나요? | 둘 다 집속 초음파 계열이지만 장비 특성과 시술 계획이 다릅니다. 우열을 일괄 단정하기 어렵습니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-02 | 초음파·고주파 리프팅 | 울쎄라와 써마지는 뭐가 달라요? | 집속 초음파와 고주파로 에너지 방식과 목표 조직이 다릅니다. 처짐·피부 두께를 평가해 선택합니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-03 | 초음파·고주파 리프팅 | 볼살이 적은데 초음파 리프팅을 받아도 될까요? | 지방 감소나 패임 우려가 있으므로 얼굴 지방층과 시술 깊이·부위를 신중히 평가해야 합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-04 | 초음파·고주파 리프팅 | 리프팅 장비 시술은 바로 효과가 보이나요? | 즉각적 변화와 이후 변화가 다를 수 있고 개인차가 큽니다. 일정 시점의 결과를 보장할 수 없습니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-05 | 초음파·고주파 리프팅 | 리프팅 시술은 몇 샷이 적당해요? | 샷 수는 장비, 면적, 깊이, 해부학적 구조에 따라 달라 숫자만으로 적정성을 판단할 수 없습니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-06 | 초음파·고주파 리프팅 | 고주파 리프팅은 피부가 얇아도 가능한가요? | 가능 여부와 출력은 피부 두께, 지방량, 이식물, 기존 시술력을 보고 정합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-07 | 초음파·고주파 리프팅 | HIFU 시술 때 마취하나요? | 통증은 장비·설정·부위별로 다르며 마취 방식도 달라 사전 상담이 필요합니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-08 | 초음파·고주파 리프팅 | 리프팅 후 붉어지고 부었어요 | 가벼운 반응은 있을 수 있지만 수포·화상·지속 통증이나 감각 변화는 즉시 진료받으세요. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-09 | 초음파·고주파 리프팅 | 리프팅 받고 사우나는 언제 가능해요? | 열 자극이 남아 있다면 피하고 해당 장비와 피부 반응에 따른 시술자 안내를 따르세요. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-10 | 초음파·고주파 리프팅 | 실리프팅과 초음파 리프팅은 같은 효과인가요? | 실은 조직을 물리적으로 지지하고 초음파는 열 에너지를 사용합니다. 적응증과 회복 부담이 다릅니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-11 | 초음파·고주파 리프팅 | 고주파와 초음파를 같은 날 받아도 되나요? | 부위·출력·총 열량과 기존 시술을 고려해야 합니다. 안전한 순서와 간격은 담당 의사가 정합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-12 | 초음파·고주파 리프팅 | 리프팅을 자주 받으면 더 좋아지나요? | 과도한 반복은 자극과 부작용 위험을 높일 수 있습니다. 회복 상태와 목표에 맞춰 계획합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-13 | 초음파·고주파 리프팅 | 써마지와 덴서티를 함께 받아도 되나요? | 같은 고주파 계열을 중복 적용하는 이득과 열 자극을 개별 평가해야 합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-14 | 초음파·고주파 리프팅 | 리프팅 후 감각이 둔한데 괜찮나요? | 일시적 변화도 가능하지만 지속되거나 악화되는 감각 저하·통증은 진료받으세요. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| LIFT-15 | 초음파·고주파 리프팅 | 피부 처짐과 지방 때문에 턱선이 흐린데 리프팅만으로 되나요? | 원인이 피부·지방·근육·뼈 구조 중 무엇인지 구분해야 시술 선택이 가능합니다. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-01 | 마이크로니들 RF·니들링 | 포텐자 같은 니들RF와 일반 니들링은 뭐가 달라요? | 둘 다 미세 바늘을 쓰지만 RF 장비는 바늘을 통해 열 에너지를 전달합니다. 적응증과 위험이 다릅니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-02 | 마이크로니들 RF·니들링 | 모공 때문에 니들RF를 받으면 모공이 없어지나요? | 모공을 완전히 없앨 수는 없습니다. 피부결 개선 가능성은 원인과 피부 상태에 따라 다릅니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-03 | 마이크로니들 RF·니들링 | 니들RF는 여드름 흉터에 도움이 되나요? | 일부 함몰 흉터에 고려할 수 있지만 흉터 형태별로 치료를 달리해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-04 | 마이크로니들 RF·니들링 | 니들RF는 받을 때 얼마나 아파요? | 바늘과 열 자극으로 통증이 있을 수 있으며 마취·설정·부위에 따라 다릅니다. | https://skinab.com/faq | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| RF-05 | 마이크로니들 RF·니들링 | 니들RF 후 얼굴이 빨개지는데 언제 가라앉나요? | 붉음과 부기는 일시적일 수 있습니다. 심해지거나 물집·진물이 나면 화상을 평가받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-06 | 마이크로니들 RF·니들링 | 니들RF 뒤 볼이 패인 것 같아요 | RF 마이크로니들링 후 지방 감소 보고가 있어 사진과 경과를 갖고 시술 의료진의 평가를 받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-07 | 마이크로니들 RF·니들링 | 니들RF로 화상이 생길 수도 있나요? | FDA는 화상·흉터·지방 감소·신경 손상 보고를 알렸습니다. 위험과 대안을 시술 전에 상의하세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-08 | 마이크로니들 RF·니들링 | 니들RF 후 세안·화장은 언제부터 하나요? | 미세 상처가 남아 있으므로 장비 설정과 피부 반응에 맞춘 시술자 지시를 따르세요. | https://skinab.com/faq | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| RF-09 | 마이크로니들 RF·니들링 | 니들RF 후 운동이나 사우나를 해도 되나요? | 열감과 붉음이 가라앉을 때까지 강한 열·마찰을 피하도록 안내받는 것이 좋습니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-10 | 마이크로니들 RF·니들링 | 활동성 염증 여드름 위에 니들RF를 해도 되나요? | 감염·염증 확산 위험을 포함해 병변 상태를 먼저 진찰해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-11 | 마이크로니들 RF·니들링 | 니들RF와 프락셔널 레이저를 같이 할 수 있나요? | 두 시술 모두 피부에 손상을 줄 수 있어 총 자극·회복 기간을 평가해 계획해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-12 | 마이크로니들 RF·니들링 | 니들RF는 몇 번 받아야 하나요? | 목표와 반응에 따라 다르며 정해진 횟수로 결과를 보장할 수 없습니다. | https://skinab.com/faq | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| RF-13 | 마이크로니들 RF·니들링 | 켈로이드 체질인데 니들링을 받아도 되나요? | 흉터 형성 병력을 반드시 알리고 위험 대비 이득을 상담해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-14 | 마이크로니들 RF·니들링 | 니들RF 후 신경이 찌릿하면요? | 지속되거나 심해지는 감각 이상은 시술 의료진에게 즉시 알려 평가받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| RF-15 | 마이크로니들 RF·니들링 | 니들링에 약물을 함께 넣으면 항상 더 좋은가요? | 약물과 기기의 허가 범위, 흡수, 알레르기·감염 위험을 따로 검토해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-01 | 기미·잡티·색소 레이저 | 기미와 잡티는 같은 레이저로 지우나요? | 기미와 일광흑자 등은 깊이와 재발 특성이 달라 진단 후 레이저 종류를 정해야 합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-02 | 기미·잡티·색소 레이저 | 기미는 한 번 레이저로 없어지나요? | 기미는 재발이 흔하고 단일 시술로 완치를 보장하기 어렵습니다. 자외선 관리와 장기 계획이 필요합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-03 | 기미·잡티·색소 레이저 | 레이저 토닝을 세게 하면 기미가 더 빨리 없어지나요? | 과한 에너지는 악화·저색소 위험이 있어 병변과 피부색에 맞는 설정이 중요합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-04 | 기미·잡티·색소 레이저 | 흑자 레이저 후 딱지가 생기나요? | 시술 방식에 따라 딱지나 붉음이 생길 수 있습니다. 억지로 떼지 말고 안내에 따르세요. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-05 | 기미·잡티·색소 레이저 | 점 빼는 레이저와 기미 토닝은 같은가요? | 목표 병변과 에너지 방식이 다릅니다. 점은 진단이 먼저 필요하고 기미는 재발 관리가 중요합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-06 | 기미·잡티·색소 레이저 | 색소 레이저 후 더 진해 보일 수 있나요? | 염증 후 색소침착 등으로 일시적 악화처럼 보일 수 있어 경과와 원인을 진료로 확인해야 합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-07 | 기미·잡티·색소 레이저 | 피부가 어두운데 잡티 레이저를 받아도 되나요? | 피부색에 따라 색소 변화 위험이 달라 장비·설정·사전 관리가 중요합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-08 | 기미·잡티·색소 레이저 | 레이저 전에 햇빛에 탔으면 어떻게 하나요? | 최근 태닝이나 일광화상을 알려 주세요. 색소 변화·화상 위험 때문에 연기가 필요할 수 있습니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-09 | 기미·잡티·색소 레이저 | 기미 레이저 후 자외선차단제를 꼭 써야 하나요? | 자외선은 기미 재발·악화에 관여하므로 차단과 물리적 보호를 꾸준히 하세요. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-10 | 기미·잡티·색소 레이저 | 색소 레이저 후 세안은 언제 해요? | 박피 여부와 피부 손상 정도에 따라 달라 시술별 안내를 따라야 합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-11 | 기미·잡티·색소 레이저 | 색소 레이저 후 리쥬란을 바로 맞아도 되나요? | 붉음·열감·상처가 남아 있는지와 두 시술 부위를 보고 간격을 정해야 합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| PIG-12 | 기미·잡티·색소 레이저 | 피코레이저와 일반 토닝 중 뭘 선택해요? | 장비 이름만으로 결정할 수 없고 색소의 종류·깊이·피부색·이전 반응이 중요합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-13 | 기미·잡티·색소 레이저 | 주근깨와 기미를 동시에 치료할 수 있나요? | 서로 다른 병변이 공존할 수 있어 진단 후 우선순위와 자극량을 조절해야 합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-14 | 기미·잡티·색소 레이저 | 레이저 후 하얀 반점이 생겼어요 | 저색소 변화 가능성이 있어 추가 시술을 멈추고 피부과 평가를 받으세요. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PIG-15 | 기미·잡티·색소 레이저 | 색소 레이저 후 재생테이프는 꼭 붙이나요? | 상처가 생기는 시술인지에 따라 다릅니다. 해당 병변과 레이저별 안내를 따르세요. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.aad.org/public/diseases/a-z/melasma-treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-01 | 여드름·홍조·혈관 | 여드름 레이저만 받으면 약 없이 낫나요? | 빛·레이저만으로 모든 여드름 유형을 치료하지 못합니다. 병변 종류에 따라 약물과 관리가 필요합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-02 | 여드름·홍조·혈관 | 염증 여드름과 여드름 자국은 같은 시술인가요? | 활동성 염증과 남은 붉은·갈색 자국은 원인이 달라 치료도 다릅니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-03 | 여드름·홍조·혈관 | 압출과 레이저를 같은 날 해도 되나요? | 피부 손상과 염증 상태를 고려해야 하며 담당자가 부위와 강도를 조절합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-04 | 여드름·홍조·혈관 | 여드름이 심한데 프락셔널 레이저를 받아도 되나요? | 활동성 염증을 먼저 조절해야 할 수 있습니다. 감염·악화 위험을 확인하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-05 | 여드름·홍조·혈관 | 붉은 여드름 자국에는 어떤 레이저가 맞나요? | 붉은 자국의 혈관 성분 여부를 확인한 뒤 혈관 레이저 등 선택지를 검토합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-06 | 여드름·홍조·혈관 | 갈색 여드름 자국과 흉터는 같은 건가요? | 갈색 자국은 색소 변화이고 함몰 흉터는 피부 구조 변화라 치료 목표가 다릅니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-07 | 여드름·홍조·혈관 | 홍조와 모세혈관확장은 같은 시술로 치료하나요? | 원인이 다를 수 있어 주사 피부염, 자극, 혈관확장 등을 진단해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-08 | 여드름·홍조·혈관 | 혈관 레이저 후 멍이 들 수도 있나요? | 장비와 설정에 따라 자반·붓기 등이 생길 수 있습니다. 예상 회복을 시술 전에 확인하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-09 | 여드름·홍조·혈관 | 혈관 레이저 후 얼굴이 더 빨갛다면요? | 일시적 붉음은 가능하지만 악화·물집·심한 통증이 있으면 진료받으세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-10 | 여드름·홍조·혈관 | 주사 피부염이 있는데 IPL 받아도 되나요? | IPL이 일부 혈관성 증상에 사용되기도 하지만 염증 상태와 피부 민감도를 먼저 평가해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-11 | 여드름·홍조·혈관 | 여드름 레이저를 몇 번 받아야 하나요? | 병변 유형·중증도·기존 치료에 따라 달라 횟수 보장은 어렵습니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-12 | 여드름·홍조·혈관 | 여드름약 먹는 중에도 광선 시술을 받나요? | 약 종류의 광과민성, 피부 건조·회복 상태를 알려 주고 시술 적합성을 확인하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-13 | 여드름·홍조·혈관 | 혈관 레이저 후 햇빛을 피해야 하나요? | 시술 후 피부 보호와 자외선 차단이 중요하며 구체적 기간은 장비·반응에 따릅니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-14 | 여드름·홍조·혈관 | 홍조가 생긴 뒤 고주파를 받으면 좋아지나요? | 홍조 원인에 따라 열 자극이 불편함을 키울 수도 있어 진단 후 결정해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| ACNE-15 | 여드름·홍조·혈관 | 여드름 치료 후 다시 나는 건 시술 실패인가요? | 여드름은 재발 가능한 질환으로 기존 치료 반응과 유지 관리·생활 요인을 함께 평가해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne-and-rosacea/lasers-and-lights-how-well-do-they-treat-acne | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-01 | 흉터·모공·프락셔널 레이저 | 여드름 흉터는 레이저만으로 없어지나요? | 흉터는 완전 제거보다 눈에 덜 띄게 하는 것이 현실적 목표이며 형태별 복합 치료가 필요할 수 있습니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-02 | 흉터·모공·프락셔널 레이저 | 패인 흉터와 튀어나온 흉터는 치료가 같나요? | 함몰·비후·켈로이드 흉터는 치료 방향이 다르므로 먼저 분류해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-03 | 흉터·모공·프락셔널 레이저 | 프락셔널 레이저와 CO2 박피 레이저는 같나요? | 프락셔널은 에너지 조사 방식이며 CO2는 레이저 종류입니다. 박피 깊이와 회복이 다를 수 있습니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-04 | 흉터·모공·프락셔널 레이저 | 프락셔널 레이저 후 회복은 얼마나 걸리나요? | 박피성·비박피성, 강도에 따라 붉음·딱지와 회복 기간이 크게 다릅니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-05 | 흉터·모공·프락셔널 레이저 | 프락셔널 레이저 후 화장해도 되나요? | 표면 손상이 회복되었는지에 따라 달라 시술자의 안내를 따르세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-06 | 흉터·모공·프락셔널 레이저 | 흉터 레이저를 한 번만 받으면 충분한가요? | 흉터 유형과 깊이에 따라 반복 치료가 필요할 수 있으나 결과는 보장할 수 없습니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-07 | 흉터·모공·프락셔널 레이저 | 아이스픽 흉터에도 모공 레이저가 맞나요? | 좁고 깊은 흉터는 넓은 모공과 달라 별도 치료법을 평가해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-08 | 흉터·모공·프락셔널 레이저 | 서브시전과 프락셔널 레이저는 뭘 먼저 하나요? | 흉터의 유착과 표면 상태에 따라 순서·간격을 정합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-09 | 흉터·모공·프락셔널 레이저 | 흉터 레이저 후 붉음이 오래가면요? | 지속 홍반이나 감염·색소 변화 여부를 진찰받아야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-10 | 흉터·모공·프락셔널 레이저 | 켈로이드가 잘 생기는데 흉터 레이저를 받아도 되나요? | 켈로이드 병력을 알려 주고 적응증·시술 강도·예방 계획을 확인해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-11 | 흉터·모공·프락셔널 레이저 | 모공이 넓어지는 원인을 시술로 알 수 있나요? | 피지, 탄력, 흉터 등 여러 원인이 있어 진찰이 필요합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-12 | 흉터·모공·프락셔널 레이저 | 흉터 레이저 후 자외선 노출이 위험한가요? | 회복 중 자외선은 색소 변화 위험을 높일 수 있어 피부 보호가 중요합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-13 | 흉터·모공·프락셔널 레이저 | 여드름 자국이 남아 있는데 흉터 레이저부터 받나요? | 활동성 염증·색소·함몰 흉터를 분리해 우선순위를 정해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-14 | 흉터·모공·프락셔널 레이저 | 레이저로 흉터를 완전히 지울 수 있나요? | 흉터를 덜 보이게 할 수 있지만 완전 제거를 보장하지는 못합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/scars-stretch-marks/laser-treatment-scar | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| SCAR-15 | 흉터·모공·프락셔널 레이저 | 프락셔널 레이저 후 물집이나 고름이 생겼어요 | 감염·화상 가능성이 있어 사진을 남기고 즉시 시술 병원에 연락하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-01 | 레이저 제모 | 레이저 제모는 한 번이면 끝나나요? | 모발 성장 주기가 달라 보통 반복 치료가 필요합니다. 횟수는 부위·모발·피부색에 따라 다릅니다. | https://www.oodermclinic.com/treatment-epilation.html | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-02 | 레이저 제모 | 레이저 제모가 영구적으로 털을 0개로 만드나요? | 장기 감소를 기대할 수 있지만 재성장 가능성이 있어 유지 치료가 필요할 수 있습니다. | https://wonjuwonders.com/hair-removal-laser | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-03 | 레이저 제모 | 흰 털도 레이저로 제모되나요? | 색소가 적은 모발은 반응이 낮을 수 있어 대안을 상담해야 합니다. | https://wonjuwonders.com/hair-removal-laser | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-04 | 레이저 제모 | 피부가 어두워도 레이저 제모가 가능한가요? | 가능한 장비가 있지만 화상·색소 변화 위험을 줄일 숙련된 설정이 중요합니다. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-05 | 레이저 제모 | 제모 레이저는 얼마나 아픈가요? | 따끔하거나 고무줄 튕기는 느낌이 들 수 있습니다. 부위와 냉각·마취에 따라 다릅니다. | https://www.oodermclinic.com/treatment-epilation.html | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-06 | 레이저 제모 | 제모 전에 면도해야 하나요? | 병원 안내에 맞춰 준비하되 최근 왁싱·뽑기 여부를 반드시 알리세요. | https://wonjuwonders.com/hair-removal-laser | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-07 | 레이저 제모 | 왁싱 후 바로 레이저 제모가 되나요? | 모낭에 표적이 부족할 수 있어 모발이 다시 자라는 시점을 의료진과 조정하세요. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-08 | 레이저 제모 | 레이저 제모 후 붉고 부었어요 | 가벼운 붉음·부기는 흔할 수 있습니다. 냉찜질을 고려하되 물집·심한 통증은 진료받으세요. | https://www.oodermclinic.com/treatment-epilation.html | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-09 | 레이저 제모 | 제모 후 햇빛을 쬐어도 되나요? | 직사광선과 태닝을 피하고 자외선 차단을 하세요. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-10 | 레이저 제모 | 제모 간격은 보통 어떻게 잡나요? | AAD는 대개 4~6주 간격을 예시로 들지만 부위와 성장 속도에 따라 조정합니다. | https://wonjuwonders.com/hair-removal-laser | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-11 | 레이저 제모 | 제모 후 털이 더 많아 보이는데요? | 남은 털의 탈락과 성장 주기 차이일 수 있습니다. 지속 증가라면 평가받으세요. | https://www.oodermclinic.com/treatment-epilation.html | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-12 | 레이저 제모 | 제모 레이저로 화상이 날 수도 있나요? | 화상·물집·색소 변화·흉터가 가능해 피부색과 최근 일광 노출을 알려야 합니다. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-13 | 레이저 제모 | 수염 제모와 팔 제모는 횟수가 같나요? | 부위별 모발 굵기와 성장 주기가 달라 치료 계획도 다릅니다. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-14 | 레이저 제모 | 제모 후 모낭염처럼 뾰루지가 났어요 | 자극성 반응과 감염을 구분해야 합니다. 고름·열감·확산이 있으면 진료받으세요. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| HAIR-15 | 레이저 제모 | 제모 중 임신 사실을 알게 됐어요 | 다음 시술 전 임신 사실을 알리고 미용 목적 시술의 연기 여부를 상담하세요. | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-01 | 필링·박피 | 화학적 필링과 프락셔널 레이저는 뭐가 달라요? | 필링은 약제를, 레이저는 빛 에너지를 사용합니다. 깊이와 회복 부담이 달라집니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-02 | 필링·박피 | 필링 후 피부가 벗겨지는 건 정상인가요? | 필링 깊이에 따라 각질과 벗겨짐이 생길 수 있습니다. 억지로 떼지 마세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-03 | 필링·박피 | 가벼운 필링이면 다음 날 바로 화장해도 되나요? | 표층 필링은 가능할 때도 있지만 붉음·손상 여부와 사용 약제에 따른 안내를 따라야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-04 | 필링·박피 | 중간 깊이 필링은 회복에 며칠 걸리나요? | AAD는 중간 깊이 필링의 회복을 대략 7~14일로 설명하지만 개인차가 있습니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-05 | 필링·박피 | 필링 후 햇빛을 왜 피해야 하나요? | 회복 중 색소 변화와 자극을 줄이기 위해 자외선 보호가 중요합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-06 | 필링·박피 | 필링 후 딱지를 떼면 안 되나요? | 억지로 제거하면 상처·색소침착 위험이 있어 자연스럽게 회복되도록 관리하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-07 | 필링·박피 | 여드름이 있어도 필링을 받을 수 있나요? | 일부 여드름에 쓰이지만 염증 정도와 약물 사용, 피부 장벽을 보고 결정합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-08 | 필링·박피 | 민감성 피부인데 필링을 받아도 되나요? | 약제·농도·접촉 시간에 따라 자극이 달라 피부 상태를 먼저 평가해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-09 | 필링·박피 | 필링을 자주 받으면 피부가 얇아지나요? | 과도한 반복은 피부 자극을 높일 수 있어 회복과 목표를 고려해 간격을 정합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-10 | 필링·박피 | 필링 후 화끈거림이 심하면요? | 심한 통증·물집·번지는 붉음은 화학 화상 가능성이 있어 즉시 진료받으세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-11 | 필링·박피 | 레티노이드 바르는 중 필링 가능해요? | 사용 약제와 피부 건조·민감도를 알리고 중단 또는 연기 필요성을 의료진과 상의하세요. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-12 | 필링·박피 | 필링과 토닝을 같은 날 받을 수 있나요? | 자극 누적 위험이 있어 필링 깊이·레이저 강도·피부 반응을 검토해야 합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-13 | 필링·박피 | 필링 후 보습제는 발라도 되나요? | 대개 보습과 피부 보호가 중요하지만 필링 종류별로 권장 제품과 시점이 다릅니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-14 | 필링·박피 | 필링으로 깊은 흉터가 없어지나요? | 표층 필링만으로 깊은 함몰 흉터를 없애기는 어려워 흉터별 치료가 필요합니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| PEEL-15 | 필링·박피 | 필링 후 색소침착이 생길 수 있나요? | 가능합니다. 피부색, 필링 깊이, 자외선 노출과 관리에 따라 위험이 달라집니다. | https://www.cnpskin.com/pc/cnp/community/faq.html | https://www.aad.org/public/cosmetic/younger-looking/chemical-peels-faqs | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-01 | 실리프팅 | 실리프팅은 어떻게 처진 얼굴을 올리나요? | 피하에 삽입한 실로 조직을 지지하는 방식입니다. 처짐 정도와 피부 상태에 따라 결과가 다릅니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-02 | 실리프팅 | 실리프팅과 필러는 어떤 고민에 쓰나요? | 실은 처짐의 지지를, 필러는 꺼진 볼륨의 보충을 주로 목표로 합니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-03 | 실리프팅 | 실리프팅 후 멍과 붓기는 어느 정도인가요? | 삽입 과정에서 멍·붓기·당김이 생길 수 있습니다. 회복은 실 종류와 부위에 따라 다릅니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-04 | 실리프팅 | 실리프팅 후 입을 크게 벌려도 되나요? | 초기에는 당김이 생길 수 있어 씹기·표정·압박 관련 시술자의 지시를 따르세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-05 | 실리프팅 | 실리프팅 후 얼굴이 비대칭처럼 보여요 | 초기 붓기인지 실의 장력 차이인지 평가가 필요합니다. 심하거나 지속되면 진료받으세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-06 | 실리프팅 | 실이 피부 밖으로 나오면 어떻게 하나요? | 직접 자르거나 당기지 말고 시술 병원에서 감염·실 위치를 확인받으세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-07 | 실리프팅 | 실리프팅 후 피부가 빨갛고 뜨거워요 | 감염 가능성이 있어 특히 통증·열감·고름이 동반되면 신속히 진료받으세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-08 | 실리프팅 | 실리프팅은 영구적인가요? | 실의 재질과 조직 반응에 따라 유지가 달라 영구적 결과를 보장하지 않습니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-09 | 실리프팅 | 실리프팅을 여러 번 반복해도 되나요? | 기존 실의 위치, 흉터 조직, 피부 상태를 보고 반복의 이득과 위험을 판단합니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-10 | 실리프팅 | 실리프팅 후 레이저를 바로 받을 수 있나요? | 열과 압박이 실 위치·회복에 영향을 줄 수 있어 장비·부위·시기를 시술자에게 확인하세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-11 | 실리프팅 | 처짐이 심해도 실리프팅만으로 충분한가요? | 처짐 정도에 따라 효과가 제한될 수 있어 수술을 포함한 선택지를 상담해야 합니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-12 | 실리프팅 | 실리프팅 받을 때 마취하나요? | 국소마취 등을 사용할 수 있으며 방법은 삽입 부위와 시술 계획에 따라 다릅니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-13 | 실리프팅 | 실리프팅 후 딤플처럼 피부가 패였어요 | 일시적 당김 또는 실 위치 문제일 수 있어 사진을 남기고 시술 의료진에게 평가받으세요. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-14 | 실리프팅 | 실리프팅을 하면 흉터가 남나요? | 삽입점 흔적이 남을 수 있으며 감염·켈로이드 병력에 따라 위험이 달라집니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8056-82a9-f76defe470a7 | https://www.aad.org/public/cosmetic/safety/ask-questions | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| THREAD-15 | 실리프팅 | 실리프팅과 고주파 리프팅 중 어느 쪽이 맞나요? | 처짐, 피부 두께, 회복 허용 정도와 목표에 따라 선택합니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 프로토콜·개별 진단 |
+| BODY-01 | 바디·땀·복합 시술 | 바디 고주파가 체중을 크게 줄여 주나요? | 비침습 바디 시술은 국소 윤곽 변화가 목표이며 체중 감량 치료로 보장할 수 없습니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-02 | 바디·땀·복합 시술 | 바디 시술로 셀룰라이트가 완전히 사라지나요? | 기기에 따라 일시적 외관 개선이 가능하지만 완전 제거와 유지 기간은 보장할 수 없습니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-03 | 바디·땀·복합 시술 | 냉각 지방 감소 시술 후 언제 결과를 보나요? | 변화가 서서히 나타날 수 있으며 기기와 개인 상태에 따라 다릅니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-04 | 바디·땀·복합 시술 | 냉각 지방 시술 후 도리어 불룩해질 수 있나요? | 드물게 역설적 지방증식이 보고되어 있어 지속되는 부피 증가를 진료받아야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-05 | 바디·땀·복합 시술 | 바디 RF 시술 후 멍과 통증이 생겼어요 | 일시적 반응도 가능하지만 심한 통증·물집·화상은 신속히 진료받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-06 | 바디·땀·복합 시술 | 복부에 수술 흉터나 이식물이 있어도 바디 시술 가능해요? | 기기별 금기와 시술 부위의 수술력·이식물을 확인해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-07 | 바디·땀·복합 시술 | 겨드랑이 다한증은 보톡스와 기기 시술 중 뭘 선택하나요? | 증상 정도, 지속 목표, 피부 상태, 부작용을 비교하고 치료 적합성을 진료로 판단합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-08 | 바디·땀·복합 시술 | 다한증 보톡스는 냄새도 없애 주나요? | 주된 목표는 땀 감소입니다. 냄새 원인은 다양해 별도 평가가 필요합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-09 | 바디·땀·복합 시술 | 소프웨이브와 필러를 같은 날 해도 되나요? | 열 에너지와 주입 부위·순서가 영향을 줄 수 있어 두 시술 계획을 함께 검토해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-10 | 바디·땀·복합 시술 | CO2 프락셔널 레이저와 필러를 같은 날 해도 되나요? | 피부 손상과 주입 관련 위험을 고려해 같은 부위의 동시 시술은 담당의와 간격을 정해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-11 | 바디·땀·복합 시술 | 이소트레티노인 먹는 중 프락셔널 레이저 가능해요? | 과거 일률적 대기 권고와 최신 근거가 다를 수 있어 약 복용량·레이저 종류·피부 상태를 개별 평가해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-12 | 바디·땀·복합 시술 | 항응고제를 먹는데 주사 시술 받을 수 있나요? | 멍·출혈 위험이 달라 약 이름과 복용 이유를 알려야 합니다. 임의 중단은 피하세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-13 | 바디·땀·복합 시술 | 피부에 감염이 있으면 미용 시술을 미뤄야 하나요? | 시술 부위의 활동성 감염은 악화 위험이 있어 먼저 진료와 치료를 받아야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-14 | 바디·땀·복합 시술 | 여러 시술을 묶어 받으면 항상 효과가 더 좋나요? | 조합의 이득과 누적 자극·회복 부담을 함께 평가해야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+| BODY-15 | 바디·땀·복합 시술 | 시술 후 평소와 다른 극심한 통증은 언제 연락하나요? | 통증이 심해지거나 피부색 변화·시야 변화·호흡 곤란이 동반되면 즉시 응급 평가를 받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 확장/주제참고 | 예: 병원 프로토콜·개별 진단 |
+
+## 공개 FAQ에서 확인해 재서술한 문항
+
+| ID | 시술/주제 | 고객 질문 | 일반적 답변 | 질문 출처 URL | 답변 근거 URL | 출처유형 | 검토 필요 |
+|---|---|---|---|---|---|---|---|
+| SRC-01 | 스킨보톡스·통증 | 스킨보톡스 주사는 통증이 어느 정도예요? | 촘촘한 주사로 통증을 느낄 수 있으며 부위·마취·개인 감수성에 따라 다릅니다. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-02 | 스킨보톡스·부작용 | 스킨보톡스에서 걱정해야 할 부작용은요? | 멍·붓기뿐 아니라 주입 위치에 따른 근육 영향도 확인해야 합니다. 심한 증상은 진료받으세요. | https://www.gangnamunni.com/contents/327d9338-d3d4-80a4-9ba3-d00d8133391a | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-03 | 리쥬란·주입 방식 | 리쥬란 손주사와 기계주사는 어떻게 달라요? | 주입 방식과 분포·약물 손실·통증이 달라질 수 있습니다. 피부 상태와 제품별로 비교하세요. | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | https://www.gangnamunni.com/contents/3bcd9338-d3d4-8028-9dfd-f9c399229885 | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-04 | 흑자 레이저·통증 | 흑자 레이저는 많이 아픈가요? | 방식과 출력, 개인 감수성에 따라 다릅니다. 통증 조절 방법을 사전에 확인하세요. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-05 | 흑자 레이저·병행 | 흑자 레이저 후 다른 시술은 언제 받을 수 있나요? | 붉음·딱지·열감이 가라앉았는지와 다음 시술의 자극 정도를 보고 간격을 정합니다. | https://www.gangnamunni.com/contents/3b8d9338-d3d4-8089-9c23-f337d21d5630 | https://www.cnpskin.com/m/cnp/community/faq.html?bmain=view&uid=9079 | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-06 | 슈링크·울쎄라 비교 | 슈링크와 울쎄라의 효과와 유지 기간은 어떻게 달라요? | 같은 HIFU 계열이지만 장비·시술 설계가 다릅니다. 직접 비교 근거와 개인차를 확인하세요. | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | https://www.gangnamunni.com/contents/397d9338-d3d4-80b0-818e-f6ea4884c9a6 | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-07 | 덴서티·써마지 병행 | 덴서티와 써마지를 같이 받아도 되나요? | 둘 다 고주파 계열이므로 중복 열 자극과 기대 이득을 시술자와 따져야 합니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | https://www.gangnamunni.com/contents/380d9338-d3d4-804b-a06c-e5fb5ef45316 | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+| SRC-08 | LDM·반복 | LDM은 한 번만 받아도 체감할 수 있나요? | 일시적 피부 컨디션 변화와 지속 효과는 다를 수 있어 한 번의 결과를 보장할 수 없습니다. | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | https://www.gangnamunni.com/contents/380d9338-d3d4-807c-8ad4-de47641a2eac | 수집·재서술 | 예: 원문 홍보성 주장·병원 프로토콜 |
+
+## 추가로 실제 공개 FAQ에서 재서술한 문항
+
+| ID | 시술/주제 | 고객 질문 | 일반적 답변 | 질문 출처 URL | 답변 근거 URL | 출처유형 | 검토 필요 |
+|---|---|---|---|---|---|---|---|
+| AB-01 | 리쥬란·시간 | 리쥬란 주사와 마취까지 총 얼마나 걸리나요? | 주사 시간과 마취·진정 시간을 구분해 확인하세요. 부위와 방법에 따라 달라집니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-02 | 물광주사·시간 | 물광주사 시술에는 시간이 얼마나 걸려요? | 주입 자체와 마취·진정 시간을 별도로 확인하세요. 범위에 따라 다릅니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-03 | 필러·원리 | 필러는 피부 속에서 어떤 역할을 하나요? | 성분과 제형에 따라 볼륨을 보충하는 방식이 다릅니다. 시술 제품을 확인하세요. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-04 | 온다리프팅·부위 | 온다리프팅을 복부나 팔뚝에도 받을 수 있나요? | 장비와 부위의 적응 범위를 확인하고 지방층·피부 상태에 맞춰 계획해야 합니다. | https://skinab.com/faq | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-05 | 쥬베룩·시간 | 쥬베룩은 마취까지 포함해 얼마나 걸리나요? | 제품 준비와 마취·주입·진정 시간이 더해집니다. 병원 절차에 따라 다릅니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-06 | 텐써마·시간 | 텐써마를 얼굴 전체에 받으면 시간이 얼마나 걸리나요? | 면적·샷 수·마취 여부에 따라 달라 병원에 예상 시간을 확인하세요. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-07 | 실리프팅·실 선택 | 어떤 종류의 리프팅 실이 저에게 맞나요? | 재질·돌기·삽입 위치가 달라 처짐과 피부 두께를 보고 결정합니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-08 | 인모드·원리 | 인모드 리프팅은 어떤 원리예요? | 핸드피스별 고주파와 다른 에너지 방식이 달라 사용 모드와 목표를 확인해야 합니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-09 | 스킨부스터·효과 시점 | 스킨부스터 효과는 언제부터 느낄 수 있나요? | 성분과 피부 상태에 따라 시점이 달라 특정 날짜를 보장할 수 없습니다. | https://skinab.com/faq | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| AB-10 | 쥬베룩·효과 시점 | 쥬베룩은 맞자마자 효과가 보이나요? | 콜라겐 자극을 목표로 하는 경우 변화가 서서히 나타날 수 있습니다. | https://skinab.com/faq | https://skinab.com/faq | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| BB-01 | 브라질리언 제모·범위 | 여성 브라질리언 제모는 어느 부위까지 하나요? | 포함 범위는 병원마다 달라 외부 피부와 점막 제외 범위를 시술 전에 확인하세요. | https://barabomskin.com/category/laser-hair-removal/ | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| BB-02 | 제모·범위 비교 | 비키니라인 제모와 브라질리언 제모는 범위가 어떻게 달라요? | 비키니라인보다 브라질리언의 범위가 넓을 수 있으나 병원별 정의를 확인해야 합니다. | https://barabomskin.com/category/laser-hair-removal/ | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| BB-03 | 얼굴 제모·화장 | 얼굴 잔털을 제모하면 화장이 더 잘 먹나요? | 잔털 감소로 체감할 수 있지만 피부결·건조 등 다른 요인도 영향을 줍니다. | https://barabomskin.com/category/laser-hair-removal/ | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| BB-04 | 얼굴 제모·역설적 다모 | 얼굴 솜털을 제모하면 더 굵어질 수도 있나요? | 일부 가는 모발에서 역설적 다모 우려가 있어 적합한 모발을 선별해야 합니다. | https://barabomskin.com/category/laser-hair-removal/ | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| BB-05 | 수염 제모·부분 범위 | 수염 라인을 남기고 일부만 제모할 수 있나요? | 가능 범위와 경계를 미리 표시하고 얼굴형·모발 분포를 고려해 계획합니다. | https://barabomskin.com/category/laser-hair-removal/ | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| WO-01 | 다한증 톡신·유지 | 겨드랑이 땀주사 효과는 얼마나 지속되나요? | 효과는 일시적이고 개인차가 있습니다. 재시술은 땀 재발과 이전 반응을 보고 정합니다. | https://wonjuwonders.com/sweat_gland_injection | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| WO-02 | 다한증 톡신·시점 | 땀주사는 맞고 언제부터 효과가 나타나요? | 효과는 며칠에 걸쳐 나타날 수 있습니다. 개인차와 부위 차이를 확인하세요. | https://wonjuwonders.com/sweat_gland_injection | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| WO-03 | 다한증 톡신·완전 차단 | 땀주사를 맞으면 겨드랑이 땀이 아예 안 나나요? | 과도한 땀 감소가 목표이며 완전 차단을 보장하지 않습니다. | https://wonjuwonders.com/sweat_gland_injection | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| WO-04 | 필러·콜라겐주사 병행 | 필러와 콜라겐 자극 주사를 같이 맞아도 되나요? | 제품과 주입층·부위·시기를 확인해 병행의 이득과 위험을 검토해야 합니다. | https://wonjuwonders.com/restylane-filler | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| WO-05 | 제모·일상생활 | 레이저 제모 후 바로 출근해도 되나요? | 대부분 일상 복귀가 가능하지만 붉음·부기 등 반응에 따라 조절하세요. | https://wonjuwonders.com/hair-removal-laser | https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| GN-01 | 덴서티·볼패임 | 고주파 리프팅 후 볼패임이 생기면 회복할 수 있나요? | 꺼짐이 의심되면 추가 열 시술을 멈추고 사진·시술 기록과 함께 진료받으세요. | https://www.gangnamunni.com/contents/380d9338-d3d4-801d-a311-fccb4be0c9ff | https://www.gangnamunni.com/contents/380d9338-d3d4-801d-a311-fccb4be0c9ff | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| GN-02 | 필러 녹이기·통증 | 필러를 녹이는 주사도 아픈가요? | 주사 통증이 있을 수 있으며 마취·부위에 따라 다릅니다. 먼저 필러 성분을 확인하세요. | https://www.gangnamunni.com/contents/23bd9338-d3d4-8058-a517-e66931be284e | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| GN-03 | 팔자·보톡스 | 팔자주름을 보톡스만으로 펼 수 있나요? | 팔자는 볼륨·처짐 등 여러 원인이 있어 톡신 단독으로 해결되지 않을 수 있습니다. | https://www.gangnamunni.com/contents/3a7d9338-d3d4-8052-9536-c36547394a4b | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| ED-01 | 첫 쁘띠 시술 | 처음 받는 쁘띠 시술은 무엇부터 시작하면 좋아요? | 가장 신경 쓰이는 부위와 회복·위험 허용 정도를 상담해 목표를 정하세요. | https://editionps.com/blog/petit-plastic-surgery-beginner-guide | https://www.aad.org/public/cosmetic/safety/ask-questions | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+| ED-02 | 보톡스·내성 | 보톡스를 계속 맞으면 내성이 생기나요? | 효과가 줄어드는 원인은 다양합니다. 과거 제품·용량·간격과 근육 변화를 진료에서 확인하세요. | https://editionps.com/blog/botox-dosage-by-area-natural-results-guide | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 수집·재서술 | 예: 병원 제품·프로토콜 검토 |
+
+## 강남언니 실제 이용자 게시글에서 확인한 질문
+
+아래 6개는 로그인 없이 본문 텍스트가 열린 **개별 이용자 게시글**이다. 사진은 로그인 화면으로 가려졌고 보지 않았다. 게시글의 병원 추천·후기·댓글은 의학적 근거로 쓰지 않았다. 질문은 짧게 재서술했다.
+
+| ID | 시술/주제 | 고객 질문 | 일반적 답변 | 질문 출처 URL | 답변 근거 URL | 출처유형 | 검토 필요 |
+|---|---|---|---|---|---|---|---|
+| GU-01 | 얼굴 지방분해주사 | 얼굴 지방분해주사는 실제로 어떤 효과가 있나요? | 제품 성분, 주입 부위와 지방·처짐의 원인에 따라 달라집니다. 얼굴 전체 효과를 보장할 근거는 부족하므로 성분과 해당 부위 허가사항, 부작용을 먼저 확인해야 합니다. | https://unni.app/community/4733711 | https://www.fda.gov/drugs/buying-using-medicine-safely/using-fat-dissolving-injections-are-not-fda-approved-can-be-harmful | 이용자 게시글·재서술 | 예: 국내 허가사항·성분·적응부위 |
+| GU-02 | 필러·얼굴 윤곽 | 옆볼과 팔자에 필러를 이미 맞았는데, 땅콩형 얼굴을 더 교정하려면 필러가 답인가요? | 추가 주입 전에 기존 필러의 종류·총량과 얼굴의 지방·뼈·피부 처짐을 평가해야 합니다. 필러를 더 넣는 것이 항상 적절하지 않으며 부종이나 과교정도 고려해야 합니다. | https://unni.app/community/4734602 | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 이용자 게시글·재서술 | 예: 현재 주입량·해부학적 진단 |
+| GU-03 | 지방분해주사 선택 | 지방분해주사를 고를 때 후기나 '순한 성분' 설명만 믿어도 되나요? | 후기와 '순하다'는 표현만으로 안전성이나 효과를 판단하기 어렵습니다. 제품명·성분·허가된 사용 부위, 주입자의 자격, 감염·흉터·결절 위험을 확인하세요. | https://unni.app/community/4729556 | https://www.fda.gov/drugs/buying-using-medicine-safely/using-fat-dissolving-injections-are-not-fda-approved-can-be-harmful | 이용자 게시글·재서술 | 예: 국내 허가사항·제품 확인 |
+| GU-04 | 수술 후 주사·피부관리 | 눈·코 수술 3개월 뒤 필러나 보톡스, 피부관리를 받아도 되나요? | 달력상의 기간만으로 결정할 수 없습니다. 수술 부위가 완전히 아물었는지, 감염·부종·흉터 상태와 예정된 주사 위치를 수술 의료진 및 시술자에게 확인받으세요. | https://unni.app/community/4731770 | https://www.aad.org/public/cosmetic/safety/ask-questions | 이용자 게시글·재서술 | 예: 수술 종류·회복상태·시술 위치 |
+| GU-05 | 목주름 필러 | 목주름 필러는 어느 주름에 맞고 얼마나 유지되나요? | 가로 주름과 세로 띠는 원인이 다를 수 있어 진찰이 필요합니다. 필러 효과와 유지 기간은 제품·부위·개인차에 따라 다르며 멍·부종과 드문 혈관 합병증도 설명받아야 합니다. | https://unni.app/community/4734970 | https://www.asds.net/skin-experts/skin-treatments/dermal-fillers | 이용자 게시글·재서술 | 예: 목 부위 적응증·제품 |
+| GU-06 | 얼굴 주사 후 눈 증상 | 얼굴 주사 후 눈 안에 피가 보이고 심한 통증·붓기가 생겼는데 기다려도 되나요? | 눈 증상과 심한 통증은 온라인으로 경과를 판단하지 말고 즉시 안과 응급평가와 시술 병원 연락이 필요합니다. 시야 흐림·시력 저하가 있다면 응급실로 바로 가야 합니다. | https://unni.app/community/4725656 | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 이용자 게시글·재서술 | 예: 실제 합병증 진단은 응급의료진 |
+
+## 기존 평가 문항 26개에 대한 일반 답변
+
+아래 번호는 문서 첫 부분의 번호와 대응한다. 기존 평가 정답이나 병원 프로토콜을 대체하지 않는다. 제품·장비·패키지·병행 간격은 별도 검토가 필요하다.
+
+| 기존 # | 일반적 답변 | 답변 근거 URL | 검토 필요 |
+|---|---|---|---|
+| 1 | 표정 주름에는 톡신, 피부결·꺼짐에는 다른 선택지가 맞을 수 있습니다. 주름의 원인을 진찰한 뒤 결정합니다. | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 예 |
+| 2 | 볼륨 부족·처짐·표정 변화가 섞일 수 있어 원인 평가 후 필러 또는 다른 시술을 검토합니다. | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 예 |
+| 3 | 피부 처짐과 턱 지방·근육·골격 중 원인을 구분해야 합니다. HIFU 등 가능성은 상담 후 판단합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 4 | 이중턱이 지방인지 피부 처짐인지 확인해야 시술 방향을 정할 수 있습니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 5 | 겨드랑이 다한증에는 톡신 치료가 쓰일 수 있으며 다른 치료와 비교해 결정합니다. | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 예 |
+| 6 | 여드름 자국의 색과 함몰 흉터·모공을 구분해야 각각의 치료를 고를 수 있습니다. | https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment | 예 |
+| 7 | 거친 피부결의 원인에 따라 필링·니들링·레이저 등을 검토합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 8 | 기미는 재발·악화 가능성이 있어 진단 후 자외선 관리와 시술 강도를 신중히 결정합니다. | https://www.aad.org/public/diseases/a-z/melasma-treatment | 예 |
+| 9 | 소프웨이브는 초음파 에너지 기반 탄력 시술입니다. 통증·시간은 설정과 부위에 따라 다릅니다. 병원 장비 보유 여부는 미확인입니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 10 | 피하에 실을 넣어 조직을 지지하는 방식으로, 처짐 정도와 회복 부담을 평가합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 11 | 사우나 재개 시점은 시술 강도와 열감·붉음에 따라 달라 시술자의 구체적 안내를 확인해야 합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 12 | 주사 부위를 세게 누르거나 만지지 말고, 악화하는 통증·피부색 변화·시야 이상은 즉시 진료받으세요. | https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/dermal-fillers-soft-tissue-fillers | 예 |
+| 13 | 멍·붓기는 비교적 흔한 일시 반응이고 눈꺼풀 처짐 등 인접 근육 영향은 드물게 생길 수 있습니다. | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs | 예 |
+| 14 | 멍·붓기·당김의 회복은 실 종류와 시술 범위에 따라 다릅니다. 확정 날짜는 진찰 없이 말할 수 없습니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 15 | 울쎄라는 집속 초음파, 써마지는 고주파 방식으로 에너지와 목표 조직이 다릅니다. 우열은 개인 상태에 따라 달라집니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 16 | 일반 HA 필러는 빠른 볼륨 보충, PLLA 계열은 점진적 콜라겐 반응을 목표로 합니다. 정확한 제품과 적응증을 확인하세요. | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 예 |
+| 17 | 동일 부위의 열 시술과 주입 시술 순서·간격은 일괄 규칙보다 부위와 상태에 맞춘 의료진 판단이 필요합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 18 | 시술 부위와 총 용량, 기존 주입력을 확인해 같은 날 가능 여부를 정합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 19 | 박피성 레이저는 피부 손상을 만들 수 있어 같은 부위 필러 병행 시기를 의료진이 따로 계획해야 합니다. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 20 | 6주 경과만으로 가능 여부를 확정할 수 없습니다. 이전 주입 부위·제품·현재 상태를 알려 주세요. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 21 | 이소트레티노인 복용 시 레이저 종류와 피부 회복 상태에 따라 판단이 달라집니다. 복용량과 최근 복용력을 알리고 상담하세요. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 22 | 임신 중 미용 톡신은 안전성 정보가 충분하지 않아 임신 사실을 알리고 연기 여부를 상담하세요. | https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-preparation | 예 |
+| 23 | 초음파 시술 통증은 부위·설정·민감도에 따라 다릅니다. 마취와 강도 조절 가능성을 상담하세요. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 24 | 볼루마는 HA 필러 제품군이지만 이 병원의 취급 여부와 적응 부위는 확인되지 않았습니다. 제품명·허가사항을 확인하세요. | https://www.aad.org/public/cosmetic/wrinkles/fillers-faqs | 예 |
+| 25 | 해당 병원의 패키지 구성은 확인되지 않았습니다. 원하는 고민과 부작용·회복 부담을 먼저 말해 주세요. | https://www.aad.org/public/cosmetic/safety/ask-questions | 예 |
+| 26 | 해당 병원의 색소 패키지는 확인되지 않았습니다. 기미·잡티 등 진단별로 치료가 달라집니다. | https://www.aad.org/public/diseases/a-z/melasma-treatment | 예 |
+
+## 출처·한계
+
+- 질문 주제: 강남언니 공개 콘텐츠(톡신·스킨부스터·리프팅·색소), 차앤박피부과 공개 FAQ(레이저 후 관리·여드름·주름), AAD 환자 FAQ(제모·박피). 답변 검증: AAD, FDA 자료. 각 행의 직접 URL 참조.
+- 강남언니 실제 이용자 게시글 6개는 개별 URL에서 질문 본문을 확인했다. 강남언니 편집 콘텐츠 FAQ 13개와 구분했다. 공개 FAQ는 의료기관·콘텐츠 편집자가 게시한 질문이며 실제 개별 고객 문의 원문이나 빈도 데이터는 아니다. `수집·재서술` 61개는 6개 도메인에서 확인했다(에이비클리닉 25, 강남언니 편집 콘텐츠 13, 원더스의원 9, 에디션성형외과 5, 바라봄피부과 5, 오오피부과 4).
+- 차앤박 FAQ는 치료법과 사후 관리의 주제 확인용이다. 강남언니 콘텐츠의 홍보성·제품별 주장은 효능 보증으로 채택하지 않았다. 한국 허가사항과 병원 프로토콜은 별도 확인이 필요하다.
+- 실리프팅·스킨부스터·바디의 일부 답변은 원리와 일반 위험 수준이며 특정 제품 임상근거가 아니다. 정확한 시술 간격·용량·동시 시술 순서·임신/수유·약물 복용 판단은 담당 의료진 검토가 필요하다.
+
+- 검증 수치: 신규 구조화 문항 **219개**(실제 이용자 게시글 6, 공개 FAQ 수집·재서술 61, 확장 152), 기존 평가 문항 **26개**, 전체 질문 **245개**. 신규 분포: 보툴리눔 톡신 15, 필러 15, 스킨부스터·재생주사 15, 초음파·고주파 리프팅 15, 마이크로니들 RF·니들링 15, 기미·잡티·색소 레이저 15, 여드름·홍조·혈관 15, 흉터·모공·프락셔널 레이저 15, 레이저 제모 15, 필링·박피 15, 실리프팅 15, 바디·땀·복합 시술 15, 추가 공개 FAQ 문항 25, 강남언니 이용자 게시글 6. 기존 확장 문항 28개는 공개 FAQ 대조 후 수집·재서술로 재분류했다.

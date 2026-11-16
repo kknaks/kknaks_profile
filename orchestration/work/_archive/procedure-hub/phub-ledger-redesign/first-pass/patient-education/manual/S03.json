@@ -1,0 +1,340 @@
+{
+ "segment": "S03",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/2/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "바이오스티뮬레이터/콜라겐부스터",
+    "name,alternative",
+    "「/」 — README 규칙상 대안 기호이나 여기서는 두 호칭일 가능성. 관계 미확정"
+   ],
+   [
+    "바이오스티뮬레이터",
+    "name",
+    ""
+   ],
+   [
+    "콜라겐부스터",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "콜라겐 재생 주사",
+    "name,effect,route",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "피부 속에서 콜라겐(피부 탄력 성분)이 스스로 만들어지도록 돕는 주사입니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "피부 속에서",
+    "site,depth",
+    ""
+   ],
+   [
+    "콜라겐(피부 탄력 성분)",
+    "substance,paraphrase",
+    ""
+   ],
+   [
+    "스스로 만들어지도록",
+    "manner,mechanism",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "특수 성분을 피부 아래에 주사하면, 우리 몸이 그 주변에 새로운 콜라겐을 만들어냅니다.",
+    "sentence,condition,mechanism",
+    ""
+   ],
+   [
+    "특수 성분",
+    "substance",
+    "성분명 미기재"
+   ],
+   [
+    "피부 아래에",
+    "site,depth",
+    ""
+   ],
+   [
+    "그 주변에",
+    "site",
+    "지시어 — 주사 부위 주변"
+   ],
+   [
+    "당장 볼륨이 채워지는 게 아니라, 몇 주에 걸쳐 서서히 피부가 탱탱해집니다.",
+    "sentence,negation,time,manner,effect",
+    ""
+   ],
+   [
+    "당장 볼륨이 채워지는 게 아니라",
+    "negation,time,comparison",
+    ""
+   ],
+   [
+    "몇 주에 걸쳐",
+    "time,approx",
+    "수치 불명확"
+   ],
+   [
+    "서서히",
+    "manner",
+    "변화 속도 — 효과 발현"
+   ],
+   [
+    "피부가 탱탱해집니다",
+    "effect",
+    ""
+   ],
+   [
+    "새로운 콜라겐을 만들어냅니다",
+    "mechanism,effect",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "효과 발현까지 4-6주, 지속 기간은 1-3년입니다.",
+    "sentence,time,range,quantity",
+    "시간 역할 두 개(발현·지속) 명시"
+   ],
+   [
+    "효과 발현까지 4-6주",
+    "time,range,quantity",
+    "역할=효과 발현"
+   ],
+   [
+    "지속 기간은 1-3년",
+    "time,range,quantity",
+    "역할=지속"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "주사 시 약간의 통증, 마취 크림 사용 가능",
+    "sensory,degree,time,possibility",
+    ""
+   ],
+   [
+    "주사 시",
+    "time,condition",
+    ""
+   ],
+   [
+    "약간의 통증",
+    "degree,sensory",
+    ""
+   ],
+   [
+    "마취 크림 사용 가능",
+    "substance,possibility",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "가벼운 붓기 2-3일, 일상생활 가능",
+    "adverse,degree,time,range,quantity,possibility",
+    ""
+   ],
+   [
+    "가벼운 붓기 2-3일",
+    "degree,adverse,time,range,quantity",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "효과가 바로 보이나요?",
+    "sentence,time,effect",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "아닙니다.",
+    "negation",
+    ""
+   ],
+   [
+    "콜라겐이 새로 만들어지는 데 시간이 필요해서, 4-6주 후부터 서서히 효과가 나타나요.",
+    "sentence,rationale,time,range,manner",
+    ""
+   ],
+   [
+    "4-6주 후부터",
+    "time,range,quantity",
+    "기준 시점 생략(시술 후로 보임 — 잠정)"
+   ],
+   [
+    "서서히 효과가 나타나요",
+    "manner,effect",
+    ""
+   ],
+   [
+    "보통 3회 정도 반복 시술합니다.",
+    "sentence,frequency,quantity,approx",
+    "간격 미기재"
+   ],
+   [
+    "보통 3회 정도",
+    "frequency,quantity,approx",
+    "README: 회차는 일정 수식어"
+   ],
+   [
+    "시간이 필요해서",
+    "time,rationale",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "결절(딱딱한 덩어리)이 생길 수 있나요?",
+    "sentence,adverse,paraphrase,possibility",
+    ""
+   ],
+   [
+    "결절(딱딱한 덩어리)",
+    "adverse,paraphrase",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "결절 예방은 마사지보다 시술자의 희석량·주입 깊이가 핵심입니다.",
+    "sentence,comparison,actor,depth,rationale",
+    ""
+   ],
+   [
+    "마사지보다",
+    "comparison",
+    ""
+   ],
+   [
+    "시술자의 희석량·주입 깊이",
+    "actor,depth,quantity",
+    "수치 미기재"
+   ],
+   [
+    "시술 직후 의사가 부드럽게 펴 발라주면 충분하고, 집에서 강박적으로 문지를 필요는 없어요(마사지의 결절 예방 효과는 임상연구에서 입증되지 않았습니다).",
+    "sentence",
+    ""
+   ],
+   [
+    "시술 직후 의사가 부드럽게 펴 발라주면 충분하고",
+    "time,actor,manner,condition",
+    ""
+   ],
+   [
+    "부드럽게",
+    "manner,degree",
+    ""
+   ],
+   [
+    "집에서 강박적으로 문지를 필요는 없어요",
+    "place,degree,negation,instruction",
+    ""
+   ],
+   [
+    "(마사지의 결절 예방 효과는 임상연구에서 입증되지 않았습니다)",
+    "evidence,negation",
+    "연구 출처 미기재"
+   ],
+   [
+    "하시더라도 세게 하지 말고 부드럽게 하세요.",
+    "sentence,condition,degree,avoid,instruction",
+    ""
+   ],
+   [
+    "세게 하지 말고",
+    "degree,avoid,negation",
+    ""
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "필러와 뭐가 다른가요?",
+    "sentence,comparison,reference",
+    "다른 카테고리(필러) 참조"
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "필러는 볼륨을 바로 채워주지만, 콜라겐 부스터는 내 피부가 스스로 콜라겐을 만들게 해서 자연스럽게 탄력이 개선됩니다.",
+    "sentence,comparison,reference",
+    ""
+   ],
+   [
+    "필러는 볼륨을 바로 채워주지만",
+    "reference,time,effect",
+    ""
+   ],
+   [
+    "콜라겐 부스터",
+    "name",
+    "name 「콜라겐부스터」와 띄어쓰기 다름"
+   ],
+   [
+    "자연스럽게 탄력이 개선됩니다",
+    "manner,effect",
+    ""
+   ],
+   [
+    "지속 기간도 더 길어요.",
+    "sentence,comparison,time",
+    "비교 기준 수치 미기재"
+   ],
+   [
+    "지속 기간도 더 길어요",
+    "comparison,time",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "스스로 콜라겐을 만들게 해서",
+    "manner,mechanism",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/name",
+   "F",
+   "「/」 로 묶인 두 호칭의 관계(동의어/대안/상하) 미확정 — README 기호 규칙만으로 확정하지 않는다"
+  ],
+  [
+   "/how_it_works",
+   "B",
+   "「특수 성분」 이름 미기재"
+  ],
+  [
+   "/duration_simple",
+   "P",
+   "시간 역할이 발현(4-6주)과 지속(1-3년)으로 분리 기재된 사례"
+  ],
+  [
+   "/common_concerns/0/a",
+   "P",
+   "「4-6주 후부터」 기준 시점 생략. duration_simple 「효과 발현까지 4-6주」와 같은 수치. 「보통 3회」 간격 미기재(B)"
+  ],
+  [
+   "/common_concerns/1/a",
+   "P",
+   "마사지 권고에 대한 부정(입증되지 않음)·조건부 허용(하시더라도…부드럽게)이 겹친 구조"
+  ],
+  [
+   "/common_concerns/2/a",
+   "F",
+   "「필러」 참조는 S02(/categories/1)로 보이나 연결은 후속. 「지속 기간도 더 길어요」 비교는 원문 수치(1-3년 vs 6-18개월)로 정합 확인 가능 — 의미 단계에서 확인"
+  ]
+ ]
+}

@@ -1,0 +1,898 @@
+{
+  "existing": [
+    {
+      "mutation": "alias_merge_overwrites_original_list",
+      "rejected": true,
+      "failed_checks": [
+        "claim_immutable_value",
+        "safety_field_value",
+        "previously_lost_10_recovered_in_pilot",
+        "projection_source_facts_independent"
+      ],
+      "diagnostics": [
+        {
+          "check": "claim_immutable_value",
+          "pass": false,
+          "claim": "clm:fc9fc23ad6ea5cc316fe944445166bac8f946abb11bdfd10544b3e5a846d6e0c"
+        },
+        {
+          "check": "safety_field_value",
+          "pass": false,
+          "pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects"
+        },
+        {
+          "check": "previously_lost_10_recovered_in_pilot",
+          "pass": false,
+          "leaves": 7
+        },
+        {
+          "check": "projection_source_facts_independent",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "drop_whole_alias_source_claim",
+      "rejected": true,
+      "failed_checks": [
+        "typed_ref"
+      ],
+      "diagnostics": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/2/claim_refs/0",
+          "target": "clm:e86246c68f7d2dd87f7f8b09487459089b0006faae555b578962d673711dcfea",
+          "target_type": "claims",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/cases/2/claim_refs/0",
+          "target": "clm:e86246c68f7d2dd87f7f8b09487459089b0006faae555b578962d673711dcfea",
+          "target_type": "claims",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "mutation": "same_name_first_match_wrong_scope",
+      "rejected": true,
+      "failed_checks": [
+        "cc_group_scope",
+        "stretch_correct_group"
+      ],
+      "diagnostics": [
+        {
+          "check": "cc_group_scope",
+          "pass": false
+        },
+        {
+          "check": "stretch_correct_group",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "collapse_duplicate_legacy_occurrence",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.legacy_aliases[0].targets: minItems"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "duplicate_legacy_auto_selection",
+      "rejected": true,
+      "failed_checks": [
+        "legacy_ambiguous_not_selected"
+      ],
+      "diagnostics": [
+        {
+          "check": "legacy_ambiguous_not_selected",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "singleton_promoted_to_pair",
+      "rejected": true,
+      "failed_checks": [
+        "combo_direction_unpromoted",
+        "singleton_not_pair"
+      ],
+      "diagnostics": [
+        {
+          "check": "combo_direction_unpromoted",
+          "pass": false
+        },
+        {
+          "check": "singleton_not_pair",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "nary_member_deleted",
+      "rejected": true,
+      "failed_checks": [
+        "relation_arity",
+        "combo_raw_members_and_order"
+      ],
+      "diagnostics": [
+        {
+          "check": "relation_arity",
+          "pass": false
+        },
+        {
+          "check": "combo_raw_members_and_order",
+          "pass": false,
+          "pointer": "/problems/8/complaints/0/combos/1"
+        }
+      ]
+    },
+    {
+      "mutation": "note_claim_reference_deleted",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.notes[0].claim_refs: minItems"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "note_wrong_R8",
+      "rejected": true,
+      "failed_checks": [
+        "note_claim_witness"
+      ],
+      "diagnostics": [
+        {
+          "check": "note_claim_witness",
+          "pass": false,
+          "note": 109
+        }
+      ]
+    },
+    {
+      "mutation": "first_condition_deleted",
+      "rejected": true,
+      "failed_checks": [
+        "field_condition_keys"
+      ],
+      "diagnostics": [
+        {
+          "check": "field_condition_keys",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "first_unconditional_a",
+      "rejected": true,
+      "failed_checks": [
+        "unknown_site_no_first",
+        "first_branches_preserved"
+      ],
+      "diagnostics": [
+        {
+          "check": "unknown_site_no_first",
+          "pass": false
+        },
+        {
+          "check": "first_branches_preserved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "explicit_no_order_conflated_with_not_declared",
+      "rejected": true,
+      "failed_checks": [
+        "first_branches_preserved"
+      ],
+      "diagnostics": [
+        {
+          "check": "first_branches_preserved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "same_site_endpoint_swap",
+      "rejected": true,
+      "failed_checks": [
+        "endpoint_a_M1_b_M2"
+      ],
+      "diagnostics": [
+        {
+          "check": "endpoint_a_M1_b_M2",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "candidate_promoted_to_selected",
+      "rejected": true,
+      "failed_checks": [
+        "no_unfounded_selected_state",
+        "comparison_candidate_exact"
+      ],
+      "diagnostics": [
+        {
+          "check": "no_unfounded_selected_state",
+          "pass": false
+        },
+        {
+          "check": "comparison_candidate_exact",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "product_M4_override_extended_to_M2",
+      "rejected": true,
+      "failed_checks": [
+        "override_M4_scope_metadata"
+      ],
+      "diagnostics": [
+        {
+          "check": "override_M4_scope_metadata",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "staff_check_promoted_to_confirmed",
+      "rejected": true,
+      "failed_checks": [
+        "no_invented_clinical_approval",
+        "staff_check_preserved"
+      ],
+      "diagnostics": [
+        {
+          "check": "no_invented_clinical_approval",
+          "pass": false
+        },
+        {
+          "check": "staff_check_preserved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "palja_neck_conflict_erased",
+      "rejected": true,
+      "failed_checks": [
+        "combo_unknown_scope_preserved",
+        "palja_neck_conflict_unresolved"
+      ],
+      "diagnostics": [
+        {
+          "check": "combo_unknown_scope_preserved",
+          "pass": false
+        },
+        {
+          "check": "palja_neck_conflict_unresolved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "ko_qualifier_omitted",
+      "rejected": true,
+      "failed_checks": [
+        "claim_immutable_value",
+        "language_variants_all_five",
+        "ko_delayed_qualifier_preserved",
+        "projection_source_facts_independent"
+      ],
+      "diagnostics": [
+        {
+          "check": "claim_immutable_value",
+          "pass": false,
+          "claim": "clm:b83cf7bacce0d2648da6f2338ff735992c30eeab71d4123ce7492c27d9ca280f"
+        },
+        {
+          "check": "language_variants_all_five",
+          "pass": false
+        },
+        {
+          "check": "ko_delayed_qualifier_preserved",
+          "pass": false
+        },
+        {
+          "check": "projection_source_facts_independent",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "duration_alternative_erased",
+      "rejected": true,
+      "failed_checks": [
+        "duration_resolution_policy"
+      ],
+      "diagnostics": [
+        {
+          "check": "duration_resolution_policy",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "policy_promoted_to_clinical_consensus",
+      "rejected": true,
+      "failed_checks": [
+        "resolution_not_consensus",
+        "duration_resolution_policy"
+      ],
+      "diagnostics": [
+        {
+          "check": "resolution_not_consensus",
+          "pass": false
+        },
+        {
+          "check": "duration_resolution_policy",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "wrong_source_hash",
+      "rejected": true,
+      "failed_checks": [
+        "snapshot_hash_bytes",
+        "snapshot_identity_v2"
+      ],
+      "diagnostics": [
+        {
+          "check": "snapshot_hash_bytes",
+          "pass": false,
+          "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/anatomy-danger-zones.json"
+        },
+        {
+          "check": "snapshot_identity_v2",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "wrong_source_pointer",
+      "rejected": true,
+      "failed_checks": [
+        "source_locator"
+      ],
+      "diagnostics": [
+        {
+          "check": "source_locator",
+          "pass": false,
+          "path": "/source_records/0",
+          "target": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json#/no_such_field",
+          "target_type": "source_value",
+          "reason": "KeyError"
+        }
+      ]
+    },
+    {
+      "mutation": "existing_mapping_rule_dropped",
+      "rejected": true,
+      "failed_checks": [
+        "comparison_candidate_exact"
+      ],
+      "diagnostics": [
+        {
+          "check": "comparison_candidate_exact",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "unknown_extra_field",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.mappings[0]: unknown approval"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "invalid_enum",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.scopes[0].application_state: enum"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "null_instead_of_empty_selected_list",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.mappings[0].selected_refs: type array"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "missing_required_raw_field",
+      "rejected": true,
+      "failed_checks": [
+        "strict_schema"
+      ],
+      "diagnostics": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.claims[0]: missing raw_field"
+          ]
+        }
+      ]
+    },
+    {
+      "mutation": "identity_from_name",
+      "rejected": true,
+      "failed_checks": [
+        "typed_ref"
+      ],
+      "diagnostics": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/claims/0/subject_ref",
+          "target": "product:M1-1-3",
+          "target_type": "entities",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/claims/1/subject_ref",
+          "target": "product:M1-1-3",
+          "target_type": "entities",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/0/target_ref",
+          "target": "product:M1-1-3",
+          "target_type": "entities",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/scopes/0/axes/product/included/0",
+          "target": "product:M1-1-3",
+          "target_type": "entities",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "mutation": "duration_fake_reviewer",
+      "rejected": true,
+      "failed_checks": [
+        "decision_authority_source",
+        "no_fabricated_reviewer"
+      ],
+      "diagnostics": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        },
+        {
+          "check": "no_fabricated_reviewer",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "mutation": "ambiguous_expansion_first_match",
+      "rejected": true,
+      "failed_checks": [
+        "duplicate_expansion_not_first_match"
+      ],
+      "diagnostics": [
+        {
+          "check": "duplicate_expansion_not_first_match",
+          "pass": false,
+          "id": "R8-0353"
+        }
+      ]
+    },
+    {
+      "mutation": "automatic_confirmed_graph_edge",
+      "rejected": true,
+      "failed_checks": [
+        "projection_matches_records",
+        "no_automatic_confirmed_edges"
+      ]
+    }
+  ],
+  "review": [
+    {
+      "probe": "positive_control",
+      "accepted": true,
+      "failed_checks": []
+    },
+    {
+      "probe": "decision_dangling_target",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/decisions/0/target_refs/0",
+          "target": "clm:0000000000000000000000000000000000000000000000000000000000000000",
+          "target_type": "claims",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "decision_authority_changed_to_human",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "decision_authority_source",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "decision_dangling_supersedes",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/decisions/0/supersedes/0",
+          "target": "dec:0000000000000000000000000000000000000000000000000000000000000000",
+          "target_type": "decisions",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "override_dangling_claim",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/claims/157/override/claim_refs/0",
+          "target": "clm:0000000000000000000000000000000000000000000000000000000000000000",
+          "target_type": "claims",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "override_wrong_scope_type",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/claims/157/override/scope_ref",
+          "target": "product:M1-1-3",
+          "target_type": "scopes",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "attachment_witness_wrong_ref_types",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/0/witness/0/mapping_ref",
+          "target": "clm:9121c3f74e6706aaa2d652c692ecca437543406caceea6c1c4ac9e3f076fec54",
+          "target_type": "mappings",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/0/witness/0/edge_ref",
+          "target": "missing",
+          "target_type": "relation_claims",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/0/witness/0/component_ref",
+          "target": "missing",
+          "target_type": "source_records",
+          "reason": "wrong_type_or_missing"
+        },
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/attachments/0/witness/0/source_ref",
+          "target": "clm:9121c3f74e6706aaa2d652c692ecca437543406caceea6c1c4ac9e3f076fec54",
+          "target_type": "source_records",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "axis_dangling_entity",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "typed_ref",
+          "pass": false,
+          "path": "/scopes/0/axes/product/included/0",
+          "target": "product:missing",
+          "target_type": "entities",
+          "reason": "wrong_type_or_missing"
+        }
+      ]
+    },
+    {
+      "probe": "scope_family_qualifier_erased_language",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "claim_wrong_raw_field",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "safety_field_value",
+          "pass": false,
+          "pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects"
+        }
+      ]
+    },
+    {
+      "probe": "claim_predicate_changed_language",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "language_predicate",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "claim_variant_links_wrong_existing_claim",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "language_variant_parent",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "mapping_rule_wrong_version",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "mapping_rule_id_version_hash",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "mapping_drop_exact_selection",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "exact_identity_selection_preserved",
+          "pass": false,
+          "mapping": "map:066aeb4e22c29efc437818acb632b078a1f15754c2a66b2aef4db4ef5610f1a6"
+        },
+        {
+          "check": "positive_exact_identity8",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "snapshot_source_kind_wrong",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.snapshots[0].source_kind: enum"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "source_native_id_wrong",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "source_native_id",
+          "pass": false,
+          "source": "src:b8982cdd704f84ba90ca12775844725bab3e676552f219c8712602044b0681f9"
+        }
+      ]
+    },
+    {
+      "probe": "combo_scope_container_erased",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "combo_container_scope",
+          "pass": false
+        },
+        {
+          "check": "combo_scope_source_axes",
+          "pass": false
+        },
+        {
+          "check": "combo_unknown_scope_preserved",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "timing_days_false_instead_of_null",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "days_not_invented",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "timing_interval_changed",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "timing_interval_no_numeric_invention",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "relation_direction_unfounded",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "combo_direction_unpromoted",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "case_wrong_claim_ref_existing",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "case_attachment_consistency",
+          "pass": false,
+          "case": "PATIENT-LANG-01"
+        }
+      ]
+    },
+    {
+      "probe": "scope_unknown_to_explicit_language",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        },
+        {
+          "check": "language_scope_family",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "probe": "schema_bool_in_integer_arity",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "strict_schema",
+          "pass": false,
+          "errors": [
+            "$.relation_claims[0].arity: type integer"
+          ]
+        }
+      ]
+    },
+    {
+      "probe": "schema_number_in_raw_value",
+      "accepted": false,
+      "failed_checks": [
+        {
+          "check": "source_raw_exact",
+          "pass": false,
+          "pointer": "/items/7",
+          "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step1-products.json"
+        },
+        {
+          "check": "existing_entity_identity",
+          "pass": false,
+          "entity": "product:M1-1-3"
+        }
+      ]
+    }
+  ]
+}
