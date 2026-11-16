@@ -16,6 +16,7 @@ up:
   - 2026-10-07-strong-hajin-enhance
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
+  - 2026-11-16-interpreter-idea
 tags:
   - llm
   - prompt
@@ -56,6 +57,7 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - 크기 상한을 두지 않은 것은 「조직 규모에서 전량은 실을 수 있는 크기」 라는 판단이다 — 커지면 관측 후 다시 본다. 큰 프롬프트는 전달 통로의 한도에 걸린다 → [[argv-length-limit]]. 외부 엔진이 한도를 대략값으로만 알려 주면 실측해 기본값과 줄이는 순서를 정한다 → [[empirical-limit-probing]]
 - **싣는 짝끼리 겹치면 결과는 엔진이 정한다** — 접두어가 겹치는 짝을 함께 실을 때 어느 쪽이 이길지는 문서로 알 수 없다. 추측으로 별칭을 유지하지 말고, 새 term 을 넣을 때 그 term 문장을 실물로 한 번 돌려 본다
 - [[retrieval-augmented-generation]] 처럼 질문마다 골라 싣는 것이 아니다 — 작고 닫힌 목록을 통째로 싣는다
+- **번역 짝과 받아쓰기 힌트는 다른 칸이다** — 통키는 `terms`(STT 힌트)에 한국어 이름만, 외국어 이름은 `translation_terms` 짝에만 넣었다. 그러면 손님이 외국어로 시술명을 말할 때 STT 가 그 낱말을 몰라 소리 같은 흔한 글자(중국어 美版 → 每晚)로 적고, 원문이 틀어지면 짝도 못 건다. 또 짝은 모델에 주는 **참고**라 보장이 아니다 — 출력 쪽 바로잡기와 짝을 이룬다 → [[transcript-term-correction]]
 
 ## 함께 보는 개념
 
@@ -70,3 +72,4 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012(`ai_context_catalog` · DEC-009 D-13 · SPEC-010 OQ-1002 · 메디니스 서버 전량 주입 대조)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 통키 Soniox `context` `translation_terms` 정방향 · 역방향 · 줄이기 순서 · 거절 시 정방향만 재연결(`back/app/service/glossary.py` · `live-check-2026-10-26.json` · DEC-001 D-05 · D-18 · SPEC-001 §4.4)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 새 term 「써마지 CPT」 를 싣자 기존 ko 별칭 「써마지」 가 그 문장을 FLX 로 번역 · `translation_terms` 는 더 긴 짝 우선이 아님 · 별칭 삭제로 처분을 실물 결과로 뒤집음(`live-check-wp16-newterms.json` · `-newterms-2.json` · `wp16-be-report.md` 처분 2)
+- [[2026-11-16-interpreter-idea]] §2 — 짝은 맞게 들어갔는데 중국어 손님 쪽 받아쓰기가 동음이의어로 틀어짐 · 역할 서술 `text` 칸

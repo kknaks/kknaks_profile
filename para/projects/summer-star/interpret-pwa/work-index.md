@@ -9,3 +9,4 @@
 | [[orchestration/work/_archive/interpret-pwa/interpret-pwa-poc/README\|interpret-pwa-poc]] | 아카이브 | [[para/projects/summer-star/interpret-pwa/log/2026-10-27-interpret-pwa-poc\|회고]] |
 | [[orchestration/work/_archive/interpret-pwa/interpret-pwa-seed-tw/README\|interpret-pwa-seed-tw]] | 아카이브 | [[para/projects/summer-star/interpret-pwa/log/2026-10-27-interpret-pwa-seed-tw\|회고]] |
 | [[orchestration/work/_archive/interpret-pwa/interpret-pwa-v2/README\|interpret-pwa-v2]] | 아카이브 | [[para/projects/summer-star/interpret-pwa/log/2026-10-28-interpret-pwa-v2\|회고]] |
+| [[orchestration/work/_archive/interpret-pwa/interpreter-idea/README\|interpreter-idea]] | 아카이브 | [[para/projects/summer-star/interpret-pwa/log/2026-11-16-interpreter-idea\|회고]] |

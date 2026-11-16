@@ -12,6 +12,7 @@ aliases:
 up:
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
+  - 2026-11-16-interpreter-idea
 tags:
   - 외부 연동
   - 한도
@@ -56,6 +57,7 @@ def context_max_chars(lang, override=None):
 - **데이터가 자라면 다시 잰다** — 한도는 그대로여도 입력이 커지면 줄이기가 다시 시작된다(zh-Hant 역방향 별칭 33 은 아직 빠진다). 재측정은 시드 판이 바뀔 때의 할 일이다
 - 여유 폭은 데이터 증가 속도로 본다 — 가장 큰 실제 입력(th 17,952)과 기본값 사이가 880자뿐이면 행이 늘 때 그 언어부터 줄기 시작한다
 - [[argv-length-limit]] 처럼 **문서화된 고정 한도**는 실측할 필요가 없다. 이 방법은 문서가 대략값만 줄 때다
+- **모델을 바꾸면 한도 표를 다시 잰다 · 「넘는다」 의 잣대를 하나로** — v5 로 잰 언어별 한도를 v6 에서 이분 탐색으로 다시 잼(언어당 9 ~ 10회 · 거절이 첫 메시지로 오는지 · 몇 ms 인지까지). 실측 최대치와 안전선(× 0.9 · × 0.96) 중 어느 것을 「넘는다」 로 볼지 문서마다 달라 판단이 갈렸다 — 운영 코드가 실제로 줄이기를 시작하는 선 하나로 정한다
 
 ## 함께 보는 개념
 
@@ -67,3 +69,4 @@ def context_max_chars(lang, override=None):
 
 - [[2026-10-27-interpret-pwa-poc]] §2 — Soniox `context` 한도: 문서 8,000토큰 계산 대신 같은 언어 짝 덧붙이기 이분 탐색(ja 20,925 통과 · 거절 0.41 ~ 0.46초) → 기본값 × 0.9 · 줄이기 순서(`live-check-wp6-2026-10-26.json` · `wp6-be-report.md` 실물 ⑧ · DEC-001 D-18 · SPEC-001 §4.4)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 공통 최소값(ja)이 zh-Hant 별칭 63 · th `terms` 38 을 버림 → 시드 `.6` 로 7개 언어 재측정 · 언어별 × 0.9 표 한 곳 · env 는 전 언어 덮어쓰기 하나(`live-check-wp16-ceiling.json` · `-seed-3.json` · `back/app/service/interpret/langs.py` · `wp16-be-report.md` 처분 3)
+- [[2026-11-16-interpreter-idea]] §2 — v6 ⑬′ 재측정 · D-56 × 0.96 · D-62

@@ -1,0 +1,97 @@
+{
+  "combo": "A",
+  "label": "wp22-A-u-no-pair",
+  "at": "2026-11-14T23:21:12",
+  "stt_model": "stt-rt-v5",
+  "seed_version": "2026-10-27.6",
+  "text_chars": 0,
+  "block_blank": false,
+  "endpoint": {
+    "max_endpoint_delay_ms": 1000
+  },
+  "drop_reverse_count": 1,
+  "context": {
+    "zh": {
+      "terms": 170,
+      "forward": 170,
+      "forward_alias": 0,
+      "reverse": 163,
+      "reverse_alias": 75,
+      "text": 0,
+      "chars": 18523,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "max": 20933
+    }
+  },
+  "silent_audio": "zeros",
+  "repeat": 1,
+  "summary": {
+    "sentences": 2,
+    "machine": {
+      "pass": 1,
+      "fail": 1,
+      "none": 0,
+      "error": 0
+    },
+    "blank_dropped_total": 0,
+    "errors": 0
+  },
+  "results": [
+    {
+      "no": "T02",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1620,
+      "terms": [
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T03",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1661,
+      "terms": [
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        4,
+        5
+      ],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    }
+  ]
+}

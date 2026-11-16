@@ -15,6 +15,7 @@ aliases:
 up:
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
+  - 2026-11-16-interpreter-idea
 tags:
   - 번역
   - 용어집
@@ -83,6 +84,7 @@ tags:
 - **모호한 구어는 넣지 않는다** — 한 낱말이 여러 시술을 가리키면(韩版热玛吉) 역방향 매핑이 오역을 만든다. 실제 상담에서 확인할 때까지 비워 둔다
 - **term 을 더하면 기존 별칭이 모호어가 될 수 있다** — 별칭은 그 term 만 가리킬 때만 안전하다. 같은 브랜드의 새 세대(CPT)를 넣는 순간 브랜드 단독 별칭(「써마지」)은 두 term 을 가리킨다. 넣기 전에 기존 별칭이 새 term 을 덮지 않는지 실물로 본다
 - **번역 뒤 치환이 아니다** — 이 사전은 번역 엔진 **입력**(context)이다. 결과 문장을 사후에 고치는 것과 다르다 → [[transcript-term-correction]]
+- **「현지도 영문을 쓴다」 는 영문 name 의 근거가 못 된다 — 그 나라 글자 우선** — 비라틴 언어(ja · zh · zh-Hant · th · yue)는 현지 클리닉 · 손님이 보는 플랫폼까지 근거로 그 나라 글자 표기를 찾고, 정말 없을 때만 영문. 별칭도 「근거 있는 것만」 — 근거 없이 쌓인 별칭이 context 한도를 먹어 정작 필요한 짝을 잘라 낸다(대만 별칭 245개 → 근거 확인 뒤 167). 이름인지 별명인지(상자 색 · 「~針」 시장 이름 · 여러 기기를 가리키는 말)는 규칙으로 처분한다
 
 ## 함께 보는 개념
 
@@ -96,3 +98,4 @@ tags:
 
 - [[2026-10-27-interpret-pwa-poc]] §2 — Procedure Hub 용어집의 괄호 칸을 term × 언어별 현지명 · 별칭 · 출처 · 검수로 분해(157 term × 7개 언어 · 설명 괄호 60칸 `raw` 보존) · 대만명 웹 조사 77개(`back/seed/glossary.json` · `import_glossary.py` · `research-tw-names-report.md` · DEC-001 D-33 · D-35)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 언어권 조사 셋을 같은 틀로 병렬 · 새 시술 목록은 대륙 조사 한 곳이 확정 · 처분표 20건 + 5건을 기존 규칙(현지 허가명 · 없으면 영문 · 모호어 제외 · 출처 2+)으로 닫고 새 규칙 「홍콩은 대만과 독립」 · 시드 `.6` 170 term(`research-r1-zh-report.md` · `research-r2-ja-en-tw-report.md` · `research-r3-th-vi-yue-report.md` · `research-dispositions.md` · DEC-001 D-39 · D-40)
+- [[2026-11-16-interpreter-idea]] §2 — 7개 언어 × 현지 클리닉 6곳 재조사 · D-61 그 나라 글자 우선 · 근거 없는 별칭 빼기(D-53)

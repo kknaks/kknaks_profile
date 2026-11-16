@@ -1,0 +1,847 @@
+{
+  "combo": "B",
+  "label": "wp22-B",
+  "at": "2026-11-14T23:21:34",
+  "stt_model": "stt-rt-v6",
+  "seed_version": "2026-10-27.6",
+  "text_chars": 0,
+  "block_blank": false,
+  "endpoint": {
+    "max_endpoint_delay_ms": 1000
+  },
+  "drop_reverse_count": 0,
+  "context": {
+    "en": {
+      "terms": 170,
+      "forward": 170,
+      "forward_alias": 0,
+      "reverse": 168,
+      "reverse_alias": 4,
+      "text": 0,
+      "chars": 17589,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "max": 23424
+    },
+    "ja": {
+      "terms": 170,
+      "forward": 170,
+      "forward_alias": 0,
+      "reverse": 169,
+      "reverse_alias": 75,
+      "text": 0,
+      "chars": 19408,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "max": 20419
+    },
+    "zh": {
+      "terms": 170,
+      "forward": 170,
+      "forward_alias": 0,
+      "reverse": 163,
+      "reverse_alias": 76,
+      "text": 0,
+      "chars": 18565,
+      "dropped_terms": 0,
+      "dropped_forward": 0,
+      "dropped_forward_alias": 0,
+      "dropped_reverse": 0,
+      "dropped_reverse_alias": 0,
+      "max": 20933
+    }
+  },
+  "silent_audio": "zeros",
+  "repeat": 1,
+  "summary": {
+    "sentences": 33,
+    "machine": {
+      "pass": 23,
+      "fail": 7,
+      "none": 3,
+      "error": 0
+    },
+    "blank_dropped_total": 0,
+    "errors": 0
+  },
+  "results": [
+    {
+      "no": "T01",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 352,
+      "terms": [
+        "ph-010",
+        "ph-012"
+      ],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        1
+      ],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T02",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 504,
+      "terms": [
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T03",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 507,
+      "terms": [
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        5
+      ],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T04",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 702,
+      "terms": [
+        "ph-108",
+        "ph-112"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T05",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 429,
+      "terms": [
+        "ph-033"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T06",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 517,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T07",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "27f4162b0b7493b3d76d68f11731284d6e501b800519a7fbcea415fa18869650",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 445,
+      "terms": [
+        "ph-026",
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        13
+      ],
+      "kinds": [
+        "①",
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T08",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "f6c16b4d2a7a7162ae7a5fc5e4b36dfdc84ee407f4316415b04d29972d4b08d2",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1901,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T09",
+      "run": 1,
+      "lang": "ja",
+      "direction": "ko→xx",
+      "section": "1",
+      "audio_sha256": "eb5082fb2933d6269fa487af1971afbe4ce6169b65f5b4539c42b2e8463b0f2e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 401,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T10",
+      "run": 1,
+      "lang": "ja",
+      "direction": "xx→ko",
+      "section": "1",
+      "audio_sha256": "bffc9e0fc63a9e42bd7c084b0f5a409ecb549d42615e10107a1812bad9d501bd",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 797,
+      "terms": [
+        "ph-074"
+      ],
+      "errors": [],
+      "machine": "none",
+      "hit_rules": [],
+      "kinds": [
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T11",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 578,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T12",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 635,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T13",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 549,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T14",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "f8ec0ab8ba73d8a3a2bf759f7aa7c3a2134d91ef8d2e299437daac677eabe7f8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 589,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T15",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "34e03f2b03d444d71c8078261b493a4df59964c00e031ad7b217e2f970c2f2b5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 575,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T16",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 460,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T17",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "c02b8fd784a17c8a2bf829d76bd85b9cc8634e0bd9435585c0e37aabd737dd0e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 348,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T18",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "4b24f61db52ff13b75779678d32f7bc7cbbf165311b4db5d82dfca54f67da37d",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 335,
+      "terms": [],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        26
+      ],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T19",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "b5781bf9496f2db7788055b56bfb168c17431277b778101a42b0c388fd3f4c40",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 383,
+      "terms": [],
+      "errors": [],
+      "machine": "none",
+      "hit_rules": [],
+      "kinds": [
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T20",
+      "run": 1,
+      "lang": "ja",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "7a06a727f12f20972a71f4e7ecc76b461c97c69b6ce09f01635be79578456918",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 515,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T21",
+      "run": 1,
+      "lang": "ja",
+      "direction": "ko→xx",
+      "section": "2",
+      "audio_sha256": "67eb72abf6fad348739492e150e89d168e4f44290c2be275d01ca8330b352977",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 569,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T22",
+      "run": 1,
+      "lang": "zh",
+      "direction": "xx→ko",
+      "section": "2",
+      "audio_sha256": "86a89035576949006c3e5b9420572bd179c20c621a757b7cd33044d2c495b994",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 832,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T23",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "3",
+      "audio_sha256": "0385d1f1689e5ca05910712bdafe6a4523974b3c450aa41dc8a616a37469efa3",
+      "finals": 2,
+      "translation_lines": 2,
+      "blank_dropped": 0,
+      "latency_ms": 2063,
+      "terms": [],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        31
+      ],
+      "kinds": [
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 1,
+      "human": null
+    },
+    {
+      "no": "T24",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "3",
+      "audio_sha256": "5bb1b790eef419556d951c4de5c9a785862b3e12e7fc31d0c644c94d2ae9a761",
+      "finals": 3,
+      "translation_lines": 3,
+      "blank_dropped": 0,
+      "latency_ms": 420,
+      "terms": [],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        32
+      ],
+      "kinds": [
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 2,
+      "human": null
+    },
+    {
+      "no": "T25",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "3",
+      "audio_sha256": "b096029e3583ed6f0193c103bfd8e4988487c358fd81b03eea4b41e797cf0d2b",
+      "finals": 2,
+      "translation_lines": 2,
+      "blank_dropped": 0,
+      "latency_ms": 1819,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 1,
+      "human": null
+    },
+    {
+      "no": "T26",
+      "run": 1,
+      "lang": "en",
+      "direction": "ko→xx",
+      "section": "3",
+      "audio_sha256": "7bf7348472dd2ffa7175c1854dee7353e7bd0633cfab5df8ac23f77b522e0504",
+      "finals": 2,
+      "translation_lines": 2,
+      "blank_dropped": 0,
+      "latency_ms": 499,
+      "terms": [
+        "ph-121"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③"
+      ],
+      "expected_finals": 2,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T27",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "4",
+      "audio_sha256": "009f6bcffcbd84fc4cd05dd5ca300b70df716a36ea9d8e49b0c9bcb1e43404bd",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 543,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T28",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "4",
+      "audio_sha256": "4674f59d162551ad949e001828a5c2ade7c0ea4ed8b688cb4255e3d013f2d596",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 551,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T29",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "4",
+      "audio_sha256": "b9ce164d30e4101b009fe4be765a070593cfbdd48f897853de159a8c177fabe8",
+      "finals": 0,
+      "translation_lines": 0,
+      "blank_dropped": 0,
+      "latency_ms": null,
+      "terms": [],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③"
+      ],
+      "expected_finals": 0,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T30",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "5",
+      "audio_sha256": "a216328e12c75c8aae525bc679049aded128c8ecaafe7b049112b2294352c689",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 420,
+      "terms": [
+        "ph-031",
+        "ph-042"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T31",
+      "run": 1,
+      "lang": "zh",
+      "direction": "ko→xx",
+      "section": "5",
+      "audio_sha256": "78dd59ad9cae48bd9bd88fa9476caa7111d128404f703d275e1664d018050d16",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 558,
+      "terms": [
+        "ph-023"
+      ],
+      "errors": [],
+      "machine": "none",
+      "hit_rules": [],
+      "kinds": [
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T32",
+      "run": 1,
+      "lang": "ja",
+      "direction": "ko→xx",
+      "section": "5",
+      "audio_sha256": "d2cf2ae52abfcf7bd792b37af753f4f9677b5072f493f2839d2ed595076948b4",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 423,
+      "terms": [
+        "ph-012"
+      ],
+      "errors": [],
+      "machine": "fail",
+      "hit_rules": [
+        42
+      ],
+      "kinds": [
+        "①"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    },
+    {
+      "no": "T33",
+      "run": 1,
+      "lang": "ja",
+      "direction": "ko→xx",
+      "section": "5",
+      "audio_sha256": "341720063f4624fdc5a07fcb60b0300fa062b21120d68d1215063c40dbe83752",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 447,
+      "terms": [
+        "ph-047"
+      ],
+      "errors": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "②"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "human": null
+    }
+  ]
+}

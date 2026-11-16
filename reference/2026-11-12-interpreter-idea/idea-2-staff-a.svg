@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="AppleGothic, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+<title>2단계 직원 화면 선택지 A — 콘솔에 동선 · 호출 더하기</title>
+<defs></defs>
+<rect width="900" height="520" fill="#ffffff"/>
+<text x="24" y="30" font-size="15" fill="#222" text-anchor="start" font-weight="bold">2단계 · 직원 화면 선택지 A — 1단계 콘솔에 동선 · 호출을 더함</text>
+<rect x="24" y="50" width="850" height="400" rx="10" fill="#fff" stroke="#222" stroke-width="2"/>
+<rect x="24" y="50" width="850" height="36" rx="10" fill="#f4f5f7" stroke="#222" stroke-width="2"/>
+<text x="38" y="74" font-size="13" fill="#2498bd" text-anchor="start" font-weight="bold">≡  Tongky — 콘솔 + 동선</text>
+<line x1="274" y1="86" x2="274" y2="450" stroke="#ddd"/>
+<rect x="34" y="96" width="230" height="58" rx="8" fill="#e3f3f8" stroke="#2498bd" stroke-width="1.2"/>
+<text x="46" y="118" font-size="12" fill="#222" text-anchor="start" font-weight="bold">고객 1(예시)</text>
+<text x="46" y="138" font-size="10" fill="#666" text-anchor="start" font-weight="normal">English · 지금: 시술</text>
+<rect x="34" y="162" width="230" height="58" rx="8" fill="#fff" stroke="#ddd" stroke-width="1.2"/>
+<text x="46" y="184" font-size="12" fill="#222" text-anchor="start" font-weight="bold">고객 2(예시)</text>
+<text x="46" y="204" font-size="10" fill="#666" text-anchor="start" font-weight="normal">日本語 · 지금: 상담</text>
+<rect x="194" y="172" width="60" height="20" rx="10" fill="#fdf1e4" stroke="#d9822b" stroke-width="1.2"/>
+<text x="224" y="186" font-size="9" fill="#d9822b" text-anchor="middle" font-weight="normal">새 말</text>
+<rect x="34" y="228" width="230" height="58" rx="8" fill="#fff" stroke="#ddd" stroke-width="1.2"/>
+<text x="46" y="250" font-size="12" fill="#222" text-anchor="start" font-weight="bold">고객 3(예시)</text>
+<text x="46" y="270" font-size="10" fill="#666" text-anchor="start" font-weight="normal">中文 · 지금: 진정</text>
+<text x="290" y="112" font-size="13" fill="#222" text-anchor="start" font-weight="bold">고객 1(예시) · English</text>
+<rect x="432.0" y="126" width="426.0" height="25" rx="10" fill="#2498bd" stroke="#2498bd" stroke-width="1.2"/>
+<text x="442.0" y="142" font-size="11" fill="#fff" text-anchor="start" font-weight="normal">오늘 동선 : 접수 ✓ 상담 ✓ 세안 ✓ ▶시술 · 진정 · 수납</text>
+<circle cx="574.0" cy="390" r="26" fill="#2498bd"/>
+<text x="574.0" y="432" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">말하면 고른 고객에게만 갑니다(예시)</text>
+<text x="624.0" y="394" font-size="10" fill="#c0392b" text-anchor="start" font-weight="normal">말하기 방식: 자동 듣기 / 누르고 말하기 — 선택지</text>
+<rect x="290" y="160" width="136" height="34" rx="8" fill="#fff" stroke="#d9822b" stroke-width="1.2"/>
+<text x="358" y="182" font-size="12" fill="#d9822b" text-anchor="middle" font-weight="bold">다음 단계 ▶</text>
+<rect x="440" y="160" width="136" height="34" rx="8" fill="#fdf1e4" stroke="#d9822b" stroke-width="1.2"/>
+<text x="508" y="182" font-size="12" fill="#d9822b" text-anchor="middle" font-weight="bold">🔔 호출 보내기</text>
+<rect x="290" y="206" width="560" height="64" rx="8" fill="#fff" stroke="#ddd" stroke-width="1.2"/>
+<text x="300" y="226" font-size="11" fill="#666" text-anchor="start" font-weight="normal">호출 문구 — 선택지: ① 정해 둔 문구 고르기 / ② 직원이 말로</text>
+<text x="300" y="252" font-size="11" fill="#222" text-anchor="start" font-weight="normal">예: 「시술실로 와 주세요」 → 고객 언어 글 + 음성</text>
+<text x="24" y="478" font-size="11" fill="#666" text-anchor="start" font-weight="normal">· 왼쪽 목록에 고객마다 「지금 단계」가 붙는다 · [다음 단계] 를 누르면 고객 화면 동선이 한 칸 움직인다</text>
+<text x="24" y="496" font-size="11" fill="#666" text-anchor="start" font-weight="normal">· 호출이 뜨는 자리는 고객 화면 선택지를 따른다(A 위 배너 / B 「오늘」 탭) · 알림 방식(글 + 음성 / 글 + 진동 / 글만)은 열린 것</text>
+</svg>

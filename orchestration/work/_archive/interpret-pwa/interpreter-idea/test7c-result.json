@@ -1,0 +1,6410 @@
+{
+  "round": 7,
+  "seed_version": "2026-11-15.10",
+  "combo": "최종 버전(조합 인자 없음)",
+  "rows": 196,
+  "merged": "직원 쪽 133 = 7차 다시(test7b) · 손님 쪽 63 = 수정 2(test7c)",
+  "summary": {
+    "en": {
+      "staff": {
+        "pass": 18,
+        "fail": 1,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 5,
+        "fail": 4,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 4,
+      "missed_rows": 4
+    },
+    "ja": {
+      "staff": {
+        "pass": 17,
+        "fail": 2,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 6,
+        "fail": 3,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 3,
+      "missed_rows": 4
+    },
+    "zh": {
+      "staff": {
+        "pass": 17,
+        "fail": 2,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 5,
+        "fail": 4,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 7,
+      "missed_rows": 2
+    },
+    "zh-Hant": {
+      "staff": {
+        "pass": 15,
+        "fail": 4,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 6,
+        "fail": 3,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 6,
+      "missed_rows": 4
+    },
+    "th": {
+      "staff": {
+        "pass": 12,
+        "fail": 7,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 5,
+        "fail": 4,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 4,
+      "missed_rows": 8
+    },
+    "vi": {
+      "staff": {
+        "pass": 18,
+        "fail": 1,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 4,
+        "fail": 5,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 6,
+      "missed_rows": 1
+    },
+    "yue": {
+      "staff": {
+        "pass": 18,
+        "fail": 1,
+        "none": 0,
+        "error": 0
+      },
+      "guest": {
+        "pass": 7,
+        "fail": 2,
+        "none": 0,
+        "error": 0
+      },
+      "fixed_rows": 8,
+      "missed_rows": 1
+    }
+  },
+  "results": [
+    {
+      "key": "en-S01",
+      "lang": "en",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 359,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-010"
+      ],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S02",
+      "lang": "en",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 483,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-121"
+      ],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S03",
+      "lang": "en",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "ph-121",
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 499,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S04",
+      "lang": "en",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 685,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S05",
+      "lang": "en",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 447,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S06",
+      "lang": "en",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 545,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S07",
+      "lang": "en",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 452,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S08",
+      "lang": "en",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 517,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S09",
+      "lang": "en",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 551,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S10",
+      "lang": "en",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 456,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S11",
+      "lang": "en",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 453,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S12",
+      "lang": "en",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 519,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S13",
+      "lang": "en",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 422,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S14",
+      "lang": "en",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [
+        "ph-112"
+      ],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 481,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S15",
+      "lang": "en",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 584,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S16",
+      "lang": "en",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 421,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S17",
+      "lang": "en",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 439,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        36
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S18",
+      "lang": "en",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 962,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-S19",
+      "lang": "en",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [
+        "ph-003"
+      ],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 405,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-003"
+      ],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "en-G01",
+      "lang": "en",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "aec1558f1ad97e5e5d9f0a7ea3c369219e06ccadd7cf29efda056a60f5fdbd72",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 462,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G02",
+      "lang": "en",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "ff7b1f7a67503ecde3405abf950acc19c988b60ed78e4d352ccab343d5b31e1f",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 652,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        44
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G03",
+      "lang": "en",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "5934f46418e1d3e5b38ce2b7693a11021d98563bce9e37f5d7e98caf055c08c5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 632,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "kr-014"
+      ],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        46
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G04",
+      "lang": "en",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [
+        "ph-112"
+      ],
+      "overlap": false,
+      "audio_sha256": "9019ac957f62063da23eef2532fda7cffb9bb01727f34abc8a6758642b02f188",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 549,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        48
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G05",
+      "lang": "en",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "736886751815be814ed4d50c8933ce02be786aff12d017305adddf2912316144",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 857,
+      "errors": [],
+      "fixed": [
+        "ph-108"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G06",
+      "lang": "en",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "01b09ead935100a579d606d6464a05abf6f5749a77715af59aeb3be40656fb13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 703,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G07",
+      "lang": "en",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "ddd311ba70edd37216f1b52d8c063d830ca9be2dc73a1747b3ebf150daa06e6b",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 513,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        54
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G08",
+      "lang": "en",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "891237493ab2e7cb5626e710267758567a0824cf2359ea92e562f5595c10d926",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 673,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "en-G09",
+      "lang": "en",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [
+        "ph-003"
+      ],
+      "overlap": false,
+      "audio_sha256": "755314afe9639e73e4f72b93fa4d7a8375325d3f085359cf91bf2798d78f72d7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 617,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-S01",
+      "lang": "ja",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 356,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-010"
+      ],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S02",
+      "lang": "ja",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 515,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S03",
+      "lang": "ja",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 481,
+      "errors": [],
+      "fixed": [
+        "kr-014"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S04",
+      "lang": "ja",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 732,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S05",
+      "lang": "ja",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 425,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S06",
+      "lang": "ja",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 563,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S07",
+      "lang": "ja",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 514,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S08",
+      "lang": "ja",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 587,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S09",
+      "lang": "ja",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 552,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S10",
+      "lang": "ja",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 485,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S11",
+      "lang": "ja",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 438,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-012"
+      ],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        83
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S12",
+      "lang": "ja",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 546,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S13",
+      "lang": "ja",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 457,
+      "errors": [],
+      "fixed": [
+        "kr-014"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S14",
+      "lang": "ja",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 478,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S15",
+      "lang": "ja",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 603,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S16",
+      "lang": "ja",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 446,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S17",
+      "lang": "ja",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 425,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        95
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S18",
+      "lang": "ja",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 2011,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-S19",
+      "lang": "ja",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 367,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "ja-G01",
+      "lang": "ja",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "137753079a6c05a85e561f97a60f8e1391b516b40aca6a645090a86fd996bb96",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 737,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G02",
+      "lang": "ja",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "709fb6fc9e7cfb26ff13d7930f66d7e638a5102bc83a2a073ba7e57a59eb91c3",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 680,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-121"
+      ],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        103
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G03",
+      "lang": "ja",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f953602febe6fb43008f9deb8136c7ae5a8edf9f474487368edbecadc13e0d21",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 578,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G04",
+      "lang": "ja",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "8ac7227cae3a5ec15adbf552380a7704cfa261169e0464aa30052977c97bfefc",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 686,
+      "errors": [],
+      "fixed": [
+        "ph-112"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G05",
+      "lang": "ja",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4d4ca09b445b0cc82f740ff72867c06b2f582b95f7927ce3cd6e6070af16a291",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 544,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G06",
+      "lang": "ja",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "2999fb311066f36265c44b3393df9681754125a316bf72e9c8bd5473a3f613aa",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1734,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G07",
+      "lang": "ja",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3928402836471b77baa1c935de949bf0306ddd418c70f58dcd2461a9ff4fc0ee",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 830,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        113
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G08",
+      "lang": "ja",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ce2d25cbb6d5253594157569c6e9240dd64ffb92954a94a04da84ad4f8243fde",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 645,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "ja-G09",
+      "lang": "ja",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "547e8f0b2f8c1656bfd7312cc23a95cf21cfc29ffebc2ce44be3f0460195af95",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 565,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-003"
+      ],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        117
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-S01",
+      "lang": "zh",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 347,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S02",
+      "lang": "zh",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 469,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S03",
+      "lang": "zh",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 500,
+      "errors": [],
+      "fixed": [
+        "kr-014",
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S04",
+      "lang": "zh",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "ph-108",
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 687,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [
+        "ph-112"
+      ],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        126
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S05",
+      "lang": "zh",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 438,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S06",
+      "lang": "zh",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 558,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S07",
+      "lang": "zh",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 445,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S08",
+      "lang": "zh",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 536,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S09",
+      "lang": "zh",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 597,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S10",
+      "lang": "zh",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 475,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S11",
+      "lang": "zh",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 461,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S12",
+      "lang": "zh",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 575,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S13",
+      "lang": "zh",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 474,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S14",
+      "lang": "zh",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 512,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-112"
+      ],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        148
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S15",
+      "lang": "zh",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 542,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S16",
+      "lang": "zh",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 454,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S17",
+      "lang": "zh",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 459,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S18",
+      "lang": "zh",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1995,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-S19",
+      "lang": "zh",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 449,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-G01",
+      "lang": "zh",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "754f64a400116d72798f28167ec9cb728bf5e3c631f4a9ae225eef8d0418a7ec",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 720,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-014"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        160
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G02",
+      "lang": "zh",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e80aeca1171f701ba58f1f7dfed97584bd30647e67af56c8ef7dae5546628fff",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 980,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        162
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G03",
+      "lang": "zh",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "c18351d06955617424ce3cb789016133a12dd7483931ae02e932216b0549b25a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 665,
+      "errors": [],
+      "fixed": [
+        "kr-014"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G04",
+      "lang": "zh",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "bbaa117e552794884e2131fe8d66c9f12692afe7ca0a64ad155a30c8ff4ff4c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1001,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        166
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G05",
+      "lang": "zh",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "cdb01708025bc7da0c695743183bec7401e5f175df8af58660189feefcca031e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 905,
+      "errors": [],
+      "fixed": [
+        "ph-108"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G06",
+      "lang": "zh",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "a6280324ee00bd3fe28461d00422a8186e7328e5549a5f478b36a6941b1fd1b2",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 916,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        170
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G07",
+      "lang": "zh",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": true,
+      "audio_sha256": "858f8a7f418a0d65783f9c1972948455b8c31dd099c13a75fcb37293a068fa40",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1789,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-031"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G08",
+      "lang": "zh",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "6212744e66b23025185010a717fb46a1f378f6c0ae109f2d2ac486a586c5fb40",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 837,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-G09",
+      "lang": "zh",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "b16615d6cfa59696d454f0f2ea258a4f15cebdfa13a914a10571049c996dfdfb",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 787,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-S01",
+      "lang": "zh-Hant",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 409,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-012"
+      ],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        178
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S02",
+      "lang": "zh-Hant",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 507,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S03",
+      "lang": "zh-Hant",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 561,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S04",
+      "lang": "zh-Hant",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 731,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S05",
+      "lang": "zh-Hant",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 449,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S06",
+      "lang": "zh-Hant",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 567,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S07",
+      "lang": "zh-Hant",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 427,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S08",
+      "lang": "zh-Hant",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 604,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S09",
+      "lang": "zh-Hant",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 718,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S10",
+      "lang": "zh-Hant",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 447,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S11",
+      "lang": "zh-Hant",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 450,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-012"
+      ],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        201
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S12",
+      "lang": "zh-Hant",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 595,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S13",
+      "lang": "zh-Hant",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 427,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S14",
+      "lang": "zh-Hant",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 515,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S15",
+      "lang": "zh-Hant",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 570,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S16",
+      "lang": "zh-Hant",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 477,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S17",
+      "lang": "zh-Hant",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 458,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        213
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S18",
+      "lang": "zh-Hant",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 2164,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-S19",
+      "lang": "zh-Hant",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 429,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-003"
+      ],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        217
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "zh-Hant-G01",
+      "lang": "zh-Hant",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9e4297ac5abc3db7846333de8a8d3fbfb5fbd547b14461698ca8fa64e1a6eced",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 761,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012",
+        "ph-019"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G02",
+      "lang": "zh-Hant",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "884b33aab870e5e3adab6900ab00a7f9c46c6bbbbdf851b0d4a2dff594d22c04",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1479,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G03",
+      "lang": "zh-Hant",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "519a61daef5da27c785113f1b5074d39491ceffc789694e1b3394e00af8dbf6a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 773,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G04",
+      "lang": "zh-Hant",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "38b58594b2f835bd787d95c3463c59e44f30d782fedde55f5dacb5c00b152963",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 954,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        225
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G05",
+      "lang": "zh-Hant",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "18be108beae970f15c92fcfefb1791c9aaeb6d62d2aa6be503f6df462a4befca",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 837,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-108",
+        "ph-113"
+      ],
+      "hit_original": [
+        "ph-108",
+        "ph-113"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        227
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G06",
+      "lang": "zh-Hant",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "148fe6ad9cb0dbc3477e1f78148c4f305826f5d7a95ecb83447b1864b497aa22",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 751,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        229
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G07",
+      "lang": "zh-Hant",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": true,
+      "audio_sha256": "1ea135842d580e07cf542bc15ff7153884866de45812b0c2dbb1ad278e5ea4c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 931,
+      "errors": [],
+      "fixed": [
+        "ph-031"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-031",
+        "ph-042"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G08",
+      "lang": "zh-Hant",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "781212cfa17a86b02560c7403bc257c0566f9dec350231a4827a05ed7e0b4b1d",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 815,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "zh-Hant-G09",
+      "lang": "zh-Hant",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a99cb1e2eed73163dff4183a53ceda8837b75047d743c7152c9e6304792ff756",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 798,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-S01",
+      "lang": "th",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 378,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-012"
+      ],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        237
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S02",
+      "lang": "th",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 509,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S03",
+      "lang": "th",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 541,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [
+        "kr-014"
+      ],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        242
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S04",
+      "lang": "th",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 692,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "kr-015",
+        "ph-108"
+      ],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        245,
+        246
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S05",
+      "lang": "th",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 468,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S06",
+      "lang": "th",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 566,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S07",
+      "lang": "th",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 466,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S08",
+      "lang": "th",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 566,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S09",
+      "lang": "th",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 556,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S10",
+      "lang": "th",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 471,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S11",
+      "lang": "th",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 419,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-012"
+      ],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        260
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S12",
+      "lang": "th",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 594,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S13",
+      "lang": "th",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 423,
+      "errors": [],
+      "fixed": [
+        "kr-014"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S14",
+      "lang": "th",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 497,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S15",
+      "lang": "th",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 600,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-108"
+      ],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        268
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S16",
+      "lang": "th",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 437,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "kr-015"
+      ],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        270
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S17",
+      "lang": "th",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 441,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        272
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S18",
+      "lang": "th",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1987,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-S19",
+      "lang": "th",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 398,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "th-G01",
+      "lang": "th",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f6c45fe592aaf4aaa1df4102fd482edaad6bf066a5adf6322c3d618825d065a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 478,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G02",
+      "lang": "th",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "2cb7f044dac4b8b36651e956e28ccbfdd36e32c29b1f6bab85120fb18ef0a79a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 690,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-121"
+      ],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        280
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G03",
+      "lang": "th",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "caca4de32f56c344c2dfc38f90bb5ba2de27ca915ed461dea1de84a3728d3673",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 627,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        282
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G04",
+      "lang": "th",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1b84a19d62c7ff8fc11b9424c891f874dfc4a6ded364193b78a52272c8e3c743",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 674,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G05",
+      "lang": "th",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "71492be2259ed90eecd368a863f45ee62ae06553af9b8e0d2ab6c48444214b03",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 679,
+      "errors": [],
+      "fixed": [
+        "ph-108"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G06",
+      "lang": "th",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "4a583c44b27d3e1561620056d047b3f448e227db0b5c848faaffd94508b27ae8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 669,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        288
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G07",
+      "lang": "th",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "61ced44a026e75e69a242c19667af9126c61855cc7c6c251d2abddfd66b742f3",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 603,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-042"
+      ],
+      "hit_original": [
+        "ph-042"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        290
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G08",
+      "lang": "th",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "fe66cf92d5d928c639f508539a272d187a97d9c65665deca251e2e078aa1c795",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 639,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "th-G09",
+      "lang": "th",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "d52e13a086e5b69dfa4f0db5feedee6ea1dba80a3d7c30726cedda2573ea76ba",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 680,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-S01",
+      "lang": "vi",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 329,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S02",
+      "lang": "vi",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 477,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S03",
+      "lang": "vi",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "ph-121",
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 524,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S04",
+      "lang": "vi",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 698,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S05",
+      "lang": "vi",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 489,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S06",
+      "lang": "vi",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 540,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S07",
+      "lang": "vi",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 424,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S08",
+      "lang": "vi",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 512,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S09",
+      "lang": "vi",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 529,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S10",
+      "lang": "vi",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 469,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S11",
+      "lang": "vi",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 442,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S12",
+      "lang": "vi",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 505,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S13",
+      "lang": "vi",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 394,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S14",
+      "lang": "vi",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [
+        "ph-112"
+      ],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 442,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S15",
+      "lang": "vi",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 587,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S16",
+      "lang": "vi",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 452,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S17",
+      "lang": "vi",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 418,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S18",
+      "lang": "vi",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1910,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-S19",
+      "lang": "vi",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 349,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-003"
+      ],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        335
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "vi-G01",
+      "lang": "vi",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [
+        "ph-012"
+      ],
+      "overlap": false,
+      "audio_sha256": "0df0c131fde760fa55d9e1e904c2e9136dad44199b80d483ff2aac02fc027297",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 536,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G02",
+      "lang": "vi",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [
+        "ph-121"
+      ],
+      "overlap": false,
+      "audio_sha256": "c836dbeaf85e02b459bfee9b617bc1caeccc48eeae5c5604924ee557728abcf4",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 712,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        339
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G03",
+      "lang": "vi",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [
+        "kr-014"
+      ],
+      "overlap": false,
+      "audio_sha256": "36223f630d2196f8fcb08db33d3cbb0af3e2ef655d17c67ffdda84e5c1a14602",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 820,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        341
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G04",
+      "lang": "vi",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [
+        "ph-112"
+      ],
+      "overlap": false,
+      "audio_sha256": "5a4d7c35dc4631b0dac056299618c61fcdea02573c607ea93cbfb35bfa60287a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1021,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        343
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G05",
+      "lang": "vi",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "7882806735f666c42d3f42ae22e859535e92a2bf74f2ac6478b7f9a598c6bdd9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 574,
+      "errors": [],
+      "fixed": [
+        "ph-108"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G06",
+      "lang": "vi",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "2df0474f425a526b6a63d932d6cfe69c975c592db023e02f54f5f9feb72fdaf8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 659,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        347
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G07",
+      "lang": "vi",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "398eceb5c48fddb79cf157e799f863e4082c08d2218f4d566160525d9c25c05c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 614,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        349
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G08",
+      "lang": "vi",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [
+        "ph-033"
+      ],
+      "overlap": false,
+      "audio_sha256": "ce2e35693570499819d9005f01d20afd2277d78f9dead9446589e966c4123ccf",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1446,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "vi-G09",
+      "lang": "vi",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1fab82a3de4d345ced0451a0fd962f424b5be8f5beae090de07ad1c62d0d4129",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 635,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-S01",
+      "lang": "yue",
+      "no": "S01",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "0f7c5680ff4505c6f2244f0b8327a1d480e657fc9f683f365102ecc2f22f10c0",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 335,
+      "errors": [],
+      "fixed": [
+        "ph-012"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-010",
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S02",
+      "lang": "yue",
+      "no": "S02",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "9df1f08bd46f30e85c0c4dfa293ed8a5452d70dbc9f91f8e220406f094b305c8",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 489,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S03",
+      "lang": "yue",
+      "no": "S03",
+      "side": "staff",
+      "terms": [
+        "ph-121",
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "4c949c9efc71b7feeb8b729cb4d58b199571eed03a730770ea85fd581e4d0357",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 552,
+      "errors": [],
+      "fixed": [
+        "kr-014",
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-014",
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S04",
+      "lang": "yue",
+      "no": "S04",
+      "side": "staff",
+      "terms": [
+        "ph-112",
+        "ph-108",
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "ph-108",
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "95bfe3bfe0931ce6146b84f0bb32b189cc536871ff3de47329df71256d46bb78",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 732,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015",
+        "ph-108",
+        "ph-112"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S05",
+      "lang": "yue",
+      "no": "S05",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "db6acb451d9b37067a3dc9e130e1ab8ec422cddd7c7c6a1e8e0cdffc3e1b27fe",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 450,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S06",
+      "lang": "yue",
+      "no": "S06",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ef261f0de711ca60f85e762a523b95e312c2a9f2819979a0591b155943666c9e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 535,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S07",
+      "lang": "yue",
+      "no": "S07",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "451200d1c1a8edbddb4fd67ebee5f0f2721523a9f1a1d6a09d7abb9efc965137",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 463,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S08",
+      "lang": "yue",
+      "no": "S08",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "f9c2ffafbef926ada84846eab25f65093b6c535d10004103ecb8756984fd6083",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 551,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S09",
+      "lang": "yue",
+      "no": "S09",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "3b4ec04bab3e295eea401d816aafc36761ebe8810c8f5dfb7a760b3653e97010",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 530,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S10",
+      "lang": "yue",
+      "no": "S10",
+      "side": "staff",
+      "terms": [],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "1e7839031ad3c145658d7e2db04e1c5d0c662c0b9ab56d0148a794f1bbbd489c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 489,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "③",
+        "④"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S11",
+      "lang": "yue",
+      "no": "S11",
+      "side": "staff",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "66bd1dec9850e79c5add8c0fdad6e169e758bf06df04a3898dcd95bfb4fef9f9",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 457,
+      "errors": [],
+      "fixed": [
+        "ph-012"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S12",
+      "lang": "yue",
+      "no": "S12",
+      "side": "staff",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "e3df581d8061f80702717b4f0bd88ab3af23feee1a1da01e01f493730d6521a5",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 585,
+      "errors": [],
+      "fixed": [
+        "ph-121"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S13",
+      "lang": "yue",
+      "no": "S13",
+      "side": "staff",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a25f0738403fa13261d68d398fd3d9faf795e4573d4397b7fa8c40d1fef2d096",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 453,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S14",
+      "lang": "yue",
+      "no": "S14",
+      "side": "staff",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "5f45feb9828b26a1cdffdd63c169197e0da16ed2b73912a5e17760b331826a56",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 525,
+      "errors": [],
+      "fixed": [],
+      "missed": [
+        "ph-112"
+      ],
+      "hit_original": [
+        "ph-112"
+      ],
+      "machine": "fail",
+      "hit_rules": [
+        384
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S15",
+      "lang": "yue",
+      "no": "S15",
+      "side": "staff",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "514ed33ba990d3a0dee35e649d98364a3ce4bdf7441c603f6f36f47bf9babab7",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 560,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S16",
+      "lang": "yue",
+      "no": "S16",
+      "side": "staff",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "156bc63c0be923cd7bc1a7f6297c07d7ce40e1ff5a55dcbc58574bcdd6a446c1",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 453,
+      "errors": [],
+      "fixed": [
+        "kr-015"
+      ],
+      "missed": [],
+      "hit_original": [
+        "kr-015"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S17",
+      "lang": "yue",
+      "no": "S17",
+      "side": "staff",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "573cca251665de8274821f275df5d823ced332d20e32a9f76f35897b7265c75a",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 448,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S18",
+      "lang": "yue",
+      "no": "S18",
+      "side": "staff",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "83a4db31f019377385a572ad673f4243820d1eaadd9b28884e6dc1457a815e13",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 2022,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-S19",
+      "lang": "yue",
+      "no": "S19",
+      "side": "staff",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "043a52153694b37bd5c56c1dbc7aaf5c37a0ab63b0ef8c9ee8f9e1728f94ba28",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 368,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7b"
+    },
+    {
+      "key": "yue-G01",
+      "lang": "yue",
+      "no": "G01",
+      "side": "guest",
+      "terms": [
+        "ph-012"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "185259f5a6cc1323a24f2e4d42126a4a04fe4d4edb128d5bc530de13a88f70ea",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 757,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-012"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G02",
+      "lang": "yue",
+      "no": "G02",
+      "side": "guest",
+      "terms": [
+        "ph-121"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "828bcfed5c42f00491d0f3560e2e849ddfc51b83618cb495ebe6b59d1133a162",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 821,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-121"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G03",
+      "lang": "yue",
+      "no": "G03",
+      "side": "guest",
+      "terms": [
+        "kr-014"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "d4fd518db401f67e53eb06189e62b30b9cda47b14bdc352471e42b92ce56a39c",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 830,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "kr-014"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G04",
+      "lang": "yue",
+      "no": "G04",
+      "side": "guest",
+      "terms": [
+        "ph-112"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "ec4953161abc7b21cbadaa121d865bcf39f5b585859001f081d38375b9a74aa3",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 829,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G05",
+      "lang": "yue",
+      "no": "G05",
+      "side": "guest",
+      "terms": [
+        "ph-108"
+      ],
+      "no_local_spelling": [
+        "ph-108"
+      ],
+      "overlap": false,
+      "audio_sha256": "c7d8488c5873e5cf3b61fe0bd8bac87dc289df120899856befaf66458e70dc77",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1046,
+      "errors": [],
+      "fixed": [
+        "ph-108"
+      ],
+      "missed": [],
+      "hit_original": [
+        "ph-108"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G06",
+      "lang": "yue",
+      "no": "G06",
+      "side": "guest",
+      "terms": [
+        "kr-015"
+      ],
+      "no_local_spelling": [
+        "kr-015"
+      ],
+      "overlap": false,
+      "audio_sha256": "3e0924231f6fded89854d987889b8b7d4115fa8ed8e10dfaaf299d9fcdfdb33e",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 732,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        406
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G07",
+      "lang": "yue",
+      "no": "G07",
+      "side": "guest",
+      "terms": [
+        "ph-042"
+      ],
+      "no_local_spelling": [
+        "ph-042"
+      ],
+      "overlap": false,
+      "audio_sha256": "b000fa65d0cfbf02ba1b045a8be99f7c544cf9717f880b012f04f2a6ab7a5deb",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 792,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [],
+      "machine": "fail",
+      "hit_rules": [
+        408
+      ],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G08",
+      "lang": "yue",
+      "no": "G08",
+      "side": "guest",
+      "terms": [
+        "ph-033"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "816038013afa52d288e8604be8c95edaa6980cfa76124e5232bbbabf59a5d695",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 1031,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-033"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    },
+    {
+      "key": "yue-G09",
+      "lang": "yue",
+      "no": "G09",
+      "side": "guest",
+      "terms": [
+        "ph-003"
+      ],
+      "no_local_spelling": [],
+      "overlap": false,
+      "audio_sha256": "a1e8f916b44fd899a289b35312a49e5fd4fa62df0c4edddfdd4ef7a71fd55477",
+      "finals": 1,
+      "translation_lines": 1,
+      "blank_dropped": 0,
+      "latency_ms": 849,
+      "errors": [],
+      "fixed": [],
+      "missed": [],
+      "hit_original": [
+        "ph-003"
+      ],
+      "machine": "pass",
+      "hit_rules": [],
+      "kinds": [
+        "①",
+        "③"
+      ],
+      "expected_finals": 1,
+      "fragments": 0,
+      "run": "7c"
+    }
+  ]
+}
