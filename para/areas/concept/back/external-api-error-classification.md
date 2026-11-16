@@ -52,3 +52,4 @@ tags:
 
 - [[2026-10-07-strong-hajin-inbox]] §2 — Strong Hajin WORK-011 외부 채널 오류 처리(be-fix-45-report · 커밋 2807351)
 - [[2026-11-06-kos-client-headers]] §2 — KOS 내부 API 403 `Unsupported client.`: 토큰 유효 기간과 첫 403 시각을 맞대 만료를 배제하고, 본문 사유로 클라이언트 거절을 짚음
+- [[2026-11-12-api-swagger-docs]] §2 — 「없음」과 「모양 깨짐」을 가름: KOS `{}` · `[]` = 빈 목록 · `data` 배열 아님 · 원소 깨짐 = 502 · 이름 검색 모양이 깨지면 「0명 → 새 고객 생성」으로 흐르던 갈래를 502 로 막음(`ext-review-r1.md` W1 · DEC-011 D-16)

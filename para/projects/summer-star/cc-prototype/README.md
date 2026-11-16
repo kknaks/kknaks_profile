@@ -35,6 +35,7 @@ status: active
 
 ## 최근 로그
 
+- 2026-11-12: 협업자(링키 · 차티) 연동 — back Swagger(`/api/docs`) · 외부 연동 API `/api/ext` 6개(메뉴 · 이름+이메일 조회 · 예약 · 예약 가능 시간대 · 과거 시술 · 예약 내역) · 연동처별 키(DEC-010 · DEC-011 · SPEC-008 · WORK-012 · WORK-013 · 코드 #21 ~ #23 · infra #48 ~ #50 · [회고](log/2026-11-12-api-swagger-docs.md))
 - 2026-11-04: KOS 내부 API 403 핫픽스 — 11-03 부터 비브라우저 User-Agent 차단 → 내부 요청에 UA · Origin · `kos-client-uri`(코드 #20 · infra #47 · [회고](log/2026-11-06-kos-client-headers.md))
 - 2026-10-30: 직원 앱 내부 채팅 마감 — 1:1 · 그룹 · 사진 · 동영상 · 수정 · 앱 안 전달 · 모아보기 · 초대 · 들어온 뒤 대화만(DEC-009 · SPEC-007 · WORK-011 · 코드 #17 ~ #19 · 빌드 12 ~ 14 · [회고](log/2026-10-30-internal-chat.md))
 - 2026-10-28: 고객 문진 웹 — 문진을 고객 자기 폰의 ccc 웹 페이지로(DEC-008 · SPEC-006 · WORK-010) · 앱은 QR 만 보여 줌

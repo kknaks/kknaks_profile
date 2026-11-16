@@ -11,3 +11,5 @@
 | DEC-007 | 앱 다음 판 — 4탭 · 웹 쓰기 · 상담사 호출 푸시 · 알림 둘 · QR 문진 · 여권 스캔(AP-1 ~ AP-45 승인 기본값 · r2 D-67 ~ D-72 = 리뷰 r1 U1 ~ U6) | proposed | BASE-008 · BASE-009 | SPEC-004 | [본문](decision-007-app-v2.md) |
 | DEC-008 | 문진 = 고객 자기 폰의 ccc 고객용 웹 페이지 — QR 은 데스크 웹 · 직원 앱이 보여 줌 · 제출 지금 KOS · 나중 ccc · 앱 문진 화면 뺌(DEC-007 D-13 · D-45 뒤집음) | proposed | BASE-009 | SPEC-006 | [본문](decision-008-customer-questionnaire-web.md) |
 | DEC-009 | 직원 앱 내부 채팅 — 1:1 + 그룹 · 텍스트 · 사진 · 푸시 · 앱만 · claude design 시안 먼저 | accepted | BASE-010 | SPEC-007 | [본문](decision-009-internal-chat.md) |
+| DEC-010 | 시술 · 상품 메뉴 저장 + 외부 연동 API(링키 · 차티) — 이름+이메일 조회 · 남은 시술권 · 연동처별 키 | accepted | — | SPEC-008 | [본문](decision-010-product-ext-api.md) |
+| DEC-011 | 외부 연동 API 2차(add1) — 예약 가능 시간대 · 고객 과거 시술 · 고객 예약 내역(`/api/ext` 세 경로 더함) | accepted | — | SPEC-008 | [본문](decision-011-ext-api-add1.md) |

@@ -6,6 +6,7 @@
 
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
+| [[orchestration/work/_archive/cc-prototype/api-swagger-docs/README\|api-swagger-docs]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-12-api-swagger-docs\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/cc-nav-resv/README\|cc-nav-resv]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-10-19-cc-nav-resv\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/internal-chat/README\|internal-chat]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-10-30-internal-chat\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/kos-client-headers/README\|kos-client-headers]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-06-kos-client-headers\|회고]] |
