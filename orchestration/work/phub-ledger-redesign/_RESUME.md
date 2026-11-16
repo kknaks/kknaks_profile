@@ -1,4 +1,4 @@
-# 재개 노트 — phub-ledger-redesign (Procedure Hub)
+# 재개 노트 — phub-ledger-redesign (procedure-hub)
 
 **지금(11-15)**: ① 사전(22표 · 보강 1차) · **② 시술/케이스**(procedure 136 · procedure_material · procedure_case 265 · case_method · case_product · 계열 M18 추가) · **③ 관계**(silver 20표 — indication · outcome · adverse_risk(+frequency · factor · guidance · rating) · contraindication · procedure_relation(+effect) · package(+item · condition · schedule) · recovery · citation(+link · translation) — 표 구조 정본 silver-model/drafts/relation-pilot/relation-notes.md §9-2, 합치기 notes/relation-notes.md) 가 silver 에 들어갔다. 관계 보완 · 사전 보강 2차 완료(11-15).
 **다음**: 원장 확인 목록 한 장(안 닿는 고민 18 · 계열만 50 · 보류 5 · 원장≠사전 제품 · ② 코드 없는 시술 종류 · 인터넷 조사 여부) → silver 통합 검사 + ERD 문서 → 상품(market-pricing) → gold → 마감(커밋 · PR). 미룬 작은 것: 골수 · method 별칭 띄어쓰기 8 · modality_alias 용도 · 멀티비타민/미네랄 성분 펼치기.
