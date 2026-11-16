@@ -120,3 +120,4 @@ xcrun altool --upload-app --type ios -f build/ios/ipa/*.ipa \
 | 2026-11-04 | **핫픽스** KOS 내부 API `403 Unsupported client.`(11-03 18:23 KST 부터 비브라우저 User-Agent 차단) — 내부 요청에 UA · Origin · `kos-client-uri` · back 만 | 코드 #20 `77173cf` · infra #47 `5ebc4dc` |
 | 2026-11-11 | 외부 연동 API `/api/ext`(메뉴 · 이름+이메일 조회 · 예약) + KOS 메뉴 9표 저장 + Swagger — back 만 · Secret `cc-prototype-secret` 에 env 3개(`PROC_EXT_KEY_LINKY` · `PROC_EXT_KEY_CHARTY` · `KOS_EXT_RESERVATION_GROUP_ID`) 먼저 patch · 키 원본은 `~/.config/cc-prototype/ext-api.env` | 코드 #22 `e0e4a16` · infra #49 `55ea48c` |
 | 2026-11-12 | 외부 연동 API 3개 추가(`GET /api/ext/availability` · `POST /api/ext/customers/visits` · `POST /api/ext/customers/reservations`) — back 만 · 새 env 없음 | 코드 #23 `0a58aba` · infra #50 `125d3a9` |
+| 2026-11-16 | 외부 연동 API charty 1차(ext 6 → 13 · 새 표 `consult_wait_first` · 배포 전 운영 DB 사본 `/data/procedure.db.bak-20261116-charty1`) — back 만(`back.imageTag`) | 코드 #24 `969f44f` · infra #60 `88220d5` |

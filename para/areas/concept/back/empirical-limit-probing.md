@@ -13,6 +13,7 @@ up:
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
   - 2026-11-16-interpreter-idea
+  - 2026-11-16-ext-api-charty1
 tags:
   - 외부 연동
   - 한도
@@ -70,3 +71,4 @@ def context_max_chars(lang, override=None):
 - [[2026-10-27-interpret-pwa-poc]] §2 — Soniox `context` 한도: 문서 8,000토큰 계산 대신 같은 언어 짝 덧붙이기 이분 탐색(ja 20,925 통과 · 거절 0.41 ~ 0.46초) → 기본값 × 0.9 · 줄이기 순서(`live-check-wp6-2026-10-26.json` · `wp6-be-report.md` 실물 ⑧ · DEC-001 D-18 · SPEC-001 §4.4)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 공통 최소값(ja)이 zh-Hant 별칭 63 · th `terms` 38 을 버림 → 시드 `.6` 로 7개 언어 재측정 · 언어별 × 0.9 표 한 곳 · env 는 전 언어 덮어쓰기 하나(`live-check-wp16-ceiling.json` · `-seed-3.json` · `back/app/service/interpret/langs.py` · `wp16-be-report.md` 처분 3)
 - [[2026-11-16-interpreter-idea]] §2 — v6 ⑬′ 재측정 · D-56 × 0.96 · D-62
+- [[2026-11-16-ext-api-charty1]] §2 — 한도가 아니라 **모양**을 실측: KOS 내부 이력 조회를 JS 로만 보고 추측하지 않고 WORK 첫 Phase(KOS0 · 데모 · 조회만)로 40건 실호출 → `eventType` 전체 이름 · `flowStep` 문자열 · 차례 섞임 · 휴무 이름 칸 없음 — 추측과 셋이 달랐다(`kos0-report.md` · DEC-012 D-42 · D-43)
