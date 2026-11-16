@@ -602,7 +602,7 @@ para/areas/
 | 489 | `cs` | [[para/areas/concept/cs/no-inference-from-free-text\|no-inference-from-free-text]] | 자유 메모의 습관 양식을 잘라 읽거나 글자 일치로 짐작하지 않는다. 구조 값은 원천 구조 필드에서만 |  |
 | 490 | `db` | [[para/areas/concept/db/as-of-visibility\|as-of-visibility]] | 그 시각에 이미 있던 데이터만 보인다. 사후 스냅샷을 시작 시드로 쓰면 미래 정보가 샌다 |  |
 | 491 | `back` | [[para/areas/concept/back/public-vs-internal-api\|public-vs-internal-api]] | 벤더 연동은 공개 API 쓰기 범위로만, 웹앱 내부 API(HAR)는 근거 · 요청서용 |  |
-| 492 | `front` | [[para/areas/concept/front/half-duplex-echo-suppression\|half-duplex-echo-suppression]] | 재생 중 마이크 송신을 멈추고 재생 끝 + 여유 뒤 재개해 스피커 되먹임을 끊는다 |  |
+| 492 | `front` | [[para/areas/concept/front/half-duplex-echo-suppression\|half-duplex-echo-suppression]] | 재생 중 마이크 송신을 멈추고 재생 끝 + 여유 뒤 재개해 스피커 되먹임을 끊는다 | 통키는 세 참여자로 대체(2026-11-16) |
 | 493 | `design` | [[para/areas/concept/design/time-in-current-state\|time-in-current-state]] | 경과 시간 = 지금 상태가 시작된 뒤. 현재 상태와 `<종류> N분 경과` 를 한 칸에 두 줄로 |  |
 | 494 | `cs` | [[para/areas/concept/cs/consume-on-completion\|consume-on-completion]] | 소모성 자원은 계획 때가 아니라 완료 때 차감. 사용은 done 에서 계산해 취소 · 노쇼 · undo 가 자연히 되돌린다 |  |
 | 495 | `back` | [[para/areas/concept/back/demo-stand-in-for-integration\|demo-stand-in-for-integration]] | 없는 외부 연동은 입구만 데모 버튼으로, 상태 전이 · 저장은 실제와 같게. 외부 결과는 그 순간 스냅샷 |  |
@@ -646,6 +646,7 @@ para/areas/
 | 533 | `infra` | [[para/areas/concept/infra/unlisted-app-distribution\|unlisted-app-distribution]] | 검색엔 없고 링크로만 받는 App Store 앱. 웹 신청서 · 이후 버전 모두 · 되돌릴 수 없음 · 보안은 로그인 몫 |  |
 | 534 | `back` | [[para/areas/concept/back/tolerant-reader\|tolerant-reader]] | 읽는 쪽이 쓰는 칸만 꺼내고 모르는 칸 · 없는 칸 · 모르는 값에 안 깨지게. 빼기는 버티고 이름 · 모양 바꾸기는 못 버틴다 |  |
 | 535 | `front` | [[para/areas/concept/front/measured-overflow-toggle\|measured-overflow-toggle]] | 펼치기 버튼을 줄바꿈 수가 아니라 scrollHeight > clientHeight 로 켠다. 서버는 숨겨 두고 그릴 때마다 잰다 |  |
+| 536 | `ai` | [[para/areas/concept/ai/consecutive-interpreter-turn-taking\|consecutive-interpreter-turn-taking]] | 통역기를 대화의 세 번째 참여자로 — 차례 끝에 말하기 · 늘 듣기 · 재생 언어 토큰 버림 + agent text · 반대 언어로 끼어들면 멈춤 |  |
 
 ---
 

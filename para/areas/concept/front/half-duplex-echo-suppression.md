@@ -12,6 +12,7 @@ aliases:
 up:
   - 2026-10-14-sts-prototype
   - 2026-10-27-interpret-pwa-poc
+  - 2026-11-16-tongky-quality-re1
 tags:
   - 오디오
   - 실시간
@@ -42,6 +43,7 @@ tags:
 - 송신 상태(재생 중)와 대화 상태(듣는 중)는 다른 축이다 — 화면은 「듣는 중」 을 유지하고 마이크 단추만 「재생 중」 으로 바꿨다
 - **스피커 되먹임만 막는다 — 바깥 말소리는 못 막는다** — 반이중은 우리 재생 신호로 판정한다. 매장 노래 · 옆 사람 말은 재생이 아니라 그대로 받아써진다(브라우저 `noiseSuppression` 도 일정한 소음만 지운다). 그 문제는 사람이 송신 구간을 정하는 누르고 말하기로 푼다. 둘은 같은 송신 게이트를 쓴다 — 누르고 있어도 TTS 재생 중이면 반이중이 막고, 재생 중 누르면 재생 큐를 비우고 연다 → [[push-to-talk]]
 - **송신 판정은 화면 상태가 아니라 게이트 값으로** — 통키의 누름 처리는 「지금 재생 중인가」 를 화면 표시가 아니라 반이중 게이트 값(`outputting` — 표시보다 먼저 참)으로 본다. 표시와 송신 판정이 한 박자 어긋날 수 있어서다
+- **통키에서는 세 참여자 순차 통역으로 대체됐다(2026-11-16)** — 실기기에서 「재생 중 상대 말은 버려진다」 는 대가가 손님 뒷말 소실로 드러났다. 재생 중에도 듣고, 재생 언어 토큰만 버리고, 반대 언어로 끼어들면 재생을 멈추는 쪽으로 걷었다. 출력 구간 판정(재생 끝 + 400ms)은 표시 · 누르고 말하기 · 멈춤 알림용으로 남았다 → [[consecutive-interpreter-turn-taking]]
 
 ## 함께 보는 개념
 
@@ -49,8 +51,10 @@ tags:
 - [[nondeterministic-stt-output]] — STT 입력 쪽 문제
 - [[websocket]] — 오디오가 오가는 통로
 - [[push-to-talk]] — 같은 송신 게이트로 바깥 말소리를 막는 쪽
+- [[consecutive-interpreter-turn-taking]] — 반이중을 걷어 낸 다음 방식
 
 ## 출처
 
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 통역 되먹임(`interpret-fix1-report.md` — 재생 중 송신 0 B · 재생 끝 +424ms 재개 실측)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 통키: 반이중은 그대로 · 주변 노래는 반이중 · noiseSuppression 으로 안 막혀 누르고 말하기를 더함(`front/lib/interpret.ts` `outputting` · `front/lib/ptt.ts` · `d36-fe-report.md` · DEC-001 D-09 · D-36)
+- [[2026-11-16-tongky-quality-re1]] §2 — 통키: 반이중을 걷고 세 참여자로(재생 중 손님 뒷말 소실 · DEC-001 D-68 이 D-03 반이중을 뒤집음 · `front/lib/outputWindow.ts` · code PR #14)
