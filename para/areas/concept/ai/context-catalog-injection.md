@@ -17,6 +17,7 @@ up:
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
   - 2026-11-16-interpreter-idea
+  - 2026-11-16-tongky-quality-re1
 tags:
   - llm
   - prompt
@@ -58,6 +59,7 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - **싣는 짝끼리 겹치면 결과는 엔진이 정한다** — 접두어가 겹치는 짝을 함께 실을 때 어느 쪽이 이길지는 문서로 알 수 없다. 추측으로 별칭을 유지하지 말고, 새 term 을 넣을 때 그 term 문장을 실물로 한 번 돌려 본다
 - [[retrieval-augmented-generation]] 처럼 질문마다 골라 싣는 것이 아니다 — 작고 닫힌 목록을 통째로 싣는다
 - **번역 짝과 받아쓰기 힌트는 다른 칸이다** — 통키는 `terms`(STT 힌트)에 한국어 이름만, 외국어 이름은 `translation_terms` 짝에만 넣었다. 그러면 손님이 외국어로 시술명을 말할 때 STT 가 그 낱말을 몰라 소리 같은 흔한 글자(중국어 美版 → 每晚)로 적고, 원문이 틀어지면 짝도 못 건다. 또 짝은 모델에 주는 **참고**라 보장이 아니다 — 출력 쪽 바로잡기와 짝을 이룬다 → [[transcript-term-correction]]
+- **짝은 힌트라 많이 실을수록 덜 먹는다 — 다 싣는 것이 답이 아니다** — 통키는 사전 170개 전부(431짝 · 약 2만 자 — Soniox 문서 한도 「about 10,000 characters」 의 두 배)를 실었을 때 울쎄라가 0/72, 같은 짝 2 ~ 3개만 실으면 70/70 이었다. 짝 순서도 결과를 바꿨다(써마지 짝을 맨 뒤로 → 0/6). **이름이 고정된 고유명사만 · 정방향 + 역방향만(별칭 짝 0) · 받아쓰기 힌트도 같은 74개**로 줄이자(약 7천 자) 울쎄라 18/18 · 리쥬란 힐러 0/6 → 6/6. 일반 낱말(혈관 · 제모 · 토닝)은 엔진 혼자 옮기게 뒀다. 그래도 같은 문장의 다른 영문 상표 뒤에서는 영문으로 나가 보장은 아니다 — 출력 바로잡기와 짝이다. 연결 1회 원가도 약 1/3 로 줄었다(42.4원 추정 → 14.55원 실측)
 
 ## 함께 보는 개념
 
@@ -73,3 +75,4 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - [[2026-10-27-interpret-pwa-poc]] §2 — 통키 Soniox `context` `translation_terms` 정방향 · 역방향 · 줄이기 순서 · 거절 시 정방향만 재연결(`back/app/service/glossary.py` · `live-check-2026-10-26.json` · DEC-001 D-05 · D-18 · SPEC-001 §4.4)
 - [[2026-10-28-interpret-pwa-v2]] §2 — 새 term 「써마지 CPT」 를 싣자 기존 ko 별칭 「써마지」 가 그 문장을 FLX 로 번역 · `translation_terms` 는 더 긴 짝 우선이 아님 · 별칭 삭제로 처분을 실물 결과로 뒤집음(`live-check-wp16-newterms.json` · `-newterms-2.json` · `wp16-be-report.md` 처분 2)
 - [[2026-11-16-interpreter-idea]] §2 — 짝은 맞게 들어갔는데 중국어 손님 쪽 받아쓰기가 동음이의어로 틀어짐 · 역할 서술 `text` 칸
+- [[2026-11-16-tongky-quality-re1]] §2 — 짝 431 → 147 · 고유명사만 · 별칭 짝 0 · `terms` 74(`back/app/service/glossary.py` `build_context` · 시드 `.11` `proper` · DEC-001 D-71 · `research-translation-terms-report.md` · `research-proper-noun-dict-report.md` · `wp33-context-report.md` · code PR #15)
