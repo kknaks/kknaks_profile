@@ -9,7 +9,7 @@ last_updated: 2026-09-07
 
 # SCAX Organization & Access
 
-SCAX의 generic Principal과 organization/project scope authorization을 정의한다. 사용자 표면은 [SCAX-SPEC-005](../20-spec/spec-005-organization-people-access.md)와 [SCAX-SPEC-010](../20-spec/spec-010-project-collaboration-access.md)이 소유한다.
+SCAX의 generic Principal과 organization/project scope authorization을 정의한다. 사용자 표면은 [SCAX-SPEC-005](spec-005-organization-people-access.md)와 [SCAX-SPEC-010](spec-010-project-collaboration-access.md)이 소유한다.
 
 ## 1. Identity와 session
 

@@ -1,0 +1,100 @@
+{
+  "delivery_issue": 239,
+  "contract_digest": "sha256:84933e3b7cbd4d8ec69c57eb3ae579921c799b6727052281d61f297f11226aa2",
+  "contract_version": 2,
+  "spec_baseline_revision": "19f7e40183e9cdb673db89190b831094507901a4",
+  "code_pr": 238,
+  "code_pr_head_sha": "b8a59cc38f88f3cbb2a3f631d78bd10c1f5daf0d",
+  "code_merge_sha": "aa7853cda2ded28042ebd693810d31b945f773b6",
+  "acceptance": [
+    {
+      "id": "A1(①)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:59(A1 테스트 이름)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239-report.md:9(A1 ~ A8 · A10 서버 계약 스펙대로)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/screens-239/a1-a7-board-etc-line-hold-band.png(기타 작업 줄 스크린샷)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A2(②)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:60(migration 테스트 · test_column_snapshot · 차트 이력 지우는 길 없음 · started_room_id)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A3(③ · ④ 화면)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:61(차트 화면 테스트)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/screens-239/a3-chart-doctor-tab.png · day-r3/orchestration/work/_archive/day/day-procedure-board-2/screens-239/a3-chart-nurse-tab.png(두 탭 스크린샷)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A4(④ API)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:62(차트 저장 API 테스트)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A5(④ 시술 전 · 동기화)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:63(시술 전 의사차트 · 동기화 infra 테스트)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A6(⑤ API)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:64(점유 이동 · 이동 · 복귀 API 테스트)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:17-30(W1 「방 배정」 없는 점유 이동 순서 · 카드 방 — 닫힘)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A7(⑤ · ⑥ 화면)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:65(방 이동 팝오버 · 시술 완료 탭 원래 방 묶음 화면 테스트)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/screens-239/a7-room-popover.png · day-r3/orchestration/work/_archive/day/day-procedure-board-2/screens-239/a1-a7-board-etc-line-hold-band.png(팝오버 · 파란 띠 스크린샷)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A8(⑦)",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:27(scripts/seed_demo_connection.py env DAY_SEED_KOS_ROOM_ASSIGN_ETC_TASK_ID · 비면 안 넣음) · :66(test_room_assign_setting.py 3)",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/_RESUME.md:76(로컬 DB 에 env 값으로 넣음 — 코드 하드코딩 없음)"
+      ]
+    },
+    {
+      "id": "A10",
+      "result": "pass",
+      "evidence": [
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:68",
+        "day-r3/orchestration/work/_archive/day/day-procedure-board-2/code-239-report.md:12-13(test.sh 941 · not infra 658 passed) · day-r3/orchestration/work/_archive/day/day-procedure-board-2/review-239b-report.md:6(PASS) · :61-62(재리뷰 뒤 전체 946 passed · ruff 통과)"
+      ]
+    }
+  ],
+  "per_spec": [
+    {
+      "spec": "DAY-SPEC-002",
+      "result": "none"
+    },
+    {
+      "spec": "DAY-SPEC-000",
+      "result": "none"
+    }
+  ],
+  "implementation": "conformant",
+  "merged": true
+}

@@ -1,0 +1,3 @@
+# [planner] SPEC-002 권한 — 이름 표 다섯 줄
+미커밋 · 커밋 금지. 읽을 것: `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/backend-perm-report.md` 「이름 표」(경영지원 · 마케팅 = 없음 · 마취과 = 전부 · CS팀(콜센터) = 없음 · 상담총괄실장 = 보기 — 원천 표를 정확히 내려면 태그 규칙보다 이름이 먼저). SPEC-002 권한 절에 판정 순서(① 이름 표 ② 태그 ③ 없음) · 이름 표 다섯 줄 · 「다른 병원은 이름이 다르면 태그만 — 병원 연결 때 코디 확인」 · 기본값은 없는 행만 넣고 있는 행은 안 건드림(사람이 고친 값 보존 · source 칸은 관리 화면 때). log · lint.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-spec002-perm-names-report.md`(짧게). 완료는 preamble 의 worker_done 절차대로(둘 다).

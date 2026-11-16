@@ -9,6 +9,7 @@ aliases:
   - portal container
 up:
   - 2026-09-08-docs-v1
+  - 2026-10-27-interpret-pwa-poc
 tags:
   - popover
   - dialog
@@ -49,13 +50,16 @@ Radix Popper 는 `position: fixed` 이고 드로어에 `transform` 이 남지 �
 
 - **`overflow-y: auto` 가 있어도 안 된다** — 스타일 문제가 아니라 이벤트가 막힌 것.
 - **[[viewport-aware-overlay]] 와 다른 문제** — 그쪽은 패널이 화면 밖으로 나간 것, 이쪽은 패널이 화면 안에 있는데 휠이 안 먹는 것. 「스크롤이 안 된다」는 보고에 둘 다 후보다.
+- **포탈은 스크롤 잠금만 벗어나는 게 아니다** — DOM 조상이 주는 것은 전부 벗어난다. 통키는 180° 돌린 외국어 카드 안의 콤보박스 목록이 body 로 포탈돼 **회전을 못 받고** 바로 선 채 펼쳐졌다(부품에 포탈을 끄는 prop 이 없어 카드 안 자체 목록으로) → [[rotated-region-layout]]. 「오버레이만 이상하다」 면 포탈이 무엇을 벗어났는지부터 본다
 - **Popover `modal` prop** 으로도 풀리지만 포커스 트랩이 겹쳐 모달 안 모달이 된다. 컨테이너 쪽이 부작용이 적다.
 
 ## 함께 보는 개념
 
 - [[viewport-aware-overlay]] — 「스크롤이 안 된다」의 다른 원인
+- [[rotated-region-layout]] — 포탈이 조상의 `transform` 을 벗어나는 경우
 
 ## 출처
 
 - 코드: `app/front/src/lib/overlay/PortalContainer.tsx` · `components/ui/popover.tsx` · `components/shared/DrawerFrame.tsx` · 커밋 `f0d4d46`(kknaks/task_management)
 - 브리프: `orchestration/work/_archive/task-management/docs-v1/docs-v1-timepicker-scroll-brief.md`
+- [[2026-10-27-interpret-pwa-poc]] §2 — medikit ComboBox 목록이 body 포탈이라 180° 회전 영역 밖에 그려짐(`fix-phone3-fe-report.md` · DEC-001 D-31)

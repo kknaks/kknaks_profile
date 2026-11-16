@@ -4,6 +4,7 @@
 
 | Date | Type | IDs | Summary | Links |
 |---|---|---|---|---|
+| 2026-11-06 | docs | — | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/cloud-file-organizer/README\|목록]] |
 | 2026-07-08 | scaffold | - | 제품 문서 스캐폴딩 생성 (README, log, 00~30 index) | - |
 | 2026-07-08 | baseline-add | BASE-001 | 클라우드 파일 업로드 이벤트 기반 메타데이터 생성 및 트리 구조화 아이디어 등록 | [baseline-001](00-baseline/baseline-001-cloud-file-metadata-structuring.md) |
 | 2026-07-08 | decision-add | DEC-001 | Google Drive-only 데모 범위와 Drive changes.watch 기반 후킹, AI 메타데이터 제안/사람 승인, 프론트 트리 설정, no backfill, DB 링크 저장 결정 | [decision-001](10-decision/decision-001-google-drive-demo-intake.md) |

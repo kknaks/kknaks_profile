@@ -9,10 +9,10 @@
 | 루트 | 담는 것 | 계약 |
 |---|---|---|
 | `para/` | 문서 — 사실과 판단 | [[para\|para/para.md]] |
-| `app/` | 코드 — 그것을 서빙하는 것 | [[architecture]] |
+| `app/` | 코드 — 그것을 서빙하는 것 | `architecture.md` (미작성) |
 | `orchestration/` | 자동화 — 워커 발주와 검증 | [[orchestration/runbook\|runbook]] |
 
-루트를 셋으로 나눈 근거와 미정 항목은 [[architecture]] 가 갖는다.
+루트를 셋으로 나눈 근거와 미정 항목은 `architecture.md` (미작성) 가 갖는다.
 
 ## 무엇을 하려는지에 따라
 
@@ -20,7 +20,7 @@
 |---|---|
 | **문서를 쓰거나 고친다** | [[para\|para/para.md]] — 네 버킷 중 어디인지부터 가른다 |
 | **코드·문서 작업을 워커에게 발주** | [[orchestration/runbook\|orchestration/runbook.md]] |
-| 구조를 바꾸거나 루트를 추가 | [[architecture]] |
+| 구조를 바꾸거나 루트를 추가 | `architecture.md` (미작성) |
 | 리뉴얼이 왜 시작됐는지 · 무엇을 정해야 하는지 | [[CLAUDE]] |
 
 발주는 직접 하지 않는다. 코디네이터가 `runbook.md` 절차를 따라 워커를 띄우고, 워커는 브리프 한 장만 받는다. 발주 양식(브리프·재개 노트·작업 요약·PR 본문)도 루트 `templates/orchestration/` 에 있다 — 양식은 전부 루트 `templates/` 한 곳이다.
@@ -40,7 +40,7 @@ para/para.md              네 버킷 중 어디인가
                           양식 → templates/resources/
 ```
 
-`archive/` 만 아직 자기 문서가 없다. `para.md` 가 직접 갖고 있다.
+아카이브 규약은 [[para/archive/archive|para/archive/archive.md]]가 갖는다.
 
 ## 정할 것 — 첫 갈래는 「어느 레포를 건드리나」
 
@@ -66,9 +66,13 @@ para/para.md              네 버킷 중 어디인가
 
 ## 아직 없는 것
 
-`app/` 은 비어 있다 — [[architecture]] 「아직 정하지 않은 것」 참고.
+`app/`에는 현재 `back/` · `front/` · `mcp/` · `ontology-agent/`가 있다.
 
 옛 규칙 중 `persona-artifacts.md` 의 공개 글(`posts`) 규정이 아직 새 자리를 못 찾았다 —
 발행물의 자리가 미정이다.
 
 이전 레포 전체는 `_archive/` 에 동결돼 있다. **읽기 전용이다.** 새 구조에 필요한 것은 거기서 끌어올리되, 그대로 복사하지 않는다.
+
+## 프로젝트와 작업
+
+프로젝트에서 진행 중·완료된 작업을 찾는다. [[orchestration/work/README|프로젝트별 작업 목록]] · [[para/projects/project#프로젝트와 작업 기록|소속·회고·보존 규약]].

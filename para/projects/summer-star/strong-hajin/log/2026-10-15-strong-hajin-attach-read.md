@@ -57,3 +57,9 @@
 
 - SH-IMP-023 착수 — 「검색 미지원 형식」도 같이 줄일지 확인
 - 별도 항목화 여부(사용자 판단): PDF 이미지 판정 오판 · `needs_ocr` 저장 시 `failed` 로 바뀜 · 재추출 수단 없음 · OCR
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-attach-read/README|strong-hajin-attach-read]]
+<!-- work-links:end -->

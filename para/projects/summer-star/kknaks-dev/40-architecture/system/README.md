@@ -1,6 +1,6 @@
 # System Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 시스템 구성요소, 외부 연동, 주요 요청 흐름을 관리한다.
 
@@ -40,7 +40,7 @@ flowchart LR
 | `back` | HTTP API · 스케줄 잡 · **Slack Socket Mode** · 승인 큐 · 게이트 · **Apply Executor** | `--workers 1` 하드락. `_check_single_worker()`가 멀티워커를 raise로 금지한다 — APScheduler·Socket Mode가 in-process 장기 루프이기 때문 |
 | `worker` | open-kknaks Claude 실행 | 자체 `Dockerfile.worker`, back을 임포트하지 않는 **독립 프로세스**. repo는 `:ro` 마운트라 파일을 쓸 수 없다 |
 | `redis` | open-kknaks broker · Slack 스레드 세션 · 이벤트 멱등 키 · 스레드 락 | 휘발. 영속 워크플로 SoT로 쓰지 않는다 |
-| `postgres` | 운영 상태 · 승인 워크플로 · 승인 전 초안 | `../database/README.md` |
+| `postgres` | 운영 상태 · 승인 워크플로 · 승인 전 초안 | [[para/projects/summer-star/kknaks-dev/40-architecture/database/README\|../database/README.md]] |
 | `front` | 공개 사이트 + admin 화면 | Vercel. 공개에는 게시 판정 통과분만 노출 |
 
 `app/scripts/run_*.py`는 컨테이너가 아니라 **수동 dev 러너**다. back 모듈을 `sys.path`로 임포트해 잡을 1회 실행한다.

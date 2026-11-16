@@ -69,3 +69,9 @@
 - macOS 아이콘·서명·공증과 Windows 빌드·서명·실기 검증
 - 최종 설치파일 생성·설치 E2E·GitHub Release 발행
 - 프론트 전체 테스트 스위트의 시간 의존 불안정 후속 정리
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-projects/README|strong-hajin-projects]]
+<!-- work-links:end -->

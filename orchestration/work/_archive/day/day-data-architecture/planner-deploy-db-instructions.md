@@ -1,0 +1,5 @@
+# [planner] deployment.md — 받은 서버 · DB 반영 · 미결 「스키마 생성 권한」 닫기
+워크트리 `/Users/kknaks/orca/workspaces/mediness-mediness/day-data-architecture-spec` · 미커밋 · 커밋 금지. 원천: `/Users/kknaks/orca/workspaces/kknaks_profile/day/reference/2026-11-03-cc-day/system/README.md` 「배포 결정」의 「받은 서버 · DB」 줄 · `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/config/projects/day.json` `infra`.
+- `products/day/40-architecture/deployment.md`: 「사용자가 Azure 에서 준비할 것」 중 이미 있는 것(VM · 관리형 PG · 22/80/443 · DB `day` · 스키마 `day_dev`/`day_prod` · 앱 계정 `day_dev_app`/`day_prod_app`)을 「준비됨(2026-11-09)」으로 · 아직 없는 것(docker · ACR 권한 · OIDC · Key Vault · VM identity · DNS)은 그대로 · 미결 「스키마 생성 권한」 닫음(**앱 계정이 스키마 주인 · migration 도 앱 계정 · 별도 migration 계정 없음** — 사용자 승인) · env 표 `DATABASE_URL` 계정 이름 반영 · DB 접속은 VM 경유(공개 꺼짐 · TLS verify-full).
+- 이름(VM · DB 호스트)은 넣어도 된다. **IP · 비밀번호는 넣지 마라.** log · lint `--strict`.
+리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-deploy-db-report.md`(짧게). 완료는 preamble 의 worker_done 절차대로(둘 다).

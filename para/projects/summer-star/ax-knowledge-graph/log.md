@@ -79,3 +79,7 @@
 - 2026-07-07 AXKG-SPEC-003 갱신. Slack URL과 페이지 직접 입력 URL을 Source Inbox로 받는 흐름 정의.
 - 2026-07-07 AXKG-DEC-001, AXKG-SPEC-001, AXKG-SPEC-002 작성. 정보 수집, 분류 승인, 연결 승인, 영구 문서화 흐름을 제품 계약으로 정의.
 - 2026-07-07 제품 SSOT 디렉터리 생성. 원본: `inbox/2026-07-07-ax-knowledge-graph-from-curated-sources.md`.
+
+## 2026-11-06
+
+문서 목차 링크 정리와 프로젝트·작업 기록 연결: [[para/projects/summer-star/ax-knowledge-graph/README|목록]].

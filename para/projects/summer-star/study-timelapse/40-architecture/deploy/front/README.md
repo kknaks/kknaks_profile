@@ -1,6 +1,6 @@
 # Frontend Deploy
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## Runtime
 

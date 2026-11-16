@@ -1,12 +1,12 @@
 # Backend Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > FastAPI 백엔드의 계층·경계·규약. **여기 적힌 것은 「이렇게 한다」다** — 코드 워커가 이 문서만 읽고도 같은 방식으로 쓸 수 있어야 하고,
 > 리뷰어는 이 문서를 판정 기준으로 삼는다. 선택지를 남기지 않는다.
 >
 > 근거 표기: `DEC-00x §y` = `10-decision/`, `§C` = `orchestration/work/docs-v1/design-requests.md`, 「제약」 = 사용자가 못박은 스택·계층,
-> **`MF-n` = `reference/2026-09-06-task-management-app/Meeting flow.md` §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
+> **`MF-n` = [[reference/2026-09-06-task-management-app/Meeting flow|reference/2026-09-06-task-management-app/Meeting flow.md]] §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
 >
 > **2026-09-08 개정(MF-71).** **회의 중 배치는 사람 안건·줄을 보지 않는다** — `enabled_tools` 가 **단계별로 두 벌**(중간 = 업무 셋 / 최종 = 일곱)이고, 미러 안건(`source_agenda_id`)을 회의 중에 만들지 않는다(§5-2 · §10 · §12 6·7·7-b · WORK-015).
 >
@@ -16,7 +16,7 @@
 > **2026-09-07 저녁 추가 — MF-68 · 69 · 70(DEC-003 OQ-8 · OQ-9 닫힘).** **MCP 서버는 `app/mcp/` 별도 컨테이너**다 — FastAPI 안에 두지 않고 compose 가 back · worker · mcp 셋을 묶는다(§4 · §10) ·
 > **단명 토큰은 `auth_session` 의 `kind='meeting'` 행**이다 — `/start` INSERT · ② 종결 시 행 DELETE(§5-2 · §8-3) · **웜스타트 실패 처리를 만들지 않는다** — 예외 전파 로그뿐(§5-2 · §8-3).
 
-관련 문서 — `../system/README.md`(구성·흐름) · `../database/README.md`(스키마 정본).
+관련 문서 — [[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]](구성·흐름) · [[para/projects/summer-star/task-management/40-architecture/database/README|../database/README.md]](스키마 정본).
 
 ## 1. 스택
 
@@ -27,7 +27,7 @@
 | Python | 3.12+ | `StrEnum` · 기존 레포 기준 |
 | ORM | **SQLAlchemy 2.0 async** (`Mapped[...]` 선언형) | 비동기 제약 |
 | DB 드라이버 | **`postgresql+psycopg://`** (psycopg3, async) | 비동기 제약. asyncpg 가 아니라 psycopg3 인 이유는 §5 |
-| 마이그레이션 | **Alembic** | `../database/README.md` §0-2 |
+| 마이그레이션 | **Alembic** | [[para/projects/summer-star/task-management/40-architecture/database/README\|../database/README.md]] §0-2 |
 | 검증·직렬화 | **Pydantic v2** | FastAPI 기본. `schemas/` 전용 |
 | 서버 | **uvicorn** | — |
 | AI 실행 | **open-kknaks `AgentClient`** (Redis 브로커) + codex 워커. **AI 가 우리 데이터를 읽는 길은 MCP 도구 7개(백엔드 API 래퍼)뿐** — MF-2 | 제약 · MF-2 |
@@ -74,7 +74,7 @@
 
 명명 — 요청 `XxxCreate` · `XxxUpdate` / 응답 단건 `XxxItem` · 목록 `XxxListResponse` / 내부 `XxxDTO` · `XxxCreateDTO` · `XxxUpdateDTO`.
 
-**ID 는 JSON 에서 number 로 낸다** (PK 가 bigint — `../database/README.md` G-1). 02-data-model 이 `id: string` 으로 그린 것은 디자인 표기이고 계약은 number 다.
+**ID 는 JSON 에서 number 로 낸다** (PK 가 bigint — [[para/projects/summer-star/task-management/40-architecture/database/README|../database/README.md]] G-1). 02-data-model 이 `id: string` 으로 그린 것은 디자인 표기이고 계약은 number 다.
 
 ## 4. 디렉토리 구조
 
@@ -162,17 +162,17 @@ app/mcp/                              # MCP 서버 — **별도 컨테이너**(M
 - **웜스타트는 컨텍스트를 싣지 않는다**(MF-50 · MF-55). 주는 것은 역할 · 규칙 · **용어 다섯의 뜻**(DEC-003 §8 「AI 도구 연결」) · 도구 목록뿐이다. 프로젝트 · 업무 · 유형은 AI 가 **MCP 도구**로 필요할 때 조회한다. **여는 도구는 단계별로 다르다**(**MF-71**) — **회의 중 배치 = 셋**(`list_tasks(projectId?)` · `get_task(id)` · `list_work_types()`) · **최종 제출 = 일곱**(위 셋 + `get_meeting()` · `get_account()` · `list_agendas()`(사람 + AI 안건) · `get_agenda(id)`). 도구는 **백엔드 API 의 얇은 래퍼**이고 DB 직결이 아니다(MF-2). 서버 사후 검사(§8-3)의 기준 목록(회의 프로젝트의 업무 · 무소속이면 무소속 업무 — DEC-003 §4)은 **검사 시점에 서버가 조회**한다.
 - **배치 입력은 미처리 확정 발화 하나뿐이다**(MF-50). 안건 · 사람 줄 · AI 안건 · 화이트리스트를 payload 에 싣지 않는다 — 스냅샷은 낡는다.
 - **회의 중 배치는 사람 안건·사람 줄을 조회하지도 않는다**(**MF-71** — 2026-09-08). `list_agendas` · `get_agenda` 는 **최종 제출에서만** 열린다. 따라서 회의 중 배치 프롬프트에 **「조회 순서」 절을 두지 않고**, 「안건이 발화 구간마다 늘어나면 잘못이다」 같은 문구도 두지 않는다 — 안건은 AI 가 **발화만 보고 스스로 가른다.** 결과로 ① **미러 안건이 없다**(`source_agenda_id` 는 회의 중 항상 `NULL`) ② `_parse_output(fill_final=False)` 이 **`humanAgendaId` 를 무시하고 `null` 로 강제**한다(값이 와도 **폐기 사유가 아니다**) ③ 앞 배치 안건을 조회할 필요도 없다 — 출력이 AI 트랙 전량 교체(MF-53)라 세션이 앞 구간을 안고 간다. 최종 경로(`fill_final=True`)는 **바뀌지 않는다**.
-- **배치 출력은 AI 트랙 전체다**(MF-53). 검증을 통과하면 `track='ai'` 안건 · 줄을 **한 트랜잭션에서 DELETE + INSERT** 한다. 검증에 떨어지면 직전 성공분이 그대로 남는다(`../database/domains/meeting.md` M-7).
+- **배치 출력은 AI 트랙 전체다**(MF-53). 검증을 통과하면 `track='ai'` 안건 · 줄을 **한 트랜잭션에서 DELETE + INSERT** 한다. 검증에 떨어지면 직전 성공분이 그대로 남는다([[para/projects/summer-star/task-management/40-architecture/database/domains/meeting|../database/domains/meeting.md]] M-7).
 - 출력은 **`provider_options.output_schema`** 로 강제한다 — **파일은 하나**(`ai_schemas/meeting_notes.json`)다. 회의 중 배치와 최종 회의록이 같은 스키마를 쓰고, `payload` · `headline` · `termCorrections` 만 nullable 이다(MF-52). 회의 중 결과에 이 셋이 실려 오면 **서버가 버린다**. **그래도 받은 JSON 을 우리가 다시 검증한다** — 강제와 검증은 다른 층이다(§8 M-16·M-15).
-- **codex 실행 옵션은 한 곳(빌더 함수)에서만 만든다.** 새 세션 호출과 resume 호출이 다른 옵션으로 나가는 사고를 구조로 막는다. **빌더는 `phase` 를 인자로 받는다**(`"batch"` | `"final"` — **MF-71**): 같은 빌더가 단계별로 다른 `enabled_tools` 를 낸다. 빌더가 함께 만드는 것 — ① **allow list**(`../system/README.md` §codex 설정 — MF-3: `enabled_tools` 는 **`phase="batch"` 에서 업무 셋** · **`phase="final"` 에서 일곱** · 내장 스위치 전부 off · 도구별 `approval_mode="approve"`. 웜스타트는 `"final"` 과 같은 일곱을 준다 — 도구 목록을 알려 주는 자리이고 실제 잠금은 매 제출의 `-c` 가 한다) ② **MCP 헤더 토큰**(MF-4: 회의마다 본인 계정으로 발급한 단명 토큰을 `-c mcp_servers.<key>.http_headers={Authorization="Bearer …"}` 로. `--bearer-token-env-var` · OAuth · 설정 파일을 쓰지 않는다).
-- **단명 토큰의 축은 `auth_session` 행이다**(**MF-69** · DEC-003 OQ-9 닫힘 · `../database/domains/account.md` A-13). **발급 자리는 `meeting_service` 의 `/start`** — `scheduled → recording` 전이와 **같은 트랜잭션**에서 `auth_session(kind='meeting', account_id, meeting_id)` 행을 INSERT 하고(해시만 저장), 원문 토큰은 웜스타트·배치 제출 때 옵션 빌더가 헤더에 싣는다. **무상태 JWT 짧은 TTL 을 쓰지 않는다** — 폐기 표면이 없어 MF-4 의 「best-effort 폐기」가 성립하지 않는다.
+- **codex 실행 옵션은 한 곳(빌더 함수)에서만 만든다.** 새 세션 호출과 resume 호출이 다른 옵션으로 나가는 사고를 구조로 막는다. **빌더는 `phase` 를 인자로 받는다**(`"batch"` | `"final"` — **MF-71**): 같은 빌더가 단계별로 다른 `enabled_tools` 를 낸다. 빌더가 함께 만드는 것 — ① **allow list**([[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]] §codex 설정 — MF-3: `enabled_tools` 는 **`phase="batch"` 에서 업무 셋** · **`phase="final"` 에서 일곱** · 내장 스위치 전부 off · 도구별 `approval_mode="approve"`. 웜스타트는 `"final"` 과 같은 일곱을 준다 — 도구 목록을 알려 주는 자리이고 실제 잠금은 매 제출의 `-c` 가 한다) ② **MCP 헤더 토큰**(MF-4: 회의마다 본인 계정으로 발급한 단명 토큰을 `-c mcp_servers.<key>.http_headers={Authorization="Bearer …"}` 로. `--bearer-token-env-var` · OAuth · 설정 파일을 쓰지 않는다).
+- **단명 토큰의 축은 `auth_session` 행이다**(**MF-69** · DEC-003 OQ-9 닫힘 · [[para/projects/summer-star/task-management/40-architecture/database/domains/account|../database/domains/account.md]] A-13). **발급 자리는 `meeting_service` 의 `/start`** — `scheduled → recording` 전이와 **같은 트랜잭션**에서 `auth_session(kind='meeting', account_id, meeting_id)` 행을 INSERT 하고(해시만 저장), 원문 토큰은 웜스타트·배치 제출 때 옵션 빌더가 헤더에 싣는다. **무상태 JWT 짧은 TTL 을 쓰지 않는다** — 폐기 표면이 없어 MF-4 의 「best-effort 폐기」가 성립하지 않는다.
 - **폐기 자리는 `meeting_finalize_service`** — ② 가 종결되면(성공·실패 무관) 그 회의의 `kind='meeting'` 행을 **DELETE** 한다. **best-effort** 다: 실패해도 job 결과를 뒤집지 않고 로그만 남기며 자연 만료로 흡수한다(MF-4). `revoked_at` 을 찍지 않는다 — 회의 토큰은 회전하지 않는다(A-7 은 `refresh` 행의 규칙).
 
 ### 5-3. 작업 실행
 
 장시간 작업(회의 종료 — ① async 재전사 → ② 최종 회의록 호출)은 **`job` 행이 정본**이고, 실행은 **back 프로세스의 asyncio 태스크**가 한다. 웜스타트 제출(§5-2)도 같은 방식의 백그라운드 태스크다 — 단 job 행은 만들지 않는다(사용자가 폴링할 대상이 아니다).
 
-- 별도 워커 프로세스를 하나 더 두지 않는다 — codex 실행 자체는 이미 open-kknaks 워커가 하고, back 태스크가 하는 일은 대기와 DB 쓰기뿐이다. 단일 사용자 서버 1대에서 프로세스를 늘릴 이득이 없다(`../system/README.md` SYS-1).
+- 별도 워커 프로세스를 하나 더 두지 않는다 — codex 실행 자체는 이미 open-kknaks 워커가 하고, back 태스크가 하는 일은 대기와 DB 쓰기뿐이다. 단일 사용자 서버 1대에서 프로세스를 늘릴 이득이 없다([[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]] SYS-1).
 - **기동 스윕** — 앱이 뜰 때 `queued`/`running` 으로 남은 job 을 훑어 재개하거나 실패로 마감한다. 재시작으로 끊긴 「생성중」이 영원히 도는 것을 막는다. **웜스타트 태스크는 스윕 대상이 아니다** — job 행이 없고, 프로세스가 죽으면 그 회의는 `ai_session_id NULL` 로 남을 뿐이다(MF-70 · 재웜스타트 갈래 없음).
 - **스윕 실패가 기동을 막지 않는다.** 실패는 로그로 남기고 앱은 뜬다.
 
@@ -188,7 +188,7 @@ app/mcp/                              # MCP 서버 — **별도 컨테이너**(M
 | 종료 조건 | `status ∈ {succeeded, failed}` 이면 폴링을 멈춘다. **타임아웃 상한을 둔다 — 무한 대기 금지**(DEC-003 §7). 상한을 넘으면 job 을 `failed` 로 마감한다 |
 | 결과 | job 은 결과를 담지 않는다. 프론트는 완료 후 **원 리소스**(`GET /api/meetings/{id}`)를 다시 읽는다 |
 
-**통지 경로를 둘로 두지 않는다.** WS 는 회의 스트림 하나뿐이고 종료와 함께 닫힌다 — 그 뒤를 WS 로도 알리면 재연결·인증 표면이 둘이 된다(`../system/README.md` SYS-7).
+**통지 경로를 둘로 두지 않는다.** WS 는 회의 스트림 하나뿐이고 종료와 함께 닫힌다 — 그 뒤를 WS 로도 알리면 재연결·인증 표면이 둘이 된다([[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]] SYS-7).
 
 **수치(폴링 간격 2초·타임아웃·재시도 2회·배치 임계치)는 spec 이 확정한다** — DEC-003 §7 이 「수치는 spec 에서」로 넘겼다. 여기 적힌 값은 구조를 설명하는 자리값이다.
 
@@ -199,7 +199,7 @@ app/mcp/                              # MCP 서버 — **별도 컨테이너**(M
 | HTTP 요청 | **요청 하나 = 트랜잭션 하나.** `get_db` 의존성이 끝에서 commit 하고 예외면 rollback 한다. service·repository 는 **flush 까지만** 하고 commit 을 모른다. **`/start` 도 예외가 아니다**(MF-1 — W-1 해소): 전이만 하고 끝이니 요청 안에서 commit 할 이유가 없다. 웜스타트는 commit 뒤 백그라운드 태스크(§5-2) |
 | 백그라운드 job | 요청 경계가 없다. **단계마다 세션을 새로 열고 그 단계 끝에 commit** 한다. 태스크 수명 내내 세션을 붙들지 않는다 |
 | 외부 호출 | **codex·Soniox 호출 중에는 트랜잭션을 열어 두지 않는다.** 읽기 → (커밋) → 외부 호출 → 새 세션에서 쓰기 순으로 자른다. 수 분짜리 외부 대기가 커넥션과 락을 잡고 있으면 안 된다. 재전사(①)는 폴링 사이에도 세션을 열어 두지 않는다 |
-| **일정 파생** | **원본 쓰기(`task.due_*` · `meeting.start_at`/`end_at`)와 `schedule` 재생성은 같은 트랜잭션**이다. 겹침 검사는 그 앞에 온다 — 걸리면 원본도 안 바뀐다(`../database/README.md` §3-3) |
+| **일정 파생** | **원본 쓰기(`task.due_*` · `meeting.start_at`/`end_at`)와 `schedule` 재생성은 같은 트랜잭션**이다. 겹침 검사는 그 앞에 온다 — 걸리면 원본도 안 바뀐다([[para/projects/summer-star/task-management/40-architecture/database/README\|../database/README.md]] §3-3) |
 | 로그 | 상태 전이와 `task_log` INSERT 는 **같은 트랜잭션**이다. 로그 없는 전이는 없다(DEC-002 §6) |
 
 ### 실패 응답이 쓰기를 뜻하는 경우 (2026-09-05, WORK-002 에서 드러남)
@@ -336,7 +336,7 @@ AppError (status=500, code)
 | `AI_NAMESPACE` · `AI_QUEUE` | 브로커 네임스페이스·큐 | **worker 설정과 일치해야 한다** |
 | `AI_MODEL` · `AI_TIMEOUT_SEC` | codex 모델·상한 | 미지정이면 codex 기본 |
 | `SONIOX_API_KEY` | **long-lived 키. 서버에만 둔다.** 실시간 WS 와 async 재전사(REST)가 같은 키를 쓴다 | 프론트로 절대 내려보내지 않는다 |
-| `CODEX_TOOLS_DIR` · `CODEX_AUTH_JSON` | 워커의 codex 바이너리·인증 마운트 원천(2026-09-07 실물 확인에서 `.env` 에 넣음) | `../system/README.md` §codex |
+| `CODEX_TOOLS_DIR` · `CODEX_AUTH_JSON` | 워커의 codex 바이너리·인증 마운트 원천(2026-09-07 실물 확인에서 `.env` 에 넣음) | [[para/projects/summer-star/task-management/40-architecture/system/README\|../system/README.md]] §codex |
 | `MCP_BASE_URL` | **mcp 컨테이너가 부를 back 의 주소**(MF-68 — 별도 컨테이너라 in-process 호출이 아니다). compose 네트워크 이름 | mcp 서비스 쪽 env |
 | `MCP_SERVER_URL` | back 이 codex 실행 옵션(`mcp_servers.<key>`)에 박을 **mcp 컨테이너 주소** | 옵션 빌더(§5-2) |
 | `MEETING_TOKEN_TTL_MIN` | 회의 단명 토큰 수명(`auth_session(kind='meeting')`. 폐기는 행 삭제 — MF-69) | 값은 spec/구현이 정한다 |
@@ -345,9 +345,9 @@ AppError (status=500, code)
 | `ACCESS_TOKEN_TTL_MIN` = 60 · `REFRESH_TOKEN_TTL_DAYS` = 7 | 세션 수명 | DEC-001 §4 |
 | `STORAGE_ROOT` | 녹음·md 저장 루트 | 컨테이너 볼륨 |
 | `CORS_ORIGINS` | 허용 origin 명시 목록 | 웹 개발 origin + 래핑 후 Tauri origin. `*` 금지 |
-| `APP_TIMEZONE` = `Asia/Seoul` | 기한(`date`/`time`) → 시간축 변환 기준 | `../database/README.md` §3-3 |
+| `APP_TIMEZONE` = `Asia/Seoul` | 기한(`date`/`time`) → 시간축 변환 기준 | [[para/projects/summer-star/task-management/40-architecture/database/README\|../database/README.md]] §3-3 |
 
-**worker 쪽 env**(`AI_CWD`·`CODEX_HOME`·`PATH`)는 compose 가 잡는다 — back 이 아니라 워커의 설정이다(`../system/README.md` §codex 바인드 마운트).
+**worker 쪽 env**(`AI_CWD`·`CODEX_HOME`·`PATH`)는 compose 가 잡는다 — back 이 아니라 워커의 설정이다([[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]] §codex 바인드 마운트).
 
 ## 12. 테스트 규약
 
@@ -375,7 +375,7 @@ AppError (status=500, code)
 8-a. **`/start` 는 즉시** — 워커 어댑터를 막아 둔 채 `/start` 를 부르면 응답이 오고 `status='recording'` · `ai_session_id IS NULL` 이며, 그 상태에서 배치 트리거가 와도 제출이 나가지 않는다(MF-1).
 8-b. **줄 삭제 자리 유지** — `order_index` 3 을 지우면 4 가 3 으로 당겨지지 않고, 새 줄은 마지막 + 1 이다(MF-36).
 8-c. **`done` 뒷문 없음** — 업무 줄 `payload.status='done'` 은 스키마 층에서 422 이고 `task.status` 가 바뀌지 않는다(MF-59).
-9. **고아 `schedule` 없음** — 업무·회의 생성/삭제 경로를 지난 뒤 `schedule` 의 `source_id` 가 전부 살아 있는 행을 가리킨다(FK 를 안 걸었으므로 테스트가 대신 잡는다 — `../database/README.md` §3).
+9. **고아 `schedule` 없음** — 업무·회의 생성/삭제 경로를 지난 뒤 `schedule` 의 `source_id` 가 전부 살아 있는 행을 가리킨다(FK 를 안 걸었으므로 테스트가 대신 잡는다 — [[para/projects/summer-star/task-management/40-architecture/database/README|../database/README.md]] §3).
 
 ## 13. 결정 요약 — 근거 색인
 

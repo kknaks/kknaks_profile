@@ -75,3 +75,9 @@
 - **첫 로드 이름 지연** — 수십초 harvest, 이름 캐싱 개선 여지.
 - **오래된 사진 .cng 복호** (BASE-008) · **파생식 오프라인 회수** (BASE-004) — 둘 다 Ghidra RE 필요, deferred.
 - 사진 checkSum 일부 불일치 재시도.
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/mykakao/kakao-task/README|kakao-task]]
+<!-- work-links:end -->

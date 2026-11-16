@@ -83,3 +83,9 @@ AX 가 메시지에서 업무를 만드는 2단계는 다음 판(SH-IMP-008·015
 - SH-IMP-006 · 009~013 (개선 목록)
 - 사용자 몫: Google 조직 정책 두 개 「상위 정책 상속」 으로 되돌리기 · 관리자 계정 조직 정책 관리자 역할 회수 · 다운로드 폴더의 시험용 OAuth JSON 정리
 - 로컬 시험 토큰 `~/.slack_test_token` 정리(개발 연결용 — 유지 여부 결정)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-inbox/README|strong-hajin-inbox]]
+<!-- work-links:end -->

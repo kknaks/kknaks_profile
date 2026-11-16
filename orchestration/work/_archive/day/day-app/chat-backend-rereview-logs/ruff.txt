@@ -1,0 +1,12 @@
+E501 Line too long (103 > 100)
+   --> scripts/deploy/day_vm.py:183:73
+    |
+182 | def optional_app_env(optional: dict[str, str]) -> dict[str, str]:
+183 |     """선택 비밀 → app.env 값. 빈 값 · 없음 = 빼기. 여러 줄은 `\\n` 으로(값은 메시지에 넣지 않는다)."""
+    |                                                                                                     ^^^
+184 |     out = {}
+185 |     for key in OPTIONAL_SECRETS:
+    |
+
+Found 1 error.
+exit 1

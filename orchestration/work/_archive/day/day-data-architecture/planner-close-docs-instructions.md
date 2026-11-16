@@ -1,0 +1,3 @@
+# [planner] 마감 전 문서 상태 최신화 — 첫 dev 배포 완료
+미커밋 · 커밋 금지. 사실(코디 확인 2026-11-09): PR #228 dev squash 머지(91728737) · Actions Deploy DAY dev 성공 · https://day-dev.medisolveai.com ready(db · redis · encryption ok) · Let's Encrypt · 데모 연결 시드 → KOS 동기화 확인. GitHub 변수 8개 들어감(레포 Variables) · Environment dev/prod 는 첫 실행 때 자동 생성(브랜치 제한은 사용자 몫).
+`products/day/40-architecture/README.md` 의 deployment 줄 「배포는 아직(GitHub 설정 남음…)」 · `deployment.md` 의 「사용자 준비」 상태(GitHub 설정 · 첫 dev 배포) · `products/day/README.md` 등 「배포 아직」류 문구를 전부 grep 해서 지금 사실로 · prod 는 아직(prod KV 비밀 · fast-forward). URL 외 IP · ID 값 넣지 마라. log · lint. 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day/orchestration/work/day-data-architecture/planner-close-docs-report.md`(세 줄). 완료는 preamble 의 worker_done 절차대로(둘 다).

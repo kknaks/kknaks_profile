@@ -48,3 +48,9 @@ status: active
 - 2026-09-22: **Phase 0 닫힘**(`make verify` exit 0) · E2E 1차 후 **2루프 계약 개정**(결정 38건 · SPEC v0.2.0). 코드 미착수. [전체 이력](log.md)
 - 2026-09-21: 「프로젝트」 화면 — 조사 2건, 결정 27건 확정. 간트 재귀 트리 · 손자 프로젝트 종속 · 배정 시 자동 초대. [전체 이력](log.md)
 - 2026-09-15: 업무 페이지 초안 4건 작성, 검수 시작. [전체 이력](log.md)
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/strong-hajin/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

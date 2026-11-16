@@ -76,3 +76,9 @@ kknaks-dev 프로젝트 config·roles·단일 레포형 규약을 이번에 세�
 - 서버 rescue 브랜치(`rescue/ax-lead-20260828`) 처리 — main 반영 vs 파이프라인 재생성
 - agent 브랜치의 범위 밖 문서 드리프트 14파일 동기화
 - 어드민 대화 열람 화면 · WS/SSE 승격 · mcp SDK 2.x — 후속 백로그 (spec §7)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/kknaks-dev/recruiter-chat/README|recruiter-chat]]
+<!-- work-links:end -->

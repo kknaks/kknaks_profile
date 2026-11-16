@@ -77,3 +77,4 @@ public class ApiV1ArticleController {
 ## 출처
 
 - [[2025-01-03-Day04_1]] — 「스웨거 도입」 절이 **붙이는 순서 그대로** 적혔다 — `build.gradle` 의존성 한 줄, `@RequestMapping` 에 `produces`/`consumes` 추가(각각 「응답의 Content-Type」·「받아들일 수 있는 요청의 Content-Type」으로 설명), 클래스에 `@Tag(name, description)`, 메서드에 `@Operation(summary)`. **문서의 제목·설명이 어느 단위에 붙는지**(클래스 ↔ 메서드)를 갈라 적은 것이 이 절의 요점이고, 생성된 화면 스크린샷이 결과로 붙어 있다. 다만 `consumes` 를 클래스 전체에 거는 것의 부작용, 운영 환경에서 문서를 여는 문제는 다루지 않았다
+- [[2026-11-12-api-swagger-docs]] §2 — FastAPI back 70 operation · 683 필드에 설명 · 「설명 빠진 곳 0」 · 오류 표 = 실제 raise 를 시험으로 고정 · 외부 연동은 tag 「외부 연동」 + securityScheme `ExtApiKey` 로 직원 문서와 분리(코드 #21 · #22)

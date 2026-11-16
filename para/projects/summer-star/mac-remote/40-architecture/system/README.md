@@ -1,6 +1,6 @@
 # System Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > iOS 앱(리모컨)과 Mac 헬퍼(실행기)가 같은 Wi-Fi LAN에서 WebSocket/JSON으로 통신한다. 실제 창 제어·키 입력은 100% Mac 헬퍼가 담당한다.
 > 원본: `mac-remote/doc/Architecture.md` §4~§7.

@@ -1,6 +1,6 @@
 # Product Map — mac-remote
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 iPhone을 리모컨으로 써서 Mac의 창 전환과 단축키 매크로를 전송하는 제품. **DeskDeck로 App Store 출시 완료 (1.0.1, 2026-06-10)** — [App Store](https://apps.apple.com/app/id6772868137). 5.2.5 거절 대응으로 `MacRemote`→`DeskDeck` 개명, 헬퍼는 `DeskDeckHelper`(공증 DMG). 경위: `70-runbook/runbook-002` §4, [release-003](60-release/release-003-deskdeck-appstore.md).
 
@@ -24,16 +24,16 @@ iPhone을 리모컨으로 써서 Mac의 창 전환과 단축키 매크로를 전
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
-| 60-release | `60-release/README.md` |
-| 70-runbook | `70-runbook/README.md` |
+| 00-baseline | [[para/projects/summer-star/mac-remote/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/mac-remote/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/mac-remote/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/mac-remote/30-work/README\|30-work/README.md]] |
+| 40-architecture | [[para/projects/summer-star/mac-remote/40-architecture/README\|40-architecture/README.md]] |
+| 60-release | [[para/projects/summer-star/mac-remote/60-release/README\|60-release/README.md]] |
+| 70-runbook | [[para/projects/summer-star/mac-remote/70-runbook/README\|70-runbook/README.md]] |
 
 ## 최근 로그
 
-전체 이력은 `log.md`.
+전체 이력은 [[para/projects/summer-star/mac-remote/log|log.md]].
 
 - 2026-06-01 — `mac-remote/doc`에서 제품 문서 전체를 이 구조로 마이그레이션 (baseline 1, decision 5, spec 7, work 17, architecture, release 2)

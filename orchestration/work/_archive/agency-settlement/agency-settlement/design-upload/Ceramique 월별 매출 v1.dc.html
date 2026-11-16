@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/fonts/fonts.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.css">
+  <link rel="stylesheet" href="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/styles.css">
+  <link rel="stylesheet" href="ceramique-theme.css">
+  <link rel="stylesheet" href="medikit-patches.css">
+  <script src="_ds/medikit-aea7ac33-f044-4445-9164-87b8b69474dc/_ds_bundle.js"></script>
+  <!-- agency-settlement front/app/globals.css 그대로(html,body · a · .cc-btn) + 이 시안 전용(표 줄 · 스피너) -->
+  <style>html,body{margin:0;min-height:100%;}a{color:#2498bd;}a:hover{color:#1d7f9e;}
+  :where(.cc-btn){background:none;border-width:0;padding:0;font:inherit;cursor:pointer;text-align:left;}
+  .ms-num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .ms-one{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ms-spin{width:36px;height:36px;border-radius:50%;border:3px solid #e9f5f8;border-top-color:#2498bd;animation:msSpin .9s linear infinite;box-sizing:border-box;}
+  @keyframes msSpin{to{transform:rotate(360deg);}}
+  </style>
+</helmet>
+<div data-product="ceramique" data-screen-label="월별 매출 v1" style="min-height:100vh;display:flex;flex-direction:column;">
+  <!-- 공통 헤더 — 시술현황판 v2 AppHeader 꼴(높이 57 · 좌우 28 · 로고 22 · 메뉴 간격 40). 메뉴 = 월별 조회 | 에이전트별 조회. 로그인 없음 → 오른쪽은 지점 · 조회 전용 -->
+  <header class="bg-ms-white border-ms-gray-200" style="position:sticky;top:0;z-index:30;height:57px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 28px;border-bottom-width:1px;border-bottom-style:solid;">
+    <div style="display:flex;align-items:center;gap:48px;min-width:0;">
+      <a style="display:flex;align-items:center;"><img src="assets/ceramique-logo-color.svg" alt="CÉRAMIQUE" style="height:22px;display:block;"></a>
+      <nav style="display:flex;align-items:center;gap:40px;">
+        <sc-for list="{{ navs }}" as="n" hint-placeholder-count="2">
+          <a onClick="{{ n.go }}" class="{{ n.cls }}" style="white-space:nowrap;cursor:pointer;">{{ n.name }}</a>
+        </sc-for>
+      </nav>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+      <span class="text-typo-heading-sm-400 text-ms-gray-700" style="white-space:nowrap;">세라미크 명동점</span>
+      <span class="bg-ms-gray-100 text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;padding:2px 8px;border-radius:4px;">운영 · 조회 전용</span>
+    </div>
+  </header>
+
+  <!-- 본문 — 폭 제한 없음(좌우 28). 1440 ~ 1920 에서 표가 화면을 채운다 -->
+  <main class="bg-ms-gray-100" style="flex:1;min-height:calc(100vh - 57px);box-sizing:border-box;padding:20px 28px 40px;display:flex;flex-direction:column;gap:12px;">
+
+    <!-- 제목 줄 — 제목 · 월 선택 · 다시 불러오기 · 기준 시각 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <h1 class="text-typo-title-md-600 text-ms-gray-800" style="margin:0;white-space:nowrap;">{{ title }}</h1>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ prevOff }}" on-click="{{ prev }}" hint-size="36px,32px">‹</x-import>
+          <span class="text-typo-heading-md-500 text-ms-gray-800 ms-num" style="min-width:108px;text-align:center;">{{ monthLabel }}</span>
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="gray" size="sm" disabled="{{ nextOff }}" on-click="{{ next }}" hint-size="36px,32px">›</x-import>
+        </div>
+        <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" disabled="{{ reloadOff }}" on-click="{{ reload }}" hint-size="100px,32px">다시 불러오기</x-import>
+        <sc-if value="{{ hasAt }}" hint-placeholder-val="{{ true }}">
+          <span class="text-typo-body-400 text-ms-gray-600 ms-num">{{ fetchedAt }} 기준</span>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- 에이전트별 조회 — 에이전시 고르기(이 달 최초 유입 채널 중 「(에이전시)」 로 끝나는 값) -->
+    <sc-if value="{{ isAgency }}" hint-placeholder-val="{{ false }}">
+      <div class="bg-ms-white" style="border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);">
+        <span class="text-typo-body-600 text-ms-gray-700" style="white-space:nowrap;">에이전시</span>
+        <sc-for list="{{ agencies }}" as="a" hint-placeholder-count="3">
+          <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="{{ a.variant }}" color="{{ a.color }}" size="sm" on-click="{{ a.pick }}" hint-size="140px,32px">{{ a.name }}</x-import>
+        </sc-for>
+        <span class="text-typo-caption-md-400 text-ms-gray-500" style="margin-left:auto;white-space:nowrap;">목록 = 최초 유입 채널 중 「(에이전시)」로 끝나는 값 그대로 · 짐작 · 묶기 없음</span>
+      </div>
+    </sc-if>
+
+    <!-- 요약 줄 — 건수만(금액 합 없음). 월별 = 수납 · 품목 · 결제/취소/환불 · 제외 / 에이전트별 = 손님 · 결제 손님 · 수납 -->
+    <sc-if value="{{ hasSummary }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+          <span class="bg-ms-white border-ms-gray-200" style="display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:8px;border-width:1px;border-style:solid;">
+            <span class="text-typo-caption-md-500 text-ms-gray-600" style="white-space:nowrap;">{{ c.name }}</span>
+            <span class="{{ c.cls }} ms-num">{{ c.value }}</span>
+          </span>
+        </sc-for>
+        <!-- 수수료 자리 — 이번 판 밖(계산 · 합계 정책 없음) -->
+        <sc-if value="{{ isAgency }}" hint-placeholder-val="{{ false }}">
+          <span class="border-ms-gray-300 text-typo-caption-md-500 text-ms-gray-500" style="display:inline-flex;align-items:center;padding:6px 12px;border-radius:8px;border-width:1px;border-style:dashed;white-space:nowrap;">수수료 — 다음 판</span>
+        </sc-if>
+        <span class="text-typo-caption-md-400 text-ms-gray-500" style="margin-left:auto;white-space:nowrap;">ⓘ 상태 배지는 지금 기준이에요 — 다른 달에 환불된 품목도 ‘환불’로 보여요</span>
+      </div>
+    </sc-if>
+
+    <!-- 표 판 -->
+    <div class="bg-ms-white" style="border-radius:12px;box-shadow:0px 2px 10px 0px rgba(0,0,0,0.04);overflow:hidden;">
+
+      <!-- 상태 화면 — 표 자리 -->
+      <sc-if value="{{ st.on }}" hint-placeholder-val="{{ false }}">
+        <div style="min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:40px 24px;">
+          <sc-if value="{{ st.spin }}" hint-placeholder-val="{{ false }}">
+            <!-- 코드 = medikit Loading -->
+            <div class="ms-spin"></div>
+          </sc-if>
+          <sc-if value="{{ st.icon }}" hint-placeholder-val="{{ false }}">
+            <span class="{{ st.iconCls }}" style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;">{{ st.iconText }}</span>
+          </sc-if>
+          <span class="text-typo-heading-md-500 text-ms-gray-800">{{ st.title }}</span>
+          <span class="text-typo-body-400 text-ms-gray-600" style="max-width:560px;word-break:keep-all;">{{ st.sub }}</span>
+          <sc-if value="{{ st.retry }}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="MedisolveAiMedikit.Button" variant="outlined" color="blue" size="sm" on-click="{{ reload }}" hint-size="88px,32px">다시 시도</x-import>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
+        <!-- 칸 머리 두 줄 — 1줄 = 수납 묶음 머리 칸 · 2줄 = 그 아래 줄 칸(들여 씀) -->
+        <div class="bg-ms-gray-100 border-ms-gray-200" style="border-bottom-width:1px;border-bottom-style:solid;padding:8px 20px 6px;display:flex;flex-direction:column;gap:4px;">
+          <div class="text-typo-caption-md-600 text-ms-gray-700" style="display:grid;grid-template-columns:{{ headCols }};gap:16px;align-items:center;">
+            <span>결제일</span><span>손님 이름</span><span>방문일</span>
+            <span>최초 유입 채널</span>
+            <span>수납 · 결제 수단</span><span style="text-align:right;">그달 결제</span>
+          </div>
+          <div class="text-typo-caption-md-500 text-ms-gray-500" style="display:grid;grid-template-columns:{{ lineCols }};gap:16px;align-items:center;padding-left:30px;">
+            <span>일시</span><span>품목 종류</span><span>상품</span><span>옵션</span><span style="text-align:right;">금액</span><span>상태</span>
+          </div>
+        </div>
+
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="8">
+          <div class="border-ms-gray-200" style="border-bottom-width:1px;border-bottom-style:solid;padding:10px 20px 12px;">
+            <!-- 묶음 머리 -->
+            <div style="display:grid;grid-template-columns:{{ headCols }};gap:16px;align-items:center;min-height:32px;">
+              <span class="{{ g.atCls }} ms-num">{{ g.at }}<span class="text-typo-caption-md-400 text-ms-gray-400" style="margin-left:6px;">{{ g.atWhy }}</span></span>
+              <span class="{{ g.nameCls }} ms-one">{{ g.name }}<span class="text-typo-caption-md-400 text-ms-gray-400" style="margin-left:6px;">{{ g.nameWhy }}</span></span>
+              <span class="text-typo-body-400 text-ms-gray-700 ms-num">{{ g.visit }}</span>
+              <span class="{{ g.funnelCls }} ms-one" title="{{ g.funnel }}">{{ g.funnel }}</span>
+              <span style="display:flex;align-items:center;gap:6px;min-width:0;">
+                <span class="text-typo-caption-md-500 text-ms-gray-600" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap;">{{ g.pid }}</span>
+                <sc-for list="{{ g.pays }}" as="p" hint-placeholder-count="1">
+                  <span class="bg-ms-gray-200 text-typo-caption-md-500 text-ms-gray-700" style="padding:1px 6px;border-radius:4px;white-space:nowrap;">{{ p }}</span>
+                </sc-for>
+              </span>
+              <span style="display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;">
+                <sc-for list="{{ g.flags }}" as="f" hint-placeholder-count="0">
+                  <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ f.variant }}" size="sm" hint-size="92px,22px">{{ f.text }}</x-import>
+                </sc-for>
+                <span class="{{ g.totalCls }} ms-num">{{ g.total }}</span>
+              </span>
+            </div>
+
+            <!-- 그 아래 줄 — 들여 쓰고 왼쪽 선. 품목 → 결제 → 취소 · 환불 -->
+            <sc-if value="{{ g.hasSub }}" hint-placeholder-val="{{ true }}">
+              <div class="border-ms-gray-200" style="margin:6px 0 0 8px;padding-left:20px;border-left-width:2px;border-left-style:solid;display:flex;flex-direction:column;">
+                <sc-if value="{{ g.elsewhere }}" hint-placeholder-val="{{ false }}">
+                  <span class="text-typo-caption-md-400 text-ms-gray-500" style="padding:4px 0;">{{ g.elsewhereText }}</span>
+                </sc-if>
+                <sc-if value="{{ g.missing }}" hint-placeholder-val="{{ false }}">
+                  <span class="text-typo-body-400 text-ms-gray-500" style="padding:6px 0;">품목을 찾지 못했어요</span>
+                </sc-if>
+                <sc-for list="{{ g.lines }}" as="l" hint-placeholder-count="2">
+                  <div style="display:grid;grid-template-columns:{{ lineCols }};gap:16px;align-items:center;min-height:{{ l.h }};opacity:{{ l.op }};">
+                    <span class="{{ l.atCls }} ms-num">{{ l.at }}<span class="text-typo-caption-md-400 text-ms-gray-400" style="margin-left:6px;">{{ l.atWhy }}</span></span>
+                    <span class="{{ l.typeCls }}" style="white-space:nowrap;">{{ l.type }}</span>
+                    <span class="{{ l.nameCls }} ms-one" title="{{ l.name }}">{{ l.name }}</span>
+                    <span class="{{ l.optCls }} ms-one" title="{{ l.opt }}">{{ l.opt }}</span>
+                    <span class="{{ l.amtCls }} ms-num" style="text-align:right;">{{ l.amt }}</span>
+                    <span style="display:flex;align-items:center;">
+                      <sc-if value="{{ l.hasBadge }}" hint-placeholder-val="{{ true }}">
+                        <x-import component-from-global-scope="MedisolveAiMedikit.Badge" variant="{{ l.variant }}" size="sm" hint-size="64px,22px">{{ l.status }}</x-import>
+                      </sc-if>
+                      <sc-if value="{{ l.quiet }}" hint-placeholder-val="{{ false }}">
+                        <span class="text-typo-caption-md-400 text-ms-gray-400">{{ l.status }}</span>
+                      </sc-if>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </sc-if>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;scene&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;monthly&quot;, &quot;monthly-loading&quot;, &quot;monthly-empty&quot;, &quot;monthly-error&quot;, &quot;monthly-bad-month&quot;, &quot;monthly-config&quot;, &quot;agency&quot;, &quot;agency-empty&quot;], &quot;default&quot;: &quot;monthly&quot;, &quot;tsType&quot;: &quot;'monthly'|'monthly-loading'|'monthly-empty'|'monthly-error'|'monthly-bad-month'|'monthly-config'|'agency'|'agency-empty'&quot;}}">
+// ===== 월별 매출 v1 — agency-settlement SPEC-001 §3 · §4.2 · §6 의 칸 · 상태 · 배지를 그대로 쓰고 모양만 새로 그림 =====
+// 이름 · 에이전시 · 금액은 전부 가짜(홍길동 꼴 가명 · 에이전시A(에이전시) 꼴 · 둥근 금액). 이번 달 = 2026-10 · 기준 14:03
+const pad = (n) => String(n).padStart(2, '0');
+const NUM = (v) => (v < 0 ? '−' : '') + Math.abs(v).toLocaleString('en-US');
+const NOW = { y: 2026, m: 10 };
+const idx = (ym) => ym.y * 12 + ym.m - 1;
+const add = (ym, n) => { const i = idx(ym) + n; return { y: Math.floor(i / 12), m: (i % 12) + 1 }; };
+
+// lib/labels.ts 와 같은 이름. 간편결제(EASY_PAY)는 브리프 지시로 이름을 붙임 — 코드에는 아직 없음(리포트 「다른 곳」)
+const ITEM_TYPE = { PRODUCT_OPTION: '상품', ETCETRA_PRODUCT: '기타 상품', PREPAID_CARD_PRODUCT: '선불카드' };
+const ITEM_STATUS = { ACCEPTED: ['승인', 'primary'], PAID: ['승인', 'primary'], PARTIALLY_REFUNDED: ['부분 환불', 'warning'], REFUNDED: ['환불', 'danger'], INITIALIZED: ['미수납', 'neutral'] };
+const LINE_STATUS = { payment: ['결제', 'primary'], cancel: ['취소', 'danger'], spent: ['환불', 'danger'] };
+const PAY = { CARD: '카드', CASH: '현금', EASY_PAY: '간편결제', PREPAID_CARD: '선불카드' };
+
+// ---- 가짜 10월 응답(§4.2 꼴 · 정렬 §3.3 은 아래 order 에서)
+const I = (itemType, name, opt, amount, status, cur) => ({ kind: 'item', itemType, name, opt, amount, status, currency: cur || 'KRW', at: null });
+const X = (kind, amount, at, pay, cur) => ({ kind, amount, at, pay, currency: cur || 'KRW', status: kind });
+const AG_A = '에이전시A(에이전시)', AG_B = '에이전시B(에이전시)', AG_C = '에이전시C(에이전시)';
+const OCT = [
+  { id: 'p01', pid: 'a1b2c3', at: '10-02 11:20', name: '홍길동', visit: '10-02', funnel: AG_A, pays: ['CARD'], cur: 'KRW', approved: 3300000, items: 3300000, here: true, lines: [
+    I('PRODUCT_OPTION', '[10월 이벤트] 울쎄라피프라임300샷+써마지600샷', '1회', 3300000, 'ACCEPTED'),
+    I('PRODUCT_OPTION', '울쎄라피프라임 300샷', '구성품', 0, 'ACCEPTED'),
+    I('PRODUCT_OPTION', '써마지 FLX 600샷', '구성품', 0, 'ACCEPTED')] },
+  { id: 'p02', pid: 'd4e5f6', at: '10-03 15:05', name: '김철수', visit: '10-03', funnel: '네이버 검색', pays: ['CARD', 'CASH'], cur: 'KRW', approved: 1030000, items: 1030000, here: true, lines: [
+    I('PRODUCT_OPTION', '[첫방문] 써마지 FLX', '300샷', 1000000, 'ACCEPTED'),
+    I('ETCETRA_PRODUCT', '마취 크림', null, 30000, 'PAID')] },
+  { id: 'p03', pid: '778899', at: '10-05 14:00', name: '이영희', visit: null, funnel: AG_B, pays: ['CARD'], cur: 'KRW', approved: 500000, items: 0, here: false, first: '09-15', lines: [
+    X('payment', 500000, '10-05 14:00', 'CARD')] },
+  { id: 'p04', pid: 'aabbcc', at: '10-08 09:10', name: '박가명', visit: '10-08', funnel: AG_A, pays: ['PREPAID_CARD'], cur: 'KRW', approved: 800000, items: 1200000, here: true, lines: [
+    I('PRODUCT_OPTION', '[오픈] 울써마지 300샷', '1회', 800000, 'ACCEPTED'),
+    I('PRODUCT_OPTION', '리쥬란 힐러 2cc', '1회', 400000, 'REFUNDED'),
+    X('cancel', -400000, '10-12 16:05', 'CARD')] },
+  { id: 'p05', pid: 'ddeeff', at: '10-11 17:45', name: '정예시', visit: '10-11', funnel: '지인 소개', pays: ['CARD'], cur: null, approved: null, items: null, here: true, lines: [
+    I('PRODUCT_OPTION', '[오픈] 울써마지 300샷', '1회', 200000, 'ACCEPTED'),
+    I('ETCETRA_PRODUCT', '해외 결제 상품', null, 100, 'ACCEPTED', 'USD')] },
+  { id: 'p06', pid: '123abc', at: '10-14 12:00', name: null, visit: null, funnel: AG_C, pays: ['CASH'], cur: 'KRW', approved: 1000000, items: 0, here: true, missing: true, lines: [] },
+  { id: 'p07', pid: '456def', at: '10-02 10:00', name: '강샘플', visit: '09-20', funnel: AG_A, pays: [], cur: 'KRW', approved: 0, items: 0, here: false, first: null, reversalOnly: true, lines: [
+    X('spent', -50000, null, 'CASH'),
+    X('cancel', -300000, '10-02 10:00', 'CARD')] },
+  { id: 'p08', pid: '789fed', at: '10-20 13:30', name: '오가나', visit: '10-20', funnel: AG_A, pays: ['EASY_PAY'], cur: 'KRW', approved: 500000, items: 500000, here: true, lines: [
+    I('PREPAID_CARD_PRODUCT', '선불카드 50만원권', null, 500000, 'PARTIALLY_REFUNDED')] },
+  { id: 'p09', pid: '654321', at: null, name: '한다라', visit: '10-21', funnel: null, pays: ['CARD'], cur: 'KRW', approved: 1000000, items: 0, here: false, first: null, lines: [
+    X('payment', 1000000, null, 'CARD')] },
+  { id: 'p10', pid: 'cba987', at: '10-24 16:40', name: '윤테스트', visit: '10-24', funnel: AG_B, pays: ['CARD'], cur: 'KRW', approved: 2200000, items: 2200000, here: true, lines: [
+    I('PRODUCT_OPTION', '[10월 이벤트] 울쎄라피프라임300샷+써마지600샷', '1회', 2000000, 'PAID'),
+    I('PRODUCT_OPTION', '울쎄라피프라임 300샷', '구성품', 0, 'PAID'),
+    I('PRODUCT_OPTION', '써마지 FLX 600샷', '구성품', 0, 'PAID'),
+    I('ETCETRA_PRODUCT', '진정 관리', null, 200000, 'PAID')] }
+];
+const DATA = { '2026-10': OCT };
+const ymKey = (ym) => ym.y + '-' + pad(ym.m);
+const order = (gs) => gs.slice().sort((a, b) => (a.at === null) - (b.at === null) || String(a.at).localeCompare(String(b.at)) || a.pid.localeCompare(b.pid));
+const isAgencyFunnel = (f) => !!f && f.endsWith('(에이전시)');
+
+class Component extends DCLogic {
+  state = this.initial();
+  initial() { return { view: 'monthly', ym: NOW, raw: null, status: 'ok', agency: AG_A }; }
+  componentDidMount() { this.applyScene(this.props.scene); }
+  componentDidUpdate(prev) { if (prev && prev.scene !== this.props.scene) this.applyScene(this.props.scene); }
+  componentWillUnmount() { clearTimeout(this.t); }
+
+  // ---- 캔버스 장면
+  applyScene(scene) {
+    let s = this.initial();
+    if (scene === 'monthly-loading') s.status = 'loading';
+    if (scene === 'monthly-empty') s.ym = { y: 2026, m: 9 };
+    if (scene === 'monthly-error') s.status = 'error';
+    if (scene === 'monthly-bad-month') { s.status = 'bad'; s.raw = '2026-13'; } // 주소에 직접 친 값 — 글자 그대로
+    if (scene === 'monthly-config') s.status = 'config';
+    if (scene === 'agency') s.view = 'agency';
+    if (scene === 'agency-empty') { s.view = 'agency'; s.ym = { y: 2026, m: 9 }; }
+    this.setState(s);
+  }
+
+  // [다시 불러오기] · [다시 시도] — 잠깐 불러오는 중 → 정상
+  reload() {
+    clearTimeout(this.t);
+    this.setState({ status: 'loading' });
+    this.t = setTimeout(() => this.setState({ status: 'ok' }), 1200);
+  }
+
+  groupsOf(s) {
+    const all = order(DATA[ymKey(s.ym)] || []);
+    return s.view === 'agency' ? all.filter((g) => g.funnel === s.agency) : all;
+  }
+
+  lineVals(l) {
+    if (l.kind === 'item') {
+      const zero = l.amount === 0; // 0원 구성품 — 흐리게 · 낮게 · 배지 대신 글자
+      const [st, variant] = ITEM_STATUS[l.status] || [l.status, 'neutral'];
+      return {
+        h: zero ? '26px' : '34px', op: 1, at: '', atWhy: '', atCls: 'text-typo-body-400',
+        type: zero ? '└' : ITEM_TYPE[l.itemType] || l.itemType, typeCls: zero ? 'text-typo-caption-md-400 text-ms-gray-400' : 'text-typo-body-400 text-ms-gray-700',
+        name: l.name || '—', nameCls: zero ? 'text-typo-caption-md-400 text-ms-gray-500' : 'text-typo-body-500 text-ms-gray-800',
+        opt: l.opt || '—', optCls: zero ? 'text-typo-caption-md-400 text-ms-gray-400' : (l.opt ? 'text-typo-body-400 text-ms-gray-700' : 'text-typo-body-400 text-ms-gray-400'),
+        amt: NUM(l.amount) + (l.currency !== 'KRW' ? ' ' + l.currency : ''), amtCls: zero ? 'text-typo-caption-md-400 text-ms-gray-400' : 'text-typo-body-500 text-ms-gray-800',
+        status: st, variant, hasBadge: !zero, quiet: zero
+      };
+    }
+    const [st, variant] = LINE_STATUS[l.kind];
+    const neg = l.amount < 0;
+    return {
+      h: '34px', op: 1, at: l.at || '—', atWhy: l.at ? '' : '시각 없음', atCls: l.at ? 'text-typo-body-400 text-ms-gray-700' : 'text-typo-body-400 text-ms-gray-400',
+      type: PAY[l.pay] || l.pay, typeCls: 'text-typo-caption-md-500 text-ms-gray-500',
+      name: l.kind === 'payment' ? '이 달 결제' : (l.kind === 'cancel' ? '결제 취소' : '반환'), nameCls: 'text-typo-body-400 text-ms-gray-600',
+      opt: '', optCls: 'text-typo-body-400',
+      amt: NUM(l.amount), amtCls: neg ? 'text-typo-body-600 text-red' : 'text-typo-body-500 text-ms-gray-800',
+      status: st, variant, hasBadge: true, quiet: false
+    };
+  }
+
+  groupVals(g) {
+    const hasItems = g.lines.some((l) => l.kind === 'item');
+    const flags = [];
+    if (g.here && hasItems && g.cur !== null && g.approved !== g.items) flags.push({ text: '⚠ 결제 ≠ 품목', variant: 'warning' });
+    if (g.cur === null) flags.push({ text: '⚠ 통화 섞임', variant: 'warning' });
+    const items = g.lines.filter((l) => l.kind === 'item');
+    const rest = g.lines.filter((l) => l.kind !== 'item').sort((a, b) => (a.at === null) - (b.at === null) || String(a.at).localeCompare(String(b.at)));
+    const headAt = g.at;
+    return {
+      at: headAt || '—', atWhy: headAt ? '' : '시각 없음', atCls: headAt ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      name: g.name || '—', nameWhy: g.name ? '' : '이름 없음', nameCls: g.name ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      visit: g.visit || '—',
+      funnel: g.funnel || '(없음)', funnelCls: g.funnel ? (isAgencyFunnel(g.funnel) ? 'text-typo-body-500 text-primary' : 'text-typo-body-400 text-ms-gray-700') : 'text-typo-body-400 text-ms-gray-400',
+      pid: g.pid, pays: g.pays.map((p) => PAY[p] || p),
+      flags,
+      total: g.cur === null ? '' : NUM(g.approved), totalCls: g.approved ? 'text-typo-body-600 text-ms-gray-800' : 'text-typo-body-400 text-ms-gray-400',
+      elsewhere: !g.here, elsewhereText: g.reversalOnly ? '품목은 다른 달에 · 이 달엔 취소 · 환불만' : '품목은 다른 달에' + (g.first ? ' · 첫 승인 ' + g.first : ''),
+      missing: !!g.missing,
+      hasSub: true,
+      lines: [...items, ...rest].map((l) => this.lineVals(l))
+    };
+  }
+
+  chipsOf(s, gs) {
+    if (s.view === 'agency') {
+      const people = new Set(gs.map((g) => g.name || g.id));
+      const paid = new Set(gs.filter((g) => g.pays.length > 0).map((g) => g.name || g.id));
+      return [
+        { name: '손님', value: people.size + '명', cls: 'text-typo-body-600 text-ms-gray-800' },
+        { name: '결제 손님', value: paid.size + '명', cls: 'text-typo-body-600 text-primary' },
+        { name: '수납', value: gs.length + '건', cls: 'text-typo-body-600 text-ms-gray-800' }
+      ];
+    }
+    const lines = gs.flatMap((g) => g.lines);
+    const n = (k) => lines.filter((l) => k.includes(l.kind)).length;
+    const chips = [
+      { name: '수납', value: gs.length + '건', cls: 'text-typo-body-600 text-ms-gray-800' },
+      { name: '품목', value: n(['item']) + '줄', cls: 'text-typo-body-600 text-ms-gray-800' },
+      { name: '결제 · 취소 · 환불', value: n(['payment', 'cancel', 'spent']) + '줄', cls: 'text-typo-body-600 text-ms-gray-800' }
+    ];
+    if (gs.length) chips.push({ name: '제외', value: '1', cls: 'text-typo-body-600 text-ms-gray-500' });
+    return chips;
+  }
+
+  statusVals(s, gs) {
+    const ag = s.view === 'agency';
+    const off = { on: false, spin: false, icon: false, retry: false, title: '', sub: '', iconText: '', iconCls: '' };
+    if (s.status === 'loading') return { ...off, on: true, spin: true, title: 'KOS 에서 불러오는 중이에요', sub: '수십 초 걸릴 수 있어요' };
+    if (s.status === 'error') return { ...off, on: true, icon: true, iconText: '!', iconCls: 'bg-red-100 text-red', retry: true, title: '매출을 불러오지 못했어요', sub: 'KOS 에 연결하지 못했어요' };
+    if (s.status === 'bad') return { ...off, on: true, icon: true, iconText: '?', iconCls: 'bg-yellow-100 text-ms-gray-800', title: '조회할 달이 올바르지 않아요', sub: '주소의 month 가 YYYY-MM 꼴이 아니거나 이번 달보다 뒤예요 — ‹ › 로 달을 골라 주세요' };
+    if (s.status === 'config') return { ...off, on: true, icon: true, iconText: '⚙', iconCls: 'bg-ms-gray-200 text-ms-gray-700', title: 'back 주소가 비어 있어요', sub: 'NEXT_PUBLIC_API_BASE_URL 을 front/.env.local 에 넣고 front 를 다시 띄우세요' };
+    if (!gs.length) return { ...off, on: true, icon: true, iconText: '—', iconCls: 'bg-ms-gray-100 text-ms-gray-500', title: ag ? '이 달에는 이 에이전시 손님의 결제가 없어요' : '이 달에는 결제가 없어요', sub: ag ? s.agency + ' · ' + s.ym.y + '년 ' + s.ym.m + '월' : '' };
+    return off;
+  }
+
+  renderVals() {
+    const s = this.state, ag = s.view === 'agency';
+    const ok = s.status === 'ok';
+    const gs = ok ? this.groupsOf(s) : [];
+    const st = this.statusVals(s, gs);
+    const go = (view) => () => this.setState({ view, status: 'ok' });
+    // 머리 칸: 결제일 · 이름 · 방문일 · 유입 · 수납 · 그달 결제 / 줄 칸: 일시 · 품목 종류 · 상품 · 옵션 · 금액 · 상태. 두 화면 같은 묶음 모양
+    const headCols = '132px 140px 72px minmax(220px,1.2fr) minmax(240px,1.6fr) minmax(220px,1fr)';
+    const agencyNames = [...new Set((DATA[ymKey(NOW)] || []).map((g) => g.funnel).filter(isAgencyFunnel))].sort();
+    return {
+      navs: [{ name: '월별 조회', v: 'monthly' }, { name: '에이전트별 조회', v: 'agency' }].map((n) => ({
+        name: n.name, go: go(n.v), cls: n.v === s.view ? 'text-typo-heading-md-500 text-primary' : 'text-typo-heading-md-400 text-ms-gray-800'
+      })),
+      title: ag ? '에이전트별 조회' : '월별 매출',
+      isAgency: ag,
+      monthLabel: s.raw || s.ym.y + '년 ' + s.ym.m + '월',
+      prev: () => this.setState({ ym: add(s.ym, -1), raw: null, status: 'ok' }),
+      next: () => this.setState({ ym: add(s.ym, 1), raw: null, status: 'ok' }),
+      prevOff: s.status === 'loading', nextOff: s.status === 'loading' || idx(s.ym) >= idx(NOW),
+      reloadOff: s.status === 'loading' || s.status === 'config',
+      reload: () => this.reload(),
+      hasAt: ok, fetchedAt: '14:03',
+      agencies: agencyNames.map((a) => ({ name: a, variant: a === s.agency ? 'solid' : 'outlined', color: a === s.agency ? 'blue' : 'gray', pick: () => this.setState({ agency: a }) })),
+      hasSummary: ok,
+      chips: ok ? this.chipsOf(s, gs) : [],
+      st,
+      hasRows: ok && gs.length > 0,
+      headCols,
+      lineCols: '132px 88px minmax(320px,1fr) minmax(140px,240px) 132px 96px',
+      groups: gs.map((g) => this.groupVals(g))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@
   --all     전수 감사. 파일 ↔ 맵 양방향 + 번호 연속성까지 본다.
             백필 검증·CI 용. pre-commit 에는 걸지 않는다.
 
-맵 행 형식: | <번호> | `<영역>` | `<stem>` | <설명> |  |
+맵의 파일명은 wikilink다. 이전 backtick 표기도 읽는다.
 """
 
 from __future__ import annotations
@@ -21,7 +21,10 @@ from pathlib import Path
 
 MAP_PATH = "para/areas/area.md"
 CONCEPT_RE = re.compile(r"^para/areas/concept/([a-z]+)/([A-Za-z0-9._-]+)\.md$")
-ROW_RE = re.compile(r"^\|\s*(\d+)\s*\|\s*`([a-z]+)`\s*\|\s*`([^`]+)`\s*\|")
+ROW_RE = re.compile(
+    r"^\|\s*(\d+)\s*\|\s*`([a-z]+)`\s*\|\s*"
+    r"(?:`([^`]+)`|\[\[([^\]\\|]+)(?:\\?\|[^\]]+)?\]\])\s*\|"
+)
 
 
 def git(*args: str) -> str:
@@ -36,7 +39,8 @@ def parse_map(text: str) -> dict[str, tuple[int, str]]:
     for line in text.splitlines():
         m = ROW_RE.match(line.strip())
         if m:
-            rows[m.group(3)] = (int(m.group(1)), m.group(2))
+            stem = m.group(3) or Path(m.group(4)).stem
+            rows[stem] = (int(m.group(1)), m.group(2))
     return rows
 
 

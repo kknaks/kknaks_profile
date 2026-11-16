@@ -4,7 +4,7 @@
 
 Study Timelapse 제품을 운영하기 위한 SSOT다.
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## 현재 상태
 
@@ -19,11 +19,11 @@ Study Timelapse 제품을 운영하기 위한 SSOT다.
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
+| 00-baseline | [[para/projects/summer-star/study-timelapse/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/study-timelapse/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/study-timelapse/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/study-timelapse/30-work/README\|30-work/README.md]] |
+| 40-architecture | [[para/projects/summer-star/study-timelapse/40-architecture/README\|40-architecture/README.md]] |
 
 ## 최근 로그
 

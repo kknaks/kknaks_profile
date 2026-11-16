@@ -8,7 +8,10 @@ aliases:
   - 레이어드 아키텍처
   - Layered Architecture
   - n-tier architecture
+  - router service repository
+  - 라우터 서비스 리포지토리
 up:
+  - 2026-11-09-day-data-architecture
   - C-038-separating-controller-service-and-repository-responsibilities
 tags:
   - 아키텍처
@@ -93,6 +96,8 @@ final class OrderController {
 
 서비스가 트랜잭션 경계를 소유하면 여러 저장 작업을 하나의 유스케이스 단위로 묶을 수 있다. 아래 계층이 위 계층을 모르는 단방향 의존성은 순환 의존을 막고 내부 정책이 특정 표현 기술에 묶이는 것을 방지한다.
 
+**DB 없는 단위 테스트는 계층을 지킨 값이 바로 보이는 자리다.** DAY 백엔드(Python)는 router → service → repository 로 내려가고 ORM 은 repository 를 넘지 않는다. 그래서 service 시험은 repository 대역만 넣으면 되고, 기본 테스트 실행이 DB 없이 수 초에 끝난다. 실제 DB · Redis 를 쓰는 시험은 따로 표식을 달아 전체 실행에서만 돈다 → [[test-tiering]]
+
 ## 경계와 오해
 
 - **계층형 아키텍처 ≠ 물리적 다중 티어** — 논리 계층은 같은 프로세스에서 실행될 수 있다. 웹 서버와 DB 서버처럼 배포 위치를 나누는 티어와 책임을 나누는 레이어는 구별해야 한다.
@@ -110,7 +115,9 @@ final class OrderController {
 - [[dto]] — 외부 표현과 내부 모델 사이의 데이터 경계
 - [[dependency-inversion-principle]] — 구체적인 아래층 구현 대신 추상화에 의존하게 하는 원칙
 - [[coupling]] — 계층 분리가 줄이려는 변경 전파의 축
+- [[test-tiering]] — 계층 덕에 DB 없는 시험을 기본 실행으로 가를 수 있다
 
 ## 출처
 
+- [[2026-11-09-day-data-architecture]] §2 — DAY v2 백엔드 뼈대 router → service → repository · DB 없는 기본 테스트(코드 `ec2a2681`)
 - [[C-038-separating-controller-service-and-repository-responsibilities]] — 컨트롤러·서비스·리포지토리의 책임, 단방향 의존성, 계층 건너뛰기 금지와 계층화의 비용을 주문 생성 예제로 설명한다.

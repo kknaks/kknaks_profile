@@ -1,6 +1,7 @@
 {
   "_doc": "mediness 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. CLAUDE.md·브리프·스크립트에 여기 값을 하드코딩하지 말 것.",
   "project": "mediness",
+  "document_root": "para/projects/company/mediness",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
 
@@ -58,6 +59,14 @@
       "allowed_paths": ["back/", "mcp/", "docker-compose.yml", "docker-compose.local.yml"],
       "verify": "cd back && pytest -q <네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침. DATABASE_URL 은 back/pyproject.toml 의 테스트 DB = localhost:25434/mediness_test). 검증은 1회만 — 통과하면 반복하지 마라"
     },
+    "backend_hotfix": {
+      "repo": "app_main",
+      "agent": "claude",
+      "brief_suffix": "be-hotfix",
+      "roles_dir": "roles/mediness/backend",
+      "allowed_paths": ["back/", "mcp/", "docker-compose.yml", "docker-compose.local.yml"],
+      "verify": "cd back && pytest -q <네가 만들거나 고친 테스트 파일만> (전체 스위트 금지 — 사용자 방침. DATABASE_URL 은 back/pyproject.toml 의 테스트 DB = localhost:25434/mediness_test). 검증은 1회만 — 통과하면 반복하지 마라"
+    },
     "frontend": {
       "repo": "app",
       "agent": "claude",
@@ -93,6 +102,14 @@
       "repo": "app",
       "agent": "claude",
       "brief_suffix": "review-code",
+      "roles_dir": "roles/mediness/reviewer",
+      "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
+      "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
+    },
+    "reviewer_code_hotfix": {
+      "repo": "app_main",
+      "agent": "claude",
+      "brief_suffix": "review-code-hotfix",
       "roles_dir": "roles/mediness/reviewer",
       "allowed_paths": ["(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"],
       "verify": "리뷰는 read-only — 코드를 고치지 않고 테스트도 돌리지 않는다. git diff <base>...HEAD + untracked 로 범위를 산정하고, 판정(PASS/WARN/FAIL)과 위반 목록(파일:줄 + 근거 규칙)을 리포트에 남긴다"
@@ -155,7 +172,7 @@
     }
   },
 
-  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/agent/para/projects/company/mediness/log",
+  "summary_dest": "para/projects/company/mediness/log",
 
   "rules": {
     "spec_and_app_use_separate_prs": true,

@@ -7,7 +7,9 @@ aliases:
   - 개발 운영 동등성
   - 운영과 같은 스킴
   - 실제 흐름으로 확인
+  - 앱 코드 경로 그대로 연결
 up:
+  - 2026-11-09-day-data-architecture
   - 2026-10-07-strong-hajin-inbox
 tags:
   - 배포
@@ -30,6 +32,8 @@ tags:
 - 데스크톱 수집기를 로컬 `http` 서버로만 시험했다. HTTP 클라이언트의 TLS 기능(빌드 feature)이 꺼져 있어 운영 `https` 첫 요청에서 수집 스레드가 죽었다. 사용자 화면과 서버 로그(TLS handshake 0건)로 알아내고 feature 를 켰다
 - OAuth Client Secret 을 가짜 code 로 「맞다」고 판정했다. 상대는 진짜 code 일 때만 비밀값을 본다 — 저장 값은 낡은 것이었다 → [[oauth-state-parameter]]
 
+- 배포 문서가 적은 DB 연결 문자열(`sslmode=verify-full`)이 드라이버(asyncpg)에서 안 먹었다. 문서만 보고 넣으면 첫 배포에서 앱이 DB 에 못 붙는다. 터널로 실제 DB 에 **앱 코드의 연결 경로 그대로** 1회 붙어 보고서야 고친 설정이 맞다고 했다 → [[database-tls-verification]]
+
 ## 왜 중요한가
 
 로컬 통과는 「로컬 조건에서 통과」일 뿐이다. 스킴·자격처럼 **로컬에서 일부러 단순화한 것**이 정확히 운영 결함이 숨는 자리다. 운영에서 처음 지나가는 경로는 사용자가 첫 시험자가 된다.
@@ -40,12 +44,19 @@ tags:
 - **가짜 입력 검증은 「상대가 그 입력에서 무엇을 확인하는가」에 달렸다** — 상대가 앞단에서 거절하면 뒤의 값은 확인되지 않은 채다
 - 로컬에만 있는 차이도 있다 — 로컬 CA 번들에 루트가 없어 실패한 것은 운영 결함이 아니다 → [[ssrf-guarded-proxy]]
 
+## 환경 이름으로 동작을 가르지 않는다
+
+같은 API 에 테넌트만 다른 데모 · 운영 연결을 「확인 안 된 쓰기는 데모만」 플래그로 갈라 두면, 확인 단계가 없어 가드가 굳고 같은 코드가 두 곳에서 다르게 돈다. 환경 분리는 연결 데이터(스키마 · 연결 행)로 이미 되어 있다 — 확인은 데모 실물로 하고, 확인된 동작은 모든 연결에 같게 연다. 표시용 칸(`is_demo`)은 남기되 「칸 · 시드에만 쓰임」을 구조 시험으로 지킨다.
+
 ## 함께 보는 개념
 
 - [[externalized-configuration]] — 환경 차이를 코드 밖으로 모으는 자리
 - [[build-flavor]] — 판마다 다른 설정이 운영 조건을 바꾸는 자리
 - [[ci-cd]] — 운영과 같은 산출물을 검증하는 단계
+- [[database-tls-verification]] — 연결 문자열 하나가 드라이버마다 다르게 읽히는 자리
 
 ## 출처
 
+- [[2026-11-09-day-data-architecture]] §2 — asyncpg TLS 설정을 터널로 실제 DB 에 앱 코드 경로 그대로 1회 연결해 확인(#233 검수 H1)
 - [[2026-10-07-strong-hajin-inbox]] §3 — Strong Hajin WORK-011 카톡 수집기 https 결함(PR #13) · 슬랙 비밀값 오판정
+- [[2026-11-11-day-procedure-board-2]] §2 — DAY `trial_writes` · `KOS_TRIAL_WRITES_ON_LIVE` · dev `is_demo` 거르기 제거 · 갈림 23자리 전수조사(`research-demo-vs-live-report.md` · 코드 96fff917 · Delivery #234)

@@ -104,3 +104,9 @@ sc-ax 에 코드레포가 처음 붙었다. 프론트는 `:root` 토큰만 디�
 - 실제 위하고메일 150명분 오면 CSV 갱신 → 재적재
 - 디자인 판정: 1281~1440 폭 3분할 최소폭(1168 > 1080)
 - 옛 `.org-grid` CSS 정리 · Popover ResizeObserver · 「부서」가 「본부」로 표시되는 유형 이름 · TaskQuickActions 의 task.state 추론(envelope 필요)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/sc-ax/sc-design-system/README|sc-design-system]]
+<!-- work-links:end -->

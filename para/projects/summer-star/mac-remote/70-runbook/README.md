@@ -1,6 +1,6 @@
 # Runbook Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > mac-remote의 반복 실행 절차. 배포 *구조/환경*은 `40-architecture/deploy/`, *실행 절차*는 여기.
 > 원본: `mac-remote/doc/runbook/`.
@@ -20,5 +20,5 @@
 
 - 절차(명령·단계·검증·트러블슈팅)는 여기 한 곳에만 둔다.
 - 배포 환경/타겟은 `40-architecture/deploy/`에 두고 여기서는 링크만 한다.
-- 바이너리 자산은 `assets/`에, 그 상태는 `assets/README.md` manifest로 추적한다.
+- 바이너리 자산은 `assets/`에, 그 상태는 [[para/projects/summer-star/mac-remote/70-runbook/assets/README|assets/README.md]] manifest로 추적한다.
 - 일회성 실행 로그는 두지 않는다.

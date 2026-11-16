@@ -1,0 +1,121 @@
+{
+  "delivery_issue": 241,
+  "contract_digest": "sha256:169aae2fb2c7da82b5e21f6f697670f714a7f9820d6be7e3250a5dec9af2a568",
+  "contract_version": 7,
+  "spec_baseline_revision": "19f7e40183e9cdb673db89190b831094507901a4",
+  "code_pr": 242,
+  "code_pr_head_sha": "87cf2dec9e62db937cdcb6cc9c52f010baed8357",
+  "code_merge_sha": "7b099e8f2973003f4d5203d082ca2a81ced23ec8",
+  "acceptance": [
+    {
+      "id": "A1",
+      "result": "pass",
+      "evidence": [
+        "원래 A1 · day-r3/orchestration/work/fix/app-1-report.md:24-31(A-9 · A-22 · A-28 · A-33 · A-37 · A-41 ~ A-43 시험) · :43-44(flutter analyze 0 · +95 passed)",
+        "day-r3/orchestration/work/fix/review-app-fix1-report.md:5(PASS) · :57-58(analyze 0 · +320 passed)",
+        "day-r3/orchestration/work/fix/review-app-fix3-report.md:5(PASS) · :52-53(+343 passed)"
+      ]
+    },
+    {
+      "id": "A2",
+      "result": "pass",
+      "evidence": [
+        "원래 A2(테스트 더블 부분) · day-r3/orchestration/work/fix/app-2-report.md:29-33(C-A19 · C-A20 · C-A21 · N-A10 · N-A13 앱 시험) · :60(analyze 0)",
+        "day-r3/orchestration/work/fix/review-app-fix1-report.md:5-7(W1 · R1 ~ R5 풀림 · PASS) · :57-58"
+      ]
+    },
+    {
+      "id": "A3 (WP-BE-1 · 구현 워커 · 로컬) DAY-SPEC-004 C-A14 · C-A20 · C-A21(서버) · DAY-SPEC-005 N-A5 · N-A13 — #22 성공 · 41자 400 · 1",
+      "result": "pass",
+      "evidence": [
+        "원래 A3 · day-r3/orchestration/work/fix/be-1-report.md:22-28(C-A14 · C-A20 · C-A21 · N-A5 · N-A13 시험) · :48-52(test.sh 35 · 27 passed · pytest 4 passed · ruff 통과) · :5 · :16(migration 0)",
+        "day-r3/orchestration/work/fix/review-be-report.md:129(chat 받는 종류 판정) · day-r3/orchestration/work/fix/review-be-2-report.md:5(PASS)"
+      ]
+    },
+    {
+      "id": "A4",
+      "result": "pass",
+      "evidence": [
+        "원래 A4 · day-r3/orchestration/work/fix/be-2-report.md:43-57(A-14 · A-14b · A-44 시험 갈래) · :91-93(interpret 174 · architecture 28(test_import_boundaries) · 전체 1136 passed)",
+        "day-r3/orchestration/work/fix/be-fix1-report.md:49-52(W1 고친 뒤 198 · 1141 passed)",
+        "day-r3/orchestration/work/fix/review-be-2-report.md:5(PASS) · :15(W1 풀림)"
+      ]
+    },
+    {
+      "id": "A5",
+      "result": "pass",
+      "evidence": [
+        "원래 A5 · day-r3/orchestration/work/fix/be-2-report.md:98-112(실제 Soniox dev 키 — 7개 언어 ready · ko ↔ 한 언어 왕복 · 멈춤 35초 뒤 두 번째 발화 오류 0)",
+        "day-r3/orchestration/work/fix/fix-delivery-close-all-brief.md:18(코디 확인 같은 결과)"
+      ]
+    },
+    {
+      "id": "A6",
+      "result": "pass",
+      "evidence": [
+        "원래 A6 · day-r3/orchestration/work/fix/be-2-report.md:115-120(로컬 실제 uvicorn 키 비움 → no_api_key · 권한 없는 계정 핸드셰이크 403)"
+      ]
+    },
+    {
+      "id": "A8 (코디) dev 배포 뒤 서버 로그 glossary seed loaded",
+      "result": "pass",
+      "evidence": [
+        "원래 A8 · day-r3/orchestration/work/fix/fix-delivery-close-all-brief.md:18(코디 dev 서버 — 통역 사전 로그 · api 오류 로그 0)",
+        "CENTURION_DAY PR #242 → dev 스쿼시 머지 7b099e8f2973003f4d5203d082ca2a81ced23ec8(코드 PR 하나 · 앱 포함) · dev 배포 성공"
+      ]
+    },
+    {
+      "id": "A8",
+      "result": "pass",
+      "evidence": [
+        "원래 A9 · day-r3/orchestration/work/fix/be-3-report.md:33-38(C-A24 · C-A11 7종 시험 · 쿼리 수 그대로) · :3(migration 0) · :56-64(20 · 92 · 78 passed · ruff 통과 · 848 passed)",
+        "day-r3/orchestration/work/fix/review-be-2-report.md:5(PASS)"
+      ]
+    },
+    {
+      "id": "A9",
+      "result": "pass",
+      "evidence": [
+        "원래 A10(테스트 더블 부분) · day-r3/orchestration/work/fix/app-3-report.md:64-69(C-A22 · C-A23 · C-A25 · C-A16 · C-A12 회귀) · :87(analyze 0)",
+        "day-r3/orchestration/work/fix/app-fix3-report.md:50-52(analyze 0 · 전체 +343 passed)",
+        "day-r3/orchestration/work/fix/review-app-fix3-report.md:5-7(W1 · R1 · R2 풀림 · PASS) · :52-53"
+      ]
+    },
+    {
+      "id": "A10",
+      "result": "pass",
+      "evidence": [
+        "원래 A12 · day-r3/orchestration/work/fix/be-4-report.md:42-59(C-A26 · 설정 · 503 · 409 · 키 모양 시험) · :93-96(226 · 865 · 격리 전체 1168 passed · ruff 통과)",
+        "day-r3/orchestration/work/fix/review-be-3-report.md:6(PASS) · :18-20 · :49-50(865 passed · ruff 통과)"
+      ]
+    },
+    {
+      "id": "A11",
+      "result": "pass",
+      "evidence": [
+        "원래 A13 · day-r3/orchestration/work/fix/fix-delivery-close-all-brief.md:18(코디 dev 서버 관리 ID — 올리기 → 크기 → 전체/범위 읽기 → 경로 chat/{병원 id}/… → 없는 키 → 지우기 통과)",
+        "day-r3/orchestration/work/fix/review-be-3-report.md:24-28(실물 확인 명령 판정 — 없는 키 = 404 길)"
+      ]
+    }
+  ],
+  "per_spec": [
+    {
+      "spec": "DAY-SPEC-003",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-004",
+      "result": "update-required"
+    },
+    {
+      "spec": "DAY-SPEC-005",
+      "result": "none"
+    },
+    {
+      "spec": "DAY-SPEC-000",
+      "result": "none"
+    }
+  ],
+  "implementation": "conformant",
+  "merged": true
+}

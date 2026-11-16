@@ -76,3 +76,9 @@
 - **날짜 고정 프론트 시험 8개** — 상대 날짜로 고친다(별도)
 - **main 회의 시험 파일 8개에 실명** — 기존 · 이번 범위 밖
 - **SH-IMP-021 캘린더 공휴일** — API 출처 확정부터
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-notify/README|strong-hajin-notify]]
+<!-- work-links:end -->

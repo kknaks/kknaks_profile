@@ -4,7 +4,7 @@
 
 mykakao 제품을 운영하기 위한 SSOT다.
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 아직 초안(draft) 단계. 제품 정의는 baseline부터 채워나간다.
 > 코드는 별도 레포 `mykakao`에 있고, 이 디렉토리는 제품 문서 SoT다.
@@ -32,16 +32,16 @@ mykakao 제품을 운영하기 위한 SSOT다.
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
+| 00-baseline | [[para/projects/summer-star/mykakao/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/mykakao/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/mykakao/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/mykakao/30-work/README\|30-work/README.md]] |
 
 > 40-architecture / 60-release / 70-runbook 은 필요해질 때 생성한다 (optional).
 
 ## 최근 로그
 
-전체 이력은 `log.md`.
+전체 이력은 [[para/projects/summer-star/mykakao/log|log.md]].
 
 - 2026-06-12 BASE-001 / DEC-001 / SPEC-001 작성 — 메시지 추출 방식 확정 + 라이브 검증
 - 2026-06-12 WORK-001 — 웹 데모(백+프론트) + 실시간 SSE 완성, 라이브 검증
@@ -50,3 +50,9 @@ mykakao 제품을 운영하기 위한 SSOT다.
 - 2026-06-15 WORK-002 — AI 요약 작업 지시서(W-1 BE 엔드포인트 2 / W-2 FE 2뷰 / W-3 redis+codex 워커 기동) + acceptance. status todo, 코드는 BE/FE 워커 소관
 - 2026-06-15 WORK-002 인프라 개정 — W-3을 docker(redis `7-alpine` + codex worker, examples 미러) + backend 호스트 스크립트(`redis://localhost:6379`)로 교체. 결과 저장(DB) 명시적 제외. DEC/SPEC 불변
 - 2026-09-02 **Windows V2 착수** — 키유도 spike 3회로 Windows 카톡 대화 로컬 복호 실증(1455행, 메모리 키회수). BASE-003/DEC-003/SPEC-003 확정: Rust(win_app/) 트레이 앱 = 방 선택 + 과거 복호 + 파일감시 실시간 축적(SQLite) → 대화 패턴 추출. 파생식 회수는 BASE-004 백로그(deferred).
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/mykakao/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

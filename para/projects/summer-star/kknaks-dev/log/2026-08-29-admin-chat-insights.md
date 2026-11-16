@@ -51,3 +51,9 @@
 - **레이트리밋(DEC-026 OQ-1)** — 여전히 최우선. 공개 채팅에 익명 LLM 호출 열려 있음
 - 미답변(「기록에 없다」) 질문 모아보기 위젯 — 콘텐츠 보강 신호로 유용, 후속 후보
 - 검색·필터 · 어드민 KST 시각 표기는 BE 오프셋 포함 값 전제(FE 파싱 없이 자름)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/kknaks-dev/admin-chat-insights/README|admin-chat-insights]]
+<!-- work-links:end -->

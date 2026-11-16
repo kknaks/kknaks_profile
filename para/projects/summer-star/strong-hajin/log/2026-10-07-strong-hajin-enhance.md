@@ -83,3 +83,9 @@
 - 008 메일 자동 추천(같은 맥락 조합 로직을 메일 도착 이벤트로) · 업무 「업데이트」 추천
 - 보류: 019 화자 분리(Soniox 옵션 · 메디니스 방식) · 013 ① 이름 없는 방
 - 데스크톱 최종 관문 G5 증거 파일(M-5 로그인 유지 등) — 사용자 확인 뒤 `resolved`
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-enhance/README|strong-hajin-enhance]]
+<!-- work-links:end -->

@@ -1,6 +1,6 @@
 # Work Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## Work 목록
 

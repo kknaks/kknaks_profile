@@ -1,0 +1,105 @@
+{
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 3,
+ "target_specs": [
+  "DAY-SPEC-000",
+  "DAY-SPEC-001"
+ ],
+ "spec_baseline_revision": "d93b921013af517570b9c04bd14a0668650f4887",
+ "idempotency_key": "day/v2-login",
+ "title": "DAY v2 로그인 · 세션 — KOS sign-in 으로 계정 · 직원 · 세션이 채워진다 (DAY-SPEC-001)",
+ "risk_level": "L3",
+ "target_delta": [
+  "로그인 API 4개를 웹(HTMX) · 앱이 같이 쓴다 — POST /api/auth/login(이메일 · 비밀번호) · POST /api/auth/hospital(임시 토큰 + 고른 병원) · GET /api/auth/me(계정 · 병원 · 직원 · 직무 · 권한) · POST /api/auth/logout (DAY-SPEC-001 §3 API 계약).",
+  "로그인 흐름: KOS sign-in → get-user-tenants → DAY 에 연결된 병원(crm_connection.config.tenant_id)만 후보 — 서버 APP_ENV=dev 는 is_demo 연결만 → 하나면 자동, 여럿이면 후보 + 임시 토큰(5분)을 돌려주고 /api/auth/hospital 로 고른다 → get-user-account → account(처음 만들 때 is_active = true · 로그인마다 last_login_at) · staff · job_role(이름 · 분류 태그 · 기본 직무 여부) · external_ref · login_session · external_session 이 자동으로 채워진다. 다시 로그인하면 KOS 사용자 id(external_ref)로 찾아 갱신하고 — 직무가 KOS 에서 바뀌었으면 job_role 도 KOS 값을 따른다 — 같은 계정의 이전 세션은 그대로 둔다 (SPEC-001 S-1 ~ S-3 · 규칙 2 · 5 · 6).",
+  "세션 전달: 웹 = day_session 쿠키(httpOnly · SameSite=Lax · Secure) / 앱 = Authorization: Bearer. 둘 다 같은 login_session 한 행. 쿠키 · Bearer 에는 따로 만든 무작위 세션 토큰, DB 에는 login_session.token_hash 만 (SPEC-001 §3 세션 전달 · 규칙 7).",
+  "CSRF(웹) = centurion admin 방식 — 세션마다 CSRF 토큰 하나(login_session.csrf_token · 이 칸을 더하는 migration 포함 · SPEC-000 개정) · 웹 화면(base.html)이 hx-headers 로 X-CSRF-Token 을 싣는다(form 은 csrf_token 필드) · 쿠키 세션의 쓰기 요청에 없거나 틀리면 403 csrf_failed · 로그인 전 요청(/api/auth/login · /api/auth/hospital)과 앱 Bearer 는 CSRF 를 걸지 않는다 (SPEC-001 「CSRF (웹)」 · 사용자 2026-11-06).",
+  "만료: login_session.expires_at = external_session.token_expires_at(KOS 토큰 만료) — 지나면 401 session_expired. KOS 가 만료 전에 401 을 주면 그 세션의 expires_at 을 지금으로 당긴다(revoked_at 은 로그아웃에만 · 같은 계정의 다른 세션은 그대로) — 이 Delivery 는 그 일을 하는 서비스 함수를 만들고, 로그인 뒤 직원 토큰으로 KOS 를 부르는 쪽(쓰기 Delivery)이 그것을 부른다. 로그아웃은 revoked_at 만 채우고 KOS 에 알리지 않는다 (SPEC-001 S-4 · S-5 · 규칙 8 · 상태도).",
+  "비밀번호는 DB · 로그 어디에도 남기지 않는다. KOS 토큰은 external_session 에만 암호화 · 만료 · 고른 병원의 KOS 테넌트 id 와 함께 둔다 (SPEC-001 규칙 1 · 3).",
+  "막는 경우: 2단계 인증이 켜진 계정(get-user-account mfaMethods) → mfa_not_supported · account.is_active=false → account_inactive · staff.is_active=false(기준 정보 동기화의 get-accounts.activate) → staff_inactive. 처음 만드는 account.is_active 는 true (SPEC-001 규칙 12 · S-1).",
+  "오류 계약 = SPEC-001 케이스 매트릭스 — 400 invalid_request(이메일 · 비밀번호 빈 값 · KOS 안 부름) · 401 invalid_credentials · 503 kos_unavailable(KOS 403 Unsupported client. · 응답 없음 · 15초 넘김 포함) · 403 account_inactive · no_connected_hospital · no_staff_account · mfa_not_supported · staff_inactive · 401 session_expired(만료 · KOS 조기 401 · 임시 토큰 5분 만료) · 401 unauthorized(세션 없음 · 로그아웃된 세션) · 403 forbidden(권한 없음) · 403 csrf_failed(웹 쓰기 요청 CSRF 없음 · 틀림). 순서는 401 → 403.",
+  "권한 = 직무의 job_role_permission(permission_key · level view / edit). 권한 행이 없는 직무는 아무것도 못 한다(forbidden). KOS featureList 는 쓰지 않는다. 이 Delivery 의 경로 4개는 권한이 필요 없으므로 권한 검사 의존성(키 · level → job_role_permission)을 만들고 테스트 전용 키로 확인한다 — permission_key 목록은 Non-Goal (SPEC-001 규칙 9).",
+  "KOS 내부 API 호출(sign-in · get-user-tenants · get-user-account)에 KOS 웹 브라우저 헤더를 싣고 시간 제한 15초. 로그인은 api 가 KOS 를 바로 부르는 예외다 (SPEC-001 규칙 10 · 11).",
+  "이미 있음 — 재사용(PR #228 · #226 backend/day/emr/kos/client.py)은 **브라우저 헤더(WEB_USER_AGENT 등) · 주소(KosEndpoints) · 요청 함수(_post) · 시간 제한 설정(emr_http_timeout_seconds 15초)** 만. 직원 sign-in · get-user-tenants · 직원 토큰의 get-user-account · 401 처리(재-sign-in 없이 세션 expires_at 당김)는 **새 경로**다 — 기존 call() 의 401 재-sign-in · 재시도와 internal_token() 의 시스템 계정 자격(crm_connection.config)을 직원 경로에 쓰지 않고, 병원을 고르기 전인 sign-in · get-user-tenants 는 credentials.tenant_id 에 기대지 않는다. 모델(login_session · external_session — backend/day/models/staff.py)과 민감 칸 암호화(backend/common/crypto.py · ENCRYPTION_KEY)는 그대로 쓴다."
+ ],
+ "acceptance": [
+  "A1: dev 데모 지점 계정으로 POST /api/auth/login 하면(연결 병원 1개) 세션이 발급되고 — 웹은 day_session 쿠키, 앱은 Bearer — account(is_active = true · last_login_at 채움) · staff · job_role(이름 · 분류 태그 · 기본 직무 여부) · external_ref · login_session(csrf_token 포함) · external_session 행이 생긴다. 두 번째 로그인은 갱신만 하고(last_login_at 갱신 · KOS 에서 바뀐 직무면 job_role 도 KOS 값) 중복 행이 없으며, 앞 세션은 그대로 쓸 수 있다.",
+  "A2: 연결 병원이 둘 이상이면 login 응답이 후보 + 임시 토큰을 돌려주고, POST /api/auth/hospital 로 후보 안의 병원을 고르면 세션이 발급된다. 후보 밖 병원은 거절, 임시 토큰 5분이 지나면 401 session_expired(케이스 테스트).",
+  "A3: 비밀번호는 DB · 로그에 남지 않는다. external_session.access_token 은 암호화 저장된다. 쿠키 · Bearer 값은 세션 id 가 아닌 무작위 토큰이고 DB 에는 token_hash 만 있다.",
+  "A4: SPEC-001 케이스 매트릭스 줄마다 HTTP · 오류 코드가 맞다(케이스 테스트) — ① 빈 이메일 · 비밀번호 400 invalid_request(KOS 를 부르지 않음) ② 401 invalid_credentials ③ 503 kos_unavailable(KOS 403 · 응답 없음 · 15초 넘김 각각) ④ 403 account_inactive ⑤ 403 no_connected_hospital ⑥ 403 no_staff_account ⑦ 403 mfa_not_supported ⑧ 403 staff_inactive ⑨ 401 session_expired(만료 시각 지남 — 임시 토큰 만료 줄은 A2) ⑩ 401 unauthorized ⑪ 403 forbidden(A9) ⑫ 403 csrf_failed(A7). 실패한 로그인은 login_session 을 만들지 않는다.",
+  "A5: login_session.expires_at = external_session.token_expires_at 이고, 그 시각이 지나면 401 session_expired(API 테스트). 「KOS 401 로 세션 끝내기」 서비스 함수는 그 세션의 expires_at 을 지금으로 당기고 revoked_at 은 비워 두며 같은 계정의 다른 세션은 건드리지 않는다(서비스 함수 단위 테스트 — 부르는 쪽은 쓰기 Delivery). 로그인 중 KOS 401 은 재-sign-in · 재시도 없이 실패로 끝난다.",
+  "A6: POST /api/auth/logout 뒤 그 세션은 revoked_at 이 채워지고 이후 요청은 401 unauthorized. KOS 호출은 없다.",
+  "A7: 웹 쿠키 세션의 쓰기 요청(POST 계열)에 X-CSRF-Token 이 없거나 그 세션의 login_session.csrf_token 과 다르면 403 csrf_failed. POST /api/auth/login · /api/auth/hospital(로그인 전)과 Bearer 요청은 CSRF 없이 통과한다. 쿠키는 httpOnly · SameSite=Lax · Secure 이고 수명 = expires_at.",
+  "A8: APP_ENV=dev 서버의 병원 후보는 is_demo = true 연결만이다(is_demo=false 연결은 후보에 없음).",
+  "A9: GET /api/auth/me 가 계정 · 병원 · 직원 · 직무 · 권한을 돌려준다. 권한 검사 의존성은 테스트 전용 권한 키로 — 그 직무에 행이 있으면 통과, 행이 없으면 403 forbidden(단위 · API 테스트).",
+  "A10: 직원 sign-in · get-user-tenants · get-user-account 요청에 브라우저 헤더가 실리고 15초 시간 제한이 걸리며, 병원 고르기 전 요청은 연결 설정의 tenant_id · 시스템 계정 자격을 쓰지 않는다(KOS client 테스트)."
+ ],
+ "non_goals": [
+  "화면(로그인 · 병원 고르기 · 로그아웃 디자인 · Flutter 앱 화면) — SPEC-001 은 백엔드 계약만 닫는다",
+  "본사(account_brand_access) · 시스템 관리자(is_system_admin) 로그인 — 1차 밖(SPEC-001 OQ-7 · SPEC-000 login_session 개정과 함께)",
+  "2단계 인증 계정 지원 — 1차는 막고 안내만(mfa_not_supported · SPEC-001 OQ-6)",
+  "permission_key 목록 · 직무별 권한 관리 화면 — SPEC-000 OQ-04-2",
+  "로그인 뒤 병원 바꾸기 — 다시 로그인(새 세션 · SPEC-001 OQ-8)",
+  "로그아웃을 KOS 에 알리기",
+  "이메일 · 비밀번호 형식 · 길이 검사 — KOS 에 맡김",
+  "직원 KOS 토큰으로 KOS 쓰기(external_outbox 발송) — 첫 실제 쓰기 Delivery 몫. 이 Delivery 는 토큰을 저장만 한다(SPEC-001 규칙 4 의 쓰기 쪽)",
+  "시술 현황 동작 · 알림 · 푸시 · 채팅",
+  "prod 배포 · Azure 서버 · DNS — dev 만(DB_SCHEMA=day_dev)"
+ ],
+ "review_surface": [
+  "target SPEC DAY-SPEC-000 · DAY-SPEC-001 은 mediness PR #909(미머지)에만 있고 origin/main 에 없다 — spec-baseline:pending. 머지 뒤 같은 key · version+1 로 재결속한다",
+  "contract v2 → v3: Target Delta · Acceptance 가 바뀌어(W1 ~ W7 · SPEC-001 개정 ③) v2 plan_digest 승인은 stale — 새 plan_digest 로 담당자 재승인이 필요하다(아직 승인 전)",
+  "위험 L3 근거: 인증 · 쿠키 · 오류 계약(CENTURION_DAY AGENTS.md 상 외부 계약) · 직원 KOS 토큰(외부 credential) 저장 · 외부 sign-in 호출",
+  "KOS 내부 API 차단 위험 — 2026-11-03 부터 브라우저 헤더가 없으면 403. KOS 가 더 막으면 로그인이 멈춘다(kos_unavailable). 공개 API 로는 직원 로그인 불가",
+  "웹이 JSON /api/auth/* 를 같이 쓰는 것(SPEC-001 · 사용자 2026-11-05)과 AGENTS.md 저장소 구조(routers/ = HTMX 화면 · routers/api/ = JSON 앱 · 외부)의 관계",
+  "재사용 범위: PR #228 의 KOS client 는 시스템 계정 sign-in(설정값) 용으로 지어졌다 — 직원 자격 sign-in 진입점을 더할 때 시스템 계정 토큰 보관(메모리)과 섞이지 않게 · 직원 경로는 401 재시도 금지(재-sign-in 하지 않고 세션 expires_at 당김)",
+  "login_session.csrf_token 칸은 #225 모델(PR #228)에 없다 — 이 Delivery 가 migration 으로 더한다(SPEC-000 개정 · PR #909)"
+ ],
+ "implementation_starting_points": [
+  "PR #228(kknaksss/day-data-architecture) backend/day/emr/kos/client.py · backend/day/models/staff.py · backend/common/crypto.py — 재사용 대상, volatile",
+  "cc-prototype 로그인(POST /api/auth/login · GET /api/auth/me) — 모양만",
+  "centurion origin/main 세션 · 쿠키 · CSRF 처리 — 모양만"
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/routers/api/(auth — login · hospital · me · logout)",
+   "backend/day/services/(로그인 · 세션 · 권한 검사)",
+   "backend/day/session.py(day_session 쿠키 · Bearer · CSRF)",
+   "backend/day/emr/kos/(client 재사용 + 직원 sign-in · get-user-tenants)",
+   "backend/tests/day/",
+   "backend/migrations/(login_session.csrf_token)"
+  ],
+  "domain_candidates": [
+   "직원 · 계정(account · staff · job_role · job_role_permission · login_session · external_session)"
+  ],
+  "dependencies": [
+   "데이터 모델 Delivery(day/v2-data-model · #225) — login_session.token_hash 포함",
+   "KOS 연동 기반 Delivery(day/v2-kos-sync · #226 · PR #228) — KOS client · 브라우저 헤더 · 암호화 재사용 · staff.is_active 동기화"
+  ],
+  "phases": [
+   "KOS 직원 경로 — sign-in · get-user-tenants · get-user-account(헤더 · 주소 · 시간 제한만 재사용 · 401 재시도 없음 · tenant_id 비의존) + fixture",
+   "login_session.csrf_token migration",
+   "로그인 서비스 — 빈 입력 400 · 후보 거르기(연결 · dev is_demo) · 임시 토큰 5분 · 계정(last_login_at) · 직원 · 직무(태그 · 기본 · KOS 변경 반영) upsert · external_ref",
+   "세션 — 무작위 토큰 · token_hash · csrf_token · external_session(암호화) · 웹 쿠키 + CSRF 검사 · Bearer",
+   "만료 · KOS 401 세션 끝내기 서비스 함수 · 로그아웃 · 권한 검사 의존성",
+   "오류 매트릭스 케이스 테스트(SPEC-001 줄 단위)"
+  ],
+  "verification": [
+   "fixture 기반 서비스 · API 케이스 테스트(SPEC-001 매트릭스 줄 단위 · CSRF · 빈 입력)",
+   "KOS 401 세션 끝내기 서비스 함수 단위 테스트",
+   "권한 검사 의존성 — 테스트 전용 권한 키 단위 · API 테스트",
+   "실제 PostgreSQL 세션 · token_hash 유일 · csrf_token migration 테스트",
+   "dev 데모 지점 계정 로그인 1회 확인"
+  ],
+  "predeploy": [
+   "세션 · 암호화 키(ENCRYPTION_KEY)는 서버 env — 저장소 금지",
+   "쿠키 Secure 는 HTTPS 전제"
+  ],
+  "rollback": [
+   "Code PR revert · dev login_session 무효화(revoked)"
+  ],
+  "open_questions": []
+ },
+ "scope_delta": "contract v3 — Delivery #227 v2 검수 W1 ~ W7 반영 + DAY-SPEC-001 개정 ③(사용자 2026-11-06: CSRF · 빈 입력). ① 재사용 범위를 헤더 · 주소 · 시간 제한으로 줄이고 직원 sign-in · get-user-account · 401 처리(재-sign-in 없이 expires_at 당김)는 새 경로 · 401 재시도 금지 · 병원 고르기 전 sign-in 은 tenant_id 에 기대지 않음(W1) ② A5 후반 = KOS 401 로 세션을 끝내는 서비스 함수 단위 테스트 · 부르는 쪽은 쓰기 Delivery(W2) ③ A9 후반 = 권한 검사 의존성 + 테스트 전용 권한 키(W3) ④ A7 = 403 csrf_failed · 토큰은 세션마다 login_session.csrf_token · 로그인 전 요청 · Bearer 는 CSRF 없음(W4 · SPEC-001 개정) ⑤ 빈 이메일 · 비밀번호 = 400 invalid_request(W5 · SPEC-001 개정) ⑥ A4 를 SPEC-001 매트릭스 줄 단위로 · kos_unavailable 에 응답 없음(W6) ⑦ account.last_login_at · 다시 로그인 때 직무 변경 반영 · job_role 태그 · 기본 직무(W7) ⑧ login_session.csrf_token 칸(SPEC-000 개정) migration 추가."
+}

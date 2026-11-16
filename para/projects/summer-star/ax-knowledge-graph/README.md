@@ -2,7 +2,7 @@
 
 AX 관련 기사, 영상, 링크를 수집하고 개념·사례·도구 사이의 관계를 지식그래프로 전환하는 제품의 SSOT다.
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## 코드 레포
 
@@ -25,13 +25,13 @@ AX 관련 기사, 영상, 링크를 수집하고 개념·사례·도구 사이�
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
-| 60-release | `60-release/README.md` |
-| 70-runbook | `70-runbook/README.md` |
+| 00-baseline | [[para/projects/summer-star/ax-knowledge-graph/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/ax-knowledge-graph/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/ax-knowledge-graph/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/ax-knowledge-graph/30-work/README\|30-work/README.md]] |
+| 40-architecture | [[para/projects/summer-star/ax-knowledge-graph/40-architecture/README\|40-architecture/README.md]] |
+| 60-release | [[para/projects/summer-star/ax-knowledge-graph/60-release/README\|60-release/README.md]] |
+| 70-runbook | [[para/projects/summer-star/ax-knowledge-graph/70-runbook/README\|70-runbook/README.md]] |
 
 ## 최근 로그
 

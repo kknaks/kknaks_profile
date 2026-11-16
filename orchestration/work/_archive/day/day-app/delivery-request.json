@@ -1,0 +1,114 @@
+{
+  "idempotency_key": "day/day-app",
+  "title": "DAY 직원 앱 iOS 1차 — 시술 현황 · 대리 수락 · 통역 · 데모 계정 환경 연결",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "risk_level": "L3",
+  "target_specs": [
+    "DAY-SPEC-003",
+    "DAY-SPEC-001"
+  ],
+  "spec_baseline_revision": "b4cd1a004cd99c8e57761ad8cccd434d5e237b38",
+  "target_delta": [
+    "CENTURION_DAY 에 Flutter 직원 앱 app/ 을 새로 만든다(iOS 먼저 · iPhone · iPad 한 코드) — DAY 브랜드(MediSolve AI · DAY) · DAY 웹 토큰과 같은 색 · 로그인 · 병원 고르기 · 자동 로그인 · 로그아웃(DAY-SPEC-003 U-1 · U-16).",
+    "시술 현황 탭: 현황 · 호출 n · 시술 완료 n 탭 · 인박스 칸 거르기 칩(서버 inbox.section · cards[] 서버 순서) · 카드 목록 · 룸 상세 · 마취 · 의사 호출 · 재호출(웹 E22 와 같은 노출 조건) · 본인 수락 · 간호사 대리 수락 · 시작 · 종료 · 시작 취소 · 완료 취소 · 귀가 대기 · 읽기 전용 차트 — 현재 dev JSON(/api/board · /api/visits · /api/calls · /api/tasks)을 그대로 소비하고 can* · pickable · 권한을 다시 계산하지 않는다(DAY-SPEC-003 U-2 ~ U-11 · DAY-SPEC-002 §3).",
+    "실시간: GET /api/board/stream(Bearer) SSE — 첫 board · version 순서 · session_expired 이벤트 · 끊김 줄 · 백오프 재연결 · 뒤/앞 전환 · 오류 코드 → DAY 문구 토스트 · kos_failed 토스트(DAY-SPEC-003 U-12 · U-13).",
+    "세션 보관: /me 200 + environment 일치 뒤 {api_base_url, environment, token, expires_at, staff_id} 를 Keychain 에 한 번에 저장 · 연결 대상 정규화(https origin · userinfo/path/query/fragment 거절) · 정식 빌드 허용 origin 목록(--dart-define · 값은 배포 설정) · 「환경 칸 필수」 · HTTP · SSE · 기기 등록 · 통역 · 알림 수락이 모두 그 세션 대상으로만(DAY-SPEC-003 §3 「세션 보관」 · 「연결 대상 검증」).",
+    "푸시(앱 쪽): 로그인 확정 뒤 알림 권한 · APNs 토큰을 세션 대상의 PUT /api/devices/{install_id} 로 등록 · 토큰 교체 때 재등록 · 로그아웃 때 DELETE · 알림 탭 → 룸 상세 · environment 불일치 무시 · 네이티브 [수락] = 받는 원장 본인 수락(doctorStaffId = staff_id) — 서버 API 는 제안 계약(D-2)이라 테스트 더블로 검증(DAY-SPEC-003 U-14 · §3 「푸시」).",
+    "통역(앱 쪽): 룸 상세 통역 바 · 드로어 · WS /api/interpret 클라이언트(Bearer · interpret-pwa §5.3 메시지 · 7개 언어 en/ja/zh/zh-Hant/th/vi/yue · 대만 · 홍콩 구분) · 빠른 말하기(기기 TTS · 프로토 문장 en/ja/zh/zh-Hant/th) · 사전 화면 없음 — 사전은 서버 context(D-3)라 가짜 WS 로 검증. 사용 권한 = 시술 현황 보기 권한(board view · is_admin)(DAY-SPEC-003 U-15 · §3 「통역」).",
+    "백엔드 D-1(사용자 승인 예외): 로그인 환경 연결 — prod 서버 POST /api/auth/login(client=app)이 데모 계정 목록(env)이면 고정 dev 주소로 넘겨 인증(전체 60초 · 리다이렉트 안 따름 · 재시도 없음) · 응답 signed_in/choose_hospital/hospital 에 environment · api_base_url · /me 에 environment · dev 장애 = 503 environment_unavailable · prod 우회 · prod 행 생성 없음 · 웹 로그인 · client=web 은 그대로(DAY-SPEC-001 §3 「앱 환경 연결」 · 케이스 매트릭스 · §4 규칙 14).",
+    "CENTURION_DAY AGENTS.md 「앱 (Flutter)」의 「서버 주소 · 환경값은 --dart-define」 문장을 「고정 로그인 진입점 · 허용 origin 목록 · 환경 칸 필수만 빌드 설정, 세션 연결 대상은 로그인 응답 api_base_url」 뜻으로 맞춘다(DAY-SPEC-003 §4 Frontend Implementation)."
+  ],
+  "acceptance": [
+    "완료 정의: 이 Delivery 의 구현 완료 = 머지 전 PR head 에서 앱 단위 · 위젯 · 계약 더블 테스트 · D-1 로컬 단위 · infra 테스트 · flutter analyze · unsigned iOS build · diff · 비밀 검사 통과. 기존 dev 서버 · 로컬 day-local · 실기기 연결과 prod 배포 뒤 확인은 통합 검증으로 따로 기록하며(하지 않은 것은 pending) 구현 완료의 선행 조건이 아니다. D-2 · D-3 실물 분리는 A9 · A10 그대로.",
+    "A1: 보기만 직무(코디 · 상담)는 조작 버튼 · [수락] 없음 · 판 · 호출 · 시술 완료는 보임 · 권한 행 없는 직무는 권한 없음 안내 — 완료 = 위젯 · 계약 더블 테스트. 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = 기존 dev 서버 · 로컬 day-local 에 개발 빌드로 붙인 확인 (SPEC-003 A-1).",
+    "A2: 간호사 [수락] → 의사를 골라 대리 수락(doctorStaffId = 고른 의사) · 원장 본인은 기본 선택 = 본인 · [재호출]은 need.why = call · called 줄 · board edit 일 때만 · 서버 판정이 정본 — 완료 = 위젯 · 계약 더블 테스트. 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = 기존 dev 서버 · day-local 개발 빌드 확인 (A-2 · A-22).",
+    "A3: 로그인 환경 연결 — 일반 계정 = prod 세션 · 데모 계정 = environment dev 이고 이후 HTTP · SSE · 기기 등록 · 통역이 전부 dev · dev 장애 = environment_unavailable · prod 우회 없음 · prod 행 생성 없음 · 넘김 60초 · 앱 대기 75초 · 자동 재전송 없음 — 완료 = 앱 계약 더블 테스트 + D-1 서버 단위 · infra pytest(넘김 대상 하나 · 리다이렉트 금지 · 시간 초과 · dev 4xx 그대로 · prod 행 미생성을 테스트 DB 로). 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = prod 배포 뒤 데모 넘김 실물 · prod 행 0 확인(사용자 prod DB 읽기 조회) — 이 Delivery 범위 밖 (A-3 · A-4 · A-5 · A-23).",
+    "A4: 병원 여럿 → 유지 중인 대상으로 hospital 호출 · hospital 응답은 api_base_url(정규화 origin) + environment 둘 다 일치 · /me 는 environment 만 일치 · 불일치 = 로그인 실패 · 5분 지나면 session_expired — 완료 = 앱 계약 더블 테스트(+ D-1 서버 칸은 pytest). 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = D-1 이 배포된 서버에서 병원 둘 계정으로 확인 (A-6 · A-20).",
+    "A5: 세션 묶음 — /me 성공 · 환경 일치 전 Keychain 비어 있음 · 저장 묶음엔 늘 staff_id · 앱 재실행 = 저장 대상으로 /me 복원(다른 환경으로 안 바뀜) · 만료 · 401 · SSE session_expired = 묶음 삭제 · 다시 로그인은 진입점부터 — 완료 = 단위 · 위젯 더블 테스트(저장소 더블). 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = 실기기 Keychain 확인(사용자 서명 · 기기 필요) (A-7 · A-8 · A-21).",
+    "A6: 정식 빌드 — 환경 칸 없는 응답 · 허용 목록 밖 · http · userinfo · 443 밖 port · path · query · fragment = 로그인 실패 · 그 주소로 요청 0 · 끝 / 차이는 같은 대상 · 개발 빌드만 요청 주소 대체 — 더블 (A-18 · A-19).",
+    "A7: SSE · 오프라인 · 이중 탭 · KOS 반영 — 첫 board · 낮은 version 버림 · 서버 1시간 닫음 뒤 재연결 · 오프라인 노란 줄 · 마지막 판 · 이중 탭 요청 하나 · 409 토스트 · 반영 중 안 그림 · kos_failed 토스트 한 번 — 완료 = SSE 파서 · 재연결 · 위젯 더블 테스트. 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = 기존 dev 서버 · day-local 연결 확인 (A-9 · A-10 · A-11 · A-12).",
+    "A8: 폰 · 아이패드 배치 — 짧은 변 600 경계 · 폰 한 열 카드 · 바텀 시트 · 룸 상세 한 열 / 아이패드 격자 · 팝오버 · 두 열 — 완료 = 화면 크기별 위젯 테스트. 통합 검증(Delivery 완료 조건 아님 · 별도 기록 · 하지 않았으면 pending) = 시뮬레이터 화면 검수(사용자, 또는 명시적으로 허용받은 앱 워커의 스크린샷 산출물 — read-only 리뷰어가 기기를 조작하지 않음) · 실기기 iPhone · iPad(사용자) (A-13).",
+    "A9: 통역 — start.lang 7개 · zh-Hant · yue 구분 · 사전 화면 없음 · 보기 권한(board view · is_admin)이면 사용(코디 · 상담 포함) · 보기 권한 없으면 WS 거절 — 앱은 가짜 WS 더블. 서버 context(시드 2026-10-27.6) 실물은 D-3 서버가 생긴 뒤이며 이 Delivery 의 완료 조건이 아니다 (A-14 · A-14b).",
+    "A10: 푸시 — 기기 등록은 세션 api_base_url 로만 · 데모 토큰은 dev 에만 · 로그아웃 때 해제 · 다른 environment 알림은 동작 안 함 · 알림 [수락] = 원장 본인(doctorStaffId = staff_id) · 기기 등록 400 · 401 은 화면 오류 없이 푸시만 없음 · 받는 사람 = 호출 대상 그대로(서버 몫) — 앱은 더블. 실물(TestFlight · APNs)은 D-2 서버 · 사용자 설정 뒤이며 이 Delivery 의 완료 조건이 아니다 (A-15 · A-16 · A-16b · A-24).",
+    "A11: 앱 파일에 키 · 서명 값 · KOS 정보 · 환경 고르기 · 서버 주소 입력 칸 없음 · 소스에 실주소 · 비밀 하드코딩 없음 · Info.plist 권한은 알림 · 마이크만 — 빌드 산출물 · 소스 검사 (A-17).",
+    "A12: 검증 명령(머지 전 PR head) — app/: flutter analyze 0 issue · flutter test 통과 · flutter build ios --no-codesign(unsigned) 성공 / backend: uv run pytest -q -m \"not infra\" backend/tests/day/auth · scripts/test.sh -q(infra — 로컬 compose PostgreSQL · Redis 필요 · 사용자 환경 · 포트를 조작하지 않으며 실행하지 못하면 pending 으로 기록) · uv run ruff check backend · backend/tests/architecture 통과 — 서명 · TestFlight · 실제 APNs/Soniox 키 · 실자격증명 없이 수행.",
+    "A13: 변경 경로 검사 — 코드 PR 하나(→ dev)의 변경이 app/ · backend D-1 로그인 관련 파일과 그 테스트 · deploy/config 의 env 이름 placeholder(값 없음) · AGENTS.md 「앱」 문장에만 있고, 사용자가 말하기 전 머지하지 않음."
+  ],
+  "non_goals": [
+    "D-2 기기 등록 · APNs 발송 서버 전체 구현(device 칸 개정 포함) — 앱 소비 계약 · 더블만. 서버 담당 미배정.",
+    "D-3 통역 WS · 사전 시드 가져오기 · Soniox 중계 서버 전체 구현 — 앱 클라이언트 · 가짜 WS 만. 서버 담당 미배정.",
+    "Apple 등록 · 서명 · TestFlight · APNs 키 · Soniox 키 · 서버 env 값(데모 이메일 · 주소 · 허용 번들) 설정 — 사용자 몫 · 코드 착수 조건 아님(실물 검증 조건).",
+    "방 이동 · 차트 작성 · 시작 취소 KOS 쓰기 · 테스트 시드 스크립트 — day-procedure-board-2 의 SPEC · 머지 이후 소비. 이 Delivery 에서 API 를 만들지 않는다.",
+    "D-1 로그인 환경 연결 · 관련 테스트 · AGENTS.md 「앱」 문장 외 backend 변경, SPEC-002 board API · 스냅샷 · SSE 변경.",
+    "코디 → 상담사 호출 · 관리자 푸시 추가 · 호출자 자동 제외 · 새 통역 권한 키 · 카드 끌어 놓기(OQ-A1) · 국적 → 언어 자동 선택(OQ-A9) · vi/yue 빠른 말하기 문장(OQ-A11) · 문구 OQ 자리의 새 문구 · 외국어 새 번역.",
+    "예약 · 내원 · 설정 탭 · 알림 목록 · 사전 열람/편집 화면 · Android · 앱 안 환경 고르기 · 원격 설정(HTTPS env/JSON) · 심사 뒤 재빌드 방식.",
+    "prod 배포 · dev/prod 머지 · Azure · DB 조작 · 원본 프로토 수정."
+  ],
+  "review_surface": [
+    "Stable SPEC 부재: DAY-SPEC-003 은 baseline b4cd1a00 의 origin/main 에 없고 로컬 리뷰 통과 초안(day-app-spec 워크트리)이다. DAY-SPEC-001 의 「앱 환경 연결」 절도 main 에 없다 — spec-baseline:pending 으로 시작하고 SPEC PR 머지 뒤 새 baseline 으로 재결속한다.",
+    "공개 계약 변경: /api/auth/login · /hospital · /me 응답에 environment · api_base_url 추가 · 새 오류 environment_unavailable — 기존 웹 · 앱 로그인을 깨지 않는지.",
+    "환경 간 인증 전달: prod 가 데모 계정의 이메일 · 비밀번호를 고정 dev origin 으로 넘김 — 넘김 대상 하나 · 리다이렉트 금지 · 로그 미기록 · prod 우회 금지 · 토큰 혼용 금지가 지켜지는지.",
+    "완료 정의: 구현 완료(PR head 의 더블 · 로컬 테스트 · analyze · unsigned build · diff · 비밀 검사)와 통합 검증(기존 dev 서버 · day-local · 실기기 · prod 배포 뒤 데모 넘김 · prod 행 0 · D-2 · D-3 실물 — 미실행은 pending)을 섞지 않는지.",
+    "옆 세션 겹침: day-procedure-board-2 의 SPEC-001 · mobile-deployment 변경(PR #920) 및 is_demo 제거와 머지 순서 · 충돌."
+  ],
+  "implementation_constraints": [
+    "앱은 서버 계산 값(can* · pickable · need · inbox.section · doctors[].status · 순서)만 쓰고 다시 계산하지 않는다. id 는 DAY uuid.",
+    "오류 본문은 dev 구현 {detail, code, field} — 문구는 code 로 SPEC-001 · SPEC-002 · DAY 웹 템플릿 글자에서 고른다. 문구 창작 · 번역 금지.",
+    "세션 대상 외 주소로 토큰을 보내지 않고, 대상 서버 장애에 다른 환경 · 진입점으로 우회하지 않는다.",
+    "실주소 · 계정 · 키는 소스에 넣지 않는다(빌드 설정 · env · Key Vault). 실자격증명을 읽거나 출력하지 않는다.",
+    "코드 PR 하나 → dev · 머지는 사용자가 말할 때."
+  ],
+  "implementation_starting_points": [
+    "CENTURION_DAY origin/dev 91728737 — app/ 없음(새로 만듦) · backend/day/routers/api/auth.py · schemas/auth.py · services/auth.py · session.py · common/config.py(DAY_ADMIN_EMAILS 읽기 방식) · tests/day/auth/",
+    "board JSON · SSE = backend/day/routers/api/board.py · services/board_rules.py snapshot() · routers/board.py board_stream_events",
+    "프로토 화면 배치 참고(읽기 전용) = cc-prototype procedure/app/lib(main dbf0b53)"
+  ],
+  "execution": {
+    "code_surface": [
+      "app/ (새 Flutter 프로젝트 — iOS Runner · lib · test)",
+      "backend/day/routers/api/auth.py · backend/day/schemas/auth.py · backend/day/services/auth.py(데모 넘김) · backend/common/config.py(env 이름 셋)",
+      "backend/tests/day/auth/ (D-1 단위 · API 테스트)",
+      "deploy/config/*.env · deploy/local.env.example (env 이름만 · 값 없음)",
+      "AGENTS.md 「앱 (Flutter)」 문장"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "SPEC baseline: DAY-SPEC-003 · DAY-SPEC-001 개정이 main 에 머지돼야 spec-baseline:ready(코디 SPEC PR).",
+      "D-1 실물: prod 서버 배포(아직 없음) + prod env 데모 계정 · dev 주소 값(사용자).",
+      "D-2 기기 등록 · APNs 발송 서버: 미구현 · 담당 미배정 — 앱 푸시 실물 검증 조건.",
+      "D-3 통역 WS 서버: 미구현 · 담당 미배정 · Soniox 키(사용자) — 통역 실물 검증 조건.",
+      "Apple 등록 · 서명 · TestFlight · APNs 키(사용자) — 실기기 · 푸시 실물 조건.",
+      "day-procedure-board-2(방 이동 · 차트 · 시작 취소) — 이 Delivery 범위 밖 · 머지 후 소비."
+    ],
+    "phases": [
+      "1. D-1 백엔드: 로그인 응답 환경 칸 · 데모 넘김 · environment_unavailable · /me environment + 테스트(앱이 기댈 계약을 먼저 고정)",
+      "2. 앱 골격: Flutter app/ · flavor/빌드 설정(진입점 · 허용 origin · 환경 칸 필수) · DAY 테마 토큰 · API 클라이언트 · 연결 대상 정규화 · 세션 묶음 Keychain",
+      "3. 로그인 · 병원 고르기 · 자동 로그인 · 로그아웃 · 권한 없음 화면",
+      "4. 시술 현황: SSE · 탭 · 칩 · 카드 · 룸 상세 · 원장 고르기(폰 시트 / 아이패드 팝오버) · 조작 · 수락(본인 · 대리) · 재호출 · 마취 · 귀가 대기 · 차트 · 토스트",
+      "5. 푸시 앱 쪽(권한 · 등록 · 해제 · 탭 이동 · 네이티브 수락) — 서버 더블",
+      "6. 통역 앱 쪽(통역 바 · 드로어 · WS · 오디오 · 빠른 말하기) — 가짜 WS",
+      "7. 검증 · AGENTS.md 정합 · 코드 PR(→ dev)"
+    ],
+    "verification": [
+      "cd app && flutter analyze && flutter test (위젯 · 단위 — 정규화 · 세션 묶음 · 권한 버튼 · 재호출 조건 · 칩 · 순서 · SSE 파서 · 화면 크기 · 푸시 · 통역 더블)",
+      "cd app && flutter build ios --no-codesign (unsigned — 서명 없이)",
+      "uv run pytest -q -m \"not infra\" backend/tests/day/auth (D-1 단위) · scripts/test.sh -q (infra — 로컬 compose PostgreSQL · Redis 필요 · 사용자 환경 · 포트 조작 금지 · 못 돌리면 pending) · uv run ruff check backend · backend/tests/architecture",
+      "allowed paths 검사(git diff --name-only origin/dev...HEAD) · 비밀 미포함 검사(app/ · deploy/config · deploy/local.env.example 에 키 · 실주소 · 계정 값 없음)",
+      "통합 검증(완료 조건 아님 · 별도 기록 · 미실행 pending): 기존 dev 서버 · day-local 개발 빌드 연결 · 폰 · 아이패드 시뮬레이터 화면 검수(사용자 또는 명시 허용된 앱 워커 스크린샷) · 실기기 · prod 배포 뒤 데모 넘김"
+    ],
+    "predeploy": [
+      "머지 전(PR head): 웹 /login · client=web 로그인과 기존 앱 로그인 응답이 깨지지 않음을 D-1 pytest 로 확인 — dev 서버 확인은 머지 · 배포 뒤 통합 검증(pending 가능)",
+      "prod 배포는 이 Delivery 밖 — prod 반영 때 데모 이메일 · dev 주소 env(사용자) · dev DAY_PUBLIC_API_BASE = prod DAY_DEMO_API_BASE 같은 origin 확인"
+    ],
+    "rollback": [
+      "코드 revert — app/ 는 새 디렉터리라 서버 영향 없음 · 웹 /login · client=web 은 원래대로. 단 revert 로 로그인 응답의 환경 칸이 없어지면 새 정식 앱은 「환경 칸 필수」로 로그인을 거절한다(앱 쪽 fail-closed). 이것은 앱 동작일 뿐이며 서버가 데모 계정의 prod 행을 만들지 않는다는 증거가 아니다.",
+      "데모 넘김을 멈출 때 — DAY_DEMO_LOGIN_EMAILS(데모 계정 목록)는 그대로 두고 DAY_DEMO_API_BASE 를 비워 데모 계정 로그인을 503 environment_unavailable 로 막는다(SPEC-001 「데모 연결 대상」 · 케이스 매트릭스의 fail-closed 경로). 데모 계정 목록을 비우는 것은 데모 계정을 prod 일반 인증으로 보내므로 롤백 수단으로 쓰지 않는다. env 변경 · 배포 실행은 이 Delivery 범위 밖(사용자).",
+      "migration 없음"
+    ],
+    "open_questions": [
+      "SPEC-003 남은 OQ-A1 · A9 · A11 · 문구 OQ 는 SPEC 의 보류 · 원천 그대로 구현(새 질문 아님)."
+    ]
+  }
+}

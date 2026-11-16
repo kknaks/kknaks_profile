@@ -31,12 +31,23 @@ status: active
 | 10-decision | [결정](10-decision/README.md) |
 | 20-spec | [스펙](20-spec/README.md) |
 | 30-work | [구현 계획](30-work/README.md) |
+| 배포 | [배포 · TestFlight 업로드](deploy.md) — 경로 · 웹 배포 순서 · 앱 업로드 명령 |
 
 ## 최근 로그
 
+- 2026-11-12: 협업자(링키 · 차티) 연동 — back Swagger(`/api/docs`) · 외부 연동 API `/api/ext` 6개(메뉴 · 이름+이메일 조회 · 예약 · 예약 가능 시간대 · 과거 시술 · 예약 내역) · 연동처별 키(DEC-010 · DEC-011 · SPEC-008 · WORK-012 · WORK-013 · 코드 #21 ~ #23 · infra #48 ~ #50 · [회고](log/2026-11-12-api-swagger-docs.md))
+- 2026-11-04: KOS 내부 API 403 핫픽스 — 11-03 부터 비브라우저 User-Agent 차단 → 내부 요청에 UA · Origin · `kos-client-uri`(코드 #20 · infra #47 · [회고](log/2026-11-06-kos-client-headers.md))
+- 2026-10-30: 직원 앱 내부 채팅 마감 — 1:1 · 그룹 · 사진 · 동영상 · 수정 · 앱 안 전달 · 모아보기 · 초대 · 들어온 뒤 대화만(DEC-009 · SPEC-007 · WORK-011 · 코드 #17 ~ #19 · 빌드 12 ~ 14 · [회고](log/2026-10-30-internal-chat.md))
+- 2026-10-28: 고객 문진 웹 — 문진을 고객 자기 폰의 ccc 웹 페이지로(DEC-008 · SPEC-006 · WORK-010) · 앱은 QR 만 보여 줌
 - 2026-10-12: DEC-001 개정(D-06) — sts 는 별도 기능이 아니라 cc 직원용 화면 안의 통역 기능
 - 2026-10-10: 협찬 아이디어 노트 BASE-005 — Casty 로 찾고 Linky 에서 대화 생성
 - 2026-10-10: 예약 아이디어 노트 BASE-004 — Linky → cc → KOS. 카톡·스크린샷 구간을 cc 로
 - 2026-10-10: cc 아이디어 노트 BASE-003 — 병원 현황판(도면 위 실시간 위치). sts 는 cc 로 통합될 듯
 - 2026-10-10: sts 아이디어 노트 BASE-002 — Soniox STT(번역 내장)+TTS 로 된다(문서 조사). 결정 전
 - 2026-10-10: 제품 착수. 레포 구조·스택·기능 독립을 DEC-001(proposed)로. 배포 대상은 미정. [전체 이력](log.md)
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/cc-prototype/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

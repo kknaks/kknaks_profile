@@ -81,3 +81,9 @@
 - **기존 부채**: confirm 낡음 422 뒤 재조회 없음(저장 경로만 고침) · 낡음 오류 영문 문장 그대로 · `submitted_at`·`valid_until` UTC 자름 · 「AX 제안 N」 칩이 채팅에서 초안을 만든 직후 갱신되지 않는 것(화면 재진입 전, 확인 필요)
 - **기준선 날짜 의존 테스트 5건**(CreateWork 시작일 4 · CreateWorkLayout 1) — 1차 회고에서 넘어온 채 그대로
 - 1차 회고 §7 에서 넘어온 것: 서버 성능 · 「AX 제안」 칩 대상 확대 · DS-gaps 올릴지 · 남은 OQ(SPEC-001 OQ-K · DEC-007)
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-polish2/README|strong-hajin-polish2]]
+<!-- work-links:end -->

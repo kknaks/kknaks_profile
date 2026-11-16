@@ -1,6 +1,6 @@
 # Deploy Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 제품의 배포 환경과 타겟을 관리한다. 실행 절차(명령·단계)는 여기 두지 않는다.
 
@@ -28,8 +28,8 @@ staging 환경은 없다. 프론트·백이 같은 site(`kknaks.cloud`)라 세�
 
 | Area | Index |
 |---|---|
-| Backend | `back/README.md` |
-| Frontend | `front/README.md` |
+| Backend | [[para/projects/summer-star/kknaks-dev/40-architecture/deploy/back/README\|back/README.md]] |
+| Frontend | [[para/projects/summer-star/kknaks-dev/40-architecture/deploy/front/README\|front/README.md]] |
 
 ## Release Flow
 

@@ -1,6 +1,6 @@
 # Backend Deploy — Mac 헬퍼
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > Mac 헬퍼(DeskDeckHelper)의 배포 *구조/환경*. 실행 *절차*는 [70-runbook/runbook-001](../../../70-runbook/runbook-001-mac-dmg-release.md).
 

@@ -1,6 +1,7 @@
 {
   "_doc": "kknaks-dev(포트폴리오 kknaks_profile 레포) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지.",
   "project": "kknaks-dev",
+  "document_root": "para/projects/summer-star/kknaks-dev",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -68,7 +69,7 @@
     "backend",
     "frontend"
   ],
-  "summary_dest": "/Users/kknaks/orca/workspaces/kknaks_profile/agent/para/projects/summer-star/kknaks-dev/log",
+  "summary_dest": "para/projects/summer-star/kknaks-dev/log",
   "local_dev": {
     "_doc": "로컬 기동 참고. compose 는 app/back/ 소유 (docker-compose.local.yml).",
     "backend": "cd app/back && docker compose -f docker-compose.local.yml up -d (codex CLI 번들은 호스트 ~/.cache/axkg-live/.claude-tools ro 마운트)",

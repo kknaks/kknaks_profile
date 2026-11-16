@@ -1,6 +1,6 @@
 # Frontend Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > Next.js 정적 번들의 라우트·디렉토리·데이터·스타일 규약. **여기 적힌 것은 「이렇게 한다」다** —
 > 코드 워커는 이 문서만 읽고도 같은 방식으로 화면을 만들 수 있어야 하고, 리뷰어는 이걸 기준으로 판정한다.
@@ -8,14 +8,14 @@
 >
 > 근거 표기: `DEC-00x §y` = `10-decision/`, `F-xx·P-xx·C-xx·S-xx·Q-xx` = `orchestration/work/docs-v1/docs-v1-design-report.md`,
 > `§A/§B/§C` = `orchestration/work/docs-v1/design-requests.md`, 파일명 = `00-design/`,
-> **`MF-n` = `reference/2026-09-06-task-management-app/Meeting flow.md` §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
+> **`MF-n` = [[reference/2026-09-06-task-management-app/Meeting flow|reference/2026-09-06-task-management-app/Meeting flow.md]] §0(2026-09-07 결정 34건 — `MF-1 ~ MF-70`).**
 >
 > **2026-09-07 개정(MF).** 상세 화면 헤더 규약 신설(§6-3 — breadcrumb 링크 + 「←」 · 배지 줄 → 제목 순서, MF-7 · 8) ·
 > 확인 모달 두 크기(§6 — 420 · 600, MF-63) · 회의 스트림의 AI 트랙 전량 교체(§8, MF-53) · 밀도 prop 규칙(§2, MF-6).
 >
 > **2026-09-07 저녁 정정 — MF-67.** §2 규칙 8 을 다시 썼다. **「업무 드로어에 슬롯을 얹어 재사용」은 폐기**다 — 회의록은 **자기 payload 드로어 둘**을 갖고 **업무 탭 드로어를 고치지 않는다.**
 
-관련 문서 — `../system/README.md`(구성·흐름) · `../backend/README.md`(**§10 API 표면이 이 문서의 입력**) · `../database/README.md`.
+관련 문서 — [[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]](구성·흐름) · [[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]](**§10 API 표면이 이 문서의 입력**) · [[para/projects/summer-star/task-management/40-architecture/database/README|../database/README.md]].
 
 ## 0. 이 문서를 지배하는 다섯 제약
 
@@ -221,7 +221,7 @@ src/
 | 회의록 드로어 「저장」(`payload`) | `['meetings', 'detail', id]` 만 — 업무는 안 바뀐다 |
 | 회의록 드로어 「넣기」(업무 생성 · 갱신) | `['meetings', 'detail', id]` + `['tasks', …]` 전부 + 기한이 바뀌었으면 `['schedules']` |
 
-**`schedules` 는 절대 직접 쓰지 않는다** — 읽기 전용 쿼리다(`../backend/README.md` §10). 캘린더에서 옮겨도 mutation 은 `tasks`/`meetings` 로 나가고 `['schedules']` 는 무효화로만 갱신된다(DEC-005 §3).
+**`schedules` 는 절대 직접 쓰지 않는다** — 읽기 전용 쿼리다([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §10). 캘린더에서 옮겨도 mutation 은 `tasks`/`meetings` 로 나가고 `['schedules']` 는 무효화로만 갱신된다(DEC-005 §3).
 
 ### 3-4. 낙관적 갱신 — 쓰는 자리를 못박는다
 
@@ -240,7 +240,7 @@ src/
 
 ### 3-5. 에러 표면화 — `code` 로 갈린다
 
-`lib/api/client.ts` 가 응답의 `{ detail, code }`(`../backend/README.md` §8-2)를 `ApiError` 로 바꾼다. **화면은 `code` 로 분기하고 `detail` 문구로 분기하지 않는다.**
+`lib/api/client.ts` 가 응답의 `{ detail, code }`([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §8-2)를 `ApiError` 로 바꾼다. **화면은 `code` 로 분기하고 `detail` 문구로 분기하지 않는다.**
 
 | code | 화면 처리 |
 |---|---|
@@ -258,7 +258,7 @@ src/
 
 ### 3-6. 응답 형태 소비
 
-- 목록은 `{ items: [...] }` 로 온다(`../backend/README.md` §10). **`items` 를 꺼내는 것은 `features/*/api.ts` 까지**이고, 훅 위로는 배열이 올라간다.
+- 목록은 `{ items: [...] }` 로 온다([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §10). **`items` 를 꺼내는 것은 `features/*/api.ts` 까지**이고, 훅 위로는 배열이 올라간다.
 - 키는 camelCase 라 그대로 쓴다. **`types/api.ts` 가 백엔드 schema 의 미러**이고, 여기 없는 필드를 컴포넌트가 지어내지 않는다.
 - **id 는 number** 다(PK 가 bigint). 02-data-model 의 `id: string` 표기는 디자인 표기이고 계약이 아니다.
 - **시각은 UTC ISO 문자열**로 오고 **KST 변환은 `lib/datetime.ts` 하나**가 한다(G-2). 컴포넌트가 직접 `new Date()` 로 포맷하지 않는다.
@@ -301,11 +301,11 @@ src/
 
 1. `Authorization: Bearer <access>` 부착. access 가 없으면 먼저 refresh 를 시도한다.
 2. `401 token_expired` → **`POST /api/auth/refresh` 1회** → 새 토큰 저장 → **원 요청 1회 재시도**.
-3. 재시도도 401 이거나 refresh 자체가 실패하면 → 토큰 전부 `clear()` → **`/login` 으로**. **무한 갱신 루프를 만들지 않는다**(`../system/README.md` §흐름 ①).
+3. 재시도도 401 이거나 refresh 자체가 실패하면 → 토큰 전부 `clear()` → **`/login` 으로**. **무한 갱신 루프를 만들지 않는다**([[para/projects/summer-star/task-management/40-architecture/system/README|../system/README.md]] §흐름 ①).
 4. 동시에 여러 요청이 401 을 받으면 **refresh 는 한 번만** 나간다(진행 중인 refresh Promise 를 공유). 나머지는 그 결과를 기다린다.
 5. 성공 응답은 그대로, 실패 응답은 `ApiError{status, code, detail}` 로 던진다.
 
-**WS 는 헤더를 못 붙인다** — 연결 직후 **첫 텍스트 프레임으로 access 토큰**을 보낸다(`../backend/README.md` §5-1). 그 규약도 `lib/api` 안에 둔다.
+**WS 는 헤더를 못 붙인다** — 연결 직후 **첫 텍스트 프레임으로 access 토큰**을 보낸다([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §5-1). 그 규약도 `lib/api` 안에 둔다.
 
 ### 4-3. 세션 가드
 
@@ -447,7 +447,7 @@ openConfirm({ title, summary, warning?, size?: "heavy"|"light", onConfirm })   /
 | **AI 안건** | AI 안건은 **AI 탭에만** 그린다. 회의 중 사람 회의록 탭에 섞지 않는다(2026-09-05) |
 | **줄의 시각** | **줄에 시각을 붙이지 않는다**(MF-9). 시각은 안건(첫 줄 시각)과 근거 칩 구간에만. 탭 안내 바의 「배치 n회 반영 · HH:MM」 · 「자동 저장 · HH:MM」 · 프롬프트 바 현재 시각은 그대로 |
 | **끊김** | **자동 재연결하지 않는다.** 녹음 중지 상태로 전환하고 배너로 드러낸다 — 조용히 되살리면 오디오가 빈 구간이 가려진다(DEC-003 §7) |
-| 종료 | `POST /api/meetings/{id}/end` → `202 {jobId}` → **WS 닫고 job 폴링**(2초). `progress.phase` 가 `transcription`(재전사) → `final`(최종 회의록) 순으로 바뀐다. `succeeded`/`failed` 에서 멈추고, 완료 후 회의 상세를 다시 읽는다(`../backend/README.md` §6) |
+| 종료 | `POST /api/meetings/{id}/end` → `202 {jobId}` → **WS 닫고 job 폴링**(2초). `progress.phase` 가 `transcription`(재전사) → `final`(최종 회의록) 순으로 바뀐다. `succeeded`/`failed` 에서 멈추고, 완료 후 회의 상세를 다시 읽는다([[para/projects/summer-star/task-management/40-architecture/backend/README\|../backend/README.md]] §6) |
 | 실패 표시 | `status='ended'` + `integrationState='failed'` 이면 **「회의록 생성 실패 · 다시 시도」 배너**. 「다시 시도」는 **이 조합에서만** 보이고 `POST …/finalize` 로 ①부터 다시 돈다(DEC-003 §4 · MF-58) |
 
 **AI 요약 탭은 「안건 > 줄」 트리**다(§A-8) — 회의록 탭과 같은 구조에 근거 칩이 붙는다. 근거 칩을 누르면 스크립트 패널이 해당 구간으로 스크롤·하이라이트한다(C-37). **트리 렌더 규격은 §B-3 디자인 대기**이고, 데이터 구조(트랙별 안건·줄·`evidence`)는 이미 닫혀 있다.
@@ -464,7 +464,7 @@ openConfirm({ title, summary, warning?, size?: "heavy"|"light", onConfirm })   /
 
 **적용 대상** — 소셜 로그인 버튼 · 목소리 패널과 드로어 · 연동 관리 화면 · 계정 삭제 · 「다른 기기 모두 로그아웃」(DEC-001) · AI 색인 상태 · 문서 버전 카드 · 문서 검색 · 휴지통(DEC-004) · **메시지함 전체**(DEC-006 — 사이드바 메뉴는 정상 노출·정상 진입하고, 들어가면 필터 카드·목록·빈 상태가 비활성으로 보인다).
 
-**서버에는 v2 엔드포인트가 없다**(`../backend/README.md` §8-2). 게이트가 새서 실제 호출이 나가면 `501 v2_not_available` 로 돌아온다 — 정상 경로가 아니라 안전망이다.
+**서버에는 v2 엔드포인트가 없다**([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §8-2). 게이트가 새서 실제 호출이 나가면 `501 v2_not_available` 로 돌아온다 — 정상 경로가 아니라 안전망이다.
 
 ## 10. 사이드바 8메뉴 vs v1 6영역
 
@@ -504,7 +504,7 @@ openConfirm({ title, summary, warning?, size?: "heavy"|"light", onConfirm })   /
 **하지 않는 것 — 명시적으로 안 한다.**
 
 - **픽셀 스냅샷 테스트를 만들지 않는다.** 유동 레이아웃이라 폭마다 값이 달라 의미가 없고, 1920 좌표를 다시 못 박는 결과가 된다(§C Q-34).
-- **E2E(Playwright 등)를 v1 에 넣지 않는다.** 회의 STT·codex 가 붙는 흐름이라 비용이 크다. 그 구간은 백엔드 테스트가 덮는다(`../backend/README.md` §12).
+- **E2E(Playwright 등)를 v1 에 넣지 않는다.** 회의 STT·codex 가 붙는 흐름이라 비용이 크다. 그 구간은 백엔드 테스트가 덮는다([[para/projects/summer-star/task-management/40-architecture/backend/README|../backend/README.md]] §12).
 - **접근성 전수 검사를 하지 않는다.** 단일 사용자 데스크톱 도구다. 키보드로 닫기(`Esc`)·포커스 트랩 같은 **오버레이 기본기만** 지킨다.
 
 ### 금지 목록 (리뷰 반려 사유)

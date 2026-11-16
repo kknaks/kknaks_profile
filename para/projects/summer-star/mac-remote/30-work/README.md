@@ -1,6 +1,6 @@
 # Work Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > spec을 실제 구현 작업으로 내린 work 목록과 spec coverage. Mac 헬퍼(M1~M7) → iOS 앱(I1~I6) → 통합(T1~T3) + Hold 모드.
 

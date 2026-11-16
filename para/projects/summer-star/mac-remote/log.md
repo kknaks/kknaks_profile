@@ -4,6 +4,7 @@
 
 | Date | Type | IDs | Summary | Links |
 |---|---|---|---|---|
+| 2026-11-06 | docs | — | 문서 목차 링크 정리와 프로젝트·작업 기록 연결 | [[para/projects/summer-star/mac-remote/README\|목록]] |
 | 2026-06-01 | baseline-add | MRT-BL-001 | iPhone Mac 리모컨 아이디어 baseline 생성 (Decision.md Project Overview 기반) | [baseline-001](00-baseline/baseline-001-iphone-mac-remote-idea.md) |
 | 2026-06-01 | decision-add | MRT-DEC-001~005 | ADR-001~005를 decision으로 이관 (WebSocket, CGWindowList, 앱아이콘, Mac-first, Swifter) | [index](10-decision/README.md) |
 | 2026-06-01 | spec-add | MRT-SPEC-001~007 | Spec-01~07을 spec으로 이관, 모두 implemented | [index](20-spec/README.md) |

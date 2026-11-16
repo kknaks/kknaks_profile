@@ -11,12 +11,27 @@ aliases:
   - 이미지 태그 = 커밋 sha
   - 전체 sha 태그
   - ArgoCD 수동 sync
+  - 폴더별 이미지 빌드
+  - imageTag 오버라이드
+  - 경로 필터
+  - 바뀐 쪽 이미지만
+  - back.imageTag
+  - 같은 digest 승격
+  - prod fast-forward
+  - build once
+  - concurrency group
+  - run-command
+  - ACR
 up:
+  - 2026-11-09-day-data-architecture
   - 2025-01-13-Day10
   - 2025-01-17-Day14
   - 2026-08-31-task-redesign
   - 2026-10-14-sts-prototype
   - 2026-10-22-myeongdong-poc-v2
+  - 2026-10-27-interpret-pwa-poc
+  - 2026-10-28-overall-board
+  - 2026-11-15-llm-codex-hotfix
 tags:
   - 배포
   - 자동화
@@ -51,9 +66,13 @@ on:
 
 **경로까지 지정한다** — 문서만 고친 푸시로 배포가 도는 것을 막는다.
 
+**경로 필터를 이미지마다 걸면 「sha = 전체 배포」 가 깨진다** — 한 레포에 이미지가 둘(back · front)이고 워크플로우마다 자기 경로만 보면, back 만 바뀐 머지에서는 **back 이미지만 그 sha 로 생긴다.** 배포 값이 이미지 태그 하나(`image.tag`)를 두 이미지에 같이 쓰면 front 파드가 없는 태그를 받아 뜨지 못한다. cc-prototype 은 차트에 이미지별 덮어쓰기(`back.imageTag`)를 두고, 배포 전에 `gh run list` 로 **어느 이미지가 그 sha 로 빌드됐는지 먼저 보고** 바뀐 쪽만 올린다. 둘 다 바뀐 판에서 공통 `image.tag` 로 돌아갈 때는 덮어쓰기를 지워야 옛 back 이 남지 않는다
+
 **브랜치도 지정한다** — `branches` 를 빼면 모든 브랜치 푸시가 이미지를 굽는다. 태그가 커밋 sha 라 어느 이미지든 배포 값에 넣을 수 있고, 그러면 **리뷰 · 머지 안 된 코드가 배포된다.** cc-prototype 이 그랬다 — 브랜치 빌드가 운영에 올라가 있었고, `branches: [main]` 으로 막은 뒤 main 빌드로 갈아 끼웠다. 이미지를 만드는 조건이 곧 배포할 수 있는 코드의 범위다
 
 **태그는 커밋 전체 sha 하나 — `latest` · `main` 은 밀지 않는다** — 차트의 값(`image.tag`) 하나만 보면 무엇이 떠 있는지 알고, 그 값은 사람이 고르지 않는다. cc-prototype 은 차트에서 `image.tag` 를 `required` 로 걸어 **값이 없으면 렌더가 실패**하게 했다 — 빈 값이나 추측한 태그로 배포가 나가지 않는다. 함정은 길이다 — Actions 는 `github.sha`(40자)로 밀므로 배포 값도 40자여야 하고, PR 제목에 보이는 7자 sha 로는 그 이미지가 없다. 배포(GitOps · ArgoCD)는 **수동 sync** 로 두었다 — ConfigMap 이 바뀌면 back 재시작이 같이 필요해서, 값을 바꾼 PR 머지와 실제 반영 사이에 사람이 한 번 선다
+
+**폴더별로 따로 빌드하면 sha 가 구성 요소마다 갈린다** — 한 레포에 `front/` · `back/` 이 있고 워크플로가 `paths` 로 **바뀐 폴더만** 이미지를 구우면, front 만 바뀐 커밋에는 그 sha 의 back 이미지가 없다. 차트 값이 `image.tag` 하나뿐이면 그 배포를 올릴 수 없다. 통키는 차트에 `front.imageTag` / `back.imageTag` 오버라이드를 두어(있으면 `image.tag` 보다 우선) 구성 요소마다 다른 sha 를 넣었고, 두 폴더가 같은 sha 로 빌드된 배포에서 다시 `image.tag` 하나로 정리했다. 오버라이드는 「지금 무엇이 떠 있나」 를 값 둘로 보게 만드므로 임시로 쓰고 걷는다
 
 ### 무엇을 하나 — 잡과 의존
 
@@ -88,6 +107,16 @@ command: |
 
 **서버에 열린 SSH 포트가 필요 없다**는 것이 이 방식의 이점이다 → [[infrastructure-as-code]]
 
+### 한 번 빌드해서 승격 — dev 에서 성공한 그 이미지를 prod 로
+
+DAY 는 VM 한 대에 dev · prod 두 환경을 올린다. `dev` 브랜치 push 가 빌드 → 레지스트리(ACR) → 배포 → migration 을 자동으로 돌리고, `prod` 는 **다시 빌드하지 않고 dev 에서 성공한 같은 이미지 digest 만** 받는다.
+
+- **prod 브랜치는 fast-forward 로만 올린다** — merge · squash 로 올리면 커밋이 새로 생겨 sha 가 달라지고, 「dev 에서 검증한 그 이미지」 를 sha 로 찾을 수 없다. fast-forward 면 prod 의 커밋이 dev 의 커밋과 같다
+- **원격 실행은 SSH 없이 클라우드 명령으로** — Azure VM run-command 로 배포 스크립트를 부른다. 앞의 SSM 과 같은 발상이고, 키 없이 들어가는 신원은 [[workload-identity]] 가 맡는다
+- **같은 concurrency group 은 기다리는 실행을 취소한다** — dev · prod 워크플로가 한 group 을 쓰자 대기 중인 실행이 조용히 취소됐다. group 을 워크플로별로 가르고, 같은 VM 을 동시에 만지는 것은 VM 안의 파일 잠금(`flock`)으로 막았다 → [[distributed-lock]]
+- **실패 복구는 「배포 직전 스냅샷」 으로만** — 자동 되돌리기가 「이전 태그」 를 따로 계산하다 두 판 전 이미지로 내려가는 구멍이 있었다. 배포 직전에 지금 떠 있는 이미지를 적어 두고, 실패하면 그것으로만 돌린다
+- **비밀은 저장소 Secrets 가 아니라 비밀 보관소에서** — 서버가 시작할 때 자기 신원으로 읽는다 → [[secret-store]]
+
 ## 왜 중요한가
 
 **배포가 사람의 기억에서 파일로 옮겨 간다.** 손으로 하던 여섯 단계(로그인·클론·설정·빌드·실행·확인)는 **누가 하느냐에 따라 달라지고 한 단계를 빠뜨리면 조용히 틀린다.** 파일에 적혀 있으면 언제나 같은 순서로 돈다 → [[infrastructure-as-code]] · [[build]]
@@ -101,6 +130,8 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - **1잡 1파드(ephemeral)** — 잡마다 깨끗한 파드가 뜨고 끝나면 폐기된다. 그래서 「러너에 뭘 설치해 둔다」는 발상이 통하지 않는다 — 호스트에 깔아도 파드에서 안 보이고, 파드에 깔면 잡과 함께 사라진다. 도구가 없으면 ① 워크플로 스텝에서 설치 ② **프로토콜 수준 대체** ③ 러너 이미지에 굽기(장기) 셋 중 하나다
 - **프로토콜 대체가 설치보다 낫다** — `az acr login` 은 결국 docker login 이다. 벤더 CLI 가 없다고 CLI 를 까는 대신, 그 CLI 가 **하던 일의 실체**(레지스트리 로그인)를 표준 액션(`docker/login-action` + service principal 자격증명)으로 하면 설치 0·아키 무관이 된다
 - **러너의 아키 ≠ 산출물의 아키** — arm64 러너에서도 `platforms: linux/amd64` 로 amd64 이미지를 빌드한다(QEMU 에뮬레이션, `docker/setup-qemu-action` 필수). 느려지지만 서버에 올라가는 이미지는 동일하다. 반대로 산출물이 arm64 면 셀프호스트 arm 이 네이티브라 오히려 빠르다
+- **러너는 「누구 이름으로」 GitHub 에 붙는가가 배포의 단일 장애점이다** — ARC 의 listener 가 사람 PAT 로 등록돼 있으면 그 사람의 권한 변경·토큰 만료에 조직 배포 전체가 멈춘다. 이때 잡은 **실패하지 않고 queued 로 남기만** 해서 GitHub 화면에는 원인이 없다 — 클러스터의 AutoscalingListener 로그(403 `runners and runner groups fine-grained permission`)에 있다. 사람 대신 **러너 전용 GitHub App** 으로 붙이면 사람의 권한과 끊긴다
+- **인증을 바꾼 뒤 두 가지가 남는다** — ① listener 가 사라진 EphemeralRunnerSet 이름을 들고 `not found` 로 죽어 있으면 listener 를 지워 컨트롤러가 새 RunnerSet 기준으로 다시 만들게 한다 ② **고치기 전에 큐에 들어간 잡은 새 listener 에 배정되지 않는다** — 취소하고 재실행해야 잡힌다
 - **「5초 만에 스텝 0개로 실패」는 러너 문제처럼 보이지만 아니다** — 호스팅 러너의 결제/지출 한도 차단이 이 모양으로 나타난다. 어노테이션(`recent account payments have failed…`)을 봐야 갈린다
 
 ## 경계와 오해
@@ -108,7 +139,7 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - **CI 와 CD 는 다른 것이다** — CI 는 **합치고 검증하는 것**(빌드·테스트), CD 는 **배포하는 것**이다. 테스트 없이 자동 배포만 있으면 「빠르게 틀린 것을 내보내는」 파이프라인이 된다
 - **`latest` 태그와 버전 태그를 함께 미는 이유가 있다** — `latest` 만 쓰면 **지금 도는 것이 무엇인지 알 수 없고 되돌릴 수도 없다.** 버전 태그가 있어야 롤백이 가능하다. 한 걸음 더 가면 `latest` 를 아예 안 밀고 커밋 sha 만 쓴다 — 움직이는 태그가 없으면 배포 값이 곧 코드 위치다
 - **비밀을 Secrets 에 넣어도 로그로 샐 수 있다** — 스크립트가 값을 출력하면 그대로 남는다. GitHub 이 마스킹해 주지만 **가공된 값은 못 가린다**
-- **`paths` 필터는 양날이다** — 배포를 줄여 주지만, 목록에 없는 파일을 고쳤을 때 **배포가 안 되는 것을 모른 채** 지나갈 수 있다
+- **`paths` 필터는 양날이다** — 배포를 줄여 주지만, 목록에 없는 파일을 고쳤을 때 **배포가 안 되는 것을 모른 채** 지나갈 수 있다. 폴더별 빌드에서는 「이 sha 의 이미지가 구성 요소마다 있나」 가 갈린다 — 태그 = sha 규칙과 만나면 구성 요소별 태그가 필요해진다 배포 값을 올리기 전에 어느 이미지가 빌드됐는지 확인한다
 - **파이프라인이 실패했는데 배포가 반쯤 된 상태가 가능하다** — 이미지는 올라갔는데 SSM 명령이 실패하는 식이다. **각 단계가 되돌릴 수 있는지**를 따로 생각해야 한다 → [[transaction]] 과 같은 물음이 인프라에서 반복된다
 - **원격 실행 권한이 곧 서버 권한이다** — SSM 으로 임의 명령을 돌릴 수 있다는 것은 그 키를 가진 사람이 **서버에서 무엇이든 할 수 있다**는 뜻이다
 
@@ -122,9 +153,16 @@ GitHub 이 주는 러너 대신 **내 클러스터의 파드가 잡을 받는** 
 - [[git]] — 이벤트가 나오는 곳
 - [[reverse-proxy]] — 배포된 것 앞에 서는 것
 - [[kubernetes]] — 배포 대상이 클러스터가 될 때
+- [[workload-identity]] — 장기 키 없이 배포 · 레지스트리에 붙는 신원
+- [[secret-store]] — 배포가 읽는 비밀의 자리
 
 ## 출처
 
+- [[2026-11-15-llm-codex-hotfix]] §2 — 메디니스 핫픽스가 머지되고도 배포가 2시간 40분 queued. 러너 listener 의 사람 PAT 403 → 인프라가 GitHub App(`medisolve-arc-runner`)으로 교체 → 낡은 listener 삭제 → 이전 잡 재실행으로 풀림(ARC 0.14.2)
+
+- [[2026-11-09-day-data-architecture]] §2 — DAY 한 VM 두 환경: `dev` push → 빌드 · 배포 · migration, `prod` 는 fast-forward 로 같은 digest 만 · run-command · 워크플로별 concurrency group + VM flock · 실패 복구 = 배포 직전 스냅샷(코드 `937dbb68` · `1ccc101b`)
+- [[2026-10-27-interpret-pwa-poc]] §2 — 폴더별 이미지 빌드라 front 만 바뀐 sha 에 back 이미지가 없음 → `front.imageTag` / `back.imageTag` 오버라이드 → 같은 sha 배포에서 하나로 정리(`charts/interpret-pwa/values-prod.yaml` · infra #29 · #30 · #32 · #33)
+- [[2026-10-28-overall-board]] §2 — Actions 경로 필터로 바뀐 쪽 이미지만 빌드 → back 만 바뀐 머지는 `back.imageTag` 로 한쪽만 올림(`deploy.md` ② · infra #39)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 이미지 태그 = 커밋 전체 sha(40자) · 차트 `required image.tag` · ArgoCD 수동 sync(`procedure-back-image.yml` · infra #22 · #24)
 - [[2026-10-14-sts-prototype]] §2 — 모든 브랜치 푸시에서 이미지가 빌드돼 브랜치 코드가 배포됐다 → 빌드 트리거를 main 으로 막고 main 빌드로 재배포(infra #19)
 - [[2026-08-31-task-redesign]] — GitHub 결제 장애로 호스팅 러너가 전면 차단된 날, mediness(arm64 네이티브 빌드)와 CHARTY(QEMU amd64 크로스빌드 → ACR push → ssh 배포)를 사내 ARC 러너로 우회해 **당일 배포를 완주**한 실전. `az` 부재는 설치가 아니라 docker login 치환으로 풀었고, ephemeral 파드라 「서버에 설치」가 무의미하다는 것을 몸으로 확인했다

@@ -1,0 +1,105 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 28%]
+........................................................................ [ 37%]
+...................................F.................................... [ 47%]
+........................................................................ [ 56%]
+........................................................................ [ 65%]
+........................................................................ [ 75%]
+........................................................................ [ 84%]
+........................................................................ [ 94%]
+.............................................                            [100%]
+=================================== FAILURES ===================================
+_____________ test_머리를_받자마자_publish_한_이벤트도_스트림에_온다_그리고_끊기면_구독을_닫는다 _____________
+
+world = World(client=<httpx.AsyncClient object at 0x11a12f4d0>, a=UUID('c33a2cff-f38a-4693-a991-9376d0a2e809'), b=UUID('b0c260...rs/_z/ldzs6w2525zbx_49m1zzsx_00000gn/T/pytest-of-kknaks/pytest-1669/test_머리를_받자마자_publish_한_이벤트도_스0/files'), kicked=[])
+redis = <redis.asyncio.client.Redis(<redis.asyncio.connection.ConnectionPool(<redis.asyncio.connection.Connection(password=<REDACTED>,host=127.0.0.1,port=11043,db=15)>)>)>
+
+    async def test_머리를_받자마자_publish_한_이벤트도_스트림에_온다_그리고_끊기면_구독을_닫는다(
+        world: World, redis: Redis
+    ) -> None:
+        """W1 회귀 — 실제 ASGI 차례.
+    
+        앱은 `http.response.start`(머리)를 받자마자 메우기를 한다. 그 순간 publish 한 이벤트가 이
+        스트림에 와야 한다(구독이 머리보다 먼저). httpx ASGI 전송은 끝없는 본문을 다 모으므로 ASGI 를
+        직접 돌린다. 운영 수명 · tick 규칙은 그대로.
+        """
+        from runtime.main import create_application
+    
+        app = create_application()
+        who = world.doctor
+        room = await world.direct(world.nurse, world.doctor)
+        disconnect = asyncio.Event()
+        started = asyncio.Event()
+        body: list[str] = []
+        got_event = asyncio.Event()
+        subs_at_start: list[int] = []
+    
+        requested: list[bool] = []
+    
+        async def receive() -> dict[str, Any]:
+            if not requested:
+                requested.append(True)
+                return {"type": "http.request", "body": b"", "more_body": False}
+            await disconnect.wait()
+            return {"type": "http.disconnect"}
+    
+        async def send(message: dict[str, Any]) -> None:
+            if message["type"] == "http.response.start":
+                assert message["status"] == 200
+                subs_at_start.append(await _numsub(redis, who))
+                started.set()
+                # 머리를 받은 그 순간 — 다른 직원이 보낸다(retry 바이트 · 지연 없이)
+                await chat_events.publish(
+                    [
+                        chat_events.ChatEvent(
+                            who.hospital_id, who.account_id, "chat_room_removed", {"roomId": room["id"]}
+                        )
+                    ]
+                )
+            elif message["type"] == "http.response.body":
+                text = message.get("body", b"").decode()
+                body.append(text)
+                if "chat_room_removed" in text:
+                    got_event.set()
+    
+        scope = {
+            "type": "http",
+            "asgi": {"version": "3.0"},
+            "http_version": "1.1",
+            "method": "GET",
+            "scheme": "https",
+            "path": "/api/chat/stream",
+            "raw_path": b"/api/chat/stream",
+            "query_string": b"",
+            "root_path": "",
+            "headers": [(b"host", b"day.test"), (b"authorization", f"Bearer {who.bearer}".encode())],
+            "client": ("127.0.0.1", 1),
+            "server": ("day.test", 443),
+        }
+        task = asyncio.create_task(app(scope, receive, send))
+        await asyncio.wait_for(got_event.wait(), 5)
+        assert subs_at_start == [1]  # 머리 전에 Redis 구독이 확인돼 있다
+        joined = "".join(body)
+        assert joined.startswith("retry: 3000\n\n")
+        assert f'event: chat_room_removed\ndata: {{"roomId": "{room["id"]}"}}' in joined
+        disconnect.set()  # 앱이 끊음
+        await asyncio.wait_for(task, 5)
+>       assert await _numsub(redis, who) == 0  # 끊기면 구독을 닫는다
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert 1 == 0
+
+backend/tests/day/chat/test_chat_stream.py:255: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-10T10:06:15.458+00:00", "level": "INFO", "logger": "day.services.chat", "message": "chat direct created room=64ea9832-5a8d-45b5-843b-a285e2c98c3a account=1ffbf214-9fb7-4946-b478-722946301e28", "app_env": "dev"}
+------------------------------ Captured log call -------------------------------
+INFO     day.services.chat:chat.py:442 chat direct created room=64ea9832-5a8d-45b5-843b-a285e2c98c3a account=1ffbf214-9fb7-4946-b478-722946301e28
+=============================== warnings summary ===============================
+.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/kknaks/orca/workspaces/CENTURION_DAY/day-app/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED backend/tests/day/chat/test_chat_stream.py::test_머리를_받자마자_publish_한_이벤트도_스트림에_온다_그리고_끊기면_구독을_닫는다
+1 failed, 764 passed, 1 warning in 51.06s

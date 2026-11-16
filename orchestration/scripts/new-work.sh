@@ -51,6 +51,7 @@ PROJECT_JSON="$CONFIG_DIR/projects/$PROJECT.json"
 [ -f "$PROJECT_JSON" ] || die "설정 없음: $PROJECT_JSON (사용 가능: $(ls "$CONFIG_DIR/projects" | tr '\n' ' '))"
 [ -f "$CONFIG_DIR/agents.json" ] || die "설정 없음: $CONFIG_DIR/agents.json"
 [ -f "$TEMPLATE" ] || die "템플릿 없음: $TEMPLATE"
+python3 "$HERE/scripts/sync-work-links.py" --paths >/dev/null
 echo "$SLUG" | grep -Eq '^[a-z0-9][a-z0-9._-]*[a-z0-9]$' \
   || die "slug 는 kebab-case 소문자 (예: feat-medi-department-space). 받은 값: '$SLUG'"
 
@@ -349,6 +350,9 @@ sys.stdout.write(t)
 else
   say "_RESUME.md 이미 있음 — 유지"
 fi
+
+# 프로젝트 → 작업 → 근거 문서의 목차 갱신 (양식은 templates/orchestration/).
+python3 "$HERE/scripts/sync-work-links.py"
 
 # ── 5. 출력 ──────────────────────────────────────────────────────────────────
 echo

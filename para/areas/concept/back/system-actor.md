@@ -41,7 +41,7 @@ tags:
 
 ## 함께 보는 개념
 
-- [[field-level-visibility]] · [[defense-in-depth]]
+- [[field-level-visibility]] · `defense-in-depth` (개념 노트 미작성)
 
 ## 출처
 

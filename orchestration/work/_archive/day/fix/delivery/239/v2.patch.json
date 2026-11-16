@@ -1,0 +1,24 @@
+{
+  "acceptance": [
+    "A1(①): 동기화 · 규칙 테스트 — etceteraTaskId == 설정 id 인 작업만 is_room_assign true · 방 붙은 다른 기타 작업은 판 시술 줄 · 체크 · 호출 대상 · 전부 완료 판정에 들어감(기타 작업 미완료면 canHome false) · 설정이 비면 「방 배정」 없음 · [귀가 대기] KOS 취소 op 은 is_room_assign 작업만. 화면 — 기타 작업 줄이 보이는 스크린샷.",
+    "A2(②): migration 업 · 칸 목록 고정본(test_column_snapshot) 갱신 · visit_task_chart_log 는 지우는 경로 없음 · started_room_id 가 [시작] 때 채워지고 「시작 취소」 때 비워짐(API 테스트).",
+    "A3(③ · ④ 화면): 차트 모달 — 두 탭 · 첫 탭(의사 / 간호사 · 관리팀) · 담당자 처음 값 3단계 · 드롭다운 목록(간호관리 = nurse · skincare / 의사 = 원장 목록) · 자동 저장(blur · 2초) · 「최근 저장 : HH:MM」 · 작성자 · 「KOS」 표시 · 필수 비면 저장 안 함 — 스크린샷 · 화면 테스트.",
+    "A4(④ API): 차트 저장 — 이력 1행 · DAY 값 · outbox 순서(change-tasks-doctors → doctor-memo / assignee-memo) · 간호관리 담당자는 KOS op 없음 · 바뀐 것 없으면 no-op · baseLogId 다르면 409 chart_conflict + 새 값 · 담당자 없음 409 chart_staff_required(제안) · 목록 밖 거절 · 「방 배정」 · 취소 작업 404 · 수락 · 진행중 집도의 변경 = 규칙 27 전부(event task.doctor_change · 다시 셈).",
+    "A5(④ 시술 전 · 동기화): 준비중 · 호출 시술 의사차트 저장 = 이력만 · outbox 없음 · 담당의 안 생김(canStart 그대로) · [수락] 때 집도의 ≠ 수락 원장이면 덮은 이력 + doctor-memo op 이 수락 op 뒤 · 호출 없는 [시작]도 같음 · 그 사이 KOS 수정 이력이 마지막이면 안 보냄. 동기화 — 반영 대기 중 글 안 덮음 · KOS 수정 → 이력 source kos · 글 op 확인 때 제3 값이면 confirmed · 재전송 없음(infra 테스트).",
+    "A6(⑤ API): 점유 이동 — 남길 「방 배정」 외 작업(완료 포함 · 취소 뺌) change-tasks-room op · DAY room_id · visit.room_id 즉시 · holdRoom = 원래 방 · 점유 중 · 「방 배정」 만드는 중 이동 409 room_held · 「방 배정」 없으면 add-flow-tasks op(설정 id) → 다음 조회 뒤 change-tasks-room 쌓임 · 설정 비면 점유 이동 거절. 이동 — 전부 · 점유 안 남음. 복귀 — cancel-flow-tasks + 나머지 원래 방 · 점유 아닌데 409 room_not_held · 같은 방 room_same · 귀가 대기 visit_not_on_board · 카드 순서 자리 그대로 · event_log 1행씩.",
+    "A7(⑤ · ⑥ 화면): 방 이름 → 팝오버(방 이름만 · 점유 중인 방 포함) · 「점유 이동」 · 「이동」 · 점유 중 팝오버 [복귀하기]만 · 파란 띠 + [복귀하기] · 기존 방에 카드 없음 · 「시술 완료」 탭 원래 방 묶음(점유 이동으로 다른 방에서 받은 시술도 원래 방) — 스크린샷.",
+    "A8(⑦): 데모 연결 설정 값을 넣는 길(값은 env · 일회성 · 코드 하드코딩 없음).",
+    "A10: 화면 문구는 SPEC-002 「」 글자만(새 글자 0 · 토스트 글자 정해지지 않은 자리는 비움) · uv run pytest -q -m 'not infra' · compose 위 scripts/test.sh -q · uv run ruff check backend scripts 통과."
+  ],
+  "non_goals": [
+    "DAY-SPEC-002 「기획안 중 이번에 안 하는 것」 표 전부 — 「전체 시술에 내용 적용」(일괄 적용) · 작성자 추가 · 칸 지우기(작성자 여러 명) · 지난 방문 차트 · 차트 머리 · 줄 값(차트 번호 · 주의 · 불만 · 오더 메모 · 진행한 관리실 · 마취 회차 · 관리실 기록) · 칸 안 예시 글 · 침대 수 · 「(n/m)」 · 빈 관리실 · 점유 방 고르지 못함 · 「점유 중 · {이름}」 · 동시 이동 자리 셈 · 관리실 기록 창 · 날짜 이동 · 관리실 고르기 · 체류 구간 · 「고객 차트」 · CC 고객 차트",
+    "토스트 글자 정리(OQ-41 · OQ-48 — 별도) · 차트 이력 보기 화면 · 보존 기간 운영(OQ-44) · 진행한 방을 보이는 자리 · 6-1 시술 줄 값(OQ-43) · 관리실 검색 원래 방(OQ-46)",
+    "다른 화면의 board 신호도 바뀐 카드만 바꾸기(OQ-37 — 지금처럼 판 조각 전체)",
+    "설정 화면(room_assign_etc_task_id 넣는 화면) · prod 연결 설정 값(prod 배포 때 사용자)",
+    "Flutter 앱 화면(day-app) — /api JSON 짝만 같은 service 로",
+    "실물 검증 — 다음 작업(웹 버그 수정 · prod 배포 · 앱 작은 수정 · 문서 정리)의 검증으로 넘김 — 사용자 2026-11-11 「검증은 다음에 하자니까」: A8(⑦) 의 「로컬 · dev DB 에 들어감 · 넣은 뒤 다음 동기화에서 판에 기타 작업이 보이고 「방 배정/」만 숨음」(로컬 DB 에는 2026-11-11 코디가 넣음 · dev 서버 DB 는 아직 · 판 관찰 기록 없음)",
+    "실물 검증 — 다음 작업(웹 버그 수정 · prod 배포 · 앱 작은 수정 · 문서 정리)의 검증으로 넘김 — 사용자 2026-11-11 「검증은 다음에 하자니까」: A9 **데모 실물**(DAY dev · KOS 데모 지점 — 실제 병원 쓰지 않음 · SPEC-002 OQ-38 · 39): ① 점유 이동 KOS 반영(작업 방 · 카드 방 · roomAssignedDateTimeUtc 가 새로 찍히는지) ② 복귀(「방 배정」 취소 · 원래 방) ③ 이동 ④ 「방 배정」 새로 만들기(add-flow-tasks → 다음 조회 sequence → change-tasks-room) ⑤ 진행 중 작업 이동 ⑥ change-tasks-room sequences 여러 개 한 요청 ⑦ 차트 메모(간호 · 의사) KOS 반영 ⑧ 의사차트 집도의 KOS 반영(수락 뒤) ⑨ KOS 웹 메모 수정 → DAY 반영 · 이력 「KOS」 ⑩ 담당자 빈 작업 메모 — 결과표(요청 2xx · 다음 조회 값 · outbox 상태)를 Issue 에 기록 → 결과는 spec-sync 로 SPEC-002 KOS 쓰기 표 · OQ-38 · 39.",
+    "실물 검증 — 다음 작업(웹 버그 수정 · prod 배포 · 앱 작은 수정 · 문서 정리)의 검증으로 넘김 — 사용자 2026-11-11 「검증은 다음에 하자니까」: A3 · A7 의 브라우저 실물 — 차트 자동 저장(blur · 2초) 타이밍 · 방 이름 팝오버 동작(review-239 W5 — 화면 테스트 · 정적 스크린샷까지만 됨)"
+  ],
+  "scope_delta": "사용자 2026-11-11 「아 그럼 스테이블에 올리고 다 닫자」 · 「이제 다 한 거잖아. 검증은 다음에 하자니까. 닫는 데 문제가 있어?」 → 데모 지점 · dev 서버 · 브라우저 실물에서 봐야 하는 수용 부분(A9 데모 실물 전부 · A8 의 dev DB 값 넣기와 판 관찰 · A3 · A7 의 브라우저 실물)을 이 Delivery 범위에서 빼 다음 작업(웹 버그 수정 · prod 배포 · 앱 작은 수정 · 문서 정리)의 검증으로 넘긴다(Non-Goals 에 그대로). A9 결과로 하려던 SPEC-002 KOS 쓰기 표 · OQ-38 · 39 갱신도 그 검증 뒤로. Target Delta 그대로 · 위험 L3 그대로 · baseline = origin/main 19f7e401."
+}

@@ -1,6 +1,6 @@
 # Database Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > **이 제품은 DB를 쓰지 않는다.** ([[decision-001-websocket-protocol\|MRT-DEC-001]] 맥락의 핵심 제약) 영속 저장은 iOS의 UserDefaults 수준으로 충분하다. 대부분의 엔티티는 런타임 메모리에만 존재한다.
 > 원본: `mac-remote/doc/Architecture.md` §2.

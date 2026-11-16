@@ -9,6 +9,7 @@ aliases:
   - Nginx Proxy Manager
 up:
   - 2025-01-13-Day10
+  - 2026-10-30-internal-chat
 tags:
   - 인프라
   - web
@@ -68,6 +69,7 @@ docker run -d --name npm_1 --restart unless-stopped \
 - **볼륨을 안 붙이면 인증서가 사라진다** — 컨테이너를 다시 만들면 안의 파일은 없어지므로, `letsencrypt` 디렉토리를 밖에 두는 것이 필수다. **컨테이너는 사라지는 것을 전제한다**는 원칙이 여기서 실물로 나온다 → [[container]]
 - **프록시가 죽으면 전부 멈춘다** — 모든 트래픽이 지나는 지점이라 **단일 실패 지점**이다. `--restart` 정책이 최소한의 대비다
 - **Nginx Proxy Manager 는 Nginx 자체가 아니다** — 설정 파일을 손으로 쓰는 대신 화면으로 관리하게 해 주는 도구다. **감춰진 것이 Nginx 설정**이라, 세밀한 조정은 결국 그쪽을 알아야 한다
+- **업로드 한도는 앞단부터 센다**(cc-prototype 내부 채팅) — 운영 길 Cloudflare(요청 본문 100MB) → ingress `proxy-body-size` 10m → 앱 서버. 동영상 한도를 100MB 로 정했다가 앞단을 보고 90MB · ingress 100m 로 고쳤다. 로컬 compose 에서는 안 보이고 운영에서만 413 · [[2026-10-30-internal-chat]]
 
 ## 함께 보는 개념
 
@@ -81,3 +83,4 @@ docker run -d --name npm_1 --restart unless-stopped \
 ## 출처
 
 - [[2025-01-13-Day10]] — 「Nginx 설치 및 설정」 절이 `docker run` 한 줄을 실은 뒤 **옵션 하나하나를 여섯 갈래로 풀어 적었다** — `-d`·`--name`·`--restart unless-stopped`(「수동으로 중지한 경우에는 재시작하지 않음」까지)·포트 매핑 셋(80·443·81 각각의 용도)·`-e TZ`·볼륨 둘(설정 데이터와 **SSL 인증서**). 이 주석 묶음이 `docker run` 을 처음 읽을 때 필요한 것을 다 담고 있다. 이어지는 「nginx proxy manager 관리콘솔에 접속」이 **웹 서버의 역할 셋**(정적 콘텐츠 제공·로드 밸런싱·HTTP 요청 처리)을 정의로 적어, 이 컨테이너가 무엇을 하는 자리인지 자리매김한다 → [[web-server]] · [[container]]
+- [[2026-10-30-internal-chat]] §2 「업로드 한도는 앞단부터」 · infra #44

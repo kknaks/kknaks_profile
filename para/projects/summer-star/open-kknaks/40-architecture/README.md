@@ -1,6 +1,6 @@
 # Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 ## 목적
 
@@ -10,7 +10,7 @@
 
 | Area | Index | Notes |
 |---|---|---|
-| Deploy | `deploy/README.md` | PyPI package 배포 절차 |
+| Deploy | [[para/projects/summer-star/open-kknaks/40-architecture/deploy/README\|deploy/README.md]] | PyPI package 배포 절차 |
 
 ## 경계
 

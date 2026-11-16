@@ -33,15 +33,22 @@ baseline, decision, spec, work가 각각 어디까지 정리됐는지 한눈에 
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
-| 40-architecture | `40-architecture/README.md` |
-| 60-release | `60-release/README.md` |
+| 00-baseline | [입력](00-baseline/README.md) |
+| 10-decision | [결정](10-decision/README.md) |
+| 20-spec | [기능 계약](20-spec/README.md) |
+| 30-work | [구현 계획](30-work/README.md) |
+| 40-architecture | [공유 구조](40-architecture/README.md) |
+| 60-release | [릴리즈](60-release/README.md) |
+
+실제로 만든 단계만 남긴다. 목록의 개별 파일도 실제 문서 링크로 쓴다.
 
 ## 최근 로그
 
 최근 중요한 변경만 3-5개 적는다. 전체 이력은 `log.md`를 본다.
 
 - 
+
+## 작업 기록
+
+작업을 발주하면 `sync-work-links.py`가 `work-index.md`와 이곳의 연결을 만든다.
+소속과 보존 규약: [[para/projects/project#프로젝트와 작업 기록|프로젝트와 작업 기록]].

@@ -101,7 +101,7 @@ ax-graph/
 
 | Path                | Role                                                                                      |
 | ------------------- | ----------------------------------------------------------------------------------------- |
-| `agent.md`          | 에이전트 진입점. `CLAUDE.md`는 agent.md를 가리키는 얇은 포인터만 둔다                     |
+| `agent.md`          | 에이전트 진입점. [[CLAUDE\|CLAUDE.md]]는 agent.md를 가리키는 얇은 포인터만 둔다                     |
 | `context/`          | AI 스테이지 방법·배경 지침 문서. **worker 프로젝트 컨텍스트로 claude가 직접 읽는다**(api 조립·주입 아님). 요약 지침은 `apps/worker/workspace/context/`에 내장(AXKG-SPEC-011)      |
 | `apps/`, `packages/` | runtime implementation and shared code                                                   |
 | `data/documents/`   | 실험용 로컬 Markdown root                                                                  |
@@ -393,5 +393,5 @@ Chat history is user-scoped and persisted in PostgreSQL. `ai_tasks` tracks provi
 
 - ~~Choose initial background execution mode: inline FastAPI task vs Redis-backed worker.~~ → Source Intake 경로 확정(AXKG-WORK-002 Phase 3): 수집은 **api 프로세스 내 BackgroundTask**, AI 실행은 **Redis-backed open-kknaks worker**(`AgentClient(RedisBroker)`). 후속 스테이지(분류/문서화 게이트)의 트리거 모델은 해당 WP에서 확정.
 - Decide whether local `data/documents` should be committed examples or runtime-only gitignored content.
-- Write Alembic migrations from `../database/README.md`.
+- Write Alembic migrations from [[para/projects/summer-star/ax-knowledge-graph/40-architecture/database/README|../database/README.md]].
 

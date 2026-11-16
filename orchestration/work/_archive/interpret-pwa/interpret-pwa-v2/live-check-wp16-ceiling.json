@@ -1,0 +1,579 @@
+{
+  "seed_file": {
+    "version": "2026-10-27.6",
+    "terms": 170,
+    "entries": {
+      "en": 170,
+      "ja": 170,
+      "zh": 170,
+      "zh-Hant": 170,
+      "th": 170,
+      "vi": 170,
+      "yue": 170
+    }
+  },
+  "max_chars": 20251,
+  "ceiling": {
+    "langs": {
+      "en": {
+        "full_chars": 17589,
+        "full_passes": true,
+        "pass_max": 26027,
+        "reject_min": 26069,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 17589,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.232
+          },
+          {
+            "extra_pairs": 276,
+            "chars": 30208,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.439
+          },
+          {
+            "extra_pairs": 138,
+            "chars": 23932,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.251
+          },
+          {
+            "extra_pairs": 207,
+            "chars": 26903,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.285
+          },
+          {
+            "extra_pairs": 172,
+            "chars": 25452,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.254
+          },
+          {
+            "extra_pairs": 189,
+            "chars": 26152,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.25
+          },
+          {
+            "extra_pairs": 180,
+            "chars": 25784,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.283
+          },
+          {
+            "extra_pairs": 184,
+            "chars": 25944,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.258
+          },
+          {
+            "extra_pairs": 186,
+            "chars": 26027,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.254
+          },
+          {
+            "extra_pairs": 187,
+            "chars": 26069,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.246
+          }
+        ]
+      },
+      "ja": {
+        "full_chars": 19408,
+        "full_passes": true,
+        "pass_max": 22688,
+        "reject_min": 22771,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 19408,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.255
+          },
+          {
+            "extra_pairs": 253,
+            "chars": 29852,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.452
+          },
+          {
+            "extra_pairs": 126,
+            "chars": 24648,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.431
+          },
+          {
+            "extra_pairs": 63,
+            "chars": 21878,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 94,
+            "chars": 23206,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.246
+          },
+          {
+            "extra_pairs": 78,
+            "chars": 22533,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.236
+          },
+          {
+            "extra_pairs": 86,
+            "chars": 22865,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.255
+          },
+          {
+            "extra_pairs": 82,
+            "chars": 22688,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.232
+          },
+          {
+            "extra_pairs": 84,
+            "chars": 22771,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.27
+          }
+        ]
+      },
+      "zh": {
+        "full_chars": 18565,
+        "full_passes": true,
+        "pass_max": 23259,
+        "reject_min": 23347,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 18565,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.332
+          },
+          {
+            "extra_pairs": 286,
+            "chars": 30072,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.428
+          },
+          {
+            "extra_pairs": 143,
+            "chars": 24296,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.234
+          },
+          {
+            "extra_pairs": 71,
+            "chars": 21271,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.237
+          },
+          {
+            "extra_pairs": 107,
+            "chars": 22734,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.245
+          },
+          {
+            "extra_pairs": 125,
+            "chars": 23562,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.235
+          },
+          {
+            "extra_pairs": 116,
+            "chars": 23149,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.234
+          },
+          {
+            "extra_pairs": 120,
+            "chars": 23347,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.239
+          },
+          {
+            "extra_pairs": 118,
+            "chars": 23259,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.242
+          }
+        ]
+      },
+      "zh-Hant": {
+        "full_chars": 24750,
+        "full_passes": false,
+        "pass_max": null,
+        "reject_min": 24750,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 24750,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.225
+          },
+          {
+            "extra_pairs": 132,
+            "chars": 30009,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.384
+          }
+        ],
+        "trim_search": {
+          "method": "trim(build_context max_chars) 이분 탐색 — full 24,750 이 거절돼 padding 방식 불가",
+          "pass_max": 24099,
+          "reject_min_max_chars": 24151,
+          "probes": [
+            {
+              "max_chars": 20251,
+              "chars": 20244,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 170,
+              "dropped_reverse_alias": 67
+            },
+            {
+              "max_chars": 24750,
+              "chars": 24750,
+              "rejected": true,
+              "error_type": "invalid_request"
+            },
+            {
+              "max_chars": 22500,
+              "chars": 22450,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 170,
+              "dropped_reverse_alias": 15
+            },
+            {
+              "max_chars": 23625,
+              "chars": 23621,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 108
+            },
+            {
+              "max_chars": 24187,
+              "chars": 24176,
+              "rejected": true,
+              "error_type": "invalid_request",
+              "dropped_terms": 54
+            },
+            {
+              "max_chars": 23906,
+              "chars": 23904,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 78
+            },
+            {
+              "max_chars": 24046,
+              "chars": 24045,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 65
+            },
+            {
+              "max_chars": 24116,
+              "chars": 24099,
+              "rejected": false,
+              "error_type": null,
+              "dropped_terms": 58
+            },
+            {
+              "max_chars": 24151,
+              "chars": 24142,
+              "rejected": true,
+              "error_type": "invalid_request",
+              "dropped_terms": 56
+            }
+          ]
+        }
+      },
+      "th": {
+        "full_chars": 20804,
+        "full_passes": true,
+        "pass_max": 23715,
+        "reject_min": 23833,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 20804,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.231
+          },
+          {
+            "extra_pairs": 200,
+            "chars": 30129,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.444
+          },
+          {
+            "extra_pairs": 100,
+            "chars": 25487,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.376
+          },
+          {
+            "extra_pairs": 50,
+            "chars": 22979,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.704
+          },
+          {
+            "extra_pairs": 75,
+            "chars": 24158,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.407
+          },
+          {
+            "extra_pairs": 62,
+            "chars": 23536,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.418
+          },
+          {
+            "extra_pairs": 68,
+            "chars": 23833,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.431
+          },
+          {
+            "extra_pairs": 65,
+            "chars": 23673,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.38
+          },
+          {
+            "extra_pairs": 66,
+            "chars": 23715,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.446
+          }
+        ]
+      },
+      "vi": {
+        "full_chars": 17596,
+        "full_passes": true,
+        "pass_max": 25435,
+        "reject_min": 25512,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 17596,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.252
+          },
+          {
+            "extra_pairs": 270,
+            "chars": 29988,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.426
+          },
+          {
+            "extra_pairs": 135,
+            "chars": 23857,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.243
+          },
+          {
+            "extra_pairs": 202,
+            "chars": 26780,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.256
+          },
+          {
+            "extra_pairs": 168,
+            "chars": 25343,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.242
+          },
+          {
+            "extra_pairs": 185,
+            "chars": 26057,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.228
+          },
+          {
+            "extra_pairs": 176,
+            "chars": 25690,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.264
+          },
+          {
+            "extra_pairs": 172,
+            "chars": 25512,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.244
+          },
+          {
+            "extra_pairs": 170,
+            "chars": 25435,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.267
+          }
+        ]
+      },
+      "yue": {
+        "full_chars": 17636,
+        "full_passes": true,
+        "pass_max": 23471,
+        "reject_min": 23557,
+        "error_type": "invalid_request",
+        "probes": [
+          {
+            "extra_pairs": 0,
+            "chars": 17636,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.233
+          },
+          {
+            "extra_pairs": 302,
+            "chars": 29914,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.442
+          },
+          {
+            "extra_pairs": 151,
+            "chars": 23748,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.268
+          },
+          {
+            "extra_pairs": 75,
+            "chars": 20566,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.248
+          },
+          {
+            "extra_pairs": 113,
+            "chars": 22151,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.251
+          },
+          {
+            "extra_pairs": 132,
+            "chars": 22983,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.243
+          },
+          {
+            "extra_pairs": 141,
+            "chars": 23355,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.255
+          },
+          {
+            "extra_pairs": 146,
+            "chars": 23557,
+            "rejected": true,
+            "error_type": "invalid_request",
+            "elapsed_sec": 0.265
+          },
+          {
+            "extra_pairs": 143,
+            "chars": 23431,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.25
+          },
+          {
+            "extra_pairs": 144,
+            "chars": 23471,
+            "rejected": false,
+            "error_type": null,
+            "elapsed_sec": 0.223
+          }
+        ]
+      }
+    },
+    "smallest_pass_max": 22688,
+    "candidate_default": 20419,
+    "current_default": 20251,
+    "zh_hant_vs_zh": {
+      "zh-Hant_pairs": 561,
+      "zh_pairs": 404,
+      "only_in_zh-Hant": 267,
+      "only_in_zh": 110,
+      "examples": [
+        "ASCE+ 外泌体 → ASCEplus",
+        "ASCEplus → ASCE+ 外泌体",
+        "Belkyra → DCA (지방세포파괴)",
+        "Belotero → 벨로테로",
+        "CPT黄金电波 → 써마지 CPT",
+        "Chaeum 玻尿酸 → 채움",
+        "Clear+Brilliant Touch → 클리어앤브릴리언트",
+        "CoolSculpting → 냉각지방분해"
+      ]
+    }
+  }
+}

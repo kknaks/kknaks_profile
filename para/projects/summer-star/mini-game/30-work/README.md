@@ -1,6 +1,6 @@
 # Work Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 현재 구현, QA, 릴리즈 상태를 추적하는 map이다. 첫 작업은 프론트 게임 구현부터 시작한다.
 

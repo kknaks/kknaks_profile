@@ -1,0 +1,32 @@
+00:00 +0: loading /Users/kknaks/orca/workspaces/CENTURION_DAY/day-app/app/test/capture/visual_capture_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: phone 4tabs · 목록(대기 · 마취 · 마취 초과 · 마취 완료 · 호출 · 진행)
+00:00 +0 ~1: phone waiting · 상세 · 오더 메모 · 통역 바(TW)
+00:00 +0 ~2: phone anesthesia · 상세
+00:00 +0 ~3: phone call-wait · 원장 본인(수락 · N건) · 목록 · 상세 · 수락 성공 토스트
+00:00 +0 ~4: phone nurse-accept · 간호사(원장 골라 수락) · 드로어
+00:00 +0 ~5: phone doing · done · 취소 확인 창 · 성공 토스트
+00:00 +0 ~6: phone 상태 박스 4상태 2줄(개정 ③) — 대기 · 마취 중 12:34 · 마취 완료 20분 · 시술 중 05:24
+00:00 +0 ~7: phone 호출 탭 · 시술 완료 탭(U-10 · U-11)
+00:00 +0 ~8: phone 켜진 [시작](서버 canStart = true)
+00:00 +0 ~9: phone all-done · 상세
+00:00 +0 ~10: phone doctor-call-sheet · 시술 + 원장 한 시트
+00:00 +0 ~11: phone interpret-drawer · TW 중국어(번체) · 언어 드롭다운
+00:00 +0 ~12: ipad 4tabs · 목록(대기 · 마취 · 마취 초과 · 마취 완료 · 호출 · 진행)
+00:00 +0 ~13: ipad waiting · 상세 · 오더 메모 · 통역 바(TW)
+00:00 +0 ~14: ipad anesthesia · 상세
+00:00 +0 ~15: ipad call-wait · 원장 본인(수락 · N건) · 목록 · 상세 · 수락 성공 토스트
+00:00 +0 ~16: ipad nurse-accept · 간호사(원장 골라 수락) · 드로어
+00:00 +0 ~17: ipad doing · done · 취소 확인 창 · 성공 토스트
+00:00 +0 ~18: ipad 상태 박스 4상태 2줄(개정 ③) — 대기 · 마취 중 12:34 · 마취 완료 20분 · 시술 중 05:24
+00:00 +0 ~19: ipad 호출 탭 · 시술 완료 탭(U-10 · U-11)
+00:00 +0 ~20: ipad 켜진 [시작](서버 canStart = true)
+00:00 +0 ~21: ipad all-done · 상세
+00:00 +0 ~22: ipad doctor-call-sheet · 시술 + 원장 한 시트
+00:00 +0 ~23: ipad interpret-drawer · TW 중국어(번체) · 언어 드롭다운
+00:00 +0 ~24: phone320 — 긴 고객명 · 발음 · 시술명 목록 + 상세 + 호출 시트
+00:00 +0 ~25: short599 — 긴 고객명 · 발음 · 시술명 목록 + 상세 + 호출 시트
+00:00 +0 ~26: short600 — 긴 고객명 · 발음 · 시술명 목록 + 상세 + 호출 시트
+00:00 +0 ~27: (tearDownAll)
+00:00 +0 ~27: All tests skipped.
+exit 0

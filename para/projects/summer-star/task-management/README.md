@@ -1,6 +1,6 @@
 # Product Map
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 Tauri 기반 개인 업무 관리 앱. 프론트 Next.js, 백엔드 FastAPI, 타겟은 **macOS · Windows 데스크톱**(macOS 웹뷰가 WebKit 이라 프론트는 Safari 호환 고려). 알림 · 녹음 등 시스템 영역은 Tauri 가 맡는다.
 
@@ -32,11 +32,17 @@ Tauri 기반 개인 업무 관리 앱. 프론트 Next.js, 백엔드 FastAPI, 타
 
 | Stage | Index |
 |---|---|
-| 00-baseline | `00-baseline/README.md` |
-| 10-decision | `10-decision/README.md` |
-| 20-spec | `20-spec/README.md` |
-| 30-work | `30-work/README.md` |
+| 00-baseline | [[para/projects/summer-star/task-management/00-baseline/README\|00-baseline/README.md]] |
+| 10-decision | [[para/projects/summer-star/task-management/10-decision/README\|10-decision/README.md]] |
+| 20-spec | [[para/projects/summer-star/task-management/20-spec/README\|20-spec/README.md]] |
+| 30-work | [[para/projects/summer-star/task-management/30-work/README\|30-work/README.md]] |
 
 ## 최근 로그
 
 - 2026-09-01 문서함 생성 — 스택 · 타겟 확정(Tauri / Next.js / FastAPI, iOS · Windows)
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/summer-star/task-management/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

@@ -1,6 +1,6 @@
 # Product Map — centurion
 
-규칙: `para/projects/project.md` (`company/` — `sot: external`)
+규칙: [[para/projects/project|para/projects/project.md]] (`company/` — `sot: external`)
 
 메디솔브 통합 백엔드 `MediSolveAIDev/centurion` 안의 **우리 CRM**(`backend/crm`) 작업. 우리 CRM 은
 데이터 허브 + 시술관제를 맡고, 외부 CRM ↔ 우리 CRM ↔ linky · charty · watch 를 잇는다(사용자 2026-10-12).
@@ -32,3 +32,9 @@ centurion/
 - 설정 SSOT: `orchestration/config/projects/centurion.json`
 - 워커: researcher · backend · reviewer · reviewer_doc (역할: `orchestration/roles/centurion/`)
 - 진행 중 작업: `orchestration/work/<slug>/_RESUME.md`
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/company/centurion/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

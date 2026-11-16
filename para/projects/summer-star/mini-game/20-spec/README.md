@@ -1,6 +1,6 @@
 # Spec Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 기능, UX, 정책, acceptance criteria 계약으로 들어가는 map이다.
 

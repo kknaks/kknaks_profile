@@ -181,6 +181,14 @@ fi
 # _archive 에는 포인터 한 줄만 남긴다 — 같은 사실을 두 곳에 두지 않는다.
 # 없으면 종전대로 _archive 안에 원본이 남는다(분리형 프로젝트).
 SUMMARY_DEST="$(python3 -c "import json,sys;print(json.load(open(sys.argv[1])).get('summary_dest',''))" "$PROJECT_JSON")"
+if [ -n "$SUMMARY_DEST" ]; then
+  case "$SUMMARY_DEST" in
+    /*) ;; # 옛 절대경로 설정도 지원한다.
+    *) SUMMARY_DEST="$HERE/../$SUMMARY_DEST" ;;
+  esac
+fi
+# config·목차 입력 오류는 워크트리/터미널 정리 전에 확인한다.
+python3 "$HERE/scripts/sync-work-links.py" --paths >/dev/null
 if [ -n "$SUMMARY_DEST" ] && [ -f "$SUMMARY" ]; then
   mkdir -p "$SUMMARY_DEST"
   SUMMARY_FINAL="$SUMMARY_DEST/$(date +%Y-%m-%d)-$SLUG.md"
@@ -208,8 +216,12 @@ done
 if [ -d "$WORK_DIR" ]; then
   mkdir -p "$(dirname "$ARCHIVE_DIR")"
   mv "$WORK_DIR" "$ARCHIVE_DIR"
+  python3 "$HERE/scripts/sync-work-links.py"
+  python3 "$HERE/scripts/sync-work-links.py" --check
   git -C "$HERE" add -A "work/"
+  # 제품 문서·회고는 코디네이터의 문서 변경으로 커밋한다. 여기서 사용자 변경을 함께 stage하지 않는다.
   git -C "$HERE" commit -m "work: $SLUG 아카이브 → _archive/$PROJECT/ (archive-work.sh)" >/dev/null && say "아카이브 커밋 완료"
+  say "프로젝트 목차·회고 링크도 갱신됨 — 코디네이터가 문서 변경으로 검토·커밋할 것"
 fi
 
 echo "== 완료. 남은 확인: 남의 세션 터미널을 닫지 않았는지, prerebase-* 태그 잔존 여부(git tag -l 'prerebase-*')"

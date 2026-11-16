@@ -132,3 +132,9 @@ WORK-007 7단계로 문서를 닫고 backend 셋·frontend 셋을 구현·검수
 - 프론트 전체 스위트의 병렬 부하 의존 간헐 실패 (2026-09-24 회고와 같은 항목)
 - `TaskVersion` snapshot 에 상위·선행·프로젝트가 없어 이력 복원 불가
 - MCP `task_update` 가 상위를 못 받는 비대칭
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/strong-hajin/strong-hajin-design/README|strong-hajin-design]]
+<!-- work-links:end -->

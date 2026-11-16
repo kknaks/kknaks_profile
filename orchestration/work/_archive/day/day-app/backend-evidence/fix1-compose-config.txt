@@ -1,0 +1,14 @@
+== fake
+api {'DAY_PUBLIC_API_BASE': 'https://placeholder-public.example.test', 'DAY_DEMO_LOGIN_EMAILS': 'placeholder@example.test', 'DAY_DEMO_API_BASE': 'https://placeholder-demo.example.test'}
+migrate {'DAY_PUBLIC_API_BASE': 'https://placeholder-public.example.test', 'DAY_DEMO_LOGIN_EMAILS': 'placeholder@example.test', 'DAY_DEMO_API_BASE': 'https://placeholder-demo.example.test'}
+postgres {}
+redis {}
+scheduler {'DAY_PUBLIC_API_BASE': 'https://placeholder-public.example.test', 'DAY_DEMO_LOGIN_EMAILS': 'placeholder@example.test', 'DAY_DEMO_API_BASE': 'https://placeholder-demo.example.test'}
+worker {'DAY_PUBLIC_API_BASE': 'https://placeholder-public.example.test', 'DAY_DEMO_LOGIN_EMAILS': 'placeholder@example.test', 'DAY_DEMO_API_BASE': 'https://placeholder-demo.example.test'}
+== empty
+api {'DAY_PUBLIC_API_BASE': '', 'DAY_DEMO_LOGIN_EMAILS': '', 'DAY_DEMO_API_BASE': ''}
+migrate {'DAY_PUBLIC_API_BASE': '', 'DAY_DEMO_LOGIN_EMAILS': '', 'DAY_DEMO_API_BASE': ''}
+postgres {}
+redis {}
+scheduler {'DAY_PUBLIC_API_BASE': '', 'DAY_DEMO_LOGIN_EMAILS': '', 'DAY_DEMO_API_BASE': ''}
+worker {'DAY_PUBLIC_API_BASE': '', 'DAY_DEMO_LOGIN_EMAILS': '', 'DAY_DEMO_API_BASE': ''}

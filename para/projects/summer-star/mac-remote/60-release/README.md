@@ -1,6 +1,6 @@
 # Release Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > 제품의 배포 버전별 release note를 관리한다. 최신 버전이 위.
 

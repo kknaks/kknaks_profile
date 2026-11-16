@@ -1,6 +1,6 @@
 # Architecture Index
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > mac-remote는 **Mac 헬퍼(실행기)** + **iOS 앱(리모컨)** 두 컴포넌트가 LAN WebSocket으로 통신하는 구조다. 여러 spec/work가 공유하는 장기 구조를 여기에 둔다.
 > 원본: `mac-remote/doc/Architecture.md`.
@@ -9,9 +9,9 @@
 
 | Area | Purpose | Index |
 |---|---|---|
-| system | 컴포넌트, 통신 인터페이스, 데이터 흐름 | `system/README.md` |
-| database | 런타임 엔티티와 영속 저장(UserDefaults) | `database/README.md` |
-| deploy | Mac DMG / iOS TestFlight 배포 프로세스 | `deploy/README.md` |
+| system | 컴포넌트, 통신 인터페이스, 데이터 흐름 | [[para/projects/summer-star/mac-remote/40-architecture/system/README\|system/README.md]] |
+| database | 런타임 엔티티와 영속 저장(UserDefaults) | [[para/projects/summer-star/mac-remote/40-architecture/database/README\|database/README.md]] |
+| deploy | Mac DMG / iOS TestFlight 배포 프로세스 | [[para/projects/summer-star/mac-remote/40-architecture/deploy/README\|deploy/README.md]] |
 
 ## 기술 스택
 

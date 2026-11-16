@@ -1,6 +1,6 @@
 # Deploy Architecture
 
-규칙: `para/projects/project.md`
+규칙: [[para/projects/project|para/projects/project.md]]
 
 > `open-kknaks`의 GitHub Actions 기반 package build, PyPI publish, 설치 검증 절차를 관리한다.
 
@@ -16,7 +16,7 @@
 
 | Area | Index |
 |---|---|
-| Package / PyPI | `back/README.md` |
+| Package / PyPI | [[para/projects/summer-star/open-kknaks/40-architecture/deploy/back/README\|back/README.md]] |
 
 ## Release Flow
 

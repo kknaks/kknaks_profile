@@ -1,0 +1,140 @@
+// 시간 · 바이탈 글자 — DAY 웹 템플릿 필터(`backend/day/web.py` mmss · short · span_min · hm · age)와 같은 모양.
+// 표시 시각은 병원 현지(KST 고정 — 프로토 view/time.dart · DAY 기본 병원 시간대).
+import '../model/board.dart';
+
+const _kst = Duration(hours: 9);
+
+/// `+mm:ss`
+String mmss(DateTime? since, DateTime now) {
+  if (since == null) return '';
+  final s = now.difference(since).inSeconds.clamp(0, 1 << 31);
+  return '+${(s ~/ 60).toString().padLeft(2, '0')}:${(s % 60).toString().padLeft(2, '0')}';
+}
+
+/// 시간 칸 `30초` · `n분`
+String shortElapsed(DateTime? since, DateTime now) {
+  if (since == null) return '';
+  final s = now.difference(since).inSeconds.clamp(0, 1 << 31);
+  return s < 60 ? '$s초' : '${s ~/ 60}분';
+}
+
+/// 경과 분 `n분`(프로토 카드 · 호출 상자 큰 숫자 — 내림)
+String elapsedMin(DateTime? since, DateTime now) {
+  if (since == null) return '';
+  final s = now.difference(since).inSeconds;
+  return '${s < 0 ? 0 : s ~/ 60}분';
+}
+
+/// 진행 중 시술 큰 경과 `mm:ss`(프로토 `elapsed` — 한 시간 넘으면 `h:mm:ss`)
+String clock(DateTime? since, DateTime now) {
+  if (since == null) return '';
+  final s = now.difference(since).inSeconds.clamp(0, 1 << 31);
+  String p2(int v) => v.toString().padLeft(2, '0');
+  final h = s ~/ 3600;
+  return h > 0 ? '$h:${p2(s % 3600 ~/ 60)}:${p2(s % 60)}' : '${p2(s ~/ 60)}:${p2(s % 60)}';
+}
+
+/// 마취 완료 `N`분 — 서버 `lastSeconds ÷ 60` 내림(형식 변환만 · U-8).
+int? lastAnesMinutes(int? lastSeconds) => lastSeconds == null ? null : lastSeconds ~/ 60;
+
+/// 끝난 시술 `n분`(시작이 없으면 빈 글자)
+String spanMin(DateTime? start, DateTime? end) {
+  if (start == null || end == null) return '';
+  final m = (end.difference(start).inSeconds / 60).round();
+  return '${m < 1 ? 1 : m}분';
+}
+
+/// 병원 현지 `HH:MM`
+String hm(DateTime? at) {
+  if (at == null) return '';
+  final k = at.toUtc().add(_kst);
+  return '${k.hour.toString().padLeft(2, '0')}:${k.minute.toString().padLeft(2, '0')}';
+}
+
+/// 병원 현지 오늘 `YYYY-MM-DD`
+DateTime kstDate(DateTime now) {
+  final k = now.toUtc().add(_kst);
+  return DateTime(k.year, k.month, k.day);
+}
+
+/// `만 N세`(생일 없으면 빈 글자)
+String age(String? birthDate, DateTime now) {
+  if (birthDate == null) return '';
+  final b = DateTime.tryParse(birthDate);
+  if (b == null) return '';
+  final t = kstDate(now);
+  final before = (t.month < b.month) || (t.month == b.month && t.day < b.day);
+  return '만 ${t.year - b.year - (before ? 1 : 0)}세';
+}
+
+const _gender = {'male': '남', 'female': '여'};
+
+/// 카드 3번 줄 = 만 나이 | 국적 | 기타 제공 정보(성별 — OQ-A27 기본값) — 값이 없는 칸은 그리지 않는다(U-3).
+/// 룸 상세 머리의 바이탈 줄도 같다(U-4).
+List<String> vitals(Customer c, DateTime now) =>
+    [age(c.birthDate, now), c.nationality ?? '', _gender[c.gender] ?? ''].where((s) => s.isNotEmpty).toList();
+
+/// 확인할 일 글자(옆 SPEC-002 @e421b77b U-10 원문 = 웹 board_parts.html:213-217) · n = since 부터 지금까지 분.
+String needText(Need n, DateTime now) {
+  final m = n.since == null ? 0 : (now.difference(n.since!).inSeconds ~/ 60).clamp(0, 1 << 31);
+  return switch (n.why) {
+    'wait' => '대기 $m분째',
+    'anes' => '마취 $m분째',
+    'call' => '호출 $m분째',
+    'accept' => '${n.doctorName ?? ''} 수락 $m분째'.trim(),
+    'home' => '귀가 대기 전',
+    _ => n.why,
+  };
+}
+
+/// 원장 고르기 창 상태 글자(웹 `doctor_label` — 비어 있음 · ○○ 시술 중 · ○○ 시작 대기).
+String doctorStatus(Doctor d) {
+  if (d.status == 'free') return '비어 있음';
+  final room = d.room == null || d.room!.isEmpty ? '' : '${d.room} ';
+  return '$room${d.status == 'doing' ? '시술 중' : '시작 대기'}';
+}
+
+/// 시술 줄 상태 글자(웹 `ui.proc_row`).
+String taskStateLabel(String state) => switch (state) {
+      'doing' => '진행중',
+      'accepted' => '수락',
+      'called' => '호출',
+      'done' => '완료',
+      _ => '준비중',
+    };
+
+/// 카드의 열린 호출 하나 — 같은 call.id 를 유효 호출로 갖는 호출 · 수락 줄(서버 줄 순서).
+class OpenCall {
+  final TaskCall call;
+  final List<Task> tasks;
+  const OpenCall(this.call, this.tasks);
+
+  /// 수락 대기 = 그 호출을 유효 호출로 갖는 줄 중 `called` 가 있음(U-3).
+  bool get waiting => tasks.any((t) => t.state == 'called');
+  List<Task> get calledTasks => [for (final t in tasks) if (t.state == 'called') t];
+}
+
+List<OpenCall> openCalls(BoardCard card) {
+  final out = <String, OpenCall>{};
+  for (final t in card.tasks) {
+    final c = t.call;
+    if (c == null || (t.state != 'called' && t.state != 'accepted')) continue;
+    out.putIfAbsent(c.id, () => OpenCall(c, [])).tasks.add(t);
+  }
+  return out.values.toList();
+}
+
+/// 호출 대상 글자 — `all` = DAY 웹 카드 원장 줄 「전체 의사」(OQ-A8 기본값) · `one` = 그 원장 이름.
+String callTargetLabel(BoardSnapshot snap, String kind, String? targetStaffId) =>
+    kind == 'one' ? (snap.doctorName(targetStaffId) ?? '') : '전체 의사';
+
+/// 그 호출이 서버 `needs` 의 「호출」(받지 않은 호출 · 기준 넘음)에 걸렸나 — 빨강 표시(앱은 판정하지 않음).
+bool callIsLate(BoardCard card, String callId) => card.needs.any((n) => n.why == 'call' && n.callId == callId);
+
+/// 카드 · 머리 담당의 — 서버 줄 순서 첫 담당의(OQ-A21 기본값) · 없으면 「담당의 미정」.
+String cardDoctor(BoardCard card) {
+  for (final t in card.tasks) {
+    if (t.doctorName != null && t.doctorName!.isNotEmpty && t.state != 'done') return t.doctorName!;
+  }
+  return '담당의 미정';
+}

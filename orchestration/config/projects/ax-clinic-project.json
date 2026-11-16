@@ -1,6 +1,7 @@
 {
   "_doc": "ax-clinic-project(회사 — 병원 AX 전환 사업 문서 레포. 지점별 AX 전환 전략: 명동 · 안양) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 사업 레포가 문서 원천이고 프로필에는 회고(log/)만 쌓는다 — 2026-10-15 프로필 오케스트레이션으로 편입.",
   "project": "ax-clinic-project",
+  "document_root": "para/projects/company/ax-clinic-project",
   "worktree_root": "/Users/kknaks/orca/workspaces",
   "use_worktree": true,
   "repos": {
@@ -69,7 +70,7 @@
   "default_workers": [
     "writer"
   ],
-  "summary_dest": "/Users/kknaks/git/toy_pr2/kknaks_profile/para/projects/company/ax-clinic-project/log",
+  "summary_dest": "para/projects/company/ax-clinic-project/log",
   "rules": {
     "workers_commit_or_push": false,
     "coordinator_verifies_before_pr": true
