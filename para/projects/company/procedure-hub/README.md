@@ -40,3 +40,9 @@ procedure-hub/
 - 설정 SSOT: `orchestration/config/projects/procedure-hub.json`
 - 워커: planner · backend · frontend · reviewer_spec · reviewer_code (역할: `orchestration/roles/procedure-hub/`)
 - 진행 중 작업: `orchestration/work/<slug>/_RESUME.md`
+
+<!-- work-links:start -->
+## 작업 기록
+
+[[para/projects/company/procedure-hub/work-index|진행 중·완료된 작업 목록]]
+<!-- work-links:end -->

@@ -1,7 +1,7 @@
 # 작업 요약 — phub-ledger-redesign (procedure-hub)
 
 기간: `2026-11-09` ~ `2026-11-16`
-결과: **실험용 — 회사 레포 머지 안 함 · 다음 작업 gold + jev + LLM 연결 시험으로 이어짐 · 데이터는 로컬 보관.** archive-work.sh 는 돌리지 않았다(이 회고 · 지시서 · `_RESUME.md` · `.gitignore` 만 커밋 대상).
+결과: **실험용 — 회사 레포 머지 안 함 · 다음 작업 gold + jev + LLM 연결 시험으로 이어짐 · 데이터는 로컬 보관.** 11-16 archive-work.sh 로 보관했다(커밋 대상은 지시서 · `_RESUME.md` · `.gitignore` · 회고 — 데이터 제외).
 
 정본: `orchestration/work/phub-ledger-redesign/_RESUME.md`(결정 표 · 11-09 ~ 11-16 이력) · 단계 notes `silver-model/notes/*-notes.md` · `silver-model/drafts/*/…-notes.md` · `silver-model/gold/gold-final-notes.md` · `gold/README.md` · `notes/glossary.md`. **이 문서의 숫자는 전부 그 파일에서 다시 확인한 것이고, 원장 문장 · 제품 설명 · 시술 설명 원문은 옮기지 않았다**(이 레포는 PUBLIC). 데이터(`silver-model/`)는 레포에 없다 — §4 11-16 결정.
 
@@ -25,47 +25,47 @@ Procedure Hub(피부 시술 상담 지식) 원장 JSON 21개를 질문 응답 ·
 
 ## 2. 적용한 기술·개념
 
-- **값에서 스키마로(`data-modeling` · `functional-dependency`)** — ERD 를 먼저 그리지 않고, 원장 값을 쪼개 담을 칸이 없는 말이 0 이 될 때까지 표를 늘렸다.
+- **값에서 스키마로(`data-modeling` · `functional-dependency`)** — ERD 를 먼저 그리지 않고, 원장 값을 쪼개 담을 칸이 없는 말이 0 이 될 때까지 표를 늘렸다. → [[data-modeling]] · [[functional-dependency]]
   - 왜 이걸 골랐나: 앞 작업의 ERD 는 키 · 트리 중심이어서 빈도 부사 · 유발 조건 · 단위가 섞인 시간 범위 같은 글 속 성질이 자유 JSON 칸으로 밀렸다. 목표 문서 §3 「모든 정보를 자유로운 JSON 메타데이터 한 칸에 넣는 방식으로 문제를 넘기지 않는다」가 기준이 됐다.
   - 무엇이 어려웠나: 11-10 처음엔 다시 연결 관계(계열 하위분류 · 겹침 · 상속)부터 그리기 시작했고 사용자가 「계속 연결 관계만 생각하다가 꼬인 거 아니야」라고 끊었다. 그 뒤 「개체 먼저, 관계는 나중」(`family-design-instructions.md`)으로 돌렸고, 재료 · 기전 · 조직 → 방법 → 제품 → 부위 → 고민 → 효과 → 부작용 → 사람 조건 순으로 사전 22표를 먼저 세웠다.
   - 근거: `_RESUME.md` §2 11-10 결정(계열 설계 · 시술 정의 · 방법 사전) · `silver-model/notes/atoms-notes.md` · `drafts/relation-pilot/relation-notes.md` §4(칸에 담기 어려웠던 값과 담은 자리)
 
-- **메달리온 층 구분(`medallion-architecture`)** — 브론즈(원장 그대로) · 실버(정규화 · 근거 보존) · 골드(질문에 바로 답하는 꼴)를 데이터 가공 단계로, 시맨틱 매핑을 네 번째 등급이 아닌 「개념 → 저장 위치 · 조회 경로」 문서로 두었다.
+- **메달리온 층 구분(`medallion-architecture`)** — 브론즈(원장 그대로) · 실버(정규화 · 근거 보존) · 골드(질문에 바로 답하는 꼴)를 데이터 가공 단계로, 시맨틱 매핑을 네 번째 등급이 아닌 「개념 → 저장 위치 · 조회 경로」 문서로 두었다. → [[medallion-architecture]]
   - 왜 이걸 골랐나: 앞 작업에서 실버와 골드의 경계가 흐려 같은 사실이 여러 층에 복사됐다. 이번엔 「gold 값은 silver 값 그대로 · 이어 붙이기 · 셈 · 정해진 어휘만」을 검사(`gold-check.py` 값 ⊂ silver)로 박았다.
   - 무엇이 어려웠나: 실버의 범위를 「질문에 필요한 정보만 정규화」로 좁히는 결정(11-10)이 있어야 브론즈 전수 보존과 실버 정규화가 갈라졌다. 상품(원장 market-pricing 122행)은 시술 · 케이스가 다 선 뒤로 미뤘고(11-10), 실제로 11-16 에 마지막 층으로 들어갔다.
   - 근거: `gold/README.md` · `gold/semantic-map.md`(개념 18 · 관계 16 · 규칙 6) · `_RESUME.md` §2 11-10 「실버 = 질문에 필요한 정보만 정규화」
 
-- **① 사전 → ② 조합 → ③ 관계 순서** — 낱말(사전)을 먼저 확정하고, 원장이 실제로 말한 조합만 시술 · 케이스로 세우고, 관계는 어느 층(계열 · 시술 · 케이스 · 제품 · 패키지)에든 붙이되 아래로 복사하지 않고 조회 때 물려받는다(`labeled-upward-fallback` 과 같은 발상 — 출처 층을 `g_scope` 에 남김).
+- **① 사전 → ② 조합 → ③ 관계 순서** — 낱말(사전)을 먼저 확정하고, 원장이 실제로 말한 조합만 시술 · 케이스로 세우고, 관계는 어느 층(계열 · 시술 · 케이스 · 제품 · 패키지)에든 붙이되 아래로 복사하지 않고 조회 때 물려받는다(`labeled-upward-fallback` 과 같은 발상 — 출처 층을 `g_scope` 에 남김). → [[labeled-upward-fallback]]
   - 왜 이걸 골랐나: 3층 시범(11-10)에서 케이스를 제품 · 가격표 조합으로 만들자 96 → 폭증했다. 「부위만 달라도 별개 케이스 · 제품은 케이스를 가르지 않음 · 가격표로 케이스 안 만듦」(11-14)으로 좁히자 시술 134 · 케이스 259 로 멈췄다.
   - 무엇이 어려웠나: 「시술 정체」가 무엇인지 — 재료 + 작용 대상 조직 + 작용 원리가 같으면 같은 시술, 부위는 정체가 아님(11-10). 스킨보톡스와 보톡스는 대상 조직이 달라 다른 시술, 제네시스는 제품이 아니라 케이스 이름(11-11 사용자 정정 — 코디가 외부 지식으로 「장비」라고 브리프에 넣은 것은 오류).
   - 근거: `_RESUME.md` §2 11-10 「시술 구조 = 계열 → 시술 종류 → 케이스」 · 11-14 ② 설계 · `notes/combo-notes.md` §4 매핑 현황 · `notes/glossary.md` §0
 
-- **시범 → 구조 확정 → 묶음 병렬 → 합치기 → 보완** — 각 층을 M1 · M8 · M16(②) 또는 M1 · M2(③) 시범으로 먼저 돌려 표 · 칸을 확정하고, 나머지 계열을 3~4 묶음(Opus 워커 병렬)으로 쓰고, 합치기 워커가 겹침 · id · FK 를 다시 검사했다.
+- **시범 → 구조 확정 → 묶음 병렬 → 합치기 → 보완** — 각 층을 M1 · M8 · M16(②) 또는 M1 · M2(③) 시범으로 먼저 돌려 표 · 칸을 확정하고, 나머지 계열을 3~4 묶음(Opus 워커 병렬)으로 쓰고, 합치기 워커가 겹침 · id · FK 를 다시 검사했다. → [[pilot-then-parallel-batches]]
   - 왜 이걸 골랐나: 원장 21개 × 계열 18 을 한 워커가 한 번에 하면 검수 불가. 시범에서 칸을 확정해야 묶음 결과가 같은 꼴로 나온다.
   - 무엇이 어려웠나: **묶음 경계에서 잎이 빠졌다.** 관계 A·B·C·D 가 「시술 간 관계는 작은 계열 번호 묶음이 맡는다」는 규칙으로 서로 넘긴 잎 ~60 이 합칠 때 어느 쪽에도 없었고(`notes/relation-notes.md` §3-3 처리 표 — 없음 → 만듦 PRL-0875 ~ 0898), 합치기 뒤 다시 뽑으니 빠진 잎 198 · 15 항목(어림 「약 160」과 달랐다) → 143 잎을 관계 행으로, 55 잎은 「안 담음 — 이유」(§7 보완).
   - 근거: `relation-[abcd]-brief.md` 겹침 규칙 · `notes/relation-notes.md` §3-3 · §7 · `drafts/relation-gapfill/gapfill-notes.md`
 
-- **검사 스크립트의 시점 고정 문제 → 통합 검사(`schema-parity-test`)** — 단계마다 `*-check.py` 를 두었는데, 작업 시작 시점의 silver 해시 · 기대 행 수를 박아 둔 검사는 다음 단계가 silver 를 바꾸면 FAIL 이 났다.
+- **검사 스크립트의 시점 고정 문제 → 통합 검사(`schema-parity-test`)** — 단계마다 `*-check.py` 를 두었는데, 작업 시작 시점의 silver 해시 · 기대 행 수를 박아 둔 검사는 다음 단계가 silver 를 바꾸면 FAIL 이 났다. → [[schema-parity-test]]
   - 왜 이걸 골랐나: 11-14 사전 보강 뒤 `merge-check` 가 FAIL(합치기 시점 고정) — 「기준 검사는 dict-fill-check」로 바꿔 말하는 식으론 검사가 단계마다 바뀌어 믿을 수 없었다.
   - 무엇이 어려웠나: 11-15 통합 검사 발주에서 단계 검사 기준을 전부 모아 「시점 고정 · notes 대조 · 단계 산출물」 셋은 빼고 나머지(FK R1~R7 · id · 형식 · 값 목록 V1~V3 · 3단 D1 · ② · ③ 원문/숫자 대조)를 스키마 파일(`silver-schema.json`) 하나로 옮겼다. 첫 실행 FAIL 8 · WARN 401(별칭 괄호 · 같은 이름 · 띄어쓰기 · 근거 300) → 고치기 → PASS · WARN 0 · 알려진 예외 355 고정. 이후 매 발주가 silver-check 재실행 PASS 를 완료 조건으로 썼다.
   - 근거: `drafts/silver-check/silver-check-notes.md` §1 「단계 검사 기준 모음」 · §3 · `notes/combo-notes.md` 7줄(초안 검사가 FAIL 하는 이유) · `_RESUME.md` 11-15 통합 검사 · 고치기
 
-- **정규화 칸 추가는 「칸」이 아니라 「표」로(`db-normalization`)** — 관계 시범에서 담을 칸 없는 값 227 이 나왔을 때, note 칸에 밀어 넣지 않고 번역 → `statement_translation` · 위험 등급 → `rating_scale` + `adverse_rating` · 부정 진술 → `polarity` 3값 · 다운타임 → `recovery` · 시너지 목표 → `procedure_relation_effect` · 사람 조건 → `indication_condition` / `package_condition` · 후속 일정 → `package_schedule` 로 **표 8개**를 더했다 → 227 → 0.
+- **정규화 칸 추가는 「칸」이 아니라 「표」로(`db-normalization`)** — 관계 시범에서 담을 칸 없는 값 227 이 나왔을 때, note 칸에 밀어 넣지 않고 번역 → `statement_translation` · 위험 등급 → `rating_scale` + `adverse_rating` · 부정 진술 → `polarity` 3값 · 다운타임 → `recovery` · 시너지 목표 → `procedure_relation_effect` · 사람 조건 → `indication_condition` / `package_condition` · 후속 일정 → `package_schedule` 로 **표 8개**를 더했다 → 227 → 0. → [[db-normalization]]
   - 왜 이걸 골랐나: 사용자 결정 「칸 추가는 정규화해서」(11-15). 같은 이유로 11-12 에는 silver CSV 의 `;` 여러 값을 전부 풀어(`silver-split`) alias · source_ref 공통 표로 뺐다 — 「까먹으면 어떡해 — 지금 다 푼다」.
   - 무엇이 어려웠나: 한 칸에 발현과 지속이 함께 적힌 값, 단위가 둘인 범위, 평균과 범위가 한 칸인 값 — 규칙은 「원문 조각은 `*_text` 에 그대로 · 숫자는 원문에 있을 때만 · 단위가 둘이면 숫자 칸 비움」(§4).
   - 근거: `drafts/relation-pilot/relation-notes.md` §4 · §9-2(표 구조 정본) · `_RESUME.md` 11-12 split · 11-15 시범 결과
 
-- **동명이물과 원장 오류(`entity-resolution`)** — 같은 이름이 다른 것을 가리키는 경우를 「충돌」로 세지 않고 떼어 냈다.
+- **동명이물과 원장 오류(`entity-resolution`)** — 같은 이름이 다른 것을 가리키는 경우를 「충돌」로 세지 않고 떼어 냈다. → [[entity-resolution]]
   - 왜 이걸 골랐나: 관계 보완에서 효과 시점 「충돌」 3건이 나왔는데, 사용자가 보니 M4 제품 이름과 M1 시술 이름이 같은 「스킨보톡스」, M9 제품 「LDM」 설명이 다른 기기 설명 — 충돌이 아니라 동명이물 · 원장 오기였다(11-15). 진술 42행을 떼고 원장 확인 목록(`notes/ledger-check-list.csv`)으로 보냈다.
   - 무엇이 어려웠나: 「원장 충돌 = 주제 전용 원장 채택(부작용은 complications · 금기는 contraindications)」 규칙(11-14)과 「동명이물은 충돌이 아님」을 구분하는 기준이 사람 눈이었다. 기계는 이름이 같으면 같은 개체로 묶는다.
   - 근거: `_RESUME.md` 11-15 보완 판단 3 · `notes/relation-conflicts.csv`(RCF-001 ~ 027) · `drafts/dict-fill-2/`
 
-- **외부 조사 반영 기준 — 「원장이 틀릴 수 있다. silver 만 제대로 들어가면 된다」(`data-lineage`)** — 사용자가 fable 로 조사한 결과(448줄 · id 210 · 확인 164 · 추정 163)에서 **제품 사실 「확인」(대조 일치 + 식약처 재조회 일치)만** silver 에 외부 근거로 넣고, 원장 ≠ 외부면 외부 값 + 「원장 오류 의심」 notes, 추정 · 임상 · 의미 · 관계 행은 넣지 않고 확인 목록 ext 칸으로.
+- **외부 조사 반영 기준 — 「원장이 틀릴 수 있다. silver 만 제대로 들어가면 된다」(`data-lineage`)** — 사용자가 fable 로 조사한 결과(448줄 · id 210 · 확인 164 · 추정 163)에서 **제품 사실 「확인」(대조 일치 + 식약처 재조회 일치)만** silver 에 외부 근거로 넣고, 원장 ≠ 외부면 외부 값 + 「원장 오류 의심」 notes, 추정 · 임상 · 의미 · 관계 행은 넣지 않고 확인 목록 ext 칸으로. → [[data-lineage]]
   - 왜 이걸 골랐나: 공개 자료로 확인되는 것은 제품 사실(제조사 · 허가 · 재질 · 파장)이고, 임상 사실은 원장 작성자 몫이다. 근거 종류(`evidence_kind` 원장 / 외부 확인 / 사용자 제공)를 행마다 남겨 gold 까지 끌고 갔다.
   - 무엇이 어려웠나: 11-11 제품 단계에서도 같은 일이 있었다 — 제조사 한 칸이 아니라 제품-회사 역할 표(브랜드 · 제조원 · 수입사 · 유통사 · 허가권자 + 출처)가 필요했고(「제조사 유통사 수입사 다 다를걸」), 식약처 기록은 제조원 · 수입사를, 원장은 대개 브랜드를 말했다. 11-15 ~ 11-16 외부 조사 1~3차에서 식약처 재조회 35 전부 일치, 넣은 줄 84, 회사 없는 제품 57 → 52.
   - 근거: `_RESUME.md` 11-11 제품 v2 ~ v5 · 11-15 외부 조사 결정 · 11-16 원칙 · `notes/external-fill-notes.md` §2 · §5 · §6 · `notes/product-notes.md`
 
-- **gold = 질문 시범으로 검증(`artifact-traceability` · `idempotency`)** — gold 15표를 만들고 질문 37개를 실제 표 조인으로 답해 「구조 문제 0」을 확인했다. `gold-build.py` 는 다시 돌려도 같은 바이트, `gold-check.py` 가 재현 · 되짚기 · 값 ⊂ silver · 재빌드 해시를 검사한다.
+- **gold = 질문 시범으로 검증(`artifact-traceability` · `idempotency`)** — gold 15표를 만들고 질문 37개를 실제 표 조인으로 답해 「구조 문제 0」을 확인했다. `gold-build.py` 는 다시 돌려도 같은 바이트, `gold-check.py` 가 재현 · 되짚기 · 값 ⊂ silver · 재빌드 해시를 검사한다. → [[artifact-traceability]] · [[idempotency]]
   - 왜 이걸 골랐나: 앞 작업은 골드를 「규칙 적용 그래프 + 허브 도구 탐색」으로 봤고(10-30 기록), 이번엔 저장소를 관계형 표 먼저 + `g_node`/`g_edge` 그래프 내보내기로 정했다(11-16 판단 4). 질문 35개가 모두 2~3단 조인으로 답해져 그래프 DB 가 먼저일 이유가 없었다.
   - 무엇이 어려웠나: `g_evidence` 가 122,126행 · 13MB — 펼친 행마다 근거를 복사한 탓. 참조(`silver_table + silver_id + fields`)로 바꿔 27,740행 · 1.5MB. 그리고 「같은 날 가능」 표지가 원문 글자에 기대고 있어 silver `procedure_relation` 에 `same_day` 칸(가능 77 · 조건부 13 · 불가 22 · 빈칸 = 원문이 말하지 않음)을 판정 표(`notes/same-day-judgment.csv` 116행)로 더했다. **보완 ≠ 같은 날 가능**을 규칙으로 박았다.
   - 근거: `gold/gold-final-notes.md` §1 · §3 · §4 · `drafts/gold/gold-notes.md` §6 · `gold/README.md`
@@ -130,7 +130,7 @@ Procedure Hub(피부 시술 상담 지식) 원장 JSON 21개를 질문 응답 ·
 | 2026-11-16 | gold: 같은 날 칸을 silver 에 판정으로 추가 · 상위 제품 진술은 하위 제품에 물려주지 않음 · `product_procedure` 표 추가 · 저장소 = 관계형 먼저 + 그래프 내보내기 · 문헌 gold 나중 · 근거는 참조로 | 사용자 「응!!」(판단 6) |
 | 2026-11-16 | 용어집 · 값 목록 · 외부 코드 연결 표(빈 표) 설계만 | 사용자 「응 추천이랑 … 반영해서 작업 하자」 |
 | 2026-11-16 | **데이터 보관**: PUBLIC 레포라 `silver-model/` 은 `.gitignore` + 로컬 사본. 커밋 = 지시서 · `_RESUME` · `.gitignore` · 회고 | 사용자 「깃 이그노어하고 로컬에만」 |
-| 2026-11-16 | **실험용 — 회사 레포 머지 안 함. 회고 + PR 까지만. archive-work.sh 안 돌림. 다음 작업 = gold 데이터 + jev + LLM 연결 시험** | 사용자 |
+| 2026-11-16 | **실험용 — 회사 레포 머지 안 함. 회고 + PR. ~~archive-work.sh 안 돌림~~(11-16 뒤집음 — 사용자 「정리하라 · 다음 세션은 새 워크트리」 → 아카이브함). 다음 작업 = gold 데이터 + jev + LLM 연결 시험** | 사용자 |
 
 ---
 
@@ -164,4 +164,10 @@ Procedure Hub(피부 시술 상담 지식) 원장 JSON 21개를 질문 응답 ·
 - **gold 질문 시범 미답 3**: 원장 확인 2(Q10 · Q33) · silver 빈칸 1(Q12).
 - **나중으로 미룬 것**: 문헌 · 번역 gold 표(`g_citation`) · 외부 코드 연결 표(`external_code` 빈 표 — 넓음/좁음 기준 · 표준 값 뜻) · modality_alias 용도 · 골수 · method 별칭 띄어쓰기 8 · 멀티비타민/미네랄 성분 펼치기 · M3 콜라겐/hADM 소속 재검토.
 - **제품 사전은 시술 중점으로만 충분** 판정(11-11) — 회사 없는 제품 52 · 영어 이름 빈칸은 다음 제품 갱신 때.
-- **마감 절차**: 회사 레포 머지 없음 · archive-work.sh 는 다음 작업이 끝날 때 함께. 이 작업의 코디 워크트리 미추적 파일(브리프 · 지시서 68개, `silver-model/` 제외)은 PR 에 같이 넣는다.
+- **마감 절차**: 회사 레포 머지 없음 · 프로필 PR #116 스쿼시 머지 · 11-16 archive-work.sh 로 `orchestration/work/_archive/procedure-hub/phub-ledger-redesign/` 에 보관(데이터 `silver-model/` 은 gitignore · 로컬). 다음 작업(gold + Jev + LLM 연결 시험)은 새 프로필 워크트리 + PROCEDURE-HUB PR #31 워크트리에서.
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/procedure-hub/phub-ledger-redesign/README|phub-ledger-redesign]]
+<!-- work-links:end -->
