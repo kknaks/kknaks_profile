@@ -11,6 +11,7 @@ aliases:
   - lease 셈
 up:
   - 2026-10-07-strong-hajin-enhance
+  - 2026-11-16-ext-api-charty1
 tags:
   - 동시성
   - 워커
@@ -48,3 +49,4 @@ tags:
 ## 출처
 
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 합성 lease·웜스타트 경주(`meeting_worker.py` · `batch_service.py` · 코드 검수 F-1·F-2)
+- [[2026-11-16-ext-api-charty1]] §2 — cc 외부 board 의 KOS 이력 조회를 「시도 예약」으로: 고를 줄을 `BEGIN IMMEDIATE` 짧은 트랜잭션에서 먼저 적고(`checked_at` · `last_failed = 1`) KOS 를 부르기 전에 커밋 → 겹친 요청 · 죽은 프로세스에도 같은 일정 1번 · 실패는 5분 뒤 ≤ 3(lease 만료를 재시도 간격으로) (`procedure/back/app/service/ext.py` · DEC-012 D-38 ④ · 시험 T57 겹친 요청)
