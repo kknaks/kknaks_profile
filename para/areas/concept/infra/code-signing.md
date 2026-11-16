@@ -20,11 +20,17 @@ aliases:
   - TestFlight
   - 내부 테스터
   - 빌드 번호
+  - Play 앱 서명
+  - Play App Signing
+  - 업로드 키
+  - upload key
+  - AAB
 up:
   - 2026-09-04-kakao-task
   - 2026-10-01-strong-hajin-deploy
   - 2026-10-07-strong-hajin-inbox
   - 2026-10-22-myeongdong-poc-v2
+  - 2026-11-16-android-app
 tags:
   - infra
   - 배포
@@ -92,3 +98,10 @@ iOS 는 서명 없는 앱이 기기에 아예 못 깔린다. 명동 PoC v2 시�
 - [[2026-10-22-myeongdong-poc-v2]] §2 — Flutter iOS 시술실 앱을 TestFlight 내부 테스터로 아이폰 · 아이패드에 설치, 빌드 번호 +1 · 심사 없음(SPEC-004 §2.4 · 코드 #4 · #5)
 - [[2026-10-07-strong-hajin-inbox]] §3 — 약관 만료로 공증 403, 동의 뒤 반영 지연을 재시도로 통과
 - [[2026-11-11-fix]] §3 — DAY Dev 첫 TestFlight: 기기 0대 팀의 서명 우회 · 수출 규정 키 · 빌드 2 자동 통과(`app-testflight-upload-report.md` · `app-export-compliance-report.md` · `app-testflight-upload-2-report.md`)
+
+### Android — Play 앱 서명 · 업로드 키 (DAY android-app)
+
+- **앱 서명 키는 Google 이 보관**하고, 개발자는 **업로드 키**로 서명한 AAB 만 올린다. 업로드 키를 잃으면 Play Console 에서 재설정할 수 있다. 개발 앱 · 정식 앱이 같은 업로드 키를 써도 앱 서명 키는 앱마다 따로다.
+- Flutter 템플릿은 release 를 **debug 키로 조용히 서명**한다. Play 가 거절하니 밖으로 나가지는 않지만, 사람이 알아채기 어렵다. 그래서 업로드 키가 없으면 `preReleaseBuild` 에서 오류로 멈추게 했다.
+- 새 앱의 **첫 AAB 는 Console 에서 손으로** 올린다(Developer API 는 앱을 만들지도, 첫 업로드를 하지도 못한다). 같은 패키지를 debug 키 apk 로 깔아 둔 기기는 서명이 달라 Play 설치가 실패한다 — 지우고 깔아야 한다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

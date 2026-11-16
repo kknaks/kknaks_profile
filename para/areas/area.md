@@ -647,6 +647,7 @@ para/areas/
 | 534 | `back` | [[para/areas/concept/back/tolerant-reader\|tolerant-reader]] | 읽는 쪽이 쓰는 칸만 꺼내고 모르는 칸 · 없는 칸 · 모르는 값에 안 깨지게. 빼기는 버티고 이름 · 모양 바꾸기는 못 버틴다 |  |
 | 535 | `front` | [[para/areas/concept/front/measured-overflow-toggle\|measured-overflow-toggle]] | 펼치기 버튼을 줄바꿈 수가 아니라 scrollHeight > clientHeight 로 켠다. 서버는 숨겨 두고 그릴 때마다 잰다 |  |
 | 536 | `cs` | [[para/areas/concept/cs/pilot-then-parallel-batches\|pilot-then-parallel-batches]] | 시범으로 표 · 칸을 굳히고 묶음 병렬 → 합치기 → 원천 전수 재추출. 묶음 경계가 누락 자리 · 어림 말고 세기 |  |
+| 537 | `front` | [[para/areas/concept/front/system-bar-inset\|system-bar-inset]] | edge-to-edge 에서 시스템 바가 덮는 자리만큼 비운다. Flutter 목록에 padding 을 직접 주면 안전 영역이 안 더해진다 |  |
 
 ---
 

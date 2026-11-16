@@ -8,8 +8,12 @@ aliases:
   - 회전식 리프레시 토큰
   - 인증 파일 공유
   - auth.json
+  - KOS 토큰 수명
+  - 위탁 토큰
+  - 세션 만료 종속
 up:
   - 2026-10-01-strong-hajin-deploy
+  - 2026-11-16-android-app
 tags:
   - 인증
   - token
@@ -46,3 +50,10 @@ tags:
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 운영 codex 인증을 mediness PVC 복사 대신 전용 CODEX_HOME 로그인으로 만들고, 로컬 사본 사용을 금지했다
+
+### refresh 가 없는 위탁 토큰에 세션을 묶으면 (DAY android-app)
+
+- DAY 는 직원 본인의 KOS 토큰으로 KOS 에 쓰도록(KOS 기록에 실제 직원이 남게) 정해서, **DAY 세션 만료 = KOS 토큰 만료**다. KOS sign-in 은 refresh 토큰을 주지 않는다.
+- prod 집계에서 세션이 모두 로그인 뒤 정확히 14시간에 끝났다. 사용 중에도 늘지 않으니, 모바일에서는 「매일 로그인이 끊긴다」로 느껴진다.
+- 풀 방법은 상류에 refresh 가 있느냐에 달렸다. 없으면 ① 세션을 분리하고 쓰기만 시스템 계정으로(감사 기록 원칙을 뒤집음) ② 기기에 자격 증명을 보관해 자동 재로그인(기기 위험) ③ 재로그인 편의 중에서 고른다. 새 작업으로 넘겼다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]
