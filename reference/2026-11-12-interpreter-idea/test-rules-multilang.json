@@ -1,0 +1,2262 @@
+{
+  "format": 1,
+  "made": "다국어 묶음 D-57 — scripts/multilang_rules.py 로 자동",
+  "combos": {
+    "A": {
+      "seed_version": "2026-10-27.6",
+      "sentences": {
+        "T01@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 1,
+              "kind": "literal",
+              "text": [
+                "Toning"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 2,
+              "kind": "literal",
+              "text": [
+                "肝斑治療"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 3,
+              "kind": "literal",
+              "text": [
+                "提亮"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 4,
+              "kind": "literal",
+              "text": [
+                "淨膚雷射",
+                "提亮",
+                "雷射淨膚"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 5,
+              "kind": "literal",
+              "text": [
+                "โทนนิ่ง"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 6,
+              "kind": "literal",
+              "text": [
+                "Toning"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 7,
+              "kind": "literal",
+              "text": [
+                "調色"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T02@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 8,
+              "kind": "literal",
+              "text": [
+                "Ulthera"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 9,
+              "kind": "literal",
+              "text": [
+                "ウルセラ",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 10,
+              "kind": "literal",
+              "text": [
+                "美版超声刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 11,
+              "kind": "literal",
+              "text": [
+                "美國音波",
+                "美版超聲刀",
+                "Ultherapy",
+                "Ulthera",
+                "極線音波",
+                "美版音波"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 12,
+              "kind": "literal",
+              "text": [
+                "อัลเธอราพี",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 13,
+              "kind": "literal",
+              "text": [
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 14,
+              "kind": "literal",
+              "text": [
+                "美版超聲刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 15,
+              "kind": "literal",
+              "text": [
+                "Ulthera"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 16,
+              "kind": "literal",
+              "text": [
+                "ウルセラ",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 17,
+              "kind": "literal",
+              "text": [
+                "美版超声刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 18,
+              "kind": "literal",
+              "text": [
+                "美國音波",
+                "美版超聲刀",
+                "Ultherapy",
+                "Ulthera",
+                "極線音波",
+                "美版音波"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 19,
+              "kind": "literal",
+              "text": [
+                "อัลเธอราพี",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 20,
+              "kind": "literal",
+              "text": [
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 21,
+              "kind": "literal",
+              "text": [
+                "美版超聲刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T04@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 22,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 23,
+              "kind": "literal",
+              "text": [
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 24,
+              "kind": "literal",
+              "text": [
+                "ジュベルック",
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 25,
+              "kind": "literal",
+              "text": [
+                "スカルプトラ"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 26,
+              "kind": "literal",
+              "text": [
+                "Juvelook",
+                "乔雅露"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 27,
+              "kind": "literal",
+              "text": [
+                "塑妍萃",
+                "素颜萃童颜针"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 28,
+              "kind": "literal",
+              "text": [
+                "喬雅露",
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 29,
+              "kind": "literal",
+              "text": [
+                "舒顏萃",
+                "素顏萃童顏針",
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 30,
+              "kind": "literal",
+              "text": [
+                "Juvelook",
+                "จูเบลุค"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 31,
+              "kind": "literal",
+              "text": [
+                "Sculptra",
+                "สกัลป์ตรา"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 32,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 33,
+              "kind": "literal",
+              "text": [
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T04@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 34,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 35,
+              "kind": "literal",
+              "text": [
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            }
+          ]
+        },
+        "T05@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 36,
+              "kind": "literal",
+              "text": [
+                "Botox"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 37,
+              "kind": "literal",
+              "text": [
+                "ボトックス"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 38,
+              "kind": "literal",
+              "text": [
+                "肉毒素"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 39,
+              "kind": "literal",
+              "text": [
+                "肉毒",
+                "肉毒素",
+                "肉毒桿菌",
+                "肉毒桿菌注射",
+                "保妥適"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 40,
+              "kind": "literal",
+              "text": [
+                "โบท็อกซ์"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 41,
+              "kind": "literal",
+              "text": [
+                "Botox"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 42,
+              "kind": "literal",
+              "text": [
+                "Botox"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T06@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 43,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 44,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 45,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 46,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 47,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 48,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 49,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 50,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 51,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 52,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 53,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 54,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 55,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 56,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 57,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 58,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 59,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 60,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 61,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 62,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 63,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 64,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 65,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 66,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 67,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 68,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 69,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 70,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 71,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 72,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 73,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 74,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 75,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 76,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 77,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        }
+      }
+    },
+    "C": {
+      "seed_version": "2026-11-14.7",
+      "sentences": {
+        "T01@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 1,
+              "kind": "literal",
+              "text": [
+                "Toning"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 2,
+              "kind": "literal",
+              "text": [
+                "レーザートーニング",
+                "トーニング",
+                "ピコトーニング"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 3,
+              "kind": "literal",
+              "text": [
+                "调Q激光",
+                "激光嫩肤"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 4,
+              "kind": "literal",
+              "text": [
+                "淨膚雷射",
+                "雷射淨膚"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 5,
+              "kind": "literal",
+              "text": [
+                "Laser Toning",
+                "โทนนิ่ง",
+                "Toning"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 6,
+              "kind": "literal",
+              "text": [
+                "Toning",
+                "Laser Toning"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T01@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 7,
+              "kind": "literal",
+              "text": [
+                "淨膚激光",
+                "激光嫩膚"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-012"
+            }
+          ]
+        },
+        "T02@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 8,
+              "kind": "literal",
+              "text": [
+                "Ultherapy",
+                "Ulthera",
+                "Ultherapy PRIME"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 9,
+              "kind": "literal",
+              "text": [
+                "ウルセラ",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 10,
+              "kind": "literal",
+              "text": [
+                "美版超声刀"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 11,
+              "kind": "literal",
+              "text": [
+                "美國音波",
+                "Ultherapy",
+                "Ulthera",
+                "極線音波"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 12,
+              "kind": "literal",
+              "text": [
+                "อัลเทอร่า",
+                "Ultherapy",
+                "อัลเธอราพี",
+                "Ulthera"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 13,
+              "kind": "literal",
+              "text": [
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T02@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 14,
+              "kind": "literal",
+              "text": [
+                "美版超聲刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            }
+          ]
+        },
+        "T03@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 15,
+              "kind": "literal",
+              "text": [
+                "Ultherapy",
+                "Ulthera",
+                "Ultherapy PRIME"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 16,
+              "kind": "literal",
+              "text": [
+                "Thermage"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 17,
+              "kind": "literal",
+              "text": [
+                "ウルセラ",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 18,
+              "kind": "literal",
+              "text": [
+                "サーマクール"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 19,
+              "kind": "literal",
+              "text": [
+                "美版超声刀"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 20,
+              "kind": "literal",
+              "text": [
+                "热玛吉"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 21,
+              "kind": "literal",
+              "text": [
+                "美國音波",
+                "Ultherapy",
+                "Ulthera",
+                "極線音波"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 22,
+              "kind": "literal",
+              "text": [
+                "Thermage"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 23,
+              "kind": "literal",
+              "text": [
+                "อัลเทอร่า",
+                "Ultherapy",
+                "อัลเธอราพี",
+                "Ulthera"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 24,
+              "kind": "literal",
+              "text": [
+                "เทอร์มาจ"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 25,
+              "kind": "literal",
+              "text": [
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 26,
+              "kind": "literal",
+              "text": [
+                "Thermage"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T03@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 27,
+              "kind": "literal",
+              "text": [
+                "美版超聲刀",
+                "Ultherapy"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-121"
+            },
+            {
+              "no": 28,
+              "kind": "literal",
+              "text": [
+                "熱瑪吉"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-014"
+            }
+          ]
+        },
+        "T04@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 29,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 30,
+              "kind": "literal",
+              "text": [
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 31,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 32,
+              "kind": "literal",
+              "text": [
+                "ジュベルック",
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 33,
+              "kind": "literal",
+              "text": [
+                "スカルプトラ"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 34,
+              "kind": "literal",
+              "text": [
+                "リトゥオ"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 35,
+              "kind": "literal",
+              "text": [
+                "Juvelook",
+                "乔雅露"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 36,
+              "kind": "literal",
+              "text": [
+                "塑妍萃",
+                "素颜萃童颜针"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 37,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 38,
+              "kind": "literal",
+              "text": [
+                "喬雅露",
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 39,
+              "kind": "literal",
+              "text": [
+                "舒顏萃",
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 40,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 41,
+              "kind": "literal",
+              "text": [
+                "Juvelook",
+                "จูเบลุค",
+                "จูวีลุค"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 42,
+              "kind": "literal",
+              "text": [
+                "Sculptra",
+                "สกัลป์ตรา"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 43,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 44,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 45,
+              "kind": "literal",
+              "text": [
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 46,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T04@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 47,
+              "kind": "literal",
+              "text": [
+                "Juvelook"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-108"
+            },
+            {
+              "no": 48,
+              "kind": "literal",
+              "text": [
+                "塑然雅",
+                "Sculptra"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-112"
+            },
+            {
+              "no": 49,
+              "kind": "literal",
+              "text": [
+                "Re2O"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "kr-015"
+            }
+          ]
+        },
+        "T05@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 50,
+              "kind": "literal",
+              "text": [
+                "Botox"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 51,
+              "kind": "literal",
+              "text": [
+                "ボトックス"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 52,
+              "kind": "literal",
+              "text": [
+                "肉毒素",
+                "保妥适"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 53,
+              "kind": "literal",
+              "text": [
+                "肉毒",
+                "肉毒素",
+                "肉毒桿菌",
+                "肉毒桿菌注射",
+                "保妥適"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 54,
+              "kind": "literal",
+              "text": [
+                "โบท็อกซ์",
+                "โบท็อก"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 55,
+              "kind": "literal",
+              "text": [
+                "Botox"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T05@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 56,
+              "kind": "literal",
+              "text": [
+                "肉毒桿菌",
+                "Botox",
+                "肉毒桿菌素",
+                "保妥適"
+              ],
+              "side": "translation",
+              "case_sensitive": false,
+              "negate": true,
+              "term": "ph-033"
+            }
+          ]
+        },
+        "T06@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 57,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 58,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 59,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 60,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 61,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 62,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T06@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 63,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 64,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 65,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 66,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 67,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 68,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 69,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T11@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 70,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 71,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 72,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 73,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 74,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 75,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 76,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T12@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 77,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 78,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 79,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 80,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 81,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 82,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 83,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T13@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 84,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@en": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 85,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@ja": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 86,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@zh": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 87,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@zh-Hant": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 88,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@th": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 89,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@vi": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 90,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        },
+        "T16@yue": {
+          "expected_finals": 1,
+          "rules": [
+            {
+              "no": 91,
+              "kind": "none",
+              "why": "일반 표현 문장 — 사람 판정(D-57)"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "terms": {
+    "A": {
+      "T01": [
+        "ph-012"
+      ],
+      "T02": [
+        "ph-121"
+      ],
+      "T03": [
+        "ph-121"
+      ],
+      "T04": [
+        "ph-108",
+        "ph-112"
+      ],
+      "T05": [
+        "ph-033"
+      ]
+    },
+    "C": {
+      "T01": [
+        "ph-012"
+      ],
+      "T02": [
+        "ph-121"
+      ],
+      "T03": [
+        "ph-121",
+        "kr-014"
+      ],
+      "T04": [
+        "ph-108",
+        "ph-112",
+        "kr-015"
+      ],
+      "T05": [
+        "ph-033"
+      ]
+    }
+  }
+}

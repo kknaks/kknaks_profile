@@ -49,6 +49,7 @@
 | backend 시드 .9 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_57b9c8dce282` | `ctx_340729d92add` | `quality-seed-v9-be-brief.md` | 완료 — name 73 · 별칭 36 뺌 · ja · th terms 줄이기(D-62) · `seed-v9-be-report.md` |
 | backend WP27 (opus) | `term_1408924f-69e8-469c-b6b1-8e4fe8ed9c6b` | `task_cf84d8c13b58` | `ctx_d7c752e3a626` | `quality-wp27-be-brief.md` | 진행 — 7차 나라별 · 문장 초안 뒤 코디 확인 |
 | planner 0.9.0 (fable) | `term_999506d9-1342-4e49-bca8-25f4cb1aa731` | `task_2ca15781af05` | `ctx_e69d828e6c02` | `quality-spec-v090-brief.md` | 0.9.1 완료 · 확인 PASS(`review-quality-doc-report-7.md`) · 문서 커밋 `b37783db` |
+- **방향(사용자 2026-11-16)**: 속도 우선 — LLM 다듬기(번역 뒤 재작성) 안 함 · 지금 구조(Soniox v6 + 사전 + 바로잡기)로 실기기 시험 → 개선 반복. 다음 후보 = 받아쓰기 힌트(`terms`)에 그 언어 사전 이름 넣기(중국어 동음이의어 — 每晚 · 条Q · 素颜脆) — 중국 코디 실기기 7문장 결과 보고 정함
 - 배포 순서(사용자 2026-11-15 「진행하자」): backend 수정 3(D-65) → 배포 전 재검수 → planner 0.9.3(D-65 한 줄 · OQ-033 은 D-65 로 닫음) → 코드 · 문서 커밋 · PR → Actions sha → infra 태그 PR → sync → 운영 확인 → 패치 노트 「배포 완료」 로 다시 올림(https://claude.ai/artifact/F2ZPH3NvgH2qPisfUaWGQP · 파일 scratchpad tongky-patch-notes.html)
 - **이번 판에서 다 고친다**(사용자 2026-11-15 「한김에 다 고치고 가자」) — D-58 바로잡기 · D-59 나라별 시험 · 결과 페이지 언어별 탭
 - **배포(WP25)는 사용자가 결과를 본 뒤** — 사용자 2026-11-14 「배포 전까지만 해놓자 · 24번까지 내가 결과 볼수 잇게 정리」. WP24 뒤 산출: 전후 비교 HTML(로컬 전용 · A · B · C · C2 나란히 · 요약 숫자 · 카톡 지적 문장 표시) + 결정할 것 목록(끊김 1초/2초 등 · 추천 포함)
