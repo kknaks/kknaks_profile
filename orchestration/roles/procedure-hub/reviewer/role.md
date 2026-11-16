@@ -1,0 +1,1 @@
+procedure-hub 검수 워커(read-only). 문서 산출물은 baseline · DEC · 코드에, 코드 산출물은 SPEC · WP · 레포 스킬(be-reviewer · fe-convention-reviewer · task-checker) 기준에 대조해 PASS · WARN · FAIL 을 근거(파일:줄)와 함께 낸다. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐이다.

@@ -1,0 +1,1137 @@
+{
+ "note": "원문을 직접 읽고 기록한 구절. viewpoint 는 탐색 관점이며 확정 분류가 아니다. occurrence = 같은 값 안의 n번째 출현(0부터).",
+ "viewpoints": {
+  "scope": "적용 범위·기준을 정하는 구절",
+  "relation_pair": "하이픈·조사로 두 대상을 잇는 구절",
+  "negation": "부정(아닌·아님·없음)",
+  "criterion": "기준 표현",
+  "parenthetical": "괄호 보충",
+  "alternative_or_pair": "'/' 로 이어진 두 값(대안인지 병기인지 원문으로 미정)",
+  "combination_plus": "'+' 로 이어진 값(결합인지 이름 일부인지 원문으로 미정인 것 포함)",
+  "enumeration": "'·'·쉼표 나열",
+  "enumeration_open": "'등' 으로 열린 나열",
+  "reference": "다른 항목·제조사·제품을 가리키는 말",
+  "affiliation": "계열·소속 표현",
+  "purpose": "용도 표현(수출용·주사 용도)",
+  "time": "시점·기간 표현",
+  "status_plan": "예정·상태 표현",
+  "method": "방법·기법 서술",
+  "prohibition": "금지",
+  "limitation": "한정(만·로만)",
+  "possibility": "가능성(소지가 있다)",
+  "repetition": "반복·빈도 단서",
+  "obligation": "의무(-해야 한다)",
+  "condition": "조건·상황(… 시)",
+  "sequence": "선후(… 후)",
+  "route": "전달 경로 표현",
+  "regulatory": "허가·법령·규제 서술",
+  "name_variant": "이름 변형·접미(숫자·로마자·+·접두)",
+  "compound_type": "복합 유형 표현(기기·형태)",
+  "placeholder": "자리표시 값",
+  "version_date": "버전·날짜 리터럴",
+  "legal_claim": "법적 주장 문장(사실 검증 안 함)"
+ },
+ "expressions": [
+  {
+   "mid": "M000",
+   "pointer": "/version",
+   "text": "1.2",
+   "viewpoint": "version_date",
+   "occurrence": 0
+  },
+  {
+   "mid": "M001",
+   "pointer": "/updated",
+   "text": "2026-07-26",
+   "viewpoint": "version_date",
+   "occurrence": 0,
+   "note": "원장 갱신 날짜로 보이는 값. 무엇의 갱신인지는 필드명뿐"
+  },
+  {
+   "mid": "M002",
+   "pointer": "/description",
+   "text": "미용시술 제품-제조사 매핑",
+   "viewpoint": "scope",
+   "occurrence": 0
+  },
+  {
+   "mid": "M003",
+   "pointer": "/description",
+   "text": "제품-제조사",
+   "viewpoint": "relation_pair",
+   "occurrence": 0,
+   "note": "하이픈 연결. 형태소는 제품/-/제조/사 로 분절"
+  },
+  {
+   "mid": "M004",
+   "pointer": "/description",
+   "text": "(유통사 아닌 제조사 기준)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M005",
+   "pointer": "/description",
+   "text": "유통사 아닌",
+   "viewpoint": "negation",
+   "occurrence": 0,
+   "note": "manufacturer 칸이 유통사가 아니라는 파일 수준 선언"
+  },
+  {
+   "mid": "M006",
+   "pointer": "/description",
+   "text": "유통사 아닌 제조사 기준",
+   "viewpoint": "criterion",
+   "occurrence": 0
+  },
+  {
+   "mid": "M007",
+   "pointer": "/botulinum_toxin/products/0/manufacturer",
+   "text": "앨러간/애브비",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0,
+   "note": "README 의 '/'(둘 중 하나) 규칙은 시술 이름 규칙. 제조사 값에 적용되는지 원문에 없음"
+  },
+  {
+   "mid": "M008",
+   "pointer": "/filler_ha/products/0/manufacturer",
+   "text": "앨러간/애브비",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0,
+   "note": "README 의 '/'(둘 중 하나) 규칙은 시술 이름 규칙. 제조사 값에 적용되는지 원문에 없음"
+  },
+  {
+   "mid": "M009",
+   "pointer": "/botulinum_toxin/products/9/manufacturer",
+   "text": "뉴메코(Newmeco, 메디톡스 계열)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M010",
+   "pointer": "/botulinum_toxin/products/9/manufacturer",
+   "text": "Newmeco",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "괄호 안 로마자 병기"
+  },
+  {
+   "mid": "M011",
+   "pointer": "/botulinum_toxin/products/9/manufacturer",
+   "text": "메디톡스 계열",
+   "viewpoint": "affiliation",
+   "occurrence": 0,
+   "note": "'메디톡스' 문자열은 /botulinum_toxin/products/5/manufacturer 값과 같음. 동일 개체 확정 안 함"
+  },
+  {
+   "mid": "M012",
+   "pointer": "/botulinum_toxin/products/9/manufacturer",
+   "text": "메디톡스",
+   "viewpoint": "reference",
+   "occurrence": 0
+  },
+  {
+   "mid": "M013",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "휴젤 보툴렉스의 수출용 브랜드명(미국·중국·유럽 등)",
+   "viewpoint": "reference",
+   "occurrence": 0,
+   "note": "문장 전체"
+  },
+  {
+   "mid": "M014",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "휴젤 보툴렉스",
+   "viewpoint": "reference",
+   "occurrence": 0,
+   "note": "/botulinum_toxin/products/3 (name 보툴렉스, manufacturer 휴젤) 과 문자열 일치. 관계 확정 안 함"
+  },
+  {
+   "mid": "M015",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "보툴렉스의 수출용 브랜드명",
+   "viewpoint": "relation_pair",
+   "occurrence": 0
+  },
+  {
+   "mid": "M016",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "수출용",
+   "viewpoint": "purpose",
+   "occurrence": 0
+  },
+  {
+   "mid": "M017",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "(미국·중국·유럽 등)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M018",
+   "pointer": "/botulinum_toxin/products/10/note",
+   "text": "미국·중국·유럽 등",
+   "viewpoint": "enumeration_open",
+   "occurrence": 0,
+   "note": "'등' — 나열이 닫혀 있지 않음"
+  },
+  {
+   "mid": "M019",
+   "pointer": "/biostimulator/products/3/manufacturer",
+   "text": "바임(VAIM/바임글로벌)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M020",
+   "pointer": "/biostimulator/products/3/manufacturer",
+   "text": "VAIM/바임글로벌",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0,
+   "note": "괄호 안 '/' — 영문명과 다른 법인명 병기인지 대안인지 원문으로 미정"
+  },
+  {
+   "mid": "M021",
+   "pointer": "/biostimulator/products/4/manufacturer",
+   "text": "바임(VAIM/바임글로벌)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M022",
+   "pointer": "/biostimulator/products/4/manufacturer",
+   "text": "VAIM/바임글로벌",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0,
+   "note": "괄호 안 '/' — 영문명과 다른 법인명 병기인지 대안인지 원문으로 미정"
+  },
+  {
+   "mid": "M023",
+   "pointer": "/biostimulator/products/3/ingredient",
+   "text": "PDLLA+HA",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M024",
+   "pointer": "/biostimulator/products/4/ingredient",
+   "text": "PDLLA+HA",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M025",
+   "pointer": "/biostimulator/products/5/ingredient",
+   "text": "PDLLA+HA",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M026",
+   "pointer": "/skin_booster/products/0/ingredient",
+   "text": "PN/PDRN",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0,
+   "note": "성분 값 안 '/'. 대안·병기·혼합 중 무엇인지 원문 없음"
+  },
+  {
+   "mid": "M027",
+   "pointer": "/skin_booster/products/1/ingredient",
+   "text": "PN+HA",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M028",
+   "pointer": "/skin_booster/products/1/name",
+   "text": "리쥬란 HB+",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M029",
+   "pointer": "/skin_booster/products/1/name",
+   "text": "HB+",
+   "viewpoint": "combination_plus",
+   "occurrence": 0,
+   "note": "'+' 가 뒤에 피연산자 없이 이름 끝에 붙음 — 결합 연산자로 볼 근거 없음"
+  },
+  {
+   "mid": "M030",
+   "pointer": "/skin_booster/products/1/name_en",
+   "text": "HB+",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M031",
+   "pointer": "/skin_booster/products/2/name",
+   "text": "리쥬란아이",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name_en 'Rejuran i' 와 대조"
+  },
+  {
+   "mid": "M032",
+   "pointer": "/skin_booster/products/2/name_en",
+   "text": "Rejuran i",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M033",
+   "pointer": "/skin_booster/products/3/name",
+   "text": "스킨보톡스",
+   "viewpoint": "reference",
+   "occurrence": 0,
+   "note": "'보톡스' 포함. note 가 '보톡스 희석' 을 말함"
+  },
+  {
+   "mid": "M034",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "보톡스 희석 피내주사법 (별도 제품 아님)",
+   "viewpoint": "method",
+   "occurrence": 0,
+   "note": "문장 전체"
+  },
+  {
+   "mid": "M035",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "보톡스 희석 피내주사법",
+   "viewpoint": "method",
+   "occurrence": 0
+  },
+  {
+   "mid": "M036",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "보톡스 희석",
+   "viewpoint": "reference",
+   "occurrence": 0,
+   "note": "'보톡스' 는 /botulinum_toxin/products/0/name 값과 문자열 일치. 관계 확정 안 함"
+  },
+  {
+   "mid": "M037",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "피내주사법",
+   "viewpoint": "method",
+   "occurrence": 0,
+   "note": "'피내' 는 주입 위치/깊이 관련 말일 수 있으나 해석하지 않음(후속)"
+  },
+  {
+   "mid": "M038",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "(별도 제품 아님)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M039",
+   "pointer": "/skin_booster/products/3/note",
+   "text": "별도 제품 아님",
+   "viewpoint": "negation",
+   "occurrence": 0,
+   "note": "이 항목이 products 배열에 있으면서 스스로 제품이 아니라고 서술"
+  },
+  {
+   "mid": "M040",
+   "pointer": "/skin_booster/products/3/manufacturer",
+   "text": "-",
+   "viewpoint": "placeholder",
+   "occurrence": 0
+  },
+  {
+   "mid": "M041",
+   "pointer": "/skin_booster/products/3/country",
+   "text": "-",
+   "viewpoint": "placeholder",
+   "occurrence": 0
+  },
+  {
+   "mid": "M042",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "2026 하반기 출시 예정, PN+HA 복합",
+   "viewpoint": "status_plan",
+   "occurrence": 0,
+   "note": "값 전체"
+  },
+  {
+   "mid": "M043",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "2026 하반기 출시 예정",
+   "viewpoint": "status_plan",
+   "occurrence": 0,
+   "note": "예정 상태. 기준 시점은 /updated 2026-07-26 로 추정할 수 있으나 원문이 연결하지 않음"
+  },
+  {
+   "mid": "M044",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "2026 하반기",
+   "viewpoint": "time",
+   "occurrence": 0,
+   "note": "연도+반기. 날짜 범위로 바꾸지 않음"
+  },
+  {
+   "mid": "M045",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "출시 예정",
+   "viewpoint": "status_plan",
+   "occurrence": 0
+  },
+  {
+   "mid": "M046",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "PN+HA 복합",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M047",
+   "pointer": "/skin_booster/products/4/note",
+   "text": "PN+HA",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M048",
+   "pointer": "/thread_lift/products/1/material",
+   "text": "PDO+PCL",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M049",
+   "pointer": "/thread_lift/products/4/name_en",
+   "text": "Miracle Thread",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name '미라클' 에 없는 'Thread'"
+  },
+  {
+   "mid": "M050",
+   "pointer": "/energy_device/products/1/name",
+   "text": "써마지FLX",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M051",
+   "pointer": "/energy_device/products/2/name",
+   "text": "슈링크유니버스",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M052",
+   "pointer": "/energy_device/products/4/manufacturer",
+   "text": "클래시스(Classys)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0,
+   "note": "같은 파일의 '클래시스'(products/2·3) 와 표기 다름"
+  },
+  {
+   "mid": "M053",
+   "pointer": "/energy_device/products/4/type",
+   "text": "모노폴라 RF",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "'모노폴라' 가 RF 를 수식"
+  },
+  {
+   "mid": "M054",
+   "pointer": "/energy_device/products/6/type",
+   "text": "RF+EMS",
+   "viewpoint": "combination_plus",
+   "occurrence": 0
+  },
+  {
+   "mid": "M055",
+   "pointer": "/energy_device/products/7/type",
+   "text": "니들RF",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "띄어쓰기 없는 복합"
+  },
+  {
+   "mid": "M056",
+   "pointer": "/energy_device/products/8/type",
+   "text": "니들RF",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "띄어쓰기 없는 복합"
+  },
+  {
+   "mid": "M057",
+   "pointer": "/energy_device/products/9/type",
+   "text": "니들RF",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "띄어쓰기 없는 복합"
+  },
+  {
+   "mid": "M058",
+   "pointer": "/energy_device/products/10/type",
+   "text": "니들RF",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "띄어쓰기 없는 복합"
+  },
+  {
+   "mid": "M059",
+   "pointer": "/energy_device/products/9/name_en",
+   "text": "Secret RF",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name '시크릿' 에 없는 'RF'"
+  },
+  {
+   "mid": "M060",
+   "pointer": "/energy_device/products/10/name",
+   "text": "제니스",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name_en 'AGNES' 와 음역 대응이 보이지 않음(원문 내 불일치 관찰)"
+  },
+  {
+   "mid": "M061",
+   "pointer": "/energy_device/products/10/name_en",
+   "text": "AGNES",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M062",
+   "pointer": "/energy_device/products/11/type",
+   "text": "피코레이저",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M063",
+   "pointer": "/energy_device/products/12/type",
+   "text": "피코레이저",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M064",
+   "pointer": "/energy_device/products/13/name",
+   "text": "클라리티2",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "숫자 접미. name_en 은 로마 숫자 'II'"
+  },
+  {
+   "mid": "M065",
+   "pointer": "/energy_device/products/13/name_en",
+   "text": "Clarity II",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M066",
+   "pointer": "/energy_device/products/13/type",
+   "text": "Nd:YAG+알렉산드라이트",
+   "viewpoint": "combination_plus",
+   "occurrence": 0,
+   "note": "두 레이저 매질 결합 표기로 보이나 확정 안 함"
+  },
+  {
+   "mid": "M067",
+   "pointer": "/energy_device/products/13/type",
+   "text": "Nd:YAG",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M068",
+   "pointer": "/energy_device/products/16/type",
+   "text": "Nd:YAG",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M069",
+   "pointer": "/energy_device/products/14/name",
+   "text": "엑셀V",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M070",
+   "pointer": "/energy_device/products/14/type",
+   "text": "혈관레이저",
+   "viewpoint": "compound_type",
+   "occurrence": 0,
+   "note": "'혈관' 이 대상/용도 수식인지 확정 안 함"
+  },
+  {
+   "mid": "M071",
+   "pointer": "/energy_device/products/15/type",
+   "text": "프락셔널",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M072",
+   "pointer": "/energy_device/products/17/type",
+   "text": "초음파",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M073",
+   "pointer": "/energy_device/products/17/name_en",
+   "text": "LDM-MED",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name 'LDM' 과 다름"
+  },
+  {
+   "mid": "M074",
+   "pointer": "/prp_exosome/products/0/type",
+   "text": "PRP키트",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M075",
+   "pointer": "/prp_exosome/products/1/type",
+   "text": "PRP키트",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M076",
+   "pointer": "/prp_exosome/products/2/type",
+   "text": "PRP키트",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M077",
+   "pointer": "/prp_exosome/products/1/name",
+   "text": "리젠ACR",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M078",
+   "pointer": "/prp_exosome/products/3/name",
+   "text": "ASCEplus",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name_en 'ASCE+' 의 '+' 를 'plus' 로 적은 것으로 보이나 확정 안 함"
+  },
+  {
+   "mid": "M079",
+   "pointer": "/prp_exosome/products/3/name_en",
+   "text": "ASCE+",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M080",
+   "pointer": "/prp_exosome/products/4/name",
+   "text": "EXOSOME SKIN",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name_en 'ExoSCRT' 와 다른 이름"
+  },
+  {
+   "mid": "M081",
+   "pointer": "/prp_exosome/products/4/name_en",
+   "text": "ExoSCRT",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M082",
+   "pointer": "/prp_exosome/products/3/note",
+   "text": "화장품 허가",
+   "viewpoint": "regulatory",
+   "occurrence": 0
+  },
+  {
+   "mid": "M083",
+   "pointer": "/prp_exosome/products/3/note",
+   "text": "주사/주입 사용 금지",
+   "viewpoint": "prohibition",
+   "occurrence": 0
+  },
+  {
+   "mid": "M084",
+   "pointer": "/prp_exosome/products/3/note",
+   "text": "주사/주입",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0
+  },
+  {
+   "mid": "M085",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "국내 의료기관의 주사(injection) 용도 사용은 의료법·화장품법 위반 소지가 있으며 식약처가 반복 경고·단속한 사안입니다.",
+   "viewpoint": "legal_claim",
+   "occurrence": 0,
+   "note": "첫 문장. 사실 검증 안 함"
+  },
+  {
+   "mid": "M086",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "시술 표기·광고 시 '주입'이 아닌 '도포(MTS·니들RF 후 경피 전달)'로만 표현해야 합니다",
+   "viewpoint": "legal_claim",
+   "occurrence": 0,
+   "note": "둘째 문장(마침표 없음)"
+  },
+  {
+   "mid": "M087",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "국내 의료기관의 주사(injection) 용도 사용",
+   "viewpoint": "condition",
+   "occurrence": 0,
+   "note": "주어 구절 — 적용 범위: 국내·의료기관·주사 용도"
+  },
+  {
+   "mid": "M088",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "국내",
+   "viewpoint": "scope",
+   "occurrence": 0
+  },
+  {
+   "mid": "M089",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "주사(injection)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M090",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "주사(injection) 용도",
+   "viewpoint": "purpose",
+   "occurrence": 0
+  },
+  {
+   "mid": "M091",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "의료법·화장품법",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M092",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "의료법·화장품법 위반 소지가 있으며",
+   "viewpoint": "possibility",
+   "occurrence": 0,
+   "note": "'소지가 있다' — 위반 확정이 아닌 가능성 서술"
+  },
+  {
+   "mid": "M093",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "위반 소지",
+   "viewpoint": "possibility",
+   "occurrence": 0
+  },
+  {
+   "mid": "M094",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "식약처가 반복 경고·단속한 사안",
+   "viewpoint": "repetition",
+   "occurrence": 0,
+   "note": "'반복' — 횟수·시점 없음"
+  },
+  {
+   "mid": "M095",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "반복",
+   "viewpoint": "repetition",
+   "occurrence": 0
+  },
+  {
+   "mid": "M096",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "경고·단속",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M097",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "시술 표기·광고 시",
+   "viewpoint": "condition",
+   "occurrence": 0,
+   "note": "'… 시' 조건"
+  },
+  {
+   "mid": "M098",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "표기·광고",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M099",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "'주입'이 아닌",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M100",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "'도포(MTS·니들RF 후 경피 전달)'로만",
+   "viewpoint": "limitation",
+   "occurrence": 0,
+   "note": "'로만' 한정"
+  },
+  {
+   "mid": "M101",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "도포(MTS·니들RF 후 경피 전달)",
+   "viewpoint": "method",
+   "occurrence": 0
+  },
+  {
+   "mid": "M102",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "MTS·니들RF 후",
+   "viewpoint": "sequence",
+   "occurrence": 0,
+   "note": "선후: MTS·니들RF 다음에 도포. 간격 없음"
+  },
+  {
+   "mid": "M103",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "MTS·니들RF",
+   "viewpoint": "enumeration",
+   "occurrence": 0,
+   "note": "'·' 가 대안인지 병행인지 원문 없음"
+  },
+  {
+   "mid": "M104",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "경피 전달",
+   "viewpoint": "route",
+   "occurrence": 0,
+   "note": "형태소는 경/피 로 오분절(K 기록)"
+  },
+  {
+   "mid": "M105",
+   "pointer": "/prp_exosome/products/3/legal_warning",
+   "text": "표현해야 합니다",
+   "viewpoint": "obligation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M106",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "화장품 허가만 받은 제품",
+   "viewpoint": "limitation",
+   "occurrence": 0,
+   "note": "'만' 한정"
+  },
+  {
+   "mid": "M107",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "허가만",
+   "viewpoint": "limitation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M108",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "식약처의 주사·주입 용도 허가 없음",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M109",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "주사·주입 용도",
+   "viewpoint": "purpose",
+   "occurrence": 0
+  },
+  {
+   "mid": "M110",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": "허가 없음",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M111",
+   "pointer": "/prp_exosome/products/3/regulatory_status",
+   "text": " — ",
+   "viewpoint": "parenthetical",
+   "occurrence": 0,
+   "note": "줄표(U+2014) 앞뒤 공백 포함 구분"
+  },
+  {
+   "mid": "M112",
+   "pointer": "/prp_exosome/products/4/note",
+   "text": "화장품 허가",
+   "viewpoint": "regulatory",
+   "occurrence": 0
+  },
+  {
+   "mid": "M113",
+   "pointer": "/prp_exosome/products/4/note",
+   "text": "주사/주입 사용 금지",
+   "viewpoint": "prohibition",
+   "occurrence": 0
+  },
+  {
+   "mid": "M114",
+   "pointer": "/prp_exosome/products/4/note",
+   "text": "주사/주입",
+   "viewpoint": "alternative_or_pair",
+   "occurrence": 0
+  },
+  {
+   "mid": "M115",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "국내 의료기관의 주사(injection) 용도 사용은 의료법·화장품법 위반 소지가 있으며 식약처가 반복 경고·단속한 사안입니다.",
+   "viewpoint": "legal_claim",
+   "occurrence": 0,
+   "note": "첫 문장. 사실 검증 안 함"
+  },
+  {
+   "mid": "M116",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "시술 표기·광고 시 '주입'이 아닌 '도포(MTS·니들RF 후 경피 전달)'로만 표현해야 합니다",
+   "viewpoint": "legal_claim",
+   "occurrence": 0,
+   "note": "둘째 문장(마침표 없음)"
+  },
+  {
+   "mid": "M117",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "국내 의료기관의 주사(injection) 용도 사용",
+   "viewpoint": "condition",
+   "occurrence": 0,
+   "note": "주어 구절 — 적용 범위: 국내·의료기관·주사 용도"
+  },
+  {
+   "mid": "M118",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "국내",
+   "viewpoint": "scope",
+   "occurrence": 0
+  },
+  {
+   "mid": "M119",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "주사(injection)",
+   "viewpoint": "parenthetical",
+   "occurrence": 0
+  },
+  {
+   "mid": "M120",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "주사(injection) 용도",
+   "viewpoint": "purpose",
+   "occurrence": 0
+  },
+  {
+   "mid": "M121",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "의료법·화장품법",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M122",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "의료법·화장품법 위반 소지가 있으며",
+   "viewpoint": "possibility",
+   "occurrence": 0,
+   "note": "'소지가 있다' — 위반 확정이 아닌 가능성 서술"
+  },
+  {
+   "mid": "M123",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "위반 소지",
+   "viewpoint": "possibility",
+   "occurrence": 0
+  },
+  {
+   "mid": "M124",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "식약처가 반복 경고·단속한 사안",
+   "viewpoint": "repetition",
+   "occurrence": 0,
+   "note": "'반복' — 횟수·시점 없음"
+  },
+  {
+   "mid": "M125",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "반복",
+   "viewpoint": "repetition",
+   "occurrence": 0
+  },
+  {
+   "mid": "M126",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "경고·단속",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M127",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "시술 표기·광고 시",
+   "viewpoint": "condition",
+   "occurrence": 0,
+   "note": "'… 시' 조건"
+  },
+  {
+   "mid": "M128",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "표기·광고",
+   "viewpoint": "enumeration",
+   "occurrence": 0
+  },
+  {
+   "mid": "M129",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "'주입'이 아닌",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M130",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "'도포(MTS·니들RF 후 경피 전달)'로만",
+   "viewpoint": "limitation",
+   "occurrence": 0,
+   "note": "'로만' 한정"
+  },
+  {
+   "mid": "M131",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "도포(MTS·니들RF 후 경피 전달)",
+   "viewpoint": "method",
+   "occurrence": 0
+  },
+  {
+   "mid": "M132",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "MTS·니들RF 후",
+   "viewpoint": "sequence",
+   "occurrence": 0,
+   "note": "선후: MTS·니들RF 다음에 도포. 간격 없음"
+  },
+  {
+   "mid": "M133",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "MTS·니들RF",
+   "viewpoint": "enumeration",
+   "occurrence": 0,
+   "note": "'·' 가 대안인지 병행인지 원문 없음"
+  },
+  {
+   "mid": "M134",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "경피 전달",
+   "viewpoint": "route",
+   "occurrence": 0,
+   "note": "형태소는 경/피 로 오분절(K 기록)"
+  },
+  {
+   "mid": "M135",
+   "pointer": "/prp_exosome/products/4/legal_warning",
+   "text": "표현해야 합니다",
+   "viewpoint": "obligation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M136",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "화장품 허가만 받은 제품",
+   "viewpoint": "limitation",
+   "occurrence": 0,
+   "note": "'만' 한정"
+  },
+  {
+   "mid": "M137",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "허가만",
+   "viewpoint": "limitation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M138",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "식약처의 주사·주입 용도 허가 없음",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M139",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "주사·주입 용도",
+   "viewpoint": "purpose",
+   "occurrence": 0
+  },
+  {
+   "mid": "M140",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": "허가 없음",
+   "viewpoint": "negation",
+   "occurrence": 0
+  },
+  {
+   "mid": "M141",
+   "pointer": "/prp_exosome/products/4/regulatory_status",
+   "text": " — ",
+   "viewpoint": "parenthetical",
+   "occurrence": 0,
+   "note": "줄표(U+2014) 앞뒤 공백 포함 구분"
+  },
+  {
+   "mid": "M142",
+   "pointer": "/stem_cell/products/1/name_en",
+   "text": "SF Injection",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "name '에스에프' 에 없는 'Injection'"
+  },
+  {
+   "mid": "M143",
+   "pointer": "/stem_cell/products/0/type",
+   "text": "성장인자",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M144",
+   "pointer": "/stem_cell/products/1/type",
+   "text": "줄기세포배양액",
+   "viewpoint": "compound_type",
+   "occurrence": 0
+  },
+  {
+   "mid": "M145",
+   "pointer": "/filler_ha/products/6/name",
+   "text": "더채움",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "'더' 접두 — 형태소는 더/MAG(부사) 로 오분석(K 기록). 비교 수식어 아님"
+  },
+  {
+   "mid": "M146",
+   "pointer": "/botulinum_toxin/products/7/name",
+   "text": "더톡신",
+   "viewpoint": "name_variant",
+   "occurrence": 0
+  },
+  {
+   "mid": "M147",
+   "pointer": "/biostimulator/products/4/name",
+   "text": "쥬베룩볼륨",
+   "viewpoint": "name_variant",
+   "occurrence": 0,
+   "note": "products/3 '쥬베룩' + '볼륨'"
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 26-401 호 · 엔디야그 레이저 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@166/0"
+  },
+  {
+   "detail": "제허 10-1219 호 · 엔디야그레이저수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@166/1"
+  },
+  {
+   "detail": "https://shop.bioskin.it/gb/q-switched-laser-/636-q-switched-nd-yag-laser-lutronic-hollywood-spectra.html",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@166/4/0"
+  },
+  {
+   "detail": "https://510k.innolitics.com/device/K213569",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@166/4/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-077",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "할리우드 스펙트라",
+  "category": null,
+  "code": "M8",
+  "synonyms": [
+   "HOLLYWOOD SPECTRA",
+   "The HOLLYWOOD SPECTRA (수출명: HOLLYWOOD SPECTRA)",
+   "Spectra"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 2 허가 건 · 2 웹 · ledger_id auto-M8-1775361179284 · 분류 항목 「할리우드스펙트라」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@166"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@166/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@166/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@166/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@166/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@166/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@166/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@166/3"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

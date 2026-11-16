@@ -1,0 +1,3059 @@
+[
+  {
+    "case": "LOSS-01",
+    "group": "normalize-overwrite",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+        "source_record_ref": "src:53bb575f88dfa6dc60ce050ce9bbc5d6c4098ac2a2b093f537de2c499fd6f982",
+        "value": [
+          "주입 부위 부종",
+          "경미한 통증",
+          "일시적 발적"
+        ]
+      },
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common",
+        "source_record_ref": "src:699a8b9f2bc0f8041107497edaef9469acac937d6500e9532a9e041583dd2111",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "pointer": "/extracted/7/source_text/safety.common",
+        "source_record_ref": "src:44baaec4da7d927e389800e04482234c8fcb1d8e7ae834942bcda079dd03322f",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "pilot_case_pointer": "/cases/0",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/0",
+        "/claims/1"
+      ],
+      "scopes": [
+        "/scopes/0"
+      ],
+      "attachments": [
+        "/attachments/0"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/0",
+        "/facts/1"
+      ],
+      "scope_records": [
+        "/scope_records/0"
+      ],
+      "edges": [
+        "/edges/0"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "LOSS-02",
+    "group": "normalize-overwrite",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+        "source_record_ref": "src:e70f9971bde472061dee18a0b9fe08e86b011898dc247ff6b90dd14efc929788",
+        "value": [
+          "일시적 근력 약화",
+          "주입 부위 부종/발적",
+          "두통"
+        ]
+      },
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common",
+        "source_record_ref": "src:6a6ca56825ea5c45f8d5a221fa4a51beda76b0430e142acf27817ce2fdf92301",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "pointer": "/extracted/25/source_text/safety.common",
+        "source_record_ref": "src:0c7f8c44aba5ff81d10043a4c57ce938c44c4b416c3f6b494e915e55363b70f3",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "pilot_case_pointer": "/cases/1",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/2",
+        "/claims/3"
+      ],
+      "scopes": [
+        "/scopes/1"
+      ],
+      "attachments": [
+        "/attachments/1"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/2",
+        "/facts/3"
+      ],
+      "scope_records": [
+        "/scope_records/1"
+      ],
+      "edges": [
+        "/edges/1"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "LOSS-03",
+    "group": "normalize-overwrite",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/6/products/1/extracted/safety/common_side_effects",
+        "source_record_ref": "src:662d89e9ed356af1327382e325530e75aa7d9db8664597c3cdbfa92e2425b579",
+        "value": [
+          "부종",
+          "경미한 통증",
+          "일시적 울퉁불퉁함",
+          "스레드 촉지감"
+        ]
+      },
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/6/products/1/extracted/safety/common",
+        "source_record_ref": "src:24803c57d18e440655c8855fb7f284f048b631d665f4c2ad1a6c7edb11508f2a",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "pointer": "/taxonomy_products/36/source_text/safety.common",
+        "source_record_ref": "src:5bd3a1ed6d55fe08243aa8e31a39100ad7e73f27eec649cdc4c0acb22b7c7aaa",
+        "value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ]
+      }
+    ],
+    "pilot_case_pointer": "/cases/2",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/4",
+        "/claims/5"
+      ],
+      "scopes": [
+        "/scopes/2"
+      ],
+      "attachments": [
+        "/attachments/2"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/4",
+        "/facts/5"
+      ],
+      "scope_records": [
+        "/scope_records/2"
+      ],
+      "edges": [
+        "/edges/2"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ANCHOR-11",
+    "group": "duplicate-cc-first-match",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/8/complaints/11",
+        "source_record_ref": "src:d0db7187fa007baa7e8fc3c56ee9df997edb46f2f8307a6695735f807711cbcc",
+        "value": {
+          "cc": "니들RF",
+          "cc_detail": "콜라겐리모델링",
+          "cc_group": "튼살",
+          "procedures": [
+            {
+              "name": "프락셔널",
+              "category": "M8",
+              "role": "리서페이싱",
+              "products": [
+                "프락셀"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "재생",
+              "products": [
+                "쥬베룩",
+                "리쥬란 힐러"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "프락셔널 + 스킨부스터",
+              "combo": [
+                "프락셔널",
+                "스킨부스터"
+              ],
+              "reason": "리서페이싱 + 재생",
+              "evidence": "프락셔널 후 재생 촉진"
+            }
+          ],
+          "alternatives": [
+            "여러 회 시리즈 필요"
+          ]
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/claims/366",
+        "source_record_ref": "src:e46f2aaeac19b8e1d5d3d365df600fc575d226f013c6ee2577cca609edcb4410",
+        "value": {
+          "source": "problem-packages.complaints[].combos",
+          "source_index": "P9:니들RF#0",
+          "text": "프락셔널 + 스킨부스터",
+          "kind": "시너지(CC 조합)",
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M8"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-027"
+            ],
+            "n_units": 1,
+            "flag": "7단계 이름 일치 · 후보 여럿 · 원천 제품 하위 Er:Glass/톨륨 밖 3 뺌(R31)",
+            "text": "프락셔널"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M4"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-018",
+              "U5-037"
+            ],
+            "n_units": 2,
+            "flag": "7단계 부위 없음 · 후보 전부 · 고민 영역(얼굴) 밖 1 뺌(R22 · 기본 영역 판단 ①)",
+            "text": "스킨부스터"
+          },
+          "directed": false,
+          "interval": null,
+          "reason": "리서페이싱 + 재생",
+          "evidence_text": "프락셔널 후 재생 촉진",
+          "condition": {
+            "cc": "니들RF",
+            "problem": "P9",
+            "concern_ids": [
+              "P9-1"
+            ]
+          },
+          "combo_name": "프락셔널 + 스킨부스터",
+          "combo_size": 2,
+          "rule": "구조 칸(combo)",
+          "lowering": "CC 앵커 부위로 내림(7단계 ③ 재사용)",
+          "evidence_kind": "원천 evidence 칸(설명 문장)",
+          "id": "R8-0367",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "단위 시술",
+            "단위 시술"
+          ],
+          "review_status": "ok",
+          "conflict_before": false,
+          "review_label": ""
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/3",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/6"
+      ],
+      "mappings": [
+        "/mappings/1"
+      ],
+      "scopes": [
+        "/scopes/4"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/6"
+      ],
+      "mapping_records": [
+        "/mapping_records/1"
+      ],
+      "scope_records": [
+        "/scope_records/4"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ANCHOR-10",
+    "group": "duplicate-cc-first-match",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/8/complaints/10",
+        "source_record_ref": "src:5d930df136433bc73ebc70831c5495f088c3d092de992b44b02e5f439cb5121e",
+        "value": {
+          "cc": "프락셔널레이저",
+          "cc_detail": "성장선/임신선",
+          "cc_group": "튼살",
+          "procedures": [
+            {
+              "name": "프락셔널",
+              "category": "M8",
+              "role": "리서페이싱",
+              "products": [
+                "프락셀"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "재생",
+              "products": [
+                "쥬베룩",
+                "리쥬란 힐러"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "프락셔널 + 스킨부스터",
+              "combo": [
+                "프락셔널",
+                "스킨부스터"
+              ],
+              "reason": "리서페이싱 + 재생",
+              "evidence": "프락셔널 후 재생 촉진"
+            }
+          ],
+          "alternatives": [
+            "여러 회 시리즈 필요"
+          ]
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/claims/365",
+        "source_record_ref": "src:99a1fc2a159c4cfcc0fcc7df141dcdda8ea428376ebcb9e99b21e337d7007c9e",
+        "value": {
+          "source": "problem-packages.complaints[].combos",
+          "source_index": "P9:프락셔널레이저#0",
+          "text": "프락셔널 + 스킨부스터",
+          "kind": "시너지(CC 조합)",
+          "a": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M8"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-027"
+            ],
+            "n_units": 1,
+            "flag": "7단계 이름 일치 · 후보 여럿 · 원천 제품 하위 Er:Glass/톨륨 밖 3 뺌(R31)",
+            "text": "프락셔널"
+          },
+          "b": {
+            "level": "단위 시술",
+            "via": "7단계 CC 추천 시술 엣지(③) 재사용",
+            "families": [
+              "M4"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [
+              "U5-018",
+              "U5-037"
+            ],
+            "n_units": 2,
+            "flag": "7단계 부위 없음 · 후보 전부 · 고민 영역(얼굴) 밖 1 뺌(R22 · 기본 영역 판단 ①)",
+            "text": "스킨부스터"
+          },
+          "directed": false,
+          "interval": null,
+          "reason": "리서페이싱 + 재생",
+          "evidence_text": "프락셔널 후 재생 촉진",
+          "condition": {
+            "cc": "프락셔널레이저",
+            "problem": "P9",
+            "concern_ids": [
+              "P9-3"
+            ]
+          },
+          "combo_name": "프락셔널 + 스킨부스터",
+          "combo_size": 2,
+          "rule": "구조 칸(combo)",
+          "lowering": "CC 앵커 부위로 내림(7단계 ③ 재사용)",
+          "evidence_kind": "원천 evidence 칸(설명 문장)",
+          "id": "R8-0366",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "단위 시술",
+            "단위 시술"
+          ],
+          "review_status": "ok",
+          "conflict_before": false,
+          "review_label": ""
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/4",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/7"
+      ],
+      "mappings": [
+        "/mappings/3"
+      ],
+      "scopes": [
+        "/scopes/6"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/7"
+      ],
+      "mapping_records": [
+        "/mapping_records/3"
+      ],
+      "scope_records": [
+        "/scope_records/6"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-095",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/0/complaints/13/combos/0",
+        "source_record_ref": "src:28f64995946c9da67666d77c58ec8d8460428e541ea9da22f91e9d298f54e128",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/95",
+        "source_record_ref": "src:8a39904f683b60d417c1dcfe64cbeefd038b083c5ebe50b1240e972458ee02d4",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 눈썹반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/5",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/21"
+      ],
+      "relation_claims": [
+        "/relation_claims/13"
+      ],
+      "scopes": [
+        "/scopes/20"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/21"
+      ],
+      "relation_records": [
+        "/relation_records/13"
+      ],
+      "scope_records": [
+        "/scope_records/20"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-097",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/0/complaints/14/combos/0",
+        "source_record_ref": "src:e2841c9b99b12aa7bc0c8b9ef1fe1a1db93b27de325d1b80b16bfe4154d79317",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/97",
+        "source_record_ref": "src:6bcd0fc221b6e13a31a1d94fc735f85eca2e5c4d23430ea966ac63e9c55c6b9f",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 아이라인반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/6",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/22"
+      ],
+      "relation_claims": [
+        "/relation_claims/14"
+      ],
+      "scopes": [
+        "/scopes/21"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/22"
+      ],
+      "relation_records": [
+        "/relation_records/14"
+      ],
+      "scope_records": [
+        "/scope_records/21"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-099",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/0/complaints/15/combos/0",
+        "source_record_ref": "src:2e316d9dfd1c81a5772a3fedcd2de1621ff15e60294b09b7d504faf42767eac8",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/99",
+        "source_record_ref": "src:1061070f9ceb90ce70d9ba26944d7e79d64216d7fbba7c09d125550d7b5d4c39",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 입술반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/7",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/23"
+      ],
+      "relation_claims": [
+        "/relation_claims/15"
+      ],
+      "scopes": [
+        "/scopes/22"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/23"
+      ],
+      "relation_records": [
+        "/relation_records/15"
+      ],
+      "scope_records": [
+        "/scope_records/22"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-101",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/0/complaints/16/combos/0",
+        "source_record_ref": "src:39cb401668322d53bbf2390b21dc679cc4d3ed6815af5ac732f6d7a8e40d0a75",
+        "value": {
+          "name": "반영구 단독",
+          "combo": [
+            "반영구화장"
+          ],
+          "reason": "단독 시술",
+          "evidence": "전문 시술자 필요"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/101",
+        "source_record_ref": "src:706919eb8439370cf75eb998c57bb0b2b40b9dd8d2f901c1774f1caa3070a2d7",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P1 헤어라인반영구",
+          "text": "반영구 단독 — 단독 시술 / 전문 시술자 필요"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/8",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/24"
+      ],
+      "relation_claims": [
+        "/relation_claims/16"
+      ],
+      "scopes": [
+        "/scopes/23"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/24"
+      ],
+      "relation_records": [
+        "/relation_records/16"
+      ],
+      "scope_records": [
+        "/scope_records/23"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-130",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/1/combos/0",
+        "source_record_ref": "src:2b9b73ff7cf0584d11fef6fc4e6a49727238dac28d3f1d749ff8a029440cf311",
+        "value": {
+          "name": "바이오스티뮬레이터",
+          "combo": [
+            "바이오스티뮬레이터/콜라겐부스터"
+          ],
+          "reason": "PLLA/PCL 기반 콜라겐 생성 촉진",
+          "evidence": "즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/130",
+        "source_record_ref": "src:13b27ba63ec4a5ae94e0f096aebf7f4ce9dde241756868e4e4402990739ba186",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 바이오스티뮬레이터시술",
+          "text": "바이오스티뮬레이터 — PLLA/PCL 기반 콜라겐 생성 촉진 / 즉각 볼륨보다 수개월에 걸친 자가 콜라겐 재생을 목표로 함"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/9",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/52"
+      ],
+      "relation_claims": [
+        "/relation_claims/44"
+      ],
+      "scopes": [
+        "/scopes/51"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/52"
+      ],
+      "relation_records": [
+        "/relation_records/44"
+      ],
+      "scope_records": [
+        "/scope_records/51"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-131",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/2/combos/0",
+        "source_record_ref": "src:e2fed8b487531721f3e0dc01bf10d89c517488a5629d4c45b893effa17e74a49",
+        "value": {
+          "name": "PRP",
+          "combo": [
+            "PRP"
+          ],
+          "reason": "자가혈 유래 혈소판 성장인자로 조직 재생 보조",
+          "evidence": "자가혈 PRP를 이용한 피부질감·회복 보조"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/131",
+        "source_record_ref": "src:eba2908c37b78aa23907896dc0851e2afe4c2963c8662be6aab865678736e195",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 PRP시술",
+          "text": "PRP — 자가혈 유래 혈소판 성장인자로 조직 재생 보조 / 자가혈 PRP를 이용한 피부질감·회복 보조"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/10",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/53"
+      ],
+      "relation_claims": [
+        "/relation_claims/45"
+      ],
+      "scopes": [
+        "/scopes/52"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/53"
+      ],
+      "relation_records": [
+        "/relation_records/45"
+      ],
+      "scope_records": [
+        "/scope_records/52"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-190",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/9/complaints/0/combos/0",
+        "source_record_ref": "src:b08b026e907164ac164d9c9d0d2f4fb8b57b8adeddd6a064db5882528ab6a4d0",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/190",
+        "source_record_ref": "src:de1ed939c5e42eba33c0726fd5dd2fd336ec35ee123d53c53396d7a44f859f81",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 인중/구레나룻",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/11",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/112"
+      ],
+      "relation_claims": [
+        "/relation_claims/104"
+      ],
+      "scopes": [
+        "/scopes/111"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/112"
+      ],
+      "relation_records": [
+        "/relation_records/104"
+      ],
+      "scope_records": [
+        "/scope_records/111"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-191",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/9/complaints/1/combos/0",
+        "source_record_ref": "src:4d6e9295a5dcbc091d75e59400944dc1468529f399b40739fc3d1d021f16d7ab",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/191",
+        "source_record_ref": "src:af99176ad63ab9cf16d1bac8af306bdfa9a893ec3a6d46d17e1043935d5d087a",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 겨드랑이/팔/다리",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/12",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/113"
+      ],
+      "relation_claims": [
+        "/relation_claims/105"
+      ],
+      "scopes": [
+        "/scopes/112"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/113"
+      ],
+      "relation_records": [
+        "/relation_records/105"
+      ],
+      "scope_records": [
+        "/scope_records/112"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-193",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/9/complaints/2/combos/0",
+        "source_record_ref": "src:6fb697272037d7c8dd935df12bd16ae39b9cf59f2d5ed008a5d615c751813d27",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/193",
+        "source_record_ref": "src:3f95a6025544aee3404d5204df29a0c15f74c9231357bf7f858e748f95fe9099",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 비키니",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/13",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/115"
+      ],
+      "relation_claims": [
+        "/relation_claims/107"
+      ],
+      "scopes": [
+        "/scopes/114"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/115"
+      ],
+      "relation_records": [
+        "/relation_records/107"
+      ],
+      "scope_records": [
+        "/scope_records/114"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-194",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/9/complaints/3/combos/0",
+        "source_record_ref": "src:2b47eba85ac7f8b9f921aa037fcb91cdbcb7829515b96468be9513e6b312929b",
+        "value": {
+          "name": "제모 시리즈",
+          "combo": [
+            "제모레이저"
+          ],
+          "reason": "다회차 시술로 영구적 모발 감소(반영구)",
+          "evidence": "5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/194",
+        "source_record_ref": "src:80579d67944ad1776eb53205e2affeb9d5d053be2645c139c14f493e72b23f1d",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P10 수염/가슴/등",
+          "text": "제모 시리즈 — 다회차 시술로 영구적 모발 감소(반영구) / 5~8회 시리즈 권장; 완전·영구 제거를 보장하지 않으며 주기적 유지관리가 필요할 수 있음"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/14",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/116"
+      ],
+      "relation_claims": [
+        "/relation_claims/108"
+      ],
+      "scopes": [
+        "/scopes/115"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/116"
+      ],
+      "relation_records": [
+        "/relation_records/108"
+      ],
+      "scope_records": [
+        "/scope_records/115"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-200",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/10/complaints/3/combos/1",
+        "source_record_ref": "src:3fd31a160554aac5a9b5c813307bcc4e883879264f0de36b2f3931230ad9ae43",
+        "value": {
+          "name": "승모근 보톡스",
+          "combo": [
+            "보톡스"
+          ],
+          "reason": "승모근 이완으로 어깨라인 개선",
+          "evidence": "3~6개월 유지"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/200",
+        "source_record_ref": "src:19248c1eb6df5d9eb77ceaebbb16ac9f1ce3c5ec2a4d11231f1edbf8b2443ae7",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P11 승모근보톡스",
+          "text": "승모근 보톡스 — 승모근 이완으로 어깨라인 개선 / 3~6개월 유지"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/15",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/122"
+      ],
+      "relation_claims": [
+        "/relation_claims/114"
+      ],
+      "scopes": [
+        "/scopes/121"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/122"
+      ],
+      "relation_records": [
+        "/relation_records/114"
+      ],
+      "scope_records": [
+        "/scope_records/121"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-201",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/10/complaints/4/combos/0",
+        "source_record_ref": "src:8d6cb0b6c2bc9def6c30cdfffdf199dcfbfeb95adb77fdbca5f6b828c4aea38c",
+        "value": {
+          "name": "광대 축소",
+          "combo": [
+            "지방분해"
+          ],
+          "reason": "광대 볼륨 감소",
+          "evidence": "주사로 간편하게"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/201",
+        "source_record_ref": "src:c3b527b0fd59600ed798c665314af818c99cda44e4c1685afa283731ee59e025",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P11 광대축소주사",
+          "text": "광대 축소 — 광대 볼륨 감소 / 주사로 간편하게"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/16",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/123"
+      ],
+      "relation_claims": [
+        "/relation_claims/115"
+      ],
+      "scopes": [
+        "/scopes/122"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/123"
+      ],
+      "relation_records": [
+        "/relation_records/115"
+      ],
+      "scope_records": [
+        "/scope_records/122"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-211",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/11/complaints/7/combos/0",
+        "source_record_ref": "src:f819d90c76c46dcdedc266992bc5a713967ea182ce36c0c49a38eaa1aef6842d",
+        "value": {
+          "name": "HIFES 시리즈",
+          "combo": [
+            "HIFES"
+          ],
+          "reason": "근육 강화로 탄탄한 몸",
+          "evidence": "4~6회 시리즈"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/211",
+        "source_record_ref": "src:4d8798fe72cf2d6add86a2dcd56e47cd27b8fbd3afc78256853a848ae9cd7730",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 엠스컬프트",
+          "text": "HIFES 시리즈 — 근육 강화로 탄탄한 몸 / 4~6회 시리즈"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/17",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/133"
+      ],
+      "relation_claims": [
+        "/relation_claims/125"
+      ],
+      "scopes": [
+        "/scopes/132"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/133"
+      ],
+      "relation_records": [
+        "/relation_records/125"
+      ],
+      "scope_records": [
+        "/scope_records/132"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-212",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/11/complaints/8/combos/0",
+        "source_record_ref": "src:fbeb3c536f01d2ea8ed2d4a1b11f12b802a56b508c4ad10f69f79f6d2862802f",
+        "value": {
+          "name": "바디 타이트닝",
+          "combo": [
+            "인모드"
+          ],
+          "reason": "RF로 피부 탄력",
+          "evidence": "바디 전용 핸드피스"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/212",
+        "source_record_ref": "src:e1a0cbf6e69997f3b588e772cb9af5dccec45253bb7cd2a709430741b67d2794",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 바디써마지",
+          "text": "바디 타이트닝 — RF로 피부 탄력 / 바디 전용 핸드피스"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/18",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/134"
+      ],
+      "relation_claims": [
+        "/relation_claims/126"
+      ],
+      "scopes": [
+        "/scopes/133"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/134"
+      ],
+      "relation_records": [
+        "/relation_records/126"
+      ],
+      "scope_records": [
+        "/scope_records/133"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-213",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/11/complaints/9/combos/0",
+        "source_record_ref": "src:fada1c76f8330fe0cf8f8002c3b26851731922022eb1f090df651e22a264a687",
+        "value": {
+          "name": "바디 타이트닝",
+          "combo": [
+            "인모드"
+          ],
+          "reason": "RF로 피부 탄력",
+          "evidence": "바디 전용 핸드피스"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/213",
+        "source_record_ref": "src:771a3a313619c4b150f6353f366fefae180c12717d21ae7c7de3126f2410e485",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P12 바디인모드",
+          "text": "바디 타이트닝 — RF로 피부 탄력 / 바디 전용 핸드피스"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/19",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/135"
+      ],
+      "relation_claims": [
+        "/relation_claims/127"
+      ],
+      "scopes": [
+        "/scopes/134"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/135"
+      ],
+      "relation_records": [
+        "/relation_records/127"
+      ],
+      "scope_records": [
+        "/scope_records/134"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-226",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/0/combos/0",
+        "source_record_ref": "src:321395dc7a588ebef5f3f7f76a6e5745be1a6b1f9481b7e2d68878e0dd18f23a",
+        "value": {
+          "name": "레이저 제거",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "레이저로 정밀 제거",
+          "evidence": "CO2 레이저 사용"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/226",
+        "source_record_ref": "src:27c81b2be6cc75bf28c9f263eb95ca9539c3a4c86b7dc5d33ae30b2f6867e3d4",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 점제거",
+          "text": "레이저 제거 — 레이저로 정밀 제거 / CO2 레이저 사용"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/20",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/148"
+      ],
+      "relation_claims": [
+        "/relation_claims/140"
+      ],
+      "scopes": [
+        "/scopes/147"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/148"
+      ],
+      "relation_records": [
+        "/relation_records/140"
+      ],
+      "scope_records": [
+        "/scope_records/147"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-227",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/1/combos/0",
+        "source_record_ref": "src:c331a69fd29f572696eeecdc8489069de121a86a3c929363ad83a42ad6dd80c2",
+        "value": {
+          "name": "레이저 제거",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "레이저로 정밀 제거",
+          "evidence": "CO2 레이저 사용"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/227",
+        "source_record_ref": "src:fa0fb0b52d3eab3a43f4328f7fce52c6b5ec6382e63f267f77743d2f5aa57198",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 사마귀",
+          "text": "레이저 제거 — 레이저로 정밀 제거 / CO2 레이저 사용"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/21",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/149"
+      ],
+      "relation_claims": [
+        "/relation_claims/141"
+      ],
+      "scopes": [
+        "/scopes/148"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/149"
+      ],
+      "relation_records": [
+        "/relation_records/141"
+      ],
+      "scope_records": [
+        "/scope_records/148"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-228",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/2/combos/0",
+        "source_record_ref": "src:b93bbd59a6ecbb4bbb3053de71dd3e57f7c1b3b9d9ac38feeaa0a7a6c757fadb",
+        "value": {
+          "name": "피코레이저 시리즈",
+          "combo": [
+            "피코레이저"
+          ],
+          "reason": "피코초 레이저로 색소 분해",
+          "evidence": "다회차 필요"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/228",
+        "source_record_ref": "src:14986d6a8892fca36a953eec6ca67aa89abc6880939834a11c5da8b52971adf5",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 문신제거",
+          "text": "피코레이저 시리즈 — 피코초 레이저로 색소 분해 / 다회차 필요"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/22",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/150"
+      ],
+      "relation_claims": [
+        "/relation_claims/142"
+      ],
+      "scopes": [
+        "/scopes/149"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/150"
+      ],
+      "relation_records": [
+        "/relation_records/142"
+      ],
+      "scope_records": [
+        "/scope_records/149"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-229",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/4/combos/0",
+        "source_record_ref": "src:c7c25dc86ed388975e8d6cfdba584a745beb7902d210de4c65652b59c8341828",
+        "value": {
+          "name": "미라드라이",
+          "combo": [
+            "미라드라이"
+          ],
+          "reason": "마이크로파로 한선 영구 파괴",
+          "evidence": "1~2회로 영구 효과"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/229",
+        "source_record_ref": "src:222ad2000e8be7f9e0a8ad85a6aa295a8519959ba98b912b36b8d4e47e7ac5c4",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 미라드라이",
+          "text": "미라드라이 — 마이크로파로 한선 영구 파괴 / 1~2회로 영구 효과"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/23",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/151"
+      ],
+      "relation_claims": [
+        "/relation_claims/143"
+      ],
+      "scopes": [
+        "/scopes/150"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/151"
+      ],
+      "relation_records": [
+        "/relation_records/143"
+      ],
+      "scope_records": [
+        "/scope_records/150"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-230",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/5/combos/0",
+        "source_record_ref": "src:cac218efa0ecef9b6b1f0cd653fddc622343edec7b8d0c8795374788e09b2238",
+        "value": {
+          "name": "광선치료",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "자외선 치료",
+          "evidence": "다회차 시리즈"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/230",
+        "source_record_ref": "src:f3e97fab58860168185af31fb3cee5e43babe3d41d734a000576d96bbd10a675",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 백반증",
+          "text": "광선치료 — 자외선 치료 / 다회차 시리즈"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/24",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/152"
+      ],
+      "relation_claims": [
+        "/relation_claims/144"
+      ],
+      "scopes": [
+        "/scopes/151"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/152"
+      ],
+      "relation_records": [
+        "/relation_records/144"
+      ],
+      "scope_records": [
+        "/scope_records/151"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ARITY-231",
+    "group": "singleton-pair-label",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/13/complaints/6/combos/0",
+        "source_record_ref": "src:113f48676a3d0a27ca33060e4318ec548836d5b4abd1c3344696cc95f167a28a",
+        "value": {
+          "name": "광선치료",
+          "combo": [
+            "레이저"
+          ],
+          "reason": "자외선 치료",
+          "evidence": "다회차 시리즈"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/231",
+        "source_record_ref": "src:d9a1a43ad79ac53aeafd290f4818d7a1fb802b6969b659fa572fdf1fd8f0213b",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P14 건선",
+          "text": "광선치료 — 자외선 치료 / 다회차 시리즈"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/25",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/153"
+      ],
+      "relation_claims": [
+        "/relation_claims/145"
+      ],
+      "scopes": [
+        "/scopes/152"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/153"
+      ],
+      "relation_records": [
+        "/relation_records/145"
+      ],
+      "scope_records": [
+        "/scope_records/152"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-109",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/1/complaints/3/combos/0",
+        "source_record_ref": "src:0496681f927f767259d98552a4acbf55fd6f0a4981226a2570120a05cd9e4e11",
+        "value": {
+          "name": "보톡스 + 필러",
+          "combo": [
+            "보톡스",
+            "필러"
+          ],
+          "reason": "근이완 + 볼륨 = 깊은 주름 해결",
+          "evidence": "동적+정적 주름 동시 해결"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/109",
+        "source_record_ref": "src:dc478792a9ad2df40ece6e39e0ac43c35f6714752dad635a76e804f0ec05c109",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "보톡스 + 필러 — 근이완 + 볼륨 = 깊은 주름 해결 / 동적+정적 주름 동시 해결"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/26",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/31"
+      ],
+      "relation_claims": [
+        "/relation_claims/23"
+      ],
+      "scopes": [
+        "/scopes/30"
+      ],
+      "notes": [
+        "/notes/0"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/31"
+      ],
+      "relation_records": [
+        "/relation_records/23"
+      ],
+      "scope_records": [
+        "/scope_records/30"
+      ],
+      "notes": [
+        "/notes/0"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-110",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/1/complaints/3/combos/1",
+        "source_record_ref": "src:bf98d2a01e7b5955c1c979e0e8b993842c2eb4156c46944adb8c862c555261eb",
+        "value": {
+          "name": "필러 + 리프팅기기",
+          "combo": [
+            "필러",
+            "리프팅기기"
+          ],
+          "reason": "볼륨 + 타이트닝 = 근본 해결",
+          "evidence": "처짐 원인까지 해결"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/110",
+        "source_record_ref": "src:c340fcd68230f984ee8dbb645ef2c7499326163cca406df283a5fdb633dd624f",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "필러 + 리프팅기기 — 볼륨 + 타이트닝 = 근본 해결 / 처짐 원인까지 해결"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/27",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/32"
+      ],
+      "relation_claims": [
+        "/relation_claims/24"
+      ],
+      "scopes": [
+        "/scopes/31"
+      ],
+      "notes": [
+        "/notes/1"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/32"
+      ],
+      "relation_records": [
+        "/relation_records/24"
+      ],
+      "scope_records": [
+        "/scope_records/31"
+      ],
+      "notes": [
+        "/notes/1"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-111",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/1/complaints/3/combos/2",
+        "source_record_ref": "src:e8ab0ba06e942632e067cd9692b0702a48d1cf4b2e2874cb2900155284ed3f0c",
+        "value": {
+          "name": "스킨부스터 + 리프팅기기",
+          "combo": [
+            "스킨부스터",
+            "리프팅기기"
+          ],
+          "reason": "재생·수분 + 타이트닝 = 목주름 복합 개선",
+          "evidence": "고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/111",
+        "source_record_ref": "src:5db3a3d3e5edf08108b009e0cd73f189c9b5242f55bd4718d5fdb5f75f475fef",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "스킨부스터 + 리프팅기기 — 재생·수분 + 타이트닝 = 목주름 복합 개선 / 고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/28",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/33"
+      ],
+      "relation_claims": [
+        "/relation_claims/25"
+      ],
+      "scopes": [
+        "/scopes/32"
+      ],
+      "notes": [
+        "/notes/2"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/33"
+      ],
+      "relation_records": [
+        "/relation_records/25"
+      ],
+      "scope_records": [
+        "/scope_records/32"
+      ],
+      "notes": [
+        "/notes/2"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-132",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/3/combos/0",
+        "source_record_ref": "src:2a98b875790d72d17aeac5d6ce5f3fc296d09da7a9512e45e10613ec04c7bee7",
+        "value": {
+          "name": "필러 + 보톡스",
+          "combo": [
+            "필러",
+            "보톡스"
+          ],
+          "reason": "볼륨 + 근이완 = 시너지",
+          "evidence": "보톡스가 근육 움직임 줄여 필러 유지력 향상"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/132",
+        "source_record_ref": "src:8793c2aea0d341c1e11731b2cdd46229e2872aff1ecae288c33dcde1966712d8",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 필러볼륨",
+          "text": "필러 + 보톡스 — 볼륨 + 근이완 = 시너지 / 보톡스가 근육 움직임 줄여 필러 유지력 향상"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/29",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/54"
+      ],
+      "relation_claims": [
+        "/relation_claims/46"
+      ],
+      "scopes": [
+        "/scopes/53"
+      ],
+      "notes": [
+        "/notes/3"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/54"
+      ],
+      "relation_records": [
+        "/relation_records/46"
+      ],
+      "scope_records": [
+        "/scope_records/53"
+      ],
+      "notes": [
+        "/notes/3"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-133",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/3/combos/1",
+        "source_record_ref": "src:d1c085780e0b2ce3aa0cdc3f370a9d6097bb8f62dc929bcece27f7062f1d9f46",
+        "value": {
+          "name": "필러 + 바이오스티뮬레이터",
+          "combo": [
+            "필러",
+            "바이오스티뮬레이터"
+          ],
+          "reason": "즉각 볼륨 + 장기 재생",
+          "evidence": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/133",
+        "source_record_ref": "src:113ce6164bc88d32cb21eb23ed445378bb17e099e68cc8a8ffb9be753e1f3b07",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 필러볼륨",
+          "text": "필러 + 바이오스티뮬레이터 — 즉각 볼륨 + 장기 재생 / 필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/30",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/55"
+      ],
+      "relation_claims": [
+        "/relation_claims/47"
+      ],
+      "scopes": [
+        "/scopes/54"
+      ],
+      "notes": [
+        "/notes/4"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/55"
+      ],
+      "relation_records": [
+        "/relation_records/47"
+      ],
+      "scope_records": [
+        "/scope_records/54"
+      ],
+      "notes": [
+        "/notes/4"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-134",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/4/combos/0",
+        "source_record_ref": "src:3d6cc246f3eb3fb816454ccfe60c6dd9bf2f4db2017683c0b89d9867f2c183b9",
+        "value": {
+          "name": "지방이식 + PRP",
+          "combo": [
+            "지방이식",
+            "PRP"
+          ],
+          "reason": "자가지방 + 성장인자 = 생착률 향상",
+          "evidence": "PRP가 지방세포 생존율 높임"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/134",
+        "source_record_ref": "src:07f870039aad026bc4b781c67ac5b61b63bab487e241ffa18e0b71b497505580",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 지방이식",
+          "text": "지방이식 + PRP — 자가지방 + 성장인자 = 생착률 향상 / PRP가 지방세포 생존율 높임"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/31",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/56"
+      ],
+      "relation_claims": [
+        "/relation_claims/48"
+      ],
+      "scopes": [
+        "/scopes/55"
+      ],
+      "notes": [
+        "/notes/5"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/56"
+      ],
+      "relation_records": [
+        "/relation_records/48"
+      ],
+      "scope_records": [
+        "/scope_records/55"
+      ],
+      "notes": [
+        "/notes/5"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "NOTE-LINK-135",
+    "group": "note-claim-lineage",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/3/complaints/4/combos/1",
+        "source_record_ref": "src:4386f1eed2fb032ed543f868522c2afad9a50988cb95a1702a3ee1eb717c41a8",
+        "value": {
+          "name": "필러 + 바이오스티뮬레이터",
+          "combo": [
+            "필러",
+            "바이오스티뮬레이터"
+          ],
+          "reason": "즉각 볼륨 + 장기 재생",
+          "evidence": "필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/135",
+        "source_record_ref": "src:215e6767c1c08a9b366dd899a2ebaec8d0ed81d3853e05b81320484f0b159281",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P4 지방이식",
+          "text": "필러 + 바이오스티뮬레이터 — 즉각 볼륨 + 장기 재생 / 필러가 브릿지, 바이오스티뮬레이터가 장기 효과"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/32",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/57"
+      ],
+      "relation_claims": [
+        "/relation_claims/49"
+      ],
+      "scopes": [
+        "/scopes/56"
+      ],
+      "notes": [
+        "/notes/6"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/57"
+      ],
+      "relation_records": [
+        "/relation_records/49"
+      ],
+      "scope_records": [
+        "/scope_records/56"
+      ],
+      "notes": [
+        "/notes/6"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "ORIGIN-CC-01",
+    "group": "palja-neck-source-conflict",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+        "pointer": "/problems/1/complaints/3",
+        "source_record_ref": "src:22ea8adf095d8143e9612da3f062111c8b9b0ca090d2db417b8adaa9f31d0ffe",
+        "value": {
+          "cc": "팔자주름",
+          "cc_detail": "필러/바이오스티뮬레이터",
+          "cc_group": "깊은주름",
+          "procedures": [
+            {
+              "name": "보톡스",
+              "category": "M1",
+              "role": "근육 이완으로 주름 완화",
+              "products": [
+                "보톡스",
+                "나보타",
+                "보툴렉스"
+              ]
+            },
+            {
+              "name": "필러",
+              "category": "M2",
+              "role": "깊은 주름 볼륨 충전",
+              "products": [
+                "쥬비덤",
+                "레스틸렌"
+              ]
+            },
+            {
+              "name": "리프팅기기",
+              "category": "M9",
+              "role": "피부 타이트닝",
+              "products": [
+                "울쎄라",
+                "써마지FLX"
+              ]
+            },
+            {
+              "name": "스킨부스터",
+              "category": "M4",
+              "role": "피부 재생·수분 공급으로 목주름·잔결 개선",
+              "products": [
+                "리쥬란 힐러",
+                "쥬베룩"
+              ]
+            }
+          ],
+          "combos": [
+            {
+              "name": "보톡스 + 필러",
+              "combo": [
+                "보톡스",
+                "필러"
+              ],
+              "reason": "근이완 + 볼륨 = 깊은 주름 해결",
+              "evidence": "동적+정적 주름 동시 해결"
+            },
+            {
+              "name": "필러 + 리프팅기기",
+              "combo": [
+                "필러",
+                "리프팅기기"
+              ],
+              "reason": "볼륨 + 타이트닝 = 근본 해결",
+              "evidence": "처짐 원인까지 해결"
+            },
+            {
+              "name": "스킨부스터 + 리프팅기기",
+              "combo": [
+                "스킨부스터",
+                "리프팅기기"
+              ],
+              "reason": "재생·수분 + 타이트닝 = 목주름 복합 개선",
+              "evidence": "고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+            }
+          ],
+          "alternatives": [
+            "효과 부족 시 리프팅기기 추가"
+          ]
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/step8_notes/111",
+        "source_record_ref": "src:5db3a3d3e5edf08108b009e0cd73f189c9b5242f55bd4718d5fdb5f75f475fef",
+        "value": {
+          "kind": "시너지(쌍 주장)",
+          "source": "problem-packages.complaints[].combos",
+          "where": "P2 팔자주름",
+          "text": "스킨부스터 + 리프팅기기 — 재생·수분 + 타이트닝 = 목주름 복합 개선 / 고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/33",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/33"
+      ],
+      "relation_claims": [
+        "/relation_claims/25"
+      ],
+      "scopes": [
+        "/scopes/32"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/33"
+      ],
+      "relation_records": [
+        "/relation_records/25"
+      ],
+      "scope_records": [
+        "/scope_records/32"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "SCOPE-ORDER-01",
+    "group": "same-site-order-qualifier",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/contraindications.json",
+        "pointer": "/rules/0",
+        "source_record_ref": "src:cb11605cf7244b4d5bdfd81970d8697a4011d3781af1ebfff7170a09ef415b06",
+        "value": {
+          "from": "M1",
+          "from_name": "보톡스",
+          "to": "M2",
+          "to_name": "필러",
+          "level": "safe",
+          "interval": "같은 날 가능",
+          "note": "동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/claims/0",
+        "source_record_ref": "src:deb62b10f2a5c7d7e8cefa372896492355c159a8672f1b3dde2f9d0daf51bedc",
+        "value": {
+          "source": "contraindications.rules",
+          "source_index": 0,
+          "text": "M1↔M2 같은 날 가능",
+          "kind": "병행 · 간격",
+          "a": {
+            "level": "계열",
+            "via": "원천 시술군 코드",
+            "families": [
+              "M1"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [],
+            "n_units": 0,
+            "flag": null,
+            "text": "보톡스"
+          },
+          "b": {
+            "level": "계열",
+            "via": "원천 시술군 코드",
+            "families": [
+              "M2"
+            ],
+            "sub_family": null,
+            "technique": null,
+            "units": [],
+            "n_units": 0,
+            "flag": null,
+            "text": "필러"
+          },
+          "directed": false,
+          "interval": {
+            "days": null,
+            "open_high": false,
+            "same_day": true,
+            "marks": [],
+            "condition": null,
+            "repeat": false,
+            "kind": null,
+            "first_from_source_order": false,
+            "branches": [
+              "L-SDOK"
+            ],
+            "text": "같은 날 가능",
+            "options": null,
+            "first": "a",
+            "first_basis": "원문 「보톡스 · 먼저」"
+          },
+          "level_original": "safe",
+          "level_site": "병행 가능",
+          "reason": "동일 부위는 보톡스 먼저 → 필러 순서 권장. 주입 부위가 다르면 순서 무관",
+          "rule": "구조 칸(from · to · level · interval · note)",
+          "lowering": "계열(원천 시술군 코드 — 단위 시술은 조회 때 상속 · C4)",
+          "evidence_kind": "원천 표기 없음",
+          "id": "R8-0001",
+          "gate_status": "자동(규칙)",
+          "evidence": [],
+          "not_procedure": false,
+          "bundle_word": false,
+          "resolved": true,
+          "endpoint_levels": [
+            "계열",
+            "계열"
+          ],
+          "review_status": "staff_check",
+          "conflict_before": true,
+          "review_label": "의료진 확인"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/34",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/154"
+      ],
+      "relation_claims": [
+        "/relation_claims/146"
+      ],
+      "scopes": [
+        "/scopes/153",
+        "/scopes/154",
+        "/scopes/155"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/154"
+      ],
+      "relation_records": [
+        "/relation_records/146"
+      ],
+      "scope_records": [
+        "/scope_records/153",
+        "/scope_records/154",
+        "/scope_records/155"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "CAND-volume",
+    "group": "comparison-candidate-scope",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+        "pointer": "/comparisons/2",
+        "source_record_ref": "src:ab854fe2f33407744924936811707f5d4d3f86fa24657852ba73175bb2ebbc6a",
+        "value": {
+          "id": "volume",
+          "title": "볼륨 회복 비교",
+          "subtitle": "볼/관자/이마 볼륨 충전 비교",
+          "evidence_notes": [
+            "바이오스티뮬레이터: 18-24개월+ 지속, 연간 비용 최저, 자연스러운 결과. 즉각 효과는 없지만 장기적으로 가장 경제적",
+            "HA 필러: 즉각적이지만 6-18개월 지속, 유지비용 높음. 가역적(히알루로니다아제로 용해 가능)이 최대 장점",
+            "지방이식: 생착 부분 영구적이나 흡수율 변동(30-70%), 수술적 위험(마취, 감염, 지방색전증). 대량 볼륨 복원에 유리"
+          ],
+          "procedures": [
+            {
+              "name": "히알루론산 필러",
+              "category": "M2",
+              "mechanism_simple": "HA 겔로 즉각 볼륨 충전",
+              "pain": "★★☆☆☆",
+              "downtime": "1-3일 부종",
+              "onset": "즉시",
+              "duration": "6-18개월",
+              "cost_range": "30-100만원",
+              "best_for": "즉각적 볼륨, 정밀 조각",
+              "limitations": "반복 시술 필요, 필러 이동. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+              "pih_risk": "none"
+            },
+            {
+              "name": "스컬트라 (PLLA)",
+              "category": "M3",
+              "mechanism_simple": "PLLA로 자가 콜라겐 생성 유도",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 부종",
+              "onset": "1-3개월 점진",
+              "duration": "18-24개월",
+              "cost_range": "30-80만원/바이알",
+              "best_for": "전체적 볼륨 회복, 자연스러움",
+              "limitations": "즉각 효과 없음, 결절 가능",
+              "pih_risk": "none"
+            },
+            {
+              "name": "엘란쎄 (PCL)",
+              "category": "M3",
+              "mechanism_simple": "PCL 마이크로스피어 + CMC 겔",
+              "pain": "★★☆☆☆",
+              "downtime": "1-3일 부종",
+              "onset": "즉시 + 점진적",
+              "duration": "12-48개월 (타입별)",
+              "cost_range": "30-70만원/시린지",
+              "best_for": "즉각+장기 볼륨, 콜라겐 유도",
+              "limitations": "녹지 않아 교정 어려움",
+              "pih_risk": "none"
+            },
+            {
+              "name": "자가지방이식",
+              "category": "M6",
+              "mechanism_simple": "본인 지방 채취 후 이식",
+              "pain": "★★★☆☆",
+              "downtime": "7-14일 부종/멍",
+              "onset": "2-3개월 (생착 후)",
+              "duration": "반영구 (생착분)",
+              "cost_range": "100-400만원",
+              "best_for": "대량 볼륨, 자연스러움, 반영구",
+              "limitations": "생착률 변동 (30-70%), 채취부 통증",
+              "pih_risk": "none"
+            }
+          ]
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/combos/72/members/0",
+        "source_record_ref": "src:3c6a614b86e17148726738872f325f986c9648de9daf847905e5cc53530548b7",
+        "value": {
+          "order": 1,
+          "text": "히알루론산 필러",
+          "source_family": "M2",
+          "status": "부위 없음 · 후보 전부 · 후보 여럿(필러 부위 못 정함 · 판단 ②)",
+          "units": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "basis": "계열 M2 — 원천에 부위 없음",
+          "flag": "ambiguous",
+          "family_mismatch": false,
+          "attrs_text": {
+            "mechanism_simple": "HA 겔로 즉각 볼륨 충전",
+            "pain": "★★☆☆☆",
+            "downtime": "1-3일 부종",
+            "onset": "즉시",
+            "duration": "6-18개월",
+            "cost_range": "30-100만원",
+            "best_for": "즉각적 볼륨, 정밀 조각",
+            "limitations": "반복 시술 필요, 필러 이동. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+            "pih_risk": "none"
+          },
+          "concern_region_check": "고민 영역 없음(R22 · 셈만)"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/35",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/155"
+      ],
+      "mappings": [
+        "/mappings/283"
+      ],
+      "scopes": [
+        "/scopes/156",
+        "/scopes/157"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/155"
+      ],
+      "mapping_records": [
+        "/mapping_records/283"
+      ],
+      "scope_records": [
+        "/scope_records/156",
+        "/scope_records/157"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "CAND-wrinkle",
+    "group": "comparison-candidate-scope",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/procedure-comparison.json",
+        "pointer": "/comparisons/1",
+        "source_record_ref": "src:cbb6a7861c07b1c02a02e27e5e8e3dd4ede4fd7e2efdae0e0f8c1c85ff20735a",
+        "value": {
+          "id": "wrinkle",
+          "title": "주름 개선 비교",
+          "subtitle": "이마/미간/눈가 주름 치료 비교",
+          "procedures": [
+            {
+              "name": "보톡스 (보툴리눔톡신)",
+              "category": "M1",
+              "mechanism_simple": "근육 수축 차단으로 표정주름 완화",
+              "pain": "★★☆☆☆",
+              "downtime": "없음",
+              "onset": "3-7일",
+              "duration": "3-6개월",
+              "cost_range": "5-30만원",
+              "best_for": "표정주름 (이마, 미간, 눈가)",
+              "limitations": "정적 주름에는 효과 제한",
+              "pih_risk": "none"
+            },
+            {
+              "name": "히알루론산 필러",
+              "category": "M2",
+              "mechanism_simple": "필러로 주름 골 채움",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 부종",
+              "onset": "즉시",
+              "duration": "6-18개월",
+              "cost_range": "20-80만원",
+              "best_for": "팔자, 마리오넷, 정적 주름",
+              "limitations": "필러 이동, 뭉침 가능. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+              "pih_risk": "none"
+            },
+            {
+              "name": "프락셀 (프랙셔널 레이저)",
+              "category": "M8",
+              "mechanism_simple": "미세 열 기둥으로 콜라겐 리모델링",
+              "pain": "★★★☆☆",
+              "downtime": "3-5일 각질/붉은기",
+              "onset": "2-4주",
+              "duration": "12-24개월",
+              "cost_range": "20-50만원",
+              "best_for": "잔주름, 피부 텍스처",
+              "limitations": "깊은 주름은 여러 회 필요",
+              "pih_risk": "moderate"
+            },
+            {
+              "name": "리쥬란 (PN주사)",
+              "category": "M4",
+              "mechanism_simple": "폴리뉴클레오타이드로 진피 재생",
+              "pain": "★★☆☆☆",
+              "downtime": "1-2일 잔뾰루지",
+              "onset": "2-4주",
+              "duration": "6-12개월",
+              "cost_range": "15-40만원",
+              "best_for": "눈밑 잔주름, 피부 탄력",
+              "limitations": "깊은 주름에는 단독 효과 부족",
+              "pih_risk": "none"
+            }
+          ]
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step7-concerns.json",
+        "pointer": "/combos/71/members/1",
+        "source_record_ref": "src:ded4ae3c9d1844ed557c3116d220d8755fba54561de4eaa34c5acbc7d033f6ba",
+        "value": {
+          "order": 2,
+          "text": "히알루론산 필러",
+          "source_family": "M2",
+          "status": "부위 없음 · 후보 전부 · 후보 여럿(필러 부위 못 정함 · 판단 ②)",
+          "units": [
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "basis": "계열 M2 — 원천에 부위 없음",
+          "flag": "ambiguous",
+          "family_mismatch": false,
+          "attrs_text": {
+            "mechanism_simple": "필러로 주름 골 채움",
+            "pain": "★★☆☆☆",
+            "downtime": "1-2일 부종",
+            "onset": "즉시",
+            "duration": "6-18개월",
+            "cost_range": "20-80만원",
+            "best_for": "팔자, 마리오넷, 정적 주름",
+            "limitations": "필러 이동, 뭉침 가능. 드물지만 혈관 폐색 시 피부괴사·실명 위험(응급 히알루로니다제 처치 필요)",
+            "pih_risk": "none"
+          },
+          "concern_region_check": "고민 영역 안(R22)"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/36",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/156"
+      ],
+      "mappings": [
+        "/mappings/284"
+      ],
+      "scopes": [
+        "/scopes/158",
+        "/scopes/159"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/156"
+      ],
+      "mapping_records": [
+        "/mapping_records/284"
+      ],
+      "scope_records": [
+        "/scope_records/158",
+        "/scope_records/159"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "PRODUCT-SCOPE-01",
+    "group": "multi-family-override",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/3/subcategories/3/items/4",
+        "source_record_ref": "src:40367006d15a61152aa852166b3503e4f195baa87e47c39e76148aca7b5dcbfb",
+        "value": {
+          "id": "auto-M4-1775361378128",
+          "name": "바이리즌",
+          "detail": "휴젤 · 주사/도포/화장품 라인업",
+          "extracted": {
+            "overview": "휴젤의 바이리즌은 피부 재생과 탄력 개선을 위한 복합 미용 시술 라인업",
+            "mechanism": "다양한 활성 성분이 진피층에 작용하여 콜라겐 합성을 촉진하고 세포 재생을 활성화합니다. 피부 장벽 강화와 수분 보유력 향상을 통해 전반적인 피부 컨디션을 개선합니다.",
+            "indications": {
+              "primary": [
+                "피부 탄력 저하 및 잔주름 개선",
+                "피부 톤 균일화 및 광채 개선"
+              ]
+            },
+            "safety": {
+              "common": [
+                "시술 부위 일시적 발적 및 부종"
+              ]
+            },
+            "onset_duration": {
+              "onset": "2-4주",
+              "duration": "3-6개월"
+            },
+            "aftercare": [
+              "시술 후 24시간 세안 시 자극 최소화",
+              "주입 부위 당일 자극적 제품 자제",
+              "멍/부종은 수일 내 자연 소실",
+              "[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+            ]
+          }
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step5-units.json",
+        "pointer": "/product_links/243",
+        "source_record_ref": "src:d9519d47ef14c70a8aff143914d86b4415f835ba05ebd2dcd7e89797b690dbaa",
+        "value": {
+          "product": "auto-M4-1775361378128",
+          "name": "바이리즌",
+          "family": "M4",
+          "sub_family": "폴리뉴클레오타이드(PN·PDRN)",
+          "recommendable": true,
+          "stored_units": [],
+          "inherited_candidates": [
+            "U5-018",
+            "U5-041",
+            "U5-082",
+            "U5-083",
+            "U5-084",
+            "U5-085",
+            "U5-086",
+            "U5-087",
+            "U5-088",
+            "U5-089"
+          ],
+          "technique_excluded": [
+            {
+              "unit": "U5-037",
+              "reason": "기법 근거 없음(K01c)"
+            }
+          ],
+          "technique_attrs": null,
+          "guard": null,
+          "link": "조회 때 상속 후보",
+          "side_effect_override": [
+            {
+              "source": "taxonomy 항목 extracted",
+              "id": "auto-M4-1775361378128",
+              "name": "바이리즌",
+              "level": "제품 × 계열",
+              "values": {
+                "common": [
+                  "시술 부위 일시적 발적 및 부종"
+                ]
+              },
+              "sub_family": null,
+              "override_of": "family:M4",
+              "priority": 1
+            }
+          ]
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/37",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/157"
+      ],
+      "mappings": [
+        "/mappings/285"
+      ],
+      "scopes": [
+        "/scopes/160"
+      ],
+      "attachments": [
+        "/attachments/3"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/157"
+      ],
+      "mapping_records": [
+        "/mapping_records/285"
+      ],
+      "scope_records": [
+        "/scope_records/160"
+      ],
+      "edges": [
+        "/edges/3"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "PROJECTION-K8-0028",
+    "group": "K8-projection",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+        "pointer": "/category_specific/1/checks/5/label",
+        "source_record_ref": "src:f1e7c1533e5af37630fb9265cc386d8df88840997cc61d085cdf8d1cfec1ff8f",
+        "value": "히알루로니다아제 비상 비치 확인"
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/conditions/not_condition/2",
+        "source_record_ref": "src:d264a7706022f1ca34d32d24f5554b3c5c99e1d8b055801e23be2c62651085cc",
+        "value": {
+          "source": "pre-procedure-checklist.category_specific",
+          "source_index": "M2#5",
+          "target": "family:M2",
+          "target_level": "계열",
+          "text": "히알루로니다아제 비상 비치 확인",
+          "grade_original": "safety_protocol",
+          "grade_site": "시술 준비",
+          "grade3": "조건 아님(시술 준비)",
+          "conditions": [],
+          "kind": "시술 준비 항목",
+          "id": "K8-0028"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/38",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/158"
+      ],
+      "scopes": [
+        "/scopes/161"
+      ],
+      "attachments": [
+        "/attachments/4"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/158"
+      ],
+      "scope_records": [
+        "/scope_records/161"
+      ],
+      "edges": [
+        "/edges/4"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "PROJECTION-K8-0029",
+    "group": "K8-projection",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/pre-procedure-checklist.json",
+        "pointer": "/category_specific/1/checks/6/label",
+        "source_record_ref": "src:6d73f8010f90a40e61cf27a37af29ccf03559c273b0c7e10f4c79edaab3dfd62",
+        "value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/conditions/not_condition/3",
+        "source_record_ref": "src:791bac45edb559f7539f1d0cbbd6eb2457ab2e41f174257f8be7e3c90eebf636",
+        "value": {
+          "source": "pre-procedure-checklist.category_specific",
+          "source_index": "M2#6",
+          "target": "family:M2",
+          "target_level": "계열",
+          "text": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명",
+          "grade_original": "counseling",
+          "grade_site": "상담",
+          "grade3": "조건 아님(상담)",
+          "conditions": [],
+          "kind": "상담 항목",
+          "id": "K8-0029"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/39",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/159"
+      ],
+      "scopes": [
+        "/scopes/162"
+      ],
+      "attachments": [
+        "/attachments/5"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/159"
+      ],
+      "scope_records": [
+        "/scope_records/162"
+      ],
+      "edges": [
+        "/edges/5"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "원문 구조 보존; 임상 재판정 안 함"
+  },
+  {
+    "case": "PATIENT-LANG-01",
+    "group": "language-claim-variant",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/literature-evidence.json",
+        "pointer": "/categories/M2/adverse_effects/2",
+        "source_record_ref": "src:9dc005c400ef1b02977ecf1709994f3429c3cdb0339977c0448cd6c64c4dfa75",
+        "value": {
+          "statement": "Allergic reactions occur rarely with hyaluronic acid fillers.",
+          "citations": [
+            {
+              "authors": "de Maio M",
+              "title": "MD Codes™: A Methodological Approach to Facial Aesthetic Treatment with Injectable Hyaluronic Acid Fillers.",
+              "journal": "Aesthetic plastic surgery",
+              "year": 2021,
+              "pmid": "32445044",
+              "doi": "10.1007/s00266-020-01762-7",
+              "pmc": "PMC8012343",
+              "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8012343/"
+            }
+          ],
+          "patient_ko": "히알루론산 필러는 완벽하게 안전하지는 않지만 알레르기 반응은 드물게 나타나며, 시술 직후가 아닌 몇 개월 후에 지연성으로 생길 수 있습니다.",
+          "patient_en": "Allergic reactions to hyaluronic acid are quite uncommon but possible.",
+          "patient_zh": "对透明质酸产生过敏反应的情况非常罕见，但仍存在可能性。",
+          "patient_ja": "ヒアルロン酸によるアレルギーは非常に稀ですが、起こる可能性はあります。",
+          "added_at": "2026-04-19"
+        }
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step8-relations.json",
+        "pointer": "/evidence/statements/19",
+        "source_record_ref": "src:9677c2a3850e1f49d59cef795419e9ed2801bde5fc6095168f07d86a1ac45228",
+        "value": {
+          "id": "ST-M2-adverse_effects-03",
+          "family": "M2",
+          "field": "adverse_effects",
+          "statement": "Allergic reactions occur rarely with hyaluronic acid fillers.",
+          "accuracy_score": null,
+          "accuracy_note": null,
+          "patient": {
+            "ko": "히알루론산 필러는 완벽하게 안전하지는 않지만 알레르기 반응은 드물게 나타나며, 시술 직후가 아닌 몇 개월 후에 지연성으로 생길 수 있습니다.",
+            "en": "Allergic reactions to hyaluronic acid are quite uncommon but possible.",
+            "zh": "对透明质酸产生过敏反应的情况非常罕见，但仍存在可能性。",
+            "ja": "ヒアルロン酸によるアレルギーは非常に稀ですが、起こる可能性はあります。"
+          },
+          "evidence": [
+            "EV-LIT-005"
+          ],
+          "added_at": "2026-04-19",
+          "edge": "family:M2 —근거 문장→ ST-M2-adverse_effects-03"
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/40",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/160",
+        "/claims/161",
+        "/claims/162",
+        "/claims/163",
+        "/claims/164"
+      ],
+      "scopes": [
+        "/scopes/163"
+      ],
+      "attachments": [
+        "/attachments/6"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/160",
+        "/facts/161",
+        "/facts/162",
+        "/facts/163",
+        "/facts/164"
+      ],
+      "scope_records": [
+        "/scope_records/163"
+      ],
+      "edges": [
+        "/edges/6"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  },
+  {
+    "case": "RESOLUTION-01",
+    "group": "source-claims-vs-policy-resolution",
+    "raw": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/9/subcategories/0/items/0/extracted/onset_duration/duration",
+        "source_record_ref": "src:7ba0f8c0fb26737e1e365647e4293f472e9967644cc6405675e44ecccf511476",
+        "value": "3-6개월 유지, 정기적 시술로 지속 효과"
+      },
+      {
+        "file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "pointer": "/modality/9/subcategories/0/items/1/extracted/onset_duration/duration",
+        "source_record_ref": "src:1468dfa177f13bd0b3b3d5fa54f44e05e6d472805e3f34be189f26dc632b922b",
+        "value": "6-9개월"
+      }
+    ],
+    "current_silver": [
+      {
+        "file": "/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/step9-explanations.json",
+        "pointer": "/node_slots/280",
+        "source_record_ref": "src:d29c850f5d7b623553dc49767cbbdf19b0aa5a0358410cdb79f718b4e142f7fa",
+        "value": {
+          "node": "product:M10-1-1",
+          "slot": "onset_duration.duration",
+          "section": "recovery",
+          "sources": 2,
+          "records": [
+            "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+            "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+          ],
+          "class": "②",
+          "resolved": "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration",
+          "resolved_by": "짧은 쪽",
+          "alternatives": [
+            "S9:taxonomy.modality[9].subcategories[0].items[1].extracted.onset_duration.duration"
+          ],
+          "emit": [
+            "S9:taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration"
+          ],
+          "same_as": {},
+          "fact_ids": [
+            "product:M10-1-1#recovery#step9[taxonomy.modality[9].subcategories[0].items[0].extracted.onset_duration.duration]"
+          ]
+        }
+      }
+    ],
+    "pilot_case_pointer": "/cases/41",
+    "pilot_pointers": {
+      "claims": [
+        "/claims/165",
+        "/claims/166"
+      ],
+      "scopes": [
+        "/scopes/164"
+      ],
+      "attachments": [
+        "/attachments/7"
+      ]
+    },
+    "graph_pointers": {
+      "facts": [
+        "/facts/165",
+        "/facts/166"
+      ],
+      "scope_records": [
+        "/scope_records/164"
+      ],
+      "edges": [
+        "/edges/7"
+      ]
+    },
+    "representation_result": "PASS",
+    "clinical_status": "미정 유지"
+  }
+]

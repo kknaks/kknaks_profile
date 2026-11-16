@@ -1,0 +1,40 @@
+{"section":"S050","state":"read","last_pointer":"/modality/16/name",
+"observations":[
+ {"status":"P","pointers":["/modality/16/subcategories/1","/modality/5/subcategories/2"],"note":"M17-2 'SVF (자가지방줄기세포)' 의 SVF 항목 — M6-3 'SVF지방이식' 과 같은 기법명이 두 모달리티 하위분류에(연결 키 없음)."},
+ {"status":"P","pointers":["/modality/16/subcategories/2/label","/modality/3/subcategories/2/label"],"note":"M17-3 '엑소좀' — M4-3 '엑소좀/성장인자' 와 같은 성분 축 하위분류가 두 모달리티에."},
+ {"status":"I","pointers":["/modality/16/subcategories/3/label","/modality/16/subcategories/3/items/0/extracted/mechanism","/modality/16/subcategories/3/items/1/extracted/mechanism"],"note":"하위분류 label '자가혈유래 줄기세포' 인데 소속 항목(노바스템·미라셀) mechanism 은 'ADSC(지방유래) 배양 … 성장인자'. label(자가혈)과 서술(지방유래) 불일치."},
+ {"status":"P","pointers":["/modality/16/subcategories/3/items/0/extracted/mechanism","/modality/16/subcategories/2/items/1/name","/modality/16/subcategories/0/items/1/name"],"note":"노바스템 mechanism '(AAPE/MPE 유형)' — 같은 모달리티 다른 항목명(AAPE, MPE)을 유형 이름으로 참조."},
+ {"status":"P","pointers":["/modality/16/subcategories/0/items/0/extracted/safety/serious/2","/modality/16/subcategories/2/items/0/extracted/safety/serious/1","/modality/16/products/1/extracted/safety/serious/3"],"note":"safety/serious 원소가 규제·품질 확인 문구('장기 부작용 평가 불충분(의약품 제조 기준 적용)','엑소좀 소스 및 순도 확인 불충분','의약품 제조 기준 적용 필요'). aftercare 도 'GMP 기준 확인','배치별 품질 검증' 등 시술자·기관 지시."},
+ {"status":"P","pointers":["/modality/16/extracted/onset_duration/peak"],"note":"모달리티 peak '아디포셀의 경우 12개월에 걸쳐 성숙' — taxonomy 항목에 없는 제품명 '아디포셀' 참조."},
+ {"status":"P","pointers":["/modality/16/products/0/mfds","/modality/16/products/1/mfds"],"note":"M17 products mfds=false 2개. M17 은 group '관리'."},
+ {"status":"B","pointers":["/modality/16/subcategories/3/items/0/detail","/modality/16/subcategories/3/items/1/detail"],"note":"노바스템·미라셀 detail 빈 문자열."}
+],
+"expressions":[
+ {"pointer":"/modality/16/subcategories/0/items/0/detail","text":"도포/주사 · 성장인자","kinds":["기호","조건"],"note":"적용 방법 대안"},
+ {"pointer":"/modality/16/subcategories/0/items/0/extracted/mechanism","text":"타이로시나아제/TRP1 발현을 억제하여 멜라닌 생성을 감소","kinds":["기호"],"note":""},
+ {"pointer":"/modality/16/subcategories/0/items/0/extracted/safety/serious/2","text":"장기 부작용 평가 불충분(의약품 제조 기준 적용)","kinds":["부정","주장"],"note":""},
+ {"pointer":"/modality/16/subcategories/1/items/0/detail","text":"지방추출 → 줄기세포분리 → 주입","kinds":["기호","수량·단위·시간"],"note":"'→' 절차"},
+ {"pointer":"/modality/16/subcategories/1/items/0/extracted/safety/serious/3","text":"세포 배양·증식 관련 부작용","kinds":[],"note":""},
+ {"pointer":"/modality/16/subcategories/1/items/0/extracted/aftercare/1","text":"세포 생존율 및 활성도 검증","kinds":[],"note":"시술자 지시"},
+ {"pointer":"/modality/16/subcategories/2/items/0/extracted/safety/serious/1","text":"엑소좀 소스 및 순도 확인 불충분","kinds":["부정"],"note":""},
+ {"pointer":"/modality/16/subcategories/2/items/0/extracted/aftercare/2","text":"냉장보관 및 유통기한 관리","kinds":[],"note":""},
+ {"pointer":"/modality/16/subcategories/2/items/1/extracted/mechanism","text":"피부재생과 탄력개선에 탁월한 효과","kinds":["주장"],"note":""},
+ {"pointer":"/modality/16/subcategories/3/items/0/extracted/mechanism","text":"성장인자 단백질 혼합물(AAPE/MPE 유형)","kinds":["참조","기호"],"note":""},
+ {"pointer":"/modality/16/subcategories/3/items/0/extracted/safety/serious/2","text":"제품 성분 및 농도 규격화 필요","kinds":["조건"],"note":""},
+ {"pointer":"/modality/16/subcategories/3/items/1/extracted/safety/serious/1","text":"성분 안정성 검증 불충분","kinds":["부정"],"note":""},
+ {"pointer":"/modality/16/extracted/indications/extended/1","text":"피부 미백 효과 (ADSCs의 TGF-β가 멜라닌 생성을 줄일 가능성)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/16/extracted/indications/extended/3","text":"지방이식 시 생착률 향상 (ADSCs 병행)","kinds":["조건","참조"],"note":"M6 참조"},
+ {"pointer":"/modality/16/extracted/contraindications/relative/2","text":"장기적인 부작용에 대한 평가가 아직 미흡한 상태이므로 신중한 결정 필요","kinds":["부정","조건"],"note":""},
+ {"pointer":"/modality/16/extracted/safety/uncommon/0","text":"이식된 세포가 시간이 지나면서 일부 흡수되어 효과가 줄어들 수 있음","kinds":["가능성·빈도","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/16/extracted/safety/serious/0","text":"단기 효과는 비교적 만족스럽지만, 장기적 안전성에 대한 연구가 아직 충분하지 않음","kinds":["부정","비교","주장"],"note":""},
+ {"pointer":"/modality/16/extracted/onset_duration/onset","text":"이식 후 서서히 효과 발현 (세포가 자리잡는 데 수주 소요)","kinds":["수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/16/extracted/onset_duration/duration","text":"효과가 오래 지속될 수 있지만, 재흡수율에 따라 차이 있음","kinds":["가능성·빈도","조건"],"note":""},
+ {"pointer":"/modality/16/extracted/aftercare/2","text":"지방흡입 부위는 압박 붕대 착용이 필요할 수 있음","kinds":["가능성·빈도","조건"],"note":""},
+ {"pointer":"/modality/16/products/1/extracted/safety/serious/2","text":"세포 증식 관련 변이 위험","kinds":["가능성·빈도"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S050-I01","status":"I","pointers":["/modality/16/subcategories/3/label","/modality/16/subcategories/3/items/0/extracted/mechanism"],"note":"'자가혈유래 줄기세포' label vs ADSC(지방유래) 서술.","impact":"하위분류 의미 확인 필요"},
+ {"id":"S050-B01","status":"B","pointers":["/modality/16/subcategories/3/items/0/detail","/modality/16/subcategories/3/items/1/detail"],"note":"detail 빈 문자열.","impact":"제조사 정보 없음"},
+ {"id":"S050-F01","status":"F","pointers":["/modality/16/subcategories/1","/modality/5/subcategories/2","/modality/16/subcategories/2","/modality/3/subcategories/2"],"note":"SVF·엑소좀이 두 모달리티 하위분류에.","impact":"계열 경계 후속"}
+]}

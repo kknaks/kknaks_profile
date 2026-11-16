@@ -1,0 +1,86 @@
+[
+  {
+    "ledger": "taxonomy",
+    "returncode": 0,
+    "receipt": {
+      "id": "3698d593-c8dc-4c16-9701-81bed991ee29",
+      "ok": true,
+      "result": {
+        "dispatchId": "ctx_ef30575e94c1",
+        "state": "failed",
+        "alreadySettled": true,
+        "processAction": "none",
+        "mutation": {
+          "requestId": "d68ac4d2-1f85-49dd-ad38-1f097dccd678",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    }
+  },
+  {
+    "ledger": "literature-evidence",
+    "returncode": 0,
+    "receipt": {
+      "id": "83efee68-833e-4082-bf4e-8075e45cb1f3",
+      "ok": true,
+      "result": {
+        "dispatchId": "ctx_7d9775918e33",
+        "state": "failed",
+        "alreadySettled": true,
+        "processAction": "none",
+        "mutation": {
+          "requestId": "cd96de11-5738-4d41-b56b-e5f21b4e0d8b",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    }
+  },
+  {
+    "ledger": "problem-packages",
+    "returncode": 0,
+    "receipt": {
+      "id": "26c1144d-68da-429a-9b2f-67459c868da5",
+      "ok": true,
+      "result": {
+        "dispatchId": "ctx_d0477ee7b6f4",
+        "state": "failed",
+        "alreadySettled": true,
+        "processAction": "none",
+        "mutation": {
+          "requestId": "8cc66371-3541-4701-9d17-7a2148d13050",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    }
+  },
+  {
+    "ledger": "problem-combos",
+    "returncode": 0,
+    "receipt": {
+      "id": "a6c25314-a5a4-46a6-9c82-7f9dd286499b",
+      "ok": true,
+      "result": {
+        "dispatchId": "ctx_372d65f15bdb",
+        "state": "failed",
+        "alreadySettled": true,
+        "processAction": "none",
+        "mutation": {
+          "requestId": "a4307ba7-4034-4973-a107-0b16a4387a0d",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    }
+  }
+]

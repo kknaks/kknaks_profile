@@ -1,0 +1,38 @@
+{"section":"S015","state":"read","last_pointer":"/modality/5/name",
+"observations":[
+ {"status":"P","pointers":["/modality/5/subcategories/0","/modality/5/subcategories/0/items/0"],"note":"M6 는 하위분류 3개가 각각 항목 1개이고 label 과 항목 name 이 같다(마이크로지방이식·나노지방이식·SVF지방이식). 하위분류와 항목이 같은 이름으로 두 층에 있다."},
+ {"status":"P","pointers":["/modality/5/products"],"note":"M6 products 는 빈 배열 []."},
+ {"status":"P","pointers":["/modality/5/subcategories/0/items/0/extracted/aftercare","/modality/5/subcategories/1/items/0/extracted/aftercare"],"note":"M6 항목 aftercare 에는 '[시술 주기 참고]' 상용구가 없다."},
+ {"status":"I","pointers":["/modality/5/subcategories/0/items/0/extracted/onset_duration/duration","/modality/5/subcategories/2/items/0/extracted/onset_duration/duration","/modality/5/extracted/onset_duration/duration"],"note":"생착/유지율 수치가 층마다 다르다: 마이크로 '70-80% 유지', SVF '80-90% 이상 유지', 모달리티 '생착률 30~70%'. 지표 이름(유지 vs 생착률)도 다르다."},
+ {"status":"P","pointers":["/modality/5/subcategories/2/items/0/extracted/indications/extended","/modality/5/extracted/indications/extended/1"],"note":"얼굴 외 부위(가슴, 엉덩이, 손등) 적응증이 extended 에 있다."},
+ {"status":"P","pointers":["/modality/5/extracted/related_techniques"],"note":"related_techniques 에 SVF·PRP(M5) 가 있다. SVF 는 M6-3 하위분류로도 존재 — 같은 개념이 하위분류와 관련 기법 두 자리에(연결 키 없음)."}
+],
+"expressions":[
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/mechanism","text":"약 1-2mm 크기의 미세한 입자로 정제","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/mechanism","text":"피부층과 피하층에 소량씩 분산 주입","kinds":["부위","수식"],"note":""},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/safety/common/0","text":"시술 부위 붓기 (2-3주)","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/safety/serious/0","text":"혈관 손상 (매우 드물음)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/onset_duration/onset","text":"1-2주 후부터 변화 감지, 3개월까지 안정화","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/onset_duration/duration","text":"생착된 지방은 반영구적 (개인차: 70-80% 유지)","kinds":["조건","수량·단위·시간"],"note":"'생착된' 조건"},
+ {"pointer":"/modality/5/subcategories/0/items/0/extracted/aftercare/3","text":"한 달간 사우나/찜질방 자제","kinds":["수량·단위·시간","부정","기호"],"note":""},
+ {"pointer":"/modality/5/subcategories/1/items/0/extracted/mechanism","text":"0.5mm 이하의 초미세 입자(나노 입자)","kinds":["수량·단위·시간","범위"],"note":"'나노'라 부르나 수치는 mm"},
+ {"pointer":"/modality/5/subcategories/1/items/0/extracted/onset_duration/duration","text":"6-12개월 (콜라겐 생성 기간에 따라 변동)","kinds":["조건","범위"],"note":""},
+ {"pointer":"/modality/5/subcategories/1/items/0/extracted/aftercare/3","text":"3-4개월 간격으로 재시술 권장","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/5/subcategories/2/items/0/extracted/onset_duration/duration","text":"반영구적 (줄기세포의 재생 효과로 장기간 유지, 개인차: 80-90% 이상 유지)","kinds":["조건","범위","주장"],"note":""},
+ {"pointer":"/modality/5/subcategories/2/items/0/extracted/aftercare/3","text":"1개월간 사우나/온천/염색/펌 피하기","kinds":["수량·단위·시간","부정","기호"],"note":""},
+ {"pointer":"/modality/5/extracted/overview","text":"자기 자신의 지방을 사용하므로 알레르기 반응이 없고","kinds":["부정","조건"],"note":""},
+ {"pointer":"/modality/5/extracted/overview","text":"한 번 생착(살아붙으면)되면 반영구적으로 유지","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/5/extracted/mechanism","text":"주입된 지방 중 일부는 주변 혈관과 연결되어 살아남고(생착), 나머지는 체내에서 자연 흡수된다","kinds":["수식"],"note":""},
+ {"pointer":"/modality/5/extracted/contraindications/absolute/0","text":"채취할 지방이 충분하지 않은 경우 (극심한 저체중)","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/5/extracted/contraindications/relative/1","text":"당뇨병 등 상처 회복이 느린 전신 질환","kinds":["조건"],"note":""},
+ {"pointer":"/modality/5/extracted/safety/common/2","text":"초기 과교정 (붓기로 인해 볼륨이 과하게 보이는 것)","kinds":["수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/5/extracted/safety/serious/1","text":"지방 색전증 (지방이 혈관에 들어가는 것 -- 극히 드묾)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/5/extracted/onset_duration/peak","text":"붓기가 빠진 후 3~6개월 뒤 최종 생착량 확인","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/5/extracted/onset_duration/duration","text":"생착된 지방은 반영구적 유지 (생착률 30~70%, 개인차 큼)","kinds":["조건","범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/5/extracted/related_techniques/2","text":"PRP(혈소판풍부혈장) -- 지방이식 시 병합하여 생착률 향상","kinds":["참조","조건"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S015-I01","status":"I","pointers":["/modality/5/subcategories/0/items/0/extracted/onset_duration/duration","/modality/5/subcategories/2/items/0/extracted/onset_duration/duration","/modality/5/extracted/onset_duration/duration"],"note":"유지·생착 비율 수치가 층마다 다름(70-80%, 80-90%↑, 30~70%).","impact":"수치 채택 시 후속 확인"},
+ {"id":"S015-F01","status":"F","pointers":["/modality/5/subcategories/2","/modality/5/extracted/related_techniques/1"],"note":"SVF 가 하위분류이자 related_techniques 원소.","impact":"개체 중복 여부 후속"}
+]}

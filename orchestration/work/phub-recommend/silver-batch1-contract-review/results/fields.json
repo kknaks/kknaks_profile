@@ -1,0 +1,1573 @@
+[
+  {
+    "field": "product.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "str": 395
+    },
+    "transform": "product: + items[i].ledger_id; native_id 원값 병기; rename/reorder 시 동일 ID",
+    "source_selectors": [
+      "step1-products.json::items.*.ledger_id"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.revision",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "integer>=1",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "candidate 최초 내용판 1; 과거판이라고 소급하지 않음; 내용 변경시 append-only +1",
+    "source_selectors": [
+      "DERIVED: candidate 최초 내용판 1; 과거판이라고 소급하지 않음; 내용 변경시 append-only +1"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.status",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "active|pending|retired|merged|split",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "merged_into 있으면 merged, moved_to 있으면 retired, 그 외 active=true면 active, 불일치/active=false 사유없음은 pending+진단; 임상 승인과 무관",
+    "source_selectors": [
+      "DERIVED: merged_into 있으면 merged, moved_to 있으면 retired, 그 외 active=true면 active, 불일치/active=false 사유없음은 pending+진단; 임상 승인과 무관"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.label",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "str": 395
+    },
+    "transform": "2_names.display_name 원문 복사; 누락/빈 문자열은 오류; ledger_name을 대체명으로 추정하지 않음",
+    "source_selectors": [
+      "step1-products.json::items.*.2_names.display_name"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.aliases",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{text,lang,source_ref,state}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "list": 395
+    },
+    "transform": "2_names.search_names 각 {name,lang}를 {text,lang,source_ref,state=unreviewed}로 변환; 한/영→ko/en 별도 코드표, 원 lang 보존; ledger_name은 별도 source claim, 동치 승인 금지",
+    "source_selectors": [
+      "step1-products.json::items.*.2_names.search_names"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.source_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<source_record.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "dict": 395
+    },
+    "transform": "items[i] 발생레코드 + 필드별 연구/결정 occurrence 연결; raw21 대응은 실제 ID/locator 일치할 때만 연결",
+    "source_selectors": [
+      "step1-products.json::items.*"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.decision_refs",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<decision.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "items[i] gate/change_vs_draft/open 및 apply-log의 실제 결정근거를 locator로 연결; 텍스트 내 D번호만으로 승인 decision 생성 금지",
+    "source_selectors": [
+      "step1-products.json::basis/ items.*.gate / items.*.open / items.*.change_vs_draft",
+      "step1-apply-log.json (decision native alias, actual occurrence required)",
+      "step2-families.json::decision / families.*.name_basis"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.identity_kind",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "dict": 395
+    },
+    "transform": "1_identity.kind 원문 string 유지; basis/basis_type을 claim/raw source로 보존; 제품·라인·장비·메뉴·확인불가를 임상추정으로 통일하지 않음",
+    "source_selectors": [
+      "step1-products.json::items.*.1_identity"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.license_claim_refs",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<claim.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "dict": 395
+    },
+    "transform": "4_license 전체(JSON) 및 각 licenses/history/reference 원문 occurrence→kind=license claim; status/reason/recommendable 별도 보존; 현재 유효허가로 재인증하지 않음",
+    "source_selectors": [
+      "step1-products.json::items.*.4_license"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.spec_claim_refs",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<claim.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "dict": 390,
+      "NoneType": 5
+    },
+    "transform": "5_spec 전체(JSON)→operational claim; license/market/market_pricing/note 및 모든 하위 null/빈값 그대로; 용량 환산/새 규격 추정 금지",
+    "source_selectors": [
+      "step1-products.json::items.*.5_spec"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.company_roles",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{role,name,original,claim_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 395,
+    "actual_value_types": {
+      "dict": 395
+    },
+    "transform": "6_companies의 manufacturer/importer/seller/license_holder/other 배열 각 요소→role=원래 키, name/original 원값, claim_ref; basis/period/role 부가키와 conflicts/company_search_names는 원문 claim으로 보존; 근거 없음은 회사로 확정하지 않고 field_state=not_declared",
+    "source_selectors": [
+      "step1-products.json::items.*.6_companies"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.family_mapping_refs",
+    "baseline_status": "미구현",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<mapping.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 354,
+    "actual_value_types": {
+      "dict": 354
+    },
+    "transform": "step2 product_family를 ledger_id로 정확 join; family+also_families 후보/선택과 verdict/conflict/evidence_level/pending_director/sub_family_basis 유지; family=null은 unresolved, pending_director는 선택승인 보류; 계열밖5는 excluded 근거 보존; 이름 first-match 금지",
+    "source_selectors": [
+      "step2-families.json::product_family.* [join ledger_id]"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.line_memberships",
+    "baseline_status": "미구현",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{parent_product_ref,role,decision_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 36,
+    "actual_value_types": {
+      "dict": 36
+    },
+    "transform": "items[i].line 및 lines 전체를 대조; 명시 ledger_id/line_row만 parent_product_ref로 연결; parent_line 문자열/허가번호만 있는 품목은 원문 claim+unresolved mapping; item=미정 보존; decision_ref 없으면 nullable+reason, 가짜 승인 금지",
+    "source_selectors": [
+      "step1-products.json::items.*.line",
+      "step1-products.json::lines"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "product.continuity",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "{merged_from:[],merged_into:null|id,moved_to:null|string,split_from:[]}",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 756,
+    "actual_value_types": {
+      "bool": 395,
+      "list": 23,
+      "str": 64,
+      "NoneType": 246,
+      "dict": 28
+    },
+    "transform": "merged_from/merged_into/moved_to/split_from 원값→namespace refs(제품 target 존재검사); 없는 배열=[]/없는 target=null에 field_state=not_declared 기록; moved_to는 문자열 유지; active만으로 split/merge 발명 금지",
+    "source_selectors": [
+      "step1-products.json::items.*.active",
+      "step1-products.json::items.*.merged_from",
+      "step1-products.json::items.*.merged_into",
+      "step1-products.json::items.*.moved_to",
+      "step1-products.json::items.*.moved_note",
+      "step1-products.json::items.*.merged_ledger_ids",
+      "step1-products.json::items.*.line_children",
+      "step1-products.json::items.*.dedup"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "str": 27
+    },
+    "transform": "family: + families[i].id; native_id 원값 유지",
+    "source_selectors": [
+      "step2-families.json::families.*.id"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.revision",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "integer>=1",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "candidate 최초 내용판1; 과거 내용판 아님",
+    "source_selectors": [
+      "DERIVED: candidate 최초 내용판1; 과거 내용판 아님"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.status",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "active|pending|retired|merged|split",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "초기 pending(이관 신규 등록 상태); 기존 name_status는 별도 보존; clinical 승인으로 active 승격 금지",
+    "source_selectors": [
+      "DERIVED: 초기 pending(이관 신규 등록 상태); 기존 name_status는 별도 보존; clinical 승인으로 active 승격 금지"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.label",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "str": 27
+    },
+    "transform": "families[i].name 원문 복사; literature_name/name_status/name_basis는 별도 claim/raw 보존",
+    "source_selectors": [
+      "step2-families.json::families.*.name"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.aliases",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{text,lang,source_ref,state}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "list": 27
+    },
+    "transform": "synonyms 문자열별 text/source_ref, lang=null(추정 금지), state=unreviewed; literature_name은 독립 이름 claim",
+    "source_selectors": [
+      "step2-families.json::families.*.synonyms"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.source_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<source_record.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "dict": 27
+    },
+    "transform": "families[i] 전체 occurrence 및 실제 literature_evidence.path가 도달하는 raw21 field occurrence를 구분 연결",
+    "source_selectors": [
+      "step2-families.json::families.*"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.decision_refs",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<decision.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "name_basis/step2 결정근거 실제 artifact locator로 연결; 규칙승인/인적승인 authority 분리",
+    "source_selectors": [
+      "step1-products.json::basis/ items.*.gate / items.*.open / items.*.change_vs_draft",
+      "step1-apply-log.json (decision native alias, actual occurrence required)",
+      "step2-families.json::decision / families.*.name_basis"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.definition_claim_refs",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<claim.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 54,
+    "actual_value_types": {
+      "str": 27,
+      "list": 27
+    },
+    "transform": "definition/literature_evidence 원문별 kind=definition claim; 동치/임상사실 확정하지 않음",
+    "source_selectors": [
+      "step2-families.json::families.*.definition",
+      "step2-families.json::families.*.literature_evidence"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.subfamilies",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<subfamily>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 54,
+    "actual_value_types": {
+      "list": 54
+    },
+    "transform": "sub_families/sub_family_handling 원문 전체 보존; stable key/axis 미발급; typed 배열=[]와 field_state=needs_design+raw_refs(없음 의미가 아님); 기존 legacy 관계는 유지",
+    "source_selectors": [
+      "step2-families.json::families.*.sub_families",
+      "step2-families.json::families.*.sub_family_handling"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.technique_defaults",
+    "baseline_status": "미구현",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{technique_ref,role,layer,claim_ref,decision_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "dict": 27
+    },
+    "transform": "step4 family_defaults를 family ID로 join; default/also 기존 ID를 step4 techniques registry에 대조하는 참조만 보존; default_layer/role/basis/decided_by 원문 유지; registry entity를 새 전수이관했다고 주장하지 않음",
+    "source_selectors": [
+      "step4-techniques.json::family_defaults.* [join family]",
+      "step4-techniques.json::nodes.* [resolve id]"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "family.deferred_refs",
+    "baseline_status": "원문raw보존만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<mapping.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 27,
+    "actual_value_types": {
+      "list": 27
+    },
+    "transform": "deferred[]를 source_refs 기반 purpose=classification mapping, state=unresolved, selected_refs=[]로 보존; deferred_to를 entity ID로 바꾸지 않음",
+    "source_selectors": [
+      "step2-families.json::families.*.deferred"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "snapshot.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "DATA-001 §2 정렬 collection manifest의 domain/collection/logical key/full hash로 계산",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "snapshot.source_version",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=원문 버전 없음; hash 필수",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "해당 artifact 실제 version 문자열만; 없으면 null+not_declared",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "snapshot.files",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{file,sha256,bytes}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "input-manifest의 logical_file_key/file/sha256/bytes; file locator와 key 분리; raw21은21개 전부",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "snapshot.captured_at",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=미기록",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 수집시각 근거 없으면 null; 파일 mtime/generated_at을 수집시각으로 전용 금지",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "snapshot.source_kind",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "raw_snapshot|research|decision|generated",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "raw21=raw_snapshot; 과거조사=research; 결정=decision; 실버=generated. domain과 source_kind는 별도 축",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "snap ID+logical_file_key+JSON Pointer로 src SHA256",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.snapshot_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "snapshot.id",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "해당 물리 파일의 domain collection snapshot ref",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.file",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "명시 input-manifest 물리 locator; logical_file_key 별도 필수 확장",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.pointer",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 RFC6901 pointer; leaf/field/row 보존; 내용이나 ID 검색결과로 임의 유일화 금지",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.native_id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=원문 id 없음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 원문행 id/ledger_id; 없으면 null; prefix로 종류 추정 금지",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.raw_value",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "JSON",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "pointer의 JSON deep equal 원값; missing은 record를 발명하지 않고 field_state에 기록",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.parent_ref",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "source_record.id|null",
+    "required": true,
+    "empty_unknown": "null=파일 root",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 JSON containment parent만; normalized scope parent와 별개; 없으면 null",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "source_record.continuity_ref",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "source_record.id|null",
+    "required": true,
+    "empty_unknown": "null=동일성 미판정",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 이전판 대응근거 없으면 null; 이름/content 같음으로 연결 금지",
+    "source_selectors": [
+      "step1-products.json::/items/7",
+      "step2-families.json::/families/0",
+      "taxonomy.json::/modality/0/id",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/0",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/1",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects/2",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "정규화 scope payload+schema/rule revision hash",
+    "source_selectors": [
+      "DERIVED: 정규화 scope payload+schema/rule revision hash"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.axes",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "object<axis,{knowledge,included,excluded,raw_refs}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 소유 product/family/unit와 적용 후보를 구분; DATA-001 §4 축 사전/knowledge/evidence 강제; 안전 문장을 적용 승인으로 확장 금지",
+    "source_selectors": [
+      "DERIVED: 원문 소유 product/family/unit와 적용 후보를 구분; DATA-001 §4 축 사전/knowledge/evidence 강제; 안전 문장을 적용 승인으로 확장 금지"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.container_scope_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "scope.id|null",
+    "required": true,
+    "empty_unknown": "null=상위 범위 없음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "이번 batch 새 parent 합성 없음=null; pilot comparison 원문 parent는 회귀에서 보존",
+    "source_selectors": [
+      "DERIVED: 이번 batch 새 parent 합성 없음=null; pilot comparison 원문 parent는 회귀에서 보존"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.statement_qualifiers",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{axis,raw,operator,value,source_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 조건은 raw 문자열+source_ref로 보존; 미해석이면 operator/value=null+needs_source; default 조건 발명 금지",
+    "source_selectors": [
+      "DERIVED: 원문 조건은 raw 문자열+source_ref로 보존; 미해석이면 operator/value=null+needs_source; default 조건 발명 금지"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.conflicts",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{axis,container,statement,source_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 container/statement 충돌은 각각 source_ref와 함께 보존; resolved 축으로 합치지 않음",
+    "source_selectors": [
+      "DERIVED: 원문 container/statement 충돌은 각각 source_ref와 함께 보존; resolved 축으로 합치지 않음"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "scope.application_state",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "unknown|conditional|explicit|not_applicable",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "source 보존 scope는 unknown; 명시 소유 identity와 clinical 적용상태 별개",
+    "source_selectors": [
+      "DERIVED: source 보존 scope는 unknown; 명시 소유 identity와 clinical 적용상태 별개"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 field occurrence 포함 immutable normalized payload hash; 같은 predicate 다른 raw_field는 별도 claim",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.kind",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "explanation|safety|risk|check|preparation|counseling|license|definition|recommendation|operational|price|evidence",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "안전=safety, aftercare=preparation, 허가=license, 계열정의=definition, 규격/업체=operational; 분류판 기록; 나머지는 원문보존+미정 진단",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.subject_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=해석 미정; mapping 필수",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "검증된 owner entity ref; 미확정=null+mapping 필수; LOSS02 unit_procedure:U5-016; 원문 occurrence 자체는 source_refs",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.predicate",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 dotted path를 key_normalize 표로 변환; 다대일은 predicate만 공유, raw claim 병합 금지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.raw_field",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 extracted 기준 safety.common_adverse_effects 등 정확 경로 문자열; normalized_key로 덮지 않음",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.raw_value",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "JSON",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 field JSON 그대로; 배열 순서/중복/null/[]/false/문자열 유지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.normalized_value",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "JSON|null",
+    "required": true,
+    "empty_unknown": "null=파싱 안 함; raw 필수",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "이번 batch null; source 원문보존에 normalization 완료를 주장하지 않음",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.source_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<source_record.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "필드 source_record 필수1+; row claim과 field claim은 구분; 다원천 합성 claim 생성 금지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.scope_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "scope.id",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "소유/후보/문장 제한을 담은 scope에 연결; 도달성/축값 검증",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.mapping_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<mapping.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "identity/membership/normalization 용도별 근거 mapping refs; 미확정 owner이면 최소1",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.language",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=미기재",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 명시 lang만 코드화; 없으면 null, 문자열만 보고 자동 언어 동치추정 금지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.variant",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "{of:null|string,equivalence:unreviewed|equivalent|different}",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "이번 신규 claim of=null/equivalence=unreviewed; 기존 언어 variant 구조는 후속 대상/회귀보존",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.override",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "null|{claim_refs,predicate,scope_ref,priority,decision_ref}",
+    "required": true,
+    "empty_unknown": "null=덮어쓰기 아님",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "step5 override 실제 source id/level/override_of/priority를 원문 safety field claim에 연결; claim_refs/scope/decision/source refs 보존; 결정승인 locator 없으면 null+미정근거 sidecar, 기존 override raw삭제 금지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "claim.review_state",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "unreviewed|staff_check|confirmed|source_conflict",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "신규 unreviewed; 실제 원천 충돌이면 source_conflict; identity exact로 confirmed 승격 금지",
+    "source_selectors": [
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/1/items/3/extracted/safety/common",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+      "taxonomy.json::/modality/0/subcategories/2/items/7/extracted/safety/common",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common_side_effects",
+      "taxonomy.json::/modality/6/products/1/extracted/safety/common",
+      "problem-packages.json::/problems/8/complaints/11",
+      "problem-packages.json::/problems/8/complaints/10"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "purpose/source/candidates/scope/rule 포함 payload hash",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.source_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<source_record.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 product_family/line/deferred/override source occurrences",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.purpose",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "identity|membership|unit_compatibility|normalization|attachment|classification",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "계열=membership, 원문 owner=identity, deferred=classification, predicate=normalization; compatibility/selected와 분리",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.state",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "exact|rule_mapped|ambiguous|unresolved|excluded|compatible_candidate|selected",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "명시 단일 identity exact, 명시 규칙대응 rule_mapped, 후보 다수 ambiguous, 대상미상 unresolved, 제외근거 excluded; compatible_candidate를 selected로 올리지 않음",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.candidates",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{target_ref,role,basis,exclusion,scope_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 대상 IDs/role/basis/exclusion/scope 보존; 현재 refs registry로 도달검사; null 계열은 후보 발명 금지",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.selected_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<string>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 확정 identity/계열 연결만; pending_director/conflict로 선택 불명확하면 []+원래값은 candidates/raw에 보존; 임상 product 선택으로 해석 금지",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.rule",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "{id,version,code_sha256}",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 버전 규칙이면 {id,version,code_sha256}; 비규칙/근거부족은 null+reason 필수; 원본파일 actual hash와 고정 기대값 대조",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.scope_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "scope.id",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "해당 source의 소유/후보 scope ref",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "mapping.decision_refs",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<decision.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 승인근거 decision만 연결; 미확정은 []+reason",
+    "source_selectors": [
+      "problem-packages.json::/problems/8/complaints/4",
+      "step7-concerns.json::/correspondence/76",
+      "problem-packages.json::/problems/8/complaints/11",
+      "step7-concerns.json::/correspondence/83",
+      "problem-packages.json::/problems/8/complaints/8",
+      "step7-concerns.json::/correspondence/80",
+      "problem-packages.json::/problems/8/complaints/10",
+      "step7-concerns.json::/correspondence/82"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원본 namespace/native decision 이름은 legacy alias; normalized payload hash로 record판 식별",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.target_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<string>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "이번 batch 새 decision은 실제 원천이 판정한 stable entity refs만 target으로 수용한다. mapping/claim의 역참조 순환을 만들지 않으며 그 판정은 원문/미정 보존한다. pilot duration의 claims-only 결정은 기존 fixture에서 유지한다.",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.status",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "proposed|approved|rejected|needs_source|needs_staff|superseded",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "증명된 기존 승인만 approved; 확인요구 needs_source/needs_staff; artifact 존재만으로 approved 금지",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.authority",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "{kind:human|approved_rule,reviewer:null|string}",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 reviewer human 또는 고정 policy approved_rule; 증거 없으면 승인 record 미생성+legacy source 보존",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.reason",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 원문 사유 복사; 가짜 사유/기본 승인 금지",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.source_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<source_record.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원본 결정 artifact occurrence 1+",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.decided_at",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string|null",
+    "required": true,
+    "empty_unknown": "null=미기록",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 decided_at만; 없으면 null; 이관시각 대체 금지",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "decision.supersedes",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<decision.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "실제 이전결정 대응만; 없으면 []",
+    "source_selectors": [
+      "step9-decisions.json::"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.id",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "claim+target+scope+rule+witness payload hash",
+    "source_selectors": [
+      "DERIVED: claim+target+scope+rule+witness payload hash"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.claim_refs",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<claim.id>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "원문 claims 전체 대상; 충돌6field도 모두 도달",
+    "source_selectors": [
+      "DERIVED: 원문 claims 전체 대상; 충돌6field도 모두 도달"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.target_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "string",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "검증된 owner ref만; 후보 적용은 raw mapping으로 남김; 골드 자동노출 아님",
+    "source_selectors": [
+      "DERIVED: 검증된 owner ref만; 후보 적용은 raw mapping으로 남김; 골드 자동노출 아님"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.rule",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "{id,version}",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "batch1-source-preservation/1 새 계약판; pilot-preserve-source/1 규칙 의미를 확장했다고 위장 금지; 실제 구현 fingerprint 고정",
+    "source_selectors": [
+      "DERIVED: batch1-source-preservation/1 새 계약판; pilot-preserve-source/1 규칙 의미를 확장했다고 위장 금지; 실제 구현 fingerprint 고정"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.witness",
+    "baseline_status": "계약만",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<{mapping_ref,edge_ref,component_ref,source_ref}>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "이번 [] 유지; compatibility로 적용 witness 발명 금지",
+    "source_selectors": [
+      "DERIVED: 이번 [] 유지; compatibility로 적용 witness 발명 금지"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.scope_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "scope.id",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "claim과 같은 source scope만",
+    "source_selectors": [
+      "DERIVED: claim과 같은 source scope만"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.application_state",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "unknown|candidate|explicit|conditional|excluded",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "unknown; source identity exact와 임상 적용승인 분리",
+    "source_selectors": [
+      "DERIVED: unknown; source identity exact와 임상 적용승인 분리"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.resolution_ref",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "resolution.id|null",
+    "required": true,
+    "empty_unknown": "null=직접 원천",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "null; 신규 임상 resolution 생성 없음",
+    "source_selectors": [
+      "DERIVED: null; 신규 임상 resolution 생성 없음"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  },
+  {
+    "field": "attachment.unknown_reasons",
+    "baseline_status": "pilot검증",
+    "batch_status": "planned_not_implemented",
+    "proposed_type": "array<string>",
+    "required": true,
+    "empty_unknown": "null 금지; []는 명시 빈 목록이며 안전·승인을 뜻하지 않음",
+    "actual_locator_count": 0,
+    "actual_value_types": {},
+    "transform": "source_preservation_only 및 실제 미정사유 비어있지 않게 기록",
+    "source_selectors": [
+      "DERIVED: source_preservation_only 및 실제 미정사유 비어있지 않게 기록"
+    ],
+    "oracle": "independent pointer JSON equality + transform-specific rule + typed ref reachability; generated metadata recompute from fixed input-manifest"
+  }
+]

@@ -1,0 +1,249 @@
+# S024  scope=M8 레이저  units=M8-5 items/6 | M8-5 items/7 | M8-5 items/8 | M8-5 items/9 | M8-5 items/10 | M8-5 items/11 | M8-5 items/12 | M8-6 items/0 | M8-6 items/1 | M8-6 items/2 | M8-6 items/3 | M8-6 items/4 | M8-6 items/5 | M8-6 items/6 | M8-6 items/7
+# 상위 문맥: [{"pointer": "/modality/7", "id": "M8", "category": "레이저", "name": "레이저"}, {"pointer": "/modality/7/subcategories/4", "id": "M8-5", "label": "제모"}]
+@ /modality/7/subcategories/4/items/6 auto-M8-1775362612108 젠틀맥스프로
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362612108"
+  /name = "젠틀맥스프로"
+  /detail = "시너론캔델라 · 알렉스+Nd:YAG · 듀얼 제모"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "알렉산드라이트(755nm)와 Nd:YAG(1064nm) 레이저를 결합한 듀얼 파장 제모 시스템"
+  /extracted/mechanism = "알렉산드라이트 레이저는 멜라닌 흡수율이 높아 얕은 모낭에 효과적이며, Nd:YAG 레이저는 깊은 침투로 굵고 깊은 모낭까지 파괴합니다. DCD(Dynamic Cooling Device) 시스템으로 표피를 보호하면서 선택적 광열분해를 통해 모낭을 파괴합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"원치않는 체모 제거" ‖ 1:"다양한 피부타입의 영구적 제모"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 발적 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주 후 모발 탈락 시작"
+  /extracted/onset_duration/duration = "4-6회 시술로 80-90% 제모 효과"
+  /extracted/aftercare [4] = 0:"자외선 차단제 사용" ‖ 1:"시술 부위 냉찜질" ‖ 2:"뜨거운 물 접촉 피하기" ‖ 3:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/7 auto-M8-1775362619619 슬렌더엑스
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362619619"
+  /name = "슬렌더엑스"
+  /detail = "사이노슈어 · 1060nm 다이오드 · 비접촉 지방감소"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "1060nm 다이오드 레이저를 이용한 비침습적 지방세포 파괴 및 체형 관리 시술"
+  /extracted/mechanism = "1060nm 다이오드 레이저가 지방세포 내 수분에 선택적으로 흡수되어 열손상을 유발합니다. 손상된 지방세포는 자연적인 림프 배출 과정을 통해 체외로 제거되어 지방층 두께가 감소합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"복부, 옆구리, 허벅지 등 국소 지방 감소" ‖ 1:"비침습적 체형 관리"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 발적 및 온열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"시술 후 충분한 수분 섭취" ‖ 1:"가벼운 마사지로 림프 순환 촉진" ‖ 2:"규칙적인 운동 및 식이 관리" ‖ 3:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/8 auto-M8-1775362912344 젠틀레이즈
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362912344"
+  /name = "젠틀레이즈"
+  /detail = "시너론캔델라 · 755nm 알렉산드라이트 · 클래식 제모"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "755nm 알렉산드라이트 레이저를 이용한 선택적 광열분해 원리 기반의 영구 제모 시술"
+  /extracted/mechanism = "755nm 파장의 레이저가 모낭 내 멜라닌에 선택적으로 흡수되어 열에너지로 전환됩니다. 이로 인해 모낭과 모유두가 열손상을 받아 파괴되어 영구적인 제모 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"원치 않는 체모 제거" ‖ 1:"다모증 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "영구적 (다회 시술 필요)"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 냉찜질" ‖ 1:"자외선 차단" ‖ 2:"시술 부위 문지르기 자제" ‖ 3:"보습제 사용" ‖ 4:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/9 auto-M8-1775362921273 메디오스타넥스트프로
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362921273"
+  /name = "메디오스타넥스트프로"
+  /detail = "Asclepion · 다이오드 808/940nm · 페인프리 제모"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "아스클레피온사의 다이오드 레이저를 이용한 무통 영구제모 시스템"
+  /extracted/mechanism = "808nm와 940nm의 다이오드 레이저가 모낭의 멜라닌에 선택적으로 흡수되어 열을 발생시켜 모낭을 파괴합니다. 쿨링 시스템과 최적화된 에너지 전달로 통증을 최소화하면서 효과적인 제모가 가능합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"원치 않는 체모 제거" ‖ 1:"다모증 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주 후 모발 탈락"
+  /extracted/onset_duration/duration = "6-8회 시술로 영구적 모발 감소"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 뜨거운 물 샤워 자제" ‖ 1:"자외선 차단제 사용" ‖ 2:"시술 부위 강한 마찰 자제" ‖ 3:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/10 auto-M8-1775362928187 벡터스
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775362928187"
+  /name = "벡터스"
+  /detail = "팔로마/시너론 · 810nm 다이오드 · 대면적"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "810nm 다이오드 레이저를 이용한 대면적 제모 및 혈관 치료 장비"
+  /extracted/mechanism = "810nm 파장의 다이오드 레이저가 멜라닌과 헤모글로빈에 선택적으로 흡수되어 모낭과 혈관을 파괴합니다. 대면적 핸드피스로 넓은 부위를 효율적으로 치료하며 쿨링 시스템으로 표피를 보호합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"영구제모" ‖ 1:"혈관병변 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6개월-2년"
+  /extracted/aftercare [5] = 0:"자외선 차단" ‖ 1:"냉찜질" ‖ 2:"보습관리" ‖ 3:"사우나/찜질방 1주일 자제" ‖ 4:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/11 auto-M8-1775362936434 리팟
+  . {id,name,detail,correction_note,extracted}
+  /id = "auto-M8-1775362936434"
+  /name = "리팟"
+  /detail = "클래시스 · 532nm Q-switched Nd:YAG 색소·혈관 레이저 (이전 '차세대 제모 레이저' 표기는 오기)"
+  /correction_note = "이전 데이터에 '808nm 다이오드 제모 레이저'로 잘못 기재돼 있었음. 실제 사양은 클래시스 공식 제품 페이지(https://classys.co.kr/product/reepot/) 및 식약처 조합-2025-05-069 기준 532nm Q-switched Nd:YAG 레이저이며 색소·혈관 병변 치료용"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클래시스의 532nm Q-switched Nd:YAG 레이저 시스템 — 멜라닌·헤모글로빈 선택적 광열분해로 표재성 색소 및 혈관 병변 치료. VSLS(Vascular Selective Laser Surgery) 핸드피스를 통한 혈관 선택 조사 지원"
+  /extracted/mechanism = "532nm 파장이 멜라닌·헤모글로빈에 높은 흡수율을 보여 표재성 색소(일광흑자·주근깨·기미 보조)와 혈관성 병변(모세혈관 확장·혈관종·적포도주색반)을 선택적 광열분해. Q-switched 모드의 나노초 단위 펄스로 조직 열 확산을 최소화"
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"일광흑자, 주근깨, 얕은 색소 병변" ‖ 1:"모세혈관 확장(telangiectasia), 안면홍조" ‖ 2:"기미 보조 치료(저에너지)" ‖ 3:"문신 제거 보조(유채색)"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 부위 일시적 홍반 및 부종" ‖ 1:"딱지 형성(색소 병변)" ‖ 2:"일시적 PIH (특히 Fitzpatrick IV-V)"
+  /extracted/safety/serious [3] = 0:"영구 색소탈실(과에너지)" ‖ 1:"수포 형성 및 흉터" ‖ 2:"기존 기미 악화(부적절 에너지)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "색소 병변: 1-2주 후 딱지 탈락 시점부터 가시적 개선"
+  /extracted/onset_duration/duration = "병변·개인차에 따라 1-3회 시술, 유지 관리 필요"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 냉찜질, 보습·재생크림" ‖ 1:"자외선 차단 SPF 50+ 최소 4주 철저" ‖ 2:"딱지 인위적 제거 금지(흉터·PIH 위험)" ‖ 3:"사우나·찜질방·격한 운동 1주간 자제" ‖ 4:"[시술 주기 참고] 색소 병변 — 2-4주 간격, 개인 반응과 딱지 탈락 후 재평가 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/4/items/12 auto-M8-1775364775126 스플렌더X
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775126"
+  /name = "스플렌더X"
+  /detail = "루메니스듀얼"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "루메니스 듀얼 파장 레이저 제모 시스템"
+  /extracted/mechanism = "755nm와 1064nm 두 파장이 동시에 조사되어 다양한 모발에 대응합니다. 멜라닌에 선택적으로 흡수되어 모낭을 파괴하면서 피부 타입별 최적화된 치료가 가능합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"영구 제모" ‖ 1:"잔털 제거" ‖ 2:"다양한 피부 타입 제모"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"모낭염" ‖ 2:"색소 침착"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "영구적"
+  /extracted/aftercare [4] = 0:"자외선 차단" ‖ 1:"진정 케어" ‖ 2:"털 뽑기 자제" ‖ 3:"[시술 주기 참고] 제모 — 4주 간격 권장. 부위별 모발 성장 주기에 따라 조절. 보통 5-8회로 영구감소 달성 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5 M8-6 기타
+  . {id,label,items}
+  /id = "M8-6"
+  /label = "기타"
+  /items [15]
+@ /modality/7/subcategories/5/items/0 auto-M8-1775360944918 포토나SP다이나미스
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775360944918"
+  /name = "포토나SP다이나미스"
+  /detail = "포토나 · Er:YAG+Nd:YAG 듀얼 · 4D 리프팅"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Er:YAG와 Nd:YAG 듀얼 레이저를 이용한 4차원 복합 안티에이징 리프팅 시술"
+  /extracted/mechanism = "Er:YAG 레이저는 피부 표면과 진피층의 콜라겐 리모델링을 유도하고, Nd:YAG 레이저는 심부 조직과 SMAS층까지 열에너지를 전달한다. 4가지 모드(Smooth, Piano, Frac3, SupErficial)를 순차적으로 적용하여 표피부터 심부층까지 단계별 리프팅 효과를 구현한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 전체적인 탄력 감소 및 처짐" ‖ 1:"잔주름 및 모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술 당일 세안 및 화장 가능" ‖ 1:"자외선 차단제 필수 사용" ‖ 2:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/1 auto-M8-1775361179272 스텔라M22
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361179272"
+  /name = "스텔라M22"
+  /detail = "루메니스 IPL+레이저 복합"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "루메니스 멀티 애플리케이션 IPL/레이저 플랫폼"
+  /extracted/mechanism = "OptimalPulse Technology(OPT)로 균일한 에너지 분포를 달성하는 IPL과 다양한 레이저 핸드피스를 하나의 플랫폼에 통합. 다중 파장으로 색소, 혈관, 모공, 제모를 동시 커버한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"색소 병변" ‖ 1:"혈관 병변" ‖ 2:"제모" ‖ 3:"피부결 개선" ‖ 4:"여드름"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"홍반" ‖ 1:"부종" ‖ 2:"따가움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후~1주"
+  /extracted/onset_duration/duration = "누적 효과 (횟수는 의사 판단)"
+  /extracted/aftercare [3] = 0:"자외선 차단" ‖ 1:"자극성 제품 1주 중단" ‖ 2:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/2 auto-M8-1775361179284 할리우드스펙트라
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361179284"
+  /name = "할리우드스펙트라"
+  /detail = "루트로닉 1064/660nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "루트로닉 1064/660nm Nd:YAG 토닝+할리우드필"
+  /extracted/mechanism = "1064nm Nd:YAG로 진피 색소를 선택적 광열용해하고, 카본 크림 도포 후 레이저 조사하는 할리우드필 모드로 모공 축소와 피부결 개선. 660nm 파장 추가로 적색 색소 대응력 강화."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"기미" ‖ 1:"색소침착" ‖ 2:"모공" ‖ 3:"피부결" ‖ 4:"문신 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"일시적 홍반" ‖ 1:"건조함"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후~1주"
+  /extracted/onset_duration/duration = "누적 효과 (횟수/간격은 의사 판단)"
+  /extracted/aftercare [3] = 0:"자외선 차단 필수" ‖ 1:"보습 강화" ‖ 2:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/3 auto-M8-1775361417735 E-MAX
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361417735"
+  /name = "E-MAX"
+  /detail = "시네론캔델라 · RF+다이오드+근적외선 복합 · 여드름"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "시네론캔델라의 RF, 다이오드 레이저, 근적외선을 결합한 복합 에너지 기반 여드름 치료 시스템"
+  /extracted/mechanism = "RF 에너지와 다이오드 레이저가 피지선을 선택적으로 가열하여 과도한 피지 분비를 억제합니다. 근적외선이 염증성 사이토카인을 감소시키고 콜라겐 재생을 촉진하여 여드름 흉터 개선에도 도움을 줍니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"염증성 여드름" ‖ 1:"comedonal 여드름" ‖ 2:"경미한 여드름 흉터"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 부위 일시적 홍반" ‖ 1:"경미한 부종" ‖ 2:"피부 건조감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [5] = 0:"자외선 차단제 사용" ‖ 1:"보습 관리" ‖ 2:"자극적인 화장품 피하기" ‖ 3:"손으로 만지지 않기" ‖ 4:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/4 auto-M8-1775361951910 알렉산드라이트
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775361951910"
+  /name = "알렉산드라이트"
+  /detail = "755nm 색소+제모"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "755nm 알렉산드라이트 레이저 (색소+제모)"
+  /extracted/mechanism = "755nm 파장이 멜라닌에 높은 선택성으로 흡수되어 색소 병변과 모낭의 멜라닌을 선택적으로 파괴한다. 모낭 줄기세포 영역(bulge)까지 열 손상을 전달하여 영구적 모발 감소를 달성한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"제모" ‖ 1:"색소 병변" ‖ 2:"문신 제거(Q-switched 모드)"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"홍반" ‖ 1:"부종" ‖ 2:"일시적 색소 변화"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "제모 4-6주 간격 5-8회"
+  /extracted/aftercare [3] = 0:"자외선 차단" ‖ 1:"자극 회피 24시간" ‖ 2:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/5 auto-M8-1775364775123 스마트사이드
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775123"
+  /name = "스마트사이드"
+  /detail = "DEKA CO2+RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "DEKA CO2와 RF를 결합한 피부 재생 시술"
+  /extracted/mechanism = "CO2 레이저가 피부 표면을 정밀하게 제거하고, RF 에너지가 진피층을 가열합니다. 두 기술의 결합으로 콜라겐 생성을 극대화하여 피부를 전반적으로 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"주름 개선" ‖ 1:"피부 타이트닝" ‖ 2:"모공 축소"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"홍조" ‖ 1:"부종" ‖ 2:"각질 탈락"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [4] = 0:"보습 관리" ‖ 1:"자외선 차단" ‖ 2:"사우나 자제" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/6 auto-M8-1775364775124 클리어앤브릴리언트
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775124"
+  /name = "클리어앤브릴리언트"
+  /detail = "솔타1440nm"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "솔타 1440nm 레이저를 이용한 마일드 피부 재생"
+  /extracted/mechanism = "1440nm 파장이 피부에 미세한 치료 구역을 만들어 자연 치유 과정을 유도합니다. 다운타임을 최소화하면서 점진적인 피부 개선 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 톤 개선" ‖ 1:"모공 축소" ‖ 2:"경미한 색소 침착"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"경미한 홍조" ‖ 1:"건조감" ‖ 2:"따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"보습" ‖ 1:"자외선 차단" ‖ 2:"순한 세안" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/7/subcategories/5/items/7 auto-M8-1775364775125 포토나4D
+  . {id,name,detail,extracted}
+  /id = "auto-M8-1775364775125"
+  /name = "포토나4D"
+  /detail = "4단계리프팅"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "4단계 리프팅 프로그램으로 구성된 종합 안티에이징"
+  /extracted/mechanism = "Er:YAG와 Nd:YAG 레이저를 단계별로 적용하여 피부 재생을 유도합니다. 4단계 프로토콜을 통해 표피부터 근막층까지 종합적인 리프팅 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"페이스 리프팅" ‖ 1:"주름 개선" ‖ 2:"피부 타이트닝"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"홍조" ‖ 2:"열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"냉찜질" ‖ 1:"충분한 수분 섭취" ‖ 2:"자외선 차단" ‖ 3:"[시술 주기 참고] 시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"

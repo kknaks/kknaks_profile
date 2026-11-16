@@ -1,0 +1,7 @@
+# 발주서 — WORK-009 구현(실험 앱 · SPEC-006 v2.4 0.3.4)
+정본 `SPEC-006.md`(0.3.4 · §3-4-1 걸음 규칙 · §3-4-6 순서 표 order_v24 · §3-4-7 Claude 꼴 · §3-5-1 · §3-8 stray · §4-5 · §7-8 끝 조건 · §7-9 X) · `WORK-009.md` · 허브 계약 `SPEC-005.md`(0.3.4 §5-16) + 허브 WORK-008 실물 꼴(「v3.3 꼴 확정」 받음): expand 짧은 fact 꼴 · peek bytes = 실제 expand 본문 바이트(compact) · 계열/제품 expand 의 by_unit{section:{unit id:n}} · units_more_n{section:n}. 근거 스크립트 `spec006-v24-recount.py`.
+코디 결정(열린 것): X-12 걸음은 1쪽만 · X-2 예산 20KB 유지(섹션 2 의도에서 넘는 섹션은 건너뛰고 계속) · 원문 예산 15,000 · X-13 by_unit 단위 expand 는 넣고 재실행에서 잼 · X-10 은 허브 다음 판.
+할 일: 걸음 순서(이웃 먼저 · 순서 표 · S 가 계열이면 key_family / 제품이면 product_unit 늘 추가 · by_unit unit id 단위 expand) · 바이트 셈 compact · 걸음 경로 intent 안 넘김(bytes 차 0) · cut 줄 원문 받기(예산 포함) · stray 막기(provider 별 도구 이름 자리표 · stray_kind) · Claude 꼴(rank 순) · 기록 칸(step1_options · bytes_mismatch · stray_kind) · verify_runs 보강. **재실행 = case3 만**(배치에 `--cases case3` 옵션 · case1/case2 는 안 돌림 · 채점도 case3 열만) — 사용자 11-01 결정.
+허브는 지금 WORK-008 WP-3~4(발행 전) — 허브 실물이 필요한 시험은 모의 허브(fake_hub)를 새 꼴로 고쳐 먼저 · 코디가 18005 재시작 뒤 「허브 준비」 를 보내면 실물 확인 1회(Claude 실물 호출 1문항)만.
+끝 조건 = SPEC §7-8 + 시험 · ruff · 18210 재시작 → status 「재실행 준비 끝」 → 코디 「시작」 뒤 case3 만 182 × 2회(라벨 rerun-v5a · rerun-v5b) → 보고서(v4 case3 대비 · 2회 평균 · 걸음 통계 · 34행 실제 도달 · 통과 기준 W-4: 정확성 ≥58% · 안전 ≥90% · 첫 글자 ≤7s) → worker_done.
+제약: 공개 레포 규칙 · 로컬 커밋 · push 금지 · 허브 18005 손대지 말 것 · 사용자 포트 · procedure-* 손대지 않음 · 추측 금지(막히면 ask).

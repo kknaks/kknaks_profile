@@ -1,0 +1,68 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 2/4(원장 자리 6) · 근거 「냉각지방분해」 ⊃ 조각 「지방분해」",
+ "gate_item": "b4-prc/004",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-004a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-5dbcd39366"
+ },
+ "proposal_item": "b4-prc/004",
+ "reason": "결정 묶음 4 — 참조 조각 「지방분해」 을 그 참조들(⑨ 4)에서 modality_subcategory_label 「냉각지방분해」(SUB-5dbcd39366)로 읽는다(근거: 「냉각지방분해」 ⊃ 조각 「지방분해」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@6/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].name@5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "지방분해",
+  "scope": [
+   "REF-154291cf05",
+   "REF-851be0d05a",
+   "REF-da6f8f82a5",
+   "REF-e1f34f89a3"
+  ]
+ }
+}

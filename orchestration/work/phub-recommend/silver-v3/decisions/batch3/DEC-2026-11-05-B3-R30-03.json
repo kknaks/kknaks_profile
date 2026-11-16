@@ -1,0 +1,50 @@
+{
+ "id": "DEC-2026-11-05-B3-R30-03",
+ "kind": "edge_create",
+ "target": {
+  "relation": "R30",
+  "from_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "섬유화",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  },
+  "to_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "경결",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  }
+ },
+ "new_value": {
+  "attrs": {
+   "basis": "complications.json:categories[].complications[].name@M16/4 「경결·딱딱함(일시적 섬유화)」 · mechanism 「염증 후 일시적 섬유화·조직 경화로 만져지는 딱딱함」 · 사용자 임상 판단 「섬유화가 경결을 진행시킨다」(2026-11-05)"
+  }
+ },
+ "reason": "인과 R30 leads_to: 섬유화(조직 변화 · 원인) → 경결(소견). 결과 단위 경과는 미상 — 원장에 「영구 경결」 없음(2026-11-05 사용자 확인 후 「영구」→「미상」 정정). 엣지 자체는 사용자 임상 판단이며 원장 인과 문장은 없음을 명시.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].mechanism@9/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M16/4"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「섬유화가 경결을 진행시키는 거 아니야」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)",
+ "approval_note": " · 11-05 정정: 경과 영구→미상(원장 근거 없음)"
+}

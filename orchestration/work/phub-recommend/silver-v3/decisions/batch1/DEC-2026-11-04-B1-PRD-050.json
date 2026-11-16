@@ -1,0 +1,122 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 06-516 호 · 엔디야그 레이저 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/0"
+  },
+  {
+   "detail": "수허 17-572 호 · 엔디야그레이저수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/1"
+  },
+  {
+   "detail": "수허 26-216 호 · 엔디야그 레이저 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/2"
+  },
+  {
+   "detail": "https://www.imcas.com/en/academy/profile/fotona/products/526/starwalker-maqx",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@132/5/0"
+  },
+  {
+   "detail": "https://practicaldermatology.com/news/fda-clears-fontinas-starwalker-maqx-ultra-performance-q-switched-system/2458038",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@132/5/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-050",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "스타워커",
+  "category": null,
+  "code": "M8",
+  "synonyms": [
+   "Fotona QX Max M031-3A/2",
+   "M031-3A/2 QX",
+   "M031-3A/2 PICO Pro",
+   "M031-3A2 PQX",
+   "StarWalker",
+   "StarWalker MaQX",
+   "StarWalker PQX",
+   "스타워커 PQX",
+   "스타워커 MaQX"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 3 허가 건 · 2 웹 · ledger_id auto-M8-1775364775120 · 분류 항목 「스타워커」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@132"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@132/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@132/5/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@132/5/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/7"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@132/8"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

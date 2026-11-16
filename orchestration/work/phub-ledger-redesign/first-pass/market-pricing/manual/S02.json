@@ -1,0 +1,35 @@
+{
+ "segment": "S02", "direct_read": true, "read_note": "M2 필러 8항목 전부 직접 읽음.",
+ "last_pointer": "/categories/1/items/7/high",
+ "observations": [
+  ["/categories/1/items/0/name", "8항목 모두 '<부위/고민> (HA <n>cc)' 형태. 괄호 안 'HA' 는 재질/성분 약어 후보(HA 의 풀이는 원문에 없음), 'Ncc' 는 용량. unit 칸에도 같은 용량이 반복됨(1cc 6개, 2cc 2개).", "P"],
+  ["/categories/1/items/2/name", "'코 필러 (HA 1cc)' — 이 항목만 name 에 시술명 '필러'가 다시 들어 있음. 다른 7항목은 부위/고민만.", "P"],
+  ["/categories/1/items/6/name", "'눈밑 꺼짐' — 부위(눈밑)+고민(꺼짐) 결합. '이마 볼륨'·'볼 볼륨'·'입술 볼륨'·'턱 끝 볼륨' 의 '볼륨' 은 고민인지 목적(효과)인지 원문만으로 구분 불가.", "P"],
+  ["/categories/1/items/7/name", "'관자놀이 (HA 2cc)' — 고민/목적 표현 없이 부위만.", "P"],
+  ["/categories/1/items/4/unit", "이마 볼륨·관자놀이는 2cc 단위 가격. 1cc 항목과 단위가 달라 cc당 비교 시 단위 환산이 필요하나, 이번 단계에서 환산하지 않음.", "P"],
+  ["/categories/1/items/0/low", "8항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/1/items/0/name", "팔자주름", ["부위 후보", "고민 후보"], "붙여 씀."],
+  ["/categories/1/items/0/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/1/name", "입술 볼륨", ["부위 후보", "목적/고민 후보"], ""],
+  ["/categories/1/items/1/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/2/name", "코 필러", ["부위 후보", "시술명 후보"], ""],
+  ["/categories/1/items/2/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/3/name", "턱 끝 볼륨", ["부위 후보", "목적/고민 후보"], "'턱 끝' 은 띄어 쓴 두 어절 부위 표현."],
+  ["/categories/1/items/3/name", "턱 끝", ["부위 후보", "위치 수식"], "'끝' 이 턱의 하위 위치를 한정."],
+  ["/categories/1/items/3/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/4/name", "이마 볼륨", ["부위 후보", "목적/고민 후보"], ""],
+  ["/categories/1/items/4/name", "(HA 2cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/5/name", "볼 볼륨", ["부위 후보", "목적/고민 후보"], "'볼'(부위)과 '볼륨'의 첫 글자가 같음 — 문자열 검색 시 부분일치 오탐 위험."],
+  ["/categories/1/items/5/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/6/name", "눈밑 꺼짐", ["부위 후보", "고민 후보"], ""],
+  ["/categories/1/items/6/name", "(HA 1cc)", ["재질/성분 후보", "수량·단위"], ""],
+  ["/categories/1/items/7/name", "관자놀이", ["부위 후보"], ""],
+  ["/categories/1/items/7/name", "(HA 2cc)", ["재질/성분 후보", "수량·단위"], ""]
+ ],
+ "issues": [
+  ["B-S02-1", "B", ["/categories/1/items/0/name"], "'HA' 의 풀이·제품명이 없다(8항목). 제품별 가격 구분이 불가하다."],
+  ["P-S02-1", "P", ["/categories/1/items/1/name"], "'볼륨' 이 고민(볼륨 부족)인지 목적(볼륨 증가)인지 잠정. 부위/고민 분리는 후속 의미 조사."]
+ ]
+}

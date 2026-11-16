@@ -1,0 +1,43 @@
+{"section":"S024","state":"read","last_pointer":"/modality/7/subcategories/5/items/7/extracted/aftercare/3",
+"observations":[
+ {"status":"I","pointers":["/modality/7/subcategories/4/items/7","/modality/7/subcategories/4/items/7/extracted/aftercare/3"],"note":"슬렌더엑스는 '1060nm 다이오드 · 비접촉 지방감소'(체형) 장비인데 M8-5 '제모' 하위분류에 있고 제모 상용구가 붙어 있다."},
+ {"status":"P","pointers":["/modality/7/subcategories/4/items/11/correction_note","/modality/7/subcategories/4/items/11/detail"],"note":"리팟: correction_note 가 이전 기재('808nm 다이오드 제모 레이저')를 오기로 정정하고 출처 URL·식약처 번호를 단다. detail 에도 '(이전 차세대 제모 레이저 표기는 오기)'. 정정 후에도 항목은 '제모' 하위분류에 남아 있다. aftercare 상용구는 색소판('[시술 주기 참고] 색소 병변 — 2-4주 간격 …')으로 교체돼 있다."},
+ {"status":"P","pointers":["/modality/7/subcategories/4/items/11/correction_note"],"note":"원문 내 외부 참조: URL 'https://classys.co.kr/product/reepot/', '식약처 조합-2025-05-069'. 참조 표현만 보존(외부 확인하지 않음). 형태소 분석은 URL 포함 문자열 전체에 적용됨(K)."},
+ {"status":"P","pointers":["/modality/7/subcategories/5/label","/modality/7/subcategories/5/items/0/extracted/aftercare/2"],"note":"M8-6 label '기타' — 리프팅(포토나), 복합 플랫폼(스텔라M22), 여드름(E-MAX), CO2+RF(스마트사이드) 등 이질적 장비 모음. 상용구 기타판('시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단')."},
+ {"status":"P","pointers":["/modality/7/subcategories/5/items/4/name","/modality/7/subcategories/5/items/4/detail"],"note":"'알렉산드라이트' 는 매질명이 항목 name 으로 쓰인 경우(장비 브랜드 아님). M8 products type 'Nd:YAG+알렉산드라이트' 와 같은 문자열 사용 예정(S025/S026 확인)."},
+ {"status":"I","pointers":["/modality/7/subcategories/5/items/3/detail","/modality/7/subcategories/4/items/6/detail"],"note":"제조사 표기 '시네론캔델라'(E-MAX) vs '시너론캔델라'(젠틀맥스프로). 벡터스 '팔로마/시너론' — '/' 두 회사."},
+ {"status":"P","pointers":["/modality/7/subcategories/4/items/6/name","/modality/7/subcategories/4/items/1/name"],"note":"'젠틀맥스프로'(auto id) 와 '젠틀맥스프로+'(M8-5-3) — '+' 가 상표 일부로 쓰인 두 항목."},
+ {"status":"P","pointers":["/modality/7/subcategories/5/items/0/name","/modality/7/subcategories/5/items/7/name"],"note":"'포토나SP다이나미스' 와 '포토나4D' — 같은 제조사·같은 Er:YAG+Nd:YAG 4단계 서술이 두 항목(장비 vs 프로토콜로 보임, 판단 후속)."}
+],
+"expressions":[
+ {"pointer":"/modality/7/subcategories/4/items/6/extracted/mechanism","text":"DCD(Dynamic Cooling Device) 시스템으로 표피를 보호","kinds":["시술·제품명"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/6/extracted/onset_duration/duration","text":"4-6회 시술로 80-90% 제모 효과","kinds":["수량·단위·시간","범위"],"note":"상용구 5-8회와 다름"},
+ {"pointer":"/modality/7/subcategories/4/items/7/extracted/indications/primary/0","text":"복부, 옆구리, 허벅지 등 국소 지방 감소","kinds":["부위"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/8/extracted/onset_duration/duration","text":"영구적 (다회 시술 필요)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/9/detail","text":"Asclepion · 다이오드 808/940nm · 페인프리 제모","kinds":["수량·단위·시간","기호","주장"],"note":"'/' 두 파장"},
+ {"pointer":"/modality/7/subcategories/4/items/10/extracted/onset_duration/duration","text":"6개월-2년","kinds":["수량·단위·시간","범위"],"note":"단위 다른 양끝"},
+ {"pointer":"/modality/7/subcategories/4/items/11/correction_note","text":"이전 데이터에 '808nm 다이오드 제모 레이저'로 잘못 기재돼 있었음","kinds":["참조","부정"],"note":"원문 내 이력"},
+ {"pointer":"/modality/7/subcategories/4/items/11/correction_note","text":"클래시스 공식 제품 페이지(https://classys.co.kr/product/reepot/) 및 식약처 조합-2025-05-069 기준","kinds":["참조","주장"],"note":"외부 출처 참조 — 확인하지 않음"},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/indications/primary/2","text":"기미 보조 치료(저에너지)","kinds":["조건","수식"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/indications/primary/3","text":"문신 제거 보조(유채색)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/safety/common/2","text":"일시적 PIH (특히 Fitzpatrick IV-V)","kinds":["조건","범위"],"note":"피부형 범위 로마숫자"},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/safety/serious/0","text":"영구 색소탈실(과에너지)","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/safety/serious/2","text":"기존 기미 악화(부적절 에너지)","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/onset_duration/duration","text":"병변·개인차에 따라 1-3회 시술, 유지 관리 필요","kinds":["조건","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/aftercare/1","text":"자외선 차단 SPF 50+ 최소 4주 철저","kinds":["범위","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/4/items/11/extracted/aftercare/4","text":"색소 병변 — 2-4주 간격, 개인 반응과 딱지 탈락 후 재평가","kinds":["수량·단위·시간","조건"],"note":"상용구(색소판)"},
+ {"pointer":"/modality/7/subcategories/5/items/0/extracted/mechanism","text":"4가지 모드(Smooth, Piano, Frac3, SupErficial)를 순차적으로 적용","kinds":["수량·단위·시간","시술·제품명"],"note":""},
+ {"pointer":"/modality/7/subcategories/5/items/0/extracted/aftercare/0","text":"시술 당일 세안 및 화장 가능","kinds":["가능성·빈도","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/subcategories/5/items/0/extracted/aftercare/2","text":"시술 목적에 따라 간격 상이. 피부 회복 확인 후 재시술 판단","kinds":["조건"],"note":"상용구(기타판)"},
+ {"pointer":"/modality/7/subcategories/5/items/2/extracted/mechanism","text":"카본 크림 도포 후 레이저 조사하는 할리우드필 모드","kinds":["시술·제품명","조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/5/items/4/extracted/indications/primary/2","text":"문신 제거(Q-switched 모드)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/7/subcategories/5/items/4/extracted/onset_duration/duration","text":"제모 4-6주 간격 5-8회","kinds":["조건","수량·단위·시간","범위"],"note":""}
+],
+"seg_errors":[
+ {"scope":"pointer","pointer":"/modality/7/subcategories/4/items/11/correction_note","surface":"https://classys.co.kr/product/reepot/","issue":"URL 이 SL/SW 조각들로 분해됨(형태소 분석 대상 텍스트 안의 URL 을 따로 제외하지 않음)","impact":"URL 토큰은 언어 정보 아님 — 참조 표현은 expressions 에 원문 구간으로 보존"}
+],
+"issues":[
+ {"id":"S024-I01","status":"I","pointers":["/modality/7/subcategories/4/items/7","/modality/7/subcategories/4/items/11"],"note":"제모 하위분류에 지방감소 장비(슬렌더엑스)·색소/혈관 장비(리팟, 정정 후에도 이동 안 됨).","impact":"분류 정합 후속(원본 변경 후보)"},
+ {"id":"S024-I02","status":"I","pointers":["/modality/7/subcategories/5/items/3/detail","/modality/7/subcategories/4/items/6/detail"],"note":"시네론/시너론 표기 차이.","impact":"제조사 정규화 후속"},
+ {"id":"S024-F01","status":"F","pointers":["/modality/7/subcategories/4/items/11/correction_note"],"note":"원문의 외부 출처(URL·허가번호)는 보존만 함.","impact":"출처 검증은 이번 범위 밖"}
+]}

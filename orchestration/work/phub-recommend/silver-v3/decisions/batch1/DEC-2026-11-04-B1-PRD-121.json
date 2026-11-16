@@ -1,0 +1,55 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 22-213 호 ·",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@292/0"
+  },
+  {
+   "detail": "수허 18-215 호 · HydraFacial MD ELITE",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@292/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-121",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "하이드라페이셜",
+  "category": null,
+  "code": "M15",
+  "synonyms": [
+   "HydraFacial"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 2 허가 건 · 0 웹 · ledger_id M15-2-2 · 분류 항목 「하이드라페이셜」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@292"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@292/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@292/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@292/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

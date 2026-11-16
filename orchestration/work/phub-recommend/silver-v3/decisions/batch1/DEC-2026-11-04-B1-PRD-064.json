@@ -1,0 +1,52 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "수허 18-338 호 · Gentle Max Pro, Gentle Max Pro Plus",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@152/0"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-064",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "젠틀맥스 프로 플러스",
+  "category": null,
+  "code": "M8",
+  "synonyms": [
+   "GentleMaxi Pro Plus"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 1 허가 건 · 0 웹 · ledger_id M8-5-3",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@152"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@152/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@152/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@152",
+   "value": "젠틀맥스프로+",
+   "why": "다른 분류 항목 이름 「젠틀맥스프로+」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

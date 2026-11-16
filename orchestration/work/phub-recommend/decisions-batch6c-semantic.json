@@ -1,0 +1,902 @@
+{
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "source": "게이트 6 Q-synonym 을 채팅으로 답함",
+ "items": [
+  {
+   "kind": "event_hierarchy",
+   "child": "홍조",
+   "parent": "홍반",
+   "user_words": "홍조는 홍반의 한 형태라고 볼 수 있습니다 — 얼굴에 생기는, 일시적이고 반복되는 붉어짐",
+   "apply": "노드 둘 유지 · 홍조.parent=홍반 — ERD 에 사건 계층(parent) 자리가 없어 v3.3 개정 항목(I) · 그때까지 접지 않음"
+  },
+  {
+   "kind": "fold_approve+canonical_rename",
+   "members": [
+    "실 촉감",
+    "실 촉지감",
+    "스레드 촉지감"
+   ],
+   "keep": "실 촉지",
+   "synonyms": [
+    "실 촉감",
+    "실 촉지감",
+    "스레드 촉지감"
+   ],
+   "user_words": "셋 다 실리프팅 후 실이 만져지는 것(thread palpability) · 대표어 실 촉지 · 나머지 별칭",
+   "distinct_from": [
+    "실 비침(원장 0회)",
+    "실 노출(사전)·실 돌출감",
+    "이물감"
+   ]
+  },
+  {
+   "kind": "keep_separate",
+   "pair": [
+    "눈꺼풀 처짐",
+    "안검하수"
+   ],
+   "user_words": "그대로 합치면 안 됩니다 — 안검하수=올림근 약화로 눈꺼풀 가장자리가 내려옴 · 눈꺼풀 처짐=일상어, 안검피부이완증 포함 · 눈썹 처짐도 구분",
+   "apply": "8차 그대로 맞음: (처짐, 눈꺼풀) 과 (안검하수, 없음) 이 별 단위"
+  }
+ ],
+ "open": [
+  "실 돌출감 ↔ 실 노출(사전) 같은지 — 답은 「실 돌출·노출」 한 묶음으로 서술했으나 명시 결정 아님",
+  "실 매듭 촉감 — 실 촉지에 넣을지(매듭이 만져짐)",
+  "다른 의미 동의어는 이번에 안 함(Q-synonym 의 나머지)"
+ ],
+ "ledger_v4": [
+  {
+   "file": "post-procedure-timeline.json",
+   "old": "프락셔널 CO2 레이저",
+   "new": "CO2프락셔널 레이저",
+   "user_words": "고치자",
+   "q": "Q-timeline-co2"
+  }
+ ],
+ "dup_pending_answers": [
+  {
+   "pair": [
+    "각질",
+    "각질 탈락"
+   ],
+   "answer": "각질 탈락 → 사전 값 「낙설」에 합침(별칭) · 각질은 따로 노드(인설 · 생김 단계)",
+   "basis": "원장 complications 「건조·낙설(각질 박리) (Dryness/desquamation)」 병기",
+   "user_words": "응 (각질 탈락=낙설 합치고 각질은 따로)"
+  },
+  {
+   "pair": [
+    "민감성",
+    "민감성 자극반응"
+   ],
+   "answer": "민감성 = 따로 노드 · 민감성 자극반응 → 사건 「자극」에 합침 · 「민감성 피부」=조건 · 「과도한」=정도",
+   "user_words": "응"
+  },
+  {
+   "pair": [
+    "표정 경직",
+    "경직"
+   ],
+   "answer": "다른 사건 — 둘 다 노드 · 「목 경직감」은 (경직, 목)",
+   "user_words": "응"
+  },
+  {
+   "pair": [
+    "알레르기성 접촉피부염",
+    "접촉 피부염"
+   ],
+   "answer": "노드 둘 유지 · 알레르기성 접촉피부염.parent = 접촉 피부염(사건 계층 V3.3-I · 홍조⊂홍반과 같은 꼴)",
+   "user_words": "응"
+  },
+  {
+   "pair": [
+    "화학화상",
+    "접촉 화학화상"
+   ],
+   "answer": "둘 다 사건 「화상」에 합침 · 물질 칸 「화학」(adverse_qualifier 사전 dictionary_add 1) · 조건: 「고농도」 또는 「장시간」(원장 `/`=대안 · 사용자 확인) · 「접촉시」=조건",
+   "user_words": "응 · 고농도 또는 장시간 아니야 ?"
+  }
+ ],
+ "amb_answers": [
+  {
+   "node": "감염위험",
+   "answer": "사건 「감염」에 합침 · 빈도는 원장 칸 common 유지 · 「위험」은 원문 보존",
+   "user_words": "응 (빈도 의문 — 서브에이전트 확인 중)",
+   "pending_check": "펀치시술 감염 빈도 common 이 맞는지 문헌 확인"
+  },
+  {
+   "node": "온열감",
+   "answer": "사건 「열감」에 합침",
+   "user_words": "응"
+  },
+  {
+   "node": "발열감",
+   "answer": "따로 노드(전신 발열 쪽 · 태반주사 맥락)",
+   "user_words": "응"
+  },
+  {
+   "node": "역설적 비대",
+   "answer": "사전 「PAH」에 합침 · 「반드시 사전 고지」는 동의서 고지(clinical_rule disclosure)",
+   "user_words": "응 합쳐야지"
+  },
+  {
+   "node": "부당한 거상",
+   "answer": "새 노드 「부당한 거상」(원장 말 그대로 · 분석기 거/상 분해 무시) · 「코그 이탈」 → R30 후보 실 이동 → 부당한 거상(edge_create 제안)",
+   "user_words": "추천으로 가자"
+  }
+ ],
+ "ledger_v4_pending": [
+  {
+   "n": 5,
+   "file": "taxonomy.json",
+   "path": "M8-P-0 피코슈어 safety.common[2]",
+   "old": "색소침착감소",
+   "new": "색소탈실",
+   "status": "제안"
+  },
+  {
+   "n": 6,
+   "file": "taxonomy.json",
+   "what": "레이저 PIH 괄호 비교 수치 5건(CO2프락셔널 · 클라리티2 · 피코슈어 · 젠틀맥스프로+ · 더마브이) 떼고 머리말만",
+   "status": "제안"
+  },
+  {
+   "n": 7,
+   "file": "taxonomy.json",
+   "what": "클라리티2 「색소탈실(PIH: QS 대비 10% 수준)」 · 젠틀맥스프로+ 「색소탈실(PIH 1% 미만)」 머리↔괄호 반대 — 의도",
+   "status": "사용자 결정 필요"
+  },
+  {
+   "n": 8,
+   "file": "taxonomy.json",
+   "what": "펀치시술 · 페놀필링 「감염위험」 common → serious",
+   "status": "제안"
+  },
+  {
+   "n": 9,
+   "what": "M16 중복 항목 통합 6묶음: NAD+/NAD+ 주사/나드주사 · 셀레늄 주사/셀레늄 · 비타민D주사/비타민D · 벨카이라/카이벨라 · 고농도C/고용량 비타민C 주사 · 종합비타민수액/마이어스칵테일 (+ 신데렐라주사/알파리포산주사 의심)",
+   "basis": "M16 조사",
+   "status": "제안"
+  },
+  {
+   "n": 10,
+   "what": "이름 정정: 카이벨라 → 키벨라(Kybella, 벨카이라와 같은 제품 · 국내 미판매) · 태반주사(라엔넥) → 라이넥주",
+   "basis": "M16 조사 [라벨]/[기사]",
+   "status": "제안"
+  },
+  {
+   "n": 11,
+   "what": "경로 오기 정정: 비타민D 「정맥주사」 → 근육 · 징크주사 「정맥 또는 근육」 → 정맥(수액 첨가용)",
+   "basis": "M16 조사 [라벨]",
+   "status": "제안"
+  },
+  {
+   "n": 12,
+   "what": "계열 이동: LDM초음파관리(기기) M16 → 기기 계열(메디컬스킨케어 등) · 카복시테라피 → 지방 감소 쪽 · 미녹시딜 두피 메조 → 탈모 쪽",
+   "basis": "M16 조사",
+   "status": "제안"
+  },
+  {
+   "n": 13,
+   "what": "원장 작성자 확인: HP주사(감초주사 = 정맥용 간 질환 약인데 「지방분해 주사」로 적힘) · 프로락틴주사(프로작 탈모주입 — 명칭 오기 의심) · 콘드로이틴주사(국내 라벨 없음)",
+   "basis": "M16 조사 [미확인]",
+   "status": "사용자 확인 필요"
+  }
+ ],
+ "t2b_answers": [
+  {
+   "text": "시술 중 당기는 느낌과 냉감",
+   "answer": "당김감(사전) + 냉감(노드) · 시점 「시술 중」",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "주입 중 혈관 따라 약간의 화끈거림",
+   "answer": "화끈거림(노드) · 부위 혈관 · 시점 「주입 중」 · 정도 「약간」",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "이마나 눈썹이 무거운 느낌",
+   "answer": "새 노드 「무거움」 · 부위 이마 또는 눈썹",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "얼굴이 약간 부은 느낌 / 표정이 어색해지는 느낌",
+   "answer": "부종(사전) 부위 얼굴 · 정도 약간 / 표정 어색함(노드)",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "주름이 덜 펴지는 경우",
+   "answer": "메모(효과 부족 · 부작용 아님)",
+   "user_words": "메모에 두고"
+  },
+  {
+   "text": "윗눈꺼풀이나 눈썹이 처지는 현상",
+   "answer": "처짐 · 부위 눈꺼풀 또는 눈썹",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "실이 피부 밖으로 튀어나오는 현상",
+   "answer": "실 노출(사전)",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "과도한 확산에 따른 인접 근육 약화",
+   "answer": "근력 약화 · 부위 인접 근육 · 조건 과도한 확산",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  },
+  {
+   "text": "만져질 수 있는 미세입자",
+   "answer": "새 노드 「입자 촉지」",
+   "user_words": "10번은 지금 제안 처럼"
+  },
+  {
+   "text": "만져질 수 있는 입자",
+   "answer": "새 노드 「입자 촉지」",
+   "user_words": "10번은 지금 제안 처럼"
+  },
+  {
+   "text": "과도한 손상으로 인한 색소 변화",
+   "answer": "색소 변화(노드) · 조건 과도한 손상",
+   "user_words": "제안대로(코디 기록 · 이의 시 번호)"
+  }
+ ],
+ "occlusion_answers": {
+  "user_words": "응",
+  "items": [
+   {
+    "what": "막힘 → 폐색 합침",
+    "detail": "(막힘, 혈관) → (폐색, 혈관) · 「혈관 막힘」 4곳이 기존 R30 혈관 폐색→괴사 연결에 붙음"
+   },
+   {
+    "what": "폐색/색전 한 문구 3",
+    "detail": "세 문구 모두 두 사건 유지(폐색·색전)"
+   },
+   {
+    "what": "R30 색전 → 폐색",
+    "detail": "edge_create 신규 · 근거 3문구(역행성 색전 메커니즘 등)"
+   },
+   {
+    "what": "R30 폐색 → 괴사",
+    "detail": "부위 없는 (폐색, none) 에도 연결 · 11-05 R30-02 와 같은 결정의 확장"
+   }
+  ]
+ },
+ "b3_answers": [
+  {
+   "id": "m5-rename",
+   "answer": "계열 M5 정식 이름 「자가혈치료」(M16 수액치료 · M17 줄기세포치료 꼴) · 원장 「PRP/자가혈」·「PRP 피부재생술」은 별칭",
+   "user_words": "제안이름으로 가자"
+  },
+  {
+   "id": "site-synonyms/01",
+   "answer": "「턱라인」 = 「턱선」 별칭(턱·턱선·사각턱은 서로 다른 부위 유지)",
+   "user_words": "아 턱라인은 턱선이지"
+  },
+  {
+   "id": "site-synonyms/02 + 코 하위",
+   "answer": "코끝 ⊂ 코(같지 않음 · 8차 그대로) · 코 하위 부위 추가: 콧등(별칭 코등·콧대·비배부·dorsum) · 코끝(별칭 비첨·비첨부) · 콧망울(별칭 비익·ala) · 콧구멍 · 비주(columella) · 코뿌리(별칭 비근부) — 상위 전부 「코」 · 비근근(근육)은 해부 구조 쪽 · bunny lines → 콧등",
+   "user_words": "응 하위를 좀더 추가 하자 · 응 그렇게 가자"
+  },
+  {
+   "id": "site-synonyms/03 + 눈 주변 하위",
+   "answer": "상위 「눈 주변」(별칭 눈 주위·안와주위·periorbital) 아래: 눈가(별칭 눈꼬리·외안각 · 까마귀발 자리) · 눈꺼풀(별칭 윗눈꺼풀·상안검) · 눈밑(별칭 하안검) > 눈물고랑 · 애교살 · 내안각 · 눈썹(상위 눈 주변). 8차 「눈밑 ⊂ 눈가」「눈꺼풀 ⊂ 눈가」(ERD v3.2-4 계층)를 「눈 주변」 아래로 고침 → ERD v3.3 site 계층 문장 수정. 「눈썹 사이」=미간 별칭. 다크서클·까마귀발·눈가주름=고민(부위 눈밑·눈가). 안와 = 해부 구조",
+   "user_words": "응 그렇게 하자"
+  },
+  {
+   "id": "site-synonyms/04",
+   "answer": "부위 이름 「이중턱/턱밑」 → 「턱밑」(canonical_rename · `/` 꼴 제거) · 「이중턱」 별칭 · 이중턱은 고민 사전에도",
+   "user_words": "응"
+  },
+  {
+   "id": "site-synonyms/05",
+   "answer": "광경근 = 해부 구조(근육) · 부위로 읽을 땐 「목」",
+   "user_words": "응"
+  },
+  {
+   "id": "site-synonyms/06",
+   "answer": "부위 「바디 전체」(6-A 추가) → 「바디」로 이름 교체 · 「바디 전체」 별칭(원장 「바디」 83 · 「바디 전체」 0)",
+   "user_words": "응"
+  },
+  {
+   "id": "6-A 정정",
+   "answer": "6-A 로 부위에 추가한 「목주름」은 고민(주름) — 부위에서 빼고(dictionary_remove) 고민 사전으로 · 부위는 「목」",
+   "user_words": "응"
+  },
+  {
+   "id": "air-embolism-qualifier",
+   "answer": "고정: 「공기색전·카테터 관련 감염」 → (색전, none, 공기) + (감염, none, none) · 「카테터 관련」 = 원인(감염 경로) 원문 보존",
+   "user_words": "이렇게 가자"
+  },
+  {
+   "id": "빌더 수정(역행성)",
+   "answer": "「역행성 색전」 6곳이 (색전, 물질 역행성)으로 읽힘 — 역행성은 방향 수식 → 물질 칸에서 빼 수식어로(9차 빌더 수정)",
+   "user_words": "이렇게 가자"
+  },
+  {
+   "id": "records/NEC-01",
+   "answer": "사전 「괴사」 별칭 「피부 괴사」 제거(dictionary_remove) → 「피부 괴사」 문구가 (괴사, 피부)로 · 8차는 (괴사, none) 으로 읽고 있었음(코디가 「이미 들어가 있다」고 잘못 말했다 정정)",
+   "user_words": "이렇게 가자"
+  }
+ ],
+ "m16_technique": {
+  "decided_by": "사용자",
+  "decided_at": "2026-11-06",
+  "user_words": "결과 나왓다 이거 먼저 적용하자",
+  "basis": "reference/2026-11-06-phub-m16-technique/README.md(조사 결과 · 확인 수준 [라벨]/[기사]/[추정]/[원장]/[미확인])",
+  "unit": "항목 단위 technique 지정(하위분류 일괄 아님 · 예외가 섞여 있어서)",
+  "hold": [
+   "HP주사(감초주사)",
+   "프로락틴주사",
+   "콘드로이틴주사"
+  ],
+  "items": [
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "백옥주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥. 글루타치온 주사 라벨 원문은 미확인",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "고농도C",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥. 「고용량 비타민C 주사」와 중복 의심",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "셀디톡스수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥. 구성 성분 미상",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "알파리포산주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 정맥(점적정맥) — 티옥트산 주사 라벨",
+    "source": "https://health.kr/drug/2019071000006 · https://www.health.kr/drug/2015030500003"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "멀티비타민수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "비타민D주사",
+    "technique": "injection",
+    "depth_note": "근육",
+    "confidence": "라벨",
+    "answer": "[라벨] 근육 — 국내 콜레칼시페롤 주사는 근육 전용",
+    "source": "https://www.health.kr/drug/2012070200011 · https://common.health.kr/shared/docs/healthkr/approval_result/(정보공개)_비엠하이디주(콜레칼시페롤)%20허가보고서(최종).pdf"
+   },
+   {
+    "subcategory": "M16-1 미백/항산화",
+    "item": "스노우주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "추정",
+    "answer": "[추정] 정맥. 트라넥삼산 주사 라벨은 정맥 또는 근육, 글루타치온 주사 라벨은 미확인. 두 성분 혼합은 허가 용법이 아닌 클리닉 관행",
+    "source": "https://www.health.kr/drug/2009071505673"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "마늘주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "신데렐라주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 정맥 — 성분인 티옥트산 주사 라벨과 일치. 「알파리포산주사」와 중복 의심",
+    "source": "https://health.kr/drug/2019071000006"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "에너지부스트수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "아르기닌주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "징크주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 정맥(수액 첨가용). 국내 황산아연 주사 라벨에 근육 용법 없음, 희석 없이 직접 말초정맥 투여 금지 → 원장 「근육」은 근거 없음",
+    "source": "https://health.kr/drug/2015071000002 · https://www.health.kr/drug/2011030700005"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "비오틴주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥. 국내 라벨 미확인. 참고: 일본 비오틴 주사 라벨은 피하·근육·정맥 모두 허용",
+    "source": "https://www.pmda.go.jp/PmdaSearch/bookSearch/01/04987197620043"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "마이어스칵테일",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-2 피로회복",
+    "item": "종합아미노산수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "태반주사(라엔넥)",
+    "technique": "injection",
+    "depth_note": "피하 또는 근육",
+    "confidence": "라벨",
+    "answer": "[라벨] 피하 또는 근육. 정맥은 허가 외(IV 용법 3상 완료, 허가 변경 전). 정식명 「라이넥주」",
+    "source": "https://www.health.kr/drug/2011022400001 · https://www.hankyung.com/article/202604230969P"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "NAD+",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "기사",
+    "answer": "[기사] 정맥이 일반적, 클리닉에 따라 피하주사도 씀. 국내 허가 의약품 여부 미확인. 「NAD+ 주사」「나드주사」와 중복 의심",
+    "source": "https://www.perfectb.com/?p=15960"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "이뮨코어수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "NAD+ 주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "기사",
+    "answer": "[기사] 정맥(위 NAD+와 같음). 중복 의심",
+    "source": "https://www.perfectb.com/?p=15960"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "셀레늄 주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 국내 셀레뉴민주는 정맥(수액 첨가용). 셀레나제(영국 라벨)는 근육 또는 정맥 — 제품에 따라 다름. 「셀레늄」과 중복 의심",
+    "source": "https://health.kr/drug/2017062300001 · https://www.medicines.org.uk/emc/product/13203/smpc/print"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "고용량 비타민C 주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "오메가3수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "콜라겐수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-3 재생/면역",
+    "item": "태반주사멜스몬",
+    "technique": "injection",
+    "depth_note": "피하 또는 근육",
+    "confidence": "라벨",
+    "answer": "[라벨] 피하만(근육·정맥 용법 없음)",
+    "source": "https://health.kr/drug/A11AOOOOO8251"
+   },
+   {
+    "subcategory": "M16-4 영양보충",
+    "item": "비타민D",
+    "technique": "injection",
+    "depth_note": "근육",
+    "confidence": "라벨",
+    "answer": "[라벨] 근육 — 원장 「정맥」은 오류 가능성 높음(국내 정맥용 비타민D 주사 확인 안 됨). 「비타민D주사」와 중복",
+    "source": "https://www.health.kr/drug/2012070200011"
+   },
+   {
+    "subcategory": "M16-4 영양보충",
+    "item": "종합비타민수액",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥. detail이 「마이어스칵테일」이라 그 항목과 중복 의심",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-4 영양보충",
+    "item": "멀티미네랄",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-4 영양보충",
+    "item": "철분주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "원장",
+    "answer": "[원장] 정맥",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-4 영양보충",
+    "item": "칼슘주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 정맥 전용(조직 괴사·석회화 위험). 국내 허가 원문은 미확인",
+    "source": "https://medlibrary.org/lib/rx/meds/calcium-gluconate/"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "브이올렛",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "기사",
+    "answer": "[기사] 턱밑 피하지방층 주사. 대웅제약, 2021.08 허가",
+    "source": "https://www.hkn24.com/news/articleView.html?idxno=346152 · https://kormedi.com/2867577/"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "벨카이라",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "기사",
+    "answer": "[기사] 턱밑 피하지방층 주사. 키벨라의 국내 허가명(엘러간), 2017.08 허가 → 2020.12 자진 취하, 현재 국내 미판매. 「카이벨라」와 같은 제품",
+    "source": "https://dailypharm.com/user/news/96270 · https://www.etoday.co.kr/news/view/2342115"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "벨라콜린",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "기사",
+    "answer": "[기사] 턱밑 피하지방층 주사. LG화학, 2024.01 허가",
+    "source": "https://www.etoday.co.kr/news/view/2342115 · https://www.hkn24.com/news/articleView.html?idxno=346152"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "카이벨라",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "라벨",
+    "answer": "[라벨] 턱밑 피하지방 조직 주사(FDA 라벨). 정식명 「키벨라(Kybella)」. 「벨카이라」와 같은 제품 — 중복",
+    "source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/206333s000lbl.pdf"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "올리핏주",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 허가 사실은 기사로 확인",
+    "source": "https://www.medicaltimes.com/Users/News/NewsView.html?ID=1161673"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "펜카이라주",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 허가 사실은 기사로 확인",
+    "source": "https://www.hkn24.com/news/articleView.html?idxno=346152"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "바이블주",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 허가 사실은 기사로 확인",
+    "source": "https://www.rapportian.com/news/articleView.html?idxno=221162"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "밀리핏주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 허가 2025.07, 출시 2025.09",
+    "source": "https://www.hkn24.com/news/articleView.html?idxno=346152 · https://kormedi.com/2752042/"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "원더브이",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 허가 2025.07.31",
+    "source": "https://www.hkn24.com/news/articleView.html?idxno=346548 · https://www.medipana.com/news/articleView.html?idxno=344854"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "리포린",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 턱밑 피하지방층 주사(같은 성분·적응증). 펜믹스 위탁생산",
+    "source": "https://www.hkn24.com/news/articleView.html?idxno=346548"
+   },
+   {
+    "subcategory": "M16-DCA DCA (지방세포파괴)",
+    "item": "뉴비쥬",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "라벨",
+    "answer": "[라벨] 턱밑 피하지방 조직 주사(식약처 허가보고서). 허가 2025.09.19",
+    "source": "https://common.health.kr/shared/docs/healthkr/approval_result/의약품%20품목허가%20보고서(뉴비쥬주(콜산))202511.pdf · https://www.dailypharm.com/user/news/1964"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "V라인주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층(턱·볼). 성분 병원마다 다름(DCA·PPC·GPC·히알루로니다제·아미노필린·카페인 등 조합)",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "슈퍼투턱주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층(턱밑). 성분 병원마다 다름 — 이 이름으로는 출처 없음",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "팻킬주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름(「비스테로이드」 = 스테로이드 제외 조합으로 보임) — 이 이름으로는 출처 없음",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "코조각주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 코 주변 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "매끈V주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "다빼주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "아큐주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "GPC주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. GPC(콜린 알포세레이트)는 지방분해주사 성분으로 언급됨. 다만 「콩 추출」로 보도된 것은 PPC(대두 레시틴) — GPC·PPC 혼동 가능성",
+    "source": "https://v.daum.net/v/20250721212303827?f=p · https://kormedi.com/1187965/"
+   },
+   {
+    "subcategory": "M16-LIPO 지방분해주사 (마케팅명)",
+    "item": "빼당주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "셀레늄",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "라벨",
+    "answer": "[라벨] 정맥(국내 셀레뉴민주). 「셀레늄 주사」와 중복 의심",
+    "source": "https://health.kr/drug/2017062300001"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "지방분해주사(PPC)",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "기사",
+    "answer": "[기사] 피하지방층. 국내 허가 적응증은 간성혼수 보조제 — 미용 지방분해는 허가 외 사용",
+    "source": "https://dailypharm.com/user/news/203523 · https://kormedi.com/1187965/"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "카복시테라피",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "기사",
+    "answer": "[기사] 피하(지방층) — 지방 감소 목적. 피부 개선 목적은 진피까지 주입하기도 함. 수액 아님",
+    "source": "https://koreascience.kr/article/JAKO200624766013946.pdf · https://bravo.etoday.co.kr/view/atc_view/4121"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "HP주사(감초주사)",
+    "technique": null,
+    "depth_note": null,
+    "confidence": "미확인",
+    "answer": "[미확인] 감초 주사(글리시리진)는 정맥용 간 질환 약인데 원장은 「지방분해 주사」 — 성분·용도 불일치, 원장 확인 필요",
+    "source": "https://clinicalsup.jp/jpoc/drugdetails.aspx?code=56630"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "미녹시딜 두피 메조",
+    "technique": "injection",
+    "depth_note": "진피",
+    "confidence": "기사",
+    "answer": "[기사] 두피 진피(피내) 주사. 미녹시딜은 외용만 허가(FDA), 국내 주사제 허가 여부 미확인. 수액 아님",
+    "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11152360"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "LDM초음파관리",
+    "technique": "mechanical",
+    "depth_note": null,
+    "confidence": "기사",
+    "answer": "[기사] 주사 아님 — 비침습 초음파 기기(피부 위 핸드피스) → 기기 기법, 계열 이동 권장. 제조사 「제이시스」는 미확인",
+    "source": "https://www.marieclairekorea.com/?p=22480 · https://www.consultingroom.com/products/ldm-triple"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "성장호르몬주사",
+    "technique": "injection",
+    "depth_note": "피하",
+    "confidence": "라벨",
+    "answer": "[라벨] 피하(소마트로핀)",
+    "source": "https://www.health.kr/drug/2010021000032"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "프로락틴주사",
+    "technique": null,
+    "depth_note": null,
+    "confidence": "미확인",
+    "answer": "[미확인] 해당 제품 없음. 프로락틴(호르몬)·프로작(경구 항우울제) 모두 탈모 주사와 맞지 않아 명칭 오기 의심 — 원장 확인 필요",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "콘드로이틴주사",
+    "technique": null,
+    "depth_note": null,
+    "confidence": "미확인",
+    "answer": "[미확인] 국내 콘드로이틴 주사제 라벨을 찾지 못함(현재 허가 유지 여부도 미확인)",
+    "source": "—"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "러브핸들주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 옆구리 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "셀룰라이트주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "나드주사",
+    "technique": "intravenous",
+    "depth_note": null,
+    "confidence": "기사",
+    "answer": "[기사] 정맥. 「NAD+」「NAD+ 주사」와 중복 의심",
+    "source": "https://www.perfectb.com/?p=15960"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "복부슬림주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 복부 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   },
+   {
+    "subcategory": "M16-new-1774325959851 기타",
+    "item": "등살주사",
+    "technique": "injection",
+    "depth_note": "피하지방층",
+    "confidence": "추정",
+    "answer": "[추정] 등 피하지방층. 성분 병원마다 다름",
+    "source": "https://v.daum.net/v/20250721212303827?f=p"
+   }
+  ]
+ }
+}

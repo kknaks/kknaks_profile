@@ -1,0 +1,55 @@
+[
+  {
+    "name": "axis_inclusion_typed",
+    "passed": false,
+    "exit_code": 1,
+    "codes": {
+      "OWNER_SCOPE": 3,
+      "SCOPE_AXIS_SOURCE": 1
+    },
+    "diagnostics": [
+      {
+        "code": "OWNER_SCOPE",
+        "field": "axes",
+        "reason": "Explicit owner cannot be hidden as unknown",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0/extracted/safety/common"
+      },
+      {
+        "code": "OWNER_SCOPE",
+        "field": "axes",
+        "reason": "Explicit owner cannot be hidden as unknown",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0/extracted/safety/serious"
+      },
+      {
+        "code": "OWNER_SCOPE",
+        "field": "axes",
+        "reason": "Explicit owner cannot be hidden as unknown",
+        "source_locator": "taxonomy.json#/modality/0/subcategories/0/items/0/extracted/aftercare"
+      },
+      {
+        "code": "SCOPE_AXIS_SOURCE",
+        "field": "axes.product",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:9a6241e440319926b2af011704d731e36bed78bd88327436a3fa18cd69fa9627"
+      }
+    ],
+    "ids_remapped": 11
+  },
+  {
+    "name": "conflict_typed",
+    "passed": true,
+    "exit_code": 1,
+    "codes": {
+      "SCOPE_CONFLICT_SOURCE": 1
+    },
+    "diagnostics": [
+      {
+        "code": "SCOPE_CONFLICT_SOURCE",
+        "field": "conflicts",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:56e2e90a05643779d7582c5ae481201839d7db8aee27b44230170973181175af"
+      }
+    ],
+    "ids_remapped": 11
+  }
+]

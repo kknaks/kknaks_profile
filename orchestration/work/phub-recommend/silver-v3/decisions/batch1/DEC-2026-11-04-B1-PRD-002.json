@@ -1,0 +1,46 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "201310633 · 이노톡스주(클로스트리디움보툴리눔독소A형)(수출명 : INNOTOX Inj.)",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@8/0"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-002",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "이노톡스",
+  "category": null,
+  "code": "M1",
+  "synonyms": [
+   "Innotox"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['제품(의약품)'] · 근거 1 허가 건 · 0 웹 · ledger_id M1-1-5 · 분류 항목 「이노톡스」 이름과 같다 — 승인되면 그 항목 튜플의 what 이 이 제품이 된다(겹침 규칙 8-11: 참조 자리에서는 항목 우선)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].source@8/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@8/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

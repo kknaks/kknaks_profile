@@ -1,0 +1,229 @@
+# S033  scope=M11 니들RF  units=id | category | category_en | group | subcategories 컨테이너 | M11-1 items/0 | M11-1 items/1 | M11-1 items/2 | M11-1 items/3 | M11-1 items/4 | M11-1 items/5 | M11-1 items/6 | M11-1 items/7 | M11-1 items/8 | M11-1 items/9 | M11-1 items/10 | M11-1 items/11 | M11-1 items/12
+# 상위 문맥: []
+@ /modality/10 M11 니들RF 니들RF
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M11"
+  /category = "니들RF"
+  /category_en = "Microneedle RF"
+  /group = "시술/기기"
+  /subcategories [1]
+@ /modality/10/subcategories/0 M11-1 니들RF 장비
+  . {id,label,items}
+  /id = "M11-1"
+  /label = "니들RF 장비"
+  /items [13]
+@ /modality/10/subcategories/0/items/0 M11-1-1 포텐자
+  . {id,name,detail,extracted}
+  /id = "M11-1-1"
+  /name = "포텐자"
+  /detail = "사이노슈어(Cynosure) · 다양한 팁"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 + 펄스 RF 복합 시술"
+  /extracted/mechanism = "절연 코팅 마이크로니들이 진피까지 물리적으로 관통한 후 RF 에너지를 직접 전달하여 약 20% 분획 열손상을 유도합니다. 표피를 우회한 직접 에너지 전달로 표피 손상을 최소화하면서, 물리적 미세손상과 RF 열손상의 이중 메커니즘으로 성장인자 방출과 콜라겐 리모델링을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 및 피부 탄력 저하" ‖ 1:"모공 확대" ‖ 2:"흉터 개선" ‖ 3:"피부 결 및 질감 개선" ‖ 4:"비흡수성 스트레치마크"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"미세한 딱지 형성" ‖ 3:"일시적 색소 변화"
+  /extracted/safety/serious [2] = 0:"색소침착 과다 (깊은 피부톤)" ‖ 1:"흉터 형성 (과도한 에너지)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월 (콜라겐 리모델링)"
+  /extracted/aftercare [3] = 0:"3-5일 자외선 차단 필수" ‖ 1:"자극 성분 제품 1주일 회피" ‖ 2:"[시술 주기 참고] 고출력 니들RF — 최소 6-8주 이상 간격. 표피 회복 + 진피 리모델링 완료 후 재시술. 과도한 열 누적 시 반흔 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/1 M11-1-2 시크릿RF
+  . {id,name,detail,extracted}
+  /id = "M11-1-2"
+  /name = "시크릿RF"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 기반 분획 RF 시술"
+  /extracted/mechanism = "절연 마이크로니들을 통해 RF 에너지를 진피층에 직접 전달하여 분획 열손상을 생성합니다. 표피 손상을 최소화하면서 진피의 물리적 및 열적 자극으로 콜라겐 재생을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 개선" ‖ 1:"피부 탄력 강화" ‖ 2:"모공 축소" ‖ 3:"흉터 개선" ‖ 4:"피부 결 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"경미한 홍반" ‖ 1:"부종" ‖ 2:"따끔거림"
+  /extracted/safety/serious [1] = 0:"색소침착 이상 (부적절한 설정)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"1주일 과도한 자외선 노출 회피" ‖ 1:"자극 스킨케어 제품 일시 중단" ‖ 2:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/2 M11-1-3 실펌X
+  . {id,name,detail,extracted}
+  /id = "M11-1-3"
+  /name = "실펌X"
+  /detail = "비올"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Viol/Jeisys 모노폴라 RF 마이크로니들 기기"
+  /extracted/mechanism = "절연 마이크로니들이 진피까지 물리적으로 관통한 후 모노폴라 RF 에너지를 직접 전달한다. 표피를 우회하여 진피에만 열손상을 가하므로 표피 손상과 PIH 위험이 최소화된다. 이중 메커니즘(물리적 미세손상 + RF 열에너지)으로 성장인자 방출과 콜라겐 리모델링을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 이완 및 처짐" ‖ 1:"얼굴 라인 정의" ‖ 2:"피부 탄력 개선" ‖ 3:"주름 완화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"부종" ‖ 2:"감각 이상"
+  /extracted/safety/serious [2] = 0:"신경 손상 (부적절한 깊이)" ‖ 1:"화상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"3-5일 찜질 및 과도한 활동 회피" ‖ 1:"충분한 수분 공급" ‖ 2:"[시술 주기 참고] 고출력 니들RF — 최소 6-8주 이상 간격. 표피 회복 + 진피 리모델링 완료 후 재시술. 과도한 열 누적 시 반흔 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/3 M11-1-4 모르페우스8
+  . {id,name,detail,extracted}
+  /id = "M11-1-4"
+  /name = "모르페우스8"
+  /detail = "인모드"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 + 분획 RF 플랫폼"
+  /extracted/mechanism = "절연 코팅된 마이크로니들 어레이가 진피층까지 관통 후 펄스 RF 에너지를 전달하여 분획 열손상 영역을 생성합니다. 표피층의 에너지 전달을 차단하여 표피 손상 및 박피 없이 진피 콜라겐 리모델링을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"주름 및 잔주름" ‖ 1:"피부 탄력 저하" ‖ 2:"넓은 모공" ‖ 3:"흉터 (위축성)" ‖ 4:"피부 결 개선" ‖ 5:"눈가 주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"경미한 홍반" ‖ 1:"부종" ‖ 2:"일시적 색소 변화"
+  /extracted/safety/serious [1] = 0:"색소침착 과다 (높은 에너지, 깊은 피부톤)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"1주일 강한 자외선 회피" ‖ 1:"처방 선크림 필수 사용" ‖ 2:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/4 auto-43-1774737181584 쿼드세이
+  . {id,name,detail,extracted}
+  /id = "auto-43-1774737181584"
+  /name = "쿼드세이"
+  /detail = "클래시스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "다층 분획 RF 에너지 시술"
+  /extracted/mechanism = "RF 에너지를 표피층을 우회하여 진피층에 선택적으로 전달함으로써 분획 열손상을 유도합니다. 깊이별 조절로 중층-심층 진피의 콜라겐 응축 및 리모델링을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"주름 개선" ‖ 1:"피부 탄력 강화" ‖ 2:"피부 결 개선" ‖ 3:"모공 축소"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"홍반" ‖ 1:"부종" ‖ 2:"일시적 건조증"
+  /extracted/safety/serious [1] = 0:"색소이상 (낮은 피부톤에서 탈색)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"5-7일 집중 보습" ‖ 1:"자외선 차단 강화" ‖ 2:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/5 auto-44-1774737181584 텍스쳐스무딩
+  . {id,name,detail,extracted}
+  /id = "auto-44-1774737181584"
+  /name = "텍스쳐스무딩"
+  /detail = "포텐자+서브시전+필링 복합"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "포텐자 + 서브시전 + 필링 복합 시술"
+  /extracted/mechanism = "절연 마이크로니들 RF(포텐자)로 진피 콜라겐 리모델링을 유도하고, 서브시전으로 섬유성 변성 조직을 박리하며, 화학 필링으로 표피 갱신을 촉진합니다. 다층 접근으로 극대화된 질감 개선 효과를 생성합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"위축성 흉터" ‖ 1:"반복된 여드름 흉터" ‖ 2:"피부 결 및 질감 불규칙" ‖ 3:"광노화 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"홍반" ‖ 1:"부종" ‖ 2:"딱지 형성" ‖ 3:"가피"
+  /extracted/safety/serious [2] = 0:"과도한 박피 및 흉터" ‖ 1:"색소침착 과다"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "9-15개월"
+  /extracted/aftercare [5] = 0:"1주일 물 노출 제한" ‖ 1:"가피 자연 박리 (무리 자제)" ‖ 2:"2-3주 자극 물질 회피" ‖ 3:"6-8주 간격 반복 가능" ‖ 4:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/6 auto-M11-1775360510687 트윈픽셀
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775360510687"
+  /name = "트윈픽셀"
+  /detail = "은성글로벌 · RF마이크로니들+이온도입 · 2025 허가"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF마이크로니들과 이온도입 기술을 결합한 복합 피부재생 장비"
+  /extracted/mechanism = "절연된 마이크로니들을 통해 표피를 우회한 진피층에 RF 에너지를 직접 전달하여 콜라겐 변성 및 재생을 유도한다. 동시에 이온도입 기능으로 생리활성물질의 경표피 투과를 증가시켜 복합적 피부개선 효과를 달성한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 개선" ‖ 1:"피부탄력 증진" ‖ 2:"모공축소" ‖ 3:"흉터 개선" ‖ 4:"피부톤 균일화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"홍반" ‖ 1:"부종" ‖ 2:"작열감" ‖ 3:"일시적 색소침착"
+  /extracted/safety/serious [4] = 0:"수포 형성" ‖ 1:"감염" ‖ 2:"영구적 색소변화" ‖ 3:"흉터 악화"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 후 즉시부터 1주일"
+  /extracted/onset_duration/duration = "누적 효과로 6개월까지 지속, 정기적 시술로 효과 유지"
+  /extracted/aftercare [6] = 0:"시술 후 24시간 세안 및 격렬한 운동 자제" ‖ 1:"자외선 차단제(SPF 50+) 필수 사용" ‖ 2:"자극적 화장품 1주일 자제" ‖ 3:"냉찜질로 염증 및 부종 관리" ‖ 4:"과도한 발한 활동 3일 제한" ‖ 5:"[시술 주기 참고] 저출력 니들RF — 3-4주 간격 가능. 피부 상태 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/7 auto-M11-1775360637715 스칼렛프로
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775360637715"
+  /name = "스칼렛프로"
+  /detail = "비올메디컬 · 차세대 니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "마이크로 니들과 RF 에너지를 결합한 차세대 피부재생 및 리프팅 시술"
+  /extracted/mechanism = "마이크로 니들을 통해 진피층에 정확한 깊이로 RF 에너지를 전달하여 콜라겐 재생을 촉진합니다. 열 손상을 최소화하면서 진피 깊숙한 곳까지 리모델링 효과를 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"주름 개선 및 피부 탄력 증진" ‖ 1:"모공 축소 및 피부 텍스처 개선" ‖ 2:"흉터 및 스트레치마크 개선" ‖ 3:"안면 리프팅 및 윤곽 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"시술 부위 일시적 홍조 및 부종" ‖ 1:"미세한 출혈점" ‖ 2:"건조감 및 각질" ‖ 3:"일시적 색소침착 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 후 초기 효과, 2-3개월 후 최대 효과"
+  /extracted/onset_duration/duration = "6-12개월 지속, 개인차 존재"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 세안 및 화장 자제" ‖ 1:"충분한 보습 및 자외선 차단" ‖ 2:"사우나, 찜질방 등 고온 환경 1주일 피하기" ‖ 3:"처방된 재생 크림 꾸준히 사용" ‖ 4:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/8 auto-M11-1775360645191 셀리뉴
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775360645191"
+  /name = "셀리뉴"
+  /detail = "비올메디컬 · 모노폴라 RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "모노폴라 RF 기술을 이용한 비침습적 피부 리프팅 및 타이트닝 시술"
+  /extracted/mechanism = "모노폴라 RF 에너지가 피부 깊숙한 진피층과 피하조직까지 열을 전달하여 콜라겐 수축을 유도합니다. 이후 신생 콜라겐 합성 과정을 통해 피부 탄력 개선과 리프팅 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 및 목 부위 피부 처짐 개선" ‖ 1:"피부 탄력 저하 및 주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 자외선 차단 및 보습 관리" ‖ 1:"자외선 차단 (표피 관통 → PIH 예방)" ‖ 2:"자극적 제품 며칠 자제" ‖ 3:"홍반/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] 저출력 니들RF — 3-4주 간격 가능. 피부 상태 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/9 auto-M11-1775361447933 비바체
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775361447933"
+  /name = "비바체"
+  /detail = "쉬엔비 · RF마이크로니들+LED"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "RF 마이크로니들과 LED를 결합한 복합 피부재생 시술로 콜라겐 생성과 피부 개선을 동시에 도모하는 시술"
+  /extracted/mechanism = "마이크로니들을 통해 진피층에 RF 에너지를 전달하여 열손상을 유발하고 콜라겐 리모델링을 촉진합니다. LED 광선은 세포 대사를 활성화하고 염증을 감소시켜 치유 과정을 가속화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"모공 축소 및 피부 탄력 개선" ‖ 1:"여드름 흉터 및 미세주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [5] = 0:"시술 후 24-48시간 자극적인 화장품 사용 자제" ‖ 1:"자외선 차단 (표피 관통 → PIH 예방)" ‖ 2:"자극적 제품 며칠 자제" ‖ 3:"홍반/부종은 수일 내 자연 소실" ‖ 4:"[시술 주기 참고] 저출력 니들RF — 3-4주 간격 가능. 피부 상태 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/10 auto-M11-1775364775142 아그네스
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775364775142"
+  /name = "아그네스"
+  /detail = "여드름피지선RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "여드름 피지선을 타겟으로 하는 니들 RF 전용 장비"
+  /extracted/mechanism = "미세한 니들을 통해 피지선에 직접 RF 에너지를 전달하여 피지선을 선택적으로 파괴합니다. 여드름의 근본 원인인 피지 과다분비를 효과적으로 억제합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"여드름 치료" ‖ 1:"피지선 축소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 붓기"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "12-24개월"
+  /extracted/aftercare [3] = 0:"항생제 연고 도포" ‖ 1:"세안 시 주의" ‖ 2:"[시술 주기 참고] 저출력 니들RF — 3-4주 간격 가능. 피부 상태 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/11 auto-M11-1775364775143 인피니
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775364775143"
+  /name = "인피니"
+  /detail = "루트로닉3D"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "루트로닉의 3차원 니들 RF 시스템"
+  /extracted/mechanism = "정밀한 니들을 통해 진피층에 RF 에너지를 균일하게 전달합니다. 3차원적 열 손상을 통해 콜라겐 리모델링을 촉진하여 피부 재생과 탄력 개선을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"모공 축소" ‖ 1:"흉터 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 미세한 출혈점"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"재생 크림 도포" ‖ 1:"자외선 차단" ‖ 2:"[시술 주기 참고] 니들RF — 4-8주 간격, 피부 회복 확인 후 재시술. 과도한 열 누적 시 반흔 위험 주의 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/10/subcategories/0/items/12 auto-M11-1775364775144 프라임RF
+  . {id,name,detail,extracted}
+  /id = "auto-M11-1775364775144"
+  /name = "프라임RF"
+  /detail = "국산니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 기술로 개발된 니들 RF 장비"
+  /extracted/mechanism = "미세 니들을 이용해 진피층에 RF 에너지를 정확히 전달합니다. 열 자극으로 콜라겐 합성을 활성화하여 피부 질감과 탄력을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선" ‖ 1:"잔주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"진정 팩 사용" ‖ 1:"보습제 도포" ‖ 2:"[시술 주기 참고] 저출력 니들RF — 3-4주 간격 가능. 피부 상태 확인 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"

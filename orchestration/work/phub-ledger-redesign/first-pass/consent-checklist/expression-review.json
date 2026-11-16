@@ -1,0 +1,22 @@
+{
+ "note": "작성자가 자동 후보(regex·keyword)를 원문 문맥과 대조해 남긴 표시. 후보를 지우지 않고 review 칸을 붙인다. verdict: false_positive=범주 오탐 · partial_span=구간이 단어·수치 중간에서 잘림 · under_negation=수식어가 부정 범위 안에 있어 단독 사용 시 뜻이 뒤집힘 · context_note=문맥 주의. 이 표시 밖 후보는 개별 의미 판정을 받지 않은 수집 보조다.",
+ "rules": [
+  {"id": "X01", "method": "keyword:이상", "pointer": "/categories/8/mandatory_disclosures/1", "start": 20, "verdict": "false_positive", "note": "'감각 이상'의 이상은 이상(異常)=abnormality, 비교 '이상(以上)' 아님", "expected_matches": 1},
+  {"id": "X02", "method": "keyword:이상", "pointer": "/categories/9/mandatory_disclosures/4", "start": 18, "verdict": "false_positive", "note": "'감각 이상' — X01 과 같음", "expected_matches": 1},
+  {"id": "X03", "method": "keyword:이상", "pointer": "/categories/13/mandatory_disclosures/5", "start": 16, "verdict": "false_positive", "note": "'감각 이상' — X01 과 같음", "expected_matches": 1},
+  {"id": "X04", "method": "keyword:중증", "pointer": "/categories/0/contraindications/1", "start": 10, "verdict": "false_positive", "note": "'중증근무력증'은 질환명의 일부. 정도 수식이 아님", "expected_matches": 1},
+  {"id": "X05", "method": "keyword:즉시", "pointer": "/categories/2/mandatory_disclosures/0", "start": 4, "verdict": "under_negation", "note": "'효과가 즉시 나타나지 않으며' — 즉시는 부정 범위 안", "expected_matches": 1},
+  {"id": "X06", "method": "keyword:영구적", "pointer": "/categories/0/mandatory_disclosures/0", "start": 5, "verdict": "under_negation", "note": "'영구적이 아니며' — 영구적은 부정 대상", "expected_matches": 1},
+  {"id": "X07", "method": "keyword:즉각적인", "pointer": "/categories/8/mandatory_disclosures/4", "start": 0, "verdict": "context_note", "note": "'즉각적인 효과보다 … 점진적 개선이 주된 효과' — 비교의 열위 쪽. 즉각 효과를 주장하는 문장이 아님", "expected_matches": 1},
+  {"id": "X08", "method": "regex:possibility", "pointer": "/categories/1/mandatory_disclosures/0", "start": 27, "verdict": "partial_span", "note": "regex 가 '.' 에서 끊어 수치 '0.04mL' 가 '04mL' 로 잘림. 온전한 구간은 수동 M004", "expected_matches": 1},
+  {"id": "X09", "method": "regex:quantity_range", "pointer": "/categories/2/mandatory_disclosures/6", "start": 33, "verdict": "false_positive", "note": "'5-5-5 규칙'은 규칙 이름. 수치 범위 아님", "expected_matches": 1},
+  {"id": "X10", "method": "regex:quantity", "pointer": "/categories/4/contraindications/5", "start": 17, "verdict": "partial_span", "note": "원문은 '1주일'. regex 가 '1주' 까지만 잡음", "expected_matches": 1},
+  {"id": "X11", "method": "regex:quantity", "pointer": "/categories/16/mandatory_disclosures/0", "start": 142, "verdict": "context_note", "note": "'2025년부터' 는 규제 시행 시점(연도). 기간·수량 아님", "expected_matches": 1},
+  {"id": "X12", "method": "regex:negation", "pointer": "/description", "start": 46, "verdict": "false_positive", "note": "'금기사항'은 정보 종류 이름(배열 이름 설명). 진술의 부정이 아님", "expected_matches": 1}
+ ],
+ "coverage_gaps": [
+  {"id": "G01", "note": "negation 패턴에 '불충분'·'무허가'·'비정상' 같은 부정 접두 형태가 없다. '불충분'(/categories/16/mandatory_disclosures/1)·'무허가'(/categories/16/mandatory_disclosures/0)는 수동 M066·M067 로 보충. '비HA'·'비박리성'·'비대칭'의 '비'는 대상 구분 접두라 부정 진술로 세지 않음(잠정)."},
+  {"id": "G02", "note": "단위가 섞인 범위(4주-3개월, 6개월-2년, 1일-2주, 수주-수개월)는 quantity_range 가 못 잡는다. 수동 M022·M026·M027·M052 로 보충."},
+  {"id": "G03", "note": "'금기' keyword 는 negation 범주로 잡히지만 금기 배열 안의 문장은 대부분 '금기' 를 쓰지 않는다. 배열 이름(contraindications) 자체가 금기 맥락을 준다 — 문맥은 구조(필드)에서 온다."}
+ ]
+}

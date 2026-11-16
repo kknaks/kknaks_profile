@@ -1,0 +1,331 @@
+{
+ "section": "S021",
+ "state": "read",
+ "last_pointer": "/modality/7/subcategories/1/items/7/extracted/aftercare/5",
+ "observations": [
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/7/subcategories/0/items/13",
+    "/modality/7/subcategories/0/items/14",
+    "/modality/7/subcategories/0/items/15"
+   ],
+   "note": "꿀광토닝·브라이트닝레이저·여신토닝은 조합 시술명(detail: '레이저토닝+스킨부스터 조합', 'IPL+토닝 조합', '피코토닝+IPL 조합'). '+' 는 함께 시술. M8-1 상용구 없음. 꿀광토닝은 다른 모달리티(스킨부스터, M4) 시술을 결합한다(연결 키 없음)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/7/subcategories/1/items/7",
+    "/modality/7/subcategories/1/items/7/extracted/aftercare/5"
+   ],
+   "note": "셀렉V 는 'Q-switched Nd:YAG … 색소성 병변 치료 장비'인데 M8-2 '프락셔널' 하위분류에 있고 프락셔널 상용구가 붙어 있다."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/7/subcategories/1/items/2/extracted/mechanism"
+   ],
+   "note": "피코프락셀 mechanism '1064nm 파장의 QS-Nd:YAG 레이저가 피코초(10⁻¹²초) 단위의 극초단 펄스' — 같은 원장 피코토닝 문장은 QS-Nd:YAG 를 피코와 대비 대상으로 쓴다. 장비 유형 서술 혼선(판단 후속)."
+  },
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/7/subcategories/1/items/0/extracted/overview",
+    "/modality/7/subcategories/1/items/1/extracted/mechanism"
+   ],
+   "note": "오기 의심: '픽토초'(피코초), '톨륨 파장'(툴륨?). 원문 보존."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/7/subcategories/1/items/0/extracted/aftercare/4"
+   ],
+   "note": "M8-2 상용구 '[시술 주기 참고] 프락셔널 — 피부 회복 완료 후 재시술 (보통 4-8주). 박리성(CO2/Er:YAG)은 비박리성보다 긴 회복 필요 …' — 같은 모달리티 안에서 하위분류마다 다른 상용구(M8-1 토닝판 / M8-2 프락셔널판)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/7/subcategories/1/items/3/extracted/safety/serious/2",
+    "/modality/7/subcategories/1/items/4/extracted/safety/common/1"
+   ],
+   "note": "PIH 발생률이 항목마다 원문 수치로 있다(CO2 50%, 어븀야그 1%, 피코 1% 미만/이하, QS 10%). 기준 집단 미기재."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/7/subcategories/1/items/0/name",
+    "/modality/7/subcategories/0/items/0/name"
+   ],
+   "note": "'피코슈어 프락셀'(M8-2) 과 '피코슈어'(M8-1) — 같은 장비 계열명이 두 하위분류에 다른 항목으로."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/7/subcategories/1/items/1/detail",
+    "/modality/7/subcategories/1/items/3/detail",
+    "/modality/7/subcategories/1/items/5/detail"
+   ],
+   "note": "프락셔널 detail 은 '파장 · 박피성/비박피성' 형식. 박피성/비박피성(박리성/비박리성) 두 표기 혼용."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/7/subcategories/0/items/13/detail",
+   "text": "레이저토닝+스킨부스터 조합 · 광채+보습",
+   "kinds": [
+    "기호",
+    "시술·제품명",
+    "참조"
+   ],
+   "note": "'+' 시술 조합 / 효과 조합"
+  },
+  {
+   "pointer": "/modality/7/subcategories/0/items/13/extracted/aftercare/1",
+   "text": "강한 세안과 필링 제품 1주간 금지",
+   "kinds": [
+    "수식",
+    "수량·단위·시간",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/0/items/14/detail",
+   "text": "IPL+토닝 조합 · 미백 특화",
+   "kinds": [
+    "기호",
+    "시술·제품명"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/0/items/15/extracted/safety/common/2",
+   "text": "색소침착 악화 가능성",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/0/items/16/extracted/mechanism",
+   "text": "532nm KTP 레이저",
+   "kinds": [
+    "수량·단위·시간",
+    "시술·제품명"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/0/extracted/safety/serious/0",
+   "text": "색소침착(PIH) 발생률 1% 이하로 매우 낮음",
+   "kinds": [
+    "범위",
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": "serious 칸의 '매우 낮음'"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/0/extracted/aftercare/3",
+   "text": "색소침착 위험 시 비타민 C 에센스 사용",
+   "kinds": [
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/0/extracted/aftercare/4",
+   "text": "피부 회복 완료 후 재시술 (보통 4-8주)",
+   "kinds": [
+    "조건",
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": "상용구"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/0/extracted/aftercare/4",
+   "text": "박리성(CO2/Er:YAG)은 비박리성보다 긴 회복 필요",
+   "kinds": [
+    "비교",
+    "기호"
+   ],
+   "note": "상용구"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/1/detail",
+   "text": "1550+1927nm · 얕은 박피",
+   "kinds": [
+    "수량·단위·시간",
+    "기호",
+    "수식"
+   ],
+   "note": "'+' 두 파장"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/1/extracted/onset_duration/duration",
+   "text": "누적 효과, 3-6개월 최대 효과, 1-2년 지속",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "한 칸에 정점·지속"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/1/extracted/aftercare/0",
+   "text": "시술 후 24시간 보습 및 자외선차단(SPF 30 이상) 필수",
+   "kinds": [
+    "수량·단위·시간",
+    "범위"
+   ],
+   "note": "다른 항목은 SPF 50+"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/1/extracted/aftercare/4",
+   "text": "시술 후 메이크업은 24시간 경과 후 가능",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/3/extracted/safety/serious/2",
+   "text": "색소침착이상(PIH: CO2는 50% 발생률로 높음)",
+   "kinds": [
+    "수량·단위·시간",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/3/extracted/aftercare/0",
+   "text": "최소 7-10일 가피 형성 기간 동안 건조 유지",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/3/extracted/aftercare/1",
+   "text": "자외선 차단제(SPF 50+) 필수 사용 (최소 3개월)",
+   "kinds": [
+    "범위",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/3/extracted/aftercare/3",
+   "text": "염증 반응 심할 시 냉찜질 및 진정 마스크팩 권고",
+   "kinds": [
+    "조건",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/4/extracted/mechanism",
+   "text": "2940nm 파장이 피부 수분에 10배 높은 흡수율",
+   "kinds": [
+    "수량·단위·시간",
+    "비교"
+   ],
+   "note": "비교 대상 미기재"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/4/extracted/onset_duration/duration",
+   "text": "1회 시술 효과 3-6개월 지속, 복합 시술시 6-12개월",
+   "kinds": [
+    "수량·단위·시간",
+    "범위",
+    "조건"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/4/extracted/aftercare/2",
+   "text": "자극적 성분(산화, 비타민A) 1주일 피함",
+   "kinds": [
+    "부정",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/7/extracted/onset_duration/duration",
+   "text": "영구적 (재발 가능)",
+   "kinds": [
+    "가능성·빈도",
+    "조건"
+   ],
+   "note": "영구와 재발 공존"
+  },
+  {
+   "pointer": "/modality/7/subcategories/1/items/6/extracted/safety/common/3",
+   "text": "색소침착 가능성",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "주근깨토닝",
+   "issue": "주근깨/NNG 토/NNG 니/JC ᆼ/Z_CODA — '토닝'을 조사·받침 코드로 분해",
+   "impact": "시술명 소실, Z_CODA 태그 출현"
+  },
+  {
+   "scope": "all",
+   "surface": "어븀야그",
+   "issue": "어븀/NNP 야/EC(또는 IC) 그/MM — 'Er:YAG' 한글 표기를 어미·감탄사·관형사로",
+   "impact": "레이저 매질명 소실"
+  },
+  {
+   "scope": "all",
+   "surface": "CO2",
+   "issue": "CO/SL 2/SN 로 분리",
+   "impact": "매질명 분해(숫자 오탐 가능)"
+  },
+  {
+   "scope": "all",
+   "surface": "픽토초",
+   "issue": "픽토초/NNP 또는 픽토/NNG 초/NNB — 원문 오기 + 문맥별 분석 차이",
+   "impact": "S021-I02"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S021-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/7/subcategories/1/items/7",
+    "/modality/7/subcategories/1/items/7/extracted/aftercare/5"
+   ],
+   "note": "셀렉V(QS 색소 장비)가 프락셔널 하위분류·상용구.",
+   "impact": "분류·주기 정보 채택 시 확인"
+  },
+  {
+   "id": "S021-I02",
+   "status": "I",
+   "pointers": [
+    "/modality/7/subcategories/1/items/0/extracted/overview",
+    "/modality/7/subcategories/1/items/1/extracted/mechanism"
+   ],
+   "note": "'픽토초','톨륨' 오기 의심.",
+   "impact": "표기 보존, 정규화 후속"
+  },
+  {
+   "id": "S021-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/7/subcategories/0/items/13/detail"
+   ],
+   "note": "조합 시술명이 다른 계열(스킨부스터·IPL)을 포함.",
+   "impact": "조합 관계 표현 설계 과제"
+  }
+ ]
+}

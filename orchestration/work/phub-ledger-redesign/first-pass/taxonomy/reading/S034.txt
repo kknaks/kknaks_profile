@@ -1,0 +1,109 @@
+# S034  scope=M11 니들RF  units=extracted | products 컨테이너 | M11-P-0 | M11-P-1 | M11-P-2 | M11-P-3 | name
+# 상위 문맥: [{"pointer": "/modality/10", "id": "M11", "category": "니들RF", "name": "니들RF"}]
+@ /modality/10 M11 니들RF 니들RF
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "니들RF는 미세침(마이크로니들)을 피부에 삽입하면서 동시에 고주파(RF) 에너지를 전달하는 시술이다. 한국에서는 '인트라셀', '포텐자', '시크릿', '스카렛' 등의 브랜드명으로 알려져 있다. 비박피성 피부재생 장비와 프랙셔널 레이저의 장점을 합쳐, 진피층에 직접 에너지를 전달하면서도 표피 손상은 최소화하는 것이 특징이다."
+  /extracted/mechanism = "니들RF는 특수 제작된 절연 마이크로니들을 순간적으로 피부에 삽입하여 치료 기둥을 만들며, 동시에 고압 펄스의 고주파를 이용한 국소적인 열손상을 통해 시술 범위 중 원하는 목표 부위에만 약 20%의 면적에 피부재생을 촉진하는 미세한 상처들을 만들어 세포의 성장인자를 유도하여 피부의 자연치유를 극대화한다. 레이저와 같이 표피를 에너지 전달통로로 사용하는 방식이 아니므로, 박피성 시술 시 발생하는 색소침착 등의 부작용이 없고, 바늘 끝을 통해 물리적으로 진피 내에 직접 미세상처를 줄 뿐만 아니라 고주파를 이용한 진피 내의 전반적인 열손상을 통해 콜라겐 리모델링을 유도하여 피부재생에 효과를 가져온다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"흉터 및 피부재생 (여드름 흉터, 수술 흉터 등)" ‖ 1:"리프팅/타이트닝 (피부 처짐 개선)" ‖ 2:"미백 및 피부결 개선"
+  /extracted/indications/extended [5] = 0:"여드름 치료 (활동성 여드름)" ‖ 1:"기미, 색소침착 개선" ‖ 2:"잡티 개선" ‖ 3:"모공 축소" ‖ 4:"튼살 (배, 허벅지 등)"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"시술 부위에 활동성 감염이 있는 경우" ‖ 1:"심장박동기(페이스메이커) 사용자" ‖ 2:"체내 금속 임플란트가 있는 부위"
+  /extracted/contraindications/relative [3] = 0:"켈로이드 체질 (단, 일반적인 니들RF는 켈로이드 위험이 낮음)" ‖ 1:"임신 중이거나 수유 중인 경우" ‖ 2:"혈액 응고 장애가 있는 경우"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [3] = 0:"시술 부위 홍반 (빨개짐)" ‖ 1:"약간의 붓기" ‖ 2:"시술 부위 따끔거림"
+  /extracted/safety/uncommon [2] = 0:"색소침착 (박피나 레이저 시술에 비해 위험이 매우 작음)" ‖ 1:"일시적 건조함"
+  /extracted/safety/serious [2] = 0:"감염 (1회용 팁 사용으로 위생 관리)" ‖ 1:"드물게 화상 (부적절한 에너지 설정 시)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "시술 후 1~2주부터 피부결 개선 체감"
+  /extracted/onset_duration/peak = "1~3개월 후 콜라겐 리모델링 효과 최대"
+  /extracted/onset_duration/duration = "6~12개월 유지 (반복 시술 시 효과 누적)"
+  /extracted/aftercare [3] = 0:"시술 후에 보이는 딱지가 없으므로 일상생활에 지장 없음" ‖ 1:"시술 후 자외선 차단제 꼼꼼히 바르기" ‖ 2:"보습제를 충분히 발라주기"
+  /extracted/related_techniques [3] = 0:"프랙셔널 레이저 -- 비슷한 피부 재생 원리이나 표피 손상이 더 큼" ‖ 1:"일반 고주파(RF) -- 비침습적 타이트닝" ‖ 2:"MTS(마이크로니들링) -- RF 없이 물리적 자극만으로 콜라겐 유도"
+  /products [4]
+@ /modality/10/products/0 M11-P-0 포텐자
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M11-P-0"
+  /name = "포텐자"
+  /name_en = "Potenza"
+  /manufacturer = "사이노슈어"
+  /country = "US"
+  /mfds = null
+  /type = "니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "Cynosure 절연 마이크로니들 RF 플랫폼"
+  /extracted/mechanism = "절연 마이크로니들을 통한 진피층 직접 RF 에너지 전달로 표피 손상을 최소화하면서 분획 열손상 유도합니다. 물리적 관통과 RF 열손상의 이중 메커니즘으로 효율적인 콜라겐 리모델링을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 및 잔주름" ‖ 1:"피부 탄력 부족" ‖ 2:"모공 확대" ‖ 3:"흉터 개선" ‖ 4:"피부 결 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"홍반" ‖ 1:"부종" ‖ 2:"미세 딱지"
+  /extracted/safety/serious [1] = 0:"색소침착 (깊은 피부톤)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"3-5일 강한 자외선 회피" ‖ 1:"자극 제품 1주일 중단" ‖ 2:"4주 간격 시술"
+@ /modality/10/products/1 M11-P-1 인트라셀
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M11-P-1"
+  /name = "인트라셀"
+  /name_en = "INTRACELL"
+  /manufacturer = "제이시스메디칼"
+  /country = "KR"
+  /mfds = null
+  /type = "니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 분획 RF 시술"
+  /extracted/mechanism = "절연 코팅 마이크로니들이 진피층까지 관통한 후 RF 에너지를 직접 전달하여 표피 우회 가열을 실현합니다. 분획 열손상으로 콜라겐 응축 및 재생을 유도하며, 표피 박피 없이 피부 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 및 처짐" ‖ 1:"피부 탄력 저하" ‖ 2:"모공 축소" ‖ 3:"여드름 흉터" ‖ 4:"피부 질감 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"경미한 홍반" ‖ 1:"부종" ‖ 2:"감각 이상"
+  /extracted/safety/serious [1] = 0:"색소이상 (피부톤 고려 필수)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-10개월"
+  /extracted/aftercare [3] = 0:"1주일 자외선 노출 최소화" ‖ 1:"자극 스킨케어 회피" ‖ 2:"4주 간격 반복 시술"
+@ /modality/10/products/2 M11-P-2 시크릿
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M11-P-2"
+  /name = "시크릿"
+  /name_en = "Secret RF"
+  /manufacturer = "일루다(Ilooda)"
+  /country = "KR"
+  /mfds = null
+  /type = "니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 기반 분획 RF"
+  /extracted/mechanism = "절연 마이크로니들을 통한 진피층 직접 RF 에너지 전달로 표피를 보호하면서 분획 열손상을 생성합니다. 물리적 자극과 열성 자극의 복합 작용으로 콜라겐 리모델링을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 개선" ‖ 1:"피부 탄력 강화" ‖ 2:"모공 축소" ‖ 3:"피부 결 개선" ‖ 4:"얕은 흉터"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"홍반" ‖ 1:"부종" ‖ 2:"따끔거림"
+  /extracted/safety/serious [1] = 0:"색소침착 (부적절한 에너지 설정)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"5-7일 자외선 차단 강화" ‖ 1:"보습 집중 관리" ‖ 2:"4주 간격 시술 권장"
+@ /modality/10/products/3 M11-P-3 제니스
+  . {id,name,name_en,manufacturer,country,mfds,type,extracted}
+  /id = "M11-P-3"
+  /name = "제니스"
+  /name_en = "AGNES"
+  /manufacturer = "고우리엔티"
+  /country = "KR"
+  /mfds = null
+  /type = "니들RF"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "절연 마이크로니들 RF 정밀 시술 장비"
+  /extracted/mechanism = "절연 마이크로니들을 통해 RF 에너지를 진피층에 정밀하게 전달하여 분획 열손상을 생성합니다. 점 단위 제어가 가능하여 표피 손상을 최소화하면서 타겟 진피 콜라겐 재생을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [6] = 0:"주름 및 잔주름" ‖ 1:"피부 탄력 저하" ‖ 2:"모공 축소" ‖ 3:"여드름 흉터" ‖ 4:"피부 결 개선" ‖ 5:"눈가/입가 세밀한 주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"경미한 홍반" ‖ 1:"부종" ‖ 2:"일시적 색소 변화"
+  /extracted/safety/serious [1] = 0:"색소침착 (깊은 피부톤, 과다 에너지)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"3-5일 자외선 차단 필수" ‖ 1:"자극 제품 일시 중단" ‖ 2:"4-6주 간격 3-4회 시술"
+@ /modality/10 M11 니들RF 니들RF
+  /name = "니들RF"

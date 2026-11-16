@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>고객 화면 시나리오 재생</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Sans+TC:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#000000;font-family:Pretendard,"Noto Sans TC","Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+@keyframes live{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1160px; display: flex; flex-direction: column; background: #FFFFFF; overflow: hidden">
+
+<div aria-label="고객 화면" style="flex: 0 0 1080px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="flex: 0 0 60px; box-sizing: border-box; padding: 0 48px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #E3E3E3">
+    <div style="flex: 0 0 160px; height: 36px; border-radius: 8px; background: #F3F3F3; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #6E6E6E; letter-spacing: 2px">LOGO</div>
+    <div style="flex: 1 1 auto; display: flex; justify-content: center"><span style="display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 16px; border-radius: 20px; background: #F4F3FF; color: #6F21FF"><span lang="zh-Hant" style="font-size: 20px; font-weight: 600; line-height: 26px">諮詢總覽</span><span lang="ko" style="font-size: 14px">한 화면</span></span></div>
+    <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 20px">
+      <span lang="zh-Hant" style="font-size: 24px; font-weight: 600; line-height: 32px">陳小姐</span>
+      <span aria-hidden="true" style="width: 1px; height: 20px; background: #E3E3E3"></span>
+      <span style="font-size: 24px; font-weight: 500; line-height: 32px; color: #3E3E3E; font-variant-numeric: tabular-nums">{{clock}}</span>
+      <span role="img" aria-label="연결됨" style="width: 10px; height: 10px; border-radius: 50%; background: #6F21FF; display: inline-block"></span>
+    </div>
+  </header>
+
+  <main style="flex: 1 1 auto; min-height: 0; box-sizing: border-box; padding: 20px 40px; display: grid; grid-template-columns: 480px minmax(0, 1fr) 500px; gap: 32px">
+
+    <section aria-label="피부 분석" style="display: flex; flex-direction: column; gap: 8px; min-height: 0">
+      <div style="display: flex; align-items: baseline; gap: 10px"><span lang="zh-Hant" style="font-size: 26px; font-weight: 600; line-height: 34px">肌膚分析</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">미라쥬</span>
+        <sc-if value="{{mirage}}" hint-placeholder-val="{{ true }}"><span style="font-size: 15px; color: #6E6E6E; margin-left: auto">13:05</span></sc-if>
+      </div>
+      <div style="position: relative; height: 560px; flex: 0 0 auto">
+        <img src="./face-front.png" alt="" width="377" height="540" style="position: absolute; left: 51px; top: 10px; opacity: 0.8">
+        <sc-if value="{{mirage}}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{rings}}" as="r" hint-placeholder-count="7">
+            <span aria-hidden="true" style="position: absolute; left: {{r.x}}px; top: {{r.y}}px; width: 30px; height: 30px; box-sizing: border-box; border-radius: 50%; border: 3px solid {{r.col}}; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #000000; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16); animation: pop .4s ease-out">{{r.n}}</span>
+          </sc-for>
+        </sc-if>
+      </div>
+      <sc-if value="{{noMirage}}" hint-placeholder-val="{{ false }}">
+        <div style="flex: 1 1 auto; box-sizing: border-box; border: 2px dashed #E3E3E3; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #6E6E6E">
+          <span lang="zh-Hant" style="font-size: 20px; font-weight: 500">尚未收到肌膚分析</span>
+          <span lang="ko" style="font-size: 14px">미라쥬 결과가 오면 여기에</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{mirage}}" hint-placeholder-val="{{ true }}">
+        <ol style="list-style: none; margin: 0; padding: 0; animation: pop .4s ease-out">
+          <sc-for list="{{rows}}" as="m" hint-placeholder-count="7">
+            <li style="height: 40px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #F3F3F3">
+              <span aria-hidden="true" style="flex: 0 0 8px; height: 8px; border-radius: 50%; background: {{m.dot}}"></span>
+              <span style="flex: 0 0 22px; font-size: 15px; font-weight: 600; color: #6E6E6E">{{m.n}}</span>
+              <span style="flex: 1 1 auto; display: flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 19px; font-weight: 600">{{m.zh}}</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">{{m.ko}}</span></span>
+              <span lang="zh-Hant" style="padding: 2px 8px; border-radius: 6px; font-size: 15px; font-weight: 600; line-height: 20px; {{m.pill}}">{{m.g}}</span>
+              <span style="flex: 0 0 56px; text-align: right; font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums">{{m.score}}</span>
+            </li>
+          </sc-for>
+        </ol>
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #6E6E6E"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #6F21FF"></span><span lang="zh-Hant">您提到的困擾</span><span lang="ko">· 말한 고민</span></div>
+      </sc-if>
+    </section>
+
+    <section aria-label="상담 내역" style="display: flex; flex-direction: column; gap: 12px; min-width: 0; min-height: 0">
+      <div style="display: flex; align-items: baseline; gap: 10px"><span lang="zh-Hant" style="font-size: 26px; font-weight: 600; line-height: 34px">諮詢紀錄</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">상담 내역</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 14px; background: #F4F3FF; color: #6F21FF; align-self: center"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #6F21FF; animation: live 1.6s ease-in-out infinite"></span><span lang="zh-Hant" style="font-size: 15px; font-weight: 600">即時</span></span>
+      </div>
+
+      <sc-if value="{{noConcern}}" hint-placeholder-val="{{ false }}">
+        <div style="flex: 1 1 auto; box-sizing: border-box; border: 2px dashed #E3E3E3; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #6E6E6E">
+          <span lang="zh-Hant" style="font-size: 24px; font-weight: 500">您的困擾會依序整理在這裡</span>
+          <span lang="ko" style="font-size: 15px">말한 고민이 고민별로 여기에 정리돼요</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{c3}}" hint-placeholder-val="{{ true }}">
+        <article aria-current="true" style="box-sizing: border-box; border: 3px solid #6F21FF; border-radius: 16px; padding: 20px 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; animation: pop .4s ease-out">
+          <span style="align-self: flex-start; display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 10px; border-radius: 6px; background: #F4F3FF; color: #6F21FF"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600">困擾 3 · 正在諮詢</span><span lang="ko" style="font-size: 12px">지금 상담 중</span></span>
+          <div style="display: flex; align-items: baseline; gap: 12px"><span lang="zh-Hant" style="font-size: 32px; font-weight: 600; line-height: 40px">下顎線鬆弛</span><span lang="ko" style="font-size: 18px; color: #6E6E6E">턱선 처짐</span></div>
+          <sc-if value="{{noRec}}" hint-placeholder-val="{{ false }}">
+            <span style="display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 20px; font-weight: 500; color: #3E3E3E">肌膚分析未測量 · 諮詢中確認</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">미라쥬 측정 밖 · 상담에서 확인</span></span>
+          </sc-if>
+          <sc-if value="{{rec}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; gap: 20px; align-items: center; animation: pop .4s ease-out">
+              <div role="img" aria-label="소프웨이브 기기 사진" style="flex: 0 0 180px; height: 180px; border-radius: 12px; background: #F3F3F3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #6E6E6E"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span lang="zh-Hant" style="font-size: 16px; font-weight: 500">Sofwave 機器照片</span><span lang="ko" style="font-size: 13px">기기 사진</span></div>
+              <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+                <span style="display: inline-flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 18px; font-weight: 600; color: #6E6E6E">建議療程</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">추천 시술</span></span>
+                <span style="font-size: 28px; font-weight: 600; line-height: 36px">Sofwave 300 shots</span>
+                <span style="display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 20px; font-weight: 500; color: #3E3E3E">提拉 · 超音波</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">소프웨이브 · 리프팅</span></span>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{expl}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <span style="display: inline-flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 18px; font-weight: 600; color: #6E6E6E">說明</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">안내한 내용 · 새 내용이 위</span></span>
+              <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-if value="{{caution}}" hint-placeholder-val="{{ true }}">
+                  <li style="display: flex; gap: 12px; align-items: flex-start; animation: pop .4s ease-out; {{cautionStyle}}">
+                    <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                      <span style="display: flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600; color: #6E6E6E">注意事項</span><span lang="ko" style="font-size: 12px; color: #6E6E6E">주의</span></span>
+                      <span lang="zh-Hant" style="font-size: 20px; font-weight: 500; line-height: 28px">術後兩週避免三溫暖</span>
+                      <span lang="ko" style="font-size: 15px; line-height: 20px; color: #6E6E6E">시술 후 2주 사우나 피하기</span>
+                    </span>
+                    <sc-if value="{{cautionNew}}" hint-placeholder-val="{{ false }}"><span style="flex: 0 0 auto; font-size: 15px; font-weight: 600; padding: 2px 10px; border-radius: 6px; background: #6F21FF; color: #FFFFFF">剛剛 <span lang="ko" style="font-size: 12px; font-weight: 500">방금</span></span></sc-if>
+                  </li>
+                </sc-if>
+                <li style="display: flex; gap: 12px; align-items: flex-start; animation: pop .4s ease-out; {{methodStyle}}">
+                  <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                    <span style="display: flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600; color: #6E6E6E">療程方式</span><span lang="ko" style="font-size: 12px; color: #6E6E6E">시술 방법</span></span>
+                    <span lang="zh-Hant" style="font-size: 20px; font-weight: 500; line-height: 28px">以超音波加熱皮膚深層，提升彈力 · 下半臉約 30 分鐘</span>
+                    <span lang="ko" style="font-size: 15px; line-height: 20px; color: #6E6E6E">초음파로 피부 속 깊은 층을 데워 탄력을 끌어올려요 · 하안면 약 30분</span>
+                  </span>
+                  <sc-if value="{{methodNew}}" hint-placeholder-val="{{ false }}"><span style="flex: 0 0 auto; font-size: 15px; font-weight: 600; padding: 2px 10px; border-radius: 6px; background: #6F21FF; color: #FFFFFF">剛剛 <span lang="ko" style="font-size: 12px; font-weight: 500">방금</span></span></sc-if>
+                </li>
+              </ol>
+            </div>
+          </sc-if>
+        </article>
+      </sc-if>
+
+      <sc-if value="{{c2Open}}" hint-placeholder-val="{{ false }}">
+        <article aria-current="true" style="box-sizing: border-box; border: 3px solid #6F21FF; border-radius: 16px; padding: 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: pop .4s ease-out">
+          <span style="align-self: flex-start; display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 10px; border-radius: 6px; background: #F4F3FF; color: #6F21FF"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600">困擾 2 · 正在諮詢</span><span lang="ko" style="font-size: 12px">지금 상담 중</span></span>
+          <div style="display: flex; align-items: baseline; gap: 12px"><span lang="zh-Hant" style="font-size: 32px; font-weight: 600; line-height: 40px">法令紋</span><span lang="ko" style="font-size: 18px; color: #6E6E6E">팔자</span></div>
+          <span style="display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 20px; font-weight: 500; color: #3E3E3E">肌膚分析 80.7 · 稍微留意</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">미라쥬 80.7 · 조금 신경 써요</span></span>
+        </article>
+      </sc-if>
+      <sc-if value="{{c2Closed}}" hint-placeholder-val="{{ true }}">
+        <article style="box-sizing: border-box; border: 1px solid #E3E3E3; border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; gap: 14px">
+          <span lang="zh-Hant" style="flex: 0 0 auto; font-size: 15px; font-weight: 600; color: #6E6E6E">困擾 2</span>
+          <span style="flex: 0 0 auto; display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 24px; font-weight: 600">法令紋</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">팔자</span></span>
+          <span style="flex: 1 1 auto"></span>
+          <sc-if value="{{c2Calm}}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex; align-items: baseline; gap: 8px; padding: 4px 10px; border-radius: 8px; border: 1px solid #E3E3E3"><span lang="zh-Hant" style="font-size: 18px; font-weight: 500">稍後討論</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">이따 상담</span></span></sc-if>
+          <sc-if value="{{c2Warn}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: baseline; gap: 8px; padding: 4px 10px; border-radius: 8px; border: 1px solid #6F21FF; background: #FBFAFF; animation: pop .4s ease-out"><span lang="zh-Hant" style="font-size: 18px; font-weight: 500">建議 玻尿酸 Juvéderm Voluma 2cc</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">필러 2cc 추천</span></span></sc-if>
+          <sc-if value="{{c2New}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 600; padding: 2px 10px; border-radius: 6px; background: #6F21FF; color: #FFFFFF">剛剛</span></sc-if>
+        </article>
+      </sc-if>
+
+      <sc-if value="{{c1Open}}" hint-placeholder-val="{{ false }}">
+        <article aria-current="true" style="box-sizing: border-box; border: 3px solid #6F21FF; border-radius: 16px; padding: 20px 28px; display: flex; flex-direction: column; gap: 14px; animation: pop .4s ease-out">
+          <span style="align-self: flex-start; display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 10px; border-radius: 6px; background: #F4F3FF; color: #6F21FF"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600">困擾 1 · 正在諮詢</span><span lang="ko" style="font-size: 12px">지금 상담 중</span></span>
+          <div style="display: flex; align-items: baseline; gap: 12px"><span lang="zh-Hant" style="font-size: 32px; font-weight: 600; line-height: 40px">額頭皺紋</span><span lang="ko" style="font-size: 18px; color: #6E6E6E">이마 주름</span></div>
+          <span style="display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 20px; font-weight: 500; color: #3E3E3E">肌膚分析 78.2 · 稍微留意</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">미라쥬 78.2 · 조금 신경 써요</span></span>
+        </article>
+      </sc-if>
+      <sc-if value="{{c1Closed}}" hint-placeholder-val="{{ true }}">
+        <article style="box-sizing: border-box; border: 1px solid #E3E3E3; border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; gap: 14px">
+          <span lang="zh-Hant" style="flex: 0 0 auto; font-size: 15px; font-weight: 600; color: #6E6E6E">困擾 1</span>
+          <span style="flex: 0 0 auto; display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 24px; font-weight: 600">額頭皺紋</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">이마 주름</span></span>
+          <span style="flex: 1 1 auto"></span>
+          <span style="display: inline-flex; align-items: baseline; gap: 8px; padding: 4px 10px; border-radius: 8px; border: 1px solid #E3E3E3"><span lang="zh-Hant" style="font-size: 18px; font-weight: 500">稍後討論</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">이따 상담</span></span>
+        </article>
+      </sc-if>
+    </section>
+
+    <section aria-label="추천 · 결제 조합" style="display: flex; flex-direction: column; gap: 12px; min-height: 0">
+      <div style="display: flex; align-items: baseline; gap: 10px"><span lang="zh-Hant" style="font-size: 26px; font-weight: 600; line-height: 34px">建議</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">추천</span></div>
+      <sc-if value="{{noRec}}" hint-placeholder-val="{{ false }}">
+        <div style="height: 168px; box-sizing: border-box; border: 2px dashed #E3E3E3; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #6E6E6E">
+          <span lang="zh-Hant" style="font-size: 20px; font-weight: 500">諮詢師建議的療程會出現在這裡</span>
+          <span lang="ko" style="font-size: 14px">상담사가 추천하면 여기에</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{rec}}" hint-placeholder-val="{{ true }}">
+        <article style="box-sizing: border-box; border: 3px solid #6F21FF; border-radius: 16px; background: #F4F3FF; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; animation: pop .4s ease-out">
+          <span style="display: flex; align-items: baseline; gap: 10px"><span style="font-size: 28px; font-weight: 600; line-height: 36px"><span lang="zh-Hant">提拉</span> · Sofwave</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">소프웨이브</span>
+            <sc-if value="{{recNew}}" hint-placeholder-val="{{ false }}"><span style="margin-left: auto; font-size: 15px; font-weight: 600; padding: 2px 10px; border-radius: 6px; background: #6F21FF; color: #FFFFFF">剛剛</span></sc-if>
+          </span>
+          <span lang="zh-Hant" style="font-size: 19px; color: #3E3E3E">超音波 · 免麻醉 · 當日恢復 · 持續 12 個月</span>
+          <span style="display: flex; align-items: baseline; gap: 10px; padding-top: 10px; border-top: 1px solid #E9E6FF"><span style="font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums">NT$28,000</span><span style="font-size: 18px; color: #3E3E3E; font-variant-numeric: tabular-nums">₩1,200,000</span><span lang="zh-Hant" style="margin-left: auto; font-size: 15px; font-weight: 600; padding: 3px 10px; border-radius: 6px; background: #6F21FF; color: #FFFFFF">活動價</span></span>
+        </article>
+      </sc-if>
+
+      <div style="margin-top: 12px; display: flex; align-items: baseline; gap: 10px"><span lang="zh-Hant" style="font-size: 26px; font-weight: 600; line-height: 34px">方案</span><span lang="ko" style="font-size: 15px; color: #6E6E6E">결제 조합</span></div>
+      <sc-if value="{{noCombos}}" hint-placeholder-val="{{ false }}">
+        <div style="height: 120px; box-sizing: border-box; border: 2px dashed #E3E3E3; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #6E6E6E">
+          <span lang="zh-Hant" style="font-size: 20px; font-weight: 500">諮詢師分享方案時才顯示</span>
+          <span lang="ko" style="font-size: 14px">상담사가 공유할 때만 · 기본은 태블릿에만</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{combos}}" hint-placeholder-val="{{ true }}">
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; animation: pop .4s ease-out">
+          <sc-for list="{{comboRows}}" as="c" hint-placeholder-count="3">
+            <li style="box-sizing: border-box; border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; {{c.box}}">
+              <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                <span style="display: flex; align-items: baseline; gap: 8px"><span lang="zh-Hant" style="font-size: 16px; font-weight: 600; color: {{c.keyColor}}">方案 {{c.k}}</span><span lang="zh-Hant" style="font-size: 20px; font-weight: 600">{{c.zh}}</span>
+                  <sc-if value="{{c.chosen}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: #6F21FF; color: #FFFFFF"><span lang="zh-Hant">今天的方案</span></span></sc-if>
+                </span>
+                <span style="font-size: 14px; line-height: 18px; color: #6E6E6E; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.names}}</span>
+              </span>
+              <span style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end"><span style="font-size: 24px; font-weight: 600; line-height: 30px; font-variant-numeric: tabular-nums">{{c.nt}}</span><span style="font-size: 14px; color: #6E6E6E; font-variant-numeric: tabular-nums">{{c.krw}}</span></span>
+            </li>
+          </sc-for>
+        </ul>
+      </sc-if>
+
+      <div style="margin-top: auto; padding: 14px 18px; border-radius: 12px; background: #FBFBFB; border: 1px solid #E3E3E3; display: flex; flex-direction: column; gap: 4px">
+        <span style="display: inline-flex; align-items: baseline; gap: 6px"><span lang="zh-Hant" style="font-size: 18px; font-weight: 600; color: #6E6E6E">共同事項</span><span lang="ko" style="font-size: 13px; color: #6E6E6E">공통 · 이전 방문 · 문진</span></span>
+        <span lang="zh-Hant" style="font-size: 19px; font-weight: 500">對疼痛較敏感 · 六週前施打過肉毒，可同日進行</span>
+      </div>
+    </section>
+  </main>
+
+  <footer style="flex: 0 0 64px; box-sizing: border-box; border-top: 1px solid #E3E3E3; background: #FBFBFB; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+    <span style="display: inline-flex; align-items: baseline; gap: 10px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #6F21FF; animation: live 1.6s ease-in-out infinite; align-self: center"></span><span lang="zh-Hant" style="font-size: 20px; font-weight: 500; line-height: 26px; color: #3E3E3E">{{tickerZh}}</span><span lang="ko" style="font-size: 14px; color: #6E6E6E">{{tickerKo}}</span></span>
+    <span style="display: inline-flex; align-items: baseline; gap: 10px"><span lang="zh-Hant" style="font-size: 18px; line-height: 24px; color: #6E6E6E">最後更新 {{clock}} · 僅供參考，以醫師確認為準</span></span>
+  </footer>
+</div>
+
+<div aria-label="프로토타입 조작 (실제 화면에 없음)" style="flex: 0 0 80px; box-sizing: border-box; background: #3E3E3E; color: #FFFFFF; padding: 0 32px; display: flex; align-items: center; gap: 16px; font-family: Pretendard, 'Noto Sans KR', sans-serif">
+  <span lang="ko" style="flex: 0 0 auto; font-size: 12px; line-height: 16px; padding: 2px 8px; border: 1px solid #9F9F9F; border-radius: 4px; color: #CFCFCF">프로토타입 조작<br>실제 화면에 없음</span>
+  <button type="button" onClick="{{prev}}" style="flex: 0 0 auto; height: 48px; padding: 0 16px; border: 1px solid #9F9F9F; border-radius: 8px; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 500; cursor: pointer">◀ 이전</button>
+  <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 6px">
+    <sc-for list="{{dots}}" as="d" hint-placeholder-count="11">
+      <button type="button" onClick="{{d.go}}" aria-label="{{d.label}}" style="width: 22px; height: 22px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 12px; height: 12px; border-radius: 50%; {{d.style}}"></span></button>
+    </sc-for>
+  </div>
+  <span lang="ko" style="flex: 0 0 auto; font-size: 15px; font-weight: 600; color: #CFCFCF; font-variant-numeric: tabular-nums">{{stepNo}} / 11</span>
+  <div lang="ko" style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+    <span style="font-size: 18px; font-weight: 600; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{stepTitle}}</span>
+    <span style="font-size: 14px; line-height: 18px; color: #CFCFCF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">태블릿 · {{stepTablet}}</span>
+  </div>
+  <a href="{{sceneHref}}" lang="ko" style="flex: 0 0 auto; height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #A290FF; border-radius: 8px; color: #E9E6FF; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; text-decoration: none">장면 전환형이면 · {{sceneLabel}} →</a>
+  <button type="button" onClick="{{togglePlay}}" lang="ko" style="flex: 0 0 auto; height: 48px; padding: 0 16px; border: 1px solid #9F9F9F; border-radius: 8px; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 500; cursor: pointer">{{playLabel}}</button>
+  <button type="button" onClick="{{restart}}" lang="ko" style="flex: 0 0 auto; height: 48px; padding: 0 16px; border: 1px solid #9F9F9F; border-radius: 8px; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 500; cursor: pointer">처음부터</button>
+  <button type="button" onClick="{{next}}" lang="ko" style="flex: 0 0 auto; height: 48px; padding: 0 22px; border: 0; border-radius: 8px; background: #6F21FF; color: #FFFFFF; font-size: 15px; font-weight: 600; cursor: pointer">다음 ▶</button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1160},"startStep":{"editor":"int","default":0,"min":0,"max":10,"section":"시나리오"}}'>
+class Component extends DCLogic {
+  steps() {
+    return [
+      { t: '상담 시작 · 빈 화면', tab: '고객 선택 → 세션 시작', zh: '諮詢開始 · 內容會即時整理在這裡', ko: '상담 시작 · 내용이 여기에 실시간 정리', clock: '13:02', href: 'S3-Idle.dc.html', scene: '대기' },
+      { t: '미라쥬 결과 도착', tab: '미라쥬 측정 완료 → 자동 표시', zh: '肌膚分析結果已更新', ko: '미라쥬 결과 도착', clock: '13:05', href: 'S3s-Mirage.dc.html', scene: '피부 분석' },
+      { t: '첫 고민 · 이마 주름', tab: '고객 발화 감지 → 고민 1 생성', zh: '您提到：額頭皺紋', ko: '말한 고민 · 이마 주름', clock: '13:12', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '두 번째 고민 · 팔자', tab: '고객 발화 감지 → 고민 2', zh: '您提到：法令紋', ko: '말한 고민 · 팔자', clock: '13:18', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '세 번째 고민 · 턱선 처짐', tab: '고객 발화 감지 → 고민 3', zh: '您提到：下顎線鬆弛', ko: '말한 고민 · 턱선 처짐', clock: '13:24', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '추천 · 소프웨이브', tab: '추천 카드 → 고객 화면에 띄우기', zh: '諮詢師建議：Sofwave 提拉', ko: '소프웨이브 추천', clock: '13:31', href: 'S3s-Recommend.dc.html', scene: '추천' },
+      { t: '시술 방법 안내', tab: '체크리스트 → 고객 화면 안내', zh: '正在說明 Sofwave 療程方式', ko: '시술 방법 설명 중', clock: '13:36', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '주의 안내 · 사우나 2주', tab: '상담사 발화 → 주의 자동 체크', zh: '說明：術後兩週避免三溫暖', ko: '주의 안내', clock: '13:41', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '팔자 추천 · 필러 2cc', tab: '추천 시술 2cc 기록 · 기타에 "고객 1cc 희망" 자동 메모', zh: '法令紋：建議玻尿酸 2cc', ko: '팔자 · 필러 2cc 추천', clock: '13:44', href: 'S3s-Live.dc.html', scene: '상담 내역' },
+      { t: '결제 조합 A·B·C 공유', tab: '결제 조합 → 고객 화면에 공유 (선택)', zh: '諮詢師分享了 3 個方案', ko: '결제 조합 3개 공유', clock: '13:52', href: 'S3s-Combo.dc.html', scene: '결제 조합' },
+      { t: '조합 A로 확정', tab: '이 조합으로 플랜 확정', zh: '今天的方案：方案 A', ko: '오늘의 플랜 · 조합 A', clock: '13:58', href: 'S3s-Combo.dc.html', scene: '결제 조합' },
+    ];
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const s = this.state || {};
+      if (!s.playing) return;
+      const cur = this.cur();
+      if (cur >= 10) { this.setState({ playing: false }); return; }
+      this.setState({ step: cur + 1 });
+    }, 2600);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  cur() {
+    const s = this.state || {};
+    if (typeof s.step === 'number') return s.step;
+    const p = Number(this.props.startStep);
+    return Number.isFinite(p) ? Math.max(0, Math.min(10, Math.round(p))) : 0;
+  }
+  renderVals() {
+    const st = this.cur();
+    const S = this.steps()[st];
+    const playing = !!(this.state && this.state.playing);
+    const go = (n) => this.setState({ step: Math.max(0, Math.min(10, n)), playing: false });
+    const grade = {
+      mild: ['稍微留意', 'background: #F4F3FF; color: #6F21FF', '#A290FF'],
+      mod: ['建議開始保養', 'background: #FFFFFF; border: 1.5px solid #FD9400; color: #3E3E3E', '#FD9400'],
+      none: ['無分數', 'background: #F3F3F3; color: #3E3E3E', '#CFCFCF'],
+      nom: ['未測量', 'background: #F3F3F3; color: #3E3E3E', '#CFCFCF'],
+    };
+    const areas = [
+      [1, '下顎線', '턱선', 'nom', '–', 4, 332, 407],
+      [2, '法令紋', '팔자', 'mild', '80.7', 3, 200, 352],
+      [3, '額頭', '이마', 'mild', '78.2', 2, 239, 135],
+      [4, '淚溝', '눈물고랑', 'mod', '61.4', 99, 167, 255],
+      [5, '膚色亮度', '밝기', 'mod', '67', 99, 320, 296],
+      [6, '毛孔', '모공', 'mod', '68.8', 99, 149, 310],
+      [7, '皮脂', '피지', 'none', '5,470', 99, 240, 292],
+    ];
+    const rows = areas.map((a) => ({ n: a[0], zh: a[1], ko: a[2], g: grade[a[3]][0], pill: grade[a[3]][1], score: a[4], dot: st >= a[5] ? '#6F21FF' : 'transparent' }));
+    const rings = areas.map((a) => ({ n: a[0], x: a[6] - 15, y: a[7] - 15, col: grade[a[3]][2] }));
+    const confirmed = st >= 10;
+    const combo = (k, zh, names, nt, krw, first) => ({
+      k, zh, names, nt, krw,
+      chosen: confirmed && first,
+      keyColor: first ? '#6F21FF' : '#6E6E6E',
+      box: confirmed ? (first ? 'border: 3px solid #6F21FF; background: #F4F3FF' : 'border: 1px solid #E3E3E3; opacity: 0.4') : (first ? 'border: 2px solid #6F21FF; background: #FBFAFF' : 'border: 1px solid #E3E3E3'),
+    });
+    const comboRows = [
+      combo('A', '照您說的', 'Sofwave + Voluma 2cc + 額頭肉毒', 'NT$46,000', '₩1,970,000', true),
+      combo('B', '一次提拉', 'Ulthera + 額頭肉毒', 'NT$44,800', '₩1,920,000', false),
+      combo('C', '套組', 'Shrink + 瘦臉肉毒 + 玻尿酸套組 + 肉毒套組', 'NT$39,400', '₩1,689,000', false),
+    ];
+    const NEW_BOX = 'padding: 10px 14px; border-left: 4px solid #6F21FF; background: #F4F3FF; border-radius: 0 10px 10px 0';
+    const OLD_BOX = 'padding: 2px 14px; border-left: 4px solid #CFCFCF';
+    return {
+      clock: S.clock, tickerZh: S.zh, tickerKo: S.ko,
+      stepNo: st + 1, stepTitle: S.t, stepTablet: S.tab, sceneHref: S.href, sceneLabel: S.scene,
+      mirage: st >= 1, noMirage: st < 1, rows, rings,
+      noConcern: st < 2,
+      c1Open: st === 2, c1Closed: st >= 3,
+      c2Open: st === 3, c2Closed: st >= 4, c2Calm: st >= 4 && st < 8, c2Warn: st >= 8, c2New: st === 8,
+      c3: st >= 4,
+      rec: st >= 5, noRec: st < 5, recNew: st === 5,
+      expl: st >= 6, methodNew: st === 6, methodStyle: st === 6 ? NEW_BOX : OLD_BOX,
+      caution: st >= 7, cautionNew: st === 7, cautionStyle: st === 7 ? NEW_BOX : OLD_BOX,
+      combos: st >= 9, noCombos: st < 9, comboRows,
+      dots: this.steps().map((x, i) => ({ label: (i + 1) + '단계 · ' + x.t, go: () => go(i), style: i === st ? 'background: #FFFFFF' : (i < st ? 'background: #A290FF' : 'border: 2px solid #9F9F9F; box-sizing: border-box') })),
+      prev: () => go(st - 1),
+      next: () => go(st + 1),
+      restart: () => this.setState({ step: 0, playing: false }),
+      togglePlay: () => this.setState({ playing: !playing, step: st >= 10 && !playing ? 0 : st }),
+      playLabel: playing ? '❚❚ 멈춤' : '▶ 자동 재생',
+    };
+  }
+}
+</script>
+</body>
+</html>

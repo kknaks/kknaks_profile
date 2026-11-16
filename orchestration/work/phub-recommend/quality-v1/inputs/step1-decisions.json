@@ -1,0 +1,2987 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27",
+ "scope": "1단계 제품 원장 — 사람이 정해야 할 것(같은 성격은 묶어 한 질문)",
+ "basis": "step1-products.json(합본) · step1-products-A/B/C · gate-answers/company-relation-decisions.json · _RESUME §결정",
+ "summary": {
+  "groups": 30,
+  "member_rows": 261,
+  "unique_ledger_ids": 235,
+  "by_kind": {
+   "기존 결정과 달라짐": 5,
+   "재조사로 연결 · 승인": 2,
+   "외국어 이름 대응": 2,
+   "업체 역할": 1,
+   "이름 · 오기": 2,
+   "라인 · 품목": 1,
+   "중복": 1,
+   "허가 범위": 2,
+   "확인 불가": 1,
+   "정체": 1,
+   "원장에서 제외": 4,
+   "초안 대비 변경": 1,
+   "현장 기기": 1,
+   "사용목적 불일치": 1,
+   "근거 약함": 1,
+   "taxonomy 제품 추가": 2,
+   "허가 대상 아님 근거": 1,
+   "원장 범위": 1
+  },
+  "coverage": {
+   "A ⚑게이트": 47,
+   "B 게이트": 22,
+   "C 후보·정할 것·게이트 변경": 26,
+   "재조사 후 확인 불가": 93,
+   "재조사로 찾음": 19,
+   "업체관계 결정과 달라짐": 8,
+   "현장 기기": 35,
+   "taxonomy 새 행": 15,
+   "사용목적 불일치": 4,
+   "근거 약함": 4,
+   "허가 대상 아님 재확인": 4,
+   "검수 지적 목록 밖": 3,
+   "초안 대비 변경": 112
+  },
+  "coverage_note": "각 묶음의 대상 집합이 결정 목록에 전부 들어 있음을 생성 시 검사(누락 0) · coverage 는 허가 규칙 적용 전 대상 집합 기준(규칙으로 정리된 행은 resolved_by_rule)",
+  "already_decided_not_asked": [
+   "미허가 · 허가 취소(이력)는 상태로 남기고 추천 제외(DEC-003 OQ 301~308 · 10-27 사용자) — 미허가 16 · 허가 취소(이력) 22 은 따로 묻지 않음",
+   "허가 규칙(10-27 사용자): 정상 허가에 연결 · 취소 허가는 이력(history)으로만 · 정상 없이 취소뿐 = 「허가 취소(이력)」 — 정상이냐 취소냐 · 취소 허가 연결 여부는 묻지 않음 (디클래씨 = 제허 11-1324 연결 · 23-60 이력)",
+   "같은 허가 · 다른 이름 원장은 라인+품목(10-27 사용자) — 같은 허가 공유 그룹은 표시만, 같은 제품으로 보이는 것만 D16 에서 물음",
+   "1단계에 현장 기기 35 포함 · 진단 장비 4 는 「진단 장비」(10-27 사용자) — D26 은 행 추가 범위만 물음"
+  ],
+  "resolved_by_rule": {
+   "rule": "10-27 사용자 허가 규칙 — 정상 허가에 연결 · 취소 허가는 이력으로만 보관(추천에 쓰지 않음) · 정상 없이 취소뿐 = 「허가 취소(이력)」 · 원장에 남기되 추천 제외",
+   "groups_removed": [
+    "D01",
+    "D03"
+   ],
+   "rows_removed": 9,
+   "items": [
+    {
+     "decision_id": "D01",
+     "title": "디클래씨 — 업체관계 결정과 다른 허가",
+     "removed": "묶음 전체",
+     "ledger_ids": [
+      "auto-12-1774737181584"
+     ],
+     "why": "디클래씨 = 제허 11-1324(정상) 연결, 제허 23-60(취소)은 이력 — 사용자 결정 그대로(허가 규칙 10-27)"
+    },
+    {
+     "decision_id": "D03",
+     "title": "젠틀레이즈 — 업체관계 결정 「허가 미확인」 → 취소 허가 연결",
+     "removed": "묶음 전체",
+     "ledger_ids": [
+      "auto-M8-1775362912344"
+     ],
+     "why": "취소 허가(수허 99-1506)는 연결하지 않고 이력 — 정상 허가 없음 → 「허가 취소(이력)」 · 추천 제외. ③ 현 수입사 카탈로그 번호 허가 조사는 규칙 밖 갈래로 남음(정상 허가가 확인되면 그때 연결)"
+    },
+    {
+     "decision_id": "D07",
+     "title": "업체관계 결정에 허가만 더 붙은 것",
+     "removed": "행",
+     "ledger_ids": [
+      "auto-M8-1775364775120"
+     ],
+     "rows": [
+      {
+       "ledger_id": "auto-M8-1775364775120",
+       "product": "스타워커",
+       "why": "추가로 찾은 수허 21-96(취소)은 연결하지 않고 이력 — 정상 3건 연결 유지"
+      }
+     ]
+    },
+    {
+     "decision_id": "D09",
+     "title": "이름 일치 허가로 연결 — 원장(사진)에 업체 표기 없음",
+     "removed": "행",
+     "ledger_ids": [
+      "auto-M2-1775364775110"
+     ],
+     "rows": [
+      {
+       "ledger_id": "auto-M2-1775364775110",
+       "product": "아쿠아미드",
+       "why": "이름 일치 허가 3건 전부 취소 → 연결 없음 · 「허가 취소(이력)」 · 추천 제외"
+      }
+     ]
+    },
+    {
+     "decision_id": "D25",
+     "title": "초안 판정에서 바뀐 것 — 위에 없는 32건",
+     "removed": "행",
+     "ledger_ids": [
+      "auto-M15-1775362965286",
+      "auto-M15-1775362978512",
+      "M15-3-1"
+     ],
+     "rows": [
+      {
+       "ledger_id": "auto-M15-1775362965286",
+       "product": "제트필",
+       "why": "초안 auto → 허가 4건 전부 취소 → 「허가 취소(이력)」 · 추천 제외"
+      },
+      {
+       "ledger_id": "auto-M15-1775362978512",
+       "product": "실크필",
+       "why": "초안 auto → 허가 2건 전부 취소 → 「허가 취소(이력)」 · 추천 제외"
+      },
+      {
+       "ledger_id": "M15-3-1",
+       "product": "옴니룩스",
+       "why": "초안 auto → 허가 2건 전부 취소 → 「허가 취소(이력)」 · 추천 제외(옴니럭스 중복 묶음은 D16 에 남음)"
+      }
+     ]
+    },
+    {
+     "decision_id": "D29",
+     "title": "taxonomy products[] 에서 빠진 제품 — 새 행 15개",
+     "removed": "행",
+     "ledger_ids": [
+      "M1-P-8",
+      "M17-P-0"
+     ],
+     "rows": [
+      {
+       "ledger_id": "M1-P-8",
+       "product": "타임버스",
+       "why": "취소 허가만(수출용 202301026) → 원장에 「허가 취소(이력)」로 남김 · 추천 제외"
+      },
+      {
+       "ledger_id": "M17-P-0",
+       "product": "큐어스킨",
+       "why": "취소 허가만(202105645) → 원장에 「허가 취소(이력)」로 남김 · 추천 제외"
+      }
+     ]
+    }
+   ],
+   "ids_kept": "남은 묶음 id 는 바꾸지 않음(결정 페이지 db decisions/<id> 와 맞춤)"
+  }
+ },
+ "decisions": [
+  {
+   "decision_id": "D02",
+   "title": "텐쎄라 — 업체관계 결정 「허가 미확인」 → 연결",
+   "kind": "기존 결정과 달라짐",
+   "lacking": "업체관계 결정은 「허가 미확인」인데 구간 B 가 10THERA 허가 2건에 연결했다",
+   "question": "텐쎄라를 10THERA 허가(제허 19-237 · 20-492)에 연결할까?",
+   "choices": [
+    "연결(구간 B 판정) — 상태 정상",
+    "기존 결정 유지 — 허가 미확인"
+   ],
+   "context": null,
+   "count": 1,
+   "members": [
+    {
+     "ledger_id": "M9-1-10",
+     "segment": "B",
+     "product": "텐쎄라",
+     "product_name": "텐쎄라",
+     "license_now": "정상 · 제허 19-237 호(정상), 제허 20-492 호(정상)",
+     "lacking": "업체관계 결정은 「허가 미확인」인데 구간 B 가 10THERA 허가 2건에 연결했다",
+     "basis": "구간 B: 정상 · 제허 19-237 호(정상), 제허 20-492 호(정상) — 모델명 「10THERA」 · 업체관계 결정(company-relation-decisions) 은 unconfirmed"
+    }
+   ]
+  },
+  {
+   "decision_id": "D04",
+   "title": "에이비오톡신 — 초안 자동 연결(디스포트) 해제",
+   "kind": "기존 결정과 달라짐",
+   "lacking": "초안이 디스포트주(199907127)에 자동 연결했으나 근거가 「abobotulinumtoxinA 음차」 추정뿐 — 구간 A 는 해제 · 미허가",
+   "question": "에이비오톡신의 디스포트 연결 해제를 받을까?",
+   "choices": [
+    "해제 받기 — 미허가(국내 이름 허가 0)",
+    "디스포트의 동의어로 연결(초안 유지)",
+    "원천(병원)에 어떤 제품인지 확인"
+   ],
+   "context": null,
+   "count": 1,
+   "members": [
+    {
+     "ledger_id": "auto-M1-1775364775100",
+     "segment": "A",
+     "product": "에이비오톡신",
+     "product_name": "에이비오톡신",
+     "license_now": "미허가",
+     "lacking": "초안이 디스포트주(199907127)에 자동 연결했으나 근거가 「abobotulinumtoxinA 음차」 추정뿐 — 구간 A 는 해제 · 미허가",
+     "basis": "초안 auto(규칙 web4) 디스포트주 199907127 연결 해제 — 근거가 「abobotulinumtoxinA 음차」 추정뿐(web4 note 「추정」 명시) / 식약처 의약품 허가 API item_name=클로스트리디움 · 보툴리눔 (취소 포함 60건 전수) 에 이 이름 없음 · item_name=에이비오톡신 0건"
+    }
+   ]
+  },
+  {
+   "decision_id": "D05",
+   "title": "온다 — 업체관계 결정 「해당 허가 없음」 → 재조사로 ONDA 허가 3건",
+   "kind": "기존 결정과 달라짐",
+   "lacking": "업체관계 결정은 no_license 인데 emedi 제품명 「ONDA · ONDA SMART · ONDA PRO」 가 (주)에코라(제조 EL.EN.)에 있다 · 원장 업체 표기 「DEKA」",
+   "question": "온다를 에코라 ONDA 허가에 연결할까?",
+   "choices": [
+    "3건 모두 연결 — 상태 정상(수입 에코라 · 제조 EL.EN. S.p.A.)",
+    "극초단파 자극기 2건(수인 22-4482 · 24-369)만 연결, ONDA PRO(범용 전기 수술기)는 별도 품목으로",
+    "기존 결정 유지 — 해당 허가 없음"
+   ],
+   "context": null,
+   "count": 1,
+   "members": [
+    {
+     "ledger_id": "M9-3-1",
+     "segment": "B",
+     "product": "온다",
+     "product_name": "온다",
+     "license_now": "정상 · 수인22-4482호(정상), 수인24-369호(정상), 수허26-28호(정상)",
+     "lacking": "업체관계 결정은 no_license 인데 emedi 제품명 「ONDA · ONDA SMART · ONDA PRO」 가 (주)에코라(제조 EL.EN.)에 있다 · 원장 업체 표기 「DEKA」",
+     "basis": "기존 업체관계 결정 「해당 허가 없음(no_license)」과 다름 — emedi 제품명 「ONDA · ONDA SMART · ONDA PRO」 (주)에코라 수입 · 제조 EL.EN. S.p.A.(원장 업체 「DEKA」 와 표기 다름 — B 기록 「DEKA(El.En. 그룹)」)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D06",
+   "title": "더채움프리미어 — 업체관계 결정 「허가 미확인」 → 연결 · 이름 오기",
+   "kind": "기존 결정과 달라짐",
+   "lacking": "결정은 「허가 미확인」 · 구간 A 가 emedi 제품명 「더채움 프리미엄」(제허 20-527)으로 연결 · 원장 「프리미어」 ↔ 허가 「프리미엄」",
+   "question": "더채움프리미어를 제허 20-527 에 연결하고 이름을 오기로 처리할까?",
+   "choices": [
+    "연결 + 원장 이름 오기로 원천 수정 목록에 올림",
+    "연결만(이름은 동의어로 둠)",
+    "기존 결정 유지 — 허가 미확인"
+   ],
+   "context": null,
+   "count": 1,
+   "members": [
+    {
+     "ledger_id": "auto-M2-1775364775108",
+     "segment": "A",
+     "product": "더채움프리미어",
+     "product_name": "더채움 프리미엄",
+     "license_now": "정상 · 제허20-527호(정상)",
+     "lacking": "결정은 「허가 미확인」 · 구간 A 가 emedi 제품명 「더채움 프리미엄」(제허 20-527)으로 연결 · 원장 「프리미어」 ↔ 허가 「프리미엄」",
+     "basis": "원장 「프리미어」 ↔ 허가 「프리미엄」 표기 차이 — 오기 확인(원천 수정 목록 대상)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D07",
+   "title": "업체관계 결정에 허가만 더 붙은 것",
+   "kind": "기존 결정과 달라짐",
+   "lacking": "결정한 허가는 그대로이고 구간 조사가 같은 제품 허가를 더 찾았다",
+   "question": "추가로 찾은 허가를 같은 제품에 붙일까?",
+   "choices": [
+    "붙이기(라인 품목으로)",
+    "결정한 허가만 둠"
+   ],
+   "context": null,
+   "count": 1,
+   "members": [
+    {
+     "ledger_id": "M2-1-2",
+     "segment": "A",
+     "product": "더채움",
+     "product_name": "더채움",
+     "license_now": "정상 · 제허20-527호(정상), 제허17-809호(정상), 제허14-1762호(정상), 제허14-860호(정상)",
+     "lacking": "결정한 허가는 그대로이고 구간 조사가 같은 제품 허가를 더 찾았다",
+     "basis": "결정 제허 20-527 · 17-809 + emedi 「더채움」 제허 14-1762(Sub-Q Plus) · 14-860(더 채움) 추가"
+    }
+   ]
+  },
+  {
+   "decision_id": "D08",
+   "title": "재조사로 찾은 것 중 자동 규칙 A 충족(이름 + 업체 일치)",
+   "kind": "재조사로 연결 · 승인",
+   "lacking": "10-27 규칙 A(이름 든 제품 하나 + 원장/사진 업체 일치)로는 자동 확정 대상 — 자동화가 만든 연결이라 확인만",
+   "question": "재조사로 찾은 4건을 확정할까?",
+   "choices": [
+    "확정",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 4,
+   "members": [
+    {
+     "ledger_id": "auto-M8-1775362921273",
+     "segment": "B",
+     "product": "메디오스타넥스트프로",
+     "product_name": "메디오스타넥스트프로",
+     "license_now": "정상 · 수허17-54호(정상)",
+     "lacking": "10-27 규칙 A(이름 든 제품 하나 + 원장/사진 업체 일치)로는 자동 확정 대상 — 자동화가 만든 연결이라 확인만",
+     "basis": "emedi 제품명 「MedioStar NeXT PRO」 수허 17-54 에이엘티 수입 · 제조 Asclepion — 원장 업체 Asclepion 일치(같은 제조사 MeDioStar 수허 24-219 는 다른 품목)"
+    },
+    {
+     "ledger_id": "auto-M8-1775362936434",
+     "segment": "B",
+     "product": "리팟",
+     "product_name": "리팟",
+     "license_now": "정상 · 제허22-251호(정상)",
+     "lacking": "10-27 규칙 A(이름 든 제품 하나 + 원장/사진 업체 일치)로는 자동 확정 대상 — 자동화가 만든 연결이라 확인만",
+     "basis": "emedi 제품명 「reepot」 제허 22-251 (주)클래시스 엔디야그 — 원장 업체 클래시스 일치. 구간 B ⚑(본체 허가번호 미확인)이 풀림. 부속 reepot tip 등 신고 3건은 연결 안 함"
+    },
+    {
+     "ledger_id": "auto-M11-1775360510687",
+     "segment": "B",
+     "product": "트윈픽셀",
+     "product_name": "트윈픽셀",
+     "license_now": "정상 · 제허25-738호(정상)",
+     "lacking": "10-27 규칙 A(이름 든 제품 하나 + 원장/사진 업체 일치)로는 자동 확정 대상 — 자동화가 만든 연결이라 확인만",
+     "basis": "emedi 제품명 「TwinPixel」 제허 25-738 (주)은성글로벌 범용 전기 수술기 — 원장 업체 은성글로벌 일치(구간 B ⚑ 풀림)"
+    },
+    {
+     "ledger_id": "new-DEV-068",
+     "segment": "C",
+     "product": "피콜로 프리미엄",
+     "product_name": "피콜로 프리미엄",
+     "license_now": "정상 · 제허18-557호(정상)",
+     "lacking": "10-27 규칙 A(이름 든 제품 하나 + 원장/사진 업체 일치)로는 자동 확정 대상 — 자동화가 만든 연결이라 확인만",
+     "basis": "emedi 모델 「PicoLO PREMIUM」 제허 18-557 (주)레이저옵텍 — 사진 업체 LASEROPTEK 일치"
+    }
+   ]
+  },
+  {
+   "decision_id": "D09",
+   "title": "이름 일치 허가로 연결 — 원장(사진)에 업체 표기 없음",
+   "kind": "재조사로 연결 · 승인",
+   "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+   "question": "업체 대조 없이 이름 일치 허가로 연결한 것을 받을까?",
+   "choices": [
+    "전부 받기",
+    "이름 든 허가가 한 업체뿐인 것만 받기",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 16,
+   "members": [
+    {
+     "ledger_id": "auto-M1-1775362462896",
+     "segment": "A",
+     "product": "톡스온",
+     "product_name": "톡스온",
+     "license_now": "정상 · 202500353(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장에 업체 표기 없음 — 이름 완전 일치 허가 1건(에이티지씨)으로 연결"
+    },
+    {
+     "ledger_id": "M2-2-5",
+     "segment": "A",
+     "product": "퍼펙타",
+     "product_name": "Perfectha",
+     "license_now": "정상 · 수허 11-1381 호(정상), 수허 10-1266 호(정상), 수허 10-1267 호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 표기 없음 — 이름 일치 허가(한국싱클레어 수입)로 초안 확정"
+    },
+    {
+     "ledger_id": "M2-2-6",
+     "segment": "A",
+     "product": "아말리안",
+     "product_name": "Amalian",
+     "license_now": "정상 · 수허 25-210 호(정상), 수허 25-201 호(정상), 수허 12-1958 호(정상), 수허 12-1959 호(정상) 외 1",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 표기 없음 — 이름 일치 허가(대화제약 수입)로 초안 확정"
+    },
+    {
+     "ledger_id": "auto-M4-1775361743324",
+     "segment": "A",
+     "product": "매쿰7",
+     "product_name": "매쿰7",
+     "license_now": "정상 · 제허 26-616 호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장에 업체 없음 — 이름 완전 일치 허가 1건(사치바이오)으로 초안 확정"
+    },
+    {
+     "ledger_id": "auto-M8-1775361486532",
+     "segment": "B",
+     "product": "트리니티",
+     "product_name": "트리니티",
+     "license_now": "정상 · 제허 21-645 호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — 이름(Trinity)·계열(제모 · 반도체 레이저) 일치 허가가 블루코어컴퍼니 하나. 동명 Syneron Trinity 허가는 TYPE_NAME 질의에 없음"
+    },
+    {
+     "ledger_id": "auto-M8-1775362951135",
+     "segment": "B",
+     "product": "리레이저",
+     "product_name": "리레이저",
+     "license_now": "정상 · 제허19-69호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — 국문 「리레이저」 ↔ emedi 제품명 「RELASER」 음역 · 이름 일치 허가 1건((주)르키드 엔디야그)"
+    },
+    {
+     "ledger_id": "auto-M9-1775360610416",
+     "segment": "B",
+     "product": "포커스듀얼",
+     "product_name": "포커스듀얼",
+     "license_now": "정상 · 제허21-24호(정상), 제허26-352호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — 이름 일치 허가 (주)은성글로벌 2건(FOCUS DUAL · FOCUS DUAL MAX)"
+    },
+    {
+     "ledger_id": "auto-M15-1775364775167",
+     "segment": "C",
+     "product": "소노퀸",
+     "product_name": "소노퀸",
+     "license_now": "정상 · 제허14-1486호(정상), 제허16-360호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — 이름 일치 허가 (주)뉴퐁 2건(SONOQUEEN · SONOQUEEN MINI). 같은 이름 (주)비스토스 sonoQueen 제허14-630 은 2014 취하라 제외"
+    },
+    {
+     "ledger_id": "M15-6-2",
+     "segment": "C",
+     "product": "큐어젯",
+     "product_name": "큐어젯",
+     "license_now": "정상 · 제인22-4689호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — emedi 제품명 「Curejet」 바즈바이오메딕(C 의 후보 CRJ-001 과 같은 허가)"
+    },
+    {
+     "ledger_id": "auto-50-1774737181584",
+     "segment": "C",
+     "product": "하이쿡스",
+     "product_name": "하이쿡스",
+     "license_now": "정상 · 제인18-4066호(정상), 제인16-4320호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — emedi 제품명 「Hycoox」 (주)노바메디 2건(C web4 제조사와 일치)"
+    },
+    {
+     "ledger_id": "auto-M15-1775402736453",
+     "segment": "C",
+     "product": "올타이트",
+     "product_name": "올타이트",
+     "license_now": "정상 · 제인24-927호(정상), 제인23-5136호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "원장 업체 없음 — emedi 제품명 「Alltite · Alltite R」 (주)이노서스 2건(C 의 후보 INX-23001 · INX-23001E 와 같은 허가)"
+    },
+    {
+     "ledger_id": "new-DEV-013",
+     "segment": "C",
+     "product": "덴서티하이",
+     "product_name": "덴서티 하이",
+     "license_now": "정상 · 제허23-472호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "사진 업체 표기 없음 — 모델 「DENSITY High」 (주)제이시스메디칼 제허23-472(라인 덴서티 new-DEV-024 와 같은 허가)"
+    },
+    {
+     "ledger_id": "new-DEV-015",
+     "segment": "C",
+     "product": "이브타이탄",
+     "product_name": "이브타이탄",
+     "license_now": "정상 · 제허24-481호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "사진 업체 표기 없음 — emedi 제품명 「EVE Synergy, EVE Titan」 (주)위로(C 의 후보 EVE-20M 과 같은 허가)"
+    },
+    {
+     "ledger_id": "new-DEV-018",
+     "segment": "C",
+     "product": "이래비티",
+     "product_name": "이래비티",
+     "license_now": "정상 · 제허21-26호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "사진 업체 표기 없음 — emedi 제품명 「ERAVITY」 · 모델 「ERAVITY MAX」 (주)이노메드(C 의 후보 「뉴트로빔외 2건」 과 같은 허가)"
+    },
+    {
+     "ledger_id": "new-DEV-056",
+     "segment": "C",
+     "product": "소노케어",
+     "product_name": "소노케어",
+     "license_now": "정상 · 제인17-4336호(정상), 제인17-4264호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "사진 업체 표기 없음 — emedi 제품명 「sonoCare」 (주)뉴퐁 2건(C 의 후보 NP-310 과 같은 허가)"
+    },
+    {
+     "ledger_id": "new-DEV-042",
+     "segment": "C",
+     "product": "더마큐어",
+     "product_name": null,
+     "license_now": "정상 · 제허22-692호(정상)",
+     "lacking": "이름 든 허가는 있으나 원장에 업체가 없어 규칙 A(업체 일치)를 못 채움",
+     "basis": "사진 업체 표기 없음 · 정체 미확정 — emedi 제품명 「Dermacure」 (주)피글 「이학 진료용 기구」 1건. 현장 장비가 이 허가 제품인지 확인 필요"
+    }
+   ]
+  },
+  {
+   "decision_id": "D10",
+   "title": "국문 원장 이름 ↔ 허가 영문 이름(음역)",
+   "kind": "외국어 이름 대응",
+   "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+   "question": "음역 대응으로 연결한 것을 받을까?",
+   "choices": [
+    "전부 받기",
+    "건별로 본다",
+    "원천에 영문 표기를 받아 대조"
+   ],
+   "context": null,
+   "count": 8,
+   "members": [
+    {
+     "ledger_id": "M2-1-4",
+     "segment": "A",
+     "product": "에피티크",
+     "product_name": "e.p.t.q.",
+     "license_now": "정상 · 제허 23-65 호(정상), 제허 23-66 호(정상), 제허 20-72 호(정상), 제허 19-444 호(정상) 외 5",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "허가 모델명은 영문 「e.p.t.q.」 뿐(국문 「에피티크」 없음) — 업체 제테마 일치로 초안 확정, 음역 대응 확인"
+    },
+    {
+     "ledger_id": "M2-1-6",
+     "segment": "A",
+     "product": "아띠에르",
+     "product_name": "아띠에르",
+     "license_now": "정상 · 제허14-2923호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "허가 제품명은 영문 「Atiere」 — 원장 국문 「아띠에르」 음역 · 업체(메디톡스) 일치"
+    },
+    {
+     "ledger_id": "M3-3-2",
+     "segment": "A",
+     "product": "고우리",
+     "product_name": "GOURI",
+     "license_now": "정상 · 제허19-187호(정상), 제허26-447호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "원장 국문 「고우리」 ↔ 허가 영문 「GOURI」 음역(업체 일치)"
+    },
+    {
+     "ledger_id": "auto-M7-1775361076707",
+     "segment": "A",
+     "product": "잼버실",
+     "product_name": "JAMBER",
+     "license_now": "정상 · 제허24-743호(정상), 제허24-273호(정상), 제허24-142호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "원장에 업체 없음 · 국문 「잼버」 ↔ 영문 「JAMBER」 음역 — 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362571755",
+     "segment": "A",
+     "product": "N코그",
+     "product_name": "N-Cog",
+     "license_now": "정상 · 제허17-914호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "원장에 업체 없음 · 「N코그」 ↔ 「N-Cog」 — 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362729861",
+     "segment": "A",
+     "product": "캐번실",
+     "product_name": "Vita-lifts Cavern",
+     "license_now": "정상 · 제허18-61호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "원장에 업체 없음 · 음역 대응 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M15-1775361179297",
+     "segment": "C",
+     "product": "비타인젝터",
+     "product_name": "비타인젝터",
+     "license_now": "정상 · 제인15-119호(정상), 제인15-580호(정상), 제인15-4207호(정상), 제인17-4792호(정상)",
+     "lacking": "허가에는 영문 제품명만 있고 원장은 국문 — 10-27 규칙 「외국어 이름이 정확히 일치하지 않으면 승인 게이트」",
+     "basis": "원장 업체 없음 · 국문 「비타인젝터」 ↔ emedi 제품명 「VITAL INJECTOR(2 · 3)」 음역 — (주)은성글로벌 정상 4건(같은 이름 서울제신 3건은 취하라 제외)"
+    },
+    {
+     "ledger_id": "auto-M15-1775360527416",
+     "segment": "C",
+     "product": "에어젯",
+     "product_name": "에어젯",
+     "license_now": "정상 · 제인 16-4366 호(정상), 제인 15-1129 호(정상) · 이력: 서울 제신 14-222 호(취소)",
+     "lacking": "원장 업체 없음 · 국문 「에어젯」 ↔ 모델명 「AIRJET · AIRJETII」 — 초안이 추측 검색어(TYPE_NAME=AIRJET)로 찾은 (주)유니온메디칼 전동식의약품주입펌프 3건을 구간 C 가 연결",
+     "basis": "식약처 TYPE_NAME=AIRJET 3건 (주)유니온메디칼 — 정상 2 · 취소 1"
+    }
+   ]
+  },
+  {
+   "decision_id": "D11",
+   "title": "외국어 모델명 철자 · 표기 불일치",
+   "kind": "외국어 이름 대응",
+   "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+   "question": "모델명이 다르게 적힌 허가로 연결한 것을 받을까?",
+   "choices": [
+    "전부 받기",
+    "건별로 본다",
+    "연결 보류(확인 불가)"
+   ],
+   "context": null,
+   "count": 5,
+   "members": [
+    {
+     "ledger_id": "M8-5-3",
+     "segment": "B",
+     "product": "젠틀맥스프로+",
+     "product_name": "젠틀맥스 프로 플러스",
+     "license_now": "정상 · 수허 26-194 호(정상)",
+     "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+     "basis": "허가 모델명 「GentleMaxi Pro Plus」 — 원장·사진(GentleMax Pro Plus)과 철자 다름(외국어 이름 불일치 → 게이트). 허가 업체 밴스로컬 · 재제조원 LUCENTRA(재제조 수입)"
+    },
+    {
+     "ledger_id": "M8-5-5",
+     "segment": "B",
+     "product": "아발란체",
+     "product_name": "아발란체",
+     "license_now": "정상 · 수허 25-7 호(정상)",
+     "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+     "basis": "허가 모델명 M071-2F/LXP(Fotona d.o.o · 신한씨스텍, 2025-01-21) — 현장 사진 DEV-003 판독 「Avalanche LXP」와 「LXP」만 일치, 제품명 AvalancheLase 는 허가 모델명에 없음(외국어 이름 불일치 → 게이트)"
+    },
+    {
+     "ledger_id": "M9-1-9",
+     "segment": "B",
+     "product": "리니어펌",
+     "product_name": "리니어펌",
+     "license_now": "정상 · 제허 18-345 호(정상)",
+     "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+     "basis": "허가 모델명 ULTRAcel Q+ — 웹(web4: smarttoday · dailypharm)이 리니어펌 해외명을 ULTRAcel Q+ 로 적음 · 사진 DEV-011 판독 LinearFirm(외국어 이름 불일치 → 게이트)"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775131",
+     "segment": "B",
+     "product": "트릴리프트",
+     "product_name": "트라이리프트",
+     "license_now": "정상 · 수허 26-75 호(정상)",
+     "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+     "basis": "허가 모델명 「triLyft외 1건」(루메니스비코리아 · 제조원 Arnir A.T Communications) — 웹 제품명 triLift 와 철자 다름(외국어 이름 불일치 → 게이트)"
+    },
+    {
+     "ledger_id": "M9-2-1",
+     "segment": "B",
+     "product": "써마지FLX",
+     "product_name": "써마지 FLX",
+     "license_now": "정상 · 수허 18-245 호(정상)",
+     "lacking": "허가 모델명이 원장 · 사진의 영문 이름과 철자나 구성이 다르다",
+     "basis": "허가 모델명 TG-3A(솔타메디칼코리아) — 「Thermage FLX TG-3A」 사용자 설명서(웹) 근거. 모델명에 FLX 없음(게이트)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D12",
+   "title": "원장 업체 표기 ↔ 허가 업체 다름",
+   "kind": "업체 역할",
+   "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+   "question": "업체가 다른 것을 어떻게 처리할까?",
+   "choices": [
+    "허가 업체를 제조/수입사로, 원장 업체는 판매사 후보로 기록(근거 없는 칸은 「근거 없음」)",
+    "원장 업체 표기를 오기로 보고 원천 수정 목록에 올림",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 12,
+   "members": [
+    {
+     "ledger_id": "auto-8-1774737181584",
+     "segment": "A",
+     "product": "셀레스텔라",
+     "product_name": "셀레스텔라",
+     "license_now": "정상 · 제허19-31호(정상), 제허16-936호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「더에쓰씨」 ≠ 허가 업체 「알에프바이오」 — 제조/판매 관계 확인"
+    },
+    {
+     "ledger_id": "auto-M2-1775362470502",
+     "segment": "A",
+     "product": "프린세스",
+     "product_name": "Princess",
+     "license_now": "정상 · 수허 12-871 호(정상), 수허 12-872 호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「크로마비전」 ↔ 허가 제조자 CROMA-PHARMA GmbH · 수입 엠엔엘 — 표기 차이 확인"
+    },
+    {
+     "ledger_id": "auto-M2-1775362477273",
+     "segment": "A",
+     "product": "스타일에이지",
+     "product_name": "Stylage",
+     "license_now": "정상 · 수허 14-2813 호(정상), 수허 10-289 호(정상), 수허 10-288 호(정상), 수허 10-287 호(정상) · 이력: 수허 19-140 호(취소), 수허 18-162 호(취소), 수허 11-1003 호(취소)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「비비안비」 ↔ 허가 제조자 Laboratoires VIVACY — 표기 차이 확인(원천 수정 목록 대상 여부)"
+    },
+    {
+     "ledger_id": "auto-10-1774737181584",
+     "segment": "A",
+     "product": "올리디아",
+     "product_name": "올리디아",
+     "license_now": "정상 · 제허 21-599 호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「PRP사이언스」 ↔ 허가 「(주)피알피사이언스」 표기 차이(업체관계 결정: 같은 회사)"
+    },
+    {
+     "ledger_id": "auto-16-1774737181584",
+     "segment": "A",
+     "product": "라풀렌",
+     "product_name": "라풀렌",
+     "license_now": "정상 · 제허21-941호(정상), 제허22-170호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「삼양홀딩스」 ↔ 허가 「(주)삼양바이오팜」 — 관계 근거 없음(확인 필요)"
+    },
+    {
+     "ledger_id": "auto-23-1774737181584",
+     "segment": "A",
+     "product": "힐로웨이브",
+     "product_name": "HILOWAVE",
+     "license_now": "정상 · 제허14-1193호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「하이어코퍼레이션」 ≠ 허가 업체 「(주)에스씨엘」 — 관계 근거 없음 · 국문↔영문 음역"
+    },
+    {
+     "ledger_id": "M7-3-3",
+     "segment": "A",
+     "product": "테스리프트",
+     "product_name": "TESSLIFT SOFT",
+     "license_now": "정상 · 제허17-128호(정상), 제허18-377호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「리젠바이오텍」 ≠ 허가 업체 「주식회사 테스」 — 관계 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M7-1775362555891",
+     "segment": "A",
+     "product": "블루로즈클레어",
+     "product_name": "BLUE ROSE CLAIR",
+     "license_now": "정상 · 제허21-1025호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「휴젤」 ≠ 허가 업체 「(주)제이월드」 — 판매 관계 근거 없음(web4 로즈실 항목은 블루로즈를 휴젤 실로 기재 — https://artis1.co.kr/blueroselift)"
+    },
+    {
+     "ledger_id": "auto-19-1774737181584",
+     "segment": "A",
+     "product": "셀르디엠",
+     "product_name": "셀르디엠",
+     "license_now": "허가 대상 아님",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "원장 업체 「한스바이오파마」 ↔ 기사 「한스바이오메드」 표기 차이"
+    },
+    {
+     "ledger_id": "new-DEV-063",
+     "segment": "C",
+     "product": "큐라스토닝",
+     "product_name": "큐라스",
+     "license_now": "정상 · 제허15-629호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "제조사 충돌 — emedi 제품명 「CuRAS」 허가 업체 (주)클래시스(제조원 칸 클래시스 · LaserPair · 유리드알앤디) ↔ C 기록 제조사 (주)이루다(FDA 510k K173038)"
+    },
+    {
+     "ledger_id": "new-DEV-005",
+     "segment": "C",
+     "product": "아포지플러스",
+     "product_name": "아포지 플러스",
+     "license_now": "정상 · 수허05-546호(정상)",
+     "lacking": "원장(또는 사진·웹)에 적힌 업체와 허가 업체 · 제조원이 다르고 둘의 관계(판매 · 계열 · 오기) 근거가 없다",
+     "basis": "사진 업체 「Cynosure」 ↔ 허가 제조원 「Cogmedix Inc.」 · 수입 (주)루트로닉 — 모델 「Apogee+」 일치. 구간 B 아포지엘리트플러스(auto-36-1774737181584)와 같은 허가"
+    },
+    {
+     "ledger_id": "M15-2-1",
+     "segment": "C",
+     "product": "아쿠아필",
+     "product_name": "아쿠아필",
+     "license_now": "정상 · 제인 11-712 호(정상)",
+     "lacking": "사진(DEV-040)에 제조사 표기 없음 — 허가 업체 엠아이테크 제품인지 사진으로 확인 불가",
+     "basis": "식약처 TYPE_NAME=아쿠아필 → 「아쿠아필(Aqua Peel)」 엠아이테크 1건(정상). 게이트 auto 가 함께 잡은 AQUAPEEL-TERA(아스테라시스) · AQUA PEEL SENSE/MINI(티엠아이 · 취소)는 업체가 다른 별개 제품이라 제외"
+    }
+   ]
+  },
+  {
+   "decision_id": "D13",
+   "title": "원장 이름 오기(근거 있음) — 원천 수정 목록",
+   "kind": "이름 · 오기",
+   "lacking": "허가 · 사진 라벨 · 공식 표기로 원장 이름이 오기임이 확인됨",
+   "question": "이 원장 이름들을 원천 수정 목록에 올릴까?",
+   "choices": [
+    "올림(원장 이름은 동의어 「오기」로 남김)",
+    "원장 이름 그대로 둠"
+   ],
+   "context": null,
+   "count": 3,
+   "members": [
+    {
+     "ledger_id": "M1-1-7",
+     "segment": "A",
+     "product": "리즈톡신",
+     "product_name": "리즈톡스",
+     "license_now": "정상 · 202105225(정상), 202104572(정상), 201605990(정상)",
+     "lacking": "허가 · 사진 라벨 · 공식 표기로 원장 이름이 오기임이 확인됨",
+     "basis": "원장 「리즈톡신」 ↔ 허가 · 원천 products.json 「리즈톡스」(휴온스바이오파마)"
+    },
+    {
+     "ledger_id": "auto-49-1774737181584",
+     "segment": "C",
+     "product": "아스트로더",
+     "product_name": "아스트로돔",
+     "license_now": "확인 불가",
+     "lacking": "오기 + 허가 확인 불가",
+     "basis": "사진 DEV-046 라벨 「AstrodomeFacial」 · 파일명 「아스트로돔」 → 원장 「아스트로더」 오기. 재조사 emedi 아스트로돔 · Astrodome 0건"
+    },
+    {
+     "ledger_id": "new-DEV-074",
+     "segment": "C",
+     "product": "스캐나",
+     "product_name": "스케나",
+     "license_now": "확인 불가",
+     "lacking": "오기 + 허가 확인 불가",
+     "basis": "공식 한글 「스케나」(skena.co.kr) → 「스캐나」 오기. 재조사 emedi 스케나 · SKENA 0건"
+    }
+   ]
+  },
+  {
+   "decision_id": "D14",
+   "title": "원장 이름이 다른 제품의 오기인지 근거 없음 — 후보 있음",
+   "kind": "이름 · 오기",
+   "lacking": "비슷한 이름의 허가 제품이 있지만 같은 제품이라는 근거가 없어 확인 불가로 둠",
+   "question": "후보와 같은 제품인지 어떻게 정할까?",
+   "choices": [
+    "원천(병원)에 확인",
+    "후보 제품의 동의어로 연결",
+    "확인 불가 유지"
+   ],
+   "context": null,
+   "count": 4,
+   "members": [
+    {
+     "ledger_id": "auto-M2-1775364775107",
+     "segment": "A",
+     "product": "엘라비에프라임",
+     "product_name": "엘라비에프라임",
+     "license_now": "확인 불가",
+     "lacking": "비슷한 이름의 허가 제품이 있지만 같은 제품이라는 근거가 없어 확인 불가로 둠",
+     "basis": "원장 「엘라비에프라임」 이 「엘라비에 프리미어」 오기인지 원천 확인 필요 / 엘라비에 허가 13건(모델 58)에 「프라임」 이름 없음(emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=엘라비에) — 「프리미어」 라인(22-434 · 20-867 · 20-206 · 19-21)과 같은지 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M9-1775363051791",
+     "segment": "B",
+     "product": "리프세라",
+     "product_name": "리프세라",
+     "license_now": "확인 불가",
+     "lacking": "비슷한 이름의 허가 제품이 있지만 같은 제품이라는 근거가 없어 확인 불가로 둠",
+     "basis": "기존 자동 판정은 리프테라 라인 7건 — 「리프세라」와 「리프테라」 대응(오기) 근거 없음 / 재조사: Liftera 7건(아스테라시스 · 대한과학)은 원장 「리프테라」(M9-1-8)에 연결됨 — 「리프세라」 0건"
+    },
+    {
+     "ledger_id": "auto-M8-1775364775128",
+     "segment": "B",
+     "product": "포토나스타발브",
+     "product_name": "포토나스타발브",
+     "license_now": "확인 불가",
+     "lacking": "비슷한 이름의 허가 제품이 있지만 같은 제품이라는 근거가 없어 확인 불가로 둠",
+     "basis": "재조사: StarWalker 허가 2건(수허26-216 · 17-572 신한씨스텍/Fotona)은 원장 「스타워커」(auto-M8-1775364775120)에 이미 연결 — 「스타발브」 0건, 스타워커 오기인지 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M1-1775364775101",
+     "segment": "A",
+     "product": "센독스",
+     "product_name": "센독스",
+     "license_now": "미허가",
+     "lacking": "미허가 · 원장 업체 「메디콕스」 가 「메디톡스」 오기인지 근거 없음",
+     "basis": "초안 자동 연결 해제 확인 · 원장 업체 「메디콕스」 가 「메디톡스」 오기인지 원천 확인 필요(근거 없음)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D15",
+   "title": "라인 안 어느 품목인지 특정 필요",
+   "kind": "라인 · 품목",
+   "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+   "question": "원장 이름을 라인의 어느 품목에 붙일까?",
+   "choices": [
+    "라인 전체에 붙임(품목 미정)",
+    "원천(병원)에 품목 확인",
+    "확인 불가로 둠"
+   ],
+   "context": null,
+   "count": 5,
+   "members": [
+    {
+     "ledger_id": "auto-M4-1775360463217",
+     "segment": "A",
+     "product": "벨피엔 프로",
+     "product_name": "밸피엔",
+     "license_now": "정상 · 제허26-757호(정상) · 이력: 제허21-776호(취하 2026-10-19)",
+     "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+     "basis": "허가 모델명은 「밸피엔(BelPN)」 — 원장 「벨피엔 프로」 의 「프로」 는 허가에 없음(표기 차이 · 품목 확인 필요)"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775134",
+     "segment": "B",
+     "product": "더블로골드S",
+     "product_name": "더블로골드S",
+     "license_now": "확인 불가",
+     "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+     "basis": "「더블로골드S」 모델명 허가 없음(TYPE_NAME=DOUBLO 3: DOUBLO · DOUBLO-S · DOUBLO-GOLD) — 기존 자동 판정(라인 3건)은 어느 품목인지 근거 없음 / 재조사: DOUBLO Lifting 제허11-946 모델 DOUBLO-GOLD · DOUBLO-S, DOUBLO-GOLD 제허18-195, DOUBLO-S 제허13-291 (주)하이로닉 — 「골드S」 모델 없음"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775158",
+     "segment": "A",
+     "product": "울트라V",
+     "product_name": "울트라V-lift",
+     "license_now": "정상 · 제허13-1398호(정상)",
+     "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+     "basis": "원장에 업체 없음 · 원천 detail 「PDO전문」 — 업체 「울트라브이」(제허 14-182 취하)와 혼동 가능, 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362513156",
+     "segment": "A",
+     "product": "해피리프트",
+     "product_name": "Happy LIFT",
+     "license_now": "허가 취소(이력) · 이력: 수허05-144호(취하 2015-07-29)",
+     "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+     "basis": "이름 일치 허가는 취하뿐 — 원장이 현재 쓰는 실이 APTOS(수허 25-219)인지 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362579841",
+     "segment": "A",
+     "product": "오메가리프트",
+     "product_name": "오메가리프트",
+     "license_now": "허가 취소(이력) · 이력: 제허12-516호(취하 2013-06-30), 제허12-419호(취하 2013-06-30)",
+     "lacking": "라인(브랜드)은 찾았으나 원장 이름이 가리키는 품목 · 현재 쓰는 제품을 특정할 근거가 없다",
+     "basis": "이름 일치 허가는 취하뿐 — 현재 쓰는 실이 오브이메디 오메가브이인지 확인 필요"
+    }
+   ]
+  },
+  {
+   "decision_id": "D16",
+   "title": "같은 제품 원장 중복 — 한 제품 + 동의어로 묶기",
+   "kind": "중복",
+   "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+   "question": "중복을 한 제품으로 묶을까?",
+   "choices": [
+    "제안 전부 묶기",
+    "구간 C 가 이미 묶은 4건만 확정, 나머지는 건별",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 18,
+   "members": [
+    {
+     "ledger_id": "auto-M2-1775360655397",
+     "segment": "A",
+     "product": "하모니카",
+     "product_name": "하모니카",
+     "license_now": "미허가",
+     "lacking": "대표 쪽 — HArmonyCa 와 묶음",
+     "basis": "같은 제품 원장 2행(하모니카 M2 · HArmonyCa M3) — 한 제품 + 동의어로 묶음 제안"
+    },
+    {
+     "ledger_id": "auto-M3-1775364775147",
+     "segment": "A",
+     "product": "HArmonyCa",
+     "product_name": "하모니카",
+     "license_now": "미허가",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 A 게이트: 하모니카(M2) · HArmonyCa(M3) 같은 제품 — 동의어 묶음 제안 → 대표 하모니카(auto-M2-1775360655397)"
+    },
+    {
+     "ledger_id": "auto-M3-1775364775145",
+     "segment": "A",
+     "product": "PLLA-SCA",
+     "product_name": "SCULPTRA",
+     "license_now": "정상 · 수허 10-1161 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 A 게이트: PLLA-SCA 는 스컬트라와 같은 허가 — 동의어 묶음 제안 → 대표 스컬트라(M3-1-1)"
+    },
+    {
+     "ledger_id": "auto-M4-1775362490962",
+     "segment": "A",
+     "product": "볼뉴머",
+     "product_name": "VOLNEWMER",
+     "license_now": "정상 · 제허 22-512 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 A 게이트: 볼뉴머(M4)는 구간 B M9-2-3 와 같은 장비 — 한 장비로 묶음 제안 → 대표 볼뉴머(M9-2-3)"
+    },
+    {
+     "ledger_id": "auto-24-1774737181584",
+     "segment": "A",
+     "product": "리바이브 글리세롤",
+     "product_name": "Belotero Revive",
+     "license_now": "정상 · 수허 22-105 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 A 게이트: 리바이브 글리세롤 = Belotero Revive, 리바이브(M4-2-2)와 같은 허가 — 동의어 묶음 제안 → 대표 리바이브(M4-2-2)"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775150",
+     "segment": "A",
+     "product": "필로르가135HA",
+     "product_name": "NCTF 135HA",
+     "license_now": "미허가",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 A 게이트: 필로르가135HA 는 NCTF 필로르가와 같은 제품 — 동의어 묶음 제안 → 대표 NCTF 필로르가(auto-M4-1775361364993)"
+    },
+    {
+     "ledger_id": "new-DEV-005",
+     "segment": "C",
+     "product": "아포지플러스",
+     "product_name": "아포지 플러스",
+     "license_now": "정상 · 수허05-546호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "재조사: 현장 기기 아포지플러스 = 구간 B 아포지엘리트플러스와 같은 허가(수허05-546) · 같은 모델군(Apogee+ / Elite+) → 대표 아포지엘리트플러스(auto-36-1774737181584)"
+    },
+    {
+     "ledger_id": "auto-M10-1775364775187",
+     "segment": "B",
+     "product": "엠스컬프트NEO",
+     "product_name": "엠스컬프트 네오",
+     "license_now": "정상 · 수허 21-146 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "같은 허가(수허21-146) · 원장 이름 표기만 다름(네오/NEO) — 묶음 제안 → 대표 엠스컬프트네오(M10-2-2)"
+    },
+    {
+     "ledger_id": "auto-M10-1775364775186",
+     "segment": "B",
+     "product": "엠페이스",
+     "product_name": "엠페이스",
+     "license_now": "정상 · 수허 23-392 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "같은 허가(수허23-392) · 원장 이름 표기만 다름(엠페이스(EMFACE)/엠페이스) — 묶음 제안 → 대표 엠페이스(EMFACE)(M10-1-1)"
+    },
+    {
+     "ledger_id": "auto-35-1774737181584",
+     "segment": "B",
+     "product": "클라리티2 (혈관)",
+     "product_name": "클라리티2",
+     "license_now": "정상 · 제허 26-449 호(정상), 제허 26-345 호(정상), 제허 25-729 호(정상), 제허 25-727 호(정상) 외 3",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "같은 허가 4건 · 원장 이름에 「(혈관)」 만 더함 — 메뉴 구분인지 같은 장비 중복인지 묶음 제안 → 대표 클라리티2(M8-5-4)"
+    },
+    {
+     "ledger_id": "M1-P-10",
+     "segment": "T",
+     "product": "레티보",
+     "product_name": "레티보",
+     "license_now": "확인 불가",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "검수 반영: taxonomy 레티보(M1-P-10)는 기사상 보툴렉스 수출명(https://www.dailypharm.com/user/news/56406) — 묶음 제안 → 대표 보툴렉스(M1-1-1)"
+    },
+    {
+     "ledger_id": "auto-M15-1775362985090",
+     "segment": "C",
+     "product": "옴니럭스",
+     "product_name": "옴니룩스",
+     "license_now": "허가 취소(이력) · 이력: 수허 04-337 호(취소), 수허 03-1062 호(취소)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 C 묶음: 옴니럭스 → 옴니룩스(같은 허가) → 대표 옴니룩스(M15-3-1)"
+    },
+    {
+     "ledger_id": "auto-52-1774737181584",
+     "segment": "C",
+     "product": "라라젯",
+     "product_name": "라라젯",
+     "license_now": "허가 취소(이력) · 이력: 제인 18-4662 호(취소)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 C 묶음: 라라젯 → 라라젯 (클렌징)(같은 허가) → 대표 라라젯 (클렌징)(auto-48-1774737181584)"
+    },
+    {
+     "ledger_id": "auto-M16-DCA-1775404043061",
+     "segment": "C",
+     "product": "카이벨라",
+     "product_name": "벨카이라",
+     "license_now": "확인 불가",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 C 묶음: 카이벨라 → 벨카이라(같은 제품 · 음차) → 대표 벨카이라(auto-M16-1775403024925)"
+    },
+    {
+     "ledger_id": "auto-M16-1775363074847",
+     "segment": "C",
+     "product": "LDM초음파관리",
+     "product_name": "LDM",
+     "license_now": "정상 · 수인 11-587 호(정상), 제인 21-5008 호(정상)",
+     "lacking": "두 원장 이름이 같은 제품(같은 허가 · 같은 장비)을 가리킨다",
+     "basis": "구간 C 묶음: LDM초음파관리 → LDM(같은 허가) → 대표 LDM(M15-4-1)"
+    },
+    {
+     "ledger_id": "auto-M15-1775401670325",
+     "segment": "C",
+     "product": "PHA필",
+     "product_name": "PHA필",
+     "license_now": "허가 대상 아님",
+     "lacking": "PHA필 ↔ 물톡스 같은 제품인지",
+     "basis": "원천 detail 「물톡스 · PHA 기반」 — 물톡스(auto-M15-1775402148301)와 같은 제품인지 정할 것"
+    },
+    {
+     "ledger_id": "auto-M15-1775402148301",
+     "segment": "C",
+     "product": "물톡스",
+     "product_name": "물톡스",
+     "license_now": "허가 대상 아님",
+     "lacking": "PHA필 ↔ 물톡스 같은 제품인지",
+     "basis": "원천 detail 에서 PHA필(auto-M15-1775401670325) 설명에 「물톡스」 표기 — 같은 제품인지 근거 부족(정할 것)"
+    },
+    {
+     "ledger_id": "auto-M15-1775401788467",
+     "segment": "C",
+     "product": "라라닥터",
+     "product_name": "라라닥터",
+     "license_now": "허가 대상 아님",
+     "lacking": "라라필과 라인 관계인지",
+     "basis": "원천 detail 「라라필 의료용 업그레이드」 — 라라필(M15-1-7)과 라인 관계 근거 부족"
+    }
+   ]
+  },
+  {
+   "decision_id": "D17",
+   "title": "플랫폼 · 시스템 허가에 포함되는지",
+   "kind": "허가 범위",
+   "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+   "question": "플랫폼 허가에 붙일까?",
+   "choices": [
+    "플랫폼 허가에 연결(라인 품목)",
+    "수입사 · 제조사 자료로 확인",
+    "확인 불가로 둠"
+   ],
+   "context": null,
+   "count": 6,
+   "members": [
+    {
+     "ledger_id": "auto-29-1774737181584",
+     "segment": "B",
+     "product": "BBL",
+     "product_name": "BBL",
+     "license_now": "허가 취소(이력) · 이력: 수허 18-141 호(취소), 수허 09-1220 호(취소)",
+     "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+     "basis": "BBL 모듈은 Joule(수허 18-144)·mJoule(수허 21-192) 플랫폼에 얹힘(Sciton 출처) — 이름 든 허가는 Joule BBL SkinTyte II(둘 다 취소)뿐. 플랫폼 허가가 BBL 을 포함하는지 확인 불가"
+    },
+    {
+     "ledger_id": "auto-31-1774737181584",
+     "segment": "B",
+     "product": "BBL히어로",
+     "product_name": "BBL 히어로",
+     "license_now": "정상 · 수허 21-192 호(정상)",
+     "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+     "basis": "BBL HERO 는 mJOULE 플랫폼 구성(Sciton 출처) · 현장 사진 DEV-014 판독 mjoule — 허가 모델명은 mJoule(반도체 레이저 수술기)이라 BBL(IPL) 포함 여부는 허가 품목명으로 확인 안 됨"
+    },
+    {
+     "ledger_id": "auto-M14-1775363067062",
+     "segment": "B",
+     "product": "쿨미니",
+     "product_name": "쿨미니",
+     "license_now": "정상 · 수허 18-96 호(정상), 수인 21-4556 호(정상)",
+     "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+     "basis": "CoolMini 는 CoolSculpting 시스템의 소부위(턱밑) 어플리케이터(웹) — 어플리케이터 단독 허가 없음(TYPE_NAME=CoolMini 0), 시스템 허가에 포함 여부 확인 불가"
+    },
+    {
+     "ledger_id": "M11-1-4",
+     "segment": "B",
+     "product": "모르페우스8",
+     "product_name": "모르페우스8",
+     "license_now": "확인 불가",
+     "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+     "basis": "Morpheus8 모델명 허가 없음 — InMode 수입사 신한네트웍스 허가 3건(EVOKE · InMode · Inmode RF 수허 19-352) 중 Morpheus8 포함 여부 근거 없음 / 재조사: Morpheus 든 허가는 의료영상분석장치 2건 · 이노진(취하) · 디큐브시스템즈(취소) — InMode Morpheus8 없음"
+    },
+    {
+     "ledger_id": "new-DEV-053",
+     "segment": "C",
+     "product": "AUTO MTS",
+     "product_name": "DB FNS",
+     "license_now": "정상 · 제인 10-343 호(정상)",
+     "lacking": "본체 머신이 니들(MICRO NEEDLE) 허가에 드는지",
+     "basis": "허가 모델명이 니들(MICRO NEEDLE) 표기 — 본체 머신이 같은 허가에 드는지는 응답으로 확인 불가"
+    },
+    {
+     "ledger_id": "auto-M15-1775402654237",
+     "segment": "C",
+     "product": "제네오X",
+     "product_name": "제네오X",
+     "license_now": "확인 불가",
+     "lacking": "모듈 · 어플리케이터 · 본체가 플랫폼(시스템) 허가에 드는지 허가 품목명으로 확인되지 않음",
+     "basis": "이름 대응이 정확하지 않은 같은 업체 허가 후보(연결 안 함): 수신 26-898 호 Geneo Tripollar Preparation Gel(루메니스비코리아 유한회사 · 정상) / 재조사: Geneo 는 「Geneo Tripollar Preparation Gel」(수신26-898 젤)뿐 — 장비 본체 없음"
+    }
+   ]
+  },
+  {
+   "decision_id": "D18",
+   "title": "같은 업체 · 비슷한 이름 허가 후보 — 이름이 정확히 같지 않음",
+   "kind": "허가 범위",
+   "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+   "question": "후보 허가에 연결할까?",
+   "choices": [
+    "후보에 연결",
+    "원천(병원) · 업체에 확인",
+    "확인 불가 유지"
+   ],
+   "context": null,
+   "count": 11,
+   "members": [
+    {
+     "ledger_id": "auto-37-1774737181584",
+     "segment": "B",
+     "product": "쿨소닉",
+     "product_name": "쿨소닉",
+     "license_now": "정상 · 제허 25-78 호(정상)",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "모델명 CoolSonic/COOLSONIQ 질의 0. 아스테라시스 2025년 HIFU 허가는 Liftera Cool외 1건(제허 25-78, 2025-02-07)뿐이고 IR(2025-02-10)「쿨소닉 식약처 승인 획득」과 날짜가 맞음 — 모델명이 달라 게이트"
+    },
+    {
+     "ledger_id": "auto-M10-1775361916636",
+     "segment": "B",
+     "product": "바넥스프로",
+     "product_name": "바넥스프로",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "기존 자동 판정 Vanquish Me(수허 13-3408 · BTL) — 「바넥스」와 Vanquish 대응 근거 없음(웹 질의 결과 없음) / 재조사: 바넥스 · VANEX 0건 · Vanquish 는 Vanquish Me(수허13-3408 BTL)뿐"
+    },
+    {
+     "ledger_id": "auto-M14-1775361047443",
+     "segment": "B",
+     "product": "바넥스",
+     "product_name": "바넥스",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "기존 자동 판정 Vanquish Me(수허 13-3408 · BTL 고주파) — 「바넥스」와 대응 근거 없음 · 계열(냉각)과도 다름 / 재조사: 바넥스 0건 · Vanquish Me(수허13-3408)는 고주파 — 계열(냉각)과 다름"
+    },
+    {
+     "ledger_id": "auto-M8-1775362587235",
+     "segment": "B",
+     "product": "피코코어",
+     "product_name": "피코코어",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "재조사: 「Pico Core」 부분 일치로 Picore(제허20-59) · Picore Max(제허24-169) (주)블루코어컴퍼니 엔디야그 — 이름(Picore≠PicoCore) · 원장 업체(루트로닉) 모두 다름"
+    },
+    {
+     "ledger_id": "auto-M9-1775364797157",
+     "segment": "B",
+     "product": "아큐어",
+     "product_name": "아큐어",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "재조사: ACURE e(제허23-498 (주)뷰메딕스 반도체레이저) · Acure(제허12-1640 알테아 반도체레이저) · 아큐어프러스(제허18-265 취하) — 원장 계열(RF 리프팅)과 다름"
+    },
+    {
+     "ledger_id": "auto-M15-1775364775178",
+     "segment": "C",
+     "product": "헤어셀",
+     "product_name": "헤어셀",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "이름 대응이 정확하지 않은 같은 업체 허가 후보(연결 안 함): 제인 12-1201 호 H-Cell ST((주)트리비스 · 정상) · 수허 08-551 호 ETG Mark 1((주)트리비스 · 취소) / 재조사: 헤어셀 · Haircell 0건 · H-Cell 은 부분 일치뿐(C 후보 H-Cell ST 제인12-1201 은 이름 다름)"
+    },
+    {
+     "ledger_id": "new-DEV-044",
+     "segment": "C",
+     "product": "힐퓨전프로",
+     "product_name": "힐퓨전 프로",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "이름 대응이 정확하지 않은 같은 업체 허가 후보(연결 안 함): 제인 26-4871 호 HFUSION(주식회사힐룩스 · 정상) / 재조사: HealFusion 0건 · 「HFUSION」(제인26-4871 주식회사힐룩스 전동식 의료용 흡인기 · 정상)만 — 이름 「힐퓨전 프로」와 정확히 같지 않음(C 후보와 같음)"
+    },
+    {
+     "ledger_id": "new-DEV-052",
+     "segment": "C",
+     "product": "트리필 프로",
+     "product_name": "트리필 프로",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "이름 대응이 정확하지 않은 같은 업체 허가 후보(연결 안 함): 제인 21-4246 호 TF2004NIWS외 1건((주)엠큐어 · 정상) / 재조사: 트리필 · TriFill 0건"
+    },
+    {
+     "ledger_id": "new-DEV-043",
+     "segment": "C",
+     "product": "오메가라이트",
+     "product_name": "오메가라이트",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "재조사: 오메가라이트 든 허가 3건 전부 정상 아님 — 「오메가라이트 듀얼」(제인16-4726 (주)다오닉 저출력광선조사기 · 2020 취하) · 「오메가라이트/Omega Light」(경인제신15-332 (주)오멜론 이동형조명기 · 취하) · 혼콘코리아(취소). 현장 LED 와 같은 것인지 근거 없음"
+    },
+    {
+     "ledger_id": "new-DEV-069",
+     "segment": "C",
+     "product": "아톰레이저",
+     "product_name": "아톰",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "재조사: 「ATOM Laser」(제허21-712 (주)대주메디테크엔지니어링 의료용 레이저 조사기 · 정상) — 사진 판독 업체 「LCI」 와 다름(연결하지 않음)"
+    },
+    {
+     "ledger_id": "auto-M12-1775363035813",
+     "segment": "B",
+     "product": "스킨스탬프",
+     "product_name": "스킨스탬프",
+     "license_now": "확인 불가",
+     "lacking": "이름이 비슷한 허가(같은 업체 · 같은 계열 또는 같은 이름 다른 업체)가 있으나 같은 제품 근거가 없어 연결 안 함",
+     "basis": "재조사: 제품명 「Skin stamp」 대종의료기 제인23-4142 · 23-4176, 「Cie Skin Stamp」 (주)비즈엔몰드 제인19-4602 — 원장 이름이 어느 제품인지(또는 일반 명칭인지) 근거 없음"
+    }
+   ]
+  },
+  {
+   "decision_id": "D19",
+   "title": "실재 제품(기사 · 웹 · 해외)인데 국내 허가를 못 찾음",
+   "kind": "확인 불가",
+   "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+   "question": "이 제품들을 어떻게 둘까?",
+   "choices": [
+    "확인 불가 유지(추천 제외)",
+    "수입 · 판매사에 허가번호 문의",
+    "「미허가」로 확정"
+   ],
+   "context": null,
+   "count": 11,
+   "members": [
+    {
+     "ledger_id": "auto-M9-1775363058909",
+     "segment": "B",
+     "product": "시크릿맥스",
+     "product_name": "시크릿맥스",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "기사(bosa · pharmnews)에 2024-05 식약처 허가 — 모델명 SECRET MAX 질의 0, 클래시스 121 · 이루다 17건에 이름 대응 없음 / 재조사: 시크릿맥스 · SECRET MAX 0건(「시크릿 맥스」 는 질세정기 1건)"
+    },
+    {
+     "ledger_id": "M15-6-4",
+     "segment": "C",
+     "product": "벨라소닉",
+     "product_name": "벨라소닉",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 벨라소닉 · Bellasonic 0건"
+    },
+    {
+     "ledger_id": "auto-M12-1775363026852",
+     "segment": "B",
+     "product": "더마펜4",
+     "product_name": "더마펜4",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "Dermapen 4 모델명 허가 없음(TYPE_NAME=Dermapen 2: 우리메카 Dermapen③ · 두원메디텍 카트리지) / 재조사: 「Dermapen 4 needle cartridge」(제인19-4223 (주)두원메디텍) · Dermapen③(제인15-4152 (주)우리메카)뿐 — Dermapen 4 본체 없음"
+    },
+    {
+     "ledger_id": "auto-M10-1775363005172",
+     "segment": "B",
+     "product": "이볼브",
+     "product_name": "이볼브",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: Evolve 든 허가는 정형·장갑·치과(「이볼브」 1건은 치과 매트릭스) — InMode 없음"
+    },
+    {
+     "ledger_id": "auto-M10-1775363019549",
+     "segment": "B",
+     "product": "쿨톤",
+     "product_name": "쿨톤",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 쿨톤 · CoolTone 0건"
+    },
+    {
+     "ledger_id": "auto-M16-1775403024925",
+     "segment": "C",
+     "product": "벨카이라",
+     "product_name": "벨카이라",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 의약품 — emedi(의료기기) 대상 아님. C 의 식약처 의약품 질의(item_name=벨카이라 · 카이벨라 0건) 유지"
+    },
+    {
+     "ledger_id": "auto-M16-DCA-1775404043061",
+     "segment": "C",
+     "product": "카이벨라",
+     "product_name": "벨카이라",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 의약품 — emedi(의료기기) 대상 아님. 벨카이라와 묶임(C)"
+    },
+    {
+     "ledger_id": "auto-M16-DCA-1775404043067",
+     "segment": "C",
+     "product": "리포린",
+     "product_name": "리포린",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 의약품 — emedi(의료기기) 대상 아님. C 의 의약품 질의 유지"
+    },
+    {
+     "ledger_id": "new-DEV-071",
+     "segment": "C",
+     "product": "미라쥬",
+     "product_name": "미라쥬",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: Mirage 든 허가는 ResMed 호흡기 마스크뿐"
+    },
+    {
+     "ledger_id": "auto-M8-1775362619619",
+     "segment": "B",
+     "product": "슬렌더엑스",
+     "product_name": "슬렌더엑스",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 「Slender」 든 허가는 Slendertone 저주파 자극기 등 — 제모 레이저 없음 · SlenderX 0건"
+    },
+    {
+     "ledger_id": "auto-M8-1775362594611",
+     "segment": "B",
+     "product": "시너론 아이플러스",
+     "product_name": "시너론 아이플러스",
+     "license_now": "확인 불가",
+     "lacking": "제품 자체는 웹 · 기사로 확인되나 식약처 API · emedi(의료기기) · 의약품 질의 모두 이름 든 허가 0",
+     "basis": "재조사: 「iPlus」 든 허가는 치과 Waterlase iPlus 등 — 혈관 레이저 없음 · 「아이플러스」 는 체외진단·안경렌즈"
+    }
+   ]
+  },
+  {
+   "decision_id": "D20",
+   "title": "정체 · 분류 충돌 — 원천 확인 필요",
+   "kind": "정체",
+   "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+   "question": "정체를 어떻게 정할까?",
+   "choices": [
+    "원천(병원)에 확인",
+    "구간 판정 유지",
+    "추천 대상에서 제외"
+   ],
+   "context": null,
+   "count": 8,
+   "members": [
+    {
+     "ledger_id": "auto-M4-1775361749536",
+     "segment": "A",
+     "product": "인에이블",
+     "product_name": "인에이블",
+     "license_now": "허가 대상 아님",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "원천(LG화학 PN) ↔ 웹(동국제약 화장품) 정체 충돌 — 같은 제품인지 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M4-1775361364993",
+     "segment": "A",
+     "product": "NCTF 필로르가",
+     "product_name": "NCTF 135HA",
+     "license_now": "미허가",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "국내 분류(화장품/의료기기) 원문 미확인 — 화장품으로 유통되면 「허가 대상 아님」 으로 바뀜"
+    },
+    {
+     "ledger_id": "auto-20-1774737181584",
+     "segment": "A",
+     "product": "쥬브아셀",
+     "product_name": "쥬브아셀",
+     "license_now": "허가 대상 아님",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "제품 실체는 병원 이벤트 페이지 노출뿐(https://www.gangnamunni.com/events/149150) — 제조사 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M3-hADM-1775404146754",
+     "segment": "A",
+     "product": "도프ECM",
+     "product_name": "도프ECM",
+     "license_now": "허가 대상 아님",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "정식 브랜드명 미확인(「ECM」은 병원 표기 — web4)"
+    },
+    {
+     "ledger_id": "auto-M1-1775360538524",
+     "segment": "A",
+     "product": "다복스",
+     "product_name": "다복스",
+     "license_now": "미허가",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "초안 web4 의 「디스포트 별칭 가능성」은 추정 — 연결하지 않음. 원천 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M15-1775401645338",
+     "segment": "C",
+     "product": "PRX필",
+     "product_name": "PRX-T33",
+     "license_now": "확인 불가",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "재조사: PRX-T33 0건 · PRX 는 무관(수액세트 · 클립 등)"
+    },
+    {
+     "ledger_id": "auto-M15-1775362958625",
+     "segment": "C",
+     "product": "옥시덤",
+     "product_name": null,
+     "license_now": "확인 불가",
+     "lacking": "원천 · 웹 · 게이트가 정체(제품/화장품/인체조직/메뉴)나 허가 대상 여부를 서로 다르게 말함",
+     "basis": "재조사: 옥시덤 · OXYDERM 0건"
+    },
+    {
+     "ledger_id": "auto-M17-1775364775191",
+     "segment": "C",
+     "product": "AAPE",
+     "product_name": "AAPE",
+     "license_now": "허가 대상 아님",
+     "lacking": "허가 대상 아님(화장품 원료) 판정 vs 같은 이름 의료기기 허가 「AAPE Progen」(취소)",
+     "basis": "이름 대응이 정확하지 않은 같은 업체 허가 후보(연결 안 함): 제허 19-756 호 AAPE Progen((주)프로스테믹스 · 취소)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D21",
+   "title": "실 메뉴성 이름 14개 — 원장에서 뺄까",
+   "kind": "원장에서 제외",
+   "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+   "question": "실 메뉴성 이름 14개를 제품 원장에서 뺄까?",
+   "choices": [
+    "전부 뺌 — 5단계 단위 시술(메뉴)로 넘김",
+    "후보 있는 3건(V리프트 · 로즈실 · 미스코)만 후보로 연결하고 나머지는 뺌",
+    "원장에 「확인 불가」로 둠"
+   ],
+   "context": null,
+   "count": 14,
+   "members": [
+    {
+     "ledger_id": "auto-M7-1775362506463",
+     "segment": "A",
+     "product": "미스코",
+     "product_name": "미스코",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "원장 「미스코」 = 업체명 — 제품(실) 특정 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362521999",
+     "segment": "A",
+     "product": "리드파인",
+     "product_name": "리드파인",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=리드파인 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775362528963",
+     "segment": "A",
+     "product": "V리프트",
+     "product_name": "V리프트",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "후보 2(미스코 울트라V-lift 13-1398 · 울트라브이 14-182 취하) — 병원 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775362537962",
+     "segment": "A",
+     "product": "앵커리프트",
+     "product_name": "앵커리프트",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=앵커리프트 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775362563387",
+     "segment": "A",
+     "product": "몰드리프트",
+     "product_name": "몰드리프트",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=몰드리프트 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775156",
+     "segment": "A",
+     "product": "코그실루프",
+     "product_name": "코그실루프",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=코그실루프 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775157",
+     "segment": "A",
+     "product": "투와이실",
+     "product_name": "투와이실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=투와이실 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775159",
+     "segment": "A",
+     "product": "프린스리프트",
+     "product_name": "프린스리프트",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=프린스리프트 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775161",
+     "segment": "A",
+     "product": "레보실",
+     "product_name": "레보실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=레보실 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775162",
+     "segment": "A",
+     "product": "엘리실",
+     "product_name": "엘리실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=엘리실 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775163",
+     "segment": "A",
+     "product": "로즈실",
+     "product_name": "로즈실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "후보: 제이월드 BLUE ROSE 계열(15-1636 · 21-1025) — 확인 필요"
+    },
+    {
+     "ledger_id": "auto-M7-1775364775164",
+     "segment": "A",
+     "product": "면사리프트",
+     "product_name": "면사리프트",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=면사리프트 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364797155",
+     "segment": "A",
+     "product": "텐선실",
+     "product_name": "텐선실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=텐선실 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M7-1775364797156",
+     "segment": "A",
+     "product": "허니콤실",
+     "product_name": "허니콤실",
+     "license_now": "확인 불가",
+     "lacking": "실(M7) 원장 이름이 제품명 · 모델명 · 웹 어디에도 없음(병원이 붙인 메뉴 이름 추정은 근거 없음) — 후보가 있는 것은 V리프트 · 로즈실 · 미스코뿐",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=허니콤실 0건 · 웹 0"
+    }
+   ]
+  },
+  {
+   "decision_id": "D22",
+   "title": "주사 · 스킨부스터 이름 근거 0 — 11개",
+   "kind": "원장에서 제외",
+   "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+   "question": "이 11개를 제품 원장에서 뺄까?",
+   "choices": [
+    "전부 뺌 — 5단계 단위 시술(메뉴)로 넘김",
+    "원천(병원)에 실제 제품명 확인",
+    "원장에 「확인 불가」로 둠"
+   ],
+   "context": null,
+   "count": 11,
+   "members": [
+    {
+     "ledger_id": "auto-M3-1775364775146",
+     "segment": "A",
+     "product": "콜라겐핀",
+     "product_name": "콜라겐핀",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=콜라겐핀 0건 · 웹 0 — 제품인지 병원 메뉴명인지 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M3-1775364775148",
+     "segment": "A",
+     "product": "린피니",
+     "product_name": "린피니",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=린피니 0건 · 웹 0 — 실체 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M4-1775362498539",
+     "segment": "A",
+     "product": "스네일샷",
+     "product_name": "스네일샷",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=스네일샷 0건 · 웹 주사형 제품 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775153",
+     "segment": "A",
+     "product": "레나토S",
+     "product_name": "레나토S",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=레나토S 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775154",
+     "segment": "A",
+     "product": "소노PDRN",
+     "product_name": "소노PDRN",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=소노PDRN 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775361371619",
+     "segment": "A",
+     "product": "셀엑소좀",
+     "product_name": "셀엑소좀",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=셀엑소좀 · CellExosome 0건 · 보도에 분류 없음 — 미허가/허가 대상 아님 판정 근거 부족"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775151",
+     "segment": "A",
+     "product": "카탈리스트",
+     "product_name": "카탈리스트",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=카탈리스트 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775155",
+     "segment": "A",
+     "product": "드원셀",
+     "product_name": "드원셀",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=드원셀 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775360452766",
+     "segment": "A",
+     "product": "리듐",
+     "product_name": "리듐",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=리듐 0건 · 웹 0"
+    },
+    {
+     "ledger_id": "auto-M4-1775360574999",
+     "segment": "A",
+     "product": "투 (TU)",
+     "product_name": "투 (TU)",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=TU 스킨부스터 0건 · 이름이 짧아 식별 불가(web4)"
+    },
+    {
+     "ledger_id": "auto-M4-1775364775152",
+     "segment": "A",
+     "product": "SNP솔루션",
+     "product_name": "SNP솔루션",
+     "license_now": "확인 불가",
+     "lacking": "식약처 · emedi · 웹 모두 0건 — 제품인지 병원 메뉴명인지부터 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=SNP솔루션 0건 · 웹 주사형 제품 0"
+    }
+   ]
+  },
+  {
+   "decision_id": "D23",
+   "title": "장비 이름 근거 0 — 19개(재조사 후에도)",
+   "kind": "원장에서 제외",
+   "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+   "question": "이 19개를 제품 원장에서 뺄까?",
+   "choices": [
+    "전부 뺌 — 5단계 단위 시술(메뉴)로 넘김",
+    "원천(병원)에 실제 장비명 · 업체 확인",
+    "원장에 「확인 불가」로 둠"
+   ],
+   "context": null,
+   "count": 19,
+   "members": [
+    {
+     "ledger_id": "auto-M8-1775362943490",
+     "segment": "B",
+     "product": "트루피코",
+     "product_name": "트루피코",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 트루피코 · TruPico 0건"
+    },
+    {
+     "ledger_id": "auto-M8-1775364775127",
+     "segment": "B",
+     "product": "바이탈라이즈",
+     "product_name": "바이탈라이즈",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 바이탈라이즈 · Vitalize 0건"
+    },
+    {
+     "ledger_id": "auto-M8-1775364797146",
+     "segment": "B",
+     "product": "로제라이트",
+     "product_name": "로제라이트",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 로제라이트 · RoseLight 0건"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775133",
+     "segment": "B",
+     "product": "하이푸니",
+     "product_name": "하이푸니",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: HIFUNI 부분 일치 HIFUNIT9000(수허07-93 남북의료기상사)뿐 — 이름 다름"
+    },
+    {
+     "ledger_id": "auto-M9-1775362633910",
+     "segment": "B",
+     "product": "에이전",
+     "product_name": "에이전",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 에이전 0건 · AGEN 은 Collagen 등 부분 일치뿐"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775132",
+     "segment": "B",
+     "product": "리저브",
+     "product_name": "리저브",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 리저브 0건 · RESERVE 는 preserve 체외진단 시약뿐"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775139",
+     "segment": "B",
+     "product": "클래리파이",
+     "product_name": "클래리파이",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 클래리파이 0건 · Clarify 는 체외진단 시약뿐"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775135",
+     "segment": "B",
+     "product": "에브넥",
+     "product_name": "에브넥",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 에브넥 · EVNECK 0건"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775136",
+     "segment": "B",
+     "product": "바이캐빈",
+     "product_name": "바이캐빈",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 바이캐빈 · BYCAVIN 0건"
+    },
+    {
+     "ledger_id": "auto-M9-1775364775137",
+     "segment": "B",
+     "product": "아폴로",
+     "product_name": "아폴로",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: Apollo 든 허가는 (주)위로 Apollo Duet/Quattro(3등급 의료용 조합 자극기) 등 — 원장 후보 Pollogen TriPollar Apollo 는 0건(TriPollar 는 젤 1건)"
+    },
+    {
+     "ledger_id": "auto-M11-1775364775144",
+     "segment": "B",
+     "product": "프라임RF",
+     "product_name": "프라임RF",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 프라임RF · Prime RF 0건"
+    },
+    {
+     "ledger_id": "auto-M13-1775364775141",
+     "segment": "B",
+     "product": "뉴라클플라즈마",
+     "product_name": "뉴라클플라즈마",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 뉴라클 · NEURACLE 0건"
+    },
+    {
+     "ledger_id": "auto-M13-1775364775140",
+     "segment": "B",
+     "product": "플라스젠",
+     "product_name": "플라스젠",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 플라스젠 · PLASGEN 0건"
+    },
+    {
+     "ledger_id": "auto-M14-1775364775188",
+     "segment": "B",
+     "product": "크라이오듀얼",
+     "product_name": "크라이오듀얼",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 크라이오듀얼 · Cryo-Dual 0건"
+    },
+    {
+     "ledger_id": "auto-M15-1775362992228",
+     "segment": "C",
+     "product": "셀라이트",
+     "product_name": null,
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 셀라이트 · CELLITE 0건"
+    },
+    {
+     "ledger_id": "auto-M15-1775362998455",
+     "segment": "C",
+     "product": "데마루치",
+     "product_name": null,
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 데마루치 · 더마루치 0건"
+    },
+    {
+     "ledger_id": "auto-M15-1775364775179",
+     "segment": "C",
+     "product": "바이오프로톤",
+     "product_name": "바이오프로톤",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 바이오프로톤 · 바이오포톤 · BIOPHOTON 0건"
+    },
+    {
+     "ledger_id": "auto-54-1774737181584",
+     "segment": "C",
+     "product": "크라이오셀",
+     "product_name": "크라이오셀",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 크라이오셀 · Cryocell 0건"
+    },
+    {
+     "ledger_id": "new-DEV-020",
+     "segment": "C",
+     "product": "엔진리프팅",
+     "product_name": "엔진",
+     "license_now": "확인 불가",
+     "lacking": "식약처 API · emedi(전 모델명) · 웹에서 이름 든 장비 0 — 무슨 장비인지 근거 없음",
+     "basis": "재조사: 엔진 · N-Gine 0건(부분 일치는 치과 NiTi Engine File)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D24",
+   "title": "병원 메뉴명 · 장비 유형 일반명이 원장 행으로 있음",
+   "kind": "원장에서 제외",
+   "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+   "question": "메뉴명 · 일반명 행을 어떻게 둘까?",
+   "choices": [
+    "원장에서 빼고 5단계 단위 시술로 넘김",
+    "원장에 「병원 메뉴명」으로 둠"
+   ],
+   "context": null,
+   "count": 6,
+   "members": [
+    {
+     "ledger_id": "auto-M4-1775360458021",
+     "segment": "A",
+     "product": "엑소힐러",
+     "product_name": "엑소힐러",
+     "license_now": "확인 불가",
+     "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+     "basis": "emedi(의료기기 전자민원 품목 검색 https://emedi.mfds.go.kr/search/data/list · 제품명/품목명/모델명 전체) query2=엑소힐러 0건 — 쓰는 제품이 무엇인지 근거 없음"
+    },
+    {
+     "ledger_id": "auto-M15-1775360912081",
+     "segment": "C",
+     "product": "아쿠아젯",
+     "product_name": null,
+     "license_now": "허가 대상 아님",
+     "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+     "basis": "web4: 강남의원 · 로렌의원 등 병원 관리 메뉴명으로만 확인, 특정 장비 제조사 없음. 식약처 TYPE_NAME=AQUAJET 0건"
+    },
+    {
+     "ledger_id": "auto-M15-1775360919010",
+     "segment": "C",
+     "product": "메소건",
+     "product_name": null,
+     "license_now": "확인 불가",
+     "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+     "basis": "허가 대상 아님 근거 재확인(검수 F-3): 허가 대상 아님 → 확인 불가"
+    },
+    {
+     "ledger_id": "auto-M16-1775403054538",
+     "segment": "C",
+     "product": "팻킬주사",
+     "product_name": null,
+     "license_now": "허가 대상 아님",
+     "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+     "basis": "web4: 개별 병원 지방분해 칵테일 주사 메뉴명으로만 확인 — 단일 허가 품목 아님. 식약처 의약품 원장 이름 조회 0건(아큐는 무관 6건)"
+    },
+    {
+     "ledger_id": "auto-M16-1775403176935",
+     "segment": "C",
+     "product": "아큐주사",
+     "product_name": null,
+     "license_now": "허가 대상 아님",
+     "lacking": "제품이 아니라 메뉴명 · 일반명 — 어떤 제품 · 장비를 쓰는지 근거 없음",
+     "basis": "web4: 개별 병원 지방분해 칵테일 주사 메뉴명으로만 확인 — 단일 허가 품목 아님. 식약처 의약품 원장 이름 조회 0건(아큐는 무관 6건)"
+    },
+    {
+     "ledger_id": "new-DEV-041",
+     "segment": "C",
+     "product": "수소토닝",
+     "product_name": "듀오 하이드로젠",
+     "license_now": "확인 불가",
+     "lacking": "메뉴명 + 장비(DUO HYDROGEN) 허가 확인 불가",
+     "basis": "재조사: 듀오 하이드로젠 · DUO HYDROGEN · 수소토닝 0건"
+    }
+   ]
+  },
+  {
+   "decision_id": "D25",
+   "title": "초안 판정에서 바뀐 것 — 위에 없는 29건",
+   "kind": "초안 대비 변경",
+   "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+   "question": "초안 대비 바뀐 연결을 받을까?",
+   "choices": [
+    "전부 받기",
+    "추가 · 교체만 받고 해제는 건별",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 29,
+   "members": [
+    {
+     "ledger_id": "M2-1-7",
+     "segment": "A",
+     "product": "리쥬비엘",
+     "product_name": "리쥬비엘",
+     "license_now": "정상 · 제허 15-83 호(정상), 제허22-777호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "emedi 에서 「리쥬비엘 더블유 플러스(REJUVIEL W Plus)」 제허 22-777 추가"
+    },
+    {
+     "ledger_id": "auto-9-1774737181584",
+     "segment": "A",
+     "product": "유스필",
+     "product_name": "유스필",
+     "license_now": "정상 · 제허19-31호(정상), 제허16-936호(정상), 제허21-641호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 에서 「유스필 쉐입 · 딥 · 파인 · 임플란트 · 스파클(YOUTHFILL)」 확인"
+    },
+    {
+     "ledger_id": "auto-M2-1775361463441",
+     "segment": "A",
+     "product": "큐젤",
+     "product_name": "큐젤",
+     "license_now": "정상 · 제허11-1322호(정상), 제허13-1868호(정상), 제허15-1313호(정상), 제허18-667호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 제품명 「큐젤(Cutegel)」 11-1322 · 모델 「Cutegel(큐젤) Lidocaine …」 13-1868 · 「큐젤 리도카인」 15-1313 · 「CUTEGEL-M」 18-667 확인"
+    },
+    {
+     "ledger_id": "auto-M2-1775361728731",
+     "segment": "A",
+     "product": "큐젤MAX",
+     "product_name": "큐젤 맥스",
+     "license_now": "정상 · 제허13-1868호(정상), 제허11-1322호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 모델 「Cutegel (큐젤) Lidocaine Max · CUTEGEL Max 1400 Lidocaine」(13-1868) · 「Max 1400」(11-1322 · 제품명 큐젤) 확인 — 큐젤 라인의 품목"
+    },
+    {
+     "ledger_id": "M2-2-4",
+     "segment": "A",
+     "product": "테오시알",
+     "product_name": "Teosyal",
+     "license_now": "정상 · 수허 26-41 호(정상), 수허 14-2569 호(정상), 수허26-92호(정상), 수허26-91호(정상) 외 2 · 이력: 수허 20-225 호(취소), 수허 09-1110 호(취소), 수허 06-386 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "emedi 에서 TEOSYAL RHA2·3·4 정상 허가 4건(26-92 · 26-91 · 19-48 · 19-49) 추가"
+    },
+    {
+     "ledger_id": "M3-4-2",
+     "segment": "A",
+     "product": "쥬베룩볼륨",
+     "product_name": "쥬베룩볼륨",
+     "license_now": "정상 · 제허 17-972 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 제품명 「쥬베룩볼륨(Juvelook Volume)」 · 모델 「쥬베룩볼륨(Juvelook Volume)100」 이 제허 17-972(쥬베룩 라인)에 있음 확인"
+    },
+    {
+     "ledger_id": "M4-1-2",
+     "segment": "A",
+     "product": "리쥬란아이",
+     "product_name": "리쥬란 아이",
+     "license_now": "정상 · 제허 14-825 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 에서 제허 14-825 제품명 「리쥬란, 리쥬란 아이, 리쥬란 에스」 확인 — 리쥬란힐러와 같은 허가"
+    },
+    {
+     "ledger_id": "M4-1-3",
+     "segment": "A",
+     "product": "리쥬란HB+",
+     "product_name": "리쥬란HB plus",
+     "license_now": "정상 · 제허21-629호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 제품명 「리쥬란HB plus」 제허 21-629 (주)파마리서치 확인"
+    },
+    {
+     "ledger_id": "auto-M4-1775364797153",
+     "segment": "A",
+     "product": "테오시알레디세스",
+     "product_name": "Teosyal Redensity",
+     "license_now": "미허가",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 auto 5건(Teosyal PureSense 등 · 이름 일치 0) 연결 해제"
+    },
+    {
+     "ledger_id": "M7-3-2",
+     "segment": "A",
+     "product": "실루엣소프트",
+     "product_name": "Silhouette Soft",
+     "license_now": "정상 · 수허15-878호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 미확인 → emedi 제품명 「Silhouette Soft(실루엣소프트)」 수허 15-878 한국싱클레어 유한회사(제조 Vaupell Molding and Tooling, Inc.) 확인 — 원장 업체 「싱클레어」 일치"
+    },
+    {
+     "ledger_id": "auto-M8-1775364775119",
+     "segment": "B",
+     "product": "에코2에볼루션",
+     "product_name": "에코2 에볼루션",
+     "license_now": "정상 · 제허 19-716 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 26-360 호 eCO2 3D(다른 제품 · 다른 품목(모델명 불일치)) / 제허 25-272 호 eCO2 3D J(다른 제품 · 다른 품목(모델명 불일치)) / 제허 25-104 호 eCO2 3D(다른 제품 · 다른 품목(모델명 불일치)) / 제허 24-674 호 eCO2 3D외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 12-1396 호 eCO2 Plus외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 09-430 호 eCO2-Plus외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 08-442 호 eCO2(다른 제품 · 다른 품목(모델명 불일치))"
+    },
+    {
+     "ledger_id": "M8-4-1",
+     "segment": "B",
+     "product": "브이빔",
+     "product_name": "브이빔",
+     "license_now": "허가 취소(이력) · 이력: 수허 00-1160 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 06-436 호 Candela Family of Pulse Dye Laser System : Vbeam Perfecta(라인 품목 브이빔 퍼펙타(별도 원장 항목))"
+    },
+    {
+     "ledger_id": "M8-4-2",
+     "segment": "B",
+     "product": "엑셀브이",
+     "product_name": "엑셀 V",
+     "license_now": "정상 · 수허 20-60 호(정상) · 이력: 수허 12-1052 호(취소), 수허 11-1284 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 20-31 호 Excel V +(라인 품목 엑셀V+(별도 원장 항목))"
+    },
+    {
+     "ledger_id": "auto-M8-1775361179259",
+     "segment": "B",
+     "product": "엑셀V+",
+     "product_name": "엑셀 V+",
+     "license_now": "정상 · 수허 20-31 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 20-60 호 Excel V Laser(라인 다른 품목(Excel V)) / 수허 12-1052 호 Excel V Laser(라인 다른 품목(Excel V)) / 수허 11-1284 호 Excel V Laser(라인 다른 품목(Excel V))"
+    },
+    {
+     "ledger_id": "auto-M8-1775364775121",
+     "segment": "B",
+     "product": "브이빔퍼펙타",
+     "product_name": "브이빔 퍼펙타",
+     "license_now": "허가 취소(이력) · 이력: 수허 06-436 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 00-1160 호 Vbeam (Candela Sclero Long Pulse Laser System)(라인 다른 품목(Vbeam))"
+    },
+    {
+     "ledger_id": "auto-M8-1775364775122",
+     "segment": "B",
+     "product": "사이노슈어아이콘",
+     "product_name": "아이콘",
+     "license_now": "정상 · 수허 17-299 호(정상) · 이력: 수허 12-1524 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 서울 수신 13-2509 호 SILICONE POINT CERAMISTE외 57건(다른 제품(치과 절삭기구)) / 서울 수신 08-2258 호 SILICONE WHEEL M2-7(다른 제품(치과 절삭기구))"
+    },
+    {
+     "ledger_id": "auto-36-1774737181584",
+     "segment": "B",
+     "product": "아포지엘리트플러스",
+     "product_name": "아포지 엘리트 플러스",
+     "license_now": "정상 · 수허 05-546 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 22-273 호 Elite iQ(라인 다른 품목(Elite iQ)) / 수허 10-385 호 Elite MPX(라인 다른 품목(Elite MPX)) / 수인 21-4556 호 CoolSculpting Elite System(다른 제품(CoolSculpting Elite)) / 수인 17-4262 호 PLEX Elite 9000(다른 제품(안저카메라 PLEX Elite)) / 서울 체외 수신 08-50 호 Hemochron Signature Elite Microcoagulation System외 7건(다른 제품(혈액응고분석))"
+    },
+    {
+     "ledger_id": "auto-M8-1775361401143",
+     "segment": "B",
+     "product": "라이트쉬어듀엣",
+     "product_name": "라이트쉬어 듀엣",
+     "license_now": "정상 · 수허 10-37 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 01-1303 호 LightSheer Desire(라인 다른 품목(LightSheer Desire))"
+    },
+    {
+     "ledger_id": "auto-M8-1775362612108",
+     "segment": "B",
+     "product": "젠틀맥스프로",
+     "product_name": "젠틀맥스 프로",
+     "license_now": "허가 취소(이력) · 이력: 수허 13-466 호(취소)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 26-194 호 GentleMaxi Pro Plus(라인 다른 품목(GentleMaxi Pro Plus)) / 수허 09-142 호 Candela Family of Multiple-Wavelength Laser Systems: GentleMax(라인 다른 품목(GentleMax))"
+    },
+    {
+     "ledger_id": "auto-M8-1775360944918",
+     "segment": "B",
+     "product": "포토나SP다이나미스",
+     "product_name": "SP 다이나미스",
+     "license_now": "정상 · 수허 11-1328 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수허 09-238 호 XS Dynamis M002-2A(라인 다른 품목(XS Dynamis)) / 수허 16-652 호 XS Dynamis(Smooth XS)(라인 다른 품목(XS Dynamis Smooth XS))"
+    },
+    {
+     "ledger_id": "auto-M8-1775361179284",
+     "segment": "B",
+     "product": "할리우드스펙트라",
+     "product_name": "할리우드 스펙트라",
+     "license_now": "정상 · 제허 26-401 호(정상), 제허 25-673 호(정상), 제허 10-1219 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 14-315 호 SPECTRA XT PLUS외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 10-37 호 Spectra SP외 2건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 08-667 호 Spectra VRMK(다른 제품 · 다른 품목(모델명 불일치)) / 제허 04-1133 호 Spectra-QT외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 03-893 호 Spectra SP(30B)외 8건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 08-411 호 Spectra VRMIII(다른 제품 · 다른 품목(모델명 불일치)) / 제인 26-4855 호 Spectra S4(다른 제품 · 다른 품목(모델명 불일치)) / 제인 26-4485 호 Spectra Wearable 3외…"
+    },
+    {
+     "ledger_id": "auto-M9-1775362640896",
+     "segment": "B",
+     "product": "SUNNY",
+     "product_name": "써니",
+     "license_now": "정상 · 제허 24-513 호(정상), 제허 24-242 호(정상), 제허 25-451 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 17-374 호 써니필 화이트 위드 리도카인(SunnyFill White with Lidocaine)외 14건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 16-195 호 Aqua Sunny RF(다른 제품 · 다른 품목(모델명 불일치)) / 제인 18-4969 호 Aqua Sunny 8p외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제인 16-4008 호 Aqua Sunny(다른 제품 · 다른 품목(모델명 불일치)) / 대전 제신 15-57 호 Aqua Sunny(다른 제품 · 다른 품목(모델명 불일치))"
+    },
+    {
+     "ledger_id": "auto-M9-1775360627229",
+     "segment": "B",
+     "product": "튠페이스",
+     "product_name": "어센트 프라임",
+     "license_now": "정상 · 수허 17-350 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 16-149 호 Single ACCENTO(다른 제품(ACCENTO · 비손메디칼)) / 제허 16-73 호 Dual ACCENTO외 1건(다른 제품(ACCENTO · 비손메디칼)) / 제허 15-1352 호 ACCENTO(다른 제품(ACCENTO · 비손메디칼)) / 수허 06-373 호 ACCENT ULTRA(라인 다른 품목(ACCENT ULTRA · 취소))"
+    },
+    {
+     "ledger_id": "M10-2-2",
+     "segment": "B",
+     "product": "엠스컬프트네오",
+     "product_name": "엠스컬프트 네오",
+     "license_now": "정상 · 수허 21-146 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 수인 19-4419 호 EMSCULPT KOREA(라인 다른 품목(EMSCULPT KOREA))"
+    },
+    {
+     "ledger_id": "M11-1-2",
+     "segment": "B",
+     "product": "시크릿RF",
+     "product_name": "시크릿 RF",
+     "license_now": "정상 · 제허 18-190 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 19-708 호 Secret DUO(라인 다른 품목(Secret DUO · 레이저)) / 제허 15-415 호 Secret PRO외 1건(라인 다른 품목(Secret PRO · CO2)) / 제허 15-1538 호 DR'S SECRET LIF(다른 제품(DR'S SECRET LIF · 삼포정보통신))"
+    },
+    {
+     "ledger_id": "M11-1-3",
+     "segment": "B",
+     "product": "실펌X",
+     "product_name": "실펌 X",
+     "license_now": "정상 · 제허 20-148 호(정상), 제허 19-531 호(정상), 제허 24-257 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 26-728 호 SYLFIRM H™(라인 다른 품목(SYLFIRM H)) / 제허 26-394 호 SYLFIRM H(라인 다른 품목(SYLFIRM H)) / 제허 19-215 호 SYLFIRM™(라인 다른 품목(SYLFIRM)) / 제허 15-28 호 SYLFIRM(라인 다른 품목(SYLFIRM))"
+    },
+    {
+     "ledger_id": "auto-M11-1775360637715",
+     "segment": "B",
+     "product": "스칼렛프로",
+     "product_name": "스칼렛 프로",
+     "license_now": "정상 · 제허 26-727 호(정상), 제허 25-808 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제허 17-678 호 SCARLET SE(다른 제품 · 다른 품목(모델명 불일치)) / 제허 16-807 호 SCARLET C(다른 제품 · 다른 품목(모델명 불일치)) / 제허 15-1218 호 SCARLET SRF외 1건(다른 제품 · 다른 품목(모델명 불일치)) / 제허 15-614 호 SCARLET S™(다른 제품 · 다른 품목(모델명 불일치)) / 제허 15-29 호 SCARLET S(다른 제품 · 다른 품목(모델명 불일치)) / 제허 10-549 호 SCARLET(다른 제품 · 다른 품목(모델명 불일치)) / 제허 12-1443 호 SCARLET S(다른 제품 · 다른 품목(모델명 불일치))"
+    },
+    {
+     "ledger_id": "auto-M11-1775364775143",
+     "segment": "B",
+     "product": "인피니",
+     "product_name": "인피니",
+     "license_now": "정상 · 제허 19-607 호(정상), 제허 11-381 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 연결에서 제외: 제인 17-4186 호 INFINI BODY(다른 제품 · 다른 품목(모델명 불일치)) / 제허 24-680 호 V1 INFINITY(다른 제품 · 다른 품목(모델명 불일치)) / 제허 23-1135 호 INFINITT AI Gatekeeper (다른 제품 · 다른 품목(모델명 불일치)) / 수신 21-324 호 INFINITE 1223 M1외 68건(다른 제품 · 다른 품목(모델명 불일치))"
+    },
+    {
+     "ledger_id": "M15-4-1",
+     "segment": "C",
+     "product": "LDM",
+     "product_name": "LDM",
+     "license_now": "정상 · 수인 11-587 호(정상), 제인 21-5008 호(정상)",
+     "lacking": "구간 조사가 초안(제품 허가 매칭 게이트 auto/미확인)의 연결을 추가 · 해제 · 교체했다(이름 일치 근거 있음)",
+     "basis": "초안 게이트 「auto」 → 「정상」"
+    }
+   ]
+  },
+  {
+   "decision_id": "D26",
+   "title": "현장 기기 35개 — 원장 행 추가",
+   "kind": "현장 기기",
+   "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+   "question": "현장 기기를 제품 원장 행으로 넣을까?",
+   "choices": [
+    "35개 전부 새 행으로 추가(진단 장비 4 는 「진단 장비」)",
+    "허가 정상 · 허가 대상 아님만 추가, 확인 불가는 보류",
+    "기존 원장과 같은 허가인 아포지플러스는 아포지엘리트플러스 행에 붙이고, 현장 기기끼리 같은 허가(덴서티하이⊂덴서티 · 피코라이트블랙⊂피코 라이트)는 라인+품목으로 넣고 나머지 추가"
+   ],
+   "context": null,
+   "count": 35,
+   "members": [
+    {
+     "ledger_id": "new-DEV-005",
+     "segment": "C",
+     "product": "아포지플러스",
+     "product_name": "아포지 플러스",
+     "license_now": "정상 · 수허05-546호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-005 · 정상 · 수허05-546호(정상) · 같은 허가: 아포지엘리트플러스"
+    },
+    {
+     "ledger_id": "new-DEV-013",
+     "segment": "C",
+     "product": "덴서티하이",
+     "product_name": "덴서티 하이",
+     "license_now": "정상 · 제허23-472호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-013 · 정상 · 제허23-472호(정상) · 같은 허가: 덴서티"
+    },
+    {
+     "ledger_id": "new-DEV-015",
+     "segment": "C",
+     "product": "이브타이탄",
+     "product_name": "이브타이탄",
+     "license_now": "정상 · 제허24-481호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-015 · 정상 · 제허24-481호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-018",
+     "segment": "C",
+     "product": "이래비티",
+     "product_name": "이래비티",
+     "license_now": "정상 · 제허21-26호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-018 · 정상 · 제허21-26호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-020",
+     "segment": "C",
+     "product": "엔진리프팅",
+     "product_name": "엔진",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-020 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-021",
+     "segment": "C",
+     "product": "세르프",
+     "product_name": "세르프",
+     "license_now": "정상 · 제허 26-350 호(정상), 제허 25-757 호(정상), 제허 24-243 호(정상), 제허 24-6 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-021 · 정상 · 제허 26-350 호(정상), 제허 25-757 호(정상) 외 2"
+    },
+    {
+     "ledger_id": "new-DEV-024",
+     "segment": "C",
+     "product": "덴서티",
+     "product_name": "덴서티",
+     "license_now": "정상 · 제허 23-63 호(정상), 제허 23-472 호(정상), 제허 24-114 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-024 · 정상 · 제허 23-63 호(정상), 제허 23-472 호(정상) 외 1 · 같은 허가: 덴서티하이"
+    },
+    {
+     "ledger_id": "new-DEV-027",
+     "segment": "C",
+     "product": "리니어지",
+     "product_name": "리니어지",
+     "license_now": "정상 · 제허 22-413 호(정상), 제허 22-267 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-027 · 정상 · 제허 22-413 호(정상), 제허 22-267 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-031",
+     "segment": "C",
+     "product": "울핏",
+     "product_name": "울핏",
+     "license_now": "정상 · 제허 17-256 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-031 · 정상 · 제허 17-256 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-034",
+     "segment": "C",
+     "product": "벨르업",
+     "product_name": "벨르업",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-034 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-039",
+     "segment": "C",
+     "product": "스텔라듀오",
+     "product_name": "스텔라듀오",
+     "license_now": "정상 · 제허 23-602 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-039 · 정상 · 제허 23-602 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-041",
+     "segment": "C",
+     "product": "수소토닝",
+     "product_name": "듀오 하이드로젠",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-041 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-042",
+     "segment": "C",
+     "product": "더마큐어",
+     "product_name": null,
+     "license_now": "정상 · 제허22-692호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-042 · 정상 · 제허22-692호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-043",
+     "segment": "C",
+     "product": "오메가라이트",
+     "product_name": "오메가라이트",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-043 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-044",
+     "segment": "C",
+     "product": "힐퓨전프로",
+     "product_name": "힐퓨전 프로",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-044 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-045",
+     "segment": "C",
+     "product": "크라이오 멀티마스터",
+     "product_name": "크라이오 멀티마스터",
+     "license_now": "허가 대상 아님",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-045 · 허가 대상 아님"
+    },
+    {
+     "ledger_id": "new-DEV-047",
+     "segment": "C",
+     "product": "울킨",
+     "product_name": "울킨",
+     "license_now": "허가 대상 아님",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-047 · 허가 대상 아님"
+    },
+    {
+     "ledger_id": "new-DEV-049",
+     "segment": "C",
+     "product": "오투덤",
+     "product_name": "오투덤",
+     "license_now": "허가 대상 아님",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-049 · 허가 대상 아님"
+    },
+    {
+     "ledger_id": "new-DEV-052",
+     "segment": "C",
+     "product": "트리필 프로",
+     "product_name": "트리필 프로",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-052 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-053",
+     "segment": "C",
+     "product": "AUTO MTS",
+     "product_name": "DB FNS",
+     "license_now": "정상 · 제인 10-343 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-053 · 정상 · 제인 10-343 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-056",
+     "segment": "C",
+     "product": "소노케어",
+     "product_name": "소노케어",
+     "license_now": "정상 · 제인17-4336호(정상), 제인17-4264호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-056 · 정상 · 제인17-4336호(정상), 제인17-4264호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-058",
+     "segment": "C",
+     "product": "브라이톤 미인",
+     "product_name": "브라이톤",
+     "license_now": "정상 · 제허 26-739 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-058 · 정상 · 제허 26-739 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-060",
+     "segment": "C",
+     "product": "피코라이트블랙",
+     "product_name": "피코라이트 블랙",
+     "license_now": "정상 · 제허 18-458 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-060 · 정상 · 제허 18-458 호(정상) · 같은 허가: 피코 라이트"
+    },
+    {
+     "ledger_id": "new-DEV-061",
+     "segment": "C",
+     "product": "피코 라이트",
+     "product_name": "피코라이트",
+     "license_now": "정상 · 제허 17-323 호(정상), 제허 18-458 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-061 · 정상 · 제허 17-323 호(정상), 제허 18-458 호(정상) · 같은 허가: 피코라이트블랙"
+    },
+    {
+     "ledger_id": "new-DEV-063",
+     "segment": "C",
+     "product": "큐라스토닝",
+     "product_name": "큐라스",
+     "license_now": "정상 · 제허15-629호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-063 · 정상 · 제허15-629호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-065",
+     "segment": "C",
+     "product": "헬리오스3",
+     "product_name": "헬리오스 3",
+     "license_now": "정상 · 제허 13-1491 호(정상) · 이력: 제허 16-358 호(취소)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-065 · 정상 · 제허 13-1491 호(정상), 제허 16-358 호(취소)"
+    },
+    {
+     "ledger_id": "new-DEV-067",
+     "segment": "C",
+     "product": "피코케이",
+     "product_name": "피코케이",
+     "license_now": "정상 · 제허 22-811 호(정상), 제허 21-429 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-067 · 정상 · 제허 22-811 호(정상), 제허 21-429 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-068",
+     "segment": "C",
+     "product": "피콜로 프리미엄",
+     "product_name": "피콜로 프리미엄",
+     "license_now": "정상 · 제허18-557호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-068 · 정상 · 제허18-557호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-069",
+     "segment": "C",
+     "product": "아톰레이저",
+     "product_name": "아톰",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-069 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-071",
+     "segment": "C",
+     "product": "미라쥬",
+     "product_name": "미라쥬",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-071 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-072",
+     "segment": "C",
+     "product": "3D 메타뷰",
+     "product_name": "3D 메타뷰",
+     "license_now": "정상 · 제신 23-1475 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-072 · 정상 · 제신 23-1475 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-073",
+     "segment": "C",
+     "product": "마크뷰",
+     "product_name": "마크뷰",
+     "license_now": "정상 · 제신 23-1474 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-073 · 정상 · 제신 23-1474 호(정상)"
+    },
+    {
+     "ledger_id": "new-DEV-074",
+     "segment": "C",
+     "product": "스캐나",
+     "product_name": "스케나",
+     "license_now": "확인 불가",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-074 · 확인 불가"
+    },
+    {
+     "ledger_id": "new-DEV-075",
+     "segment": "C",
+     "product": "카프리레이저",
+     "product_name": "카프리",
+     "license_now": "정상 · 제허 17-280 호(정상), 제허 16-952 호(정상), 제허 26-210 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-075 · 정상 · 제허 17-280 호(정상), 제허 16-952 호(정상) 외 1"
+    },
+    {
+     "ledger_id": "new-DEV-076",
+     "segment": "C",
+     "product": "아큐토닝",
+     "product_name": "아큐토닝",
+     "license_now": "정상 · 제허 17-475 호(정상)",
+     "lacking": "1단계에 현장 기기 포함은 10-27 결정 — 원장 정식 행(새 ledger id)으로 넣을지와 범위가 안 정해짐 · 상태 정상 23 · 확인 불가 9 · 허가 대상 아님 3",
+     "basis": "사진 DEV-076 · 정상 · 제허 17-475 호(정상)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D27",
+   "title": "사용목적 불일치 — 이름은 맞지만 허가 용도가 미용 시술이 아님",
+   "kind": "사용목적 불일치",
+   "lacking": "허가 제품명에 이름은 있으나 식약처 사용목적이 시술 용도와 다르다(내시경 점막 융기 · 관절강 주입 · 인대·건 보충) — 연결을 풀어 둠",
+   "question": "사용목적이 다른 허가를 이 원장 제품에 연결할까?",
+   "choices": [
+    "연결하지 않음 — 확인 불가 유지(남은 허가만)",
+    "이 허가로 연결(사용목적 다름을 속성으로 표시)",
+    "원천(병원)에 실제 쓰는 제품 확인"
+   ],
+   "context": null,
+   "count": 4,
+   "members": [
+    {
+     "ledger_id": "M4-2-3",
+     "segment": "A",
+     "product": "릴리이드M",
+     "product_name": "릴리이드M",
+     "license_now": "확인 불가",
+     "lacking": "허가 제품명에 이름은 있으나 식약처 사용목적이 시술 용도와 다르다(내시경 점막 융기 · 관절강 주입 · 인대·건 보충) — 연결을 풀어 둠",
+     "basis": "연결 후보의 사용목적이 미용 시술과 다름 — 제허12-269호 「내시경적 점막 절제술에 있어서 위 종양 부위의 점막 융기를 형성, 유지」 → 연결 해제(검수 F-5)"
+    },
+    {
+     "ledger_id": "M4-1-7",
+     "segment": "A",
+     "product": "비타란",
+     "product_name": "HP VITARAN",
+     "license_now": "정상 · 제허23-784호(정상)",
+     "lacking": "허가 제품명에 이름은 있으나 식약처 사용목적이 시술 용도와 다르다(내시경 점막 융기 · 관절강 주입 · 인대·건 보충) — 연결을 풀어 둠",
+     "basis": "연결 후보의 사용목적이 미용 시술과 다름 — 제허 22-99 호 「관절강에 주입하여 물리적 수복을 통해 관절 부위의 기계적 마찰을 줄여주는 목적으로 사용」 → 연결 해제(검수 F-5)"
+    },
+    {
+     "ledger_id": "auto-14-1774737181584",
+     "segment": "A",
+     "product": "레티젠",
+     "product_name": "Laetigen",
+     "license_now": "확인 불가",
+     "lacking": "허가 제품명에 이름은 있으나 식약처 사용목적이 시술 용도와 다르다(내시경 점막 융기 · 관절강 주입 · 인대·건 보충) — 연결을 풀어 둠",
+     "basis": "연결 후보의 사용목적이 미용 시술과 다름 — 제허23-1112호 「내·외과적 처치 및 수술 시 결손 또는 손상된 인대, 건, 근육, 근막을 보충하기 위하여 사용하는 콜라겐 함유 물질」 → 연결 해제(검수 F-5)"
+    },
+    {
+     "ledger_id": "auto-15-1774737181584",
+     "segment": "A",
+     "product": "미라콜",
+     "product_name": "MiraColl EX",
+     "license_now": "확인 불가",
+     "lacking": "허가 제품명에 이름은 있으나 식약처 사용목적이 시술 용도와 다르다(내시경 점막 융기 · 관절강 주입 · 인대·건 보충) — 연결을 풀어 둠",
+     "basis": "연결 후보의 사용목적이 미용 시술과 다름 — 제허18-83호 「내·외과적 처치 및 수술 시 결손 또는 손상된 인대, 건, 근육을 보충하기 위하여 사용하는 콜라겐 함유 물질」 / 제허24-171호 「내·외과적 처치 및 수술 시 결손 또는 손상된 인대, 건, 근육을 보충하기 위하여 사용하는 콜라겐 함유 물질」 → 연결 해제(검수 F-5)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D28",
+   "title": "이름 대응 근거가 약한 연결",
+   "kind": "근거 약함",
+   "lacking": "모델명이 코드라 제조원 · emedi 제품명으로만 이었거나, 한 질의 결과가 다른 두 행에 갈라져 붙음",
+   "question": "근거가 약한 연결을 유지할까?",
+   "choices": [
+    "유지",
+    "연결 해제 — 확인 불가",
+    "바이리즌 · 비타란은 함께 보고 하나만 남김"
+   ],
+   "context": null,
+   "count": 4,
+   "members": [
+    {
+     "ledger_id": "M15-2-2",
+     "segment": "C",
+     "product": "하이드라페이셜",
+     "product_name": "하이드라페이셜",
+     "license_now": "정상 · 수허 22-213 호(정상) · 이력: 수허 07-728 호(취소)",
+     "lacking": "모델명이 코드라 제조원 · emedi 제품명으로만 이었거나, 한 질의 결과가 다른 두 행에 갈라져 붙음",
+     "basis": "이름 대응 근거가 약함 — 현행 수허 22-213 의 식약처 모델명은 코드 「70290-03-01-KOR」(이름 없음) · 제조원 Hydrafacial, LLC 로만 연결 · 사용목적 「연마에 의해 피부표면을 제거 … 피부의 불순물 제거」"
+    },
+    {
+     "ledger_id": "auto-M2-1775364775109",
+     "segment": "A",
+     "product": "아테콜",
+     "product_name": "ARTECOLL",
+     "license_now": "정상 · 수허99-665호(정상)",
+     "lacking": "모델명이 코드라 제조원 · emedi 제품명으로만 이었거나, 한 질의 결과가 다른 두 행에 갈라져 붙음",
+     "basis": "이름 대응 근거가 약함 — 수허 99-665 의 식약처 TYPE_NAME 은 「ARTESENSE」(제조 European Medical Contract Manufacturing B.V.) — 「ARTECOLL」 이름은 emedi 제품명 근거뿐"
+    },
+    {
+     "ledger_id": "auto-M4-1775361378128",
+     "segment": "A",
+     "product": "바이리즌",
+     "product_name": "BYRYZN Skinbooster HA",
+     "license_now": "정상 · 제허20-527호(정상)",
+     "lacking": "모델명이 코드라 제조원 · emedi 제품명으로만 이었거나, 한 질의 결과가 다른 두 행에 갈라져 붙음",
+     "basis": "이름 대응 근거가 약함 — 바이리즌은 (주)아크로스 제허 20-527(더채움 허가)에 연결됐는데, 같은 질의(query2=바이리즌 · BYRYZN)로 찾은 (주)비알팜 제허 23-784 는 비타란에 붙어 있음 — 둘 중 하나는 틀린 연결일 수 있음"
+    },
+    {
+     "ledger_id": "M4-1-7",
+     "segment": "A",
+     "product": "비타란",
+     "product_name": "HP VITARAN",
+     "license_now": "정상 · 제허23-784호(정상)",
+     "lacking": "모델명이 코드라 제조원 · emedi 제품명으로만 이었거나, 한 질의 결과가 다른 두 행에 갈라져 붙음",
+     "basis": "이름 대응 근거가 약함 — 남은 허가 제허 23-784(비알팜 · 사용목적 「성인의 눈꼬리 잔주름을 일시적으로 개선」)는 바이리즌 질의(query2=바이리즌 · BYRYZN)에서 나온 것 — 바이리즌 행과 같은 질의 결과가 갈라져 붙음"
+    }
+   ]
+  },
+  {
+   "decision_id": "D29",
+   "title": "taxonomy products[] 에서 빠진 제품 — 새 행 15개 중 13개(허가 취소 2 는 규칙으로 정리)",
+   "kind": "taxonomy 제품 추가",
+   "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+   "question": "새로 넣은 taxonomy 제품 행을 원장에 둘까?",
+   "choices": [
+    "전부 원장에 둠(확인 불가는 상태로)",
+    "허가 확인된 것만 두고 확인 불가는 원천에 확인",
+    "업체가 taxonomy 와 다른 것은 건별로 본다",
+    "레티보(M1-P-10)는 보툴렉스(M1-1-1)와 같은 제품으로 합친다(동의어 · 수출명)"
+   ],
+   "context": null,
+   "count": 13,
+   "members": [
+    {
+     "ledger_id": "M1-P-9",
+     "segment": "T",
+     "product": "뉴럭스",
+     "product_name": "뉴럭스",
+     "license_now": "정상 · 202302604(정상), 202601737(정상)",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "taxonomy 업체 「메디톡스」 ↔ 허가 업체 (주)뉴메코(위탁 제조 (주)메디톡스) — 허가권자 표기 다름 / 조사 기록: 의약품 item_name=뉴럭스 2건(정상) · emedi query2=뉴럭스 · Neurox 0 · taxonomy 업체 「메디톡스」 ↔ 허가 업체 (주)뉴메코(위탁 제조 (주)메디톡스) — 허가권자 표기 다름"
+    },
+    {
+     "ledger_id": "M1-P-10",
+     "segment": "T",
+     "product": "레티보",
+     "product_name": "레티보",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "국내 허가 이름 0 — 기사상 보툴렉스(M1-1-1)의 수출명. 보툴렉스 행과 같은 제품으로 묶을지 / 조사 기록: 의약품 item_name=레티보 0 · emedi query2=레티보 · Letibo · LETYBO 0 · 국내 허가 이름 0 — 기사상 보툴렉스(M1-1-1)의 수출명. 보툴렉스 행과 같은 제품으로 묶을지"
+    },
+    {
+     "ledger_id": "M2-P-7",
+     "segment": "T",
+     "product": "신펄",
+     "product_name": "신펄",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=신펄 · Synpurl · SYNPURL 0 · 식약처 TYPE_NAME=Synpurl 0 · 웹 「제테마 신펄 필러」 — 제품 언급 없음"
+    },
+    {
+     "ledger_id": "M3-P-5",
+     "segment": "T",
+     "product": "글로벨라",
+     "product_name": "글로벨라",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=글로벨라 · Glovella · GLOVELLA 0 · 식약처 TYPE_NAME=Glovella 0 · 업체 ENTRPS=에이씨피바이오 0 · 웹 「글로벨라 에이씨피바이오」 0"
+    },
+    {
+     "ledger_id": "M5-P-0",
+     "segment": "T",
+     "product": "셀피아",
+     "product_name": "셀피아",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=셀피아 0 · Cellpia → 모델 「Cellpia」 제허16-156 (주)비앤비메디 「스프링셀」(조직수복용생체재료 · 2021 취하) — taxonomy 업체 CGBio 와 다름 · 업체 ENTRPS=씨지바이오 0 · 웹 0"
+    },
+    {
+     "ledger_id": "M5-P-1",
+     "segment": "T",
+     "product": "리젠ACR",
+     "product_name": "리젠ACR",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "taxonomy 업체 「리젠바이오텍」 ↔ 웹 상표권자 REGEN LAB SA(스위스) — 리젠바이오텍 허가 5건(AestheFill · PowerFill)에 ACR 없음 / 조사 기록: emedi query2=리젠ACR · RegenACR · Regen ACR 이름 일치 0 · 식약처 ENTRPS=리젠바이오텍 5건 이름 없음 · taxonomy 업체 「리젠바이오텍」 ↔ 웹 상표권자 REGEN LAB SA(스위스) — 리젠바이오텍 허가 5건(AestheFill · PowerFill)에 ACR 없음"
+    },
+    {
+     "ledger_id": "M5-P-2",
+     "segment": "T",
+     "product": "마이셀",
+     "product_name": "마이셀",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=마이셀 0 · Mycell → 「Mycells」 (주)스킨엠디코리아 수허11-8 · 서울수신09-1392(채혈기구 · 취하) — taxonomy 업체 한스바이오메드와 다름 · 웹 「한스바이오메드 마이셀」 0"
+    },
+    {
+     "ledger_id": "M5-P-4",
+     "segment": "T",
+     "product": "EXOSOME SKIN",
+     "product_name": "EXOSOME SKIN",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "taxonomy 업체 「엑소스템텍」 ↔ 웹상 ExoSCRT 기술 보유 ExoCoBio — 업체 다름 / 조사 기록: emedi query2=EXOSOME SKIN · ExoSCRT · 엑소스템 0 · 식약처 TYPE_NAME=ExoSCRT 0 · ENTRPS=엑소스템텍 0 · taxonomy 업체 「엑소스템텍」 ↔ 웹상 ExoSCRT 기술 보유 ExoCoBio — 업체 다름"
+    },
+    {
+     "ledger_id": "M7-P-1",
+     "segment": "T",
+     "product": "에버라인",
+     "product_name": "에버라인",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=에버라인 0 · Everline/EVERLINE 이름 일치 0 · 식약처 ENTRPS=케이엘글로벌 7건(봉합사 없음) · 웹 「에버라인 실리프팅 KL글로벌」 0"
+    },
+    {
+     "ledger_id": "M7-P-2",
+     "segment": "T",
+     "product": "미라클",
+     "product_name": "미라클",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=미라클 → 「WOW미라클」 고메디칼코리아 제허16-571(폴리디옥사논봉합사 · 정상) — taxonomy 업체 메디텍과 다름 · Miracle Thread 0"
+    },
+    {
+     "ledger_id": "M8-P-1",
+     "segment": "T",
+     "product": "피코웨이",
+     "product_name": "피코웨이",
+     "license_now": "정상 · 수허18-304호(정상) · 이력: 수허15-1312호(취소)",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "taxonomy 업체 「캔델라」 ↔ 현행 수입사 시너론켄델라코리아(제조 NPA de Mexico) · 현행 허가 식약처 모델명은 코드 「9914-JB-9060외 1건」 — 이름은 emedi 제품명 「Picoway」 / 조사 기록: emedi query2=피코웨이 0 · PicoWay → 수허18-304(정상) · 수허15-1312(신한씨스텍 · Candela · 2019 취하) · 식약처 TYPE_NAME=Picoway 1(15-1312 취소) · taxonomy 업체 「캔델라」 ↔ 현행 수입사 시너론켄델라코리아(제조 NPA de Mexico) · 현행 허가 식약처 모델명은 코드 「9914-JB-9060외 1건」 — 이름은 emedi 제품명 「Picoway」"
+    },
+    {
+     "ledger_id": "M11-P-1",
+     "segment": "T",
+     "product": "인트라셀",
+     "product_name": "인트라셀",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: emedi query2=인트라셀 0 · INTRACELL → (주)풍림파마텍 「Intracell-P」 제허12-16(채혈·생체검사용 기구) · 「Intracell-F」 제허11-1326(혈액처리용기구) — 니들RF 아님 · taxonomy 업체 제이시스메디칼과 다름 · 웹: INTRAcel RF 마이크로니들(미국 병원 페이지 — 제조사 표기 없음)"
+    },
+    {
+     "ledger_id": "M17-P-1",
+     "segment": "T",
+     "product": "에스에프",
+     "product_name": "에스에프",
+     "license_now": "확인 불가",
+     "lacking": "taxonomy modality[].products[] 에 있는데 원장 행이 없던 제품 — 새로 조사해 행을 넣음(정상 2 · 허가 취소(이력) 2 · 확인 불가 11 — 허가 취소 2 는 규칙으로 원장에 남김)",
+     "basis": "/ 조사 기록: 의약품 item_name=에스에프 0 · entp_name=에이치앤바이오 0 · emedi query2=에스에프 → 「엠에스에프(MSF)」 메디코리아 외과 용품(다른 제품) · SF Injection 0 · 식약처 ENTRPS=에이치앤바이오 1건(치과용연마제) · 웹: 에이치앤바이오 = 화장품 임상시험 서비스 업체(https://thevc.kr/hnbio)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D30",
+   "title": "taxonomy 제품 이름이 원장 행과 부분만 일치",
+   "kind": "taxonomy 제품 추가",
+   "lacking": "taxonomy products[] 이름과 원장 이름이 부분만 같다(채움↔더채움 · 벨피엔↔벨피엔 프로 · 프락셀↔프락셀듀얼)",
+   "question": "taxonomy 제품을 이 원장 행과 같은 제품으로 둘까?",
+   "choices": [
+    "같은 제품(동의어)으로 둠",
+    "라인 이름으로 보고 원장 행은 그 품목으로 둠",
+    "별도 행으로 새로 조사"
+   ],
+   "context": null,
+   "count": 3,
+   "members": [
+    {
+     "ledger_id": "M2-1-2",
+     "segment": "A",
+     "product": "더채움",
+     "product_name": "더채움",
+     "license_now": "정상 · 제허20-527호(정상), 제허17-809호(정상), 제허14-1762호(정상), 제허14-860호(정상)",
+     "lacking": "taxonomy M2-P-5 「채움」 ↔ 원장 「더채움」",
+     "basis": "정상 허가 1건 이상"
+    },
+    {
+     "ledger_id": "auto-M4-1775360463217",
+     "segment": "A",
+     "product": "벨피엔 프로",
+     "product_name": "밸피엔",
+     "license_now": "정상 · 제허26-757호(정상) · 이력: 제허21-776호(취하 2026-10-19)",
+     "lacking": "taxonomy M4-P-4 「벨피엔」 ↔ 원장 「벨피엔 프로」",
+     "basis": "허가 모델명은 「밸피엔(BelPN)」 — 원장 「벨피엔 프로」 의 「프로」 는 허가에 없음(표기 차이 · 품목 확인 필요)"
+    },
+    {
+     "ledger_id": "M8-2-4",
+     "segment": "B",
+     "product": "프락셀듀얼",
+     "product_name": "프락셀 듀얼",
+     "license_now": "정상 · 수허 10-500 호(정상)",
+     "lacking": "taxonomy M8-P-5 「프락셀」 ↔ 원장 「프락셀듀얼」",
+     "basis": "연결 허가 1건 중 정상 1"
+    }
+   ]
+  },
+  {
+   "decision_id": "D31",
+   "title": "「허가 대상 아님」 근거 재확인 4건",
+   "kind": "허가 대상 아님 근거",
+   "lacking": "「허가 대상 아님」을 추정 · 검색 URL 로 채웠던 4건 — URL 근거가 있는 2건은 확정, 없는 2건은 확인 불가로 바꿈",
+   "question": "바꾼 판정을 받을까?",
+   "choices": [
+    "받기",
+    "확인 불가 2건(벨르업 · 메소건)은 판매사 · 원천에 확인",
+    "건별로 본다"
+   ],
+   "context": null,
+   "count": 4,
+   "members": [
+    {
+     "ledger_id": "auto-M15-1775360904089",
+     "segment": "C",
+     "product": "노보젯",
+     "product_name": "노보젯",
+     "license_now": "허가 대상 아님",
+     "lacking": "「허가 대상 아님」을 추정 · 검색 URL 로 채웠던 4건 — URL 근거가 있는 2건은 확정, 없는 2건은 확인 불가로 바꿈",
+     "basis": "제조사 회사 소개 「노보젯 — 미용기기분야 미세분할 무바늘 약물전달기기」 · 「큐어젯 — 의료분야」 구분(https://www.wanted.co.kr/company/1525) · 의료기기 허가 이름 0(emedi query2=노보젯 · NOVOJET · Novojet 0건) (이전 「허가 대상 아님」 근거는 추정 또는 URL 없는 출처 — 검수 F-3)"
+    },
+    {
+     "ledger_id": "new-DEV-049",
+     "segment": "C",
+     "product": "오투덤",
+     "product_name": "오투덤",
+     "license_now": "허가 대상 아님",
+     "lacking": "「허가 대상 아님」을 추정 · 검색 URL 로 채웠던 4건 — URL 근거가 있는 2건은 확정, 없는 2건은 확인 불가로 바꿈",
+     "basis": "기사 「산소이온발생기 오투덤은 … 피부에 전달해 … 활력을 불어넣어 주는 미용기기」 · 제조 주식회사 트리시스(https://www.sportsseoul.com/news/read/804413) · emedi query2=오투덤 · O2toDerm · O2derm 0건 (이전 「허가 대상 아님」 근거는 추정 또는 URL 없는 출처 — 검수 F-3)"
+    },
+    {
+     "ledger_id": "new-DEV-034",
+     "segment": "C",
+     "product": "벨르업",
+     "product_name": "벨르업",
+     "license_now": "확인 불가",
+     "lacking": "「허가 대상 아님」을 추정 · 검색 URL 로 채웠던 4건 — URL 근거가 있는 2건은 확정, 없는 2건은 확인 불가로 바꿈",
+     "basis": "판매처 페이지(https://bellelumiemall.co.kr/product/%EB%B2%A8%EB%A5%B4%EC%97%85-%EB%B3%B8%EC%B2%B4/37/)에 의료기기 · 미용기기 구분 문구 없음(WebFetch) · web4 의 「허가 대상 아님」은 「추정」 · emedi query2=벨르업 · Belle Up · BELLE UP 0건 — 허가 대상 여부 근거 없음 (이전 「허가 대상 아님」 근거는 추정 또는 URL 없는 출처 — 검수 F-3)"
+    },
+    {
+     "ledger_id": "auto-M15-1775360919010",
+     "segment": "C",
+     "product": "메소건",
+     "product_name": null,
+     "license_now": "확인 불가",
+     "lacking": "「허가 대상 아님」을 추정 · 검색 URL 로 채웠던 4건 — URL 근거가 있는 2건은 확정, 없는 2건은 확인 불가로 바꿈",
+     "basis": "원천 근거는 네이버 검색 URL 뿐(web4) — 「장비 유형 일반명」 단정 출처 없음 · emedi query2=메소건 · 메조건 · Mesogun 0건 (이전 「허가 대상 아님」 근거는 추정 또는 URL 없는 출처 — 검수 F-3)"
+    }
+   ]
+  },
+  {
+   "decision_id": "D32",
+   "title": "분류표 other · 단위 시술 행 안의 의약품 브랜드 3건 — 원장 밖",
+   "kind": "원장 범위",
+   "lacking": "분류표 v2 의 product 필드에 브랜드가 있는데(아큐탄 · 컨트라투벡스 · 라엔넥) 행 분류가 other/unit_procedure 라 제품 원장에 행이 없다",
+   "question": "이 세 브랜드를 제품 원장 행으로 넣을까?",
+   "choices": [
+    "넣음 — 식약처 의약품 허가로 조사해 행 추가",
+    "넣지 않음 — 시술(5단계 단위 시술)의 사용 약제로만 둠",
+    "라엔넥(waiting_mfds)만 넣고 아큐탄 · 컨트라투벡스(other)는 뺌"
+   ],
+   "context": "검수 W-1 · 원장 행이 없어 지금 상태는 「원장 밖」",
+   "count": 3,
+   "members": [
+    {
+     "ledger_id": "auto-M15-1775361951923",
+     "segment": "분류표(원장 밖)",
+     "product": "아큐탄",
+     "product_name": "아큐탄",
+     "license_now": "원장 행 없음 · 미조사",
+     "lacking": "원장 행 없음",
+     "basis": "분류표 v2 kind=other · status=approved · product=아큐탄 · source_text 「아큐탄 · 이소트레티노인 브랜드 | 적응증: 중증 결절성 여드름; 치료 저항성 여드름; 반흔 형성 여드름」"
+    },
+    {
+     "ledger_id": "auto-M15-1775364775171",
+     "segment": "분류표(원장 밖)",
+     "product": "컨트라투벡스",
+     "product_name": "컨트라투벡스",
+     "license_now": "원장 행 없음 · 미조사",
+     "lacking": "원장 행 없음",
+     "basis": "분류표 v2 kind=other · status=approved · product=컨트라투벡스 · source_text 「양파추출물연고 · 컨트라투벡스 | 적응증: 수술 후 흉터; 켈로이드성 흉터」"
+    },
+    {
+     "ledger_id": "M16-3-1",
+     "segment": "분류표(원장 밖)",
+     "product": "라엔넥",
+     "product_name": "라엔넥",
+     "license_now": "원장 행 없음 · 미조사",
+     "lacking": "원장 행 없음",
+     "basis": "분류표 v2 kind=unit_procedure · status=waiting_mfds · product=라엔넥 · source_text 「태반주사(라엔넥) · 인태반 추출물 | 적응증: 피부재생; 항노화; 피로회복」"
+    }
+   ]
+  }
+ ]
+}

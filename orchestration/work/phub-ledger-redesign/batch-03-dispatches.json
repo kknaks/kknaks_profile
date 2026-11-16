@@ -1,0 +1,1600 @@
+{
+  "run_id": "run_05ed91e27327",
+  "batch": "03",
+  "agent": "claude",
+  "model": "opus",
+  "state": "stage1_closed_with_recorded_limitations",
+  "skill_sha256": "bc443eb14e7f127b6863087063639a0f19db61b429aaa029727a21638f06ae2a",
+  "workers": [
+    {
+      "ledger": "taxonomy",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/taxonomy.json",
+      "source_sha256": "5492d0d4354406477206cb46f1bb735ca684d2d4a218c11d31e7889b20f4e8fe",
+      "source_bytes": 660679,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-03-taxonomy-brief.md",
+      "state": "reported_first_pass_finished",
+      "receipt": {
+        "id": "9f13b5b1-9c17-4181-96a3-1617e27808b8",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_2d9cac164fd3",
+          "dispatchId": "ctx_ef30575e94c1",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_da6310af-b177-42d4-8eb0-168a7f40d04d",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_da6310af-b177-42d4-8eb0-168a7f40d04d",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "1e2a994e-b810-4fc9-8715-024bde80c717",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "06dd8766-15f2-43dd-8ed9-292821d0192d",
+            "generation": 158,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "1e2a994e-b810-4fc9-8715-024bde80c717",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_2d9cac164fd3",
+      "dispatchId": "ctx_e578713c4a79",
+      "stage": "input_accepted",
+      "handle": "term_b86fb2d2-b39e-4185-9fc8-c61a7dfa8820",
+      "effective_model": "opus",
+      "crash_inspection": {
+        "ledger": "taxonomy",
+        "dispatchId": "ctx_ef30575e94c1",
+        "source_hash_matches_dispatch": true,
+        "fleet_liveness": "unverifiable: missing_status",
+        "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+        "resume_session_id_from_terminal": "d5b3b31f-d7a6-45b6-89b1-3a9922b31e63"
+      },
+      "previous_attempts": [
+        {
+          "taskId": "task_2d9cac164fd3",
+          "dispatchId": "ctx_ef30575e94c1",
+          "handle": "term_da6310af-b177-42d4-8eb0-168a7f40d04d",
+          "outcome": "failed; exact process exit observed",
+          "output_deleted_by_user_approval": true,
+          "deleted_files": 116
+        }
+      ],
+      "restart_receipt": {
+        "id": "11d841f1-27f4-4157-a8ef-a1152c83ed43",
+        "ok": false,
+        "error": {
+          "code": "consumer_fenced",
+          "message": "worker-start needs the coordinator bound to the Run, or a worker on an active Dispatch in it. Orchestration mutation request ID: e50e17ae-8b69-4cfd-9a03-077cea9f568d.",
+          "data": {
+            "orchestrationRequestId": "e50e17ae-8b69-4cfd-9a03-077cea9f568d",
+            "originalCommand": [
+              "orca",
+              "orchestration",
+              "worker-start",
+              "--task",
+              "task_2d9cac164fd3",
+              "--retry-of",
+              "ctx_ef30575e94c1",
+              "--worktree",
+              "current",
+              "--agent",
+              "claude",
+              "--model",
+              "opus",
+              "--run",
+              "run_05ed91e27327",
+              "--json"
+            ]
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "restart_receipts": [
+        {
+          "id": "6a48f005-fc3f-43b9-a4fa-afe771507fb5",
+          "ok": false,
+          "error": {
+            "code": "task_not_startable",
+            "message": "Task task_2d9cac164fd3 cannot retry from Dispatch ctx_ef30575e94c1. Orchestration mutation request ID: e50e17ae-8b69-4cfd-9a03-077cea9f568d.",
+            "data": {
+              "taskId": "task_2d9cac164fd3",
+              "status": "ready",
+              "unmetDependencies": [],
+              "retryOf": "ctx_ef30575e94c1",
+              "nextSteps": [
+                "--retry-of must name the latest settled Dispatch of a failed or blocked Task; check orca orchestration dispatch-show --task task_2d9cac164fd3 --json and orca orchestration worker-show --dispatch ctx_ef30575e94c1 --json."
+              ],
+              "orchestrationRequestId": "e50e17ae-8b69-4cfd-9a03-077cea9f568d",
+              "originalCommand": [
+                "orca",
+                "orchestration",
+                "worker-start",
+                "--task",
+                "task_2d9cac164fd3",
+                "--retry-of",
+                "ctx_ef30575e94c1",
+                "--worktree",
+                "current",
+                "--agent",
+                "claude",
+                "--model",
+                "opus",
+                "--run",
+                "run_05ed91e27327",
+                "--json"
+              ]
+            }
+          },
+          "_meta": {
+            "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+          }
+        },
+        {
+          "id": "973fe55e-6862-44ed-92e6-8012781be9fe",
+          "ok": true,
+          "result": {
+            "runId": "run_05ed91e27327",
+            "taskId": "task_2d9cac164fd3",
+            "dispatchId": "ctx_e578713c4a79",
+            "state": "ready",
+            "stage": "input_accepted",
+            "turnStart": "observed",
+            "setup": {
+              "requested": "not_applicable",
+              "effective": "not_applicable",
+              "source": "existing_worktree",
+              "hookFound": false,
+              "startupPolicy": "start-immediately",
+              "state": "not_applicable"
+            },
+            "launch": {
+              "requested": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              },
+              "effective": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              }
+            },
+            "mode": {
+              "mode": "terminal",
+              "preferred": "terminal",
+              "reason": "user_default",
+              "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+            },
+            "timeoutMs": 60000,
+            "effects": [
+              {
+                "kind": "worktree",
+                "action": "reused",
+                "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+              },
+              {
+                "kind": "setup",
+                "action": "not_applicable",
+                "state": "not_applicable"
+              },
+              {
+                "kind": "terminal",
+                "role": "agent",
+                "action": "created",
+                "id": "term_b86fb2d2-b39e-4185-9fc8-c61a7dfa8820",
+                "surface": "visible"
+              },
+              {
+                "kind": "dispatch_input",
+                "role": "agent",
+                "id": "term_b86fb2d2-b39e-4185-9fc8-c61a7dfa8820",
+                "state": "accepted"
+              }
+            ],
+            "prompt": {
+              "requestId": "6ab5c707-33ac-4c95-8d8a-12ec7e343ca7",
+              "stages": [
+                "input_accepted",
+                "turn_started"
+              ],
+              "provider": "claude",
+              "observation": "supported",
+              "processIncarnation": "64233651-ed03-46e7-bf12-75bbc063e047",
+              "generation": 24,
+              "baselineWorkingSequence": 0,
+              "baselineExplicitWorkingStartedAt": null,
+              "baselinePermissionSequence": 0
+            },
+            "residualResources": [],
+            "mutation": {
+              "requestId": "6ab5c707-33ac-4c95-8d8a-12ec7e343ca7",
+              "replayed": false
+            }
+          },
+          "_meta": {
+            "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+          }
+        }
+      ],
+      "restart_task_status_receipt": {
+        "id": "bdc80b56-0179-4f29-b40f-cca94b0c40df",
+        "ok": true,
+        "result": {
+          "task": {
+            "id": "task_2d9cac164fd3",
+            "run_id": "run_05ed91e27327",
+            "parent_id": null,
+            "created_by_terminal_handle": "term_9817d7e4-b067-40b3-9235-c8dcddad8f26",
+            "created_by_pane_key": "ff6565f7-ca8a-42c4-bf2b-d8e5b3fa1b0b:057b0d11-a6ca-41a1-bc4c-80912b7df08d",
+            "created_by_process_incarnation": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온@@d52e48d8:39cc3e3d-388a-4d25-8ee6-fb1c51abecce",
+            "created_by_run_generation": 1,
+            "task_title": "batch-03 taxonomy 전체 1차 조사",
+            "display_name": "batch-03 taxonomy 전체 1차 조사",
+            "spec": "# [researcher] batch-03 / taxonomy.json 전체 1차 조사\n\n너는 Opus 조사 워커다. 코디와 동일 트리를 공유하며, 다른 원장 워커 4명과 병렬 실행된다. 네 담당 원장과 결과 폴더만 소유한다. 추가 워커·서브에이전트를 띄우지 않는다. 최신 라이브 preamble의 task/dispatch와 보고 명령이 §9보다 우선한다. 이 파일만으로 이번 발주 범위를 판단한다.\n\n## 1. SSOT — 먼저 읽을 것\n\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/AGENTS.md`\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/ledger-first-pass/SKILL.md` — 수정 완료된 1차 수집 절차·출력·종료 기준\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/_RESUME.md` — 읽기 전용. 이번 batch 승인과 현재 상태\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/README.md` — 원장 작성 규칙. 원본 수정 허가가 아니며 기호만으로 의미 관계를 확정하지 않는다.\n\n역할 자료가 필요하면 `orchestration/roles/procedure-hub/researcher/`를 읽되, 단일 리포트 경로 등 기본 역할과 이번 브리프가 다르면 이번 사용자 승인 범위를 우선한다.\n\n## 2. 배경 / 무엇을 바꾸나\n\nprocedure-profiles 샘플과 batch-01·02 각5개, 총11개 1차 수집은 종료했다. 사용자는 다음 묶음5개를 Opus 워커5명에게 발주하고 분량이 많으면 나누어 진행하라고 지시했다. 이번 대상은 `taxonomy.json` **전체**다. 기존 조사 주장·이전 ERD를 근거로 사용하지 않는다. 구조·전체 값·원문·문맥·형태소·복합 표현을 직접 수집하며 의미 모델 설계·정규화·관계 확정은 하지 않는다.\n\n## 3. 계약\n\n읽기용 review.md에 컬럼 구성 표(원본 컬럼명/경로 패턴·자료형·중첩 구조·원문 예시와 위치)를 제공하고, 모든 항목의 실제 내부 값을 원본 컬럼명 그대로 보여준다. 원문 값과 잠정 관찰은 별도 칸/절로 분리한다. 필드명을 줄이지 않는다. 필드·빈도·토큰 목록만으로 전수 읽기를 대신하지 않는다.\n\n기계 기록은 모든 구조·키·말단 값·빈 값·배열 순서·JSON Pointer·정확한 구간·문맥을 포함한다. 원문 키 중복·이스케이프가 있을 수 있으므로 실제 파일 조건에 맞게 처리한다. 코드포인트/바이트, 디코딩 문자열/JSON 리터럴 구간을 구분한다.\n\n형태소 분석 환경은 `uv run --python 3.12 --with kiwipiepy==0.24.1`을 쓸 수 있다. `cong` 모델을 사용하고 스레드는 1개로 제한한다. 버전·사전·옵션을 실제로 기록한다. 도구가 제공하지 않는 기본형을 임의로 생성하지 않는다. 필드명·언어 텍스트·ID/코드값의 적용/제외는 각각 사유와 위치를 남긴다. 사용자 사전은 필수가 아니며 이번에는 기본 결과를 보존하고 알려진 오분절을 출현별로 기록하면 된다.\n\n전체 원문을 문맥과 함께 직접 읽는다. 형태소·정규식·키워드는 수집 보조다. 전문어 오분절, 수식·부정·가능성·조건·범위·시간이 사라지거나 오탐이 되는 곳은 원문 구간과 영향으로 표시한다. 원시 분석은 도메인 정답이 아니다.\n\n## 4. 먼저 읽을 핵심 파일\n\n유일한 조사 데이터: `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/taxonomy.json`. 다른 원장을 열어 조사하거나 통합 의미 체계를 가정하지 않는다. 원문이 다른 항목을 참조하면 참조 표현과 원문 위치를 보존하고 후속 연결 과제로 둔다.\n\n## 5. allowed_paths\n\n**쓰기 허용은 `orchestration/work/phub-ledger-redesign/first-pass/taxonomy/` 아래뿐이다.** 없는 결과 폴더만 생성한다. 공통 스킬·_RESUME·batch 계획·원본·다른 워커 폴더는 수정·삭제하지 않는다. 작업 중 자신이 만든 신규 결과의 필요한 보정은 허용하나 기존 타 작업을 덮어쓰지 않는다.\n\n산출 파일: review.md, source-map.json, morphology.json, expressions.json, issues.md, validation.md. 재현 build.py·독립 verify.py와 꼭 필요한 수동 검토 기록도 같은 폴더 안에 둔다. 임시 산출물·캐시도 다른 워커와 경로를 공유하지 않는다. 공유 uv 패키지 캐시를 이용하는 것은 허용하며 전역 설정은 바꾸지 않는다.\n\n## 이번 묶음의 구획 분할·범위 추적 계약\n\n1. 구조를 실제로 확인한 뒤 문맥을 유지하는 상위 객체·카테고리·항목 구획을 정한다. 작은 원장은 구획1개도 가능하다. 큰 원장은 한 번의 화면 출력·한 번의 분석으로 전부 읽으려 하지 말고 구획별로 순차 읽는다. 문자 수·토큰 예산만으로 문장 중간을 자르지 않는다. 긴 값도 나눌 때 전체 값과 앞뒤 문맥을 참조하게 한다.\n2. 자기 결과 폴더에 `coverage.json`을 만든다. 구획 ID, 원문 Pointer 범위/실제 말단 Pointer 집합, 상위 문맥 참조, 직접 읽은 상태, 대응하는 review 파일/절을 기록한다. 기계 추출과 직접 읽기를 구분한다. 아직 안 읽은 구획을 완료로 쓰지 않는다.\n3. 모든 원문 말단 값(및 빈 컨테이너)을 어느 구획이 담당하는지 대응시킨다. 공동 참조하는 상위 메타데이터·문맥과 구획이 실제로 소유한 값은 구분한다. verify.py에 전체 원문 경로 집합과 구획별 소유 경로 합집합의 양방향 대조, 누락·불필요 중복 검사, 구획별 상태·결과 파일 실재를 넣는다. 개수만 맞춰 통과시키지 않는다.\n4. 구획 하나를 읽을 때마다 관찰·수동 표현·미결을 그 구획에 남긴다. 문맥 압축/세션 재개가 필요해도 마지막으로 읽은 위치와 남은 구획을 파일에서 찾을 수 있어야 한다.\n5. 출력이 길면 review.md는 상태·전체 컬럼 구성·구획 목차를 갖고, 모든 값은 `review-part-*.md`에 나눠 실을 수 있다. 각 구획에 원본 컬럼명·자료형·원문 값·Pointer·잠정 관찰 분리를 유지한다. 전체 구획이 탐색 가능해야 하며 표본만 보여주지 않는다. verify.py는 분할된 문서도 대조해야 한다.\n6. 입력이 커도 원장 전체가 이번 대상이다. 일부 구획만 수행했으면 부분 진행으로 보고한다. 새 서브에이전트는 띄우지 않는다. 원장 전체 수집 기준을 채우면 알려진 분석 한계·의미 과제를 기록하고 1차를 종료한다. 완벽한 형태소 정답·최종 의미 확정을 위해 반복하지 않는다.\n7. 미결 문자의 뜻은 통일한다: A=에이전트 추출/해석 오류, B=원문 정보 부족, C=현재 사용자 결정 필요. 알려진 분석 한계 K·잠정 P·후속 F·원문 불일치 I는 보조 상태로 구분 가능하다. 원문 내 불일치를 C라고 부르지 않는다. 원본 변경 제안은 현재 원본 보존 지시 아래 후속 확인 후보이며 지금 선택 대기로 올리지 않는다. 사용자 결정0은 잔여 항목 처리 상태·영향 검토 후에만 표시한다.\n\n## 큰 원장 처리 — 이번 배치 추가 계약\n\n실제 계층·배열을 확인해 문맥을 유지하는 구획 계획을 먼저 coverage.json에 기록한다. 한 번의 대형 출력으로 전체를 읽으려 하지 않는다. 구획별로 원문을 읽고 관찰·수동 표현·미결·읽기 상태를 즉시 저장한 뒤 다음 구획으로 간다. 출력 잘림이 있으면 읽지 않은 부분을 찾아 다시 읽으며 표본으로 대신하지 않는다.\n\n문맥 압축이나 재개에 대비해 자기 결과 폴더에 progress.md를 유지한다. 마지막으로 실제 읽은 Pointer·현재 구획·다음 구획·열린 문제·정확한 재현 명령을 기록한다. 단순 기계 추출 완료와 직접 읽기 완료를 따로 추적한다. 최초 coverage 계획만 작성한 구획은 미독 상태다. 중간 진행을 원장1차 종료로 보고하지 않는다.\n\n읽기용 결과는 review.md 목차와 구획별 review-part-*.md로 분할한다. 큰 구조화 JSON도 필요하면 구획별 파일로 나눌 수 있으나 정본 목록·원본 해시·기준 Pointer·스키마/구간 단위와 전체 누락 검증 경로를 유지한다. verify.py는 레포 루트에서 전체 결과를 검증해야 한다. 파일이 크다는 이유로 이름·설명만 조사하거나 count/regex로 의미 읽기를 대신하지 않는다.\n\n담당 원장 전체를 한 작업 안에서 순차 수행한다. 추가 에이전트·공통 파일 수정·타 원장 조사는 금지한다. 실제 도구 한계·응답 실패 때문에 진행이 불가능하면 마지막 읽은 위치와 남은 범위를 기록해 코디에게 질문한다. 자체적으로 완료 범위를 줄이지 않는다.\n\ntaxonomy는 모든 계층·항목·products·problem과 그 내부 값까지 조사한다. 같은 깊이가 같은 개체 유형이라는 전제를 두지 않는다. 각 구획에 조상 계층의 이름·Pointer를 문맥으로 참조한다. 한 계층/카테고리가 여전히 크면 항목 구간으로 더 나누고 경계를 기록한다. products/problem만 자동 추출해 보존하고 읽음 처리를 하지 않는다.\n\n## 6. 수행 단계\n\n1. 원본 해시·크기와 전체 구조·값 대응 범위를 고정한다.\n2. 전체 원문을 위에서 아래로 구획별 직접 읽고, 구조·값·문맥을 수집한다.\n3. 전체 텍스트 형태소 분석과 문맥 포함 복합 표현 수집을 수행한다. 자동 처리와 직접 읽기 범위를 정확히 구분한다.\n4. 원문 누락·중복·포인터·문자구간·해시·적용/제외 대응을 검증한다. 별도 읽기 검토로 수식·조건·부정·오분절 영향을 확인한다.\n5. 에이전트가 해결할 실제 추출 오류는 고친다. 원문 부족, 잠정 해석, 후속 의미 조사, 실제 사용자 결정 필요를 구분한다. 도구 선택 같은 에이전트 판단을 사용자 결정으로 넘기지 않는다.\n6. 1차 수집 기준을 충족하면 종료하고 코디에 보고한다. 최종 의미 해석이나 모든 형태소 정답을 얻기 위해 반복하지 않는다. 알려진 오류의 위치·영향·한계를 남기고 후속 과제로 구분한다. 새로운 누락·오류가 있으면 그 부분만 수정·재검증한다.\n\n## 7. 하지 말 것\n\n원본·기존 작업 수정/삭제·복구·다른 원장 조사·공통 문서 갱신·추가 에이전트·커밋·push·PR·Git clean/reset/checkout 금지. 임상·법적 사실을 승인하거나 외부 자료로 보충하지 않는다. 원문에 없는 단위·백분율·뜻·적용 부위를 채우지 않는다. 선택을 받지 않은 해석을 확정 데이터로 쓰지 않는다. 원문 보존만으로 미결을 닫지 않는다.\n\n## 8. 검증·완료 보고\n\n원본 해시 시작/끝 불변, 원문 구조·값 양방향 대응, Pointer·구간 원문 재현, 중복/누락 검사, 분석 적용·제외 대응을 실제 검증하고 명령·결과를 validation.md에 남긴다. verify.py는 원본과 결과를 읽고 실패 시 nonzero로 종료하며 다른 파일을 수정하지 않게 만든다. 코디가 레포 루트에서 `python3 orchestration/work/phub-ledger-redesign/first-pass/taxonomy/verify.py`로 재실행할 수 있어야 한다.\n\n상태는 1차 수집 범위와 원장 전체를 분리한다. 1차 종료 여부, 남은 원문 부족·잠정·후속·사용자 결정 필요의 실제 검토 상태를 보고한다. 미결이 남은 원장은 전체 완료라고 하지 않는다. 결과 전달은 3문장 요약(범위·검증·한계/미결)과 실제 review.md 경로만, 긴 원문은 메인에 보내지 않는다. worker_done 이후 추가 작업 없이 idle한다.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --from <라이브 preamble의 워커 handle> \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"researcher 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 \\\n  --text \"[worker_done] researcher 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --text \"[질문] researcher: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+            "status": "failed",
+            "deps": "[]",
+            "result": "User-authorized fresh restart after crash: previous exact worker exited; output directory deleted by approval; retry same task from original.",
+            "created_at": "2026-11-09 04:26:40",
+            "completed_at": "2026-11-09T04:40:30.813Z"
+          },
+          "mutation": {
+            "requestId": "531f1fd9-5b88-4d5b-8c82-766385376bba",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "coordinator_machine_verification": "pass",
+      "read_review": "worker_self_review_reported; independent_review_pending",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/taxonomy/review.md",
+      "coverage": {
+        "chunks": 53,
+        "nodes": 17593,
+        "leaves_or_empty_containers": 11931,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 34,
+        "source_inconsistency": 65,
+        "followup": 47,
+        "analysis_limitations_groups": 4,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal"
+    },
+    {
+      "ledger": "literature-evidence",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/literature-evidence.json",
+      "source_sha256": "6e179872a9c234491ca62c20899757fca3aa5388833aa6bc4d1ac28a032aebfd",
+      "source_bytes": 118979,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-03-literature-evidence-brief.md",
+      "state": "reported_first_pass_finished",
+      "receipt": {
+        "id": "c47b754a-9a24-435a-8e91-2fe0a36050a6",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_e0f81140ab3a",
+          "dispatchId": "ctx_7d9775918e33",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_cc1476ed-20aa-4220-b326-1e1ef17a0a33",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_cc1476ed-20aa-4220-b326-1e1ef17a0a33",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "3dff8397-1d74-490d-952e-6f58c7113e71",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "7730b754-3ec7-46eb-a182-471125c0d554",
+            "generation": 159,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "3dff8397-1d74-490d-952e-6f58c7113e71",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_e0f81140ab3a",
+      "dispatchId": "ctx_7511a5bcac5c",
+      "stage": "input_accepted",
+      "handle": "term_0e880e51-d48e-404c-b193-a1a6e294c6d7",
+      "effective_model": "opus",
+      "crash_inspection": {
+        "ledger": "literature-evidence",
+        "dispatchId": "ctx_7d9775918e33",
+        "source_hash_matches_dispatch": true,
+        "fleet_liveness": "unverifiable: missing_status",
+        "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+        "resume_session_id_from_terminal": "0e0fe7e4-d368-40c1-a39c-165b2b290cf7"
+      },
+      "previous_attempts": [
+        {
+          "taskId": "task_e0f81140ab3a",
+          "dispatchId": "ctx_7d9775918e33",
+          "handle": "term_cc1476ed-20aa-4220-b326-1e1ef17a0a33",
+          "outcome": "failed; exact process exit observed",
+          "output_deleted_by_user_approval": true,
+          "deleted_files": 19
+        }
+      ],
+      "restart_task_status_receipt": {
+        "id": "351c6a02-dee2-4b90-a2bf-c546fbb849bb",
+        "ok": true,
+        "result": {
+          "task": {
+            "id": "task_e0f81140ab3a",
+            "run_id": "run_05ed91e27327",
+            "parent_id": null,
+            "created_by_terminal_handle": "term_9817d7e4-b067-40b3-9235-c8dcddad8f26",
+            "created_by_pane_key": "ff6565f7-ca8a-42c4-bf2b-d8e5b3fa1b0b:057b0d11-a6ca-41a1-bc4c-80912b7df08d",
+            "created_by_process_incarnation": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온@@d52e48d8:39cc3e3d-388a-4d25-8ee6-fb1c51abecce",
+            "created_by_run_generation": 1,
+            "task_title": "batch-03 literature-evidence 전체 1차 조사",
+            "display_name": "batch-03 literature-evidence 전체 1차 조사",
+            "spec": "# [researcher] batch-03 / literature-evidence.json 전체 1차 조사\n\n너는 Opus 조사 워커다. 코디와 동일 트리를 공유하며, 다른 원장 워커 4명과 병렬 실행된다. 네 담당 원장과 결과 폴더만 소유한다. 추가 워커·서브에이전트를 띄우지 않는다. 최신 라이브 preamble의 task/dispatch와 보고 명령이 §9보다 우선한다. 이 파일만으로 이번 발주 범위를 판단한다.\n\n## 1. SSOT — 먼저 읽을 것\n\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/AGENTS.md`\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/ledger-first-pass/SKILL.md` — 수정 완료된 1차 수집 절차·출력·종료 기준\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/_RESUME.md` — 읽기 전용. 이번 batch 승인과 현재 상태\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/README.md` — 원장 작성 규칙. 원본 수정 허가가 아니며 기호만으로 의미 관계를 확정하지 않는다.\n\n역할 자료가 필요하면 `orchestration/roles/procedure-hub/researcher/`를 읽되, 단일 리포트 경로 등 기본 역할과 이번 브리프가 다르면 이번 사용자 승인 범위를 우선한다.\n\n## 2. 배경 / 무엇을 바꾸나\n\nprocedure-profiles 샘플과 batch-01·02 각5개, 총11개 1차 수집은 종료했다. 사용자는 다음 묶음5개를 Opus 워커5명에게 발주하고 분량이 많으면 나누어 진행하라고 지시했다. 이번 대상은 `literature-evidence.json` **전체**다. 기존 조사 주장·이전 ERD를 근거로 사용하지 않는다. 구조·전체 값·원문·문맥·형태소·복합 표현을 직접 수집하며 의미 모델 설계·정규화·관계 확정은 하지 않는다.\n\n## 3. 계약\n\n읽기용 review.md에 컬럼 구성 표(원본 컬럼명/경로 패턴·자료형·중첩 구조·원문 예시와 위치)를 제공하고, 모든 항목의 실제 내부 값을 원본 컬럼명 그대로 보여준다. 원문 값과 잠정 관찰은 별도 칸/절로 분리한다. 필드명을 줄이지 않는다. 필드·빈도·토큰 목록만으로 전수 읽기를 대신하지 않는다.\n\n기계 기록은 모든 구조·키·말단 값·빈 값·배열 순서·JSON Pointer·정확한 구간·문맥을 포함한다. 원문 키 중복·이스케이프가 있을 수 있으므로 실제 파일 조건에 맞게 처리한다. 코드포인트/바이트, 디코딩 문자열/JSON 리터럴 구간을 구분한다.\n\n형태소 분석 환경은 `uv run --python 3.12 --with kiwipiepy==0.24.1`을 쓸 수 있다. `cong` 모델을 사용하고 스레드는 1개로 제한한다. 버전·사전·옵션을 실제로 기록한다. 도구가 제공하지 않는 기본형을 임의로 생성하지 않는다. 필드명·언어 텍스트·ID/코드값의 적용/제외는 각각 사유와 위치를 남긴다. 사용자 사전은 필수가 아니며 이번에는 기본 결과를 보존하고 알려진 오분절을 출현별로 기록하면 된다.\n\n전체 원문을 문맥과 함께 직접 읽는다. 형태소·정규식·키워드는 수집 보조다. 전문어 오분절, 수식·부정·가능성·조건·범위·시간이 사라지거나 오탐이 되는 곳은 원문 구간과 영향으로 표시한다. 원시 분석은 도메인 정답이 아니다.\n\n## 4. 먼저 읽을 핵심 파일\n\n유일한 조사 데이터: `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/literature-evidence.json`. 다른 원장을 열어 조사하거나 통합 의미 체계를 가정하지 않는다. 원문이 다른 항목을 참조하면 참조 표현과 원문 위치를 보존하고 후속 연결 과제로 둔다.\n\n## 5. allowed_paths\n\n**쓰기 허용은 `orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/` 아래뿐이다.** 없는 결과 폴더만 생성한다. 공통 스킬·_RESUME·batch 계획·원본·다른 워커 폴더는 수정·삭제하지 않는다. 작업 중 자신이 만든 신규 결과의 필요한 보정은 허용하나 기존 타 작업을 덮어쓰지 않는다.\n\n산출 파일: review.md, source-map.json, morphology.json, expressions.json, issues.md, validation.md. 재현 build.py·독립 verify.py와 꼭 필요한 수동 검토 기록도 같은 폴더 안에 둔다. 임시 산출물·캐시도 다른 워커와 경로를 공유하지 않는다. 공유 uv 패키지 캐시를 이용하는 것은 허용하며 전역 설정은 바꾸지 않는다.\n\n## 이번 묶음의 구획 분할·범위 추적 계약\n\n1. 구조를 실제로 확인한 뒤 문맥을 유지하는 상위 객체·카테고리·항목 구획을 정한다. 작은 원장은 구획1개도 가능하다. 큰 원장은 한 번의 화면 출력·한 번의 분석으로 전부 읽으려 하지 말고 구획별로 순차 읽는다. 문자 수·토큰 예산만으로 문장 중간을 자르지 않는다. 긴 값도 나눌 때 전체 값과 앞뒤 문맥을 참조하게 한다.\n2. 자기 결과 폴더에 `coverage.json`을 만든다. 구획 ID, 원문 Pointer 범위/실제 말단 Pointer 집합, 상위 문맥 참조, 직접 읽은 상태, 대응하는 review 파일/절을 기록한다. 기계 추출과 직접 읽기를 구분한다. 아직 안 읽은 구획을 완료로 쓰지 않는다.\n3. 모든 원문 말단 값(및 빈 컨테이너)을 어느 구획이 담당하는지 대응시킨다. 공동 참조하는 상위 메타데이터·문맥과 구획이 실제로 소유한 값은 구분한다. verify.py에 전체 원문 경로 집합과 구획별 소유 경로 합집합의 양방향 대조, 누락·불필요 중복 검사, 구획별 상태·결과 파일 실재를 넣는다. 개수만 맞춰 통과시키지 않는다.\n4. 구획 하나를 읽을 때마다 관찰·수동 표현·미결을 그 구획에 남긴다. 문맥 압축/세션 재개가 필요해도 마지막으로 읽은 위치와 남은 구획을 파일에서 찾을 수 있어야 한다.\n5. 출력이 길면 review.md는 상태·전체 컬럼 구성·구획 목차를 갖고, 모든 값은 `review-part-*.md`에 나눠 실을 수 있다. 각 구획에 원본 컬럼명·자료형·원문 값·Pointer·잠정 관찰 분리를 유지한다. 전체 구획이 탐색 가능해야 하며 표본만 보여주지 않는다. verify.py는 분할된 문서도 대조해야 한다.\n6. 입력이 커도 원장 전체가 이번 대상이다. 일부 구획만 수행했으면 부분 진행으로 보고한다. 새 서브에이전트는 띄우지 않는다. 원장 전체 수집 기준을 채우면 알려진 분석 한계·의미 과제를 기록하고 1차를 종료한다. 완벽한 형태소 정답·최종 의미 확정을 위해 반복하지 않는다.\n7. 미결 문자의 뜻은 통일한다: A=에이전트 추출/해석 오류, B=원문 정보 부족, C=현재 사용자 결정 필요. 알려진 분석 한계 K·잠정 P·후속 F·원문 불일치 I는 보조 상태로 구분 가능하다. 원문 내 불일치를 C라고 부르지 않는다. 원본 변경 제안은 현재 원본 보존 지시 아래 후속 확인 후보이며 지금 선택 대기로 올리지 않는다. 사용자 결정0은 잔여 항목 처리 상태·영향 검토 후에만 표시한다.\n\n## 큰 원장 처리 — 이번 배치 추가 계약\n\n실제 계층·배열을 확인해 문맥을 유지하는 구획 계획을 먼저 coverage.json에 기록한다. 한 번의 대형 출력으로 전체를 읽으려 하지 않는다. 구획별로 원문을 읽고 관찰·수동 표현·미결·읽기 상태를 즉시 저장한 뒤 다음 구획으로 간다. 출력 잘림이 있으면 읽지 않은 부분을 찾아 다시 읽으며 표본으로 대신하지 않는다.\n\n문맥 압축이나 재개에 대비해 자기 결과 폴더에 progress.md를 유지한다. 마지막으로 실제 읽은 Pointer·현재 구획·다음 구획·열린 문제·정확한 재현 명령을 기록한다. 단순 기계 추출 완료와 직접 읽기 완료를 따로 추적한다. 최초 coverage 계획만 작성한 구획은 미독 상태다. 중간 진행을 원장1차 종료로 보고하지 않는다.\n\n읽기용 결과는 review.md 목차와 구획별 review-part-*.md로 분할한다. 큰 구조화 JSON도 필요하면 구획별 파일로 나눌 수 있으나 정본 목록·원본 해시·기준 Pointer·스키마/구간 단위와 전체 누락 검증 경로를 유지한다. verify.py는 레포 루트에서 전체 결과를 검증해야 한다. 파일이 크다는 이유로 이름·설명만 조사하거나 count/regex로 의미 읽기를 대신하지 않는다.\n\n담당 원장 전체를 한 작업 안에서 순차 수행한다. 추가 에이전트·공통 파일 수정·타 원장 조사는 금지한다. 실제 도구 한계·응답 실패 때문에 진행이 불가능하면 마지막 읽은 위치와 남은 범위를 기록해 코디에게 질문한다. 자체적으로 완료 범위를 줄이지 않는다.\n\n## 6. 수행 단계\n\n1. 원본 해시·크기와 전체 구조·값 대응 범위를 고정한다.\n2. 전체 원문을 위에서 아래로 구획별 직접 읽고, 구조·값·문맥을 수집한다.\n3. 전체 텍스트 형태소 분석과 문맥 포함 복합 표현 수집을 수행한다. 자동 처리와 직접 읽기 범위를 정확히 구분한다.\n4. 원문 누락·중복·포인터·문자구간·해시·적용/제외 대응을 검증한다. 별도 읽기 검토로 수식·조건·부정·오분절 영향을 확인한다.\n5. 에이전트가 해결할 실제 추출 오류는 고친다. 원문 부족, 잠정 해석, 후속 의미 조사, 실제 사용자 결정 필요를 구분한다. 도구 선택 같은 에이전트 판단을 사용자 결정으로 넘기지 않는다.\n6. 1차 수집 기준을 충족하면 종료하고 코디에 보고한다. 최종 의미 해석이나 모든 형태소 정답을 얻기 위해 반복하지 않는다. 알려진 오류의 위치·영향·한계를 남기고 후속 과제로 구분한다. 새로운 누락·오류가 있으면 그 부분만 수정·재검증한다.\n\n## 7. 하지 말 것\n\n원본·기존 작업 수정/삭제·복구·다른 원장 조사·공통 문서 갱신·추가 에이전트·커밋·push·PR·Git clean/reset/checkout 금지. 임상·법적 사실을 승인하거나 외부 자료로 보충하지 않는다. 원문에 없는 단위·백분율·뜻·적용 부위를 채우지 않는다. 선택을 받지 않은 해석을 확정 데이터로 쓰지 않는다. 원문 보존만으로 미결을 닫지 않는다.\n\n## 8. 검증·완료 보고\n\n원본 해시 시작/끝 불변, 원문 구조·값 양방향 대응, Pointer·구간 원문 재현, 중복/누락 검사, 분석 적용·제외 대응을 실제 검증하고 명령·결과를 validation.md에 남긴다. verify.py는 원본과 결과를 읽고 실패 시 nonzero로 종료하며 다른 파일을 수정하지 않게 만든다. 코디가 레포 루트에서 `python3 orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/verify.py`로 재실행할 수 있어야 한다.\n\n상태는 1차 수집 범위와 원장 전체를 분리한다. 1차 종료 여부, 남은 원문 부족·잠정·후속·사용자 결정 필요의 실제 검토 상태를 보고한다. 미결이 남은 원장은 전체 완료라고 하지 않는다. 결과 전달은 3문장 요약(범위·검증·한계/미결)과 실제 review.md 경로만, 긴 원문은 메인에 보내지 않는다. worker_done 이후 추가 작업 없이 idle한다.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --from <라이브 preamble의 워커 handle> \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"researcher 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 \\\n  --text \"[worker_done] researcher 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --text \"[질문] researcher: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+            "status": "failed",
+            "deps": "[]",
+            "result": "User-authorized fresh restart after crash: previous exact worker exited; output directory deleted by approval; retry same task from original.",
+            "created_at": "2026-11-09 04:26:43",
+            "completed_at": "2026-11-09T04:40:30.928Z"
+          },
+          "mutation": {
+            "requestId": "e8fa7c35-4334-4115-8ba3-88b65eb9997d",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "restart_receipts": [
+        {
+          "id": "3a7fe999-f53e-4abb-858b-0dd3217a7775",
+          "ok": true,
+          "result": {
+            "runId": "run_05ed91e27327",
+            "taskId": "task_e0f81140ab3a",
+            "dispatchId": "ctx_7511a5bcac5c",
+            "state": "ready",
+            "stage": "input_accepted",
+            "turnStart": "observed",
+            "setup": {
+              "requested": "not_applicable",
+              "effective": "not_applicable",
+              "source": "existing_worktree",
+              "hookFound": false,
+              "startupPolicy": "start-immediately",
+              "state": "not_applicable"
+            },
+            "launch": {
+              "requested": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              },
+              "effective": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              }
+            },
+            "mode": {
+              "mode": "terminal",
+              "preferred": "terminal",
+              "reason": "user_default",
+              "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+            },
+            "timeoutMs": 60000,
+            "effects": [
+              {
+                "kind": "worktree",
+                "action": "reused",
+                "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+              },
+              {
+                "kind": "setup",
+                "action": "not_applicable",
+                "state": "not_applicable"
+              },
+              {
+                "kind": "terminal",
+                "role": "agent",
+                "action": "created",
+                "id": "term_0e880e51-d48e-404c-b193-a1a6e294c6d7",
+                "surface": "visible"
+              },
+              {
+                "kind": "dispatch_input",
+                "role": "agent",
+                "id": "term_0e880e51-d48e-404c-b193-a1a6e294c6d7",
+                "state": "accepted"
+              }
+            ],
+            "prompt": {
+              "requestId": "b7abb64d-104c-4906-b312-4002e907e4a1",
+              "stages": [
+                "input_accepted",
+                "turn_started"
+              ],
+              "provider": "claude",
+              "observation": "supported",
+              "processIncarnation": "0b51b075-11d6-45a2-99aa-fb4d52b5eb60",
+              "generation": 27,
+              "baselineWorkingSequence": 0,
+              "baselineExplicitWorkingStartedAt": null,
+              "baselinePermissionSequence": 0
+            },
+            "residualResources": [],
+            "mutation": {
+              "requestId": "b7abb64d-104c-4906-b312-4002e907e4a1",
+              "replayed": false
+            }
+          },
+          "_meta": {
+            "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+          }
+        }
+      ],
+      "coordinator_machine_verification": "pass",
+      "read_review": "worker_self_review_reported; batch_review_pending",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/literature-evidence/review.md",
+      "coverage": {
+        "chunks": 18,
+        "leaves_including_empty_containers": 1726,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 20,
+        "source_inconsistency": 33,
+        "followup": 17,
+        "known_analysis_errors": 34,
+        "user_decisions_pending": 0
+      },
+      "analysis_limitations": "Korean morphology only; English/Chinese/Japanese and bibliography excluded with reasons; review scope requires independent checking",
+      "release": "released; closed_agent_terminal"
+    },
+    {
+      "ledger": "problem-packages",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/problem-packages.json",
+      "source_sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc",
+      "source_bytes": 73526,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-03-problem-packages-brief.md",
+      "state": "reported_first_pass_finished",
+      "receipt": {
+        "id": "ceb46999-97e9-41e4-be1d-a9a2863e1444",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_aa762146d8a5",
+          "dispatchId": "ctx_d0477ee7b6f4",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_3dc3a183-7aca-4ceb-9f42-cefdfc525b22",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_3dc3a183-7aca-4ceb-9f42-cefdfc525b22",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "7c7a8e25-5327-45e8-b373-4c70f72ddc26",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "eb5d78a7-9ad8-435e-9148-85eb9e5e6f2b",
+            "generation": 160,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "7c7a8e25-5327-45e8-b373-4c70f72ddc26",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_aa762146d8a5",
+      "dispatchId": "ctx_8b124c31e6da",
+      "stage": "input_accepted",
+      "handle": "term_c99acec6-6a70-40aa-a4e6-2e9516be04ef",
+      "effective_model": "opus",
+      "crash_inspection": {
+        "ledger": "problem-packages",
+        "dispatchId": "ctx_d0477ee7b6f4",
+        "source_hash_matches_dispatch": true,
+        "fleet_liveness": "unverifiable: missing_status",
+        "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+        "resume_session_id_from_terminal": "fd4f8f7e-288d-4123-bf84-1fb769525868"
+      },
+      "previous_attempts": [
+        {
+          "taskId": "task_aa762146d8a5",
+          "dispatchId": "ctx_d0477ee7b6f4",
+          "handle": "term_3dc3a183-7aca-4ceb-9f42-cefdfc525b22",
+          "outcome": "failed; exact process exit observed",
+          "output_deleted_by_user_approval": true,
+          "deleted_files": 19
+        }
+      ],
+      "restart_task_status_receipt": {
+        "id": "11e871bb-cab7-4c1e-800e-4d4388c15dfc",
+        "ok": true,
+        "result": {
+          "task": {
+            "id": "task_aa762146d8a5",
+            "run_id": "run_05ed91e27327",
+            "parent_id": null,
+            "created_by_terminal_handle": "term_9817d7e4-b067-40b3-9235-c8dcddad8f26",
+            "created_by_pane_key": "ff6565f7-ca8a-42c4-bf2b-d8e5b3fa1b0b:057b0d11-a6ca-41a1-bc4c-80912b7df08d",
+            "created_by_process_incarnation": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온@@d52e48d8:39cc3e3d-388a-4d25-8ee6-fb1c51abecce",
+            "created_by_run_generation": 1,
+            "task_title": "batch-03 problem-packages 전체 1차 조사",
+            "display_name": "batch-03 problem-packages 전체 1차 조사",
+            "spec": "# [researcher] batch-03 / problem-packages.json 전체 1차 조사\n\n너는 Opus 조사 워커다. 코디와 동일 트리를 공유하며, 다른 원장 워커 4명과 병렬 실행된다. 네 담당 원장과 결과 폴더만 소유한다. 추가 워커·서브에이전트를 띄우지 않는다. 최신 라이브 preamble의 task/dispatch와 보고 명령이 §9보다 우선한다. 이 파일만으로 이번 발주 범위를 판단한다.\n\n## 1. SSOT — 먼저 읽을 것\n\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/AGENTS.md`\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/ledger-first-pass/SKILL.md` — 수정 완료된 1차 수집 절차·출력·종료 기준\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/_RESUME.md` — 읽기 전용. 이번 batch 승인과 현재 상태\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/README.md` — 원장 작성 규칙. 원본 수정 허가가 아니며 기호만으로 의미 관계를 확정하지 않는다.\n\n역할 자료가 필요하면 `orchestration/roles/procedure-hub/researcher/`를 읽되, 단일 리포트 경로 등 기본 역할과 이번 브리프가 다르면 이번 사용자 승인 범위를 우선한다.\n\n## 2. 배경 / 무엇을 바꾸나\n\nprocedure-profiles 샘플과 batch-01·02 각5개, 총11개 1차 수집은 종료했다. 사용자는 다음 묶음5개를 Opus 워커5명에게 발주하고 분량이 많으면 나누어 진행하라고 지시했다. 이번 대상은 `problem-packages.json` **전체**다. 기존 조사 주장·이전 ERD를 근거로 사용하지 않는다. 구조·전체 값·원문·문맥·형태소·복합 표현을 직접 수집하며 의미 모델 설계·정규화·관계 확정은 하지 않는다.\n\n## 3. 계약\n\n읽기용 review.md에 컬럼 구성 표(원본 컬럼명/경로 패턴·자료형·중첩 구조·원문 예시와 위치)를 제공하고, 모든 항목의 실제 내부 값을 원본 컬럼명 그대로 보여준다. 원문 값과 잠정 관찰은 별도 칸/절로 분리한다. 필드명을 줄이지 않는다. 필드·빈도·토큰 목록만으로 전수 읽기를 대신하지 않는다.\n\n기계 기록은 모든 구조·키·말단 값·빈 값·배열 순서·JSON Pointer·정확한 구간·문맥을 포함한다. 원문 키 중복·이스케이프가 있을 수 있으므로 실제 파일 조건에 맞게 처리한다. 코드포인트/바이트, 디코딩 문자열/JSON 리터럴 구간을 구분한다.\n\n형태소 분석 환경은 `uv run --python 3.12 --with kiwipiepy==0.24.1`을 쓸 수 있다. `cong` 모델을 사용하고 스레드는 1개로 제한한다. 버전·사전·옵션을 실제로 기록한다. 도구가 제공하지 않는 기본형을 임의로 생성하지 않는다. 필드명·언어 텍스트·ID/코드값의 적용/제외는 각각 사유와 위치를 남긴다. 사용자 사전은 필수가 아니며 이번에는 기본 결과를 보존하고 알려진 오분절을 출현별로 기록하면 된다.\n\n전체 원문을 문맥과 함께 직접 읽는다. 형태소·정규식·키워드는 수집 보조다. 전문어 오분절, 수식·부정·가능성·조건·범위·시간이 사라지거나 오탐이 되는 곳은 원문 구간과 영향으로 표시한다. 원시 분석은 도메인 정답이 아니다.\n\n## 4. 먼저 읽을 핵심 파일\n\n유일한 조사 데이터: `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/problem-packages.json`. 다른 원장을 열어 조사하거나 통합 의미 체계를 가정하지 않는다. 원문이 다른 항목을 참조하면 참조 표현과 원문 위치를 보존하고 후속 연결 과제로 둔다.\n\n## 5. allowed_paths\n\n**쓰기 허용은 `orchestration/work/phub-ledger-redesign/first-pass/problem-packages/` 아래뿐이다.** 없는 결과 폴더만 생성한다. 공통 스킬·_RESUME·batch 계획·원본·다른 워커 폴더는 수정·삭제하지 않는다. 작업 중 자신이 만든 신규 결과의 필요한 보정은 허용하나 기존 타 작업을 덮어쓰지 않는다.\n\n산출 파일: review.md, source-map.json, morphology.json, expressions.json, issues.md, validation.md. 재현 build.py·독립 verify.py와 꼭 필요한 수동 검토 기록도 같은 폴더 안에 둔다. 임시 산출물·캐시도 다른 워커와 경로를 공유하지 않는다. 공유 uv 패키지 캐시를 이용하는 것은 허용하며 전역 설정은 바꾸지 않는다.\n\n## 이번 묶음의 구획 분할·범위 추적 계약\n\n1. 구조를 실제로 확인한 뒤 문맥을 유지하는 상위 객체·카테고리·항목 구획을 정한다. 작은 원장은 구획1개도 가능하다. 큰 원장은 한 번의 화면 출력·한 번의 분석으로 전부 읽으려 하지 말고 구획별로 순차 읽는다. 문자 수·토큰 예산만으로 문장 중간을 자르지 않는다. 긴 값도 나눌 때 전체 값과 앞뒤 문맥을 참조하게 한다.\n2. 자기 결과 폴더에 `coverage.json`을 만든다. 구획 ID, 원문 Pointer 범위/실제 말단 Pointer 집합, 상위 문맥 참조, 직접 읽은 상태, 대응하는 review 파일/절을 기록한다. 기계 추출과 직접 읽기를 구분한다. 아직 안 읽은 구획을 완료로 쓰지 않는다.\n3. 모든 원문 말단 값(및 빈 컨테이너)을 어느 구획이 담당하는지 대응시킨다. 공동 참조하는 상위 메타데이터·문맥과 구획이 실제로 소유한 값은 구분한다. verify.py에 전체 원문 경로 집합과 구획별 소유 경로 합집합의 양방향 대조, 누락·불필요 중복 검사, 구획별 상태·결과 파일 실재를 넣는다. 개수만 맞춰 통과시키지 않는다.\n4. 구획 하나를 읽을 때마다 관찰·수동 표현·미결을 그 구획에 남긴다. 문맥 압축/세션 재개가 필요해도 마지막으로 읽은 위치와 남은 구획을 파일에서 찾을 수 있어야 한다.\n5. 출력이 길면 review.md는 상태·전체 컬럼 구성·구획 목차를 갖고, 모든 값은 `review-part-*.md`에 나눠 실을 수 있다. 각 구획에 원본 컬럼명·자료형·원문 값·Pointer·잠정 관찰 분리를 유지한다. 전체 구획이 탐색 가능해야 하며 표본만 보여주지 않는다. verify.py는 분할된 문서도 대조해야 한다.\n6. 입력이 커도 원장 전체가 이번 대상이다. 일부 구획만 수행했으면 부분 진행으로 보고한다. 새 서브에이전트는 띄우지 않는다. 원장 전체 수집 기준을 채우면 알려진 분석 한계·의미 과제를 기록하고 1차를 종료한다. 완벽한 형태소 정답·최종 의미 확정을 위해 반복하지 않는다.\n7. 미결 문자의 뜻은 통일한다: A=에이전트 추출/해석 오류, B=원문 정보 부족, C=현재 사용자 결정 필요. 알려진 분석 한계 K·잠정 P·후속 F·원문 불일치 I는 보조 상태로 구분 가능하다. 원문 내 불일치를 C라고 부르지 않는다. 원본 변경 제안은 현재 원본 보존 지시 아래 후속 확인 후보이며 지금 선택 대기로 올리지 않는다. 사용자 결정0은 잔여 항목 처리 상태·영향 검토 후에만 표시한다.\n\n## 큰 원장 처리 — 이번 배치 추가 계약\n\n실제 계층·배열을 확인해 문맥을 유지하는 구획 계획을 먼저 coverage.json에 기록한다. 한 번의 대형 출력으로 전체를 읽으려 하지 않는다. 구획별로 원문을 읽고 관찰·수동 표현·미결·읽기 상태를 즉시 저장한 뒤 다음 구획으로 간다. 출력 잘림이 있으면 읽지 않은 부분을 찾아 다시 읽으며 표본으로 대신하지 않는다.\n\n문맥 압축이나 재개에 대비해 자기 결과 폴더에 progress.md를 유지한다. 마지막으로 실제 읽은 Pointer·현재 구획·다음 구획·열린 문제·정확한 재현 명령을 기록한다. 단순 기계 추출 완료와 직접 읽기 완료를 따로 추적한다. 최초 coverage 계획만 작성한 구획은 미독 상태다. 중간 진행을 원장1차 종료로 보고하지 않는다.\n\n읽기용 결과는 review.md 목차와 구획별 review-part-*.md로 분할한다. 큰 구조화 JSON도 필요하면 구획별 파일로 나눌 수 있으나 정본 목록·원본 해시·기준 Pointer·스키마/구간 단위와 전체 누락 검증 경로를 유지한다. verify.py는 레포 루트에서 전체 결과를 검증해야 한다. 파일이 크다는 이유로 이름·설명만 조사하거나 count/regex로 의미 읽기를 대신하지 않는다.\n\n담당 원장 전체를 한 작업 안에서 순차 수행한다. 추가 에이전트·공통 파일 수정·타 원장 조사는 금지한다. 실제 도구 한계·응답 실패 때문에 진행이 불가능하면 마지막 읽은 위치와 남은 범위를 기록해 코디에게 질문한다. 자체적으로 완료 범위를 줄이지 않는다.\n\n## 6. 수행 단계\n\n1. 원본 해시·크기와 전체 구조·값 대응 범위를 고정한다.\n2. 전체 원문을 위에서 아래로 구획별 직접 읽고, 구조·값·문맥을 수집한다.\n3. 전체 텍스트 형태소 분석과 문맥 포함 복합 표현 수집을 수행한다. 자동 처리와 직접 읽기 범위를 정확히 구분한다.\n4. 원문 누락·중복·포인터·문자구간·해시·적용/제외 대응을 검증한다. 별도 읽기 검토로 수식·조건·부정·오분절 영향을 확인한다.\n5. 에이전트가 해결할 실제 추출 오류는 고친다. 원문 부족, 잠정 해석, 후속 의미 조사, 실제 사용자 결정 필요를 구분한다. 도구 선택 같은 에이전트 판단을 사용자 결정으로 넘기지 않는다.\n6. 1차 수집 기준을 충족하면 종료하고 코디에 보고한다. 최종 의미 해석이나 모든 형태소 정답을 얻기 위해 반복하지 않는다. 알려진 오류의 위치·영향·한계를 남기고 후속 과제로 구분한다. 새로운 누락·오류가 있으면 그 부분만 수정·재검증한다.\n\n## 7. 하지 말 것\n\n원본·기존 작업 수정/삭제·복구·다른 원장 조사·공통 문서 갱신·추가 에이전트·커밋·push·PR·Git clean/reset/checkout 금지. 임상·법적 사실을 승인하거나 외부 자료로 보충하지 않는다. 원문에 없는 단위·백분율·뜻·적용 부위를 채우지 않는다. 선택을 받지 않은 해석을 확정 데이터로 쓰지 않는다. 원문 보존만으로 미결을 닫지 않는다.\n\n## 8. 검증·완료 보고\n\n원본 해시 시작/끝 불변, 원문 구조·값 양방향 대응, Pointer·구간 원문 재현, 중복/누락 검사, 분석 적용·제외 대응을 실제 검증하고 명령·결과를 validation.md에 남긴다. verify.py는 원본과 결과를 읽고 실패 시 nonzero로 종료하며 다른 파일을 수정하지 않게 만든다. 코디가 레포 루트에서 `python3 orchestration/work/phub-ledger-redesign/first-pass/problem-packages/verify.py`로 재실행할 수 있어야 한다.\n\n상태는 1차 수집 범위와 원장 전체를 분리한다. 1차 종료 여부, 남은 원문 부족·잠정·후속·사용자 결정 필요의 실제 검토 상태를 보고한다. 미결이 남은 원장은 전체 완료라고 하지 않는다. 결과 전달은 3문장 요약(범위·검증·한계/미결)과 실제 review.md 경로만, 긴 원문은 메인에 보내지 않는다. worker_done 이후 추가 작업 없이 idle한다.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --from <라이브 preamble의 워커 handle> \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"researcher 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 \\\n  --text \"[worker_done] researcher 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --text \"[질문] researcher: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+            "status": "failed",
+            "deps": "[]",
+            "result": "User-authorized fresh restart after crash: previous exact worker exited; output directory deleted by approval; retry same task from original.",
+            "created_at": "2026-11-09 04:26:47",
+            "completed_at": "2026-11-09T04:40:31.041Z"
+          },
+          "mutation": {
+            "requestId": "a0cff6ed-eca0-4e4e-a12f-62cae0c7329a",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "restart_receipts": [
+        {
+          "id": "d50da237-2fc0-4c4b-9811-61fb61ad1e1b",
+          "ok": true,
+          "result": {
+            "runId": "run_05ed91e27327",
+            "taskId": "task_aa762146d8a5",
+            "dispatchId": "ctx_8b124c31e6da",
+            "state": "ready",
+            "stage": "input_accepted",
+            "turnStart": "observed",
+            "setup": {
+              "requested": "not_applicable",
+              "effective": "not_applicable",
+              "source": "existing_worktree",
+              "hookFound": false,
+              "startupPolicy": "start-immediately",
+              "state": "not_applicable"
+            },
+            "launch": {
+              "requested": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              },
+              "effective": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              }
+            },
+            "mode": {
+              "mode": "terminal",
+              "preferred": "terminal",
+              "reason": "user_default",
+              "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+            },
+            "timeoutMs": 60000,
+            "effects": [
+              {
+                "kind": "worktree",
+                "action": "reused",
+                "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+              },
+              {
+                "kind": "setup",
+                "action": "not_applicable",
+                "state": "not_applicable"
+              },
+              {
+                "kind": "terminal",
+                "role": "agent",
+                "action": "created",
+                "id": "term_c99acec6-6a70-40aa-a4e6-2e9516be04ef",
+                "surface": "visible"
+              },
+              {
+                "kind": "dispatch_input",
+                "role": "agent",
+                "id": "term_c99acec6-6a70-40aa-a4e6-2e9516be04ef",
+                "state": "accepted"
+              }
+            ],
+            "prompt": {
+              "requestId": "6ae572a3-d4ec-4484-a4a9-30e7122059f9",
+              "stages": [
+                "input_accepted",
+                "turn_started"
+              ],
+              "provider": "claude",
+              "observation": "supported",
+              "processIncarnation": "44b22edd-3668-44e6-9d26-82d041982663",
+              "generation": 30,
+              "baselineWorkingSequence": 0,
+              "baselineExplicitWorkingStartedAt": null,
+              "baselinePermissionSequence": 0
+            },
+            "residualResources": [],
+            "mutation": {
+              "requestId": "6ae572a3-d4ec-4484-a4a9-30e7122059f9",
+              "replayed": false
+            }
+          },
+          "_meta": {
+            "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+          }
+        }
+      ],
+      "coordinator_machine_verification": "pass_91851_checks",
+      "read_review": "worker_self_review_reported; batch_review_pending",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/problem-packages/review.md",
+      "coverage": {
+        "chunks": 15,
+        "leaves": 2366,
+        "empty_arrays": 48,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 9,
+        "source_inconsistency": 10,
+        "followup": 8,
+        "analysis_limitations_groups": 5,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal"
+    },
+    {
+      "ledger": "problem-combos",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/problem-combos.json",
+      "source_sha256": "74453c724800975ef7f3fa8b81546fe69fa014bfbc7a8f7e60c75774c2cf2262",
+      "source_bytes": 25026,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/problem-combos",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-03-problem-combos-brief.md",
+      "state": "reported_first_pass_finished",
+      "receipt": {
+        "id": "b5824845-d6b8-4477-9dec-0d7015bd8bd0",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_a96e4b6339e2",
+          "dispatchId": "ctx_372d65f15bdb",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_9bb24996-950c-4abb-a296-d5ade2ed225d",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_9bb24996-950c-4abb-a296-d5ade2ed225d",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "75e64586-d279-4026-9139-003de8179c62",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "4ea8c493-2091-4f3c-b901-faed596d11a1",
+            "generation": 161,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "75e64586-d279-4026-9139-003de8179c62",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_a96e4b6339e2",
+      "dispatchId": "ctx_bbc06868822e",
+      "stage": "input_accepted",
+      "handle": "term_6244ab0e-8235-4ede-a24e-192a465f0994",
+      "effective_model": "opus",
+      "crash_inspection": {
+        "ledger": "problem-combos",
+        "dispatchId": "ctx_372d65f15bdb",
+        "source_hash_matches_dispatch": true,
+        "fleet_liveness": "unverifiable: missing_status",
+        "terminal_observation": "shell prompt after Claude resume command; original Claude turn no longer shown",
+        "resume_session_id_from_terminal": "f02c58d4-9c1f-4537-b531-6e5fd13ebd8a"
+      },
+      "previous_attempts": [
+        {
+          "taskId": "task_a96e4b6339e2",
+          "dispatchId": "ctx_372d65f15bdb",
+          "handle": "term_9bb24996-950c-4abb-a296-d5ade2ed225d",
+          "outcome": "failed; exact process exit observed",
+          "output_deleted_by_user_approval": true,
+          "deleted_files": 3
+        }
+      ],
+      "restart_task_status_receipt": {
+        "id": "0179af89-b012-4cef-a08d-013d59936194",
+        "ok": true,
+        "result": {
+          "task": {
+            "id": "task_a96e4b6339e2",
+            "run_id": "run_05ed91e27327",
+            "parent_id": null,
+            "created_by_terminal_handle": "term_9817d7e4-b067-40b3-9235-c8dcddad8f26",
+            "created_by_pane_key": "ff6565f7-ca8a-42c4-bf2b-d8e5b3fa1b0b:057b0d11-a6ca-41a1-bc4c-80912b7df08d",
+            "created_by_process_incarnation": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온@@d52e48d8:39cc3e3d-388a-4d25-8ee6-fb1c51abecce",
+            "created_by_run_generation": 1,
+            "task_title": "batch-03 problem-combos 전체 1차 조사",
+            "display_name": "batch-03 problem-combos 전체 1차 조사",
+            "spec": "# [researcher] batch-03 / problem-combos.json 전체 1차 조사\n\n너는 Opus 조사 워커다. 코디와 동일 트리를 공유하며, 다른 원장 워커 4명과 병렬 실행된다. 네 담당 원장과 결과 폴더만 소유한다. 추가 워커·서브에이전트를 띄우지 않는다. 최신 라이브 preamble의 task/dispatch와 보고 명령이 §9보다 우선한다. 이 파일만으로 이번 발주 범위를 판단한다.\n\n## 1. SSOT — 먼저 읽을 것\n\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/AGENTS.md`\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/ledger-first-pass/SKILL.md` — 수정 완료된 1차 수집 절차·출력·종료 기준\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-ledger-redesign/_RESUME.md` — 읽기 전용. 이번 batch 승인과 현재 상태\n- `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/README.md` — 원장 작성 규칙. 원본 수정 허가가 아니며 기호만으로 의미 관계를 확정하지 않는다.\n\n역할 자료가 필요하면 `orchestration/roles/procedure-hub/researcher/`를 읽되, 단일 리포트 경로 등 기본 역할과 이번 브리프가 다르면 이번 사용자 승인 범위를 우선한다.\n\n## 2. 배경 / 무엇을 바꾸나\n\nprocedure-profiles 샘플과 batch-01·02 각5개, 총11개 1차 수집은 종료했다. 사용자는 다음 묶음5개를 Opus 워커5명에게 발주하고 분량이 많으면 나누어 진행하라고 지시했다. 이번 대상은 `problem-combos.json` **전체**다. 기존 조사 주장·이전 ERD를 근거로 사용하지 않는다. 구조·전체 값·원문·문맥·형태소·복합 표현을 직접 수집하며 의미 모델 설계·정규화·관계 확정은 하지 않는다.\n\n## 3. 계약\n\n읽기용 review.md에 컬럼 구성 표(원본 컬럼명/경로 패턴·자료형·중첩 구조·원문 예시와 위치)를 제공하고, 모든 항목의 실제 내부 값을 원본 컬럼명 그대로 보여준다. 원문 값과 잠정 관찰은 별도 칸/절로 분리한다. 필드명을 줄이지 않는다. 필드·빈도·토큰 목록만으로 전수 읽기를 대신하지 않는다.\n\n기계 기록은 모든 구조·키·말단 값·빈 값·배열 순서·JSON Pointer·정확한 구간·문맥을 포함한다. 원문 키 중복·이스케이프가 있을 수 있으므로 실제 파일 조건에 맞게 처리한다. 코드포인트/바이트, 디코딩 문자열/JSON 리터럴 구간을 구분한다.\n\n형태소 분석 환경은 `uv run --python 3.12 --with kiwipiepy==0.24.1`을 쓸 수 있다. `cong` 모델을 사용하고 스레드는 1개로 제한한다. 버전·사전·옵션을 실제로 기록한다. 도구가 제공하지 않는 기본형을 임의로 생성하지 않는다. 필드명·언어 텍스트·ID/코드값의 적용/제외는 각각 사유와 위치를 남긴다. 사용자 사전은 필수가 아니며 이번에는 기본 결과를 보존하고 알려진 오분절을 출현별로 기록하면 된다.\n\n전체 원문을 문맥과 함께 직접 읽는다. 형태소·정규식·키워드는 수집 보조다. 전문어 오분절, 수식·부정·가능성·조건·범위·시간이 사라지거나 오탐이 되는 곳은 원문 구간과 영향으로 표시한다. 원시 분석은 도메인 정답이 아니다.\n\n## 4. 먼저 읽을 핵심 파일\n\n유일한 조사 데이터: `/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온/orchestration/work/phub-recommend/bronze/phub-ledger/problem-combos.json`. 다른 원장을 열어 조사하거나 통합 의미 체계를 가정하지 않는다. 원문이 다른 항목을 참조하면 참조 표현과 원문 위치를 보존하고 후속 연결 과제로 둔다.\n\n## 5. allowed_paths\n\n**쓰기 허용은 `orchestration/work/phub-ledger-redesign/first-pass/problem-combos/` 아래뿐이다.** 없는 결과 폴더만 생성한다. 공통 스킬·_RESUME·batch 계획·원본·다른 워커 폴더는 수정·삭제하지 않는다. 작업 중 자신이 만든 신규 결과의 필요한 보정은 허용하나 기존 타 작업을 덮어쓰지 않는다.\n\n산출 파일: review.md, source-map.json, morphology.json, expressions.json, issues.md, validation.md. 재현 build.py·독립 verify.py와 꼭 필요한 수동 검토 기록도 같은 폴더 안에 둔다. 임시 산출물·캐시도 다른 워커와 경로를 공유하지 않는다. 공유 uv 패키지 캐시를 이용하는 것은 허용하며 전역 설정은 바꾸지 않는다.\n\n## 이번 묶음의 구획 분할·범위 추적 계약\n\n1. 구조를 실제로 확인한 뒤 문맥을 유지하는 상위 객체·카테고리·항목 구획을 정한다. 작은 원장은 구획1개도 가능하다. 큰 원장은 한 번의 화면 출력·한 번의 분석으로 전부 읽으려 하지 말고 구획별로 순차 읽는다. 문자 수·토큰 예산만으로 문장 중간을 자르지 않는다. 긴 값도 나눌 때 전체 값과 앞뒤 문맥을 참조하게 한다.\n2. 자기 결과 폴더에 `coverage.json`을 만든다. 구획 ID, 원문 Pointer 범위/실제 말단 Pointer 집합, 상위 문맥 참조, 직접 읽은 상태, 대응하는 review 파일/절을 기록한다. 기계 추출과 직접 읽기를 구분한다. 아직 안 읽은 구획을 완료로 쓰지 않는다.\n3. 모든 원문 말단 값(및 빈 컨테이너)을 어느 구획이 담당하는지 대응시킨다. 공동 참조하는 상위 메타데이터·문맥과 구획이 실제로 소유한 값은 구분한다. verify.py에 전체 원문 경로 집합과 구획별 소유 경로 합집합의 양방향 대조, 누락·불필요 중복 검사, 구획별 상태·결과 파일 실재를 넣는다. 개수만 맞춰 통과시키지 않는다.\n4. 구획 하나를 읽을 때마다 관찰·수동 표현·미결을 그 구획에 남긴다. 문맥 압축/세션 재개가 필요해도 마지막으로 읽은 위치와 남은 구획을 파일에서 찾을 수 있어야 한다.\n5. 출력이 길면 review.md는 상태·전체 컬럼 구성·구획 목차를 갖고, 모든 값은 `review-part-*.md`에 나눠 실을 수 있다. 각 구획에 원본 컬럼명·자료형·원문 값·Pointer·잠정 관찰 분리를 유지한다. 전체 구획이 탐색 가능해야 하며 표본만 보여주지 않는다. verify.py는 분할된 문서도 대조해야 한다.\n6. 입력이 커도 원장 전체가 이번 대상이다. 일부 구획만 수행했으면 부분 진행으로 보고한다. 새 서브에이전트는 띄우지 않는다. 원장 전체 수집 기준을 채우면 알려진 분석 한계·의미 과제를 기록하고 1차를 종료한다. 완벽한 형태소 정답·최종 의미 확정을 위해 반복하지 않는다.\n7. 미결 문자의 뜻은 통일한다: A=에이전트 추출/해석 오류, B=원문 정보 부족, C=현재 사용자 결정 필요. 알려진 분석 한계 K·잠정 P·후속 F·원문 불일치 I는 보조 상태로 구분 가능하다. 원문 내 불일치를 C라고 부르지 않는다. 원본 변경 제안은 현재 원본 보존 지시 아래 후속 확인 후보이며 지금 선택 대기로 올리지 않는다. 사용자 결정0은 잔여 항목 처리 상태·영향 검토 후에만 표시한다.\n\n## 큰 원장 처리 — 이번 배치 추가 계약\n\n실제 계층·배열을 확인해 문맥을 유지하는 구획 계획을 먼저 coverage.json에 기록한다. 한 번의 대형 출력으로 전체를 읽으려 하지 않는다. 구획별로 원문을 읽고 관찰·수동 표현·미결·읽기 상태를 즉시 저장한 뒤 다음 구획으로 간다. 출력 잘림이 있으면 읽지 않은 부분을 찾아 다시 읽으며 표본으로 대신하지 않는다.\n\n문맥 압축이나 재개에 대비해 자기 결과 폴더에 progress.md를 유지한다. 마지막으로 실제 읽은 Pointer·현재 구획·다음 구획·열린 문제·정확한 재현 명령을 기록한다. 단순 기계 추출 완료와 직접 읽기 완료를 따로 추적한다. 최초 coverage 계획만 작성한 구획은 미독 상태다. 중간 진행을 원장1차 종료로 보고하지 않는다.\n\n읽기용 결과는 review.md 목차와 구획별 review-part-*.md로 분할한다. 큰 구조화 JSON도 필요하면 구획별 파일로 나눌 수 있으나 정본 목록·원본 해시·기준 Pointer·스키마/구간 단위와 전체 누락 검증 경로를 유지한다. verify.py는 레포 루트에서 전체 결과를 검증해야 한다. 파일이 크다는 이유로 이름·설명만 조사하거나 count/regex로 의미 읽기를 대신하지 않는다.\n\n담당 원장 전체를 한 작업 안에서 순차 수행한다. 추가 에이전트·공통 파일 수정·타 원장 조사는 금지한다. 실제 도구 한계·응답 실패 때문에 진행이 불가능하면 마지막 읽은 위치와 남은 범위를 기록해 코디에게 질문한다. 자체적으로 완료 범위를 줄이지 않는다.\n\n## 6. 수행 단계\n\n1. 원본 해시·크기와 전체 구조·값 대응 범위를 고정한다.\n2. 전체 원문을 위에서 아래로 구획별 직접 읽고, 구조·값·문맥을 수집한다.\n3. 전체 텍스트 형태소 분석과 문맥 포함 복합 표현 수집을 수행한다. 자동 처리와 직접 읽기 범위를 정확히 구분한다.\n4. 원문 누락·중복·포인터·문자구간·해시·적용/제외 대응을 검증한다. 별도 읽기 검토로 수식·조건·부정·오분절 영향을 확인한다.\n5. 에이전트가 해결할 실제 추출 오류는 고친다. 원문 부족, 잠정 해석, 후속 의미 조사, 실제 사용자 결정 필요를 구분한다. 도구 선택 같은 에이전트 판단을 사용자 결정으로 넘기지 않는다.\n6. 1차 수집 기준을 충족하면 종료하고 코디에 보고한다. 최종 의미 해석이나 모든 형태소 정답을 얻기 위해 반복하지 않는다. 알려진 오류의 위치·영향·한계를 남기고 후속 과제로 구분한다. 새로운 누락·오류가 있으면 그 부분만 수정·재검증한다.\n\n## 7. 하지 말 것\n\n원본·기존 작업 수정/삭제·복구·다른 원장 조사·공통 문서 갱신·추가 에이전트·커밋·push·PR·Git clean/reset/checkout 금지. 임상·법적 사실을 승인하거나 외부 자료로 보충하지 않는다. 원문에 없는 단위·백분율·뜻·적용 부위를 채우지 않는다. 선택을 받지 않은 해석을 확정 데이터로 쓰지 않는다. 원문 보존만으로 미결을 닫지 않는다.\n\n## 8. 검증·완료 보고\n\n원본 해시 시작/끝 불변, 원문 구조·값 양방향 대응, Pointer·구간 원문 재현, 중복/누락 검사, 분석 적용·제외 대응을 실제 검증하고 명령·결과를 validation.md에 남긴다. verify.py는 원본과 결과를 읽고 실패 시 nonzero로 종료하며 다른 파일을 수정하지 않게 만든다. 코디가 레포 루트에서 `python3 orchestration/work/phub-ledger-redesign/first-pass/problem-combos/verify.py`로 재실행할 수 있어야 한다.\n\n상태는 1차 수집 범위와 원장 전체를 분리한다. 1차 종료 여부, 남은 원문 부족·잠정·후속·사용자 결정 필요의 실제 검토 상태를 보고한다. 미결이 남은 원장은 전체 완료라고 하지 않는다. 결과 전달은 3문장 요약(범위·검증·한계/미결)과 실제 review.md 경로만, 긴 원문은 메인에 보내지 않는다. worker_done 이후 추가 작업 없이 idle한다.\n\n## 9. 완료 보고 — **문구 변경 금지**\n\n> **⚠ 핸들은 dispatch preamble 의 값을 믿어라.** 아래 명령에 박힌 코디handle 은 **브리프 작성 시점** 값이라 오래됐을 수 있다 — 세션이 재연결되면 핸들이 바뀐다(2026-07-28·29 두 번 겪음). preamble 의 코디네이터 핸들과 아래 값이 다르면 **preamble 이 맞다.** 두 곳에 다 보내지 말고 preamble 쪽으로만 보내라.\n\n\n- **커밋·push·PR 하지 마라.** 워크트리에 변경만 남긴다. 검증·PR 은 코디네이터가 한다.\n- 끝나면 **아래 두 명령을 모두** 실행한다. 하나만 하면 안 된다.\n\n```bash\n# (1) 인박스 적재 — 태스크 완료 처리·영구 기록. 코디네이터를 깨우지 않는다.\norca orchestration send \\\n  --to term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --from <라이브 preamble의 워커 handle> \\\n  --type worker_done \\\n  --task-id <이 태스크의 taskId — dispatch 로 받은 context 에 들어 있다> \\\n  --dispatch-id <이 태스크의 dispatchId — dispatch 로 받은 context 에 들어 있다> \\\n  --subject \"researcher 완료: <한 줄>\" \\\n  --body \"변경 파일 목록 / 구현 요약 / 검증 결과(수치) / 계약 준수 / 미결·주의점\"\n\n# (2) 직접 주입 — 코디네이터 세션에 유저 메시지로 꽂혀 자동으로 깨운다.\norca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 \\\n  --text \"[worker_done] researcher 완료 — <한 줄 요약>. 상세는 인박스.\" --enter\n```\n\n- 막히면 30분 이상 혼자 헤매지 말고 같은 (2) 방식으로 물어라:\n  `orca terminal send --terminal term_9817d7e4-b067-40b3-9235-c8dcddad8f26 --text \"[질문] researcher: <질문>\" --enter`\n  (`orca orchestration ask` 는 채널이 닫혀 답이 안 닿는 경우가 많다.)\n",
+            "status": "failed",
+            "deps": "[]",
+            "result": "User-authorized fresh restart after crash: previous exact worker exited; output directory deleted by approval; retry same task from original.",
+            "created_at": "2026-11-09 04:26:51",
+            "completed_at": "2026-11-09T04:40:31.156Z"
+          },
+          "mutation": {
+            "requestId": "d6dfa1ab-ce77-47d1-a514-b4eabf2f9830",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "restart_receipts": [
+        {
+          "id": "e2340410-98dd-44e5-93c2-3ce37cae07e3",
+          "ok": true,
+          "result": {
+            "runId": "run_05ed91e27327",
+            "taskId": "task_a96e4b6339e2",
+            "dispatchId": "ctx_bbc06868822e",
+            "state": "ready",
+            "stage": "input_accepted",
+            "turnStart": "observed",
+            "setup": {
+              "requested": "not_applicable",
+              "effective": "not_applicable",
+              "source": "existing_worktree",
+              "hookFound": false,
+              "startupPolicy": "start-immediately",
+              "state": "not_applicable"
+            },
+            "launch": {
+              "requested": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              },
+              "effective": {
+                "agent": "claude",
+                "model": "opus",
+                "effort": null
+              }
+            },
+            "mode": {
+              "mode": "terminal",
+              "preferred": "terminal",
+              "reason": "user_default",
+              "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+            },
+            "timeoutMs": 60000,
+            "effects": [
+              {
+                "kind": "worktree",
+                "action": "reused",
+                "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+              },
+              {
+                "kind": "setup",
+                "action": "not_applicable",
+                "state": "not_applicable"
+              },
+              {
+                "kind": "terminal",
+                "role": "agent",
+                "action": "created",
+                "id": "term_6244ab0e-8235-4ede-a24e-192a465f0994",
+                "surface": "visible"
+              },
+              {
+                "kind": "dispatch_input",
+                "role": "agent",
+                "id": "term_6244ab0e-8235-4ede-a24e-192a465f0994",
+                "state": "accepted"
+              }
+            ],
+            "prompt": {
+              "requestId": "fda71dc8-1341-475d-8827-7428c8210c05",
+              "stages": [
+                "input_accepted",
+                "turn_started"
+              ],
+              "provider": "claude",
+              "observation": "supported",
+              "processIncarnation": "85c31511-ef33-438e-a42e-99cc67fcf583",
+              "generation": 33,
+              "baselineWorkingSequence": 0,
+              "baselineExplicitWorkingStartedAt": null,
+              "baselinePermissionSequence": 0
+            },
+            "residualResources": [],
+            "mutation": {
+              "requestId": "fda71dc8-1341-475d-8827-7428c8210c05",
+              "replayed": false
+            }
+          },
+          "_meta": {
+            "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+          }
+        }
+      ],
+      "coordinator_machine_verification": "pass_132_checks",
+      "read_review": "worker_self_review_reported; batch_review_pending",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/problem-combos/review.md",
+      "coverage": {
+        "chunks": 9,
+        "leaves": 370,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 5,
+        "source_inconsistency": 5,
+        "followup": 6,
+        "known_analysis_errors": 81,
+        "user_decisions_pending": 0
+      },
+      "release": "released; closed_agent_terminal"
+    },
+    {
+      "ledger": "pih-risk",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/pih-risk.json",
+      "source_sha256": "cb6e9305113d0b47f447eb314ce3bb34d0278bbc8bdf26bc3303d323028575c8",
+      "source_bytes": 11875,
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-03-pih-risk-brief.md",
+      "state": "reported_first_pass_finished",
+      "receipt": {
+        "id": "2b770ec4-054d-4cb8-b86d-2e2ed82669c6",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_b493f4aa8fef",
+          "dispatchId": "ctx_58102b90356e",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_3c704786-ff98-4ea0-8f4c-0941f2d987c0",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_3c704786-ff98-4ea0-8f4c-0941f2d987c0",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "08169707-4991-44f3-b696-49ac846430aa",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "813dfa71-cc9e-4ae3-819d-6eefaed40f7e",
+            "generation": 163,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "08169707-4991-44f3-b696-49ac846430aa",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_b493f4aa8fef",
+      "dispatchId": "ctx_58102b90356e",
+      "stage": "input_accepted",
+      "handle": "term_3c704786-ff98-4ea0-8f4c-0941f2d987c0",
+      "effective_model": "opus",
+      "crash_inspection": {
+        "ledger": "pih-risk",
+        "dispatchId": "ctx_58102b90356e",
+        "source_hash_matches_dispatch": true,
+        "fleet_liveness": "live",
+        "terminal_observation": "Claude input prompt; no completion report yet"
+      },
+      "coordinator_machine_verification": "pass_77_kinds_11410_checks",
+      "read_review": "worker_self_review_reported; batch_review_pending",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/pih-risk/review.md",
+      "coverage": {
+        "chunks": 9,
+        "leaves": 288,
+        "missing": 0,
+        "duplicate_owner": 0
+      },
+      "remaining": {
+        "source_insufficiency_groups": 8,
+        "source_inconsistency": 3,
+        "provisional": 2,
+        "followup": 7,
+        "known_analysis_errors": 51,
+        "user_decisions_pending": 0
+      },
+      "release": "retained; user_takeover; processAction none; process exit not asserted",
+      "operational_incident": {
+        "reported_command": "pkill -f cat -u <user>",
+        "potential_scope": "other cat processes owned by same user",
+        "impact": "unknown; no collateral damage assertion",
+        "coordinator_check": "all four other batch agents live on worker-list",
+        "followup": "other four dispatches sent process-specific cleanup only and partial-write validation guidance"
+      }
+    }
+  ],
+  "recovery_note": "4 worker terminals show shell/resume commands while fleet status missing; pih-risk fleet live. Saved files are partial and unverified; no deletion, overwrite, stop or retry performed.",
+  "restart_scope": {
+    "user_approval": "delete four output folders and start from original; exclude running pih-risk",
+    "ledgers": [
+      "literature-evidence",
+      "problem-combos",
+      "problem-packages",
+      "taxonomy"
+    ],
+    "pih_risk": "no stop/delete/relaunch",
+    "output_root": "orchestration/work/phub-ledger-redesign/first-pass",
+    "mode": "same tasks with retry-of; original source only; fresh agents"
+  },
+  "reviews": [
+    {
+      "group": "taxonomy",
+      "receipt": {
+        "id": "fd73ebd8-8acc-4f5c-a14c-ac197bf02e39",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_ab74d9d8c1ed",
+          "dispatchId": "ctx_4902daa50a97",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_92532fad-4c6c-4fef-a440-07f8c7da5f09",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_92532fad-4c6c-4fef-a440-07f8c7da5f09",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "36966fe4-6d70-47f4-af57-e593b12d926c",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "ed128db6-956a-4051-8a3b-11f338000419",
+            "generation": 44,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "36966fe4-6d70-47f4-af57-e593b12d926c",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "taskId": "task_ab74d9d8c1ed",
+      "dispatchId": "ctx_4902daa50a97",
+      "state": "ready",
+      "stage": "input_accepted",
+      "handle": "term_92532fad-4c6c-4fef-a440-07f8c7da5f09",
+      "effective_model": "opus",
+      "outcome": "succeeded",
+      "review_verdict": "WARN",
+      "stage1_closable": true,
+      "blocking_extraction_errors": 0,
+      "report_path": "orchestration/work/phub-ledger-redesign/batch-03-review-taxonomy.md",
+      "review_scope": "Full independent mechanical comparison; original semantic reread sampled ~380 nodes (~2%), not full reread.",
+      "pending_followup": "Worker documentation correction: retract exhaustive regex-expression coverage claim; record uncovered candidate families/counts and downstream impact as K; record M16 empty products observation. Await other review to consolidate.",
+      "release_result": {
+        "dispatchId": "ctx_4902daa50a97",
+        "state": "released",
+        "processAction": "closed_agent_terminal",
+        "archive": {
+          "source": "transcript",
+          "status": "captured"
+        },
+        "mutation": {
+          "requestId": "05141906-b00f-4907-9347-c0b5b6e261f4",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "group": "others",
+      "receipt": {
+        "id": "0db1f5a3-dddd-4683-9f58-f7e7ce339476",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_e94c95ab7276",
+          "dispatchId": "ctx_0af2a1122eed",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_d3e713cd-dc0c-4b89-82e3-482c156bf42b",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_d3e713cd-dc0c-4b89-82e3-482c156bf42b",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "d623201f-d6d0-4b79-9185-7885daa38ce7",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "e8a3eaee-9b63-4759-b58f-5510159510c8",
+            "generation": 45,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "d623201f-d6d0-4b79-9185-7885daa38ce7",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+        }
+      },
+      "taskId": "task_e94c95ab7276",
+      "dispatchId": "ctx_0af2a1122eed",
+      "state": "ready",
+      "stage": "input_accepted",
+      "handle": "term_d3e713cd-dc0c-4b89-82e3-482c156bf42b",
+      "effective_model": "opus",
+      "outcome": "succeeded",
+      "review_verdict": "PASS3/WARN1",
+      "blocking_extraction_errors": 0,
+      "current_user_choices": 0,
+      "report_path": "orchestration/work/phub-ledger-redesign/batch-03-review-others.md",
+      "release_result": {
+        "dispatchId": "ctx_0af2a1122eed",
+        "state": "released",
+        "processAction": "closed_agent_terminal",
+        "archive": {
+          "source": "transcript",
+          "status": "captured"
+        },
+        "mutation": {
+          "requestId": "3c2c54de-d0e1-40ea-9dda-f993938f4cef",
+          "replayed": false
+        }
+      }
+    }
+  ],
+  "record_fix": {
+    "receipt": {
+      "id": "c12196ce-5639-4773-87a6-2a543c35096c",
+      "ok": true,
+      "result": {
+        "runId": "run_05ed91e27327",
+        "taskId": "task_ab140532d140",
+        "dispatchId": "ctx_fe7da4375fe6",
+        "state": "ready",
+        "stage": "input_accepted",
+        "turnStart": "observed",
+        "setup": {
+          "requested": "not_applicable",
+          "effective": "not_applicable",
+          "source": "existing_worktree",
+          "hookFound": false,
+          "startupPolicy": "start-immediately",
+          "state": "not_applicable"
+        },
+        "launch": {
+          "requested": {
+            "agent": "claude",
+            "model": "opus",
+            "effort": null
+          },
+          "effective": {
+            "agent": "claude",
+            "model": "opus",
+            "effort": null
+          }
+        },
+        "mode": {
+          "mode": "terminal",
+          "preferred": "terminal",
+          "reason": "user_default",
+          "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+        },
+        "timeoutMs": 60000,
+        "effects": [
+          {
+            "kind": "worktree",
+            "action": "reused",
+            "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+          },
+          {
+            "kind": "setup",
+            "action": "not_applicable",
+            "state": "not_applicable"
+          },
+          {
+            "kind": "terminal",
+            "role": "agent",
+            "action": "created",
+            "id": "term_a83506b1-8456-4a52-a94a-31e309bd601e",
+            "surface": "visible"
+          },
+          {
+            "kind": "dispatch_input",
+            "role": "agent",
+            "id": "term_a83506b1-8456-4a52-a94a-31e309bd601e",
+            "state": "accepted"
+          }
+        ],
+        "prompt": {
+          "requestId": "13dccc4a-e622-4529-8b00-865a89258fac",
+          "stages": [
+            "input_accepted",
+            "turn_started"
+          ],
+          "provider": "claude",
+          "observation": "supported",
+          "processIncarnation": "fa2b0d39-8e71-44e8-9219-69cc995e0f49",
+          "generation": 48,
+          "baselineWorkingSequence": 0,
+          "baselineExplicitWorkingStartedAt": null,
+          "baselinePermissionSequence": 0
+        },
+        "residualResources": [],
+        "mutation": {
+          "requestId": "13dccc4a-e622-4529-8b00-865a89258fac",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    },
+    "taskId": "task_ab140532d140",
+    "dispatchId": "ctx_fe7da4375fe6",
+    "handle": "term_a83506b1-8456-4a52-a94a-31e309bd601e",
+    "state": "ready",
+    "stage": "input_accepted",
+    "effective_model": "opus",
+    "release_receipt": {
+      "id": "a02cc439-e59e-4e54-8c30-ed90eafbb3d9",
+      "ok": true,
+      "result": {
+        "dispatchId": "ctx_fe7da4375fe6",
+        "state": "released",
+        "processAction": "closed_agent_terminal",
+        "archive": {
+          "source": "transcript",
+          "status": "captured"
+        },
+        "mutation": {
+          "requestId": "8bc9d7c2-b1e4-4696-97b1-9ea6d61ae8ce",
+          "replayed": false
+        }
+      },
+      "_meta": {
+        "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+      }
+    },
+    "outcome": "succeeded",
+    "coordinator_acceptance": {
+      "accepted": true,
+      "verify_rerun": "5/5 exit0, failure0",
+      "report": "batch-03-final-note.md",
+      "limitations": [
+        "expression candidate gaps remain open; Markdown-only corrections not included in JSON",
+        "rebuild would remove manual Markdown corrections; preserve final note and reconcile before rebuilding",
+        "independent source reread sampled, not full semantic validation",
+        "pih operational incident external process impact remains unknown"
+      ]
+    }
+  },
+  "stage1_closed_count_total": 16,
+  "whole_ledger_complete": false,
+  "current_user_choices": 0
+}

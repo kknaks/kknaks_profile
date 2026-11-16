@@ -1,0 +1,291 @@
+# S048  scope=M16 수액치료  units=M16-DCA items/6 | M16-DCA items/7 | M16-DCA items/8 | M16-DCA items/9 | M16-DCA items/10 | M16-LIPO items/0 | M16-LIPO items/1 | M16-LIPO items/2 | M16-LIPO items/3 | M16-LIPO items/4 | M16-LIPO items/5 | M16-LIPO items/6 | M16-LIPO items/7 | M16-LIPO items/8 | M16-new-1774325959851 items/0 | M16-new-1774325959851 items/1 | M16-new-1774325959851 items/2
+# 상위 문맥: [{"pointer": "/modality/15", "id": "M16", "category": "수액치료", "name": "수액치료"}, {"pointer": "/modality/15/subcategories/4", "id": "M16-DCA", "label": "DCA (지방세포파괴)"}]
+@ /modality/15/subcategories/4/items/6 auto-M16-DCA-1775404043064 바이블주
+  . {id,name,detail,extracted}
+  /id = "auto-M16-DCA-1775404043064"
+  /name = "바이블주"
+  /detail = "한국비엠아이 · DCA · 2025.05 식약처 허가 · 5번째 DCA 제품"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "한국비엠아이 · DCA · 2025.05 식약처 허가 · 5번째 DCA 제품"
+  /extracted/mechanism = "데옥시콜산(DCA)이 지방세포막의 인지질 이중층을 직접 파괴(cytolysis)하여 지방세포를 비가역적으로 제거한다. 파괴된 세포 내용물은 대식세포에 의해 탐식되어 체외로 배출되며, 동시에 콜라겐 신생을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱(턱밑 지방)" ‖ 1:"중등증-중증 턱밑 지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [5] = 0:"부종(1-2주, 거의 필발)" ‖ 1:"경결감" ‖ 2:"통증" ‖ 3:"감각이상(일시적)" ‖ 4:"멍"
+  /extracted/safety/serious [3] = 0:"하악변연신경 손상(일시적 비대칭 미소)" ‖ 1:"연하곤란" ‖ 2:"피부 괴사(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 (부종 소실 후)"
+  /extracted/onset_duration/duration = "영구적 (지방세포 파괴)"
+  /extracted/aftercare [3] = 0:"부종 1-2주 정상 반응" ‖ 1:"냉찜질로 부종 완화 가능" ‖ 2:"하악변연신경 마비 증상 시 내원"
+@ /modality/15/subcategories/4/items/7 auto-M16-DCA-1775404043065 밀리핏주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-DCA-1775404043065"
+  /name = "밀리핏주사"
+  /detail = "동국제약 · DCA · 2025.07 식약처 허가 · 펜믹스 위탁제조"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "동국제약 · DCA · 2025.07 식약처 허가 · 펜믹스 위탁제조"
+  /extracted/mechanism = "데옥시콜산(DCA)이 지방세포막의 인지질 이중층을 직접 파괴(cytolysis)하여 지방세포를 비가역적으로 제거한다. 파괴된 세포 내용물은 대식세포에 의해 탐식되어 체외로 배출되며, 동시에 콜라겐 신생을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱(턱밑 지방)" ‖ 1:"중등증-중증 턱밑 지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [5] = 0:"부종(1-2주, 거의 필발)" ‖ 1:"경결감" ‖ 2:"통증" ‖ 3:"감각이상(일시적)" ‖ 4:"멍"
+  /extracted/safety/serious [3] = 0:"하악변연신경 손상(일시적 비대칭 미소)" ‖ 1:"연하곤란" ‖ 2:"피부 괴사(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 (부종 소실 후)"
+  /extracted/onset_duration/duration = "영구적 (지방세포 파괴)"
+  /extracted/aftercare [3] = 0:"부종 1-2주 정상 반응" ‖ 1:"냉찜질로 부종 완화 가능" ‖ 2:"하악변연신경 마비 증상 시 내원"
+@ /modality/15/subcategories/4/items/8 auto-M16-DCA-1775404043066 원더브이
+  . {id,name,detail,extracted}
+  /id = "auto-M16-DCA-1775404043066"
+  /name = "원더브이"
+  /detail = "종근당 · DCA · 2025.07 식약처 허가"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "종근당 · DCA · 2025.07 식약처 허가"
+  /extracted/mechanism = "데옥시콜산(DCA)이 지방세포막의 인지질 이중층을 직접 파괴(cytolysis)하여 지방세포를 비가역적으로 제거한다. 파괴된 세포 내용물은 대식세포에 의해 탐식되어 체외로 배출되며, 동시에 콜라겐 신생을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱(턱밑 지방)" ‖ 1:"중등증-중증 턱밑 지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [5] = 0:"부종(1-2주, 거의 필발)" ‖ 1:"경결감" ‖ 2:"통증" ‖ 3:"감각이상(일시적)" ‖ 4:"멍"
+  /extracted/safety/serious [3] = 0:"하악변연신경 손상(일시적 비대칭 미소)" ‖ 1:"연하곤란" ‖ 2:"피부 괴사(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 (부종 소실 후)"
+  /extracted/onset_duration/duration = "영구적 (지방세포 파괴)"
+  /extracted/aftercare [3] = 0:"부종 1-2주 정상 반응" ‖ 1:"냉찜질로 부종 완화 가능" ‖ 2:"하악변연신경 마비 증상 시 내원"
+@ /modality/15/subcategories/4/items/9 auto-M16-DCA-1775404043067 리포린
+  . {id,name,detail,extracted}
+  /id = "auto-M16-DCA-1775404043067"
+  /name = "리포린"
+  /detail = "삼익제약 · DCA · 2025.08 식약처 허가"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "삼익제약 · DCA · 2025.08 식약처 허가"
+  /extracted/mechanism = "데옥시콜산(DCA)이 지방세포막의 인지질 이중층을 직접 파괴(cytolysis)하여 지방세포를 비가역적으로 제거한다. 파괴된 세포 내용물은 대식세포에 의해 탐식되어 체외로 배출되며, 동시에 콜라겐 신생을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱(턱밑 지방)" ‖ 1:"중등증-중증 턱밑 지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [5] = 0:"부종(1-2주, 거의 필발)" ‖ 1:"경결감" ‖ 2:"통증" ‖ 3:"감각이상(일시적)" ‖ 4:"멍"
+  /extracted/safety/serious [3] = 0:"하악변연신경 손상(일시적 비대칭 미소)" ‖ 1:"연하곤란" ‖ 2:"피부 괴사(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 (부종 소실 후)"
+  /extracted/onset_duration/duration = "영구적 (지방세포 파괴)"
+  /extracted/aftercare [3] = 0:"부종 1-2주 정상 반응" ‖ 1:"냉찜질로 부종 완화 가능" ‖ 2:"하악변연신경 마비 증상 시 내원"
+@ /modality/15/subcategories/4/items/10 auto-M16-DCA-1775404043068 뉴비쥬
+  . {id,name,detail,extracted}
+  /id = "auto-M16-DCA-1775404043068"
+  /name = "뉴비쥬"
+  /detail = "메디톡스 · 콜산(CA) 성분 · 2025 식약처 허가 · 세계 최초 CA 지방분해 신약 · DCA 대비 부작용 감소"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "메디톡스 · 콜산(CA) 성분 · 2025 식약처 허가 · 세계 최초 CA 지방분해 신약 · DCA 대비 부작용 감소"
+  /extracted/mechanism = "콜산(Cholic Acid, CA)이 지방세포막을 파괴하여 지방을 분해한다. DCA 대비 계면활성이 낮아 통증, 부종, 멍, 색소침착 등 이상반응이 감소한 차세대 성분. 세계 최초 CA 지방분해 신약."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱(턱밑 지방)" ‖ 1:"중등증-중증 턱밑 지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [5] = 0:"부종(1-2주, 거의 필발)" ‖ 1:"경결감" ‖ 2:"통증" ‖ 3:"감각이상(일시적)" ‖ 4:"멍"
+  /extracted/safety/serious [3] = 0:"하악변연신경 손상(일시적 비대칭 미소)" ‖ 1:"연하곤란" ‖ 2:"피부 괴사(드묾)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 (부종 소실 후)"
+  /extracted/onset_duration/duration = "영구적 (지방세포 파괴)"
+  /extracted/aftercare [3] = 0:"부종 1-2주 정상 반응" ‖ 1:"냉찜질로 부종 완화 가능" ‖ 2:"하악변연신경 마비 증상 시 내원"
+@ /modality/15/subcategories/5 M16-LIPO 지방분해주사 (마케팅명)
+  . {id,label,description,items}
+  /id = "M16-LIPO"
+  /label = "지방분해주사 (마케팅명)"
+  /description = "다양한 약물 혼합 지방분해 주사. 병원마다 성분/배합/명칭이 상이. DCA 제품과 달리 식약처 개별 허가는 없으며, 의사 재량으로 약물 혼합 사용."
+  /items [9]
+@ /modality/15/subcategories/5/items/0 auto-M16-1775402996209 V라인주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775402996209"
+  /name = "V라인주사"
+  /detail = "얼굴 윤곽 지방분해 · V라인 효과"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "얼굴 윤곽선 개선을 위해 지방분해 성분을 주입하여 V라인을 만드는 비수술적 미용시술"
+  /extracted/mechanism = "데옥시콜산(deoxycholic acid) 등의 지방분해 성분이 지방세포막을 파괴하여 세포 내용물을 유출시킵니다. 파괴된 지방세포는 대식세포에 의해 제거되고 림프계를 통해 체외로 배출됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"턱살, 볼살 등 얼굴 지방 감소" ‖ 1:"V라인 윤곽 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 부종, 멍, 통증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"주사 후 24-48시간 냉찜질" ‖ 1:"과도한 마사지 금지" ‖ 2:"음주, 사우나 1주일 금지"
+@ /modality/15/subcategories/5/items/1 auto-M16-1775403010245 슈퍼투턱주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403010245"
+  /name = "슈퍼투턱주사"
+  /detail = "이중턱 전용 강화 지방분해"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "이중턱 부위의 지방을 분해하여 턱선을 개선하는 강화된 지방분해 주사 시술"
+  /extracted/mechanism = "지방분해 성분이 이중턱 부위의 지방세포막을 파괴하여 지방을 분해합니다. 분해된 지방은 림프순환을 통해 체외로 배출되어 턱선이 개선됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱으로 인한 턱선 개선" ‖ 1:"목 부위 지방 축적 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 24시간 찜질방, 사우나 금지"
+@ /modality/15/subcategories/5/items/2 auto-M16-1775403054538 팻킬주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403054538"
+  /name = "팻킬주사"
+  /detail = "비스테로이드 · 기존 윤곽주사 대비 강화형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "비스테로이드 성분의 강화된 지방분해 주사로 기존 윤곽주사 대비 향상된 효과를 제공하는 미용시술"
+  /extracted/mechanism = "지방세포막을 직접적으로 파괴하여 지방분해를 촉진하고 리폴리시스 과정을 활성화합니다. 동시에 림프순환을 개선하여 분해된 지방의 배출을 촉진하고 부종을 감소시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱 및 얼굴 지방층 감소" ‖ 1:"턱선 및 페이스라인 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술부위 부종 및 일시적 통증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 24-48시간 냉찜질 적용"
+@ /modality/15/subcategories/5/items/3 auto-M16-1775403061033 코조각주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403061033"
+  /name = "코조각주사"
+  /detail = "콧망울 지방분해 · 코 라인 날렵하게"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콧망울 지방을 분해하여 코 라인을 날카롭게 만드는 비수술적 코 성형술"
+  /extracted/mechanism = "지방분해 성분(주로 데옥시콜산)이 콧망울 부위의 지방세포막을 파괴하여 지방을 분해시킵니다. 분해된 지방은 림프계를 통해 자연스럽게 배출되어 코의 윤곽이 날렵해집니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"콧망울이 두꺼운 경우" ‖ 1:"코끝이 뭉툭한 경우"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 72시간 냉찜질"
+@ /modality/15/subcategories/5/items/4 auto-M16-1775403069339 매끈V주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403069339"
+  /name = "매끈V주사"
+  /detail = "턱선+하관 라인 정리 전용"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "턱선과 하관 라인을 정리하여 V라인 페이스를 만드는 윤곽 개선 주사시술"
+  /extracted/mechanism = "지방분해 성분이 턱 아래와 하관 부위의 지방세포막을 파괴하여 지방을 분해합니다. 동시에 콜라겐 생성을 촉진하여 피부 탄력을 개선하고 페이스 라인을 정돈합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱 및 턱 아래 지방 축적" ‖ 1:"하관 부위 볼살과 불분명한 턱선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종, 멍, 일시적 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 24시간 냉찜질, 1주일간 사우나·찜질방 금지, 금주·금연"
+@ /modality/15/subcategories/5/items/5 auto-M16-1775403076220 다빼주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403076220"
+  /name = "다빼주사"
+  /detail = "고농축 지방분해 · 얼굴전용"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고농축 지방분해 성분으로 얼굴 부위의 국소적인 지방을 분해하여 윤곽을 개선하는 미용 시술"
+  /extracted/mechanism = "인지질과 데옥시콜산 등의 지방분해 성분이 지방세포막을 파괴하여 지방을 액화시킵니다. 파괴된 지방은 림프계를 통해 체외로 배출되어 해당 부위의 볼륨이 감소합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"이중턱 개선" ‖ 1:"볼살 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 24시간 찜질방, 사우나 금지"
+@ /modality/15/subcategories/5/items/6 auto-M16-1775403176935 아큐주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403176935"
+  /name = "아큐주사"
+  /detail = "윤곽주사 업그레이드"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "윤곽주사의 업그레이드 버전으로 얼굴 라인 개선에 특화된 시술"
+  /extracted/mechanism = "개선된 지방분해 성분으로 얼굴 윤곽선을 더욱 정교하게 조각"
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얼굴 윤곽 개선" ‖ 1:"이중턱 제거" ‖ 2:"볼살 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"멍" ‖ 2:"압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"냉찜질" ‖ 1:"음주 금지 1주" ‖ 2:"사우나 금지 1주"
+@ /modality/15/subcategories/5/items/7 auto-M16-1775403176936 GPC주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403176936"
+  /name = "GPC주사"
+  /detail = "콩추출 천연 지방분해"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콩에서 추출한 천연 성분을 이용한 지방분해 주사"
+  /extracted/mechanism = "콩 추출물의 천연 지방분해 성분이 지방세포를 자연스럽게 분해"
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"국소 지방 감소" ‖ 1:"셀룰라이트 개선" ‖ 2:"바디 컨투어링"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"경미한 부종" ‖ 1:"일시적 발적" ‖ 2:"주사 부위 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-4주"
+  /extracted/onset_duration/duration = "8-12개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 섭취" ‖ 1:"가벼운 마사지" ‖ 2:"운동 병행 권장"
+@ /modality/15/subcategories/5/items/8 auto-M16-1775403176937 빼당주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403176937"
+  /name = "빼당주사"
+  /detail = "볼살광대이중턱+탄력"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "볼살, 광대, 이중턱을 동시에 개선하며 탄력까지 향상시키는 복합 시술"
+  /extracted/mechanism = "지방분해와 동시에 콜라겐 생성을 촉진하여 탄력 개선 효과 제공"
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"볼살 감소" ‖ 1:"광대 볼륨 조절" ‖ 2:"이중턱 개선" ‖ 3:"피부 탄력 향상"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"부종" ‖ 1:"멍" ‖ 2:"일시적 압통" ‖ 3:"피부 당김감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "10-15개월"
+  /extracted/aftercare [3] = 0:"냉찜질 48시간" ‖ 1:"금주 1주" ‖ 2:"강한 자극 피하기"
+@ /modality/15/subcategories/6 M16-new-1774325959851 기타
+  . {id,label,items}
+  /id = "M16-new-1774325959851"
+  /label = "기타"
+  /items [14]
+@ /modality/15/subcategories/6/items/0 auto-60-1774737181584 셀레늄
+  . {id,name,detail,extracted}
+  /id = "auto-60-1774737181584"
+  /name = "셀레늄"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "항산화 미량원소 정맥 주입"
+  /extracted/mechanism = "셀레늄을 정맥 주사로 혈류에 공급하여 셀레늄단백질(selenoprotein) 합성을 활성화합니다. 글루타치온 퍼옥시다제(GPx) 등 항산화 효소의 필수 보인자로 작용하여 활성산소를 제거하고 피부 산화 스트레스를 경감합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"항산화 능력 강화" ‖ 1:"노화 피부 개선" ‖ 2:"피부 탄력성 증진"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 경미한 통증" ‖ 1:"주입 중 마늘 냄새 감각 (일시적)" ‖ 2:"두통"
+  /extracted/safety/serious [2] = 0:"셀레늄 독성 (고용량 반복 시)" ‖ 1:"혈관염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "5~10일"
+  /extracted/onset_duration/duration = "10~14일"
+  /extracted/aftercare [2] = 0:"충분한 수분 보충" ‖ 1:"시술 후 24시간 항산화제 복용 피하기"
+@ /modality/15/subcategories/6/items/1 auto-M16-1775361054038 지방분해주사(PPC)
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775361054038"
+  /name = "지방분해주사(PPC)"
+  /detail = "포스파티딜콜린 · 지방세포막 파괴"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "포스파티딜콜린을 이용해 지방세포막을 파괴하여 국소 지방을 분해하는 비수술적 체형관리 시술"
+  /extracted/mechanism = "포스파티딜콜린이 지방세포막의 인지질 구조를 불안정하게 만들어 세포막을 파괴합니다. 파괴된 지방세포 내용물은 림프계와 혈액순환을 통해 체외로 배출됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"국소 지방 축적 부위" ‖ 1:"이중턱 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 부종, 멍, 통증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"마사지와 냉찜질로 부종 관리" ‖ 1:"주사 부위 압박 수분간" ‖ 2:"충분한 수분 섭취"
+@ /modality/15/subcategories/6/items/2 auto-M16-1775361069392 카복시테라피
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775361069392"
+  /name = "카복시테라피"
+  /detail = "CO2 가스 피하주입 · 혈류 촉진+지방 감소"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "CO2 가스를 피하에 직접 주입하여 혈류 개선과 지방분해를 유도하는 비침습적 미용시술"
+  /extracted/mechanism = "주입된 CO2가 혈관을 확장시키고 혈류량을 증가시켜 조직의 산소공급을 개선합니다. 동시에 지방세포 내 리파아제 활성을 증가시켜 지방분해를 촉진하고 림프순환을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"국소 지방감소 및 체형관리" ‖ 1:"피부탄력 개선 및 혈액순환 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주입 부위 일시적 부종 및 가스감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후부터 혈류 개선 효과 시작"
+  /extracted/onset_duration/duration = "3-6개월간 효과 지속"
+  /extracted/aftercare [2] = 0:"시술 부위 강한 압박 자제" ‖ 1:"과도한 운동 피하기 2-3일"

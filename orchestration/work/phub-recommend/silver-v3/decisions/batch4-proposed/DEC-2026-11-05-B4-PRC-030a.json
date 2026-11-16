@@ -1,0 +1,42 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 0/2(원장 자리 0) · 근거 영문 낱말 「CaHA」 ↔ 「CaHA (칼슘하이드록시아파타이트)」",
+ "gate_item": "b4-prc/030",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-030a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-96152727ab"
+ },
+ "proposal_item": "b4-prc/030",
+ "reason": "결정 묶음 4 — 참조 조각 「CaHA」 을 그 참조들(⑨ 2)에서 modality_subcategory_label 「CaHA (칼슘하이드록시아파타이트)」(SUB-96152727ab)로 읽는다(근거: 영문 낱말 「CaHA」 ↔ 「CaHA (칼슘하이드록시아파타이트)」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "CaHA",
+  "scope": [
+   "REF-6f441e7f62",
+   "REF-dd55c3196d"
+  ]
+ }
+}

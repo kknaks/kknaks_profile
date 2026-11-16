@@ -1,0 +1,33 @@
+{
+ "segment": "S04", "direct_read": true, "read_note": "M4 스킨부스터 7항목 전부 직접 읽음.",
+ "last_pointer": "/categories/3/items/6/high",
+ "observations": [
+  ["/categories/3/items/0/name", "items/0~4 는 '<제품명 후보> (<용량>)' 형태, unit 칸에 같은 용량 반복. '리쥬란 힐러'·'리쥬란 아이' 의 '힐러'·'아이' 는 제품 변형 표시 후보('아이'가 부위(눈)를 뜻하는지 원문에 없음).", "P"],
+  ["/categories/3/items/4/unit", "'2ml' — 다른 항목의 'cc' 와 다른 부피 단위 표기. 둘의 환산을 이번 단계에서 하지 않음.", "P"],
+  ["/categories/3/items/5/unit", "'볼뉴머' unit '부위/1회' — '/' 가 '부위당 1회'(분모)인지 '부위 또는 1회'(대안)인지 원문만으로 확정 불가. README 의 '/'=대안 규칙과 충돌 가능.", "P"],
+  ["/categories/3/items/6/name", "'스킨부스터 물광주사 (전체얼굴)' — 카테고리 이름 '스킨부스터'가 항목 name 에 반복되고, '물광주사' 라는 다른 명칭과 붙어 있음. 괄호는 적용 범위(전체얼굴).", "P"],
+  ["/categories/3/items/0/low", "7항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/3/items/0/name", "리쥬란 힐러", ["제품명 후보", "변형 표시"], ""],
+  ["/categories/3/items/0/name", "(2cc)", ["수량·단위"], ""],
+  ["/categories/3/items/1/name", "리쥬란 아이", ["제품명 후보", "변형 표시", "부위 후보"], "'아이' 가 눈(eye)을 가리키는지 원문 명시 없음."],
+  ["/categories/3/items/1/name", "(1cc)", ["수량·단위"], ""],
+  ["/categories/3/items/2/name", "쥬베룩 파인", ["제품명 후보", "변형 표시"], ""],
+  ["/categories/3/items/2/name", "(2cc)", ["수량·단위"], ""],
+  ["/categories/3/items/3/name", "쥬베룩 울트라", ["제품명 후보", "변형 표시"], ""],
+  ["/categories/3/items/3/name", "(2cc)", ["수량·단위"], ""],
+  ["/categories/3/items/4/name", "프로파일로", ["제품명 후보"], ""],
+  ["/categories/3/items/4/name", "(2ml)", ["수량·단위"], "ml 표기."],
+  ["/categories/3/items/5/name", "볼뉴머", ["제품명/장비명 후보"], "괄호·부위 없음."],
+  ["/categories/3/items/5/unit", "부위/1회", ["가격 기준", "'/' 연결", "회차"], "분모(부위당)인지 대안인지 미확정."],
+  ["/categories/3/items/6/name", "스킨부스터 물광주사", ["시술명 후보", "분류명 반복"], ""],
+  ["/categories/3/items/6/name", "물광주사", ["시술명/별칭 후보"], ""],
+  ["/categories/3/items/6/name", "(전체얼굴)", ["적용 범위", "부위 후보"], "'전체' 가 범위를 한정."]
+ ],
+ "issues": [
+  ["P-S04-1", "P", ["/categories/3/items/5/unit"], "'부위/1회' 의 '/' 의미 잠정. 가격 분모(부위당·회당)를 확정하지 않는다."],
+  ["B-S04-1", "B", ["/categories/3/items/5/unit"], "'부위/1회' 의 '부위' 가 어떤 부위(크기)인지 없음."],
+  ["B-S04-2", "B", ["/categories/3/items/6/name"], "'물광주사' 에 쓰는 제품·용량이 없다."]
+ ]
+}

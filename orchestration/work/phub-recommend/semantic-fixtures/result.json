@@ -1,0 +1,111 @@
+{
+ "total": 15,
+ "passed": 15,
+ "cases": [
+  {
+   "id": "M1",
+   "cause": "M",
+   "what": "문서 = 코드 — semantic.json resolve_rules = semantic-build.py RESOLVE_RULES",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "M2",
+   "cause": "M",
+   "what": "악센트 접기 — 「Juvéderm」 = 「juvederm」",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "M3",
+   "cause": "M",
+   "what": "사전 행 norm = 정규화(expr) 전부",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "F1",
+   "cause": "F",
+   "what": "원장 이름(값) 「하이드로퀴논」 → family:M15",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "F2",
+   "cause": "F",
+   "what": "원장 이름(단위 시술) 「V라인주사」 → unit_procedure:U5-070",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "F3",
+   "cause": "F",
+   "what": "고민 갈래 이름 「주사치료」(노드 아님) → concern:P13",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "F4",
+   "cause": "F",
+   "what": "환자용 이름 「콜라겐 재생 주사」 → family:M3",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "F5",
+   "cause": "F",
+   "what": "원천 CC 「케미컬필링」 → concern:P6-2(CC 앵커)",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "G1",
+   "cause": "G",
+   "what": "접두 — 대상 계열 · 고민 대분류가 여럿이면 거절(「리프」 → 리프팅 M9 · M7 · 목적)",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "G2",
+   "cause": "G",
+   "what": "접두 — 하나로 모이면 씀(「쥬비」 → 쥬비덤 제품 M2)",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "H1",
+   "cause": "H",
+   "what": "입력 접기 — 「볼쳐짐/불독살」 = 「볼처짐/불독살」",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "H2",
+   "cause": "H",
+   "what": "괄호 지움 — 「코그 Cog」 = 「코그(Cog)」",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "H3",
+   "cause": "H",
+   "what": "끝말 떼기 — 「쿨스컬프팅시술」 → 「쿨스컬프팅」 대상",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "L1",
+   "cause": "L",
+   "what": "「모든 시술」 → scope:모든 시술(와일드카드 · 노드 아님)",
+   "error": null,
+   "pass": true
+  },
+  {
+   "id": "L2",
+   "cause": "L",
+   "what": "쌍 이름 「HA 필러」 · 「RF/HIFU」 · 「CO2 프락셔널」 찾음",
+   "error": null,
+   "pass": true
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-05-B3-P-SIT-06",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "바디",
+  "category": null,
+  "site_kind": "taxonomy_site_label",
+  "kind": "region",
+  "synonyms": []
+ },
+ "reason": "region 값 「바디」(ERD §2.8 region 후보) — 시장가·synergy·최적 조합의 「바디」 조각(7). 복부·허벅지·팔뚝·힙·겨드랑이·종아리는 얼굴 중심 부위 사전 밖이라 별도 판단.",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@9/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@20"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §12 V3-5 후속 region 값 바디·두피 추가"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

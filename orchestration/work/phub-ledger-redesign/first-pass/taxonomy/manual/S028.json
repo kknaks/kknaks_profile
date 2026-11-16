@@ -1,0 +1,37 @@
+{"section":"S028","state":"read","last_pointer":"/modality/8/subcategories/1/items/8/extracted/aftercare/2",
+"observations":[
+ {"status":"P","pointers":["/modality/8/subcategories/1/items/3","/modality/3/subcategories/1/items/8/classification_issue"],"note":"볼뉴머가 M9-2-3(RF) 항목으로도 존재한다. M4 쪽 볼뉴머(auto-M4-1775362490962)는 classification_issue 로 'M9-2(RF)로 통합 관리 필요'라 적었다 — 원문에 두 항목이 공존(통합 미반영). 두 레코드 내용도 다르다."},
+ {"status":"P","pointers":["/modality/8/subcategories/1/items/4/classification_issue","/modality/8/subcategories/1/items/4/reclassified_to"],"note":"소프라노 티타늄: classification_issue('M8 가 정확한 분류 … cross-reference 처리 권장'), reclassified_to='M8'(이 원장 유일). detail·overview 도 '잘못 등재' 를 적는다. 구조상 여전히 M9-2 안."},
+ {"status":"I","pointers":["/modality/8/subcategories/1/items/4/extracted/overview","/modality/8/subcategories/1/items/4/extracted/indications/primary","/modality/8/subcategories/1/items/4/extracted/onset_duration/onset"],"note":"소프라노 티타늄 overview·mechanism 은 '제모가 1차 적응증' 레이저인데 indications 는 '안면 처짐 및 주름개선','턱선 리프팅' 등 RF 리프팅 서술, onset '즉각적 수축 효과'. 정정이 일부 칸에만 반영된 흔적."},
+ {"status":"I","pointers":["/modality/8/subcategories/1/items/1/detail","/modality/8/subcategories/1/items/8/detail"],"note":"올리지오 detail '원텍', 올리지오X detail '클래시스 GX모드 입체가열' — 같은 제품군 이름에 다른 회사."},
+ {"status":"P","pointers":["/modality/8/subcategories/1/items/7/extracted/mechanism"],"note":"버츄RF mechanism '미세 바늘을 통해 … 고주파' — 니들RF(M11) 기전 서술이 M9-2 RF 에 있다(판단 후속)."},
+ {"status":"I","pointers":["/modality/8/subcategories/0/items/15/detail","/modality/8/subcategories/0/items/4/detail"],"note":"더블로골드S detail '히로닉최신', 더블로 detail '하이로닉' — 회사명 표기 차이."},
+ {"status":"P","pointers":["/modality/8/subcategories/1/items/1/detail","/modality/8/subcategories/1/items/3/detail","/modality/8/subcategories/1/items/6/detail"],"note":"detail 구분자 주변 공백 불균일('원텍  · 모노폴라', '클래시스  ·  모노폴라', '텐텍 ·  모노폴라'). 원문 그대로."},
+ {"status":"P","pointers":["/modality/8/subcategories/1/items/3/extracted/safety/contraindications"],"note":"볼뉴머(M9-2-3) safety/contraindications '금속 임플란트 부위','심장박동기 장착자','임신 중' — 기기 금기."}
+],
+"expressions":[
+ {"pointer":"/modality/8/subcategories/0/items/12/extracted/mechanism","text":"65-70도의 열을 발생","kinds":["수량·단위·시간","범위"],"note":"'도' 표기"},
+ {"pointer":"/modality/8/subcategories/0/items/14/extracted/safety/common/2","text":"일시적 감각저하","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/8/subcategories/0/items/15/extracted/mechanism","text":"2MHz와 4MHz의 듀얼 주파수","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/0/extracted/aftercare/1","text":"과도한 운동 및 발한 활동 3일간 제한","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/1/extracted/aftercare/2","text":"수면 중 과도한 얼굴 압박 피하기","kinds":["조건","부정"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/2/extracted/overview","text":"InMode Bipolar RF + IR(적외선) 복합 리프팅 기기","kinds":["기호"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/2/extracted/indications/primary/3","text":"팔뚝/무릎 등 신체 처짐","kinds":["부위","기호"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/2/extracted/safety/serious/0","text":"화상(과도한 에너지 사용 시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/4/classification_issue","text":"UI/검색 시 M8로도 노출되도록 cross-reference 처리 권장","kinds":["참조"],"note":"운영 권고"},
+ {"pointer":"/modality/8/subcategories/1/items/4/extracted/mechanism","text":"피부 타입 I-VI 대응","kinds":["범위"],"note":"로마숫자 범위"},
+ {"pointer":"/modality/8/subcategories/1/items/4/extracted/overview","text":"3파장(755/810/1064nm) 다이오드 레이저 플랫폼","kinds":["수량·단위·시간","기호"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/5/extracted/mechanism","text":"강력한 리프팅 효과와 지방위축을 동시에 달성한다","kinds":["수식"],"note":"지방위축을 효과로 서술 — 고출력 상용구는 '지방위축 위험'"},
+ {"pointer":"/modality/8/subcategories/1/items/5/extracted/safety/serious/1","text":"신경 손상 (깊은 모노폴라 사용 시 주의)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/6/extracted/safety/serious/0","text":"신경 손상(저설정시)","kinds":["조건"],"note":"'저설정시' 의미 모호"},
+ {"pointer":"/modality/8/subcategories/1/items/6/extracted/safety/serious/2","text":"지방 위축(모노폴라의 심부 열로 인한 위험)","kinds":["조건","가능성·빈도"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/7/extracted/mechanism","text":"미세 바늘을 통해 진피층과 피하지방층에 고주파 에너지를 전달","kinds":["부위"],"note":""},
+ {"pointer":"/modality/8/subcategories/1/items/8/extracted/onset_duration/onset","text":"즉시 수축 + 2-3개월 점진 개선","kinds":["기호","수량·단위·시간","범위"],"note":"'+' = 그리고"}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S028-F01","status":"F","pointers":["/modality/8/subcategories/1/items/3","/modality/3/subcategories/1/items/8"],"note":"볼뉴머 M4/M9-2 두 레코드 공존(원문 통합 권고 미반영).","impact":"개체 병합·재분류는 원본 변경 후보"},
+ {"id":"S028-I01","status":"I","pointers":["/modality/8/subcategories/1/items/4/extracted/indications/primary","/modality/8/subcategories/1/items/4/extracted/overview"],"note":"소프라노 티타늄 레이저 서술 vs RF 리프팅 적응증.","impact":"적응증 채택 시 확인"},
+ {"id":"S028-I02","status":"I","pointers":["/modality/8/subcategories/1/items/1/detail","/modality/8/subcategories/1/items/8/detail","/modality/8/subcategories/0/items/15/detail"],"note":"제조사 표기 불일치(원텍/클래시스, 히로닉/하이로닉).","impact":"제조사 정규화 후속"},
+ {"id":"S028-B01","status":"B","pointers":["/modality/8/subcategories/1/items/6/extracted/safety/serious/0"],"note":"'신경 손상(저설정시)' — 저설정이 위험 조건인지 오기인지 불명.","impact":"조건 해석 불가"}
+]}

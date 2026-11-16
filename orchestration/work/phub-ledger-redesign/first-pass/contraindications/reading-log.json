@@ -1,0 +1,15 @@
+{
+  "_about": "직접 읽기 기록. 기계 추출(build.py)과 구분된다. 원장이 6390 bytes·27 rule 이라 구획 2개(S0 메타 / S1 rules 전체)로 나눴고, 각 구획을 원문 파일에서 위에서 아래로 rule 단위로 읽었다(문장 중간을 자르지 않음).",
+  "reader": "Opus researcher (task_24f8cdf24364 / ctx_3b2fdc5c2729)",
+  "date": "2026-11-09",
+  "sections": {
+    "S0": {"pointer_range": "/version · /updated · /description · /rules(컨테이너)", "shared_context": [],
+           "read_status": "direct_read_done", "read_method": "원문 파일 전체 출력에서 직접 읽음",
+           "read_order": ["/version", "/updated", "/description"], "last_read_pointer": "/description",
+           "review_anchor": "S0 · 최상위 메타데이터"},
+    "S1": {"pointer_range": "/rules/0 … /rules/26 (각 7키)", "shared_context": ["/description"],
+           "read_status": "direct_read_done", "read_method": "원문 파일 전체 출력에서 rule 순서대로 7칸을 함께 읽음. 이후 Kiwi 출력과 값별로 다시 대조",
+           "read_order": ["/rules/0 … /rules/26 배열 순"], "last_read_pointer": "/rules/26/note",
+           "review_anchor": "S1 · rules 전체"}
+  }
+}

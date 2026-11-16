@@ -1,0 +1,51 @@
+{"section":"S016","state":"read","last_pointer":"/modality/6/subcategories/2/items/2/extracted/aftercare/4",
+"observations":[
+ {"status":"P","pointers":["/modality/6/group","/modality/6/subcategories/0/label","/modality/6/subcategories/1/label","/modality/6/subcategories/2/label"],"note":"M7 group '시술/기기'(M1~M6 은 '주사/주입'). 하위분류 축이 셋으로 다르다: '재질별'(PDO·PCL·PLCL·PLLA·PCA실·PLLA+PCL복합실), '형태별'(코그·모노·볼륨실), '브랜드'(민트리프트 …). 같은 깊이 items 가 재질·형태·브랜드라는 서로 다른 종류다."},
+ {"status":"P","pointers":["/modality/6/subcategories/0/items/0/name","/modality/2/subcategories/0/label"],"note":"재질명(PDO, PCL, PLLA)이 M7 항목 name 으로, 같은 원장의 M3 하위분류 label 로도 쓰인다. 같은 문자열이 다른 계열·다른 층에 있다(연결 키 없음)."},
+ {"status":"P","pointers":["/modality/6/subcategories/0/items/0/detail","/modality/6/subcategories/0/items/3/detail"],"note":"재질별 앞 네 항목 detail 은 빈 문자열."},
+ {"status":"I","pointers":["/modality/6/subcategories/0/items/1/extracted/overview","/modality/6/subcategories/0/items/1/extracted/aftercare/3"],"note":"PCL 항목 overview '12-15개월 지속' / duration '12-15개월' 과 M7 상용구 'PCL 24-36개월' 이 다르다."},
+ {"status":"I","pointers":["/modality/6/subcategories/0/items/2/extracted/overview","/modality/6/subcategories/0/items/2/extracted/onset_duration/duration"],"note":"PLCL: overview '12-18개월 지속' vs duration '24-36개월' — 같은 항목 안 불일치."},
+ {"status":"P","pointers":["/modality/6/subcategories/0/items/0/extracted/aftercare/3"],"note":"M7 상용구 '[시술 주기 참고] 실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월). 재시술은 6개월 이상 간격 권장 …' 가 모든 항목에 반복. PDO 항목 overview 는 '6-8개월에 녹는' — 상용구 'PDO 6개월' 과 범위 차이."},
+ {"status":"P","pointers":["/modality/6/subcategories/1/items/0/extracted/mechanism","/modality/6/subcategories/2/items/1/extracted/mechanism","/modality/6/subcategories/2/items/2/extracted/mechanism","/modality/6/subcategories/0/items/3/extracted/mechanism"],"note":"'48주 (기준) 24% 조직수축' 수치 문장이 여러 항목(PLLA, 코그, 테스리프트, 실루엣소프트) mechanism 에 반복된다."},
+ {"status":"P","pointers":["/modality/6/subcategories/0/items/3/extracted/safety/serious/1","/modality/6/subcategories/1/items/0/extracted/safety/serious/3"],"note":"'비가교HA와의 동시 사용 금기(24-72시간 분해 상충)' 가 safety/serious 에 있다 — 부작용 칸에 병용 금기. 코그에는 '(in vitro 연구 기반, 임상 증거 제한적)' 근거 수준이 덧붙어 있다."},
+ {"status":"P","pointers":["/modality/6/subcategories/1/items/0/extracted/indications/primary/2","/modality/6/subcategories/0/items/3/extracted/indications/primary/4"],"note":"얼굴 외 부위(팔뚝/허벅지, 팔·다리·복부) 적응증."},
+ {"status":"I","pointers":["/modality/6/subcategories/0/items/4/detail","/modality/6/subcategories/0/items/4/extracted/overview"],"note":"PCA실 detail '폴리카프로락톤아크릴레이트', overview '폴리카프로락톤 기반' — 재질명 표기 차이."}
+],
+"expressions":[
+ {"pointer":"/modality/6/subcategories/0/items/0/extracted/overview","text":"6-8개월에 녹는 생분해성 실","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/0/extracted/aftercare/0","text":"48시간 음주 자제 및 금연 권장(일반 건강)","kinds":["수량·단위·시간","부정"],"note":"M7 반복. 괄호가 지시 근거 성격 표시"},
+ {"pointer":"/modality/6/subcategories/0/items/0/extracted/aftercare/3","text":"실 흡수 후 재시술 고려 (PDO 6개월, PLLA 12-18개월, PCL 24-36개월)","kinds":["조건","수량·단위·시간"],"note":"상용구"},
+ {"pointer":"/modality/6/subcategories/0/items/0/extracted/aftercare/3","text":"기존 실 흡수 및 콜라겐 잔존 상태 평가 후 판단","kinds":["조건"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/1/extracted/mechanism","text":"PDO보다 느린 분해 속도로 더 오래 물리적 지지","kinds":["비교","참조"],"note":"다른 항목(PDO) 참조"},
+ {"pointer":"/modality/6/subcategories/0/items/1/extracted/indications/primary/1","text":"장기 리프팅 효과 원하는 경우","kinds":["조건"],"note":"적응증 칸의 환자 희망 조건"},
+ {"pointer":"/modality/6/subcategories/0/items/2/extracted/mechanism","text":"PCL과 PLA의 장점을 결합하여 중간 정도의 분해 속도","kinds":["비교","수식"],"note":"PLA(PLLA 아님) 표기"},
+ {"pointer":"/modality/6/subcategories/0/items/3/extracted/mechanism","text":"48주에 걸쳐 최대 24% 조직수축","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/3/extracted/safety/serious/1","text":"비가교HA와의 동시 사용 금기(24-72시간 분해 상충)","kinds":["부정","조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/3/extracted/aftercare/2","text":"48시간 내 비가교HA 제품 사용 자제","kinds":["수량·단위·시간","부정"],"note":"serious 는 24-72시간, aftercare 는 48시간"},
+ {"pointer":"/modality/6/subcategories/0/items/3/extracted/aftercare/3","text":"냉찜질로 부종 관리(필요시)","kinds":["조건"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/4/extracted/aftercare/2","text":"크게 입 벌리거나 강한 저작 며칠 자제","kinds":["수식","수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/4/extracted/aftercare/4","text":"이상 반응(감염 징후, 실 노출, 심한 통증) 시 즉시 내원","kinds":["조건"],"note":""},
+ {"pointer":"/modality/6/subcategories/0/items/5/extracted/onset_duration/onset","text":"즉시 (최대 효과 4-6주)","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/1/items/0/detail","text":"양방향/단방향 · 견인력","kinds":["기호"],"note":"'/' 대안(형태 변형)"},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/overview","text":"supraSMAS 층 배치","kinds":["부위"],"note":"해부층"},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/mechanism","text":"소재별 분해 기간(PDO 6개월/PLLA 12-18개월/PCL 24-36개월)","kinds":["수량·단위·시간","기호"],"note":"'/' 나열"},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/safety/serious/2","text":"부당한 거상(코그 이탈)","kinds":["수식"],"note":""},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/safety/serious/3","text":"PDO+비가교HA 병용 금기(24-72시간 급속분해 위험) (in vitro 연구 기반, 임상 증거 제한적)","kinds":["부정","기호","주장","수량·단위·시간"],"note":"'+' = 병용"},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/onset_duration/onset","text":"즉각(물리적 거상) / 점진적(콜라겐 형성 2-4주)","kinds":["수량·단위·시간","기호"],"note":"'/' 두 단계 병기"},
+ {"pointer":"/modality/6/subcategories/1/items/0/extracted/aftercare/4","text":"비가교HA 제품 72시간 금기","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/6/subcategories/1/items/1/extracted/mechanism","text":"톱니가 없어 통증이 적으면서도","kinds":["부정","비교"],"note":""},
+ {"pointer":"/modality/6/subcategories/1/items/2/extracted/indications/primary/0","text":"볼 꺼짐 + 처짐","kinds":["부위","기호"],"note":"'+' = 함께"},
+ {"pointer":"/modality/6/subcategories/2/items/0/extracted/mechanism","text":"PDO 또는 PLLA 재질로","kinds":["조건"],"note":"대안"},
+ {"pointer":"/modality/6/subcategories/2/items/1/extracted/onset_duration/duration","text":"6-9개월 (PDO), 콜라겐 재생 효과 12-18개월","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/2/extracted/aftercare/1","text":"과도한 안면 표정 및 마사지 피하기(최소 2주)","kinds":["범위","부정","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/6/subcategories/2/items/2/extracted/aftercare/2","text":"항염증제 복용(필요시)","kinds":["조건"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"비가교HA","issue":"비가교/NNP HA, 비/NNG 가교/NNG HA, 비가교/NNG HA 로 문맥별 상이 — 부정 접두 '비' 가 분리되기도 한다","impact":"'비(非)' 부정 의미가 토큰 단위로 일관되지 않음"},
+ {"scope":"all","surface":"마리오네트라인","issue":"마리오네트/NNP 라인/NNG","impact":"부위 표현 분해(복합 표현으로 보존)"}
+],
+"issues":[
+ {"id":"S016-I01","status":"I","pointers":["/modality/6/subcategories/0/items/2/extracted/overview","/modality/6/subcategories/0/items/2/extracted/onset_duration/duration"],"note":"PLCL overview 12-18개월 vs duration 24-36개월.","impact":"기간 채택 시 확인"},
+ {"id":"S016-I02","status":"I","pointers":["/modality/6/subcategories/0/items/1/extracted/onset_duration/duration","/modality/6/subcategories/0/items/1/extracted/aftercare/3"],"note":"PCL 12-15개월 vs 상용구 24-36개월.","impact":"GLOBAL-I01"},
+ {"id":"S016-F01","status":"F","pointers":["/modality/6/subcategories/0","/modality/6/subcategories/1","/modality/6/subcategories/2"],"note":"재질·형태·브랜드 세 축이 같은 깊이에 병렬. 브랜드 항목이 어느 재질·형태인지는 detail 문자열에만 있다.","impact":"축 분해는 설계 단계"}
+]}

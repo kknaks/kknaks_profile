@@ -1,0 +1,13 @@
+{"segment":"S11","reading_state":"read_direct","last_read_pointer":"/categories/M11/effects",
+"read_note":"M11 name 과 빈 배열 3개 직접 확인.",
+"observations":[
+{"id":"S11-O1","status":"P","pointers":["/categories/M11/moa","/categories/M11/adverse_effects","/categories/M11/effects"],"text":"세 배열 모두 빈 배열."},
+{"id":"S11-O2","status":"P","pointers":["/categories/M11/name"],"text":"name 'Fractional radiofrequency microneedling (RF microneedling)' — 괄호는 약칭. M12 'Microneedling … (non-RF)' 와 RF 유무로 구분되는 이름(연결은 후속)."}
+],
+"expressions":[
+{"id":"S11-X1","pointer":"/categories/M11/name","text":"Fractional radiofrequency microneedling","facets":["name_candidate","device"]},
+{"id":"S11-X2","pointer":"/categories/M11/name","text":"(RF microneedling)","facets":["name_candidate","abbreviation"]}
+],
+"issues":[
+{"id":"S11-B1","class":"B","pointers":["/categories/M11/moa","/categories/M11/adverse_effects","/categories/M11/effects"],"text":"진술 0개."}
+]}

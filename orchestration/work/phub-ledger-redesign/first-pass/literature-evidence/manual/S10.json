@@ -1,0 +1,13 @@
+{"segment":"S10","reading_state":"read_direct","last_read_pointer":"/categories/M10/effects",
+"read_note":"M10 name 과 빈 배열 3개 직접 확인.",
+"observations":[
+{"id":"S10-O1","status":"P","pointers":["/categories/M10/moa","/categories/M10/adverse_effects","/categories/M10/effects"],"text":"세 배열 모두 빈 배열."},
+{"id":"S10-O2","status":"P","pointers":["/categories/M10/name"],"text":"name 'HIFEM/HIFES and EMS' — '/' 대안과 'and' 결합이 한 이름에 함께 있음. 약어 풀이 없음."}
+],
+"expressions":[
+{"id":"S10-X1","pointer":"/categories/M10/name","text":"HIFEM/HIFES","facets":["name_candidate","alternative_list"]},
+{"id":"S10-X2","pointer":"/categories/M10/name","text":"and EMS","facets":["name_candidate","conjunction"]}
+],
+"issues":[
+{"id":"S10-B1","class":"B","pointers":["/categories/M10/moa","/categories/M10/adverse_effects","/categories/M10/effects"],"text":"진술 0개. 약어(HIFEM·HIFES·EMS) 풀이도 원장에 없다."}
+]}

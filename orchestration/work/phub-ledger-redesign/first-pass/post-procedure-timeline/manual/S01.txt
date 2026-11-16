@@ -1,0 +1,72 @@
+# S01 /timelines/0 botox — 직접 읽기 2026-11-09
+# 키는 /timelines/0 기준 상대 경로 (예: phases/0/normal/0)
+id | botox | id_code | 영문 ID. 형태소 제외
+category | M1 | id_code | 분류 코드. 다른 원장과의 연결은 후속(F)
+name | 보톡스 | procedure_name | 시술명 표면형
+phases/0/period | Day 0 | period | 기간 표기. 단위 Day·영문
+phases/0/label | 시술 당일 | reference_point | 「Day 0」 = 시술 당일이라는 원문 대응(기준 시점 = 시술)
+phases/0/normal/0 | 주사 부위 | site | 반응 위치 = 주사 부위(구체 부위 없음)
+phases/0/normal/0 | 작은 돌기/발적 | size,alt | 「작은」 크기 수식이 돌기만인지 발적까지인지 원문으로 불분명
+phases/0/normal/0 | (15-60분 내 소실) | resolution,time_range | 분 단위 소실 시간. 기준이 발현 시점인지 시술 시점인지 원문 없음
+phases/0/normal/1 | 약간의 따끔함/화끈감 | degree,alt | 정도 「약간의」
+phases/0/normal/2 | 주사 부위 경미한 압통 | site,severity |
+phases/0/abnormal/0 | 경미한 멍 | severity |
+phases/0/abnormal/0 | (혈관 천자 시) | condition,cause | 「시」 조건 — 혈관 천자가 있었을 때
+phases/0/caution/0 | 1시간 이상 지속되는 발적/부종 | duration_threshold,persistence,alt | 「이상」 비교 연산. 1시간 미만은 normal/0 쪽 15-60분과 맞물림(잠정)
+phases/0/emergency/0 | 심한 두드러기/호흡곤란 | severity,alt | 「심한」 이 호흡곤란까지 걸리는지 불분명
+phases/0/emergency/0 | (아나필락시스, 극히 드묾) | label,frequency | 진단명 병기 + 빈도 「극히 드묾」. 백분율 없음
+phases/0/emergency/1 | 심한 전신 발진/혈관부종 | severity,extent,alt | 「전신」 범위. 수식이 혈관부종까지 걸리는지 불분명
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 초기 경과 | phase_label |
+phases/1/normal/0 | 미세한 근육 무거움/당김감 시작 | degree,onset,alt | 「시작」 = 발현
+phases/1/normal/0 | (Day 2-3) | onset_time,time_range | 기간(Day 1-3) 안의 세부 발현 시점
+phases/1/normal/1 | 효과 아직 안 보임 (정상) | negation,temporal,judgment | 「아직 안」 부정+시간. 「(정상)」 판정 병기
+phases/1/normal/2 | 주사 부위 약간의 붓기 | site,degree |
+phases/1/normal/2 | (1-2일 소실) | resolution,time_range | 소실까지 1-2일. 기준 시점 원문 없음
+phases/1/abnormal/0 | (수일 내 소실, 보라색→황색 변화) | resolution,approx_time,color_change | 「수일」 근사. 화살표 = 색 변화 순서
+phases/1/abnormal/1 | 경미한 두통 (수시간 내 소실) | severity,resolution,approx_time |
+phases/1/caution/0 | 지속되는 심한 두통 (24시간 이상) | persistence,severity,duration_threshold | 24시간 이상이 두통 지속 시간이라는 것은 잠정(괄호 위치)
+phases/1/caution/1 | 비대칭 느낌 (근육 반응 차이) | subjective,cause_gloss | 「느낌」 주관 표현. 괄호 = 설명/원인
+phases/1/emergency/0 | 시야 변화/복시 | alt |
+phases/1/emergency/1 | 심한 안검하수 | severity |
+phases/1/emergency/2 | 연하곤란 (삼키기 어려움) | gloss | 괄호 = 쉬운 말 풀이
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 효과 발현기 | phase_label,onset | 기간 이름이 효과 발현을 가리킴
+phases/2/normal/0 | 주사 부위 근육 움직임 감소 시작 | site,change,onset |
+phases/2/normal/1 | 표정 변화 시작 (미세) | onset,degree | 「(미세)」 정도가 괄호로 뒤에 붙음
+phases/2/normal/2 | 이마/눈가 당김감 | site,alt | 구체 부위 이마·눈가. 시술 부위를 한정하는지 원문 불분명
+phases/2/abnormal/0 | 경미한 비대칭 (좌우 효과 속도 차이) | severity,speed,cause_gloss | 속도 차이 = 원인 설명(잠정)
+phases/2/abnormal/1 | 가벼운 눈 무거움 | degree,site |
+phases/2/caution/0 | 뚜렷한 비대칭 (한쪽만 효과) | degree,restriction | 「만」 한정
+phases/2/caution/1 | 눈꺼풀 처짐 (경미한 안검하수) | site,severity,gloss | 같은 시술 phases/1/emergency/1 은 「심한 안검하수」 → 정도에 따라 등급이 갈림(잠정)
+phases/2/emergency/0 | 시야 장애/복시 악화 | alt,worsening | 「악화」 가 복시만인지 둘 다인지 불분명
+phases/2/emergency/1 | 연하곤란/호흡 불편 | alt |
+phases/3/period | Day 7-14 | period,time_range |
+phases/3/label | 효과 안정기 | phase_label |
+phases/3/normal/0 | 효과 본격적으로 나타남 (Day 7-10) | onset,degree,onset_time | 「본격적으로」 부사
+phases/3/normal/1 | Day 14 최대 효과 도달 | peak_time | 최대 효과 시점. Day 14 는 phases/3(7-14) 끝과 phases/4(14-30) 시작에 동시에 걸림
+phases/3/normal/2 | 자연스러운 표정 유지되면서 주름 감소 | quality,concurrent,change | 「-면서」 동시
+phases/3/abnormal/0 | 효과 미흡 (용량 부족 가능성) | insufficiency,possibility,cause | 「가능성」 원인 추정
+phases/3/abnormal/1 | 경미한 좌우 차이 | severity |
+phases/3/caution/0 | 눈꺼풀 처짐 지속 | persistence |
+phases/3/caution/1 | 표정 부자연스러움 심화 | worsening |
+phases/3/emergency/0 | 시야 장애 지속 | persistence |
+phases/3/emergency/1 | 연하곤란/호흡곤란 (독소 원격 확산, 극히 드묾) | alt,cause,frequency | 원인 「독소 원격 확산」 + 빈도
+phases/4/period | Day 14-30 | period,time_range |
+phases/4/label | 최종 평가기 | phase_label |
+phases/4/normal/0 | 최대 효과 유지 상태 | maintenance |
+phases/4/normal/1 | 자연스러운 결과 완성 | quality |
+phases/4/normal/2 | 재시술 필요 여부 판단 가능 시점 | retreatment_decision,possibility | 재시술 「간격」이 아니라 판단 시점
+phases/4/abnormal/0 | Day 14에도 효과 부족 | time_anchor,concessive,insufficiency | 「에도」 양보
+phases/4/abnormal/0 | (터치업 고려) | recommendation,retreatment | 「고려」 권고 강도 약함
+phases/4/abnormal/1 | 경미한 비대칭 잔존 | severity,persistence |
+phases/4/caution/0 | 예상 부위 외 근육 약화 | site,exclusion | 「외」 = 예상 부위 밖
+phases/4/caution/1 | 지속적 두통 | persistence |
+phases/4/emergency/0 | 전신 근육 약화 (독소 전신 확산, 극히 드묾) | extent,cause,frequency |
+O | 5개 기간이 Day 0 / 1-3 / 3-7 / 7-14 / 14-30 이다. 경계일(3·7·14)이 앞뒤 기간에 모두 나온다. 경계 포함 여부는 원문에 없다.
+O | 같은 증상이 기간마다 다른 등급에 나온다: 안검하수(phases/1 emergency 「심한」, phases/2 caution 「경미한」, phases/3 caution 「지속」), 시야 장애/복시(phases/1·2·3 emergency), 비대칭(phases/1 caution, phases/2 abnormal 「경미한」·caution 「뚜렷한」, phases/3 abnormal, phases/4 abnormal 「잔존」), 두통(phases/1 abnormal·caution, phases/4 caution). 등급을 가르는 단서는 정도·지속·기간이다(잠정).
+O | 값 안의 시간 단위가 분·시간·일·Day 로 섞여 있다. 기간(period)은 Day, 괄호 속 소실·발현 시간은 분·시간·일·Day.
+O | 재시술 관련 표현은 「재시술 필요 여부 판단 가능 시점」(phases/4)과 「터치업 고려」뿐이다. 재시술 간격 수치는 이 구획에 없다.
+Q | B | phases/0/normal/0 phases/1/normal/2 phases/1/abnormal/0 phases/1/abnormal/1 | 괄호 속 소실 시간의 기준 시점(시술 후·발현 후)이 원문에 없다.
+Q | B | phases/*/period | 기간 경계일의 포함·제외가 원문에 없다(Day 14 가 두 기간에 걸림).
+Q | P | phases/0/emergency/1 phases/0/emergency/0 phases/2/emergency/0 | 「/」 앞 수식어(심한·전신·악화)가 뒤 항목까지 걸리는지 잠정. README 의 「/」 규칙은 시술 이름 규칙이라 증상 나열에 그대로 적용하지 않는다.

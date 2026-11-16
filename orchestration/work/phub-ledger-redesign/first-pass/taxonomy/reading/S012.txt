@@ -1,0 +1,268 @@
+# S012  scope=M4 스킨부스터  units=M4-2 items/7 | M4-2 items/8 | M4-2 items/9 | M4-2 items/10 | M4-2 items/11 | M4-2 items/12 | M4-2 items/13 | M4-2 items/14 | M4-2 items/15 | M4-3 items/0 | M4-3 items/1 | M4-3 items/2 | M4-3 items/3 | M4-3 items/4 | auto-new-M4-1775360442 items/0
+# 상위 문맥: [{"pointer": "/modality/3", "id": "M4", "category": "스킨부스터", "name": "스킨부스터"}, {"pointer": "/modality/3/subcategories/1", "id": "M4-2", "label": "HA (물광)"}]
+@ /modality/3/subcategories/1/items/7 auto-M4-1775362484436 프로파일로
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775362484436"
+  /name = "프로파일로"
+  /detail = "IBSA · 이탈리아 · 고농도 HA(32+32mg) · 바이오리모델링"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고농도 히알루론산을 이용한 바이오리모델링 주사제로 피부 재생과 탄력 개선을 위한 미용의학 시술용 제품"
+  /extracted/mechanism = "32mg+32mg의 고농도 히알루론산이 진피층에 주입되어 콜라겐과 엘라스틴 합성을 촉진합니다. 히알루론산의 생체적합성과 수분 보유 능력을 통해 피부 구조를 개선하고 전반적인 피부 품질을 향상시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 노화" ‖ 1:"피부 질감 개선 및 바이오리모델링"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 부종, 발적, 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [4] = 0:"시술 후 24-당일 과도한 열 노출 및 격렬한 운동 피하기" ‖ 1:"주입 부위 당일 자극적 제품 자제" ‖ 2:"멍/부종은 수일 내 자연 소실" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/1/items/8 auto-M4-1775362490962 볼뉴머
+  . {id,name,detail,classification_issue,extracted}
+  /id = "auto-M4-1775362490962"
+  /name = "볼뉴머"
+  /detail = "클래시스(Classys) · 6.78MHz 모노폴라 RF 리프팅 장비 (주입형 제품 아님)"
+  /classification_issue = "이 엔트리는 M4(스킨부스터) 섹션에 잘못 등재됨 — 볼뉴머는 클래시스(Classys)의 6.78MHz 모노폴라 RF 리프팅 장비이며, 주사제가 아님. 카테고리를 M9-2(RF)로 통합 관리 필요"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "클래시스(Classys)의 6.78MHz 모노폴라 RF 리프팅 장비 — 진피·피하층에 열을 전달해 콜라겐 수축·리모델링을 유도하는 에너지기반 시술 (주사·주입형 제품이 아님)"
+  /extracted/mechanism = "모노폴라 6.78MHz 고주파 에너지가 진피·피하지방층에 열을 전달해 즉각적인 콜라겐 수축과 중장기 콜라겐 리모델링을 유도한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"얼굴 및 목 피부 탄력 저하" ‖ 1:"페이스라인·주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍반·부종·열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 타이트닝 후 수주간 점진적 콜라겐 리모델링"
+  /extracted/onset_duration/duration = "개인차가 있으며 시술 계획에 따라 평가"
+  /extracted/aftercare [3] = 0:"24시간 고온 환경(사우나·찜질방) 자제" ‖ 1:"시술 부위 자극적 제품 3-5일 회피" ‖ 2:"홍반·부종·열감은 경과 관찰하며 지속 시 진료"
+@ /modality/3/subcategories/1/items/9 auto-M4-1775364775149 사이토케어
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364775149"
+  /name = "사이토케어"
+  /detail = "메조HA+비타민"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "메조테라피용 HA와 비타민 복합 스킨부스터"
+  /extracted/mechanism = "히알루론산이 수분을 공급하고 다양한 비타민이 항산화 작용을 합니다. 피부 깊숙이 영양을 공급하여 전반적인 피부 건강을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"수분 공급" ‖ 1:"항산화" ‖ 2:"피부 영양 보충"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"주사 부위 발적" ‖ 2:"가벼운 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 섭취" ‖ 1:"비타민 보충제 병용 고려" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/1/items/10 auto-M4-1775364775150 필로르가135HA
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364775150"
+  /name = "필로르가135HA"
+  /detail = "HA+135종"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "135종 활성성분과 HA가 결합된 프리미엄 스킨부스터"
+  /extracted/mechanism = "히알루론산이 수분을 공급하고 135종의 활성성분이 다각적으로 피부를 개선합니다. 종합적인 안티에이징과 피부 재생 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"종합 안티에이징" ‖ 1:"수분 공급" ‖ 2:"피부 재생"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"발적" ‖ 2:"주사 부위 민감도"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "4-8개월"
+  /extracted/aftercare [3] = 0:"충분한 보습" ‖ 1:"적절한 영양 공급" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/1/items/11 auto-M4-1775364797153 테오시알레디세스
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364797153"
+  /name = "테오시알레디세스"
+  /detail = "테옥산 물광 HA"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "테옥산 물광 효과의 특수 HA 스킨부스터"
+  /extracted/mechanism = "특수 가교 기술로 제작된 히알루론산이 피부 깊숙이 수분을 공급합니다. 레디세스 기술로 더 오래 지속되는 물광 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"물광 피부" ‖ 1:"깊은 수분 공급" ‖ 2:"피부 윤기 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 부종" ‖ 1:"주사 부위 발적" ‖ 2:"가벼운 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "6-9개월"
+  /extracted/aftercare [3] = 0:"충분한 수분 공급" ‖ 1:"과도한 열 노출 피하기" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/1/items/12 auto-M4-1775364797154 레스틸렌스킨부스터
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364797154"
+  /name = "레스틸렌스킨부스터"
+  /detail = "갈더마 물광 라인"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "갈더마의 프리미엄 물광 스킨부스터"
+  /extracted/mechanism = "히알루론산이 진피층 깊숙이 침투하여 수분을 공급하고 보습막을 형성합니다. 콜라겐 합성을 촉진하여 피부 탄력과 윤기를 개선시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 수분 공급" ‖ 1:"윤기 개선" ‖ 2:"모공 축소"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"일시적 부종" ‖ 1:"경미한 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-3일"
+  /extracted/onset_duration/duration = "6-8개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 세안 주의" ‖ 1:"충분한 보습" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/1/items/13 auto-M4-1775402593549 꿀광주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "auto-M4-1775402593549"
+  /name = "꿀광주사"
+  /detail = "마케팅 명칭 — 실제는 HA 메조테라피 + 비타민 복합"
+  /is_marketing_name = true
+  /ingredient_basis = "히알루론산(비가교 또는 저분자 HA) + 비타민(C/B 계열) 혼합. 제품·클리닉별 배합 상이"
+  /canonical_category = "M4 스킨부스터 > 비가교 HA 메조테라피"
+  /naming_caveat = "'꿀광'은 효과 묘사용 마케팅명으로 표준화된 단일 제제가 아님. 실제 사용 성분·농도는 클리닉별로 상이하므로 상담 시 실제 성분과 허가 제품명 확인 필요"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "히알루론산 물광주사와 비타민 복합 성분을 결합한 피부 광채 및 보습 개선 시술"
+  /extracted/mechanism = "히알루론산이 진피층에 수분을 공급하여 피부 보습력을 증가시키고, 비타민 C, E 등의 복합 성분이 항산화 작용과 콜라겐 합성을 촉진합니다. 이러한 성분들의 상승 효과로 피부 톤 개선과 함께 즉각적인 윤기와 탄력을 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 건조 및 보습 부족" ‖ 1:"칙칙한 피부톤 및 광채 부족"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 발적 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~1주"
+  /extracted/onset_duration/duration = "4-6주"
+  /extracted/aftercare [1] = 0:"시술 후 24시간 메이크업 및 사우나 금지"
+@ /modality/3/subcategories/1/items/14 auto-M4-1775402599755 아기주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "auto-M4-1775402599755"
+  /name = "아기주사"
+  /detail = "마케팅 명칭 — 실제는 저분자 HA + 성장인자 혼합 메조테라피"
+  /is_marketing_name = true
+  /ingredient_basis = "저분자 히알루론산 + 성장인자(EGF/bFGF/IGF 등) 또는 PN 혼합. 제품·클리닉별 배합 상이"
+  /canonical_category = "M4 스킨부스터 > 재생형 메조테라피"
+  /naming_caveat = "'아기피부'를 연상시키는 효과 표현용 마케팅명으로, 표준화된 단일 제품명이 아님. 성장인자 제제의 경우 화장품/의약품 분류와 허가 범위 확인 필요"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "저분자 히알루론산과 성장인자를 결합하여 피부 재생과 동안 효과를 제공하는 주사 시술"
+  /extracted/mechanism = "저분자 히알루론산이 피부 깊숙이 침투하여 수분 공급과 탄력 개선을 제공합니다. 성장인자가 세포 재생을 촉진하여 피부 결과 질감 개선, 주름 완화 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 잔주름" ‖ 1:"거친 피부결과 모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 붓기나 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [1] = 0:"시술 후 24-48시간 강한 마사지나 사우나 피하기"
+@ /modality/3/subcategories/1/items/15 auto-M4-1775402606093 벨벳주사
+  . {id,name,detail,is_marketing_name,ingredient_basis,canonical_category,naming_caveat,extracted}
+  /id = "auto-M4-1775402606093"
+  /name = "벨벳주사"
+  /detail = "마케팅 명칭 — 실제는 HA + 콜라겐 펩타이드 혼합 메조테라피"
+  /is_marketing_name = true
+  /ingredient_basis = "히알루론산 + 콜라겐 펩타이드/유래 단백 혼합. 제품·클리닉별 배합 상이"
+  /canonical_category = "M4 스킨부스터 > 콜라겐 혼합 메조테라피"
+  /naming_caveat = "'벨벳 피부결'을 연상시키는 효과 표현용 마케팅명으로 표준화된 단일 제제가 아님. 콜라겐 펩타이드의 경피·진피 전달 효과 근거는 제한적"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "히알루론산과 콜라겐을 결합한 주사 치료로 피부 질감을 벨벳처럼 부드럽고 매끄럽게 개선하는 시술"
+  /extracted/mechanism = "히알루론산은 진피층에 수분을 공급하고 볼륨을 증가시키며, 콜라겐은 피부의 탄력과 구조적 지지력을 강화합니다. 두 성분의 시너지 효과로 피부 표면의 미세한 요철을 개선하고 전반적인 피부 질감을 부드럽게 만듭니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"거친 피부 질감 개선" ‖ 1:"미세 주름 및 모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3일"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"시술 후 24시간 세안 시 부드럽게 하기"
+@ /modality/3/subcategories/2 M4-3 엑소좀/성장인자
+  . {id,label,items}
+  /id = "M4-3"
+  /label = "엑소좀/성장인자"
+  /items [5]
+@ /modality/3/subcategories/2/items/0 M4-3-1 ASCE+엑소좀
+  . {id,name,detail,extracted}
+  /id = "M4-3-1"
+  /name = "ASCE+엑소좀"
+  /detail = "항염 · 재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "항염성 엑소좀 스킨부스터"
+  /extracted/mechanism = "줄기세포 배양액 유래 엑소좀의 항염 성분으로 염증성 사이토카인 억제 및 진정 효과 제공. 성장인자(EGF, FGF 등) 함유로 섬유아세포 활성화 및 피부 재생 촉진. 손상된 진피층의 자가 재생 능력 강화 및 항산화 작용."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"염증성 피부" ‖ 1:"민감성 피부" ‖ 2:"피부 재생 필요" ‖ 3:"항산화 필요" ‖ 4:"손상 피부 복구"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 발적" ‖ 1:"경미한 부종" ‖ 2:"따끔거림"
+  /extracted/safety/serious [3] = 0:"알레르기 반응" ‖ 1:"감염" ‖ 2:"과도한 염증"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "7-14일"
+  /extracted/onset_duration/duration = "5-7개월"
+  /extracted/aftercare [3] = 0:"5-7일 자극적 제품 자제" ‖ 1:"충분한 수분 공급" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/2/items/1 auto-25-1774737181584 기타 엑소좀
+  . {id,name,detail,extracted}
+  /id = "auto-25-1774737181584"
+  /name = "기타 엑소좀"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "줄기세포 배양액 유래 엑소좀 시리즈"
+  /extracted/mechanism = "줄기세포 배양액에서 추출한 엑소좀(나노 소포체)의 다양한 생리활성 성분 함유. 성장인자(EGF, bFGF, VEGF 등)와 사이토카인으로 섬유아세포 재생 촉진 및 혈관신생 유도. 항염, 항산화, 면역 조절 작용으로 종합적 피부 재생 지원."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"피부 재생 필요" ‖ 1:"손상된 피부 복구" ‖ 2:"항염 및 진정" ‖ 3:"항산화" ‖ 4:"피부 톤 균일화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"발적" ‖ 2:"경미한 통증"
+  /extracted/safety/serious [3] = 0:"알레르기 반응" ‖ 1:"감염" ‖ 2:"면역 반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "7-14일"
+  /extracted/onset_duration/duration = "5-6개월"
+  /extracted/aftercare [3] = 0:"5-7일 자극적 제품 중단" ‖ 1:"충분한 보습 및 영양 공급" ‖ 2:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/2/items/2 auto-M4-1775361371619 셀엑소좀
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775361371619"
+  /name = "셀엑소좀"
+  /detail = "휴메딕스 · 엑소좀"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "줄기세포 유래 엑소좀을 이용한 피부 재생 및 안티에이징 미용시술"
+  /extracted/mechanism = "엑소좀 내 성장인자, 단백질, RNA 등이 피부세포에 직접 전달되어 세포 재생을 촉진합니다. 콜라겐 합성 증가, 염증 감소, 혈관신생 촉진을 통해 피부 탄력과 질감을 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 주름 개선" ‖ 1:"모공 축소 및 피부 질감 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍조 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 세안 및 화장품 사용 자제" ‖ 1:"주입 부위 당일 자극적 제품 자제" ‖ 2:"멍/부종은 수일 내 자연 소실" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/2/items/3 auto-M4-1775364775151 카탈리스트
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364775151"
+  /name = "카탈리스트"
+  /detail = "차세대엑소좀"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "차세대 엑소좀 기반 스킨부스터"
+  /extracted/mechanism = "엑소좀이 세포 간 신호전달을 통해 피부 재생을 촉진합니다. 성장인자와 단백질이 콜라겐 생성과 세포 턴오버를 활성화시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 재생" ‖ 1:"안티에이징" ‖ 2:"잔주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 홍조" ‖ 1:"일시적 따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 6시간 물 접촉 자제" ‖ 1:"알코올 성분 화장품 피하기" ‖ 2:"충분한 수면" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/2/items/4 auto-M4-1775364775155 드원셀
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775364775155"
+  /name = "드원셀"
+  /detail = "엑소좀국산"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "국산 엑소좀 스킨부스터"
+  /extracted/mechanism = "국내 기술로 추출한 엑소좀이 피부 깊숙이 침투하여 세포 재생을 유도합니다. 자연스러운 피부 회복 과정을 통해 건강한 피부로 개선시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 재생" ‖ 1:"트러블 개선" ‖ 2:"피부톤 균일화"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 부종" ‖ 1:"일시적 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "4-6개월"
+  /extracted/aftercare [4] = 0:"시술 후 당일 세안 자제" ‖ 1:"강한 마사지 피하기" ‖ 2:"진정 크림 사용" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/3/subcategories/3 auto-new-M4-1775360442 콜라겐/신규
+  . {id,label,items}
+  /id = "auto-new-M4-1775360442"
+  /label = "콜라겐/신규"
+  /items [6]
+@ /modality/3/subcategories/3/items/0 auto-M4-1775360452766 리듐
+  . {id,name,detail,extracted}
+  /id = "auto-M4-1775360452766"
+  /name = "리듐"
+  /detail = "콜라겐 유래 스킨부스터"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콜라겐 유래 성분으로 진피층에 직접 주입하여 피부탄력과 수분함량을 개선하는 미용시술 제품"
+  /extracted/mechanism = "콜라겐 분자가 진피에 물리적 지지체로 작용하며 수분 결합력을 증가시킨다. 동시에 섬유아세포를 자극하여 내재적 콜라겐 신생을 유도함으로써 장기적 피부개선을 도모한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"얕은 주름 및 세세한 선" ‖ 1:"피부 탄력 감소" ‖ 2:"피부 건조증 및 수분 부족"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"주입 부위 부종" ‖ 1:"경미한 홍반" ‖ 2:"일시적 압통감"
+  /extracted/safety/serious [2] = 0:"이물반응" ‖ 1:"과민반응"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3~7일 후 초기 효과 나타남"
+  /extracted/onset_duration/duration = "6~12개월 지속"
+  /extracted/aftercare [4] = 0:"당일 내 격렬한 운동 및 사우나 자제" ‖ 1:"시술 부위 자극적 화장품 사용 자제" ‖ 2:"냉습포 적용으로 부종 관리" ‖ 3:"[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장. 효과 지속 3-6개월. 유지 목적 시 효과 감소 시점에 재시술 고려 (개인차 있으며, 의사와 상의하여 결정)"

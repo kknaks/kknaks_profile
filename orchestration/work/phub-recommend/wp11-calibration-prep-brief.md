@@ -1,0 +1,7 @@
+# WP-11 단일 의미 prompt 후보·48라벨 수정·실험 준비
+
+- 앱 `/Users/kknaks/orca/workspaces/clinic_chat/hub-evals` 현 코드와 정본 SPEC-006 §3-4-1-8 실제all-hold 보정계약/WORK-012 WP-11, 제안서 `wp11-semantic-calibration-proposal.md` 및 검수 `wp11-calibration-review.md`를 따른다. 실제17은 관측 개발집합. 이번 작업은 **offline 준비만**, API/Hub/provider/judge/batch 금지.
+- 원본48을 보존하고 앱 fixture용 수정본 생성: R1 holdout-counter_context-pos의 s2 본문/condition을 F로 변경, E claim/s1 유지; R2 holdout-paraphrase-neg relation=contradicts; R3 각 다중claim에 방문전/상담 한정을 각각 명시. 검수 나머지 question/site/section mapping 및 scalar→keyed expected를 확인한다. identical model input/opposite label 검사와 source family/split/원문/claim/span/candidates 동등성 검사를 추가한다. 합성 내부 H이지 외부 독립 의료자료가 아님을 기록한다.
+- 새 `claim-v1-ko-3-candidate` 하나만 opt-in 구현: 제안의 의미 투영과 세 질문 역할 명확화. 감사용 version/hash/null proof metadata만 모델 state에서 제외하고 모든 원문/context·조건/flags·의무/후보 mapping은 보존하며 대응 hash 검사. 기존 ko2 baseline/기능off/빈registry와 hard gate는 유지한다. 라벨을 앱 런타임에 하드코딩하지 않는다.
+- 실험 준비 도구: C24 baseline+candidate paired48, C에서 사전 공통grid t=.50/.60/.70/.80/.90/.95의 동일t 4문턱 조합만 비교. 오승인/severe0 중 양성최대·동률높은t, candidate 양성≥10/12/응답누락0만 H24를 열어 선택된 단일 tuple 적용. H 후 threshold/prompt 재선택 금지, 최대72물리/retry0/실패재호출없음. blind requests/labels 분리, 모델jev1.14.0, 원응답/상세scorer/manifest/hash/usage/latency 보존. 이번에 호출하지 않는다.
+- 신규 회귀와 전체suite/Ruff/diff PASS, 수정라벨·투영·실험도구 검수에 필요한 artifacts/fingerprints를 `reference/2026-10-30-hub-evals/build-out/wp11-calibration-prep-report.md`에 기록. 사용자 서버/DB/컨테이너·커밋/푸시/PR·실제API/registry활성화 금지. Orca worker_done 보고.

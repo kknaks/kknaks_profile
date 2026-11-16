@@ -1,0 +1,18 @@
+{
+  "name": "line_unresolved_erasure",
+  "removed_id": "map:585178f3603ca34574a9e4b378e26df3758dc3ca5150d0eb326d3eeaf3aea7a8",
+  "exit_code": 1,
+  "codes": {
+    "PRODUCT_LINE_UNRESOLVED": 1
+  },
+  "noise": {},
+  "diagnostics": [
+    {
+      "code": "PRODUCT_LINE_UNRESOLVED",
+      "field": "line membership unresolved mappings",
+      "reason": "Independent original value/contract mismatch",
+      "source_locator": "records.mappings"
+    }
+  ],
+  "passed": true
+}

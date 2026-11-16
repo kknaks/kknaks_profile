@@ -1,0 +1,654 @@
+{
+ "generated_at": "2026-10-28",
+ "scope": "「허가 대상 아님」 출처 없는 행(검수 v3 「사용자 판단으로 넘어간 것」) — 국내 유통 출처 조사",
+ "rule": "_RESUME §2 10-28 마지막 행: 국내 유통 출처 있으면 허가 대상 아님 유지 + license_basis 「국내 유통 확인 · 허가 대상 여부 출처 없음」 · 추천 / 없으면 확인 불가 · 원천 질문",
+ "scope_note": "검수 v3 의 45 = 필링류 37 · 라라필 · 라라닥터 · 노바스템 · 미라셀 「등」 — 그중 PHA필 · 물톡스 · 아쿠아젯 · 팻킬주사 · 아큐주사는 이미 시술 이름으로 빠진 행이라 제외, 활성 제품 행 41",
+ "items": [
+  {
+   "ledger_id": "M15-1-3",
+   "name": "알라딘필링",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://tatoaay.co.kr/common/html/nonpay.html",
+     "text": "타토아의원 안양범계역 가격표 「알라딘필링 1회(재생관리 포함)」 (data-anyang prices/c05_타토아의원-안양범계역.json · 2026-09-28)"
+    },
+    {
+     "url": "http://www.toxnfill28.com/serviceInfo.php?c=703",
+     "text": "톡스앤필의원 안양 가격표 「뉴알라딘 필링」 (data-anyang prices/c10_톡스앤필의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://anyangcream.co.kr/nonSalary",
+     "text": "크림의원 안양범계역 가격표 「알라딘필 - 부위별」 (data-anyang prices/c15_크림의원-안양범계역.json · 2026-09-28)"
+    },
+    {
+     "url": "https://daybeauclinic06.com/branch/nopayment.php",
+     "text": "데이뷰의원 안양범계점 가격표 「[비급여표] 알라딘필링,라라필,시카필,블랙필,핑크필,생크림필」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "M15-1-4",
+   "name": "블랙필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://anyang.museclinic.co.kr/price/price_view/?middleId=3236",
+     "text": "뮤즈의원 안양 가격표 「[9월 원장님 pick] 메디컬 스킨케어 3회 (아쿠아LDM/수소재생관리/블랙필/LDM진정관리 중 택1)」 (data-anyang prices/c01_뮤즈의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://www.tonesclinic.com/anyang/event/4312",
+     "text": "톤즈의원 안양 가격표 「톤즈 맞춤 피부관리 패키지Ⅰ (스케일링/비타민/크라이오셀/재생/루비필/블랙필 택1, 10회+2회)」 (data-anyang prices/c04_톤즈의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://abijouclinicbg.com/price2/price_view.php?idx=34051",
+     "text": "아비쥬의원 범계 가격표 「블랙필 1회」 (data-anyang prices/c08_아비쥬의원-범계.json · 2026-09-28)"
+    },
+    {
+     "url": "https://anyangcream.co.kr/nonSalary",
+     "text": "크림의원 안양범계역 가격표 「블랙필」 (data-anyang prices/c15_크림의원-안양범계역.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "M15-1-6",
+   "name": "핑크필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://abijouclinicbg.com/price2/price_view.php?idx=34051",
+     "text": "아비쥬의원 범계 가격표 「핑크필 1회」 (data-anyang prices/c08_아비쥬의원-범계.json · 2026-09-28)"
+    },
+    {
+     "url": "https://daybeauclinic06.com/branch/nopayment.php",
+     "text": "데이뷰의원 안양범계점 가격표 「[비급여표] 알라딘필링,라라필,시카필,블랙필,핑크필,생크림필」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "M15-1-7",
+   "name": "라라필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.tonesclinic.com/anyang/event/3876",
+     "text": "톤즈의원 안양 가격표 「프리미엄 라라토닝(라라필 베이직+제네시스 500샷+톤즈원팜)」 (data-anyang prices/c04_톤즈의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://tatoaay.co.kr/common/html/nonpay.html",
+     "text": "타토아의원 안양범계역 가격표 「라라필 1회」 (data-anyang prices/c05_타토아의원-안양범계역.json · 2026-09-28)"
+    },
+    {
+     "url": "https://anyangcream.co.kr/nonSalary",
+     "text": "크림의원 안양범계역 가격표 「라라필」 (data-anyang prices/c15_크림의원-안양범계역.json · 2026-09-28)"
+    },
+    {
+     "url": "https://www.ayuni114.co.kr/",
+     "text": "유앤아이의원 안양점 가격표 「라라필 + 토닝 or 제네시스 + 크라이오 1회」 (data-anyang prices/c16_유앤아이의원-안양점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-46-1774737181584",
+   "name": "호박필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://daybeauclinic06.com/branch/event.php?uid=226",
+     "text": "데이뷰의원 안양범계점 가격표 「[첫방문] 광채싹 호박필 체험가」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    },
+    {
+     "url": "https://daybeauclinic06.com/branch/event.php?uid=234",
+     "text": "데이뷰의원 안양범계점 가격표 「영양 호박필 1회」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-47-1774737181584",
+   "name": "밀크필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://anyangcream.co.kr/nonSalary",
+     "text": "크림의원 안양범계역 가격표 「밀크필」 (data-anyang prices/c15_크림의원-안양범계역.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775361455669",
+   "name": "닥토필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://cosmorning.com/mobile/article.html?no=50660",
+     "text": "코스모닝 — 닥토필(Dactor Peel) = (주)닥터제이코스 전문 브랜드 · 피부 전문 클리닉 · 에스테틱 살롱 주력 채널"
+    }
+   ],
+   "sellers": [
+    {
+     "name": "(주)닥터제이코스",
+     "role": "브랜드 운영 · 클리닉 공급(보도)",
+     "url": "https://cosmorning.com/mobile/article.html?no=50660"
+    }
+   ],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775364775115",
+   "name": "미라필링",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「미라필링 필링 피부과」 · 「\"미라필링\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775364775116",
+   "name": "블랙필링",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://anyang.museclinic.co.kr/price/price_view/?middleId=3236",
+     "text": "뮤즈의원 안양 가격표 「[9월 원장님 pick] 메디컬 스킨케어 3회 (아쿠아LDM/수소재생관리/블랙필/LDM진정관리 중 택1)」 (data-anyang prices/c01_뮤즈의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://www.tonesclinic.com/anyang/event/4312",
+     "text": "톤즈의원 안양 가격표 「톤즈 맞춤 피부관리 패키지Ⅰ (스케일링/비타민/크라이오셀/재생/루비필/블랙필 택1, 10회+2회)」 (data-anyang prices/c04_톤즈의원-안양.json · 2026-09-28)"
+    },
+    {
+     "url": "https://abijouclinicbg.com/price2/price_view.php?idx=34051",
+     "text": "아비쥬의원 범계 가격표 「블랙필 1회」 (data-anyang prices/c08_아비쥬의원-범계.json · 2026-09-28)"
+    },
+    {
+     "url": "https://anyangcream.co.kr/nonSalary",
+     "text": "크림의원 안양범계역 가격표 「블랙필」 (data-anyang prices/c15_크림의원-안양범계역.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775364775117",
+   "name": "옐로우필링",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「옐로우필링 필링 피부과」 · 「\"옐로우필링\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775364775118",
+   "name": "솔코세릴필링",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「솔코세릴필링 필링 피부과」 · 「\"솔코세릴필링\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401624105",
+   "name": "여우필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://www.psychiatricnews.net/news/articleView.html?idxno=33832",
+     "text": "정신의학신문 2022-11-24 — 아산위드의원 구래동점 원장 인터뷰 「여우필」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775401631147",
+   "name": "플라필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://event.ppeum.com/v1/event/reserve?branch=ppeum12&type=homepage",
+     "text": "범계예쁨주의쁨의원 가격표 「플래티넘 플라필1회」 (data-anyang prices/c09_범계예쁨주의쁨의원.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775401638316",
+   "name": "산소필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://tatoaay.co.kr/common/html/nonpay.html",
+     "text": "타토아의원 안양범계역 가격표 「산소필 1회」 (data-anyang prices/c05_타토아의원-안양범계역.json · 2026-09-28)"
+    },
+    {
+     "url": "https://abijouclinicbg.com/price2/price_view.php?idx=34051",
+     "text": "아비쥬의원 범계 가격표 「내맘대로 피부관리 10회 (산소필/크라이오셀/초음파/아쿠아필/블랙헤드/비타민/스켈링 중 선택)」 (data-anyang prices/c08_아비쥬의원-범계.json · 2026-09-28)"
+    },
+    {
+     "url": "https://daybeauclinic06.com/branch/event.php?uid=234",
+     "text": "데이뷰의원 안양범계점 가격표 「백옥 산소필 1회」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775401653479",
+   "name": "CO2필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「CO2필 필링 피부과」 · 「\"CO2필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401662170",
+   "name": "예스필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.toxnfill.com/detail.php?c=1246&i=32051",
+     "text": "톡스앤필의원 시술상세 「예스필」"
+    },
+    {
+     "url": "https://www.woodkorea.co.kr/news/articleView.html?idxno=72265",
+     "text": "보도 「쎄라덤, 필링 프로그램 ‘예스필(YES PEEL & FILL)’ 출시」"
+    }
+   ],
+   "sellers": [
+    {
+     "name": "쎄라덤",
+     "role": "출시(보도)",
+     "url": "https://www.woodkorea.co.kr/news/articleView.html?idxno=72265"
+    }
+   ],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775401677251",
+   "name": "해초필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://www.c-skin.com/Content/Content.asp?FolderName=sub02&FileName=sub02_06_04",
+     "text": "맑은의원(부산 화명) 홈페이지 해초필링"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775401685107",
+   "name": "그린필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.tonesclinic.com/anyang/event/3876",
+     "text": "톤즈의원 안양 가격표 「그린필 + 아쿠아토닝 + 모델링 (택1)」 (data-anyang prices/c04_톤즈의원-안양.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775401692083",
+   "name": "퀸즈필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「퀸즈필 필링 피부과」 · 「\"퀸즈필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401700008",
+   "name": "살몬필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「살몬필 필링 피부과」 · 「\"살몬필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401716456",
+   "name": "미라클필링",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://kjoracle.com/?mir_code=1791",
+     "text": "광주 오라클피부과 「미라클필링」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775401722628",
+   "name": "FCR필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.ayuni114.co.kr/",
+     "text": "유앤아이의원 안양점 가격표 「FCR 필링 바디(등 상,하부 / 팔 상,하완) 1회」 (data-anyang prices/c16_유앤아이의원-안양점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775401738092",
+   "name": "디멜라필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": "유튜브 영상 「원장님이 직접 추천하는 피부관리법 디멜라필」(https://www.youtube.com/watch?v=lY6X3DSMtMU)만 — 병원 · 제조사 · 보도 출처 아님",
+   "queries": [
+    "WebSearch 「디멜라필 필링 피부과」 · 「\"디멜라필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401745461",
+   "name": "생크림필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://daybeauclinic06.com/branch/nopayment.php",
+     "text": "데이뷰의원 안양범계점 가격표 「[비급여표] 알라딘필링,라라필,시카필,블랙필,핑크필,생크림필」 (data-anyang prices/ours_데이뷰의원-안양범계점.json · 2026-09-28)"
+    }
+   ],
+   "sellers": [],
+   "via": "data-anyang"
+  },
+  {
+   "ledger_id": "auto-M15-1775401753203",
+   "name": "우유필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「우유필 필링 피부과」 · 「\"우유필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401760736",
+   "name": "베이비필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「베이비필 필링 피부과」 · 「\"베이비필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401767756",
+   "name": "골드필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「골드필 필링 피부과」 · 「\"골드필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401773800",
+   "name": "마꾸필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「마꾸필 필링 피부과」 · 「\"마꾸필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401780659",
+   "name": "알렉스필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「알렉스필 필링 피부과」 · 「\"알렉스필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775401788467",
+   "name": "라라닥터",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.hitnews.co.kr/news/articleView.html?idxno=74953",
+     "text": "히트뉴스 2026-03-27 — 동구바이오제약 라라닥터 국내 · 몽골 독점 유통 계약(step1-d16-web)"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775402057372",
+   "name": "크랜베리필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「크랜베리필 필링 피부과」 · 「\"크랜베리필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402064126",
+   "name": "체리필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「체리필 필링 피부과」 · 「\"체리필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402078232",
+   "name": "ASA필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「ASA필 필링 피부과」 · 「\"ASA필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402083474",
+   "name": "탄앤막필링",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://www.ppeum1.com/m/skin/skin01.php",
+     "text": "쁨의원 필링 메뉴 「알라딘필링, 산소필, 탄앤막, …」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775402093377",
+   "name": "이지피틱필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「이지피틱필 필링 피부과」 · 「\"이지피틱필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402100474",
+   "name": "아미노필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "http://www.derma119.co.kr/Module/CMS/CMS.asp?Srno=35359&ContentsSrno=9128",
+     "text": "안진균피부과의원 「아미노필링」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775402107402",
+   "name": "쿰스필",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://bp.springdayclinic.com/26/?idx=44",
+     "text": "다시봄날의원 부평점 「쿰스필링」"
+    },
+    {
+     "url": "https://gp.springdayclinic.com/26/?idx=44",
+     "text": "다시봄날의원 김포 「쿰스필링」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": null
+  },
+  {
+   "ledger_id": "auto-M15-1775402113508",
+   "name": "진주필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「진주필 필링 피부과」 · 「\"진주필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-M15-1775402120118",
+   "name": "콜라겐필",
+   "result": "출처 없음",
+   "sources": [],
+   "sellers": [],
+   "via": "web",
+   "note": null,
+   "queries": [
+    "WebSearch 「콜라겐필 필링 피부과」 · 「\"콜라겐필\" 필링」(extended) · 여신티켓 · 강남언니 · 톡스앤필 · 모두닥 도메인",
+    "data-anyang 전 파일 이름 검색 0"
+   ]
+  },
+  {
+   "ledger_id": "auto-61-1774737181584",
+   "name": "노바스템",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://thewellnessclinic.co.kr/stemcell/novastem/",
+     "text": "더웰니스의원 「노바스템」"
+    },
+    {
+     "url": "https://ozheanps.com/stem-cells",
+     "text": "「노바스템·SVF 자가줄기세포 재생치료」 병원 페이지"
+    },
+    {
+     "url": "https://www.dailymedi.com/news/news_view.php?wr_id=911661",
+     "text": "데일리메디 — 레보메드 개발 「노바스템」"
+    }
+   ],
+   "sellers": [
+    {
+     "name": "레보메드",
+     "role": "개발(보도)",
+     "url": "https://www.dailymedi.com/news/news_view.php?wr_id=911661"
+    }
+   ],
+   "via": "web",
+   "note": "자가혈 분리 · 농축 키트(보도) — 의료기기 허가 대상일 수 있음. 결정 범위 밖이라 상태 유지"
+  },
+  {
+   "ledger_id": "auto-62-1774737181584",
+   "name": "미라셀",
+   "result": "국내 유통 확인",
+   "sources": [
+    {
+     "url": "https://www.smarttoday.co.kr/news/articleView.html?idxno=91956",
+     "text": "스마트투데이 「꽃비피부과, 미라셀 줄기세포 시스템 도입」"
+    },
+    {
+     "url": "https://aanclinic.com/anti-aging/miracell/",
+     "text": "병원 페이지 「미라셀 줄기세포」"
+    }
+   ],
+   "sellers": [],
+   "via": "web",
+   "note": "줄기세포 분리 · 농축 시스템(보도) — 의료기기 허가 대상일 수 있음. 결정 범위 밖이라 상태 유지"
+  }
+ ]
+}

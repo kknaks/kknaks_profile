@@ -1,0 +1,216 @@
+# S027  scope=M9 기기 리프팅  units=id | category | category_en | group | subcategories 컨테이너 | M9-1 items/0 | M9-1 items/1 | M9-1 items/2 | M9-1 items/3 | M9-1 items/4 | M9-1 items/5 | M9-1 items/6 | M9-1 items/7 | M9-1 items/8 | M9-1 items/9 | M9-1 items/10 | M9-1 items/11
+# 상위 문맥: []
+@ /modality/8 M9 기기 리프팅 기기 리프팅
+  . {id,category,category_en,group,subcategories,extracted,products,name}
+  /id = "M9"
+  /category = "기기 리프팅"
+  /category_en = "Energy Based Device Lifting"
+  /group = "시술/기기"
+  /subcategories [5]
+@ /modality/8/subcategories/0 M9-1 HIFU (초음파)
+  . {id,label,items}
+  /id = "M9-1"
+  /label = "HIFU (초음파)"
+  /items [16]
+@ /modality/8/subcategories/0/items/0 M9-1-1 울쎄라
+  . {id,name,detail,extracted}
+  /id = "M9-1-1"
+  /name = "울쎄라"
+  /detail = "멀츠 · 오리지널 HIFU"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "집속초음파 에너지를 정밀하게 SMAS층에 전달하여 즉각적인 리프팅 효과를 제공하는 비침습적 시술"
+  /extracted/mechanism = "HIFU(High Intensity Focused Ultrasound)가 60°C의 고열을 발생시켜 표적 조직을 응고괴사하고 콜라겐 수축을 유도합니다. 동시에 신생콜라겐 생성을 자극하여 장기적인 피부 탄력 개선을 실현합니다. 음향 캐비테이션(acoustic cavitation)으로 세포 구조를 추가 파괴하여 효과를 강화한다. 유일하게 US FDA 승인된 HIFU 기기로 실시간 초음파 영상화(visualization) 기능을 갖추고 있다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"안면 처짐 및 리프팅" ‖ 1:"눈가 주름 개선" ‖ 2:"목 처짐" ‖ 3:"턱선 강화" ‖ 4:"미간 주름"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"미열감" ‖ 2:"부종"
+  /extracted/safety/serious [2] = 0:"신경 손상" ‖ 1:"화상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후 즉시 수축 효과, 3개월에 걸쳐 점진적 개선"
+  /extracted/onset_duration/duration = "6-12개월 지속, 개인차 존재"
+  /extracted/aftercare [4] = 0:"시술 후 24시간 고온 환경(사우나, 찜질방) 회피" ‖ 1:"강한 마사지 당일 자제" ‖ 2:"충분한 수분 섭취" ‖ 3:"[시술 주기 참고] 고출력 EBD — 최소 6개월 이상 간격 권장. 콜라겐 리모델링 완료(3-6개월)를 기다린 후 효과 평가. 리모델링 중 재시술은 과도한 열 누적/지방위축 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/1 M9-1-2 울쎄라피프라임
+  . {id,name,detail,extracted}
+  /id = "M9-1-2"
+  /name = "울쎄라피프라임"
+  /detail = "멀츠 · 신형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "최신형 HIFU 기술로 SMAS층까지 집중 에너지를 전달하여 즉각적인 리프팅 효과를 제공하는 신세대 초음파 미용기기"
+  /extracted/mechanism = "집속초음파(HIFU)가 피부 진피-피하층(3mm)과 SMAS층(4.5mm)에 정확히 도달하여 60°C의 열로 콜라겐을 응고괴사시킵니다. 손상된 콜라겐의 수축과 동시에 신생콜라겐 생성을 촉진하여 피부 탄력 강화 및 처짐 개선 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"목 주름 및 처짐" ‖ 2:"광대뼈 처짐" ‖ 3:"턱선 정의" ‖ 4:"팔뚝/허벅지 처짐"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 직후 홍반" ‖ 1:"경미한 부종" ‖ 2:"따끔거림 감각"
+  /extracted/safety/serious [2] = 0:"신경 손상(극히 드문)" ‖ 1:"피부화상(깊이 조절 오류시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 효과 인지 가능, 최적 효과는 8주-3개월"
+  /extracted/onset_duration/duration = "6-12개월 유지, 개인차에 따라 변동"
+  /extracted/aftercare [5] = 0:"24시간 이내 뜨거운 물 접촉 자제" ‖ 1:"3일간 자극적 스킨케어 제품 사용 자제" ‖ 2:"부종 시 냉찜질 시행" ‖ 3:"필요시 진통제 복용 가능" ‖ 4:"[시술 주기 참고] 고출력 EBD — 최소 6개월 이상 간격 권장. 콜라겐 리모델링 완료(3-6개월)를 기다린 후 효과 평가. 리모델링 중 재시술은 과도한 열 누적/지방위축 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/2 M9-1-3 슈링크
+  . {id,name,detail,extracted}
+  /id = "M9-1-3"
+  /name = "슈링크"
+  /detail = "클래시스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 및 목 처짐" ‖ 1:"팔뚝/허벅지 피부 탄력 감소" ‖ 2:"복부 처짐" ‖ 3:"이중턱"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"일시적 홍반" ‖ 1:"가벼운 부종" ‖ 2:"시술 후 따끔거림"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 효과 시작, 4-6주 콜라겐 재생으로 최대 효과"
+  /extracted/onset_duration/duration = "6-12개월 지속, 효과 소실 시 재시술 고려"
+  /extracted/aftercare [4] = 0:"72시간 고온 노출 및 격렬한 운동 자제" ‖ 1:"가벼운 보습제 사용" ‖ 2:"홍반 시 진정 마스크팩 권장" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/3 M9-1-4 슈링크유니버스
+  . {id,name,detail,extracted}
+  /id = "M9-1-4"
+  /name = "슈링크유니버스"
+  /detail = "클래시스 · 신형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU 전용 리프팅 기기 (클래시스)"
+  /extracted/mechanism = "집속초음파(HIFU)가 정밀한 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 60°C 이상의 열응고점(TIZ)을 형성하여 콜라겐 수축 및 신생콜라겐 생성을 유도한다. Pre-focal zone에서도 추가 열손상이 발생하여 임상 효과에 기여한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"팔자주름 및 마리오네트라인" ‖ 2:"목 주름 및 이중턱" ‖ 3:"광대뼈 처짐" ‖ 4:"전반적인 페이스리프팅"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"시술 직후 홍반" ‖ 1:"부종" ‖ 2:"경미한 열감" ‖ 3:"건조함"
+  /extracted/safety/serious [2] = 0:"신경 손상(희귀)" ‖ 1:"화상(부적절한 설정 시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 콜라겐 재생 시작, 즉각적 수축 효과"
+  /extracted/onset_duration/duration = "6-12개월 지속(개인차 있음)"
+  /extracted/aftercare [4] = 0:"24시간 고온 환경(사우나, 찜질방) 회피" ‖ 1:"과도한 자극 피하기" ‖ 2:"충분한 수분섭취" ‖ 3:"[시술 주기 참고] 고출력 EBD — 최소 6개월 이상 간격 권장. 콜라겐 리모델링 완료(3-6개월)를 기다린 후 효과 평가. 리모델링 중 재시술은 과도한 열 누적/지방위축 위험. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/4 M9-1-5 더블로
+  . {id,name,detail,extracted}
+  /id = "M9-1-5"
+  /name = "더블로"
+  /detail = "하이로닉"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "집속초음파(HIFU) 기술을 이용한 비침습적 안면 리프팅 및 탄력 개선 치료기"
+  /extracted/mechanism = "고강도 집속초음파가 진피층과 SMAS층에 정밀하게 도달하여 60°C 이상의 열로 콜라겐 응고괴사를 유도합니다. 즉각적인 콜라겐 수축과 함께 신생콜라겐 생성을 촉진하여 장기적인 피부 탄력 개선을 실현합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"눈가 주름 개선" ‖ 2:"턱선 및 페이스라인 개선" ‖ 3:"이마 주름" ‖ 4:"목 처짐"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"일시적 발적" ‖ 1:"부종" ‖ 2:"따끔거림" ‖ 3:"피부 건조증"
+  /extracted/safety/serious [2] = 0:"신경 손상 (극히 드물음)" ‖ 1:"화상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 콜라겐 수축 후 2-3주부터 개선 체감"
+  /extracted/onset_duration/duration = "3-6개월 지속, 개인차에 따라 최대 12개월"
+  /extracted/aftercare [5] = 0:"시술 후 24시간 이상 강한 자극 피하기" ‖ 1:"과도한 운동 및 사우나 1주일 자제" ‖ 2:"충분한 보습 관리" ‖ 3:"필요시 진정 팩 사용" ‖ 4:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/5 M9-1-6 더블로골드
+  . {id,name,detail,extracted}
+  /id = "M9-1-6"
+  /name = "더블로골드"
+  /detail = "하이로닉 · 신형"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"얼굴 및 목 처짐" ‖ 1:"이마 주름" ‖ 2:"팔자주름" ‖ 3:"턱선 정의" ‖ 4:"피부 탄력 저하"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 홍반" ‖ 1:"부종" ‖ 2:"일시적 감각 이상"
+  /extracted/safety/serious [2] = 0:"신경손상(희귀)" ‖ 1:"화상(부적절한 설정시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉각적 효과 1주, 최대 효과 12주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [4] = 0:"시술 후 48시간 고온 환경 회피" ‖ 1:"과도한 얼굴 강한 마사지 당일 자제" ‖ 2:"냉찜질로 부종 완화" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/6 M9-1-8 리프테라
+  . {id,name,detail,extracted}
+  /id = "M9-1-8"
+  /name = "리프테라"
+  /detail = "아스테라시스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"안면 및 목 피부 처짐" ‖ 1:"팔뚝 및 복부 탄력 저하" ‖ 2:"피부 주름 개선" ‖ 3:"전반적인 피부 탄력 강화"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 일시적 홍반" ‖ 1:"부종" ‖ 2:"따뜻함 또는 작열감"
+  /extracted/safety/serious [3] = 0:"화상" ‖ 1:"색소침착" ‖ 2:"신경 손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주 후부터 콜라겐 신생에 의한 개선 시작"
+  /extracted/onset_duration/duration = "3-6개월 지속, 반복 시 누적 효과 가능"
+  /extracted/aftercare [4] = 0:"시술 직후 냉찜질 권장" ‖ 1:"고온 환경 노출 48시간 회피" ‖ 2:"자극적 스킨케어 제품 1주일 자제" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/7 M9-1-9 리니어펌
+  . {id,name,detail,extracted}
+  /id = "M9-1-9"
+  /name = "리니어펌"
+  /detail = "제이시스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 처짐 및 탄력 저하" ‖ 1:"법령선 및 팔자주름" ‖ 2:"턱선 강화" ‖ 3:"얼굴 윤곽 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 일시적 홍반" ‖ 1:"따뜻함 또는 미온감" ‖ 2:"부종"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시 효과 시작, 3개월 최고 효과"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 고온(사우나, 찜질방) 피하기" ‖ 1:"일주일 간 자극적 제품 사용 제한" ‖ 2:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/8 M9-1-10 텐쎄라
+  . {id,name,detail,extracted}
+  /id = "M9-1-10"
+  /name = "텐쎄라"
+  /detail = "원텍"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"안면 처짐 및 리프팅" ‖ 1:"피부 탄력 저하" ‖ 2:"주름 개선" ‖ 3:"피부 결 정리"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 열감" ‖ 1:"경미한 부종" ‖ 2:"피부 발적"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "시술 직후부터 즉시 효과 체감, 1-3개월에 걸쳐 콜라겐 재생으로 최대 효과"
+  /extracted/onset_duration/duration = "6-12개월 지속 (개인차 발생)"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 고온 환경(사우나, 찜질방) 피하기" ‖ 1:"자극적인 스킨케어 제품 최소 1주일 피하기" ‖ 2:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/9 auto-37-1774737181584 쿨소닉
+  . {id,name,detail,extracted}
+  /id = "auto-37-1774737181584"
+  /name = "쿨소닉"
+  /detail = "아스테라시스"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "HIFU(고강도 집속 초음파) 리프팅 기기"
+  /extracted/mechanism = "고강도 집속 초음파(HIFU)를 피부 특정 깊이(진피 1.5/3.0mm, SMAS 4.5mm)에 집중시켜 60°C 이상의 열응고점(TIZ)을 형성한다. 음향 캐비테이션과 열 응고로 콜라겐 수축 및 신생콜라겐 생성을 유도하여 리프팅 효과를 제공한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"얼굴 및 목의 피부 탄력 감소" ‖ 1:"법령선 및 팔자주름" ‖ 2:"처진 피부(턱선, 볼 처짐)" ‖ 3:"전체적인 피부 리프팅 및 타이트닝"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 홍반" ‖ 1:"경미한 부종" ‖ 2:"일시적 건조감"
+  /extracted/safety/serious [2] = 0:"화상" ‖ 1:"신경 손상(드물게)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주 후 콜라겐 신생으로 점진적 개선"
+  /extracted/onset_duration/duration = "3-6개월 지속, 시술 반복으로 효과 연장"
+  /extracted/aftercare [4] = 0:"24시간 자극적 제품(비타민C, 산성 성분) 피하기" ‖ 1:"시술 후 3-7일 과도한 열 노출 제한" ‖ 2:"과도한 운동 및 사우나 1주일 피하기" ‖ 3:"[시술 주기 참고] 저출력 EBD — 최소 1개월 이상 간격, 보통 3개월 간격 권장. 과도한 열 누적 주의. 효과 평가 후 재시술 판단 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/10 auto-M9-1775361909628 울트라포머MPT
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775361909628"
+  /name = "울트라포머MPT"
+  /detail = "클래시스 · MMFU 기술 · 미세점 HIFU"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "미세점 HIFU 기술을 이용한 비침습적 리프팅 및 타이트닝 장비"
+  /extracted/mechanism = "MMFU(Micro and Macro Focused Ultrasound) 기술로 피부 진피층과 SMAS층에 집속초음파를 전달하여 열응고점을 생성합니다. 콜라겐 변성과 신생을 통해 피부 타이트닝과 리프팅 효과를 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안면 및 목 주름 개선" ‖ 1:"피부 탄력 증진 및 리프팅"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 홍반 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [5] = 0:"시술 후 2-3일간 과도한 열 노출 및 사우나 자제" ‖ 1:"홍반/부종은 수시간~수일 내 자연 소실" ‖ 2:"냉찜질로 통증/부종 완화 가능" ‖ 3:"당일 보습 관리 권장" ‖ 4:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"
+@ /modality/8/subcategories/0/items/11 auto-M9-1775362627041 울트라셀Q+
+  . {id,name,detail,extracted}
+  /id = "auto-M9-1775362627041"
+  /name = "울트라셀Q+"
+  /detail = "제이시스 · HIFU+DOT"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고강도 집속 초음파(HIFU)와 도트 기술을 결합한 비수술적 리프팅 및 피부재생 장비"
+  /extracted/mechanism = "고강도 집속 초음파를 진피 깊숙이 전달하여 65-75℃의 열 응고점을 형성해 콜라겐 수축과 신생을 유도합니다. 도트 기술을 통해 미세한 열손상을 균등하게 분포시켜 피부 전체의 타이트닝과 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안면 및 목 부위 리프팅" ‖ 1:"피부 타이트닝 및 주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 부종 및 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"홍반/부종은 수시간~수일 내 자연 소실" ‖ 1:"냉찜질로 통증/부종 완화 가능" ‖ 2:"당일 보습 관리 권장" ‖ 3:"[시술 주기 참고] 중출력 EBD — 3-6개월 간격 권장. 콜라겐 리모델링 진행 상황 평가 후 재시술 판단. 아무리 빨라도 1개월 이상 간격 필수 (개인차 있으며, 의사와 상의하여 결정)"

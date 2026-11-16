@@ -1,0 +1,9572 @@
+{
+ "version": "review-step7-sweep v1 (2026-10-30)",
+ "scope": "7단계 step7-concerns.json — concern_region_check 「고민 영역 없음(R22 · 셈만)」 엣지 + 추천 조합 구성",
+ "counted": {
+  "edges": 169,
+  "combo_parts": 117,
+  "combos": 38
+ },
+ "verdicts": {
+  "이상함": 105,
+  "정상": 145,
+  "확인 필요": 36
+ },
+ "verdicts_by_kind": {
+  "엣지|이상함": 64,
+  "엣지|정상": 81,
+  "엣지|확인 필요": 24,
+  "조합 구성|이상함": 41,
+  "조합 구성|정상": 64,
+  "조합 구성|확인 필요": 12
+ },
+ "causes": {
+  "C1": {
+   "title": "계열 「후보 전부」가 다른 고민 용도까지 염 — 보톡스 17 · 기기 리프팅 9",
+   "mechanism": "부위 없는 고민 · 원천이 계열만 말함 → M1 17(종아리 · 승모근 · 겨드랑이/손/발 다한증 · 잇몸 …) · M9 9(바디 · 겨드랑이 마이크로웨이브) 전부",
+   "fix": "규칙 후보 R23 — 부위 없는 「후보 전부」는 5단계 purposes 로 좁힘(고민·목적과 같은 purposes 가 있으면 그것만 · 없으면 다른 고민 purposes(다한증·제모) 박힌 단위 시술 빼기 + 바디 영역 빼기) · 못 좁히면 계열만",
+   "count": 10,
+   "keys": [
+    "E:auto-86-1774737181584:P2:잔주름",
+    "E:P6-2:P6:스킨보톡스",
+    "E:P7-1:P7:스킨보톡스",
+    "E:P9-1:P9:필러+서브시전",
+    "E:P9-2:P9:스테로이드주사",
+    "E:P9-2:P9:레이저치료",
+    "E:P14-3:P14:보톡스",
+    "C:RC-RE-R4:0",
+    "C:RC-RE-R4:1",
+    "C:RC-RE-R6:0"
+   ]
+  },
+  "C2": {
+   "title": "레이저 M8 「후보 전부」 31 — 제모 10 · 바디 지방분해 · 두피 레이저까지",
+   "mechanism": "부위 없는 고민 · 원천 「레이저」 → M8 31 전부(제모 · 지방분해 · 두피 LED 포함)",
+   "fix": "같은 R23 + 원천 제품/역할 칸으로 좁힘(V빔 → PDL · 광선치료 → 엑시머/UVB · 이름 「레이저 토닝」 → 토닝) · 못 좁히면 계열만",
+   "count": 7,
+   "keys": [
+    "E:P9-2:P9:스테로이드주사",
+    "E:P9-2:P9:레이저치료",
+    "E:P14-4:P14:백반증",
+    "E:P14-4:P14:건선",
+    "C:RC-PC-P4-3:0",
+    "C:RC-PC-P7-3:1",
+    "C:RC-RE-R7:0"
+   ]
+  },
+  "C3": {
+   "title": "두피 단위 시술이 얼굴 피부 고민에 섞임",
+   "mechanism": "「제품으로 좁힘」 · 「후보 전부」 결과에 두피 스킨부스터 · 두피 PRP · 두피 MTS · 두피 LED · 두피 엑소좀 · 두피 박리 관리가 같이 붙음(고민 영역이 없어 R22 가 못 거름)",
+   "fix": "규칙 후보 R22 보강 — 영역 없는 고민에 영역 기본값을 결정 칸으로(예: P4~P9 · P14 → 얼굴 · 목) · 또는 「두피 영역 단위 시술은 두피 영역 고민(P13)에만」",
+   "count": 82,
+   "keys": [
+    "E:P4-1:auto-92-1774737181584",
+    "E:P4-1:auto-94-1774737181584",
+    "E:P6-3:auto-115-1774737181584",
+    "E:auto-86-1774737181584:P2:잔주름",
+    "E:P4-1:P4:스킨부스터시술",
+    "E:P5-1:P5:레이저토닝",
+    "E:P5-1:P5:피코토닝",
+    "E:P5-1:P5:미백필링",
+    "E:P5-2:P5:피코레이저",
+    "E:P5-2:P5:IPL",
+    "E:P5-3:P5:피코/Q스위치",
+    "E:P5-4:P5:백옥주사",
+    "E:P5-4:P5:비타민C주사",
+    "E:P6-2:P6:아그네스",
+    "E:P6-2:P6:스킨보톡스",
+    "E:P6-2:P6:스킨보톡스",
+    "E:P6-2:P6:케미컬필링",
+    "E:P6-3:P6:토닝",
+    "E:P6-3:P6:재생치료",
+    "E:P7-1:P7:스킨보톡스",
+    "E:P7-1:P7:스킨보톡스",
+    "E:P7-1:P7:아그네스",
+    "E:P7-2:P7:프락셔널레이저",
+    "E:P7-2:P7:니들RF",
+    "E:P7-3:P7:CO2프락셀",
+    "E:P7-3:P7:서브시전",
+    "E:P8-2:P8:엑셀V",
+    "E:P8-2:P8:혈관레이저",
+    "E:P9-1:P9:서브시전",
+    "E:P9-1:P9:에어서브시전",
+    "E:P9-1:P9:TCA크로스",
+    "E:P9-1:P9:CO2프락셔널",
+    "E:P9-1:P9:니들RF",
+    "E:P9-1:P9:필러+서브시전",
+    "E:P9-3:P9:프락셔널레이저",
+    "E:P9-3:P9:실리콘시트",
+    "E:P9-3:P9:프락셔널레이저",
+    "E:P9-1:P9:니들RF",
+    "E:opt:주름 개선:주름 개선|경미 (fine lines)",
+    "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+    "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+    "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+    "E:opt:색소/기미:색소/기미|중등도 (기미, 혼합 색소)",
+    "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+    "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+    "E:opt:여드름/흉터:여드름/흉터|경미 (활성 여드름 위주)",
+    "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+    "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+    "C:RC-PC-P4-1:0",
+    "C:RC-PC-P4-2:0",
+    "C:RC-PC-P4-2:2",
+    "C:RC-PC-P4-3:1",
+    "C:RC-PC-P4-3:3",
+    "C:RC-PC-P5-2:2",
+    "C:RC-PC-P5-3:3",
+    "C:RC-PC-P7-3:3",
+    "C:RC-RE-R3:0",
+    "C:RC-RE-R3:1",
+    "C:RC-RE-R3:2",
+    "C:RC-RE-R4:2",
+    "C:RC-RE-R5:1",
+    "C:RC-RE-R7:1",
+    "C:RC-RE-R7:2",
+    "C:RC-SQ-02:2",
+    "C:RC-SQ-04:0",
+    "C:RC-SQ-08:1",
+    "C:RC-SQ-08:2",
+    "C:RC-OP-Wrinkl-경미:1",
+    "C:RC-OP-Skin-경미:2",
+    "C:RC-OP-Skin-중등도:1",
+    "C:RC-OP-Skin-중등도:2",
+    "C:RC-OP-Skin-중증:2",
+    "C:RC-OP-Pigmen-중등도:2",
+    "C:RC-OP-Pigmen-중증:2",
+    "C:RC-OP-Pigmen-중증:3",
+    "C:RC-OP-Acne-경미:2",
+    "C:RC-OP-Acne-중등도:2",
+    "C:RC-OP-Acne-중증:4",
+    "C:RC-CP-skin_texture:2",
+    "C:RC-CP-acne:3",
+    "C:RC-CP-rejuvenation:0",
+    "C:RC-CP-rejuvenation:2"
+   ]
+  },
+  "C3b": {
+   "title": "목 니들RF 가 여드름 · 모공 · 흉터에 붙음",
+   "mechanism": "M11 니들RF 가 얼굴 전체 · 목 둘뿐이라 둘 다 열림 · 5단계 purposes 빈칸",
+   "fix": "C3 의 영역 기본값을 정할 때 목을 넣을지 함께 결정(사람 확인)",
+   "count": 35,
+   "keys": [
+    "E:P6-2:auto-111-1774737181584",
+    "E:P7-1:auto-117-1774737181584",
+    "E:P7-2:auto-119-1774737181584",
+    "E:P9-1:auto-132-1774737181584",
+    "E:P6-1:P6:압출",
+    "E:P6-1:P6:PDT",
+    "E:P6-1:P6:약물치료",
+    "E:P6-2:P6:아그네스",
+    "E:P6-2:P6:스킨보톡스",
+    "E:P6-2:P6:케미컬필링",
+    "E:P7-1:P7:스킨보톡스",
+    "E:P7-1:P7:아그네스",
+    "E:P7-2:P7:프락셔널레이저",
+    "E:P7-2:P7:니들RF",
+    "E:P7-3:P7:CO2프락셀",
+    "E:P7-3:P7:서브시전",
+    "E:P9-1:P9:서브시전",
+    "E:P9-1:P9:에어서브시전",
+    "E:P9-1:P9:TCA크로스",
+    "E:P9-1:P9:CO2프락셔널",
+    "E:P9-1:P9:니들RF",
+    "E:P9-1:P9:필러+서브시전",
+    "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+    "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+    "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+    "C:RC-PC-P5-3:1",
+    "C:RC-PC-P7-2:0",
+    "C:RC-PC-P7-3:0",
+    "C:RC-PC-P9-2:1",
+    "C:RC-RE-R5:0",
+    "C:RC-OP-Skin-중등도:1",
+    "C:RC-OP-Skin-중증:3",
+    "C:RC-OP-Acne-중등도:2",
+    "C:RC-CP-skin_texture:0",
+    "C:RC-CP-acne:0"
+   ]
+  },
+  "C5": {
+   "title": "필러 8 부위 전부가 흉터에 붙음",
+   "mechanism": "원천 「필러 · 볼륨 충전(흉터 함몰)」 → 입술 · 코 · 턱끝 · 이마 · 관자놀이 필러까지 · 흉터 단위 시술 없음",
+   "fix": "빼기 → 계열만(M2) · 흉터 필러 단위 시술이 없음을 원천 질문으로",
+   "count": 4,
+   "keys": [
+    "E:P9-1:auto-133-1774737181584",
+    "E:P9-1:P9:필러+서브시전",
+    "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+    "C:RC-OP-Acne-중증:2"
+   ]
+  },
+  "C5b": {
+   "title": "볼륨/동안 조합에 필러 8 부위 전부",
+   "mechanism": "목적 「볼륨 회복」 · 「동안 쁘띠」 조합이 필러 부위를 못 정해 코 · 입술 필러(성형 목적)까지 엶 · 얼굴 안이라 R22 위반은 아님",
+   "fix": "사람 확인 — 그대로(후보 전부 + 표시) 또는 계열만",
+   "count": 4,
+   "keys": [
+    "C:RC-RE-R6:1",
+    "C:RC-OP-Volume-중등도:0",
+    "C:RC-OP-Volume-중증:0",
+    "C:RC-CP-volume:0"
+   ]
+  },
+  "C6": {
+   "title": "바디 고민(튼살)에 얼굴 전체 단위 시술",
+   "mechanism": "튼살(원천 cc_detail 「성장선/임신선」)에 「얼굴 전체 프락셀」 4 · 「얼굴 전체 니들RF」 · 「목 니들RF」 — 바디 프락셀 · 니들RF 단위 시술이 5단계에 없음",
+   "fix": "빼기 → 계열만 + 「이 부위 단위 시술 없음」(R21 과 같은 처리) · taxonomy 튼살 항목에 부위(바디) 넣기 원천 질문",
+   "count": 2,
+   "keys": [
+    "E:P9-4:auto-138-1774737181584",
+    "E:P9-4:auto-139-1774737181584"
+   ]
+  },
+  "C7": {
+   "title": "combo-recipes 경로는 이름 조각으로 안 좁힘",
+   "mechanism": "레시피 이름 「MTS + PRP + 스킨부스터」 · 「니들RF + PRP」 · 「레이저 토닝 + 재생」인데 M5 를 PRP 로, M8 을 토닝으로 안 좁혀 엑소좀 · 두피 · 제모까지 · problem-combos 경로는 같은 이름 조각으로 좁힘(RC-PC-P4-2 PRP → U5-020)",
+   "fix": "규칙 후보 — combo-recipes 에도 problem-combos 의 「패키지 이름 조각」 좁힘 적용",
+   "count": 4,
+   "keys": [
+    "C:RC-RE-R3:1",
+    "C:RC-RE-R5:1",
+    "C:RC-RE-R7:0",
+    "C:RC-RE-R7:1"
+   ]
+  },
+  "C8": {
+   "title": "제품 칸이 있는데 좁히지 못함",
+   "mechanism": "원천 제품 「PDL(V빔)」 → M8 31 전부 · 같은 고민의 ⑤ 엣지는 「V빔 → U5-141 PDL」로 풀림",
+   "fix": "제품 동의어 「PDL(V빔)」 → U5-141 (5단계 device_name_synonyms 보강 후보)",
+   "count": 2,
+   "keys": [
+    "E:P9-2:P9:스테로이드주사",
+    "E:P9-2:P9:레이저치료"
+   ]
+  },
+  "C9": {
+   "title": "이름 동의어가 장비 절반만 가리킴",
+   "mechanism": "「엑셀V」(원천 cc_detail 「532+1064nm」) → U5-099 엔디야그만 · 532nm KTP(U5-138) 빠짐 · 같은 고민 ③ 엣지 「엑셀V → 혈관레이저」는 PDL · 엔디야그 · KTP 3",
+   "fix": "사람 확인 — 5단계 동의어 「엑셀V」 대상에 U5-138 추가할지",
+   "count": 1,
+   "keys": [
+    "E:P8-2:auto-125-1774737181584"
+   ]
+  }
+ },
+ "structural_C4_cc_group_copy": {
+  "edges_③": 98,
+  "distinct_(고민,단위 시술)": 45,
+  "duplicate_extra": 53
+ },
+ "items": [
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:auto-92-1774737181584",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-92-1774737181584",
+   "basis": "항목 이름 「스킨부스터시술」 → 계열 M4 ∩ 원천 제품 리쥬란/쥬베룩/등/스킨부스터시술",
+   "evidence": null,
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:auto-93-1774737181584",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-93-1774737181584",
+   "basis": "항목 이름 「바이오스티뮬레이터시술」 → 계열 M3 ∩ 원천 제품 스컬트라/엘란쎄/등/바이오스티뮬레이터시술",
+   "evidence": null,
+   "lowering": "제품으로 내림",
+   "to_family": "M3",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:auto-94-1774737181584",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-94-1774737181584",
+   "basis": "항목 이름 「PRP시술」 → 「PRP」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:auto-100-1774737181584",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-100-1774737181584",
+   "basis": "항목 이름 「레이저토닝」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:auto-101-1774737181584",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-101-1774737181584",
+   "basis": "항목 이름 「피코토닝」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:auto-102-1774737181584",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-102-1774737181584",
+   "basis": "항목 이름 「미백필링」 → 「필링」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M15",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:auto-103-1774737181584",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-103-1774737181584",
+   "basis": "항목 이름 「피코레이저」 → 「피코」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:auto-104-1774737181584",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-104-1774737181584",
+   "basis": "항목 이름 「IPL」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-3:auto-105-1774737181584",
+   "from": "P5-3",
+   "concerns": [
+    "P5-3 오타모반/ABNOM"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-105-1774737181584",
+   "basis": "항목 이름 「피코/Q스위치」 → 「피코」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:auto-106-1774737181584",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-106-1774737181584",
+   "basis": "항목 이름 「백옥주사」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M16",
+   "units": [
+    "U5-051 글루타치온 수액"
+   ],
+   "unit_sites": [
+    "해당 없음"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:auto-107-1774737181584",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-107-1774737181584",
+   "basis": "항목 이름 「비타민C주사」 → 「비타민C」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M16",
+   "units": [
+    "U5-052 비타민C 수액"
+   ],
+   "unit_sites": [
+    "해당 없음"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-1:auto-108-1774737181584",
+   "from": "P6-1",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-108-1774737181584",
+   "basis": "항목 이름 「압출」 → 「압출」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M15 ↔ 단위 시술 N4)",
+   "to_family": "M15",
+   "units": [
+    "U5-048 얼굴 전체 압출"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-1:auto-109-1774737181584",
+   "from": "P6-1",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-109-1774737181584",
+   "basis": "항목 이름 「PDT」 → 「PDT」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M15 ↔ 단위 시술 M8)",
+   "to_family": "M15",
+   "units": [
+    "U5-049 얼굴 전체 광역학치료(PDT)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:auto-111-1774737181584",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-111-1774737181584",
+   "basis": "항목 이름 「아그네스」 → 5단계 제품 → 단위 시술(저장 · 상속 후보)",
+   "evidence": null,
+   "lowering": "제품 이름 · 후보 여럿",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:auto-112-1774737181584",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-112-1774737181584",
+   "basis": "항목 이름 「스킨보톡스」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M1",
+   "units": [
+    "U5-009 얼굴 전체 스킨보톡스"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:auto-113-1774737181584",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-113-1774737181584",
+   "basis": "항목 이름 「케미컬필링」 → 「필링」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M15",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:auto-114-1774737181584",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-114-1774737181584",
+   "basis": "항목 이름 「토닝」 → 「토닝」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:auto-115-1774737181584",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-115-1774737181584",
+   "basis": "항목 이름 「재생치료」 → 리쥬란→이름 일치 · 엑소좀→이름 일치 · 후보 여럿",
+   "evidence": null,
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-040 두피 엑소좀",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:auto-116-1774737181584",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-116-1774737181584",
+   "basis": "항목 이름 「스킨보톡스」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M1",
+   "units": [
+    "U5-009 얼굴 전체 스킨보톡스"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:auto-117-1774737181584",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-117-1774737181584",
+   "basis": "항목 이름 「아그네스」 → 5단계 제품 → 단위 시술(저장 · 상속 후보)",
+   "evidence": null,
+   "lowering": "제품 이름 · 후보 여럿",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:auto-118-1774737181584",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-118-1774737181584",
+   "basis": "항목 이름 「프락셔널레이저」 → 「프락셔널」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:auto-119-1774737181584",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-119-1774737181584",
+   "basis": "항목 이름 「니들RF」 → 계열 M11 — 원천에 부위 없음",
+   "evidence": null,
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:auto-120-1774737181584",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-120-1774737181584",
+   "basis": "항목 이름 「CO2프락셀」 → 「CO2」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:auto-121-1774737181584",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-121-1774737181584",
+   "basis": "항목 이름 「서브시전」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:auto-125-1774737181584",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-125-1774737181584",
+   "basis": "항목 이름 「엑셀V」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-099 얼굴 전체 엔디야그 레이저"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C9",
+     "level": "확인 필요",
+     "why": "엑셀V → 엔디야그 하나 · KTP 빠짐",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:auto-126-1774737181584",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-126-1774737181584",
+   "basis": "항목 이름 「혈관레이저」 → 「혈관레이저」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-138 얼굴 전체 KTP 레이저"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-128-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-128-1774737181584",
+   "basis": "항목 이름 「서브시전」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-129-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-129-1774737181584",
+   "basis": "항목 이름 「에어서브시전」 → 「서브시전」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-130-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-130-1774737181584",
+   "basis": "항목 이름 「TCA크로스」 → 「TCA」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M15",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-131-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-131-1774737181584",
+   "basis": "항목 이름 「CO2프락셔널」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-132-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-132-1774737181584",
+   "basis": "항목 이름 「니들RF」 → 계열 M11 ∩ 원천 제품 포텐자/시크릿",
+   "evidence": null,
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:auto-133-1774737181584",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-133-1774737181584",
+   "basis": "항목 이름 「필러+서브시전」 → 필러→부위 없음 · 후보 전부 · 서브시전→이름 일치",
+   "evidence": null,
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M2",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러",
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "얼굴 전체",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C5",
+     "level": "이상함",
+     "why": "흉터에 필러 8 부위 전부(입술 · 코 · 턱끝 · 관자놀이 …)",
+     "action": "필러 8 빼기 → 계열만(M2)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:auto-134-1774737181584",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-134-1774737181584",
+   "basis": "항목 이름 「스테로이드주사」 → 「스테로이드」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-046 병변 스테로이드 주사"
+   ],
+   "unit_sites": [
+    "병변 단위"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:auto-135-1774737181584",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-135-1774737181584",
+   "basis": "항목 이름 「레이저치료」 → V빔→이름 일치 · 프락셔널→이름 일치 · 후보 여럿",
+   "evidence": null,
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M8",
+   "units": [
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:auto-136-1774737181584",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-136-1774737181584",
+   "basis": "항목 이름 「프락셔널레이저」 → CO2→이름 일치 · 어븀→이름 일치",
+   "evidence": null,
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M8",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-4:auto-138-1774737181584",
+   "from": "P9-4",
+   "concerns": [
+    "P9-4 튼살"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-138-1774737181584",
+   "basis": "항목 이름 「프락셔널레이저」 → 「프락셔널」 → 5단계 단위 시술",
+   "evidence": null,
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C6",
+     "level": "이상함",
+     "why": "튼살(바디)에 얼굴 전체 · 목 단위 시술",
+     "action": "빼기 → 계열만 + 이 부위 단위 시술 없음"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-4:auto-139-1774737181584",
+   "from": "P9-4",
+   "concerns": [
+    "P9-4 튼살"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-139-1774737181584",
+   "basis": "항목 이름 「니들RF」 → 계열 M11 — 원천에 부위 없음",
+   "evidence": null,
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C6",
+     "level": "이상함",
+     "why": "튼살(바디)에 얼굴 전체 · 목 단위 시술",
+     "action": "빼기 → 계열만 + 이 부위 단위 시술 없음"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-3:auto-177-1774737181584",
+   "from": "P14-3",
+   "concerns": [
+    "P14-3 다한증"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-177-1774737181584",
+   "basis": "항목 이름 「미라드라이」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-153 겨드랑이 마이크로웨이브"
+   ],
+   "unit_sites": [
+    "겨드랑이"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-4:auto-178-1774737181584",
+   "from": "P14-4",
+   "concerns": [
+    "P14-4 피부질환"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-178-1774737181584",
+   "basis": "항목 이름 「백반증」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-156 얼굴 전체 엑시머 레이저"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-4:auto-179-1774737181584",
+   "from": "P14-4",
+   "concerns": [
+    "P14-4 피부질환"
+   ],
+   "source": "⑤ taxonomy 항목 = 시술 이름",
+   "source_id": "auto-179-1774737181584",
+   "basis": "항목 이름 「건선」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": null,
+   "lowering": "이름 일치",
+   "to_family": "M8",
+   "units": [
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:auto-86-1774737181584:P2:잔주름",
+   "from": "auto-86-1774737181584",
+   "concerns": [
+    "auto-86-1774737181584 잔주름"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P2:잔주름",
+   "basis": "CC 잔주름 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "근육 이완으로 주름 완화",
+    "products": [
+     "보톡스",
+     "나보타",
+     "보툴렉스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "purposes 「주름」 7개로 좁힘"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:auto-86-1774737181584:P2:잔주름",
+   "from": "auto-86-1774737181584",
+   "concerns": [
+    "auto-86-1774737181584 잔주름"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P2:잔주름",
+   "basis": "CC 잔주름 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 재생",
+    "products": [
+     "리쥬란 힐러",
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:P4:스킨부스터시술",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P4:스킨부스터시술",
+   "basis": "CC 스킨부스터시술 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 재생",
+    "products": [
+     "리쥬란 힐러",
+     "쥬베룩",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:P4:바이오스티뮬레이터시술",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P4:바이오스티뮬레이터시술",
+   "basis": "CC 바이오스티뮬레이터시술 → 바이오스티뮬레이터/콜라겐부스터(M3)",
+   "evidence": {
+    "name": "바이오스티뮬레이터/콜라겐부스터",
+    "role": "자가 콜라겐 생성 촉진",
+    "products": [
+     "스컬트라",
+     "엘란쎄"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M3",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P4-1:P4:PRP시술",
+   "from": "P4-1",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P4:PRP시술",
+   "basis": "CC PRP시술 → PRP(M5)",
+   "evidence": {
+    "name": "PRP",
+    "role": "자가혈 혈소판 성장인자 기반 재생",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "이름 일치",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:레이저토닝",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:레이저토닝",
+   "basis": "CC 레이저토닝 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:레이저토닝",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:레이저토닝",
+   "basis": "CC 레이저토닝 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:피코토닝",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코토닝",
+   "basis": "CC 피코토닝 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:피코토닝",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코토닝",
+   "basis": "CC 피코토닝 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:미백필링",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:미백필링",
+   "basis": "CC 미백필링 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-1:P5:미백필링",
+   "from": "P5-1",
+   "concerns": [
+    "P5-1 기미"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:미백필링",
+   "basis": "CC 미백필링 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:P5:피코레이저",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코레이저",
+   "basis": "CC 피코레이저 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:P5:피코레이저",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코레이저",
+   "basis": "CC 피코레이저 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:P5:IPL",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:IPL",
+   "basis": "CC IPL → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-2:P5:IPL",
+   "from": "P5-2",
+   "concerns": [
+    "P5-2 주근깨/잡티"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:IPL",
+   "basis": "CC IPL → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-3:P5:피코/Q스위치",
+   "from": "P5-3",
+   "concerns": [
+    "P5-3 오타모반/ABNOM"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코/Q스위치",
+   "basis": "CC 피코/Q스위치 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-3:P5:피코/Q스위치",
+   "from": "P5-3",
+   "concerns": [
+    "P5-3 오타모반/ABNOM"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:피코/Q스위치",
+   "basis": "CC 피코/Q스위치 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:P5:백옥주사",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:백옥주사",
+   "basis": "CC 백옥주사 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:P5:백옥주사",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:백옥주사",
+   "basis": "CC 백옥주사 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:P5:비타민C주사",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:비타민C주사",
+   "basis": "CC 비타민C주사 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 파괴",
+    "products": [
+     "피코슈어",
+     "피코웨이"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P5-4:P5:비타민C주사",
+   "from": "P5-4",
+   "concerns": [
+    "P5-4 전체미백"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P5:비타민C주사",
+   "basis": "CC 비타민C주사 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생·톤개선",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-1:P6:압출",
+   "from": "P6-1",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:압출",
+   "basis": "CC 압출 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "피지선 파괴",
+    "products": [
+     "포텐자",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-1:P6:PDT",
+   "from": "P6-1",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:PDT",
+   "basis": "CC PDT → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "피지선 파괴",
+    "products": [
+     "포텐자",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-1:P6:약물치료",
+   "from": "P6-1",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:약물치료",
+   "basis": "CC 약물치료 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "피지선 파괴",
+    "products": [
+     "포텐자",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:아그네스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:아그네스",
+   "basis": "CC 아그네스 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:아그네스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:아그네스",
+   "basis": "CC 아그네스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:스킨보톡스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "진피내 피지선·입모근의 콜린성 신호 차단",
+    "products": [
+     "보톡스",
+     "나보타",
+     "보툴렉스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "U5-009 스킨보톡스로 좁힘(purposes 피지 · 모공)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:스킨보톡스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 재생",
+    "products": [
+     "리쥬란 HB+",
+     "쥬베룩"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:스킨보톡스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:스킨보톡스",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:케미컬필링",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:케미컬필링",
+   "basis": "CC 케미컬필링 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿",
+     "제니스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-2:P6:케미컬필링",
+   "from": "P6-2",
+   "concerns": [
+    "P6-2 피지/모공"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:케미컬필링",
+   "basis": "CC 케미컬필링 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:P6:토닝",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:토닝",
+   "basis": "CC 토닝 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 제거",
+    "products": [
+     "피코슈어",
+     "엑셀V"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저",
+    "U5-138 얼굴 전체 KTP 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:P6:토닝",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:토닝",
+   "basis": "CC 토닝 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "리쥬란 힐러",
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:P6:재생치료",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:재생치료",
+   "basis": "CC 재생치료 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "색소 제거",
+    "products": [
+     "피코슈어",
+     "엑셀V"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-131 병변 레이저",
+    "U5-138 얼굴 전체 KTP 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P6-3:P6:재생치료",
+   "from": "P6-3",
+   "concerns": [
+    "P6-3 여드름자국(PIH/PIE)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P6:재생치료",
+   "basis": "CC 재생치료 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "리쥬란 힐러",
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:스킨보톡스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "진피내 피지선·입모근의 콜린성 신호 차단",
+    "products": [
+     "보톡스",
+     "나보타",
+     "보툴렉스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "U5-009 스킨보톡스로 좁힘(purposes 피지 · 모공)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:스킨보톡스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 재생",
+    "products": [
+     "리쥬란 HB+",
+     "쥬베룩"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:스킨보톡스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:스킨보톡스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:스킨보톡스",
+   "basis": "CC 스킨보톡스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:아그네스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:아그네스",
+   "basis": "CC 아그네스 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-1:P7:아그네스",
+   "from": "P7-1",
+   "concerns": [
+    "P7-1 피지과다형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:아그네스",
+   "basis": "CC 아그네스 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:P7:프락셔널레이저",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:P7:프락셔널레이저",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:P7:니들RF",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:니들RF",
+   "basis": "CC 니들RF → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-2:P7:니들RF",
+   "from": "P7-2",
+   "concerns": [
+    "P7-2 탄력저하형"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:니들RF",
+   "basis": "CC 니들RF → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:P7:CO2프락셀",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:CO2프락셀",
+   "basis": "CC CO2프락셀 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:P7:CO2프락셀",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:CO2프락셀",
+   "basis": "CC CO2프락셀 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:P7:서브시전",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:서브시전",
+   "basis": "CC 서브시전 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "모공 수축",
+    "products": [
+     "포텐자",
+     "시크릿"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P7-3:P7:서브시전",
+   "from": "P7-3",
+   "concerns": [
+    "P7-3 흉터형(열린모공)"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P7:서브시전",
+   "basis": "CC 서브시전 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "콜라겐 재생",
+    "products": [
+     "쥬베룩"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:P8:엑셀V",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P8:엑셀V",
+   "basis": "CC 엑셀V → 혈관레이저(M8)",
+   "evidence": {
+    "name": "혈관레이저",
+    "role": "혈관 수축/파괴",
+    "products": [
+     "엑셀V"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-138 얼굴 전체 KTP 레이저"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:P8:엑셀V",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P8:엑셀V",
+   "basis": "CC 엑셀V → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 장벽 강화",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:P8:혈관레이저",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P8:혈관레이저",
+   "basis": "CC 혈관레이저 → 혈관레이저(M8)",
+   "evidence": {
+    "name": "혈관레이저",
+    "role": "혈관 수축/파괴",
+    "products": [
+     "엑셀V"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-138 얼굴 전체 KTP 레이저"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P8-2:P8:혈관레이저",
+   "from": "P8-2",
+   "concerns": [
+    "P8-2 모세혈관확장"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P8:혈관레이저",
+   "basis": "CC 혈관레이저 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "피부 장벽 강화",
+    "products": [
+     "리쥬란 힐러",
+     "리쥬란 HB+"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:서브시전",
+   "basis": "CC 서브시전 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:서브시전",
+   "basis": "CC 서브시전 → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:서브시전",
+   "basis": "CC 서브시전 → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:서브시전",
+   "basis": "CC 서브시전 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:에어서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:에어서브시전",
+   "basis": "CC 에어서브시전 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:에어서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:에어서브시전",
+   "basis": "CC 에어서브시전 → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:에어서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:에어서브시전",
+   "basis": "CC 에어서브시전 → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:에어서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:에어서브시전",
+   "basis": "CC 에어서브시전 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:TCA크로스",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:TCA크로스",
+   "basis": "CC TCA크로스 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:TCA크로스",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:TCA크로스",
+   "basis": "CC TCA크로스 → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:TCA크로스",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:TCA크로스",
+   "basis": "CC TCA크로스 → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:TCA크로스",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:TCA크로스",
+   "basis": "CC TCA크로스 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:CO2프락셔널",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:CO2프락셔널",
+   "basis": "CC CO2프락셔널 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:CO2프락셔널",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:CO2프락셔널",
+   "basis": "CC CO2프락셔널 → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:CO2프락셔널",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:CO2프락셔널",
+   "basis": "CC CO2프락셔널 → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:CO2프락셔널",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:CO2프락셔널",
+   "basis": "CC CO2프락셔널 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → 필러(M2)",
+   "evidence": {
+    "name": "필러",
+    "role": "볼륨 충전",
+    "products": [
+     "쥬비덤",
+     "레스틸렌",
+     "이브아르"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M2",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C5",
+     "level": "이상함",
+     "why": "흉터에 필러 8 부위 전부(입술 · 코 · 턱끝 · 관자놀이 …)",
+     "action": "필러 8 빼기 → 계열만(M2)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "근이완 보조",
+    "products": [
+     "보톡스",
+     "나보타"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "계열만(M1) · 또는 얼굴 영역만"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → 서브시전(M8)",
+   "evidence": {
+    "name": "서브시전",
+    "role": "유착 박리",
+    "products": []
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M8 ↔ 단위 시술 N4)",
+   "to_family": "M8",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → PRP/자가혈(M5)",
+   "evidence": {
+    "name": "PRP/자가혈",
+    "role": "재생 촉진",
+    "products": [
+     "셀피아",
+     "리젠ACR"
+    ]
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": "M5",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:필러+서브시전",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:필러+서브시전",
+   "basis": "CC 필러+서브시전 → 니들RF(M11)",
+   "evidence": {
+    "name": "니들RF",
+    "role": "콜라겐 자극",
+    "products": [
+     "인트라셀",
+     "포텐자"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M11",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:스테로이드주사",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:스테로이드주사",
+   "basis": "CC 스테로이드주사 → 병변내 스테로이드주사(M15)",
+   "evidence": {
+    "name": "병변내 스테로이드주사",
+    "role": "1차 치료·켈로이드 축소",
+    "products": [
+     "트리암시놀론(±5-FU)"
+    ]
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M15 ↔ 단위 시술 N4)",
+   "to_family": "M15",
+   "units": [
+    "U5-046 병변 스테로이드 주사"
+   ],
+   "unit_sites": [
+    "병변 단위"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:스테로이드주사",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:스테로이드주사",
+   "basis": "CC 스테로이드주사 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "홍반·혈관성 및 흉터 보조 개선",
+    "products": [
+     "PDL(V빔)"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C8",
+     "level": "이상함",
+     "why": "원천 제품 「PDL(V빔)」이 있는데 M8 31 전부",
+     "action": "U5-141 PDL 로 좁힘"
+    },
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "위 조치"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:스테로이드주사",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:스테로이드주사",
+   "basis": "CC 스테로이드주사 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "보조요법(두께 축소 근거 제한)",
+    "products": [
+     "보톡스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "계열만(M1) · 또는 얼굴 영역만"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:레이저치료",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:레이저치료",
+   "basis": "CC 레이저치료 → 병변내 스테로이드주사(M15)",
+   "evidence": {
+    "name": "병변내 스테로이드주사",
+    "role": "1차 치료·켈로이드 축소",
+    "products": [
+     "트리암시놀론(±5-FU)"
+    ]
+   },
+   "lowering": "이름 일치 · 계열 코드 어긋남(원천 M15 ↔ 단위 시술 N4)",
+   "to_family": "M15",
+   "units": [
+    "U5-046 병변 스테로이드 주사"
+   ],
+   "unit_sites": [
+    "병변 단위"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:레이저치료",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:레이저치료",
+   "basis": "CC 레이저치료 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "홍반·혈관성 및 흉터 보조 개선",
+    "products": [
+     "PDL(V빔)"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C8",
+     "level": "이상함",
+     "why": "원천 제품 「PDL(V빔)」이 있는데 M8 31 전부",
+     "action": "U5-141 PDL 로 좁힘"
+    },
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "위 조치"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-2:P9:레이저치료",
+   "from": "P9-2",
+   "concerns": [
+    "P9-2 켈로이드/비후성"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:레이저치료",
+   "basis": "CC 레이저치료 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "보조요법(두께 축소 근거 제한)",
+    "products": [
+     "보톡스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "계열만(M1) · 또는 얼굴 영역만"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:프락셔널레이저",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:프락셔널레이저",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "쥬베룩",
+     "리쥬란 힐러"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:실리콘시트",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:실리콘시트",
+   "basis": "CC 실리콘시트 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:실리콘시트",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:실리콘시트",
+   "basis": "CC 실리콘시트 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "쥬베룩",
+     "리쥬란 힐러"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:프락셔널레이저",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-3:P9:프락셔널레이저",
+   "from": "P9-3",
+   "concerns": [
+    "P9-3 수술흉터/화상흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:프락셔널레이저",
+   "basis": "CC 프락셔널레이저 → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "쥬베룩",
+     "리쥬란 힐러"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → 프락셔널(M8)",
+   "evidence": {
+    "name": "프락셔널",
+    "role": "리서페이싱",
+    "products": [
+     "프락셀"
+    ]
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": "M8",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P9-1:P9:니들RF",
+   "from": "P9-1",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P9:니들RF",
+   "basis": "CC 니들RF → 스킨부스터(M4)",
+   "evidence": {
+    "name": "스킨부스터",
+    "role": "재생",
+    "products": [
+     "쥬베룩",
+     "리쥬란 힐러"
+    ]
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M4",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-3:P14:보톡스",
+   "from": "P14-3",
+   "concerns": [
+    "P14-3 다한증"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P14:보톡스",
+   "basis": "CC 보톡스 → 보톡스(M1)",
+   "evidence": {
+    "name": "보톡스",
+    "role": "땀샘(한선) 신경전달 차단으로 발한 억제",
+    "products": [
+     "보톡스",
+     "나보타",
+     "보툴렉스"
+    ]
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": "M1",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "다한증에 M1 17 전부 — purposes 「다한증」은 U5-010, U5-011, U5-012 3개뿐 · 나머지 14 는 얼굴 미용 · 종아리 · 승모근",
+     "action": "겨드랑이 · 손 · 발 보톡스 3개로 좁힘(purposes 다한증)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-3:P14:미라드라이",
+   "from": "P14-3",
+   "concerns": [
+    "P14-3 다한증"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P14:미라드라이",
+   "basis": "CC 미라드라이 → 미라드라이(M9)",
+   "evidence": {
+    "name": "미라드라이",
+    "role": "영구적 한선 파괴",
+    "products": []
+   },
+   "lowering": "이름 일치",
+   "to_family": "M9",
+   "units": [
+    "U5-153 겨드랑이 마이크로웨이브"
+   ],
+   "unit_sites": [
+    "겨드랑이"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-4:P14:백반증",
+   "from": "P14-4",
+   "concerns": [
+    "P14-4 피부질환"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P14:백반증",
+   "basis": "CC 백반증 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "광선치료",
+    "products": []
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "빼기 — 같은 항목 이름 엣지(엑시머 U5-156 · UVB U5-157)가 이미 있음"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:P14-4:P14:건선",
+   "from": "P14-4",
+   "concerns": [
+    "P14-4 피부질환"
+   ],
+   "source": "③ problem-packages CC 추천 시술",
+   "source_id": "P14:건선",
+   "basis": "CC 건선 → 레이저(M8)",
+   "evidence": {
+    "name": "레이저",
+    "role": "광선치료",
+    "products": []
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": "M8",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "빼기 — 같은 항목 이름 엣지(엑시머 U5-156 · UVB U5-157)가 이미 있음"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:주름 개선:주름 개선|경미 (fine lines)",
+   "from": "opt:주름 개선",
+   "concerns": [
+    "P2-3 잔주름"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "주름 개선|경미 (fine lines)",
+   "basis": "경미 (fine lines) · 「레이저토닝」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "경미 (fine lines)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:주름 개선:주름 개선|경미 (fine lines)",
+   "from": "opt:주름 개선",
+   "concerns": [
+    "P2-3 잔주름"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "주름 개선|경미 (fine lines)",
+   "basis": "경미 (fine lines) · 「스킨부스터(리쥬란)」 → 계열 M4 ∩ 원천 제품 리쥬란",
+   "evidence": {
+    "severity": "경미 (fine lines)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "제품으로 좁힘",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "basis": "중등도 (넓은 모공, 거친 피부결) · 「프락셔널 레이저」 → 「프락셔널」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "중등도 (넓은 모공, 거친 피부결)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": null,
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "basis": "중등도 (넓은 모공, 거친 피부결) · 「MTS/니들RF」 → MTS→부위 없음 · 후보 전부 · 니들RF→부위 없음 · 후보 전부",
+   "evidence": {
+    "severity": "중등도 (넓은 모공, 거친 피부결)",
+    "evidence_level": "high"
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": null,
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS",
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "두피",
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    },
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중등도 (넓은 모공, 거친 피부결)",
+   "basis": "중등도 (넓은 모공, 거친 피부결) · 「스킨부스터」 → 계열 M4 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중등도 (넓은 모공, 거친 피부결)",
+    "evidence_level": "high"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "basis": "중증 (심한 모공/흉터급 피부결) · 「CO2 프락셔널」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중증 (심한 모공/흉터급 피부결)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "basis": "중증 (심한 모공/흉터급 피부결) · 「PRP (엑소좀은 보조·근거 제한적)」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중증 (심한 모공/흉터급 피부결)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "basis": "중증 (심한 모공/흉터급 피부결) · 「스킨부스터」 → 계열 M4 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중증 (심한 모공/흉터급 피부결)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:피부결/모공:피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "from": "opt:피부결/모공",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "피부결/모공|중증 (심한 모공/흉터급 피부결)",
+   "basis": "중증 (심한 모공/흉터급 피부결) · 「니들RF」 → 계열 M11 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중증 (심한 모공/흉터급 피부결)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|경미 (표재성 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|경미 (표재성 색소)",
+   "basis": "경미 (표재성 색소) · 「피코토닝」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "경미 (표재성 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|경미 (표재성 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|경미 (표재성 색소)",
+   "basis": "경미 (표재성 색소) · 「IPL」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "경미 (표재성 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|경미 (표재성 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|경미 (표재성 색소)",
+   "basis": "경미 (표재성 색소) · 「비타민C 이온토포레시스」 → 「이온토포레시스」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "경미 (표재성 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-036 얼굴 전체 침투 관리"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중등도 (기미, 혼합 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중등도 (기미, 혼합 색소)",
+   "basis": "중등도 (기미, 혼합 색소) · 「피코토닝」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중등도 (기미, 혼합 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중등도 (기미, 혼합 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중등도 (기미, 혼합 색소)",
+   "basis": "중등도 (기미, 혼합 색소) · 「스킨부스터(미백성분)」 → 계열 M4 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중등도 (기미, 혼합 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중등도 (기미, 혼합 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중등도 (기미, 혼합 색소)",
+   "basis": "중등도 (기미, 혼합 색소) · 「저출력 IPL(병용 보조)」 → 「IPL」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "중등도 (기미, 혼합 색소)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중증 (깊은 기미, 진피 색소)",
+   "basis": "중증 (깊은 기미, 진피 색소) · 「저출력 피코토닝」 → 「토닝」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "중증 (깊은 기미, 진피 색소)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": null,
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중증 (깊은 기미, 진피 색소)",
+   "basis": "중증 (깊은 기미, 진피 색소) · 「트라넥삼산(경구+주사)」 → G10 — 경구 = 처방약(시술 아님) · 주사 갈래 = U5-018 얼굴 전체 스킨부스터 후보(경로 원천에 없음 → 원천 질문 · 5단계 step7_names)",
+   "evidence": {
+    "severity": "중증 (깊은 기미, 진피 색소)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "후보 동의어(G10 — 주사 갈래) · 경구 = 시술 아님",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중증 (깊은 기미, 진피 색소)",
+   "basis": "중증 (깊은 기미, 진피 색소) · 「마이크로니들링+미백약물」 → 계열 M12 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중증 (깊은 기미, 진피 색소)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:색소/기미:색소/기미|중증 (깊은 기미, 진피 색소)",
+   "from": "opt:색소/기미",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "색소/기미|중증 (깊은 기미, 진피 색소)",
+   "basis": "중증 (깊은 기미, 진피 색소) · 「스킨부스터」 → 계열 M4 — 원천에 부위 없음",
+   "evidence": {
+    "severity": "중증 (깊은 기미, 진피 색소)",
+    "evidence_level": "moderate"
+   },
+   "lowering": "부위 없음 · 후보 전부",
+   "to_family": null,
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|경미 (활성 여드름 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|경미 (활성 여드름 위주)",
+   "basis": "경미 (활성 여드름 위주) · 「ALA-PDT」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "경미 (활성 여드름 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-049 얼굴 전체 광역학치료(PDT)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|경미 (활성 여드름 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|경미 (활성 여드름 위주)",
+   "basis": "경미 (활성 여드름 위주) · 「필링(살리실산/글리콜산)」 → 「필링」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "경미 (활성 여드름 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|경미 (활성 여드름 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|경미 (활성 여드름 위주)",
+   "basis": "경미 (활성 여드름 위주) · 「LED(블루라이트)」 → 「LED」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "경미 (활성 여드름 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": null,
+   "units": [
+    "U5-050 얼굴 전체 LED",
+    "U5-043 두피 LED"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-043 두피 LED",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중등도 (여드름 흉터 위주)",
+   "basis": "중등도 (여드름 흉터 위주) · 「프락셔널 레이저」 → 「프락셔널」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "중등도 (여드름 흉터 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치 · 후보 여럿",
+   "to_family": null,
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중등도 (여드름 흉터 위주)",
+   "basis": "중등도 (여드름 흉터 위주) · 「서브시전(subcision)」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중등도 (여드름 흉터 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중등도 (여드름 흉터 위주)",
+   "basis": "중등도 (여드름 흉터 위주) · 「MTS/니들RF」 → MTS→부위 없음 · 후보 전부 · 니들RF→부위 없음 · 후보 전부",
+   "evidence": {
+    "severity": "중등도 (여드름 흉터 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": null,
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS",
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "두피",
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    },
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중등도 (여드름 흉터 위주)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중등도 (여드름 흉터 위주)",
+   "basis": "중등도 (여드름 흉터 위주) · 「PRP」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중등도 (여드름 흉터 위주)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "basis": "중증 (깊은 박스카/아이스픽 흉터) · 「CO2 프락셔널」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중증 (깊은 박스카/아이스픽 흉터)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "basis": "중증 (깊은 박스카/아이스픽 흉터) · 「서브시전」 → 5단계 단위 시술 이름 · 동의어 완전 일치",
+   "evidence": {
+    "severity": "중증 (깊은 박스카/아이스픽 흉터)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "basis": "중증 (깊은 박스카/아이스픽 흉터) · 「필러(HA/CaHA)」 → 필러→부위 없음 · 후보 전부 · CaHA→이름 일치",
+   "evidence": {
+    "severity": "중증 (깊은 박스카/아이스픽 흉터)",
+    "evidence_level": "high"
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": null,
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러",
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "얼굴 전체",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C5",
+     "level": "이상함",
+     "why": "흉터에 필러 8 부위 전부(입술 · 코 · 턱끝 · 관자놀이 …)",
+     "action": "필러 8 빼기 → 계열만(M2)"
+    }
+   ]
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "basis": "중증 (깊은 박스카/아이스픽 흉터) · 「TCA Cross」 → 「TCA」 → 5단계 단위 시술",
+   "evidence": {
+    "severity": "중증 (깊은 박스카/아이스픽 흉터)",
+    "evidence_level": "high"
+   },
+   "lowering": "이름 일치",
+   "to_family": null,
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "엣지",
+   "key": "E:opt:여드름/흉터:여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "from": "opt:여드름/흉터",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "④ treatment-optimization optimal_combo",
+   "source_id": "여드름/흉터|중증 (깊은 박스카/아이스픽 흉터)",
+   "basis": "중증 (깊은 박스카/아이스픽 흉터) · 「PRP/엑소좀」 → PRP→이름 일치 · 엑소좀→이름 일치 · 후보 여럿",
+   "evidence": {
+    "severity": "중증 (깊은 박스카/아이스픽 흉터)",
+    "evidence_level": "high"
+   },
+   "lowering": "복합 · 나눠 풂",
+   "to_family": null,
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-040 두피 엑소좀",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-1:0",
+   "combo": "RC-PC-P4-1",
+   "combo_name": "스킨부스터 단독",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-2:0",
+   "combo": "RC-PC-P4-2",
+   "combo_name": "MTS + PRP + 스킨부스터 (골든루틴)",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "마이크로니들링(MTS)",
+   "family": "M12",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-2:1",
+   "combo": "RC-PC-P4-2",
+   "combo_name": "MTS + PRP + 스킨부스터 (골든루틴)",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-2:2",
+   "combo": "RC-PC-P4-2",
+   "combo_name": "MTS + PRP + 스킨부스터 (골든루틴)",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "제품으로 좁힘",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-3:0",
+   "combo": "RC-PC-P4-3",
+   "combo_name": "레이저 + MTS + PRP + 스킨부스터",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "계열만(M8)"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-3:1",
+   "combo": "RC-PC-P4-3",
+   "combo_name": "레이저 + MTS + PRP + 스킨부스터",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "마이크로니들링(MTS)",
+   "family": "M12",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-3:2",
+   "combo": "RC-PC-P4-3",
+   "combo_name": "레이저 + MTS + PRP + 스킨부스터",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P4-3:3",
+   "combo": "RC-PC-P4-3",
+   "combo_name": "레이저 + MTS + PRP + 스킨부스터",
+   "concerns": [
+    "J10-피부결 피부결",
+    "P5 색소/미백",
+    "P4 항노화"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "제품으로 좁힘",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-1:0",
+   "combo": "RC-PC-P5-1",
+   "combo_name": "레이저 토닝",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「레이저 토닝」",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-2:0",
+   "combo": "RC-PC-P5-2",
+   "combo_name": "레이저 토닝 + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「레이저 토닝」",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-2:1",
+   "combo": "RC-PC-P5-2",
+   "combo_name": "레이저 토닝 + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-2:2",
+   "combo": "RC-PC-P5-2",
+   "combo_name": "레이저 토닝 + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "제품으로 좁힘",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-3:0",
+   "combo": "RC-PC-P5-3",
+   "combo_name": "피코레이저 + 니들RF + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "이름으로 좁힘 · 후보 여럿",
+   "basis": "패키지 이름 조각 「피코레이저」",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-3:1",
+   "combo": "RC-PC-P5-3",
+   "combo_name": "피코레이저 + 니들RF + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "니들RF",
+   "family": "M11",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-3:2",
+   "combo": "RC-PC-P5-3",
+   "combo_name": "피코레이저 + 니들RF + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P5-3:3",
+   "combo": "RC-PC-P5-3",
+   "combo_name": "피코레이저 + 니들RF + PRP + 스킨부스터",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "제품으로 좁힘",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-1:0",
+   "combo": "RC-PC-P7-1",
+   "combo_name": "스킨보톡스 + 레이저",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "보톡스",
+   "family": "M1",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「스킨보톡스」",
+   "units": [
+    "U5-009 얼굴 전체 스킨보톡스"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-1:1",
+   "combo": "RC-PC-P7-1",
+   "combo_name": "스킨보톡스 + 레이저",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "제품으로 내림",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-2:0",
+   "combo": "RC-PC-P7-2",
+   "combo_name": "니들RF + PRP",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "니들RF",
+   "family": "M11",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-2:1",
+   "combo": "RC-PC-P7-2",
+   "combo_name": "니들RF + PRP",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-3:0",
+   "combo": "RC-PC-P7-3",
+   "combo_name": "니들RF + 레이저 + PRP + 스킨부스터",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "니들RF",
+   "family": "M11",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-3:1",
+   "combo": "RC-PC-P7-3",
+   "combo_name": "니들RF + 레이저 + PRP + 스킨부스터",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "계열만(M8)"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-3:2",
+   "combo": "RC-PC-P7-3",
+   "combo_name": "니들RF + 레이저 + PRP + 스킨부스터",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P7-3:3",
+   "combo": "RC-PC-P7-3",
+   "combo_name": "니들RF + 레이저 + PRP + 스킨부스터",
+   "concerns": [
+    "P7 모공"
+   ],
+   "source": "problem-combos",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "제품으로 좁힘",
+   "basis": "원천 제품 칸 이름 → 5단계 제품 연결",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P9-1:0",
+   "combo": "RC-PC-P9-1",
+   "combo_name": "프락셔널 레이저",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "이름으로 좁힘 · 후보 여럿",
+   "basis": "패키지 이름 조각 「프락셔널 레이저」",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P9-2:0",
+   "combo": "RC-PC-P9-2",
+   "combo_name": "프락셔널 + 니들RF + PRP",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "problem-combos",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "이름으로 좁힘 · 후보 여럿",
+   "basis": "패키지 이름 조각 「프락셔널」",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P9-2:1",
+   "combo": "RC-PC-P9-2",
+   "combo_name": "프락셔널 + 니들RF + PRP",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "problem-combos",
+   "raw": "니들RF",
+   "family": "M11",
+   "status": "후보 전부",
+   "basis": "고민(대분류)에 부위 없음 · 이름 · 제품으로 못 좁힘",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-PC-P9-2:2",
+   "combo": "RC-PC-P9-2",
+   "combo_name": "프락셔널 + 니들RF + PRP",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "problem-combos",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "이름으로 내림",
+   "basis": "패키지 이름 조각 「PRP」",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R3:0",
+   "combo": "RC-RE-R3",
+   "combo_name": "피부 재생 골든루틴",
+   "concerns": [
+    "목적:재생",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "마이크로니들링(MTS)",
+   "family": "M12",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R3:1",
+   "combo": "RC-RE-R3",
+   "combo_name": "피부 재생 골든루틴",
+   "concerns": [
+    "목적:재생",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-020 얼굴 전체 PRP",
+    "U5-040 두피 엑소좀",
+    "U5-042 두피 PRP",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C7",
+     "level": "이상함",
+     "why": "레시피 구성 「… + PRP」인데 M5 후보 전부(엑소좀 3 · 두피 PRP · 두피 엑소좀 포함)",
+     "action": "U5-020 얼굴 전체 PRP 로 좁힘(이름 조각)"
+    },
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀, U5-042 두피 PRP",
+     "action": "두피 2 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R3:2",
+   "combo": "RC-RE-R3",
+   "combo_name": "피부 재생 골든루틴",
+   "concerns": [
+    "목적:재생",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R4:0",
+   "combo": "RC-RE-R4",
+   "combo_name": "탄력 + 주름 집중",
+   "concerns": [
+    "목적:타이트닝(탄력)",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "기기 리프팅",
+   "family": "M9",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-091 얼굴 전체 고주파 리프팅",
+    "U5-102 얼굴 전체 HIFU 리프팅",
+    "U5-103 턱선 HIFU 리프팅",
+    "U5-104 눈가 고주파 리프팅",
+    "U5-139 얼굴 전체 마이크로웨이브",
+    "U5-140 얼굴 전체 초음파 리프팅(SUPERB)",
+    "U5-152 바디 고주파 리프팅",
+    "U5-153 겨드랑이 마이크로웨이브",
+    "U5-154 바디 HIFU 리프팅"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "바디",
+    "얼굴 전체",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M9 9 전부 — 바디 고주파 · 바디 HIFU · 겨드랑이 마이크로웨이브(미라드라이)까지",
+     "action": "얼굴 영역만 · 겨드랑이 마이크로웨이브 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R4:1",
+   "combo": "RC-RE-R4",
+   "combo_name": "탄력 + 주름 집중",
+   "concerns": [
+    "목적:타이트닝(탄력)",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "보톡스",
+   "family": "M1",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "purposes 「주름」 7개로 좁힘"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R4:2",
+   "combo": "RC-RE-R4",
+   "combo_name": "탄력 + 주름 집중",
+   "concerns": [
+    "목적:타이트닝(탄력)",
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "combo-recipes",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R5:0",
+   "combo": "RC-RE-R5",
+   "combo_name": "모공/흉터 집중",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "combo-recipes",
+   "raw": "니들RF",
+   "family": "M11",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R5:1",
+   "combo": "RC-RE-R5",
+   "combo_name": "모공/흉터 집중",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "combo-recipes",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-020 얼굴 전체 PRP",
+    "U5-040 두피 엑소좀",
+    "U5-042 두피 PRP",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C7",
+     "level": "이상함",
+     "why": "레시피 구성 「… + PRP」인데 M5 후보 전부(엑소좀 3 · 두피 PRP · 두피 엑소좀 포함)",
+     "action": "U5-020 얼굴 전체 PRP 로 좁힘(이름 조각)"
+    },
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀, U5-042 두피 PRP",
+     "action": "두피 2 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R6:0",
+   "combo": "RC-RE-R6",
+   "combo_name": "동안 쁘띠 패키지",
+   "concerns": [
+    "P4 항노화"
+   ],
+   "source": "combo-recipes",
+   "raw": "보톡스",
+   "family": "M1",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-001 이마 보톡스",
+    "U5-002 미간 보톡스",
+    "U5-003 눈가 보톡스",
+    "U5-004 턱끝 보톡스",
+    "U5-005 콧등 보톡스",
+    "U5-006 사각턱 보톡스",
+    "U5-007 승모근 보톡스",
+    "U5-008 종아리 보톡스",
+    "U5-009 얼굴 전체 스킨보톡스",
+    "U5-010 겨드랑이 보톡스",
+    "U5-011 발 보톡스",
+    "U5-012 손 보톡스",
+    "U5-013 잇몸 보톡스",
+    "U5-014 입꼬리 보톡스",
+    "U5-015 코끝 보톡스",
+    "U5-016 턱선 보톡스",
+    "U5-017 목 보톡스"
+   ],
+   "unit_sites": [
+    "겨드랑이",
+    "눈가",
+    "목",
+    "미간",
+    "발",
+    "사각턱",
+    "손",
+    "승모근",
+    "얼굴 전체",
+    "이마",
+    "입꼬리",
+    "잇몸",
+    "종아리",
+    "코끝",
+    "콧등",
+    "턱끝",
+    "턱선"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C1",
+     "level": "이상함",
+     "why": "M1 17 전부 — 종아리 · 승모근 · 겨드랑이/손/발(다한증) · 잇몸 보톡스까지",
+     "action": "계열만(M1) · 또는 얼굴 영역만"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R6:1",
+   "combo": "RC-RE-R6",
+   "combo_name": "동안 쁘띠 패키지",
+   "concerns": [
+    "P4 항노화"
+   ],
+   "source": "combo-recipes",
+   "raw": "필러",
+   "family": "M2",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C5b",
+     "level": "확인 필요",
+     "why": "필러 8 부위 전부(코 · 입술 포함)",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R7:0",
+   "combo": "RC-RE-R7",
+   "combo_name": "레이저 토닝 + 재생",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "combo-recipes",
+   "raw": "레이저",
+   "family": "M8",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)",
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀",
+    "U5-030 얼굴 전체 IPL",
+    "U5-031 얼굴 전체 레이저",
+    "U5-039 두피 다이오드 레이저",
+    "U5-043 두피 LED",
+    "U5-049 얼굴 전체 광역학치료(PDT)",
+    "U5-050 얼굴 전체 LED",
+    "U5-099 얼굴 전체 엔디야그 레이저",
+    "U5-100 겨드랑이 레이저 제모",
+    "U5-101 전신 레이저 제모",
+    "U5-131 병변 레이저",
+    "U5-137 얼굴 전체 루비 레이저",
+    "U5-138 얼굴 전체 KTP 레이저",
+    "U5-141 얼굴 전체 PDL 레이저",
+    "U5-144 인중 레이저 제모",
+    "U5-145 구레나룻 레이저 제모",
+    "U5-146 팔 레이저 제모",
+    "U5-147 다리 레이저 제모",
+    "U5-148 비키니 레이저 제모",
+    "U5-149 수염 레이저 제모",
+    "U5-150 가슴 레이저 제모",
+    "U5-151 등 레이저 제모",
+    "U5-155 바디 레이저 지방분해",
+    "U5-156 얼굴 전체 엑시머 레이저",
+    "U5-157 얼굴 전체 UVB 광선치료"
+   ],
+   "unit_sites": [
+    "가슴",
+    "겨드랑이",
+    "구레나룻",
+    "다리",
+    "두피",
+    "등",
+    "바디",
+    "병변 단위",
+    "비키니",
+    "수염",
+    "얼굴 전체",
+    "인중",
+    "전신",
+    "팔"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C7",
+     "level": "이상함",
+     "why": "조합 이름 「레이저 토닝」인데 M8 31 전부",
+     "action": "U5-023 토닝으로 좁힘(이름 조각)"
+    },
+    {
+     "cause": "C2",
+     "level": "이상함",
+     "why": "M8 31 전부 — 제모 레이저 10 · 바디 지방분해 · 두피 다이오드 · 두피 LED 포함",
+     "action": "위 조치"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R7:1",
+   "combo": "RC-RE-R7",
+   "combo_name": "레이저 토닝 + 재생",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "combo-recipes",
+   "raw": "PRP/자가혈",
+   "family": "M5",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-020 얼굴 전체 PRP",
+    "U5-040 두피 엑소좀",
+    "U5-042 두피 PRP",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C7",
+     "level": "확인 필요",
+     "why": "레시피 구성 「재생」에 M5 후보 전부(PRP · 엑소좀 · 두피 포함)",
+     "action": "사람 확인 — 「재생」을 PRP 로 볼지"
+    },
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀, U5-042 두피 PRP",
+     "action": "두피 2 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-RE-R7:2",
+   "combo": "RC-RE-R7",
+   "combo_name": "레이저 토닝 + 재생",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "combo-recipes",
+   "raw": "스킨부스터",
+   "family": "M4",
+   "status": "후보 전부",
+   "basis": "레시피에 부위 · 제품 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-02:0",
+   "combo": "RC-SQ-02",
+   "combo_name": "피부결 개선",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "IPL",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-02:1",
+   "combo": "RC-SQ-02",
+   "combo_name": "피부결 개선",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "레이저토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-02:2",
+   "combo": "RC-SQ-02",
+   "combo_name": "피부결 개선",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "스킨부스터",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-04:0",
+   "combo": "RC-SQ-04",
+   "combo_name": "여드름 집중",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "MTS(미세채널 오픈)",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M12 — 원천에 부위 없음",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-04:2",
+   "combo": "RC-SQ-04",
+   "combo_name": "여드름 집중",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "광조사(PDT)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「PDT」 → 5단계 단위 시술",
+   "units": [
+    "U5-049 얼굴 전체 광역학치료(PDT)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-05:0",
+   "combo": "RC-SQ-05",
+   "combo_name": "색소 집중",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "피코토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-05:1",
+   "combo": "RC-SQ-05",
+   "combo_name": "색소 집중",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "IPL",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-05:2",
+   "combo": "RC-SQ-05",
+   "combo_name": "색소 집중",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "비타민C 이온토포레시스",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「이온토포레시스」 → 5단계 단위 시술",
+   "units": [
+    "U5-036 얼굴 전체 침투 관리"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-08:0",
+   "combo": "RC-SQ-08",
+   "combo_name": "흉터 집중",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "프락셔널 CO2",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「CO2」 → 5단계 단위 시술",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-08:1",
+   "combo": "RC-SQ-08",
+   "combo_name": "흉터 집중",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "MTS",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M12 — 원천에 부위 없음",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-SQ-08:2",
+   "combo": "RC-SQ-08",
+   "combo_name": "흉터 집중",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-sequence.common_combos",
+   "raw": "PRP 도포",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「PRP」 → 5단계 단위 시술",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-042 두피 PRP"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-042 두피 PRP",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Wrinkl-경미:0",
+   "combo": "RC-OP-Wrinkl-경미",
+   "combo_name": "주름 개선 · 경미 (fine lines)",
+   "concerns": [
+    "P2-3 잔주름"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "레이저토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Wrinkl-경미:1",
+   "combo": "RC-OP-Wrinkl-경미",
+   "combo_name": "주름 개선 · 경미 (fine lines)",
+   "concerns": [
+    "P2-3 잔주름"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터(리쥬란)",
+   "family": null,
+   "status": "제품으로 좁힘",
+   "basis": "계열 M4 ∩ 원천 제품 리쥬란",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-경미:0",
+   "combo": "RC-OP-Volume-경미",
+   "combo_name": "볼륨 손실 · 경미 (미세 볼륨 저하)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "HA 볼류마이징 스킨부스터",
+   "family": null,
+   "status": "상위 부위로 내림(얼굴 전체) · 후보 여럿",
+   "basis": "계열 M4 → 계열 M4 에 부위 볼 단위 시술 없음 · 상위 부위 얼굴 전체 층(R21)",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-경미:1",
+   "combo": "RC-OP-Volume-경미",
+   "combo_name": "볼륨 손실 · 경미 (미세 볼륨 저하)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "바이오스티뮬레이터(쥬베룩)",
+   "family": null,
+   "status": "제품으로 내림",
+   "basis": "계열 M3 ∩ 원천 제품 쥬베룩/바이오스티뮬레이터",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중등도:0",
+   "combo": "RC-OP-Volume-중등도",
+   "combo_name": "볼륨 손실 · 중등도 (눈에 띄는 볼륨 감소)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "HA 필러",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M2 — 원천에 부위 없음",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C5b",
+     "level": "확인 필요",
+     "why": "필러 8 부위 전부(코 · 입술 포함)",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중등도:1",
+   "combo": "RC-OP-Volume-중등도",
+   "combo_name": "볼륨 손실 · 중등도 (눈에 띄는 볼륨 감소)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "바이오스티뮬레이터(스컬트라/엘란쎄)",
+   "family": null,
+   "status": "제품으로 내림",
+   "basis": "계열 M3 ∩ 원천 제품 스컬트라/엘란쎄/바이오스티뮬레이터",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중증:0",
+   "combo": "RC-OP-Volume-중증",
+   "combo_name": "볼륨 손실 · 중증 (심한 볼륨 손실/골격 변화)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "HA 필러(딥)",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M2 — 원천에 부위 없음",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C5b",
+     "level": "확인 필요",
+     "why": "필러 8 부위 전부(코 · 입술 포함)",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중증:1",
+   "combo": "RC-OP-Volume-중증",
+   "combo_name": "볼륨 손실 · 중증 (심한 볼륨 손실/골격 변화)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "CaHA(레디에스)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "계열 M3 — 원천에 부위 없음",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중증:2",
+   "combo": "RC-OP-Volume-중증",
+   "combo_name": "볼륨 손실 · 중증 (심한 볼륨 손실/골격 변화)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "지방이식",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M6 — 원천에 부위 없음",
+   "units": [
+    "U5-021 얼굴 전체 지방이식",
+    "U5-092 이마 지방이식",
+    "U5-093 볼 지방이식",
+    "U5-094 눈밑 지방이식",
+    "U5-095 관자놀이 지방이식",
+    "U5-096 턱끝 지방이식"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "얼굴 전체",
+    "이마",
+    "턱끝"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Volume-중증:3",
+   "combo": "RC-OP-Volume-중증",
+   "combo_name": "볼륨 손실 · 중증 (심한 볼륨 손실/골격 변화)",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "바이오스티뮬레이터",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "계열 M3 — 원천에 부위 없음",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-경미:0",
+   "combo": "RC-OP-Skin-경미",
+   "combo_name": "피부결/모공 · 경미 (가벼운 피부결 저하)",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "레이저토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-경미:1",
+   "combo": "RC-OP-Skin-경미",
+   "combo_name": "피부결/모공 · 경미 (가벼운 피부결 저하)",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "필링(약한 산)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「필링」 → 5단계 단위 시술",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-경미:2",
+   "combo": "RC-OP-Skin-경미",
+   "combo_name": "피부결/모공 · 경미 (가벼운 피부결 저하)",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중등도:0",
+   "combo": "RC-OP-Skin-중등도",
+   "combo_name": "피부결/모공 · 중등도 (넓은 모공, 거친 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "프락셔널 레이저",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「프락셔널」 → 5단계 단위 시술",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중등도:1",
+   "combo": "RC-OP-Skin-중등도",
+   "combo_name": "피부결/모공 · 중등도 (넓은 모공, 거친 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "MTS/니들RF",
+   "family": null,
+   "status": "복합 · 나눠 풂",
+   "basis": "MTS→부위 없음 · 후보 전부 · 니들RF→부위 없음 · 후보 전부",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS",
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "두피",
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    },
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중등도:2",
+   "combo": "RC-OP-Skin-중등도",
+   "combo_name": "피부결/모공 · 중등도 (넓은 모공, 거친 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중증:0",
+   "combo": "RC-OP-Skin-중증",
+   "combo_name": "피부결/모공 · 중증 (심한 모공/흉터급 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "CO2 프락셔널",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중증:1",
+   "combo": "RC-OP-Skin-중증",
+   "combo_name": "피부결/모공 · 중증 (심한 모공/흉터급 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "PRP (엑소좀은 보조·근거 제한적)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중증:2",
+   "combo": "RC-OP-Skin-중증",
+   "combo_name": "피부결/모공 · 중증 (심한 모공/흉터급 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Skin-중증:3",
+   "combo": "RC-OP-Skin-중증",
+   "combo_name": "피부결/모공 · 중증 (심한 모공/흉터급 피부결)",
+   "concerns": [
+    "P7 모공",
+    "J10-피부결 피부결"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "니들RF",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M11 — 원천에 부위 없음",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-경미:0",
+   "combo": "RC-OP-Pigmen-경미",
+   "combo_name": "색소/기미 · 경미 (표재성 색소)",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "피코토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-경미:1",
+   "combo": "RC-OP-Pigmen-경미",
+   "combo_name": "색소/기미 · 경미 (표재성 색소)",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "IPL",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-경미:2",
+   "combo": "RC-OP-Pigmen-경미",
+   "combo_name": "색소/기미 · 경미 (표재성 색소)",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "비타민C 이온토포레시스",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「이온토포레시스」 → 5단계 단위 시술",
+   "units": [
+    "U5-036 얼굴 전체 침투 관리"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중등도:0",
+   "combo": "RC-OP-Pigmen-중등도",
+   "combo_name": "색소/기미 · 중등도 (기미, 혼합 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "피코토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중등도:2",
+   "combo": "RC-OP-Pigmen-중등도",
+   "combo_name": "색소/기미 · 중등도 (기미, 혼합 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터(미백성분)",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중등도:3",
+   "combo": "RC-OP-Pigmen-중등도",
+   "combo_name": "색소/기미 · 중등도 (기미, 혼합 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "저출력 IPL(병용 보조)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「IPL」 → 5단계 단위 시술",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중증:0",
+   "combo": "RC-OP-Pigmen-중증",
+   "combo_name": "색소/기미 · 중증 (깊은 기미, 진피 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "저출력 피코토닝",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「토닝」 → 5단계 단위 시술",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-024 얼굴 전체 알렉스토닝",
+    "U5-025 얼굴 전체 토닝 (매질 미지정)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중증:1",
+   "combo": "RC-OP-Pigmen-중증",
+   "combo_name": "색소/기미 · 중증 (깊은 기미, 진피 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "트라넥삼산(경구+주사)",
+   "family": null,
+   "status": "후보 동의어(G10 — 주사 갈래) · 경구 = 시술 아님",
+   "basis": "G10 — 경구 = 처방약(시술 아님) · 주사 갈래 = U5-018 얼굴 전체 스킨부스터 후보(경로 원천에 없음 → 원천 질문 · 5단계 step7_names)",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중증:2",
+   "combo": "RC-OP-Pigmen-중증",
+   "combo_name": "색소/기미 · 중증 (깊은 기미, 진피 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "마이크로니들링+미백약물",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M12 — 원천에 부위 없음",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Pigmen-중증:3",
+   "combo": "RC-OP-Pigmen-중증",
+   "combo_name": "색소/기미 · 중증 (깊은 기미, 진피 색소)",
+   "concerns": [
+    "P5-1 기미",
+    "P5 색소/미백"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "스킨부스터",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M4 — 원천에 부위 없음",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-037 얼굴 전체 무바늘 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-경미:0",
+   "combo": "RC-OP-Acne-경미",
+   "combo_name": "여드름/흉터 · 경미 (활성 여드름 위주)",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "ALA-PDT",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-049 얼굴 전체 광역학치료(PDT)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-경미:1",
+   "combo": "RC-OP-Acne-경미",
+   "combo_name": "여드름/흉터 · 경미 (활성 여드름 위주)",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "필링(살리실산/글리콜산)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「필링」 → 5단계 단위 시술",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-경미:2",
+   "combo": "RC-OP-Acne-경미",
+   "combo_name": "여드름/흉터 · 경미 (활성 여드름 위주)",
+   "concerns": [
+    "P6-1 급성(활성) 여드름"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "LED(블루라이트)",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「LED」 → 5단계 단위 시술",
+   "units": [
+    "U5-050 얼굴 전체 LED",
+    "U5-043 두피 LED"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-043 두피 LED",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중등도:0",
+   "combo": "RC-OP-Acne-중등도",
+   "combo_name": "여드름/흉터 · 중등도 (여드름 흉터 위주)",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "프락셔널 레이저",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「프락셔널」 → 5단계 단위 시술",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중등도:1",
+   "combo": "RC-OP-Acne-중등도",
+   "combo_name": "여드름/흉터 · 중등도 (여드름 흉터 위주)",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "서브시전(subcision)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중등도:2",
+   "combo": "RC-OP-Acne-중등도",
+   "combo_name": "여드름/흉터 · 중등도 (여드름 흉터 위주)",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "MTS/니들RF",
+   "family": null,
+   "status": "복합 · 나눠 풂",
+   "basis": "MTS→부위 없음 · 후보 전부 · 니들RF→부위 없음 · 후보 전부",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS",
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "두피",
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    },
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중등도:3",
+   "combo": "RC-OP-Acne-중등도",
+   "combo_name": "여드름/흉터 · 중등도 (여드름 흉터 위주)",
+   "concerns": [
+    "P9-1 여드름흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "PRP",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중증:0",
+   "combo": "RC-OP-Acne-중증",
+   "combo_name": "여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터)",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "CO2 프락셔널",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중증:1",
+   "combo": "RC-OP-Acne-중증",
+   "combo_name": "여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터)",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "서브시전",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-045 얼굴 전체 서브시전"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중증:2",
+   "combo": "RC-OP-Acne-중증",
+   "combo_name": "여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터)",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "필러(HA/CaHA)",
+   "family": null,
+   "status": "복합 · 나눠 풂",
+   "basis": "필러→부위 없음 · 후보 전부 · CaHA→이름 일치",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러",
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "얼굴 전체",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C5",
+     "level": "이상함",
+     "why": "흉터에 필러 8 부위 전부(입술 · 코 · 턱끝 · 관자놀이 …)",
+     "action": "필러 8 빼기 → 계열만(M2)"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중증:3",
+   "combo": "RC-OP-Acne-중증",
+   "combo_name": "여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터)",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "TCA Cross",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「TCA」 → 5단계 단위 시술",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-OP-Acne-중증:4",
+   "combo": "RC-OP-Acne-중증",
+   "combo_name": "여드름/흉터 · 중증 (깊은 박스카/아이스픽 흉터)",
+   "concerns": [
+    "P9 흉터"
+   ],
+   "source": "treatment-optimization.by_concern",
+   "raw": "PRP/엑소좀",
+   "family": null,
+   "status": "복합 · 나눠 풂",
+   "basis": "PRP→이름 일치 · 엑소좀→이름 일치 · 후보 여럿",
+   "units": [
+    "U5-020 얼굴 전체 PRP",
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-040 두피 엑소좀",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-volume:0",
+   "combo": "RC-CP-volume",
+   "combo_name": "볼륨 회복 비교",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "procedure-comparison",
+   "raw": "히알루론산 필러",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M2 — 원천에 부위 없음",
+   "units": [
+    "U5-082 팔자 필러",
+    "U5-083 입술 필러",
+    "U5-084 코 필러",
+    "U5-085 턱끝 필러",
+    "U5-086 이마 필러",
+    "U5-087 볼 필러",
+    "U5-088 눈밑 필러",
+    "U5-089 관자놀이 필러"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "이마",
+    "입술",
+    "코",
+    "턱끝",
+    "팔자"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C5b",
+     "level": "확인 필요",
+     "why": "필러 8 부위 전부(코 · 입술 포함)",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-volume:1",
+   "combo": "RC-CP-volume",
+   "combo_name": "볼륨 회복 비교",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "procedure-comparison",
+   "raw": "스컬트라 (PLLA)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-volume:2",
+   "combo": "RC-CP-volume",
+   "combo_name": "볼륨 회복 비교",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "procedure-comparison",
+   "raw": "엘란쎄 (PCL)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-volume:3",
+   "combo": "RC-CP-volume",
+   "combo_name": "볼륨 회복 비교",
+   "concerns": [
+    "목적:볼륨 회복(충전)"
+   ],
+   "source": "procedure-comparison",
+   "raw": "자가지방이식",
+   "family": null,
+   "status": "부위 없음 · 후보 전부",
+   "basis": "계열 M6 — 원천에 부위 없음",
+   "units": [
+    "U5-021 얼굴 전체 지방이식",
+    "U5-092 이마 지방이식",
+    "U5-093 볼 지방이식",
+    "U5-094 눈밑 지방이식",
+    "U5-095 관자놀이 지방이식",
+    "U5-096 턱끝 지방이식"
+   ],
+   "unit_sites": [
+    "관자놀이",
+    "눈밑",
+    "볼",
+    "얼굴 전체",
+    "이마",
+    "턱끝"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-skin_texture:0",
+   "combo": "RC-CP-skin_texture",
+   "combo_name": "피부결 개선 비교",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "procedure-comparison",
+   "raw": "마이크로니들RF (시크릿/인모드)",
+   "family": null,
+   "status": "제품으로 좁힘",
+   "basis": "계열 M11 ∩ 원천 제품 시크릿/인모드",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-skin_texture:1",
+   "combo": "RC-CP-skin_texture",
+   "combo_name": "피부결 개선 비교",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "procedure-comparison",
+   "raw": "CO2 프랙셔널 레이저",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「CO2」 → 5단계 단위 시술",
+   "units": [
+    "U5-028 얼굴 전체 CO2 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-skin_texture:2",
+   "combo": "RC-CP-skin_texture",
+   "combo_name": "피부결 개선 비교",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "procedure-comparison",
+   "raw": "MTS (더마펜/더마스탬프)",
+   "family": null,
+   "status": "제품으로 좁힘",
+   "basis": "계열 M12 ∩ 원천 제품 더마펜/더마스탬프",
+   "units": [
+    "U5-032 얼굴 전체 MTS",
+    "U5-112 두피 MTS"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-112 두피 MTS",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-skin_texture:3",
+   "combo": "RC-CP-skin_texture",
+   "combo_name": "피부결 개선 비교",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "procedure-comparison",
+   "raw": "피코 프랙셔널",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「프랙셔널」 → 5단계 단위 시술",
+   "units": [
+    "U5-026 얼굴 전체 알렉산드라이트 프락셀",
+    "U5-027 얼굴 전체 프락셀",
+    "U5-028 얼굴 전체 CO2 프락셀",
+    "U5-029 얼굴 전체 어븀야그 프락셀"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-skin_texture:4",
+   "combo": "RC-CP-skin_texture",
+   "combo_name": "피부결 개선 비교",
+   "concerns": [
+    "J10-피부결 피부결"
+   ],
+   "source": "procedure-comparison",
+   "raw": "실리콘피부관리 (아쿠아필/하이드라)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「아쿠아필」 → 5단계 단위 시술",
+   "units": [
+    "U5-035 얼굴 전체 박리 관리"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-pigment:0",
+   "combo": "RC-CP-pigment",
+   "combo_name": "색소 치료 비교",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "procedure-comparison",
+   "raw": "피코토닝",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-pigment:1",
+   "combo": "RC-CP-pigment",
+   "combo_name": "색소 치료 비교",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "procedure-comparison",
+   "raw": "Q-스위치 Nd:YAG",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「Q-스위치」 → 5단계 단위 시술",
+   "units": [
+    "U5-023 얼굴 전체 토닝",
+    "U5-131 병변 레이저"
+   ],
+   "unit_sites": [
+    "병변 단위",
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-pigment:2",
+   "combo": "RC-CP-pigment",
+   "combo_name": "색소 치료 비교",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "procedure-comparison",
+   "raw": "IPL (광선치료)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-030 얼굴 전체 IPL"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-pigment:3",
+   "combo": "RC-CP-pigment",
+   "combo_name": "색소 치료 비교",
+   "concerns": [
+    "P5 색소/미백"
+   ],
+   "source": "procedure-comparison",
+   "raw": "레이저토닝 (저출력 Nd:YAG)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-acne:0",
+   "combo": "RC-CP-acne",
+   "combo_name": "여드름 치료 비교",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "procedure-comparison",
+   "raw": "아그네스 (RF 니들 피지선)",
+   "family": null,
+   "status": "제품 이름 · 후보 여럿",
+   "basis": "5단계 제품 → 단위 시술(저장 · 상속 후보)",
+   "units": [
+    "U5-110 얼굴 전체 니들RF",
+    "U5-111 목 니들RF"
+   ],
+   "unit_sites": [
+    "목",
+    "얼굴 전체"
+   ],
+   "verdict": "확인 필요",
+   "causes": [
+    {
+     "cause": "C3b",
+     "level": "확인 필요",
+     "why": "목 니들RF(U5-111)가 같이 붙음",
+     "action": "사람 확인"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-acne:1",
+   "combo": "RC-CP-acne",
+   "combo_name": "여드름 치료 비교",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "procedure-comparison",
+   "raw": "PDT (광역동치료)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「PDT」 → 5단계 단위 시술",
+   "units": [
+    "U5-049 얼굴 전체 광역학치료(PDT)"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-acne:2",
+   "combo": "RC-CP-acne",
+   "combo_name": "여드름 치료 비교",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "procedure-comparison",
+   "raw": "살리실릭 필링",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「필링」 → 5단계 단위 시술",
+   "units": [
+    "U5-034 얼굴 전체 필링"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-acne:3",
+   "combo": "RC-CP-acne",
+   "combo_name": "여드름 치료 비교",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "procedure-comparison",
+   "raw": "압출+스킨스케일링",
+   "family": null,
+   "status": "복합 · 나눠 풂",
+   "basis": "압출→이름 일치 · 스킨스케일링→이름 일치 · 후보 여럿",
+   "units": [
+    "U5-048 얼굴 전체 압출",
+    "U5-044 두피 박리 관리",
+    "U5-035 얼굴 전체 박리 관리"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-044 두피 박리 관리",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-acne:4",
+   "combo": "RC-CP-acne",
+   "combo_name": "여드름 치료 비교",
+   "concerns": [
+    "P6 여드름"
+   ],
+   "source": "procedure-comparison",
+   "raw": "제네시스 (Nd:YAG 롱펄스)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「제네시스」 → 5단계 단위 시술",
+   "units": [
+    "U5-023 얼굴 전체 토닝"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-rejuvenation:0",
+   "combo": "RC-CP-rejuvenation",
+   "combo_name": "피부 재생 비교",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "procedure-comparison",
+   "raw": "스킨부스터 (쥬베룩/리쥬란)",
+   "family": null,
+   "status": "제품으로 좁힘",
+   "basis": "계열 M4 ∩ 원천 제품 쥬베룩/리쥬란",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터",
+    "U5-041 두피 스킨부스터"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-041 두피 스킨부스터",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-rejuvenation:1",
+   "combo": "RC-CP-rejuvenation",
+   "combo_name": "피부 재생 비교",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "procedure-comparison",
+   "raw": "PRP (자가혈 재생)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "5단계 단위 시술 이름 · 동의어 완전 일치",
+   "units": [
+    "U5-020 얼굴 전체 PRP"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-rejuvenation:2",
+   "combo": "RC-CP-rejuvenation",
+   "combo_name": "피부 재생 비교",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "procedure-comparison",
+   "raw": "엑소좀 (줄기세포 유래)",
+   "family": null,
+   "status": "이름 일치 · 후보 여럿",
+   "basis": "「엑소좀」 → 5단계 단위 시술",
+   "units": [
+    "U5-019 얼굴 전체 엑소좀",
+    "U5-040 두피 엑소좀",
+    "U5-142 얼굴 전체 엑소좀 도포"
+   ],
+   "unit_sites": [
+    "두피",
+    "얼굴 전체"
+   ],
+   "verdict": "이상함",
+   "causes": [
+    {
+     "cause": "C3",
+     "level": "이상함",
+     "why": "두피 단위 시술 U5-040 두피 엑소좀",
+     "action": "두피 1 빼기"
+    }
+   ]
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-rejuvenation:3",
+   "combo": "RC-CP-rejuvenation",
+   "combo_name": "피부 재생 비교",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "procedure-comparison",
+   "raw": "물광주사 (메소테라피)",
+   "family": null,
+   "status": "이름 일치",
+   "basis": "「물광」 → 5단계 단위 시술",
+   "units": [
+    "U5-018 얼굴 전체 스킨부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  },
+  {
+   "kind": "조합 구성",
+   "key": "C:RC-CP-rejuvenation:4",
+   "combo": "RC-CP-rejuvenation",
+   "combo_name": "피부 재생 비교",
+   "concerns": [
+    "P4-1 피부재생/탄력"
+   ],
+   "source": "procedure-comparison",
+   "raw": "바이오스티뮬레이터 (쥬베룩볼륨)",
+   "family": null,
+   "status": "제품으로 내림",
+   "basis": "계열 M3 ∩ 원천 제품 쥬베룩볼륨/바이오스티뮬레이터",
+   "units": [
+    "U5-090 얼굴 전체 콜라겐부스터"
+   ],
+   "unit_sites": [
+    "얼굴 전체"
+   ],
+   "verdict": "정상",
+   "causes": []
+  }
+ ]
+}

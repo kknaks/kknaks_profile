@@ -1,0 +1,34 @@
+{
+ "id": "DEC-2026-11-06-B6A-ING-02",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "ingredient_material"
+ },
+ "new_value": {
+  "canonical": "히알루론산",
+  "synonyms": []
+ },
+ "reason": "사용자 결정 2026-11-06 오후(HANDOFF 「성분 씨앗 17: HA·히알루론산·TCA·글리콜산·살리실산·페놀 6 추가」) — 성분 사전 값 「히알루론산」 · 근거 발주서 명시(필링 산·성분) · 원장 자리 2 · 라벨 히알루론산 필러. HA 와 히알루론산은 ERD §9.21 에 따로 선 값 둘(한 값+동의어로 묶는 것은 사용자 결정 없음 · 그대로 둠).",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "procedure-comparison.json:comparisons[].procedures[].name@2/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/seed/approved_v33/ingredient_material/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

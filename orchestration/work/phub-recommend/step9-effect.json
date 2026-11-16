@@ -1,0 +1,1179 @@
+{
+ "A2": {
+  "rows": 54,
+  "tally": {
+   "alternatives 에만(골드 안 나감)": 2,
+   "값 사전(시맨틱 · 골드 globals)": 1,
+   "골드 section 으로(실버 변경 없음)": 11,
+   "실버 9단계로 닫힘": 39,
+   "안 닫힘": 1
+  },
+  "diff_vs_research": [
+   {
+    "no": "Q214",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   },
+   {
+    "no": "Q214",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   }
+  ],
+  "detail": [
+   {
+    "no": "Q005",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q009",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+    "nodes": [
+     "product:auto-40-1774737181584"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q009",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[3].items[0].extracted.onset_duration.duration",
+    "nodes": [
+     "product:auto-40-1774737181584"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q039",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "products.skin_booster.products[3].note",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[3].products[3].note",
+    "nodes": [
+     "unit_procedure:U5-009"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q039",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "products.skin_booster.products[3].note",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[3].products[3].note",
+    "nodes": [
+     "unit_procedure:U5-009"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q040",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q047",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[1].complications[0].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q047",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[1].complications[0].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q054",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "extracted.M3.onset_duration.onset",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[2].extracted.onset_duration.onset",
+    "nodes": [
+     "family:M3"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q055",
+    "case": "case2",
+    "item": "on_topic",
+    "path": "extracted.M2.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[1].extracted.onset_duration.duration",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q057",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "extracted.M4.overview",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[3].extracted.overview",
+    "nodes": [
+     "family:M4"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q067",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M2.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[1].extracted.onset_duration.duration",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q087",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M11.related_techniques[2]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[10].extracted.related_techniques[2]",
+    "nodes": [
+     "family:M11"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q087",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M12.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[11].extracted.mechanism",
+    "nodes": [
+     "family:M12"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q089",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M11.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[10].extracted.indications.primary[0]",
+    "nodes": [
+     "family:M11"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q089",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M11.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[10].extracted.indications.primary[0]",
+    "nodes": [
+     "family:M11"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q105",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "pih-risk.procedures[6].name",
+    "verdict": "안 닫힘",
+    "by": "라벨 · 메타 칸 또는 대상 밖",
+    "nodes": [],
+    "research": "안 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q114",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "extracted.M8.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[7].extracted.indications.primary[0]",
+    "nodes": [
+     "family:M8"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q117",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "problem-packages.problems[5].complaints[1].alternatives[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:problem-packages.problems[12].complaints[0].alternatives[0]",
+    "nodes": [
+     "unit_procedure:U5-009",
+     "unit_procedure:U5-018",
+     "unit_procedure:U5-019",
+     "unit_procedure:U5-023"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q118",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "problem-packages.problems[5].complaints[6].cc_detail",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:problem-packages.problems[5].complaints[6].cc_detail",
+    "nodes": [
+     "unit_procedure:U5-023",
+     "unit_procedure:U5-024",
+     "unit_procedure:U5-025"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q118",
+    "case": "case2",
+    "item": "safety",
+    "path": "problem-packages.problems[5].complaints[7].cc_detail",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:problem-packages.problems[5].complaints[7].cc_detail",
+    "nodes": [
+     "unit_procedure:U5-018",
+     "unit_procedure:U5-019",
+     "unit_procedure:U5-040",
+     "unit_procedure:U5-142"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q123",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M8.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[7].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M8"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q133",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M2.indications.primary[2]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[1].extracted.indications.primary[2]",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q140",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "complications.categories[4].complications[1].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M8"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q162",
+    "case": "case2",
+    "item": "on_topic",
+    "path": "extracted.M15.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.mechanism",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q162",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M15.onset_duration.onset",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.onset_duration.onset",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q167",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[2].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q167",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[2].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q168",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "extracted.M15.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q168",
+    "case": "case2",
+    "item": "on_topic",
+    "path": "extracted.M15.overview",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.overview",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q168",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M15.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q169",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[1].prevention",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q171",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[1].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q172",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[2].prevention",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q172",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[2].prevention",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q174",
+    "case": "case2",
+    "item": "on_topic",
+    "path": "complications.categories[8].complications[2].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q175",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[0].items[45].extracted.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].subcategories[0].items[45].extracted.mechanism",
+    "nodes": [
+     "unit_procedure:U5-034"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q175",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M15.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q178",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M7.overview",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[6].extracted.overview",
+    "nodes": [
+     "family:M7"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q179",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "complications.categories[3].complications[7].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M7"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q206",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "post-procedure-timeline.reaction_levels.caution",
+    "verdict": "값 사전(시맨틱 · 골드 globals)",
+    "by": "value_dictionary",
+    "nodes": [
+     "scope:all"
+    ],
+    "research": "값 사전(시맨틱 · 골드 globals)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q210",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[7].subcategories[3].items[3].extracted.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[7].subcategories[3].items[3].extracted.indications.primary[0]",
+    "nodes": [
+     "product:M8-4-3"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q211",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[7].subcategories[0].items[7].extracted.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[7].subcategories[0].items[7].extracted.indications.primary[0]",
+    "nodes": [
+     "unit_procedure:U5-137"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q214",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   },
+   {
+    "no": "Q214",
+    "case": "case2",
+    "item": "on_topic",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.duration",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q214",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   },
+   {
+    "no": "Q218",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary[2]",
+    "nodes": [
+     "product:M9-3-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q218",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary[2]",
+    "nodes": [
+     "product:M9-3-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q221",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M7.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[6].extracted.onset_duration.duration",
+    "nodes": [
+     "family:M7"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q230",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q230",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q231",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.onset",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.onset",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q232",
+    "case": "case2",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q232",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   }
+  ]
+ },
+ "A5": {
+  "rows": 30,
+  "tally": {
+   "alternatives 에만(골드 안 나감)": 1,
+   "골드 section 으로(실버 변경 없음)": 6,
+   "실버 9단계로 닫힘": 19,
+   "안 닫힘": 4
+  },
+  "diff_vs_research": [
+   {
+    "no": "Q214",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   }
+  ],
+  "detail": [
+   {
+    "no": "Q003",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[7].extracted.indications.primary[0]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[7].extracted.indications.primary[0]",
+    "nodes": [
+     "unit_procedure:U5-016",
+     "unit_procedure:U5-017"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q009",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[3].items[0].extracted.mechanism",
+    "nodes": [
+     "product:auto-40-1774737181584"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q015",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M9.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].extracted.onset_duration.duration",
+    "nodes": [
+     "family:M9"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q035",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[0].complications[1].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M1"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q036",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "post-procedure-timeline.timelines[0].phases[1].period",
+    "verdict": "안 닫힘",
+    "by": "라벨 · 메타 칸 또는 대상 밖",
+    "nodes": [],
+    "research": "안 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q039",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "products.skin_booster.products[3].note",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[3].products[3].note",
+    "nodes": [
+     "unit_procedure:U5-009"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q040",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q043",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M7.overview",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[6].extracted.overview",
+    "nodes": [
+     "family:M7"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q046",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[1].complications[2].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q047",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "complications.categories[1].complications[0].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q050",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[1].complications[6].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q054",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M3.onset_duration.onset",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[2].extracted.onset_duration.onset",
+    "nodes": [
+     "family:M3"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q075",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M9.onset_duration.onset",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].extracted.onset_duration.onset",
+    "nodes": [
+     "family:M9"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q087",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M11.related_techniques[2]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[10].extracted.related_techniques[2]",
+    "nodes": [
+     "family:M11"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q107",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "pih-risk.description",
+    "verdict": "안 닫힘",
+    "by": "라벨 · 메타 칸 또는 대상 밖",
+    "nodes": [],
+    "research": "안 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q133",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M2.indications.primary[2]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[1].extracted.indications.primary[2]",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q162",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M15.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.mechanism",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q165",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "post-procedure-timeline.timelines[9].phases[3].label",
+    "verdict": "안 닫힘",
+    "by": "라벨 · 메타 칸 또는 대상 밖",
+    "nodes": [],
+    "research": "안 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q168",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M15.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q171",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "complications.categories[8].complications[1].management",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q172",
+    "case": "case3",
+    "item": "safety",
+    "path": "complications.categories[8].complications[2].prevention",
+    "verdict": "골드 section 으로(실버 변경 없음)",
+    "by": "safety.management",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "골드 section 으로(실버 변경 없음)",
+    "same_as_research": true
+   },
+   {
+    "no": "Q175",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M15.indications.primary[1]",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[14].extracted.indications.primary[1]",
+    "nodes": [
+     "family:M15"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q178",
+    "case": "case3",
+    "item": "on_topic",
+    "path": "extracted.M2.indications",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[1].extracted.indications.primary[0]",
+    "nodes": [
+     "family:M2"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q214",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "verdict": "alternatives 에만(골드 안 나감)",
+    "by": "S9:taxonomy.modality[14].subcategories[3].items[0].extracted.onset_duration.onset",
+    "nodes": [
+     "product:M15-4-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": false
+   },
+   {
+    "no": "Q216",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "extracted.M4.overview",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[3].extracted.overview",
+    "nodes": [
+     "family:M4"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q218",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[2].items[0].extracted.indications.primary[2]",
+    "nodes": [
+     "product:M9-3-1"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q219",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "procedure-profiles.profiles[2]",
+    "verdict": "안 닫힘",
+    "by": "라벨 · 메타 칸 또는 대상 밖",
+    "nodes": [],
+    "research": "안 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q222",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[8].subcategories[1].items[2].extracted.mechanism",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[8].subcategories[1].items[2].extracted.mechanism",
+    "nodes": [
+     "product:M9-2-5"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q231",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.onset",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   },
+   {
+    "no": "Q232",
+    "case": "case3",
+    "item": "accuracy",
+    "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "verdict": "실버 9단계로 닫힘",
+    "by": "S9:taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+    "nodes": [
+     "unit_procedure:U5-010",
+     "unit_procedure:U5-011",
+     "unit_procedure:U5-012"
+    ],
+    "research": "실버 9단계로 닫힘",
+    "same_as_research": true
+   }
+  ]
+ }
+}

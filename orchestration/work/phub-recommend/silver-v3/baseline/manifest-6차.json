@@ -1,0 +1,6968 @@
+{
+ "bronze_version": {
+  "dir": "phub-ledger",
+  "hashes_file": "HASHES.txt",
+  "hashes_sha256": "4278a8d39814d66205ac7fdf7f51679a90dd4735a4f7cc7a150be125588c6f5e",
+  "label": "phub-ledger 판 2",
+  "version": 2
+ },
+ "builder": "silver-v3 build.py",
+ "column_map": {
+  "file": "erd-v3.1-column-map.md",
+  "sha256": "536bf85719945c0c5362935b4710e3119964b98c6722b18b53b9040f96239c54"
+ },
+ "counts": {
+  "conflicts": {
+   "④ value_conflict auto_resolved_by_trust": 1,
+   "⑥ value_conflict open": 49,
+   "⑦ duplicate_candidate open": 152,
+   "⑦ duplicate_candidate resolved": 4,
+   "⑧ unregistered_value open": 2352,
+   "⑨ unresolved_reference open": 260
+  },
+  "entities": {
+   "adverse_effect": 71,
+   "anatomical_structure": 36,
+   "catalog_item": 521,
+   "citation": 313,
+   "clinical_rule": 139,
+   "complaint": 121,
+   "conflict": 2818,
+   "decision": 457,
+   "evidence_statement": 87,
+   "modality": 17,
+   "modality_subcategory": 73,
+   "package": 230,
+   "person_condition": 312,
+   "problem": 14,
+   "problem_subcategory": 53,
+   "procedure": 645,
+   "product": 378,
+   "site": 28,
+   "source_file": 22,
+   "technique": 12
+  },
+  "gate": {
+   "catalog_partial": 336,
+   "conflicts_md_auto": 1,
+   "conflicts_md_duplicate": 156,
+   "conflicts_md_open_value": 49,
+   "unlinked_phrase_locators": 1641,
+   "unlinked_phrases": 1032,
+   "unregistered_fragments": 2352,
+   "unresolved_references": 260
+  },
+  "procedure_by_origin_what": {
+   "catalog_item+market_pricing+reference:catalog_item": 1,
+   "catalog_item+market_pricing+reference:product": 4,
+   "catalog_item+market_pricing:catalog_item": 2,
+   "catalog_item+market_pricing:product": 2,
+   "catalog_item+reference:catalog_item": 9,
+   "catalog_item+reference:modality_subcategory": 1,
+   "catalog_item+reference:product": 21,
+   "catalog_item:catalog_item": 330,
+   "catalog_item:modality_subcategory": 9,
+   "catalog_item:product": 139,
+   "market_pricing:catalog_item": 6,
+   "market_pricing:modality": 15,
+   "market_pricing:modality_subcategory": 5,
+   "market_pricing:product": 10,
+   "reference:modality": 46,
+   "reference:modality_subcategory": 31,
+   "reference:product": 14
+  },
+  "product_ids": [
+   "PRD-000766a064",
+   "PRD-00864ad58d",
+   "PRD-00b1cfe718",
+   "PRD-00d6e7b88f",
+   "PRD-00f5c77e8d",
+   "PRD-011f73c986",
+   "PRD-0158317211",
+   "PRD-016c711f82",
+   "PRD-01c7237669",
+   "PRD-02232759ad",
+   "PRD-034f572396",
+   "PRD-05ff9e59d5",
+   "PRD-066d79ca1f",
+   "PRD-073ee54e57",
+   "PRD-09f0549974",
+   "PRD-0c64e829b0",
+   "PRD-0d46a67493",
+   "PRD-0e5170877d",
+   "PRD-0e8e82baf9",
+   "PRD-0ea2c160fe",
+   "PRD-0ed2fd1e68",
+   "PRD-0f1d0469f0",
+   "PRD-1046773689",
+   "PRD-1070cb2dca",
+   "PRD-109302fb4a",
+   "PRD-12a336c835",
+   "PRD-13646cd34d",
+   "PRD-141bcaa3dc",
+   "PRD-142bcf8d35",
+   "PRD-151442cf59",
+   "PRD-15e19afffb",
+   "PRD-15fc4cca90",
+   "PRD-1690ac2cc1",
+   "PRD-172b9efb84",
+   "PRD-177b3434d3",
+   "PRD-1796e9553c",
+   "PRD-17c569935d",
+   "PRD-1a034e89e1",
+   "PRD-1b975c02d8",
+   "PRD-1bc36de49a",
+   "PRD-1c0d8cfc0a",
+   "PRD-1c9200c294",
+   "PRD-1ca3539321",
+   "PRD-1cb24ec92b",
+   "PRD-1e5867c836",
+   "PRD-209656bf00",
+   "PRD-20d3cfbb3b",
+   "PRD-214efe4d6d",
+   "PRD-21b89b29a3",
+   "PRD-22146cd85b",
+   "PRD-22d0ef4457",
+   "PRD-2469c13780",
+   "PRD-246bc84a9e",
+   "PRD-246e26cab8",
+   "PRD-24b814abe1",
+   "PRD-24d8fc9710",
+   "PRD-26d6ad6ad6",
+   "PRD-270ae30310",
+   "PRD-299f742e3b",
+   "PRD-29f4655d73",
+   "PRD-2a1d93e760",
+   "PRD-2e604af3c5",
+   "PRD-30cb129b04",
+   "PRD-319416f37f",
+   "PRD-319b3c60d6",
+   "PRD-31ac07fe45",
+   "PRD-32307f7825",
+   "PRD-3268ed89d3",
+   "PRD-331571dd47",
+   "PRD-33d31ebbc2",
+   "PRD-33df5d6b69",
+   "PRD-34310fa1fe",
+   "PRD-34ae9247ec",
+   "PRD-3555509429",
+   "PRD-36f34a9e86",
+   "PRD-376830a62c",
+   "PRD-37803b6873",
+   "PRD-3872cf9714",
+   "PRD-38d5167793",
+   "PRD-38f57bbaa1",
+   "PRD-391e53a201",
+   "PRD-3abea35209",
+   "PRD-3c3169984e",
+   "PRD-3c6f31b90c",
+   "PRD-3e7b214069",
+   "PRD-3ecdef5045",
+   "PRD-3ef5b40415",
+   "PRD-3f38747448",
+   "PRD-3f56f52551",
+   "PRD-3f77281e39",
+   "PRD-3f7dda4c32",
+   "PRD-3fc2a549a6",
+   "PRD-3ffbc8e401",
+   "PRD-41c8055486",
+   "PRD-428eebe812",
+   "PRD-42ad8638de",
+   "PRD-4305fe0023",
+   "PRD-434a68e8e9",
+   "PRD-43aff21b1f",
+   "PRD-473b4916e3",
+   "PRD-47f1b3015b",
+   "PRD-4a98a1a31a",
+   "PRD-4ad500b52d",
+   "PRD-4be010a33a",
+   "PRD-4c18f58a27",
+   "PRD-4c395c1ba3",
+   "PRD-4de0925861",
+   "PRD-4f08fa8606",
+   "PRD-4f22fd73f4",
+   "PRD-4f58b788e6",
+   "PRD-5018b2f5ab",
+   "PRD-5065190d26",
+   "PRD-5074cf5fbf",
+   "PRD-5076957552",
+   "PRD-5157b86cb5",
+   "PRD-51aae881a2",
+   "PRD-524bb22e97",
+   "PRD-52f6231100",
+   "PRD-5336a15e5d",
+   "PRD-5348de97eb",
+   "PRD-5383718c73",
+   "PRD-53cb7ccd54",
+   "PRD-55e95a471c",
+   "PRD-5628deb6ae",
+   "PRD-56561cb981",
+   "PRD-577dcf45d7",
+   "PRD-58ea0c80f0",
+   "PRD-593a0c1a05",
+   "PRD-5999336fbb",
+   "PRD-5a17e6f784",
+   "PRD-5ad53d8692",
+   "PRD-5af92bc234",
+   "PRD-5bd2ad7126",
+   "PRD-5d0bf36287",
+   "PRD-5d2bc350bc",
+   "PRD-5d47bb14cf",
+   "PRD-5d6e7b2cb0",
+   "PRD-5dd4bf2641",
+   "PRD-5e0fef5cd8",
+   "PRD-5fb4cb567f",
+   "PRD-5feac9b5bc",
+   "PRD-5ff43e0f3f",
+   "PRD-60470c8529",
+   "PRD-6172a19a5b",
+   "PRD-61cc165e89",
+   "PRD-61e0e476a6",
+   "PRD-630c54a531",
+   "PRD-633bdd3dbf",
+   "PRD-640512efa1",
+   "PRD-64d8a5eddb",
+   "PRD-660560ac3d",
+   "PRD-663bc994c8",
+   "PRD-6697dca2fe",
+   "PRD-6735f65015",
+   "PRD-6891420a64",
+   "PRD-6a1fc84ace",
+   "PRD-6a202068b6",
+   "PRD-6ae9f0408e",
+   "PRD-6c7ba82f23",
+   "PRD-6c8c76db63",
+   "PRD-6ca06e3779",
+   "PRD-6cee2d1e10",
+   "PRD-6d5d79f514",
+   "PRD-6e3694d52b",
+   "PRD-6ffc78adb2",
+   "PRD-716c612985",
+   "PRD-71994c8eb6",
+   "PRD-71ec4aad13",
+   "PRD-72c19f6b7f",
+   "PRD-73300b1a55",
+   "PRD-74279a405e",
+   "PRD-7449c340e4",
+   "PRD-74886ebd54",
+   "PRD-749821e30f",
+   "PRD-757c07ec05",
+   "PRD-75bed1ec47",
+   "PRD-78dc378af5",
+   "PRD-7b2daa58b9",
+   "PRD-7cdbea8668",
+   "PRD-7d0ed0a88f",
+   "PRD-7d1417d796",
+   "PRD-7d322d13a0",
+   "PRD-7d42735092",
+   "PRD-7d7551ed8c",
+   "PRD-7d9aefd9df",
+   "PRD-7e7346faf1",
+   "PRD-7e7ea7efb3",
+   "PRD-7e87f4626b",
+   "PRD-7eba19df59",
+   "PRD-7ebd1245c2",
+   "PRD-7f370e9f6e",
+   "PRD-7fd25fbe8e",
+   "PRD-80a8adcc4d",
+   "PRD-80d72cb787",
+   "PRD-80f218566d",
+   "PRD-8162044412",
+   "PRD-816a6ed4c6",
+   "PRD-82d74812e5",
+   "PRD-83a25f8d92",
+   "PRD-8439905379",
+   "PRD-843c9154d4",
+   "PRD-8478fd1cc5",
+   "PRD-84bce86256",
+   "PRD-85f3465d9c",
+   "PRD-8618e00f47",
+   "PRD-8620066867",
+   "PRD-86308bdb97",
+   "PRD-8651227607",
+   "PRD-8741fd3912",
+   "PRD-874c93774c",
+   "PRD-87b46c2c7f",
+   "PRD-893c04bb7f",
+   "PRD-89e4f0b843",
+   "PRD-8a2ccc1ad6",
+   "PRD-8e5445c241",
+   "PRD-8e550f4613",
+   "PRD-8fa50d4ec4",
+   "PRD-916582ab81",
+   "PRD-936bb336fb",
+   "PRD-959458af36",
+   "PRD-95a8c13d94",
+   "PRD-95f67402ad",
+   "PRD-96a86bdbe8",
+   "PRD-971e16be81",
+   "PRD-976d63accf",
+   "PRD-9860292243",
+   "PRD-992f518928",
+   "PRD-9a0473152b",
+   "PRD-9aa95e316f",
+   "PRD-9acf01f98a",
+   "PRD-9bac721148",
+   "PRD-9c16831f22",
+   "PRD-9cfb8cc1a8",
+   "PRD-9e1c176e1e",
+   "PRD-9e3e7db756",
+   "PRD-9e4c8fd946",
+   "PRD-9f919c8297",
+   "PRD-9f91b1c071",
+   "PRD-9fb11a8d62",
+   "PRD-a03c956132",
+   "PRD-a0ec3af456",
+   "PRD-a9f8c1845c",
+   "PRD-ac461abb33",
+   "PRD-acaceddcbb",
+   "PRD-adb26a1e45",
+   "PRD-ae30e1223f",
+   "PRD-ae539cb484",
+   "PRD-ae8919b885",
+   "PRD-aeabf21b28",
+   "PRD-aeeecf36e0",
+   "PRD-aef4c80433",
+   "PRD-af03bac034",
+   "PRD-afbaff0c2c",
+   "PRD-b011d47f18",
+   "PRD-b0449b9a25",
+   "PRD-b07dfc75b2",
+   "PRD-b0ff628fa7",
+   "PRD-b1afa4c303",
+   "PRD-b21c2aa3e8",
+   "PRD-b2e681f9f3",
+   "PRD-b3202ca654",
+   "PRD-b346977491",
+   "PRD-b45dbcf1b6",
+   "PRD-b494f5c84f",
+   "PRD-b6953edd44",
+   "PRD-b783112b88",
+   "PRD-b86fc1b238",
+   "PRD-b8c17f18bc",
+   "PRD-b9a24e2761",
+   "PRD-ba39e7ccc2",
+   "PRD-bad8b16922",
+   "PRD-bd18a0ec13",
+   "PRD-bd1d93db49",
+   "PRD-be344e6139",
+   "PRD-bf2d9c8844",
+   "PRD-bf965f0554",
+   "PRD-bfffb10e46",
+   "PRD-c036721537",
+   "PRD-c22214d342",
+   "PRD-c26b8c96b8",
+   "PRD-c2a7e9465d",
+   "PRD-c34a944f04",
+   "PRD-c385fb0dfe",
+   "PRD-c3c00dcc0c",
+   "PRD-c3d372a2fa",
+   "PRD-c4079725f1",
+   "PRD-c4081a759f",
+   "PRD-c4aab9b063",
+   "PRD-c4d550d95e",
+   "PRD-c4f5739a7e",
+   "PRD-c566f32657",
+   "PRD-c5c7ecdaae",
+   "PRD-c5cc51eb6b",
+   "PRD-c5f129c970",
+   "PRD-c659e20bb6",
+   "PRD-c6d193d56d",
+   "PRD-c72c19fc93",
+   "PRD-c8b4f51465",
+   "PRD-c90daa0e22",
+   "PRD-c93f47f949",
+   "PRD-c9f235bb94",
+   "PRD-cac4804755",
+   "PRD-cb92a00480",
+   "PRD-cbafd91887",
+   "PRD-cdb5a59711",
+   "PRD-ce3140b304",
+   "PRD-cebb75b22e",
+   "PRD-cf82ce1016",
+   "PRD-d02cb5f6d2",
+   "PRD-d2388afd01",
+   "PRD-d24d47ec89",
+   "PRD-d30392771a",
+   "PRD-d34bff5924",
+   "PRD-d3d333bc7e",
+   "PRD-d418c24050",
+   "PRD-d45b9035c6",
+   "PRD-d463a63896",
+   "PRD-d5c5972620",
+   "PRD-d5e8aca18c",
+   "PRD-d62439b61a",
+   "PRD-d75f2d9ff2",
+   "PRD-d7d3e4910f",
+   "PRD-d808ddc9bf",
+   "PRD-d912513a6a",
+   "PRD-d98da0e64b",
+   "PRD-d9a5632686",
+   "PRD-db2fea1ecd",
+   "PRD-dc0e0160e9",
+   "PRD-ddefa73c21",
+   "PRD-de676649fb",
+   "PRD-deeee2f86b",
+   "PRD-df4f8b2c22",
+   "PRD-dfeed63277",
+   "PRD-e06b42f4ee",
+   "PRD-e23da1c30f",
+   "PRD-e323c4b83b",
+   "PRD-e396e3fced",
+   "PRD-e3fd3baef7",
+   "PRD-e43025ee39",
+   "PRD-e45033395c",
+   "PRD-e4c42244b2",
+   "PRD-e58936962f",
+   "PRD-e71e638382",
+   "PRD-e78cb80e2e",
+   "PRD-e8660a6b35",
+   "PRD-e917279000",
+   "PRD-e91c5c5f50",
+   "PRD-e990ead62a",
+   "PRD-eb9d3ba8f5",
+   "PRD-ebf6e7d503",
+   "PRD-ec97abb2f0",
+   "PRD-ed1241747b",
+   "PRD-ed330d370c",
+   "PRD-edcb0126b5",
+   "PRD-ee284e905a",
+   "PRD-ee6c7a7825",
+   "PRD-ef539202d9",
+   "PRD-ef7d683dc0",
+   "PRD-eff58313a2",
+   "PRD-f008a35ba2",
+   "PRD-f11d6e7294",
+   "PRD-f12069dab7",
+   "PRD-f3110392e3",
+   "PRD-f4264ddf37",
+   "PRD-f7d490261c",
+   "PRD-f7d9519bf2",
+   "PRD-f7ffd513b5",
+   "PRD-f8703c0e47",
+   "PRD-f8eaec1c33",
+   "PRD-f9822bed02",
+   "PRD-fb43e8fb7c",
+   "PRD-fb53d4c993",
+   "PRD-fb54a9108d",
+   "PRD-fc0a5a6641",
+   "PRD-fda48682a7",
+   "PRD-fe20517ecd",
+   "PRD-fee4877abb",
+   "PRD-ff6f2b7b41"
+  ],
+  "product_origin": {
+   "ledger": 61,
+   "survey": 317
+  },
+  "relations": {
+   "R1": 74,
+   "R10": 21,
+   "R11": 12,
+   "R12": 481,
+   "R13": 32,
+   "R14": 146,
+   "R15": 1429,
+   "R16": 514,
+   "R17": 20,
+   "R18": 119,
+   "R19": 346,
+   "R2": 521,
+   "R20": 87,
+   "R21": 45,
+   "R22": 22,
+   "R23": 53,
+   "R24": 225,
+   "R25": 6419,
+   "R26": 521,
+   "R27": 645,
+   "R28": 55,
+   "R3": 163,
+   "R30": 3,
+   "R31": 14,
+   "R32": 112,
+   "R4": 476,
+   "R5": 25,
+   "R6": 53,
+   "R7": 232,
+   "R8": 105,
+   "R9": 594
+  }
+ },
+ "decisions": {
+  "apply_log": [
+   {
+    "from_code": "M5",
+    "id": "DEC-2026-11-05-B3-EXO-02A",
+    "kind": "product_reclassify",
+    "merged": false,
+    "new_id": "PRD-e45033395c",
+    "old_id": "PRD-be57673deb",
+    "product": "ASCEplus",
+    "result": "applied",
+    "stage": "⓪",
+    "to_code": "M4"
+   },
+   {
+    "from_code": "M5",
+    "id": "DEC-2026-11-05-B3-EXO-02B",
+    "kind": "product_reclassify",
+    "merged": false,
+    "new_id": "PRD-f4264ddf37",
+    "old_id": "PRD-8a1d788eec",
+    "product": "EXOSOME SKIN",
+    "result": "applied",
+    "stage": "⓪",
+    "to_code": "M4"
+   },
+   {
+    "added": [
+     "코어톡스",
+     "Coretox"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-001",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "이노톡스",
+     "Innotox"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-002",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "원더톡스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-003",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "비비톡신",
+     "Vivitoxin"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-004",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "톡스온",
+     "TOXON"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-005",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "뉴라미스",
+     "Neuramis"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-006",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "벨라스트",
+     "BELLAST"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-007",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "에피티크",
+     "e.p.t.q.",
+     "EPTQ"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-008",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아띠에르",
+     "Atiere",
+     "Atiere Classic",
+     "Atiere Intensive",
+     "Atiere Volume"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-009",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리쥬비엘",
+     "REJUVIEL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-010",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "셀레스텔라",
+     "CELESTELLA",
+     "셀레스텔라 딥테"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-011",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "유스필",
+     "YOUTHFILL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-012",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "큐젤",
+     "Cutegel"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-013",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "큐젤 맥스",
+     "Cutegel MAX",
+     "CUTEGEL Max 1400"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-014",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "큐티필",
+     "QT FILL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-015",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엘라비에 프리미어"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-016",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "더채움 프리미엄",
+     "THE CHAEUM PREMIUM"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-017",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "테오시알",
+     "Teosyal",
+     "TEOSYAL RHA"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-018",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "퍼펙타",
+     "Perfectha"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-019",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아말리안",
+     "Amalian"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-020",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "하모니카",
+     "HArmonyCa Lidocaine"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-021",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "프린세스",
+     "Princess",
+     "Princess Filler",
+     "Princess Volume"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-022",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스타일에이지",
+     "Stylage"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-023",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아테콜",
+     "ARTECOLL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-024",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "올리디아",
+     "Olidia"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-025",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "에스테필",
+     "AestheFill",
+     "에스테필 럭스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-026",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "디클래씨",
+     "DCLASSY CaHA",
+     "Facetem"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-027",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "콜라쥬"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-028",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "레티젠",
+     "Laetigen",
+     "Laetigen i"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-029",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "고우리",
+     "GOURI",
+     "G.O.U.R.I."
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-030",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "라풀렌",
+     "LAFULLEN"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-031",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울트라콜",
+     "ULTRACOL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-032",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "비타란",
+     "HP VITARAN",
+     "HP Cell VITARAN"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-033",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스킨바이브",
+     "SKINVIVE",
+     "SKINVIVE by Juvederm",
+     "Juvederm VOLITE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-034",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리바이브",
+     "Belotero Revive",
+     "Revive Skinbooster"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-035",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "릴리이드M",
+     "Lilied M",
+     "릴리이드M 플러스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-036",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "힐로웨이브",
+     "HILOWAVE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-037",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "NCTF 필로르가",
+     "NCTF 135HA",
+     "FILLMED NCTF 135HA"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-038",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "매쿰7",
+     "McCoom7"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-039",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "프로파일로",
+     "Profhilo"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-040",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "사이토케어",
+     "Cytocare"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-041",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "레스틸렌스킨부스터",
+     "Restylane Skinboosters"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-042",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "잼버실",
+     "JAMBER",
+     "JAMBER L",
+     "JAMBER V",
+     "JAMBER N"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-043",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "블루로즈클레어",
+     "BLUE ROSE CLAIR"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-044",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "N코그",
+     "N-Cog"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-045",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "오메가리프트"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-046",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울트라V",
+     "울트라V-lift",
+     "UltraV-lift"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-047",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코케어",
+     "Picocare",
+     "Picocare450",
+     "PICOCAREMAJESTY",
+     "피코케어 450",
+     "피코케어 마제스티"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-048",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코코어"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-049",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스타워커",
+     "Fotona QX Max M031-3A/2",
+     "M031-3A/2 QX",
+     "M031-3A/2 PICO Pro",
+     "M031-3A2 PQX",
+     "StarWalker",
+     "StarWalker MaQX",
+     "StarWalker PQX",
+     "스타워커 PQX",
+     "스타워커 MaQX"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-050",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "모자이크",
+     "MOSAIC 3D",
+     "MOSAIC 3D PLUS",
+     "The MOSAIC 3D",
+     "MOSAIC LIMITED",
+     "MOSAIC HP+",
+     "MOSAIC HP",
+     "MOSAIC",
+     "모자이크 3D"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-051",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "에코2",
+     "eCO2 3D",
+     "eCO2 3D J",
+     "eCO2-Plus",
+     "에코투"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-052",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "셀렉V",
+     "cellec v system",
+     "cellec v",
+     "셀렉브이"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-053",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "에코2 에볼루션",
+     "eCO2 Evolution"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-054",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울트라펄스",
+     "UltraPulse Alpha Office Silver",
+     "UltraPulse SurgiTouch",
+     "UltraPulse Encore"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-055",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "BBL",
+     "Joule BBL SkinTyte II"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-056",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "BBL 히어로",
+     "mJoule"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-057",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "브이빔",
+     "Vbeam (Candela Sclero Long Pulse Laser System)"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-058",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "더마V",
+     "DermaV",
+     "The DermaV"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-059",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "노블린",
+     "Nobleen"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-060",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엑셀 V+",
+     "Excel V +"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-061",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "브이빔 퍼펙타",
+     "Candela Family of Pulse Dye Laser System : Vbeam Perfecta"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-062",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아이콘",
+     "Icon",
+     "Palomar IconTM System"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-063",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "젠틀맥스 프로 플러스",
+     "GentleMaxi Pro Plus"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-064",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아발란체",
+     "M071-2F/LXP",
+     "AvalancheLase",
+     "Avalanche LT"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-065",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아포지 엘리트 플러스",
+     "Elite+",
+     "Apogee Elite",
+     "Apogee+",
+     "아포지플러스",
+     "Apogee Elite+",
+     "Apogee"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-066",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "라이트쉬어 듀엣",
+     "Lightsheer DUET",
+     "LightSheer"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-067",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "트리니티",
+     "Trinity"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-068",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "젠틀맥스 프로",
+     "GentleMax Pro"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-069",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "젠틀레이즈",
+     "GentleLase Pro-U"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-070",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "메디오스타넥스트프로"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-071",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "벡터스",
+     "Vectus",
+     "Vectus Laser"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-072",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리팟",
+     "REEPOT"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-073",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스플렌더 X",
+     "SPLENDOR X Alexandrite+Nd:YAG",
+     "SPLENDOR X",
+     "스플렌더 엑스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-074",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "SP 다이나미스",
+     "SP Dynamis",
+     "Dynamis"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-075",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스텔라 M22",
+     "Stellar M22 White",
+     "M22",
+     "Stellar M22"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-076",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "할리우드 스펙트라",
+     "HOLLYWOOD SPECTRA",
+     "The HOLLYWOOD SPECTRA (수출명: HOLLYWOOD SPECTRA)",
+     "Spectra"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-077",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "이맥스",
+     "e (윗첨자 max)",
+     "eMax",
+     "elos",
+     "elos Plus"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-078",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스마트자이드",
+     "SmartXide UltraSpeed2",
+     "Smartxide2",
+     "SMARTXIDE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-079",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "클리어 앤 브릴리언트",
+     "CLEAR+BRILLIANT Laser System",
+     "CLEAR + BRILLIANT",
+     "Clear + Brilliant Touch"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-080",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코플러스",
+     "PICOPLUS",
+     "The PICOPLUS (수출명: PICOPLUS)"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-081",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "디스커버리 피코",
+     "Discovery Pico Plus",
+     "Discovery Pico Derm"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-082",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엔라이튼",
+     "enlighten Laser System",
+     "enlighten Ⅲ Laser System",
+     "enlighten SR"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-083",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "슈링크",
+     "SHURINKs",
+     "UF3-C300",
+     "ULTRAFORMER-IIIs",
+     "ULTRAFORMER III",
+     "Ultraformer 3",
+     "UF3",
+     "Shurink"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-084",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리프테라",
+     "Liftera-V",
+     "Liftera-A™",
+     "Liftera-A2-B",
+     "Liftera-A",
+     "Liftera-P",
+     "Liftera",
+     "리프테라2"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-085",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리니어펌",
+     "LinearFirm"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-086",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "텐쎄라",
+     "10THERA"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-087",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿨소닉",
+     "CoolSonic"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-088",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울트라셀 Q+",
+     "ULTRACEL Q PLUS",
+     "울트라셀큐플러스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-089",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울트라셀",
+     "ULTRAcel™",
+     "ULTRAcel II",
+     "ULTRAcel [zi:]",
+     "ULTRAcel"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-090",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "더블로골드S"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-091",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "소프라노 티타늄",
+     "Soprano Titanium",
+     "Soprano"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-092",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿨페이즈",
+     "Coolfase-B",
+     "Coolfase"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-093",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "텐써마",
+     "10 THERMA",
+     "TENTHERMA"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-094",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "버츄RF",
+     "VirtueRF"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-095",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "써니",
+     "Sunny™",
+     "Sunny RF",
+     "Sunny™ PLUS"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-096",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "시크릿맥스",
+     "Secret MAX"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-097",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "트라이리프트",
+     "triLyft",
+     "triLift",
+     "triLIFT 2.0"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-098",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "온다"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-099",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "소프웨이브",
+     "Sofwave System"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-100",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "포커스듀얼",
+     "FOCUS DUAL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-101",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "듀오타이트",
+     "DUOTITE™",
+     "DUOTITE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-102",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "어센트 프라임",
+     "Accent Prime",
+     "ACCENT"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-103",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엠페이스",
+     "EMFACE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-104",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엠스컬프트",
+     "EMSCULPT KOREA"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-105",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엠스컬프트 네오"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-106",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "이볼브",
+     "Evolve",
+     "InMode Evolve",
+     "EvolveX",
+     "인모드 이볼브"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-107",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿨톤",
+     "CoolTone"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-108",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스팀슈어",
+     "StimSure"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-109",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "실펌 X",
+     "SYLFIRM X",
+     "SYLFIRM X™",
+     "SYLFIRM X PRO",
+     "SYLFIRM"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-110",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿼드세이",
+     "QUADESSY"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-111",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "트윈픽셀",
+     "TWINPIXEL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-112",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "스칼렛 프로",
+     "SCARLET PRO™",
+     "SCARLET PRO",
+     "SCARLET"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-113",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "셀리뉴",
+     "CELLINEW™",
+     "CELLINEW"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-114",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "인피니",
+     "INFINI HYBRID",
+     "INFINI LT",
+     "INFINI"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-115",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "플라듀오",
+     "PLADUO",
+     "PLADUOpro"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-116",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿨스컬프팅"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-117",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "쿨미니"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-118",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "PRX필",
+     "PRX-T33"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-119",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아쿠아필",
+     "Aqua Peel"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-120",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "하이드라페이셜",
+     "HydraFacial"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-121",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아쿠아퓨어",
+     "AQUAPURE",
+     "AQUAPURE II"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-122",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "힐라이트",
+     "HEALITE",
+     "HEALITE II"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-123",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "소노퀸",
+     "SONOQUEEN"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-124",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "큐어젯",
+     "CUREJET"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-125",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "미라젯",
+     "mirajet",
+     "mirajet Plus+2940"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-126",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "벨라소닉",
+     "Bellasonic"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-127",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "하이쿡스",
+     "HYCOOX"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-128",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "더마샤인",
+     "Derma Shine",
+     "DermaShine PRO",
+     "Panace DS-5"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-129",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "에어젯",
+     "AIRJET",
+     "AIRJETII"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-130",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "비타인젝터"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-131",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "헤어셀",
+     "Haircell S2",
+     "HAIRCELL"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-132",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "올타이트",
+     "ALLTITE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-133",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "멜스몬",
+     "멜스몬주",
+     "MELSMON inj."
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-134",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "브이올렛",
+     "브이올렛주",
+     "V-OLET injection"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-135",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "벨카이라",
+     "Belkyra",
+     "Kybella"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-136",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "벨라콜린"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-137",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "올리핏"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-138",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "펜카이라"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-139",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "바이블"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-140",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "밀리핏"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-141",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "원더브이"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-142",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "뉴비쥬"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-143",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "덴서티 하이",
+     "DENSITY HIGH"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-144",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "이브타이탄",
+     "EVE TITAN"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-145",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "이래비티",
+     "ERAVITY"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-146",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "세르프",
+     "XERF"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-147",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "덴서티",
+     "DENSITY",
+     "DENSITY Noir"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-148",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "리니어지",
+     "LinearZ"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-149",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울핏",
+     "Ulfit"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-150",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "크라이오 멀티마스터",
+     "CRYO MULTI MASTER",
+     "퓨리영 멀티마스터"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-151",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "울킨",
+     "ULKIN"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-152",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "오투덤",
+     "O2toDerm",
+     "OtoDerm(사진 판독)"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-153",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "오토 MTS",
+     "AUTO MTS",
+     "DB FNS",
+     "DB-FNS"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-154",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "소노케어",
+     "SONOCARE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-155",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "브라이톤",
+     "브라이톤 미인",
+     "BRIGHTONE",
+     "BRIGHTONE M"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-156",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코라이트 블랙",
+     "PICOLITE Black"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-157",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코라이트",
+     "PICOLITE"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-158",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "큐라스",
+     "큐라스토닝",
+     "CuRAS"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-159",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "헬리오스 3",
+     "HELIOS III",
+     "HELIOS lll"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-160",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피코케이",
+     "PICO-K"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-161",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "피콜로 프리미엄",
+     "PicoLO PREMIUM"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-162",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아톰",
+     "아톰레이저",
+     "ATOM"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-163",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "카프리",
+     "카프리레이저",
+     "CAPRI",
+     "CAPRI - S",
+     "New Capri"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-164",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "아큐토닝",
+     "ACCUTONING"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-165",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "압토스",
+     "Aptos",
+     "아프토스"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-166",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "콘투락투벡스",
+     "컨트라투벡스",
+     "Contractubex"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-167",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "라이넥",
+     "라엔넥",
+     "Laennec"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-04-B1-PRD-168",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "얼굴 전체",
+     "전체얼굴",
+     "풀페이스"
+    ],
+    "dictionary": "site",
+    "id": "DEC-2026-11-04-B1-SYN-001",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "HIFU"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B1-SYN-002",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "RF"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B1-SYN-003",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "MTS"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B1-SYN-004",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "필링"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B1-SYN-005",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "LED"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B1-SYN-006",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "토닝"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B1-SYN-007",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "HIFES"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B1-SYN-008",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "크라이오"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B2A-SYN-001",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "수액"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B2A-SYN-002",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "줄기세포"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B2A-SYN-003",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "혈관레이저"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B2A-SYN-004",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "다이오드"
+    ],
+    "dictionary": "modality_subcategory_label",
+    "id": "DEC-2026-11-04-B2A-SYN-005",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "CO2"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B2A-SYN-006",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "Nd:YAG"
+    ],
+    "dictionary": "modality",
+    "id": "DEC-2026-11-04-B2A-SYN-007",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "더모톡신",
+     "메조보톡스"
+    ],
+    "dictionary": "catalog_item_name",
+    "id": "DEC-2026-11-05-B3-CAT-01",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "지속",
+     "지속적",
+     "잔여",
+     "점진적으로 커지는"
+    ],
+    "dictionary": "course",
+    "id": "DEC-2026-11-05-B3-DICT-COURSE-01",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "엘러간"
+    ],
+    "dictionary": "manufacturer",
+    "id": "DEC-2026-11-05-B3-MFR-01",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "시크릿RF"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-05-B3-PRD-01",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "라라젯",
+     "LHALA JET"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-05-B3-PRD-02",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "ASCE+엑소좀"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-05-B3-PRD-03",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "셀엑소좀"
+    ],
+    "dictionary": "product_name",
+    "id": "DEC-2026-11-05-B3-PRD-04",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "교근"
+    ],
+    "dictionary": "site",
+    "id": "DEC-2026-11-05-B3-SIT-01",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "팔자"
+    ],
+    "dictionary": "site",
+    "id": "DEC-2026-11-05-B3-SIT-02",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "두피"
+    ],
+    "dictionary": "site",
+    "id": "DEC-2026-11-05-B3-SIT-03",
+    "kind": "dictionary_add",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "BTX"
+    ],
+    "code": "M1",
+    "dictionary": "modality",
+    "id": "DEC-2026-11-05-B3-REN-01",
+    "kind": "canonical_rename",
+    "new_id": "DIC-70be6aa6e9",
+    "old_id": "DIC-d73ced8043",
+    "renamed": [
+     "보톡스",
+     "보툴리눔 톡신"
+    ],
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "added": [
+     "콜라겐부스터"
+    ],
+    "code": "M3",
+    "dictionary": "modality",
+    "id": "DEC-2026-11-05-B3-REN-02",
+    "kind": "canonical_rename",
+    "new_id": "DIC-b185cb5a49",
+    "old_id": "DIC-18b7f09eb1",
+    "renamed": [
+     "바이오스티뮬레이터/콜라겐부스터",
+     "바이오스티뮬레이터"
+    ],
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "canonical": "PRP/자가혈",
+    "dictionary": "modality",
+    "id": "DEC-2026-11-05-B3-EXO-06",
+    "kind": "dictionary_remove",
+    "removed_synonym": "PRP/엑소좀",
+    "result": "applied",
+    "stage": "①"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-01",
+    "kind": "event_split",
+    "new_events": [
+     "과민반응"
+    ],
+    "note": "사건 사전을 나누고 부작용 분해를 다시 돌렸다(③ 지정은 다시 적용)",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-02",
+    "kind": "event_split",
+    "new_events": [
+     "동상"
+    ],
+    "note": "사건 사전을 나누고 부작용 분해를 다시 돌렸다(③ 지정은 다시 적용)",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-04",
+    "kind": "event_split",
+    "new_events": [
+     "섬유화"
+    ],
+    "note": "사건 사전을 나누고 부작용 분해를 다시 돌렸다(③ 지정은 다시 적용)",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "id": "DEC-2026-10-26-08",
+    "kind": "reclassification",
+    "note": "R2 재배치만 — CAT- id 불변(3-B′)",
+    "result": "applied",
+    "stage": "⓪"
+   },
+   {
+    "anchors": [
+     "REF-ebd2e2d352",
+     "REF-1882bc8e24",
+     "REF-16da584a56",
+     "REF-47bcf3ffcf",
+     "REF-07845a4790",
+     "REF-6189269ba0",
+     "REF-0efc3dbf09",
+     "REF-3cf0e9f3bb",
+     "REF-acd058fcc5"
+    ],
+    "id": "DEC-2026-11-04-B2A-MAP-001",
+    "kind": "canonical_mapping",
+    "note": "라벨 조각 from_ref 를 scope anchor 의 분해에서만 to_id 로 읽었다(미해결 참조 · 분해 단계)",
+    "resolved_anchors": [
+     "REF-ebd2e2d352",
+     "REF-1882bc8e24",
+     "REF-47bcf3ffcf",
+     "REF-acd058fcc5"
+    ],
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "REF-9a0f3675e7",
+     "REF-23605eeac1",
+     "REF-dec6de5280",
+     "REF-bed029264d"
+    ],
+    "id": "DEC-2026-11-04-B2B-BTX-01",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-6965975e4c",
+     "CAT-ebf6e7d503",
+     "CAT-6ffc78adb2",
+     "CAT-3ecdef5045",
+     "CAT-aeeecf36e0",
+     "CAT-e91c5c5f50",
+     "CAT-fee4877abb",
+     "CAT-55e95a471c",
+     "CAT-26d6ad6ad6",
+     "CAT-d463a63896",
+     "CAT-151442cf59",
+     "CAT-5ed7f7728a",
+     "CAT-7d9aefd9df",
+     "CAT-33d31ebbc2",
+     "CAT-dc0e0160e9",
+     "CAT-ed330d370c",
+     "CAT-660560ac3d",
+     "CAT-c5c7ecdaae",
+     "CAT-0f8dad7ca6",
+     "CAT-84b578630a",
+     "CAT-58d2f4a7a9",
+     "CAT-c665d4c0c7",
+     "CAT-85fde7a930",
+     "CAT-b836ff318b",
+     "CAT-06bb376060",
+     "CAT-35b8d5974c",
+     "CAT-0d2eb26819",
+     "CAT-9aebb2f7df",
+     "CAT-c62f009141",
+     "CAT-0400fda6ae"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-01",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-05d25fb165",
+     "CAT-96a86bdbe8",
+     "CAT-43aff21b1f",
+     "CAT-1a034e89e1",
+     "CAT-b011d47f18",
+     "CAT-df4f8b2c22",
+     "CAT-9aa95e316f",
+     "CAT-b1afa4c303",
+     "CAT-630c54a531",
+     "CAT-1259e70d7b"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-02",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-7001760b31",
+     "CAT-d68756b1c5",
+     "CAT-1daa9211bc",
+     "CAT-2151698137",
+     "CAT-f3110392e3",
+     "CAT-fda48682a7",
+     "CAT-1ed7eb9a4f"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-03",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-60470c8529",
+     "CAT-29f4655d73",
+     "CAT-de97bf1304",
+     "CAT-c90daa0e22"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-04",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-0d46a67493",
+     "CAT-3c6f31b90c",
+     "CAT-5065190d26",
+     "CAT-593a0c1a05",
+     "CAT-b1078ae328"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-05",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-eb9d3ba8f5",
+     "CAT-4a98a1a31a",
+     "CAT-b6953edd44",
+     "CAT-874c93774c",
+     "CAT-816a6ed4c6",
+     "CAT-1070cb2dca",
+     "CAT-fb53d4c993",
+     "CAT-3f7dda4c32",
+     "CAT-9fb11a8d62",
+     "CAT-299f742e3b",
+     "CAT-bad8b16922",
+     "CAT-d56ec3e196",
+     "CAT-8439905379",
+     "CAT-7eba19df59",
+     "CAT-cac4804755",
+     "CAT-1796e9553c",
+     "CAT-c61c69e5cc",
+     "CAT-d3ef509f6b",
+     "CAT-51aae881a2",
+     "CAT-1cb24ec92b",
+     "CAT-e71e638382",
+     "CAT-5af92bc234",
+     "CAT-c5f129c970",
+     "CAT-1e5867c836",
+     "CAT-aeabf21b28",
+     "CAT-959458af36",
+     "CAT-6891420a64",
+     "CAT-7b2daa58b9",
+     "CAT-5d0bf36287"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-07",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-4839fe2677",
+     "CAT-593fe618bc",
+     "CAT-bcd3331375",
+     "CAT-72d70487d9",
+     "CAT-16aabd1b2f",
+     "CAT-a099d43b25",
+     "CAT-be114529cb",
+     "CAT-e10b36ed0c",
+     "CAT-78b1fd3370",
+     "CAT-8620066867",
+     "CAT-34310fa1fe",
+     "CAT-c385fb0dfe",
+     "CAT-8651227607",
+     "CAT-9acf01f98a",
+     "CAT-b8d6d063bb",
+     "CAT-b86fc1b238",
+     "CAT-c72c19fc93",
+     "CAT-c4aab9b063",
+     "CAT-d2388afd01",
+     "CAT-3ffbc8e401",
+     "CAT-3abea35209",
+     "CAT-577dcf45d7",
+     "CAT-f7d490261c",
+     "CAT-7e7346faf1",
+     "CAT-a9f8c1845c",
+     "CAT-7fd25fbe8e",
+     "CAT-d912513a6a",
+     "CAT-d24d47ec89",
+     "CAT-e78cb80e2e",
+     "CAT-4ad500b52d",
+     "CAT-1b975c02d8",
+     "CAT-0e8e82baf9",
+     "CAT-4305fe0023"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-08",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-83a25f8d92",
+     "CAT-6930ad2e52",
+     "CAT-b0449b9a25",
+     "CAT-01c7237669",
+     "CAT-a2a8b54851",
+     "CAT-3c3169984e",
+     "CAT-000766a064",
+     "CAT-0158317211",
+     "CAT-5feac9b5bc",
+     "CAT-214efe4d6d",
+     "CAT-ec637df0c8",
+     "CAT-61e0e476a6",
+     "CAT-9e4c8fd946",
+     "CAT-633bdd3dbf",
+     "CAT-31ac07fe45",
+     "CAT-428eebe812",
+     "CAT-deeee2f86b",
+     "CAT-00864ad58d",
+     "CAT-034f572396",
+     "CAT-bd1d93db49",
+     "CAT-9860292243",
+     "CAT-663bc994c8",
+     "CAT-d02cb5f6d2",
+     "CAT-c94e99a8ed",
+     "CAT-3555509429",
+     "CAT-b1d734a953",
+     "CAT-1bc36de49a",
+     "CAT-ec97abb2f0",
+     "CAT-ca288b80ed",
+     "CAT-f8703c0e47",
+     "CAT-631aaead00",
+     "CAT-e323c4b83b",
+     "CAT-d418c24050",
+     "CAT-cebb75b22e",
+     "CAT-4c18f58a27",
+     "CAT-7e7ea7efb3",
+     "CAT-524bb22e97",
+     "CAT-ce22aa045c",
+     "CAT-5999336fbb",
+     "CAT-270ae30310",
+     "CAT-7cdbea8668",
+     "CAT-8bff5e0102",
+     "CAT-49044f56a3"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEC-09",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "anchors": [
+     "CAT-6db65700a1"
+    ],
+    "id": "DEC-2026-11-05-B3-MAP-01",
+    "kind": "canonical_mapping",
+    "result": "applied",
+    "stage": "②"
+   },
+   {
+    "courses": {
+     "ADV-01891270e8": [],
+     "ADV-972ba554c6": []
+    },
+    "id": "DEC-2026-11-04-B2B-ISE-01",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M1/2",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8",
+     "ADV-972ba554c6"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-d64ad5480f": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-04-B2B-PAR-01",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M9/4",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-d64ad5480f"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-d64ad5480f": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-04-B2B-PAR-02",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M14/2",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-d64ad5480f"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-01891270e8": [
+      "일시"
+     ],
+     "ADV-972ba554c6": []
+    },
+    "id": "DEC-2026-11-04-B2B-PAR-03",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M14/3",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8",
+     "ADV-972ba554c6"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-1395820f61": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-04-B2B-PAR-04",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M16/4",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-1395820f61"
+    ]
+   },
+   {
+    "anchor": "REF-554e7d5964",
+    "id": "DEC-2026-11-04-B2B-SLS-02",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "anchor": "REF-919f782e1e",
+    "id": "DEC-2026-11-04-B2B-SLS-09",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "courses": [
+     "일시"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEV-01",
+    "kind": "adverse_tuple_assign",
+    "locator": "extracted.json:{code}.safety.common[]@M13/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-0d10bd307d",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-02",
+    "kind": "adverse_tuple_assign",
+    "locator": "extracted.json:{code}.safety.common[]@M2/0",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-4db30daf7b",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-03",
+    "kind": "adverse_tuple_assign",
+    "locator": "extracted.json:{code}.safety.common[]@M3/0",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-4db30daf7b",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [
+     "일시"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEV-04",
+    "kind": "adverse_tuple_assign",
+    "locator": "extracted.json:{code}.safety.common[]@M4/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-0d10bd307d",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-05",
+    "kind": "adverse_tuple_assign",
+    "locator": "extracted.json:{code}.safety.common[]@M6/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-559472746f",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-2cee43b7d5"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-06",
+    "kind": "adverse_tuple_assign",
+    "locator": "taxonomy.json:modality[].extracted.safety.common[]@M2/0",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-4db30daf7b",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-07",
+    "kind": "adverse_tuple_assign",
+    "locator": "taxonomy.json:modality[].extracted.safety.common[]@M3/0",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-4db30daf7b",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [
+     "일시"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEV-08",
+    "kind": "adverse_tuple_assign",
+    "locator": "taxonomy.json:modality[].extracted.safety.common[]@M4/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-0d10bd307d",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": [],
+    "id": "DEC-2026-11-04-B2B-TEV-09",
+    "kind": "adverse_tuple_assign",
+    "locator": "taxonomy.json:modality[].extracted.safety.common[]@M6/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-559472746f",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-2cee43b7d5"
+    ]
+   },
+   {
+    "courses": [
+     "일시"
+    ],
+    "id": "DEC-2026-11-04-B2B-TEV-10",
+    "kind": "adverse_tuple_assign",
+    "locator": "taxonomy.json:modality[].extracted.safety.common[]@M13/1",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-0d10bd307d",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-d64ad5480f": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-05-B3-ADV-01",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M9/4",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-d64ad5480f"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-d64ad5480f": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-05-B3-ADV-02",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M14/2",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-d64ad5480f"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-01891270e8": [
+      "일시"
+     ],
+     "ADV-972ba554c6": [
+      "일시"
+     ]
+    },
+    "id": "DEC-2026-11-05-B3-ADV-03",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M14/3",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-01891270e8",
+     "ADV-972ba554c6"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-41deec3a31": [],
+     "ADV-4eec511fb3": [],
+     "ADV-ef25425526": []
+    },
+    "id": "DEC-2026-11-05-B3-ADV-04",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M14/1",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-4eec511fb3",
+     "ADV-41deec3a31",
+     "ADV-ef25425526"
+    ]
+   },
+   {
+    "courses": {
+     "ADV-1395820f61": [
+      "일시"
+     ],
+     "ADV-d50f53021c": []
+    },
+    "id": "DEC-2026-11-05-B3-ADV-05",
+    "kind": "adverse_tuple_assign",
+    "locator": "complications.json:categories[].complications[].name@M16/4",
+    "note": "옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-1395820f61",
+     "ADV-d50f53021c"
+    ]
+   },
+   {
+    "courses": [
+     "지속"
+    ],
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-01",
+    "kind": "adverse_tuple_assign",
+    "locator": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@M16/6",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-f02aa749d6",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-1395820f61"
+    ]
+   },
+   {
+    "courses": [
+     "지속"
+    ],
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-02",
+    "kind": "adverse_tuple_assign",
+    "locator": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@M16/9",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-1fd0edfbe0",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-1395820f61"
+    ]
+   },
+   {
+    "courses": [
+     "지속"
+    ],
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-03",
+    "kind": "adverse_tuple_assign",
+    "locator": "post-procedure-timeline.json:timelines[].phases[].normal[]@M16/9",
+    "note": "v3.1: 표현은 개체가 아니다(V3.1-10) — 옛 표현 지정을 그 자리의 문구 사전 항목 지도로 적용(phrase_map 과 같은 효과 · 같은 정규화형 자리 전부) · 옛 네 칸(course_id) → 세 칸 단위 + R15 경과(v3.1 V3.1-9)",
+    "phrase_id": "PHR-d7c258f5f6",
+    "result": "applied",
+    "stage": "③",
+    "units": [
+     "ADV-1395820f61"
+    ]
+   },
+   {
+    "anchor": "CAT-b3860c9514",
+    "id": "DEC-2026-11-05-B3-TUP-01",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "anchor": "CAT-b44cb2c2fe",
+    "id": "DEC-2026-11-05-B3-TUP-02",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "anchor": "REF-4445947203",
+    "id": "DEC-2026-11-05-B3-TUP-03",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "anchor": "REF-065677ad2d",
+    "id": "DEC-2026-11-05-B3-TUP-04",
+    "kind": "tuple_assign",
+    "result": "applied",
+    "stage": "③"
+   },
+   {
+    "closed_duplicates": 1,
+    "folded": [
+     "CAT-96a86bdbe8"
+    ],
+    "id": "DEC-2026-11-04-B2B-MFC-01",
+    "keep": "CAT-05d25fb165",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 1,
+    "folded": [
+     "CAT-53cb7ccd54"
+    ],
+    "id": "DEC-2026-11-04-B2B-MFC-02",
+    "keep": "CAT-494e06af10",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-4b989b0957",
+     "REF-1b23aed442"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-01",
+    "keep": "CAT-d45b9035c6",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-bdcd60620c",
+     "REF-80d4932bc2",
+     "REF-5c9b162938"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-02",
+    "keep": "CAT-78dc378af5",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-13f6fed436"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-03",
+    "keep": "CAT-2469c13780",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-c38bc11c28"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-04",
+    "keep": "CAT-21b89b29a3",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-09c8a2fd7c"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-05",
+    "keep": "CAT-7d42735092",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 1,
+    "folded": [
+     "REF-a85cc77c1b"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-06",
+    "keep": "CAT-9cfb8cc1a8",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 1,
+    "folded": [
+     "CAT-8e550f4613"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-07",
+    "keep": "CAT-102bed4c6f",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-23605eeac1"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-09",
+    "keep": "REF-9a0f3675e7",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-dd14a08a5b"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-10",
+    "keep": "REF-c6a01cc6b8",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-0f4c716b29",
+     "REF-0baa3a11da",
+     "REF-325b31ad75",
+     "REF-cf7ba13db2",
+     "REF-61c9368e47"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-11",
+    "keep": "REF-3c63756361",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-33fb7ca9ad"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-12",
+    "keep": "REF-6c25361b4c",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-712533b35b"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-13",
+    "keep": "REF-662af9720b",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-ead5cf88f6"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-14",
+    "keep": "REF-cd993f43c9",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-eae0a4146c"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-15",
+    "keep": "REF-26e156cc9b",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-896d519929",
+     "REF-a7a4628904",
+     "REF-16712c90ff",
+     "REF-7d92cefd80",
+     "REF-160fceeb16",
+     "REF-8a352da6f9"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-16",
+    "keep": "REF-37822ba6fb",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-e07e29cbc3",
+     "REF-2dec2f3150"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-17",
+    "keep": "REF-11f435e72d",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-dacb4d8de2"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-18",
+    "keep": "REF-4858d593b6",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-20aceadde9"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-19",
+    "keep": "REF-8824ddbbe8",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "closed_duplicates": 0,
+    "folded": [
+     "REF-3ce1015f26"
+    ],
+    "id": "DEC-2026-11-04-B2B-S3C-21",
+    "keep": "REF-f3dec988b5",
+    "kind": "fold_approve",
+    "result": "applied",
+    "stage": "④"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "clinical_rule:RUL-dacbdc189b→product:PRD-e45033395c"
+    ],
+    "id": "DEC-2026-11-05-B3-EXO-05A",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "relation": "R32",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "clinical_rule:RUL-dacbdc189b→product:PRD-f4264ddf37"
+    ],
+    "id": "DEC-2026-11-05-B3-EXO-05B",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "relation": "R32",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "clinical_rule:RUL-dacbdc189b→product:PRD-209656bf00"
+    ],
+    "id": "DEC-2026-11-05-B3-EXO-05C",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "relation": "R32",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "modality_subcategory:SUB-6d6c52287f→person_condition:CND-24f7692a17"
+    ],
+    "id": "DEC-2026-11-05-B3-R16-01",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "relation": "R16",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "modality_subcategory:SUB-68582f5184→person_condition:CND-24f7692a17"
+    ],
+    "id": "DEC-2026-11-05-B3-R16-02",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "relation": "R16",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "adverse_effect:ADV-ef25425526→adverse_effect:ADV-893862ff65"
+    ],
+    "id": "DEC-2026-11-05-B3-R30-01",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "note": "옛 네 칸 adverse_tuple — 경과 미상, 미상 — 이 관계에 경과 자리 없음(단위 세 칸만 · v3.1)",
+    "relation": "R30",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "adverse_effect:ADV-e1ade9681a→adverse_effect:ADV-893862ff65"
+    ],
+    "id": "DEC-2026-11-05-B3-R30-02",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "note": "옛 네 칸 adverse_tuple — 경과 미상, 미상 — 이 관계에 경과 자리 없음(단위 세 칸만 · v3.1)",
+    "relation": "R30",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "created": 1,
+    "ends": [
+     "adverse_effect:ADV-d50f53021c→adverse_effect:ADV-1395820f61"
+    ],
+    "id": "DEC-2026-11-05-B3-R30-03",
+    "kind": "edge_create",
+    "merged_into_existing": 0,
+    "note": "옛 네 칸 adverse_tuple — 경과 미상, 미상 — 이 관계에 경과 자리 없음(단위 세 칸만 · v3.1)",
+    "relation": "R30",
+    "result": "applied",
+    "stage": "⑤"
+   },
+   {
+    "id": "DEC-2026-10-26-01",
+    "kind": "verification_hold",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-10-26-02",
+    "kind": "ledger_correction_note",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-10-26-06",
+    "kind": "ledger_correction_note",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-10-26-07",
+    "kind": "ledger_correction_note",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-01",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-02",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-03",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-04",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-05",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-06",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-07",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-08",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-09",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-10",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-11",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-12",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-13",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-14",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-15",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-16",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-17",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-18",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-19",
+    "kind": "conflict_resolution",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-01",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-04",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-05",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-06",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-07",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-10",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-11",
+    "kind": "scope_review",
+    "note": "build_reads=false — 값을 바꾸지 않음",
+    "result": "recorded",
+    "stage": "—"
+   }
+  ],
+  "approved_read": [
+   {
+    "id": "DEC-2026-10-26-08",
+    "kind": "reclassification",
+    "origin": "ledger_memo(taxonomy.json · 질문 23)",
+    "store_file": null
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-02A",
+    "kind": "product_reclassify",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-02A.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-02B",
+    "kind": "product_reclassify",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-02B.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-001",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-001.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-002",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-002.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-003",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-003.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-004",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-004.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-005",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-005.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-006",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-006.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-007",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-007.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-008",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-008.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-009",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-009.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-010",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-010.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-011",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-011.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-012",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-012.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-013",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-013.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-014",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-014.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-015",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-015.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-016",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-016.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-017",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-017.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-018",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-018.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-019",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-019.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-020",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-020.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-021",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-021.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-022",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-022.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-023",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-023.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-024",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-024.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-025",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-025.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-026",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-026.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-027",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-027.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-028",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-028.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-029",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-029.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-030",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-030.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-031",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-031.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-032",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-032.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-033",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-033.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-034",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-034.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-035",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-035.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-036",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-036.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-037",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-037.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-038",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-038.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-039",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-039.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-040",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-040.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-041",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-041.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-042",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-042.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-043",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-043.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-044",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-044.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-045",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-045.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-046",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-046.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-047",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-047.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-048",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-048.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-049",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-049.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-050",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-050.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-051",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-051.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-052",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-052.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-053",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-053.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-054",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-054.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-055",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-055.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-056",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-056.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-057",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-057.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-058",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-058.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-059",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-059.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-060",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-060.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-061",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-061.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-062",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-062.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-063",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-063.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-064",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-064.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-065",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-065.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-066",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-066.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-067",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-067.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-068",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-068.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-069",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-069.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-070",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-070.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-071",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-071.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-072",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-072.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-073",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-073.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-074",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-074.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-075",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-075.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-076",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-076.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-077",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-077.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-078",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-078.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-079",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-079.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-080",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-080.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-081",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-081.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-082",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-082.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-083",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-083.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-084",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-084.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-085",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-085.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-086",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-086.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-087",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-087.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-088",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-088.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-089",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-089.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-090",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-090.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-091",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-091.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-092",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-092.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-093",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-093.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-094",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-094.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-095",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-095.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-096",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-096.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-097",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-097.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-098",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-098.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-099",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-099.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-100",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-100.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-101",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-101.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-102",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-102.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-103",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-103.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-104",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-104.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-105",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-105.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-106",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-106.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-107",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-107.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-108",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-108.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-109",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-109.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-110",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-110.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-111",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-111.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-112",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-112.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-113",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-113.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-114",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-114.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-115",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-115.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-116",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-116.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-117",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-117.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-118",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-118.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-119",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-119.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-120",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-120.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-121",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-121.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-122",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-122.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-123",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-123.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-124",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-124.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-125",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-125.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-126",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-126.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-127",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-127.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-128",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-128.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-129",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-129.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-130",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-130.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-131",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-131.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-132",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-132.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-133",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-133.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-134",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-134.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-135",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-135.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-136",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-136.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-137",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-137.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-138",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-138.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-139",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-139.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-140",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-140.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-141",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-141.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-142",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-142.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-143",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-143.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-144",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-144.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-145",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-145.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-146",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-146.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-147",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-147.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-148",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-148.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-149",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-149.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-150",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-150.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-151",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-151.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-152",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-152.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-153",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-153.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-154",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-154.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-155",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-155.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-156",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-156.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-157",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-157.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-158",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-158.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-159",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-159.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-160",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-160.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-161",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-161.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-162",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-162.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-163",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-163.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-164",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-164.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-165",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-165.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-166",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-166.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-167",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-167.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-PRD-168",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-PRD-168.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-001",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-001.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-002",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-002.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-003",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-003.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-004",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-004.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-005",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-005.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-006",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-006.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-007",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-007.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-SYN-008",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch1/DEC-2026-11-04-B1-SYN-008.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-001",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-001.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-002",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-002.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-003",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-003.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-004",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-004.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-005",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-005.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-006",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-006.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-SYN-007",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-SYN-007.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-CAT-01",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-CAT-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-DICT-COURSE-01",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-DICT-COURSE-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-MFR-01",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-MFR-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-PRD-01",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-PRD-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-PRD-02",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-PRD-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-PRD-03",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-PRD-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-PRD-04",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-PRD-04.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-SIT-01",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-SIT-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-SIT-02",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-SIT-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-SIT-03",
+    "kind": "dictionary_add",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-SIT-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-REN-01",
+    "kind": "canonical_rename",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-REN-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-REN-02",
+    "kind": "canonical_rename",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-REN-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-06",
+    "kind": "dictionary_remove",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-06.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2A-MAP-001",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2a/DEC-2026-11-04-B2A-MAP-001.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-BTX-01",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-BTX-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-01",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-02",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-03",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-03.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-04",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-05",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-05.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-07",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-07.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-08",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-08.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEC-09",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEC-09.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-MAP-01",
+    "kind": "canonical_mapping",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-MAP-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-ISE-01",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-ISE-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-PAR-01",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-PAR-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-PAR-02",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-PAR-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-PAR-03",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-PAR-03.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-PAR-04",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-PAR-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-02",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-09",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-09.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-01",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-02",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-03",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-03.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-04",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-05",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-05.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-06",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-06.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-07",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-07.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-08",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-08.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-09",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-09.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-TEV-10",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-TEV-10.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-01",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-02",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-03",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-04",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-04.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-05",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-05.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-01",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-COURSE-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-02",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-COURSE-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-ADV-COURSE-03",
+    "kind": "adverse_tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-ADV-COURSE-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-TUP-01",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-TUP-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-TUP-02",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-TUP-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-TUP-03",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-TUP-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-TUP-04",
+    "kind": "tuple_assign",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-TUP-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-01",
+    "kind": "event_split",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-EVS-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-02",
+    "kind": "event_split",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-EVS-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-EVS-04",
+    "kind": "event_split",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-EVS-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-MFC-01",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-MFC-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-MFC-02",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-MFC-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-01",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-02",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-03",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-03.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-04",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-05",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-05.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-06",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-06.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-07",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-07.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-09",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-09.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-10",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-10.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-11",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-11.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-12",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-12.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-13",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-13.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-14",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-14.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-15",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-15.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-16",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-16.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-17",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-17.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-18",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-18.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-19",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-19.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-S3C-21",
+    "kind": "fold_approve",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-S3C-21.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-05A",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-05A.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-05B",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-05B.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-EXO-05C",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-EXO-05C.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-R16-01",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-R16-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-R16-02",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-R16-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-R30-01",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-R30-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-R30-02",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-R30-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-R30-03",
+    "kind": "edge_create",
+    "origin": "store",
+    "store_file": "batch3/DEC-2026-11-05-B3-R30-03.json"
+   },
+   {
+    "id": "DEC-2026-10-26-01",
+    "kind": "verification_hold",
+    "origin": "ledger_memo(taxonomy.json · 질문 23)",
+    "store_file": null
+   },
+   {
+    "id": "DEC-2026-10-26-02",
+    "kind": "ledger_correction_note",
+    "origin": "ledger_memo(taxonomy.json · 질문 23)",
+    "store_file": null
+   },
+   {
+    "id": "DEC-2026-10-26-06",
+    "kind": "ledger_correction_note",
+    "origin": "ledger_memo(taxonomy.json · 질문 23)",
+    "store_file": null
+   },
+   {
+    "id": "DEC-2026-10-26-07",
+    "kind": "ledger_correction_note",
+    "origin": "ledger_memo(taxonomy.json · 질문 23)",
+    "store_file": null
+   },
+   {
+    "id": "DEC-2026-11-04-01",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-02",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-02.json"
+   },
+   {
+    "id": "DEC-2026-11-04-03",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-03.json"
+   },
+   {
+    "id": "DEC-2026-11-04-04",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-05",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-05.json"
+   },
+   {
+    "id": "DEC-2026-11-04-06",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-06.json"
+   },
+   {
+    "id": "DEC-2026-11-04-07",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-07.json"
+   },
+   {
+    "id": "DEC-2026-11-04-08",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-08.json"
+   },
+   {
+    "id": "DEC-2026-11-04-09",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-09.json"
+   },
+   {
+    "id": "DEC-2026-11-04-10",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-10.json"
+   },
+   {
+    "id": "DEC-2026-11-04-11",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-11.json"
+   },
+   {
+    "id": "DEC-2026-11-04-12",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-12.json"
+   },
+   {
+    "id": "DEC-2026-11-04-13",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-13.json"
+   },
+   {
+    "id": "DEC-2026-11-04-14",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-14.json"
+   },
+   {
+    "id": "DEC-2026-11-04-15",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-15.json"
+   },
+   {
+    "id": "DEC-2026-11-04-16",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-16.json"
+   },
+   {
+    "id": "DEC-2026-11-04-17",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-17.json"
+   },
+   {
+    "id": "DEC-2026-11-04-18",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-18.json"
+   },
+   {
+    "id": "DEC-2026-11-04-19",
+    "kind": "conflict_resolution",
+    "origin": "store",
+    "store_file": "_bootstrap/DEC-2026-11-04-19.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-01",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-01.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-04",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-04.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-05",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-05.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-06",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-06.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-07",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-07.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-10",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-10.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B2B-SLS-11",
+    "kind": "scope_review",
+    "origin": "store",
+    "store_file": "batch2b/DEC-2026-11-04-B2B-SLS-11.json"
+   }
+  ],
+  "invalid": [],
+  "listed_not_read": [
+   {
+    "id": "DEC-2026-11-05-B3-P-ADV-01",
+    "kind": "adverse_tuple_assign",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-ADV-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-NEC-01",
+    "kind": "scope_review",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-NEC-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-REN-03",
+    "kind": "canonical_rename",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-REN-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-01",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-01.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-02",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-02.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-03",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-03.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-04",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-04.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-05",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-05.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-SIT-06",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-SIT-06.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-1",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-1.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-2",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-2.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-3",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-3.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-4",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-4.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-DCA",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-DCA.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B3-P-TEC-LIPO",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch3-proposed/DEC-2026-11-05-B3-P-TEC-LIPO.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-001n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-001n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-002a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-002a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-002b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-002b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-002c",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-002c.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-003a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-003a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-004n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-004n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-005a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-005a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-006a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-006a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-006n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-006n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-007a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-007a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-008n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-008n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-009a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-009a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-009n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-009n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-011a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-011a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-011n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-011n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-012n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-012n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-013n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-013n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-014a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-014a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-015n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-015n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-018n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-018n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-019n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-019n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-020a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-020a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-021n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-021n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-022n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-022n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-023n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-023n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-025a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-025a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-025n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-025n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-027a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-027a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-027n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-027n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-028n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-028n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-034n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-034n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-036n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-036n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-037n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-037n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-039a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-039a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-039n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-039n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-041a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-041a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-045a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-045a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-045n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-045n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-047n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-047n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-048n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-048n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-049n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-049n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-050a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-050a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-057n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-057n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-058n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-058n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-061a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-061a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-061n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-061n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-062a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-062a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-068n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-068n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-071n",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-071n.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-ADV-076a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-ADV-076a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-001a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-001a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-001b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-001b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-001c",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-001c.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-002a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-002a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-003a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-003a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-003b",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-003b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-004a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-004a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-004b",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-004b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-006a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-006a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-007a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-007a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-015a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-015a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-016a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-016a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-018a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-018a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-020a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-020a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-030a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-030a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-030b",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-030b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-031a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-031a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-031b",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-031b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-035a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-035a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-038a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-038a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-046a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-046a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-049a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-049a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-050a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-050a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-051a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-051a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-054a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-054a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-054b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-054b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-PRC-059a",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-PRC-059a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-001a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-001a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-001b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-001b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-002a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-002a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-003a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-003a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-004a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-004a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-005a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-005a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-006a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-006a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-007a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-007a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-008a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-008a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-009a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-009a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-010a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-010a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-010b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-010b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-011a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-011a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-012a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-012a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-013a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-013a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-014a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-014a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-015a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-015a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-016a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-016a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-017a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-017a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-018a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-018a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-019a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-019a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-020a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-020a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-021a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-021a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-022a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-022a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-023a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-023a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-024a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-024a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-025a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-025a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-025b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-025b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-026a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-026a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-027a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-027a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-028a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-028a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-029a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-029a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-030a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-030a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-031a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-031a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-032a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-032a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-033a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-033a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-034a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-034a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-034b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-034b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-035a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-035a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-035b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-035b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-036a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-036a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-036b",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-036b.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-037a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-037a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-038a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-038a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-039a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-039a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-040a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-040a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-041a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-041a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-042a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-042a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-043a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-043a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-044a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-044a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-045a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-045a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-046a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-046a.json"
+   },
+   {
+    "id": "DEC-2026-11-05-B4-SIT-047a",
+    "kind": "dictionary_add",
+    "status": "proposed",
+    "store_file": "batch4-proposed/DEC-2026-11-05-B4-SIT-047a.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-botox-product-vs-modality",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "proposed/templates/botox-product-vs-modality.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-event-split",
+    "kind": "event_split",
+    "status": "proposed",
+    "store_file": "proposed/templates/event-split.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-excel-v-plus",
+    "kind": "tuple_assign",
+    "status": "proposed",
+    "store_file": "proposed/templates/excel-v-plus.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-injection-site-erythema-edema",
+    "kind": "adverse_tuple_assign",
+    "status": "proposed",
+    "store_file": "proposed/templates/injection-site-erythema-edema.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-mface-like",
+    "kind": "tuple_assign",
+    "status": "proposed",
+    "store_file": "proposed/templates/mface-like.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-paren-synonym-unknown-tuples-4",
+    "kind": "adverse_tuple_assign",
+    "status": "proposed",
+    "store_file": "proposed/templates/paren-synonym-unknown-tuples-4.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-same-three-cells-21",
+    "kind": "fold_approve",
+    "status": "proposed",
+    "store_file": "proposed/templates/same-three-cells-21.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-slash-together-or",
+    "kind": "tuple_assign_multi",
+    "status": "proposed",
+    "store_file": "proposed/templates/slash-together-or.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-technique-inheritance-9",
+    "kind": "canonical_mapping",
+    "status": "proposed",
+    "store_file": "proposed/templates/technique-inheritance-9.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-two-event-candidates-10",
+    "kind": "adverse_tuple_assign",
+    "status": "proposed",
+    "store_file": "proposed/templates/two-event-candidates-10.json"
+   },
+   {
+    "id": "DEC-2026-11-04-B1-TPL-volnewmer-m4-m9",
+    "kind": "conflict_close",
+    "status": "proposed",
+    "store_file": "proposed/templates/volnewmer-m4-m9.json"
+   }
+  ]
+ },
+ "determinism_key": "d259c3768392b6e38d57eefef1ea704bcb3e1740e12ff4677aa5c81b5c5c29e7",
+ "dictionaries": {
+  "file": "erd-v3.1-dictionaries.json",
+  "sha256": "782aefe25726cf84b0d3300d5340a4393689f3d85de07e4e96150d2374eb1680"
+ },
+ "erd": {
+  "file": "erd-v3.1.json",
+  "sha256": "a0426d97d1ffa0418bed4159c5a1704a5f01c5f173fb8f2d11b303351f6ccb51",
+  "version": "v3.1"
+ },
+ "erd_comparison": {
+  "diff": 0,
+  "keys": 233
+ },
+ "inputs": {
+  "anatomy-danger-zones.json": {
+   "bytes": 29555,
+   "sha256": "34b2a2de737a2770828ce52e49c3f4f17dc54c21ad9754362c24ebf4fced69a4"
+  },
+  "combo-recipes.json": {
+   "bytes": 6486,
+   "sha256": "1bb7c309e8ec72768ae9c5db94e1911188be240f4c7d770d54244008aeab0c94"
+  },
+  "complications.json": {
+   "bytes": 58333,
+   "sha256": "7bf0573efa955225f63cc33d96b68a20693ddaac647ee2a0c679c1de32d3d932"
+  },
+  "consent-checklist.json": {
+   "bytes": 21047,
+   "sha256": "4e138ffb64414995483e4201396bc4f185ec34e4d150f825ec151b0fe07512e5"
+  },
+  "contraindications.json": {
+   "bytes": 6390,
+   "sha256": "964b729594b1756036c160823dc2e8d27ea38fe85d7aefb7559733522d7c53c2"
+  },
+  "extracted.json": {
+   "bytes": 56589,
+   "sha256": "b829d499e3e3fd7f6119f2dc23092cf50f7c13e57ee18e9d3131a14c7e350f2c"
+  },
+  "literature-evidence.json": {
+   "bytes": 118979,
+   "sha256": "6e179872a9c234491ca62c20899757fca3aa5388833aa6bc4d1ac28a032aebfd"
+  },
+  "market-pricing.json": {
+   "bytes": 12214,
+   "sha256": "601d7e7b4db29731bf15304ff3ec9489ba38838e9f5ba2144c2c181cfd15e477"
+  },
+  "patient-education.json": {
+   "bytes": 26551,
+   "sha256": "6c96520c514b76ef7f93d7f685e53023afe91b05133a9b9ca5db0a95d42d91ac"
+  },
+  "pih-risk.json": {
+   "bytes": 11875,
+   "sha256": "cb6e9305113d0b47f447eb314ce3bb34d0278bbc8bdf26bc3303d323028575c8"
+  },
+  "post-procedure-timeline.json": {
+   "bytes": 20081,
+   "sha256": "d04c9fe494acd318d656f6dea6d19e33cb944a20440e312ca9bad41309c9742e"
+  },
+  "pre-procedure-checklist.json": {
+   "bytes": 14569,
+   "sha256": "0de87bff91f721fe685884025d31749017d44da250492b2db9d49109a61e4086"
+  },
+  "problem-combos.json": {
+   "bytes": 25026,
+   "sha256": "74453c724800975ef7f3fa8b81546fe69fa014bfbc7a8f7e60c75774c2cf2262"
+  },
+  "problem-packages.json": {
+   "bytes": 73526,
+   "sha256": "e44fa7216e0eceefde4be368fcdfa623df0834de6989b826f66ba4e408fcb3dc"
+  },
+  "procedure-comparison.json": {
+   "bytes": 18002,
+   "sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571"
+  },
+  "procedure-profiles.json": {
+   "bytes": 19548,
+   "sha256": "a1fe389d83430002f3d78e7c07ead4a7675d4afcfb68d28f9ac94042a5423f3e"
+  },
+  "products.json": {
+   "bytes": 8322,
+   "sha256": "090955cccd35468ace2882024f0e0f216d3ebdb58b38d77693c0cf402338b854"
+  },
+  "step1-products.json": {
+   "bytes": 1830115,
+   "sha256": "41128c7d5bce171bb186afdf13ec76d6f98adb092efb34be1af55461792354fd"
+  },
+  "synergy.json": {
+   "bytes": 32905,
+   "sha256": "5b17a72f2ff31d29c081af7fbfaa63127799d5ef5210399af1e4c5bce8f9da19"
+  },
+  "taxonomy.json": {
+   "bytes": 660497,
+   "sha256": "7e92abcd81b344cee947f001b809555e7549f1adaa4c622ef425a9cf55ee68f6"
+  },
+  "treatment-optimization.json": {
+   "bytes": 22887,
+   "sha256": "07b9ebe0a843280b4eef9487590951932192435ea46284aba425338ab9d9767b"
+  },
+  "treatment-sequence.json": {
+   "bytes": 8964,
+   "sha256": "e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf"
+  }
+ },
+ "inputs_count": 22,
+ "note": "빌드 시각은 manifest 밖(재실행 바이트 동일). 시각이 필요하면 build.py 표준 출력에만 찍는다.",
+ "outputs": {
+  "conflicts.jsonl": "79ececda439a38215618e7e8d618efd7c72de95c93dd4f47563d231086122e0d",
+  "dictionaries.json": "daf758079921aef9011f817379c8304bf6f78a7eb3d5edf11e80d0a01f095fea",
+  "entities/adverse_effect.jsonl": "61eada2a64dd5c7d8cd1a63ed96a907dae69d15047a54adae23886fb628b9c9c",
+  "entities/anatomical_structure.jsonl": "6d928b4b246e1cf904ea560affcd59ab4f1fe0bf1ff4d9fc00e7a09869f23f7b",
+  "entities/catalog_item.jsonl": "e21ffa8afb0e50528439919252c9567d9e86b83ac03ced3be95bbbc80bd686f8",
+  "entities/citation.jsonl": "01f9322217275838e3977058dd0760f0cde272944bcd684c29f89c285d9441ec",
+  "entities/clinical_rule.jsonl": "e02771c5e6a98607ce8d9067972d3789a03ca22b91a17ec2b881caab89c8071e",
+  "entities/complaint.jsonl": "9dfe68da7c2b86a45bbd6666abcf9b78192e0b2155a58a04eb374c8da4b6e2a1",
+  "entities/conflict.jsonl": "df9bd4dfc010f0db98f74e1fee27b6b1c93e5d52603d1d44f23df1c1d5dfefaf",
+  "entities/decision.jsonl": "4358758f6fab324083d411d82bda894fc2d110a5b3493520555f52df62a13447",
+  "entities/evidence_statement.jsonl": "212b9f466c6c6cee3f782eba6a5da51c29f978704dce6aedb97482c0d7f83059",
+  "entities/modality.jsonl": "9a2179322805b994e560ab2ad788ff389dc88b6e4be17dbc92de5c89fdf23092",
+  "entities/modality_subcategory.jsonl": "cd58dfe927ae91c26e56db5ab5655881dd07823eb28150bf725c42074d161ee3",
+  "entities/package.jsonl": "8c3379b5a4391d1e5a60f480187fa8df655db14d657e5193d3b0111d2bb1dfc0",
+  "entities/person_condition.jsonl": "611d034a30520489e545cf241ebc59396f3bb84ad0457b89d11b334f42d7a901",
+  "entities/problem.jsonl": "3b38f2720981e6780557142d0f22904a095edef9c52cb47dd784b95cd6799cf9",
+  "entities/problem_subcategory.jsonl": "8053a4405abbc4288c28cc10ec6ab825535fdd5d07b3209e255c9ec696530154",
+  "entities/procedure.jsonl": "705b60c43a1a9bd1f2440ab7294e8373d38ca74032c7b5cea024320c88fea61c",
+  "entities/product.jsonl": "5af516ec0c425e845d2078d3d86d4f6601cc199311f2cb1f5b2805ca86a712e0",
+  "entities/site.jsonl": "db690b18c44e52868a38173cd498849a529862f57db15ebb217eb9064236ddca",
+  "entities/source_file.jsonl": "98d256d6bee19c92fc13746d6cbaf437003cb5c24a18305f065668e2570a0b89",
+  "entities/technique.jsonl": "5142fe5fe6ea93cab1e9e141e0526a36ef36cfa849c3fb1d3e1b68fafccb372f",
+  "erd_comparison.json": "24303df9bb2d14a145c2f800ab3ab794858846c64231a5fad36e462976a9aef2",
+  "gate/batch3.json": "751034f970dfadea6ceee3d9c3f4f537b13b67fdd1bb1ad6626cc84465abf0a5",
+  "gate/batch3.md": "986f82236c575a45f32ef6597265120d964e173912c0cfc125daefb45d653d55",
+  "gate/batch4.json": "5df02cb4706422b01e8323e19c96990e0ac412fa86ba74facafe724d3cbc13eb",
+  "gate/batch4.md": "604422040eef0bdc4d8078ace64f6310c1a9005e88d5ceb5cda43a1606c130bb",
+  "gate/catalog_partial.json": "51b0b3a8f9d936aac1983059e91c1c6f5ce8900266bfc8f77f1fe7f3cbfdfb23",
+  "gate/catalog_partial.md": "560d04c1087d63b0e375096db6f305e82c00249cced684a40bceb1fa758bb0e0",
+  "gate/conflicts.md": "f0a33b5cc41e68d226213f60de282226e227e20fc546bdd8750ecbf86db4b296",
+  "gate/unlinked_phrases.json": "8757c5d32b0d45833d532275faf0b664d43b927e9b834a1eadafc57c15bef4c2",
+  "gate/unlinked_phrases.md": "710a3ecb3d331d88aa5e3db12ba5b94aaac8537d77c3489e62606cb754d5ebff",
+  "gate/unregistered_fragments.json": "961d90ba958eca96d812cca1ebcf2797569c9606fe9972bf377d219ef47eea48",
+  "gate/unregistered_fragments.md": "077dac8faa8204b834e4b31d1e9e8d773d4dad12899bd24783ed4cf12e961c9b",
+  "gate/unresolved_references.json": "fabd7e922ec2d1dd1c18c1280c80b9b4cca04d8f8941e8d3847884a79941a77c",
+  "gate/unresolved_references.md": "f0af6fdf035b0fae19ab8457e4b21f7eb453db082e44bcb5c1b3b705d4d1178c",
+  "relations/R1.jsonl": "c5024aebee8495493414ef0efa10fcfa440e3f472bd2bf660c2b47c8c6c15e2b",
+  "relations/R10.jsonl": "c20548b93a1438dc8aee13d79424dadac52be0a6fe7890e58b0da0249046850a",
+  "relations/R11.jsonl": "e13dbdf978c165bf00d5e183059cc5aef1d2d31c9195c869e0e155b79814582c",
+  "relations/R12.jsonl": "750f73bec87e54cbc0cd2e9fb8f066d9bd9979e73fa14de17eb9e229162de90a",
+  "relations/R13.jsonl": "081ee7e97fba539017b19a49f6fd9431ef4a59e6c4ad41ff9af8525d9b50e5fa",
+  "relations/R14.jsonl": "2b2bc2e3dd423dd38607e3502f0992edaf124efdf9ab2d63ecc2ed60551365c6",
+  "relations/R15.jsonl": "9b5f7c6b168305c312db038b345707dca3b4763f47daecaf8bfaef8a2a9e2016",
+  "relations/R16.jsonl": "08fcdef6db90159f17266688359aa536a2482eddc3b2196de09b79110947a63b",
+  "relations/R17.jsonl": "c369a190f34d1ed8218916f895a48beabd4546d262df8a37b06bf54485a02cef",
+  "relations/R18.jsonl": "5082a82aeb5a5bc5709802411fc5e66c07f526ac5c96d5ddb8acbb1a13cc30c6",
+  "relations/R19.jsonl": "da630b129138358209367ccfd85c11c5b40771f99d0da4a8048879e7a4f025c5",
+  "relations/R2.jsonl": "d296742e8afd7da0060d7dec94fd1a56630bf352bf5a4998966a6615c89a834b",
+  "relations/R20.jsonl": "51264dc905e5ce8bd75f7cf6d8807543ec3576fa58afbbbcbd05cfad4c7a4fae",
+  "relations/R21.jsonl": "890d639c72c19a6b7098d906b919487999c00105e1ff88ba505f8ed44baecb5d",
+  "relations/R22.jsonl": "4560f3b681e5ae646cd11ee2fbb976c10da60eceb986b3816f77f797b0e6a493",
+  "relations/R23.jsonl": "267b817b4792a290e929687b3b5f251f4281aecdd86d596a9809456f5e966452",
+  "relations/R24.jsonl": "ab07470c5342a2cc9112e879ae28a32b340abe81e3303021d445f078d1f44952",
+  "relations/R25.jsonl": "cae6c150d4794d33663d0d30b120b3571801795bc53d5cb4b2a2844684bf52b6",
+  "relations/R26.jsonl": "484ce41f2cc35805e6f93ea299fe0cef8071b2bf41e8961229c61d5b887cf25a",
+  "relations/R27.jsonl": "a351786d5b8e893b28076e4f4f146b4e22d9c158332e9361509cd87371fdea7e",
+  "relations/R28.jsonl": "b69ca4df27aee6d2fea7897f464e4cb4c53cd16688b5ed7f872e15b6e21efa0c",
+  "relations/R3.jsonl": "7200a37e081516d81ce490c5c29a7a032fe476dcd638a8fac2d3eeafe38c881c",
+  "relations/R30.jsonl": "e87eef3cdbbe14f31960e3314493928c834d603171e675b104908b4756729323",
+  "relations/R31.jsonl": "1ba847d7fc0668850b6a89c1af7174890ce1ad40197f3764c2f7f55b5c605e87",
+  "relations/R32.jsonl": "a3e59e525e713e49a7ca08b28fb8a4a6cd17167629b02fd6534335cefb0482b9",
+  "relations/R4.jsonl": "c1db952531421d4e0fdae78db900ae36ecc43883be3354ac4e2c8cb9d9e53931",
+  "relations/R5.jsonl": "6b0d4413287d31ee8f791572f91e1e0e7ecaa56904a6dd4c7f8dcfad668eef34",
+  "relations/R6.jsonl": "0bc5c2c2ee8dffa029b53e304913b21826be189ca0ae9749ed4e7daee9705e06",
+  "relations/R7.jsonl": "5c59d674fc6c15f90214a2e2d887677a950c94634ae88435b020a9e3140850be",
+  "relations/R8.jsonl": "76334ac5f3a07ffc1f9687ae9dd3289e51a48517237070f27efe926d3af67269",
+  "relations/R9.jsonl": "ba2b11fbd2032af2917aec7672315616a67d45c596c1543be663abee54e6e986",
+  "report.md": "6f0595e0999884bb866e862a74834bb1cbf93055bd14b7b2d2d578212f2bf324"
+ }
+}

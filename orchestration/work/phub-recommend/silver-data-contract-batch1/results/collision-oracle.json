@@ -1,0 +1,102 @@
+[
+  {
+    "legacy_id": "M1-1-3",
+    "normalized_predicate": "safety.common",
+    "fields": [
+      {
+        "legacy_id": "M1-1-3",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common_adverse_effects",
+        "raw_field": "safety.common_adverse_effects",
+        "raw_value": [
+          "주입 부위 부종",
+          "경미한 통증",
+          "일시적 발적"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 3,
+        "current_row_pointer": "/extracted/7"
+      },
+      {
+        "legacy_id": "M1-1-3",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/0/subcategories/1/items/3/extracted/safety/common",
+        "raw_field": "safety.common",
+        "raw_value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 2,
+        "current_row_pointer": "/extracted/7"
+      }
+    ]
+  },
+  {
+    "legacy_id": "auto-2-1774737181584",
+    "normalized_predicate": "safety.common",
+    "fields": [
+      {
+        "legacy_id": "auto-2-1774737181584",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common_adverse_effects",
+        "raw_field": "safety.common_adverse_effects",
+        "raw_value": [
+          "일시적 근력 약화",
+          "주입 부위 부종/발적",
+          "두통"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 3,
+        "current_row_pointer": "/extracted/25"
+      },
+      {
+        "legacy_id": "auto-2-1774737181584",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/0/subcategories/2/items/7/extracted/safety/common",
+        "raw_field": "safety.common",
+        "raw_value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 2,
+        "current_row_pointer": "/extracted/25"
+      }
+    ]
+  },
+  {
+    "legacy_id": "M7-P-1",
+    "normalized_predicate": "safety.common",
+    "fields": [
+      {
+        "legacy_id": "M7-P-1",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/6/products/1/extracted/safety/common_side_effects",
+        "raw_field": "safety.common_side_effects",
+        "raw_value": [
+          "부종",
+          "경미한 통증",
+          "일시적 울퉁불퉁함",
+          "스레드 촉지감"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 4,
+        "current_row_pointer": "/taxonomy_products/36"
+      },
+      {
+        "legacy_id": "M7-P-1",
+        "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/taxonomy.json",
+        "raw_pointer": "/modality/6/products/1/extracted/safety/common",
+        "raw_field": "safety.common",
+        "raw_value": [
+          "시술 부위 발적",
+          "일시적 부종"
+        ],
+        "normalized_predicate": "safety.common",
+        "leaf_count": 2,
+        "current_row_pointer": "/taxonomy_products/36"
+      }
+    ]
+  }
+]

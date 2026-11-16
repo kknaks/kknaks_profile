@@ -1,0 +1,89 @@
+/problems/1  problem_id='P2' problem='주름' complaints[7]
+
+## c0 /problems/1/complaints/0  cc='이마주름' | cc_detail='보톡스' | cc_group='표정주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='보톡스 + 리프팅기기' combo=['보톡스', '리프팅기기']
+     reason='근이완 + 타이트닝 = 이중 효과'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 재생'
+     evidence='주름+피부결 개선'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c1 /problems/1/complaints/1  cc='미간주름' | cc_detail='보톡스' | cc_group='표정주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='보톡스 + 리프팅기기' combo=['보톡스', '리프팅기기']
+     reason='근이완 + 타이트닝 = 이중 효과'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 재생'
+     evidence='주름+피부결 개선'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c2 /problems/1/complaints/2  cc='눈가주름' | cc_detail='보톡스' | cc_group='표정주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='보톡스 + 리프팅기기' combo=['보톡스', '리프팅기기']
+     reason='근이완 + 타이트닝 = 이중 효과'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 재생'
+     evidence='주름+피부결 개선'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c3 /problems/1/complaints/3  cc='팔자주름' | cc_detail='필러/바이오스티뮬레이터' | cc_group='깊은주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='필러' category='M2' role='깊은 주름 볼륨 충전' products=['쥬비덤', '레스틸렌']
+  P2 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX']
+  P3 name='스킨부스터' category='M4' role='피부 재생·수분 공급으로 목주름·잔결 개선' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='보톡스 + 필러' combo=['보톡스', '필러']
+     reason='근이완 + 볼륨 = 깊은 주름 해결'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='필러 + 리프팅기기' combo=['필러', '리프팅기기']
+     reason='볼륨 + 타이트닝 = 근본 해결'
+     evidence='처짐 원인까지 해결'
+  B2 name='스킨부스터 + 리프팅기기' combo=['스킨부스터', '리프팅기기']
+     reason='재생·수분 + 타이트닝 = 목주름 복합 개선'
+     evidence='고주파 리프팅과 스킨부스터 병행 시 만족도 상승(국문·영문 문헌 일치)'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c4 /problems/1/complaints/4  cc='마리오네트라인' | cc_detail='필러/실리프팅' | cc_group='깊은주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='필러' category='M2' role='깊은 주름 볼륨 충전' products=['쥬비덤', '레스틸렌']
+  P2 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX']
+  B0 name='보톡스 + 필러' combo=['보톡스', '필러']
+     reason='근이완 + 볼륨 = 깊은 주름 해결'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='필러 + 리프팅기기' combo=['필러', '리프팅기기']
+     reason='볼륨 + 타이트닝 = 근본 해결'
+     evidence='처짐 원인까지 해결'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c5 /problems/1/complaints/5  cc='목주름' | cc_detail='스킨부스터/기기리프팅' | cc_group='깊은주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='필러' category='M2' role='깊은 주름 볼륨 충전' products=['쥬비덤', '레스틸렌']
+  P2 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX']
+  B0 name='보톡스 + 필러' combo=['보톡스', '필러']
+     reason='근이완 + 볼륨 = 깊은 주름 해결'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='필러 + 리프팅기기' combo=['필러', '리프팅기기']
+     reason='볼륨 + 타이트닝 = 근본 해결'
+     evidence='처짐 원인까지 해결'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c6 /problems/1/complaints/6  cc='잔주름' | cc_detail='스킨부스터/레이저/기기리프팅' | cc_group='잔주름'
+  P0 name='보톡스' category='M1' role='근육 이완으로 주름 완화' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='리프팅기기' category='M9' role='피부 타이트닝' products=['울쎄라', '써마지FLX', '슈링크유니버스']
+  P2 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 힐러', '쥬베룩']
+  B0 name='보톡스 + 리프팅기기' combo=['보톡스', '리프팅기기']
+     reason='근이완 + 타이트닝 = 이중 효과'
+     evidence='동적+정적 주름 동시 해결'
+  B1 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 재생'
+     evidence='주름+피부결 개선'
+  A0 '효과 부족 시 리프팅기기 추가'

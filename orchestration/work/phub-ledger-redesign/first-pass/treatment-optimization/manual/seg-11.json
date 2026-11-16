@@ -1,0 +1,35 @@
+{
+  "segment": "SEG-11",
+  "read_status": "direct_read_done",
+  "read_note": "/annual_plans/0 (20대 피부관리 베이직 플랜) plan_name·age_group·annual_budget_range·focus 와 schedule 12개월 각 month·procedures 전 원소를 원문 순서로 직접 읽음",
+  "observations": [
+    {"id": "O11-1", "pointers": ["/annual_plans/0/annual_budget_range"], "status": "P", "text": "「100-250만원」: 금액 범위 + 단위 만원. 무엇을 포함한 금액인지(시술 전부·연간 합계) 원문에 없다(B)."},
+    {"id": "O11-2", "pointers": ["/annual_plans/0/schedule"], "status": "P", "text": "schedule 은 month(정수 1~12) + procedures(문자열 배열). 월 안의 날짜·순서·같은 날 여부는 원문에 없다. procedures 배열 순서가 시행 순서인지 원문에 없다(5·8·11월은 스킨부스터가 토닝보다 앞, 2월은 뒤)."},
+    {"id": "O11-3", "pointers": ["/annual_plans/0/schedule/0/procedures/0", "/by_age_group/0/maintenance"], "status": "I", "text": "plan 은 12개월 모두 「토닝 4회」, by_age_group/0(20대) maintenance 는 「토닝 월 1-2회」. 월 횟수가 다르다(원문 내 불일치 후보. plan 은 집중기·maintenance 는 유지기일 가능성이 있으나 원문에 근거 없음)."},
+    {"id": "O11-4", "pointers": ["/annual_plans/0/schedule/0/procedures/1", "/annual_plans/0/schedule/2/procedures/1", "/annual_plans/0/schedule/5/procedures/1", "/annual_plans/0/schedule/8/procedures/1", "/by_age_group/0/maintenance"], "status": "I", "text": "「필링 1회」 는 1·3·6·9월(연 4회, 12월은 「연말 집중 케어(필링+LED)」), by_age_group/0 maintenance 는 「필링 월 1회」(원문 내 불일치 후보)."},
+    {"id": "O11-5", "pointers": ["/annual_plans/0/schedule/1/procedures/1", "/annual_plans/0/schedule/4/procedures/0", "/annual_plans/0/schedule/7/procedures/0", "/annual_plans/0/schedule/10/procedures/0"], "status": "P", "text": "「스킨부스터 1차~4차」 는 2·5·8·11월(3개월 간격). by_age_group/0 maintenance 「스킨부스터 분기 1회」 와 같은 빈도로 읽힌다(잠정). 「차」 는 시리즈 차수."},
+    {"id": "O11-6", "pointers": ["/annual_plans/0/schedule/3/procedures/1", "/annual_plans/0/schedule/6/procedures/1", "/annual_plans/0/schedule/9/procedures/1", "/annual_plans/0/schedule/11/procedures/1"], "status": "P", "text": "괄호가 목적·계절·시기를 담는다: 「IPL(색소 관리)」, 「LED 집중(여름철)」, 「IPL(가을 색소 관리)」, 「연말 집중 케어(필링+LED)」. 마지막은 괄호 안 `+` 가 함께 시술(README 와 같은 꼴), 괄호 밖은 시술명이 아닌 묶음 이름."},
+    {"id": "O11-7", "pointers": ["/annual_plans/0/schedule/3/procedures/1", "/by_age_group/0/recommended_base"], "status": "P", "text": "20대 by_age_group recommended_base 에 IPL 이 없지만 plan 에는 IPL 이 2회 있다. 추천 기본과 플랜의 관계는 원문에 없다(충돌 판정 안 함)."},
+    {"id": "O11-8", "pointers": ["/annual_plans/0/focus", "/by_age_group/0/annual_focus"], "status": "P", "text": "focus 「피부 기초 관리, 여드름/흉터 개선, 모공/피부결 관리」 는 by_age_group/0 annual_focus 「피부 기초 관리, 여드름/흉터 집중 치료, 자외선 차단 습관화」 와 첫 항목만 같다."}
+  ],
+  "manual_expressions": [
+    {"pointer": "/annual_plans/0/plan_name", "text": "20대 피부관리 베이직 플랜", "kinds": ["age", "plan_name", "language_mixed"]},
+    {"pointer": "/annual_plans/0/annual_budget_range", "text": "100-250만원", "kinds": ["cost", "range", "quantity_unit"]},
+    {"pointer": "/annual_plans/0/focus", "text": "여드름/흉터 개선", "kinds": ["focus", "slash_non_alternative"]},
+    {"pointer": "/annual_plans/0/focus", "text": "모공/피부결 관리", "kinds": ["focus", "slash_non_alternative"]},
+    {"pointer": "/annual_plans/0/schedule/0/procedures/0", "text": "토닝 4회", "kinds": ["session_count", "monthly_count"]},
+    {"pointer": "/annual_plans/0/schedule/1/procedures/1", "text": "스킨부스터 1차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/0/schedule/3/procedures/1", "text": "IPL(색소 관리)", "kinds": ["procedure_like", "parenthetical", "purpose"]},
+    {"pointer": "/annual_plans/0/schedule/4/procedures/0", "text": "스킨부스터 2차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/0/schedule/6/procedures/1", "text": "LED 집중(여름철)", "kinds": ["procedure_like", "degree_modifier", "parenthetical", "season"]},
+    {"pointer": "/annual_plans/0/schedule/7/procedures/0", "text": "스킨부스터 3차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/0/schedule/9/procedures/1", "text": "IPL(가을 색소 관리)", "kinds": ["procedure_like", "parenthetical", "season", "purpose"]},
+    {"pointer": "/annual_plans/0/schedule/10/procedures/0", "text": "스킨부스터 4차", "kinds": ["series_order"]},
+    {"pointer": "/annual_plans/0/schedule/11/procedures/1", "text": "연말 집중 케어(필링+LED)", "kinds": ["season", "degree_modifier", "parenthetical", "plus_list", "bundle_name"]}
+  ],
+  "issues": [
+    {"id": "I-11-1", "class": "I", "pointers": ["/annual_plans/0/schedule", "/by_age_group/0/maintenance"], "text": "20대 토닝·필링 빈도: plan(토닝 매월 4회·필링 연 4회) vs maintenance(토닝 월 1-2회·필링 월 1회)(원문 내 불일치 후보)."},
+    {"id": "B-11-1", "class": "B", "pointers": ["/annual_plans/0/schedule"], "text": "월 안의 날짜·순서·같은 날 여부와 procedures 배열 순서의 뜻이 원문에 없다. 같은 달 항목에 동일일·간격 규칙을 적용할 수 없다."},
+    {"id": "B-11-2", "class": "B", "pointers": ["/annual_plans/0/annual_budget_range"], "text": "예산 범위가 무엇을 포함하는지 원문에 없다."}
+  ]
+}

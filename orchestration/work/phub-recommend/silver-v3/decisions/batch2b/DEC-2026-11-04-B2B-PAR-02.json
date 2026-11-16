@@ -1,0 +1,38 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "paren-synonym-unknown-tuples-4/#45",
+  "label": "미상 튜플을 뺀다 → (감각 이상, none, 일시)",
+  "note": "사용자 2026-11-05: 감각이상 하나(일시). 저림·감각저하는 하위 증상=표현. 부위는 시술 부위 — 묶음 3 adverse_tuple_assign",
+  "option": "drop_unknown"
+ },
+ "id": "DEC-2026-11-04-B2B-PAR-02",
+ "kind": "adverse_tuple_assign",
+ "new_value": {
+  "tuples": [
+   {
+    "course_id": "DIC-ff4e6c4fd1",
+    "event_id": "DIC-db962671c9",
+    "site_id": "none"
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 「일시적 감각저하·저림 (Transient Hypoesthesia / Paresthesia)」의 괄호 안 동의어가 만든 미상 튜플을 뺀다(§9.6.2a · 검토 v2.4 #45) · 사용자 메모: 사용자 2026-11-05: 감각이상 하나(일시). 저림·감각저하는 하위 증상=표현. 부위는 시술 부위 — 묶음 3 adverse_tuple_assign",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].name@M14/2"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "kind": "raw_name",
+  "locator": "complications.json:categories[].complications[].name@M14/2"
+ }
+}

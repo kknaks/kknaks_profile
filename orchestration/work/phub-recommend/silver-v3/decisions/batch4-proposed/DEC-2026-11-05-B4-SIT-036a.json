@@ -1,0 +1,38 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 0/1(unlinked → auto) · 근거 영문 낱말 「비가교HA와의」 ↔ 「PDLLA+HA」",
+ "gate_item": "b4-sit/036",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-SIT-036a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "PDLLA+HA",
+  "category": null,
+  "synonyms": [
+   "비가교HA와의"
+  ]
+ },
+ "proposal_item": "b4-sit/036",
+ "reason": "결정 묶음 4 — 문구 조각 「비가교HA와의」 을 ingredient_material 「PDLLA+HA」 의 동의어로(근거: 영문 낱말 「비가교HA와의」 ↔ 「PDLLA+HA」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@6/0/3/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "ingredient_material"
+ }
+}

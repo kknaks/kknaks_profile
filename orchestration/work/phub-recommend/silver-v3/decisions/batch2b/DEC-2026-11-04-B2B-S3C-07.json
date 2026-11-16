@@ -1,0 +1,54 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "same-three-cells-21/07",
+  "label": "같은 시술 — 합친다(keep CAT-102bed4c6f)",
+  "note": "추천대로 — 볼뉴머(classification_issue 없는 쪽 유지)",
+  "option": "fold"
+ },
+ "id": "DEC-2026-11-04-B2B-S3C-07",
+ "kind": "fold_approve",
+ "new_value": {
+  "keep_anchor": "CAT-102bed4c6f"
+ },
+ "reason": "결정 묶음 2B — 같은 세 칸(볼뉴머 × none × none)의 anchor 2 을 하나로(검토 1-E) · 사용자 메모: 추천대로 — 볼뉴머(classification_issue 없는 쪽 유지)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@3/1/8"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@3/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@8/1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@95"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@96"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].classification_issue@3/1/8"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "anchors": [
+   "CAT-8e550f4613",
+   "CAT-102bed4c6f"
+  ]
+ }
+}

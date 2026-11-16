@@ -1,0 +1,46 @@
+{"section":"S012","state":"read","last_pointer":"/modality/3/subcategories/3/items/0/extracted/aftercare/3",
+"observations":[
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/8/classification_issue","/modality/3/subcategories/1/items/8/detail"],"note":"볼뉴머는 classification_issue 필드로 원문 스스로 'M4 에 잘못 등재 — RF 리프팅 장비, M9-2(RF)로 통합 관리 필요'라 적는다. 다른 항목 id(M9-2)를 참조하는 문장. 원문 구조상 여전히 M4-2 안에 있다(이동하지 않음)."},
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/8/extracted/aftercare"],"note":"볼뉴머 aftercare 에는 M4 '[시술 주기 참고]' 상용구가 없다. 마케팅명 3항목(꿀광주사·아기주사·벨벳주사)도 aftercare 원소 1개뿐이고 상용구가 없다."},
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/13/is_marketing_name","/modality/3/subcategories/1/items/13/ingredient_basis","/modality/3/subcategories/1/items/13/canonical_category","/modality/3/subcategories/1/items/13/naming_caveat"],"note":"꿀광주사·아기주사·벨벳주사는 is_marketing_name=true, ingredient_basis, canonical_category, naming_caveat 네 필드를 갖는다. canonical_category 는 'M4 스킨부스터 > 비가교 HA 메조테라피' 처럼 '>' 경로 문자열이며, '비가교 HA 메조테라피' 같은 하위 이름은 taxonomy 의 실제 label 에 없다."},
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/13/detail","/modality/3/subcategories/1/items/14/detail"],"note":"마케팅명 항목 detail 은 '마케팅 명칭 — 실제는 …' 형식으로 이름과 실체를 구분해 적는다."},
+ {"status":"P","pointers":["/modality/3/subcategories/2/label","/modality/3/subcategories/2/items/0/name"],"note":"M4-3 label '엑소좀/성장인자', 항목명 'ASCE+엑소좀'. 'ASCE' 약어 정의 없음."},
+ {"status":"P","pointers":["/modality/3/subcategories/3/label"],"note":"auto-new-M4-1775360442 label '콜라겐/신규' — 성분과 '신규'(등록 상태) 두 축이 '/' 로 묶인 하위분류."},
+ {"status":"I","pointers":["/modality/3/subcategories/1/items/7/extracted/aftercare/0"],"note":"프로파일로 aftercare '시술 후 24-당일 …' — M1 스킨보톡스(S002-B01)와 같은 깨진 범위 표기."},
+ {"status":"P","pointers":["/modality/3/subcategories/1/items/12/name"],"note":"'레스틸렌스킨부스터' — M2 제품 레스틸렌의 라인명을 붙여 쓴 이름. 연결 키 없음."}
+],
+"expressions":[
+ {"pointer":"/modality/3/subcategories/1/items/7/detail","text":"고농도 HA(32+32mg)","kinds":["수량·단위·시간","기호"],"note":"'+' = 두 성분 합(구성)"},
+ {"pointer":"/modality/3/subcategories/1/items/7/extracted/aftercare/0","text":"시술 후 24-당일 과도한 열 노출 및 격렬한 운동 피하기","kinds":["범위","부정"],"note":"깨진 범위"},
+ {"pointer":"/modality/3/subcategories/1/items/8/detail","text":"6.78MHz 모노폴라 RF 리프팅 장비 (주입형 제품 아님)","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/8/classification_issue","text":"카테고리를 M9-2(RF)로 통합 관리 필요","kinds":["참조"],"note":"다른 하위분류 id 참조"},
+ {"pointer":"/modality/3/subcategories/1/items/8/extracted/onset_duration/onset","text":"즉각적 타이트닝 후 수주간 점진적 콜라겐 리모델링","kinds":["수량·단위·시간","수식"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/8/extracted/onset_duration/duration","text":"개인차가 있으며 시술 계획에 따라 평가","kinds":["조건"],"note":"수치 없음"},
+ {"pointer":"/modality/3/subcategories/1/items/8/extracted/aftercare/2","text":"홍반·부종·열감은 경과 관찰하며 지속 시 진료","kinds":["조건"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/9/extracted/aftercare/1","text":"비타민 보충제 병용 고려","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/10/detail","text":"HA+135종","kinds":["수량·단위·시간","기호"],"note":"NCTF 필로르가는 '53가지' — 같은 브랜드 다른 수"},
+ {"pointer":"/modality/3/subcategories/1/items/13/ingredient_basis","text":"히알루론산(비가교 또는 저분자 HA) + 비타민(C/B 계열) 혼합","kinds":["기호","조건"],"note":"'또는' 대안 + '+' 혼합 + '/' 계열 대안"},
+ {"pointer":"/modality/3/subcategories/1/items/13/naming_caveat","text":"표준화된 단일 제제가 아님","kinds":["부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/13/naming_caveat","text":"상담 시 실제 성분과 허가 제품명 확인 필요","kinds":["조건"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/13/extracted/mechanism","text":"비타민 C, E 등의 복합 성분","kinds":["기호"],"note":"ingredient_basis 는 'C/B 계열' — 같은 항목 내 비타민 종류 표기 다름"},
+ {"pointer":"/modality/3/subcategories/1/items/13/extracted/onset_duration/duration","text":"4-6주","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/14/ingredient_basis","text":"저분자 히알루론산 + 성장인자(EGF/bFGF/IGF 등) 또는 PN 혼합","kinds":["기호","조건"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/14/naming_caveat","text":"성장인자 제제의 경우 화장품/의약품 분류와 허가 범위 확인 필요","kinds":["조건"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/14/extracted/aftercare/0","text":"시술 후 24-48시간 강한 마사지나 사우나 피하기","kinds":["수량·단위·시간","범위","부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/1/items/15/naming_caveat","text":"콜라겐 펩타이드의 경피·진피 전달 효과 근거는 제한적","kinds":["주장","수식"],"note":"근거 수준"},
+ {"pointer":"/modality/3/subcategories/2/items/0/extracted/mechanism","text":"성장인자(EGF, FGF 등) 함유","kinds":["기호"],"note":""},
+ {"pointer":"/modality/3/subcategories/2/items/3/extracted/aftercare/0","text":"시술 후 6시간 물 접촉 자제","kinds":["수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/3/subcategories/3/items/0/extracted/onset_duration/onset","text":"3~7일 후 초기 효과 나타남","kinds":["수량·단위·시간","범위"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"볼뉴머","issue":"볼/NNG 뉴/NNG 머/EC — 장비명이 어미까지 포함해 분해","impact":"기기명 소실"},
+ {"scope":"all","surface":"프로파일로","issue":"프로파일/NNP 로/JKB — 끝 '로' 를 조사로","impact":"제품명 절단"},
+ {"scope":"all","surface":"필로르가135HA","issue":"필로르/NNG 가/JKS 135/SN HA/SL","impact":"제품명 분해·조사 오탐"},
+ {"scope":"all","surface":"ASCE+엑소좀","issue":"엑소/NNP 좀/MAG — '엑소좀'의 '좀'을 부사로","impact":"성분명 분해"},
+ {"scope":"all","surface":"드원셀","issue":"드/NNG 원/NNG 셀/NNG","impact":"제품명 분해"}
+],
+"issues":[
+ {"id":"S012-F01","status":"F","pointers":["/modality/3/subcategories/1/items/8/classification_issue"],"note":"원문이 볼뉴머 오분류(→M9-2)를 자기 선언. 구조는 M4 그대로.","impact":"재분류 반영 여부는 원본 변경 후보(지금 선택 대기 아님)"},
+ {"id":"S012-F02","status":"F","pointers":["/modality/3/subcategories/1/items/13/canonical_category","/modality/3/subcategories/1/items/14/canonical_category","/modality/3/subcategories/1/items/15/canonical_category"],"note":"canonical_category 경로의 하위 이름이 taxonomy label 에 없다.","impact":"표준 분류 경로를 어디에 매핑할지 후속"},
+ {"id":"S012-B01","status":"B","pointers":["/modality/3/subcategories/2/items/0/name","/modality/3/subcategories/2/items/1/detail"],"note":"'ASCE' 약어 정의 없음, '기타 엑소좀' detail 빈 문자열.","impact":"제품 식별 제한"}
+]}

@@ -1,0 +1,318 @@
+# S041  scope=M15 메디컬스킨케어  units=M15-1 items/56 | M15-1 items/57 | M15-1 items/58 | M15-1 items/59 | M15-1 items/60 | M15-2 items/0 | M15-2 items/1 | M15-2 items/2 | M15-2 items/3 | M15-2 items/4 | M15-2 items/5 | M15-2 items/6 | M15-2 items/7 | M15-3 items/0 | M15-3 items/1 | M15-3 items/2 | M15-3 items/3 | M15-3 items/4 | M15-3 items/5
+# 상위 문맥: [{"pointer": "/modality/14", "id": "M15", "category": "메디컬스킨케어", "name": "메디컬스킨케어"}, {"pointer": "/modality/14/subcategories/0", "id": "M15-1", "label": "케미컬필링"}]
+@ /modality/14/subcategories/0/items/56 auto-M15-1775402120118 콜라겐필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402120118"
+  /name = "콜라겐필"
+  /detail = "콜라겐 유효성분 침투 · 탄력+재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "콜라겐 성분을 피부 깊숙이 침투시켜 탄력 개선과 재생을 돕는 피부과 전용 필링 시술"
+  /extracted/mechanism = "콜라겐 유효성분이 피부 진피층까지 침투하여 기존 콜라겐 합성을 촉진합니다. 동시에 각질층을 제거하면서 피부 재생 과정을 활성화시켜 탄력과 질감을 개선시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"피부 탄력 저하" ‖ 1:"잔주름 개선" ‖ 2:"피부 재생 및 질감 개선" ‖ 3:"모공 관리"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"시술 후 일시적 홍조" ‖ 1:"가벼운 따끔거림" ‖ 2:"각질 발생"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [4] = 0:"보습 유지" ‖ 1:"자외선 차단" ‖ 2:"각질 제거 금지" ‖ 3:"항염 관리"
+@ /modality/14/subcategories/0/items/57 auto-M15-1775402126847 엑소좀필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402126847"
+  /name = "엑소좀필"
+  /detail = "엑소좀 도포+필링 · 재생+항염"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "엑소좀 재생 성분과 필링을 결합한 피부 재생 및 항염 복합 치료"
+  /extracted/mechanism = "엑소좀의 성장인자와 사이토카인이 세포재생과 콜라겐 합성을 촉진하며 염증을 억제합니다. 동시에 필링 성분이 각질층을 제거하여 엑소좀의 침투를 높이고 피부 턴오버를 개선합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"여드름 흉터 및 모공 개선" ‖ 1:"피부 탄력 저하 및 주름 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 직후 일시적 홍조 및 따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"보습 유지" ‖ 1:"자외선 차단제 필수 사용" ‖ 2:"필링 후 각질 제거 금지"
+@ /modality/14/subcategories/0/items/58 auto-M15-1775402133464 줄기세포필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402133464"
+  /name = "줄기세포필"
+  /detail = "줄기세포 배양액+필링 · 재생+영양"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "줄기세포 배양액과 필링을 결합하여 피부 재생과 영양 공급을 동시에 제공하는 복합 피부 관리 시술"
+  /extracted/mechanism = "줄기세포 배양액의 성장인자와 사이토카인이 피부 재생을 촉진하고 콜라겐 합성을 증가시킵니다. 필링 성분이 각질층을 제거하여 유효성분의 침투를 향상시키고 세포 턴오버를 가속화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 저하 및 노화" ‖ 1:"모공 확장 및 피부결 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍조 및 따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [3] = 0:"보습 유지" ‖ 1:"자외선 차단제 사용" ‖ 2:"강한 세안제 사용 금지"
+@ /modality/14/subcategories/0/items/59 auto-M15-1775402148301 물톡스
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402148301"
+  /name = "물톡스"
+  /detail = "PHA 기반 물광 필링 · 수분보호막+보습"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "PHA(폴리하이드록시산) 기반의 순한 각질제거와 동시에 수분공급을 통한 물광피부 개선 시술"
+  /extracted/mechanism = "PHA는 분자량이 커서 피부 깊숙이 침투하지 않아 자극을 최소화하면서 각질을 부드럽게 제거합니다. 동시에 히알루론산과 보습성분이 피부에 수분막을 형성하여 즉각적인 수분충전과 윤기개선 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"건조하고 거친 피부질감 개선" ‖ 1:"즉각적인 수분공급과 물광효과"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"경미한 일시적 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "1-2주"
+  /extracted/aftercare [3] = 0:"보습 유지" ‖ 1:"자외선 차단" ‖ 2:"과도한 세안 피하기"
+@ /modality/14/subcategories/0/items/60 auto-M15-1775402154675 런치필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775402154675"
+  /name = "런치필"
+  /detail = "크리스탈/다이아몬드 경량 필링 · 점심시간 가능"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "점심시간에 받을 수 있는 가벼운 크리스탈/다이아몬드 미세입자를 이용한 각질제거 필링"
+  /extracted/mechanism = "미세한 크리스탈이나 다이아몬드 입자를 피부에 분사하여 각질층을 물리적으로 제거합니다. 진공 흡입으로 각질과 입자를 동시에 제거하여 피부 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"모공 축소" ‖ 1:"피부 톤 개선" ‖ 2:"가벼운 여드름 흉터" ‖ 3:"잔주름 완화"
+  /extracted/safety {common}
+  /extracted/safety/common [3] = 0:"일시적 홍조" ‖ 1:"건조감" ‖ 2:"가벼운 따가움"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-3주"
+  /extracted/aftercare [3] = 0:"보습 유지" ‖ 1:"자외선 차단" ‖ 2:"세안 시 문지르지 않기"
+@ /modality/14/subcategories/1 M15-2 딥클렌징
+  . {id,label,items}
+  /id = "M15-2"
+  /label = "딥클렌징"
+  /items [8]
+@ /modality/14/subcategories/1/items/0 M15-2-1 아쿠아필
+  . {id,name,detail,extracted}
+  /id = "M15-2-1"
+  /name = "아쿠아필"
+  /detail = "워터제트 클렌징"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "3단계 통합 클렌징+보습+영양"
+  /extracted/mechanism = "MD 워터젯 기술로 각질층의 각질과 피지를 제거(클렌징) → 다양한 혈청 성분으로 피부 수분 공급(보습) → 항산화, 펩타이드 등 활성 성분 침투(영양 공급). 물리적 + 화학적 + 영양학적 3단계 시너지로 피부 개선을 도모합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"복합성 피부" ‖ 1:"각질" ‖ 2:"칙칙함" ‖ 3:"보습" ‖ 4:"영양 공급"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 홍반" ‖ 1:"일시적 건조감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시~24시간"
+  /extracted/onset_duration/duration = "3-5일"
+  /extracted/aftercare [2] = 0:"보습 강화" ‖ 1:"자외선차단"
+@ /modality/14/subcategories/1/items/1 M15-2-2 하이드라페이셜
+  . {id,name,detail,extracted}
+  /id = "M15-2-2"
+  /name = "하이드라페이셜"
+  /detail = "MD · 클렌징+보습+영양"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "마이크로젯 기반 심층 클렌징"
+  /extracted/mechanism = "미세한 압력의 공기 및 물입자 분사로 각질층 및 모낭 내 피지를 효율적으로 제거합니다. 아쿠아필 대비 강력한 정소력으로 깊은 모공 클렌징이 가능하며, 표피 표층까지 안전하게 클렌징할 수 있습니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"모공 클렌징" ‖ 1:"피지 제거" ‖ 2:"각질 제거" ‖ 3:"피부 톤 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"홍반" ‖ 1:"경미한 자극감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "24시간"
+  /extracted/onset_duration/duration = "3-5일"
+  /extracted/aftercare [2] = 0:"보습 및 자외선차단" ‖ 1:"강한 자극 피하기(48시간)"
+@ /modality/14/subcategories/1/items/2 auto-48-1774737181584 라라젯 (클렌징)
+  . {id,name,detail,extracted}
+  /id = "auto-48-1774737181584"
+  /name = "라라젯 (클렌징)"
+  /detail = ""
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "공기압 딥클렌징 장비"
+  /extracted/mechanism = "고압 공기를 이용하여 피부 표면의 노폐물과 피지를 물리적으로 제거하는 딥클렌징 장비. 공기압으로 약물을 피부에 주입하는 기능도 겸한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"주름 개선" ‖ 1:"피부 탄력 저하" ‖ 2:"모공 확대" ‖ 3:"피부 처짐" ‖ 4:"흉터 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 중 따뜻함" ‖ 1:"일시적 홍반" ‖ 2:"미세 부종"
+  /extracted/safety/serious [1] = 0:"화상 (부적절한 사용 시)"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주부터 점진적 개선"
+  /extracted/onset_duration/duration = "3-6개월 (지속적 개선)"
+  /extracted/aftercare [4] = 0:"냉찜질로 진정" ‖ 1:"자외선 차단" ‖ 2:"보습 강화" ‖ 3:"자극적 제품 3일 회피"
+@ /modality/14/subcategories/1/items/3 auto-M15-1775360522199 수소필링
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775360522199"
+  /name = "수소필링"
+  /detail = "수소수 기반 딥클렌징"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "활성산소를 제거하는 수소수를 활용하여 모공 깊숙한 곳의 노폐물과 피지를 제거하는 메디컬 딥클렌징 시술"
+  /extracted/mechanism = "수소 분자의 강한 환원력이 피부 표면과 모공 내 산화된 피지, 각질, 노폐물을 분해·제거한다. 동시에 활성산소를 중화시켜 항산화 효과를 제공하며 피부 자극을 최소화한다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [4] = 0:"과다 피지분비 및 지성 피부" ‖ 1:"모공 확대 및 블랙헤드" ‖ 2:"여드름 전단계 피부 관리" ‖ 3:"칙칙한 피부톤 개선"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [3] = 0:"시술 후 일시적 홍반" ‖ 1:"경미한 건조감" ‖ 2:"묘한 따끔거림"
+  /extracted/safety/serious [2] = 0:"민감성 피부의 과도한 자극반응" ‖ 1:"시술 직후 접촉성 피부염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-3일 후 피부 개선 효과 감지"
+  /extracted/onset_duration/duration = "3-7일간 지속, 정기적 시술로 누적 효과"
+  /extracted/aftercare [4] = 0:"24시간 이내 자극적 화장품, 고농도 에센스 사용 자제" ‖ 1:"시술 당일 과도한 운동 및 발한 피하기" ‖ 2:"자외선 차단제 필수 사용" ‖ 3:"보습 제품으로 피부 진정 관리"
+@ /modality/14/subcategories/1/items/4 auto-M15-1775362958625 옥시덤
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362958625"
+  /name = "옥시덤"
+  /detail = "산소 주입 피부관리 기기"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "산소를 고압으로 피부 깊숙이 주입하여 세포 재생과 콜라겐 생성을 촉진하는 비침습적 미용 시술"
+  /extracted/mechanism = "고압 산소를 피부에 직접 주입하여 세포의 산소 공급량을 증가시키고 미토콘드리아 활성을 촉진합니다. 이를 통해 콜라겐과 엘라스틴 합성을 자극하고 세포 재생 과정을 가속화시킵니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선 및 잔주름 완화" ‖ 1:"피부톤 균일화 및 광택 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적인 피부 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시-1주"
+  /extracted/onset_duration/duration = "4-6주"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 내 자극적인 화장품 사용 자제" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/1/items/5 auto-M15-1775362965286 제트필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362965286"
+  /name = "제트필"
+  /detail = "고압 워터젯 딥클렌징"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "고압 물 분사를 이용하여 모공 깊숙한 각질과 노폐물을 제거하는 비침습적 딥클렌징 시술"
+  /extracted/mechanism = "고압의 미세한 물 입자를 피부에 분사하여 모공 내 축적된 각질, 피지, 노폐물을 기계적으로 제거합니다. 동시에 수분을 공급하여 피부 장벽 기능을 개선하고 즉각적인 보습 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"모공 확장 및 블랙헤드" ‖ 1:"피부 각질 제거 및 텍스처 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 후 일시적 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-3주"
+  /extracted/aftercare [3] = 0:"시술 당일 강한 자외선 노출 피하기" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/1/items/6 auto-M15-1775362971889 아쿠아퓨어
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362971889"
+  /name = "아쿠아퓨어"
+  /detail = "물 흡인+약물 도포 동시 관리"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "미세한 물 흡인과 동시에 유효성분을 피부에 도포하는 하이드라 필링 시술"
+  /extracted/mechanism = "특수 장비를 통해 물의 압력으로 각질과 불순물을 제거하면서 동시에 비타민C, 히알루론산 등의 유효성분을 진피층에 침투시킵니다. 수분 공급과 각질 제거가 한 번에 이루어져 피부 재생과 보습 효과를 극대화합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"모공 개선 및 각질 제거" ‖ 1:"피부 보습 및 윤기 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 직후 일시적 홍조"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "즉시"
+  /extracted/onset_duration/duration = "2-4주"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 강한 세안 및 화장품 사용 자제" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/1/items/7 auto-M15-1775362978512 실크필
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362978512"
+  /name = "실크필"
+  /detail = "실크 기반 약물 침투 관리"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "실크 단백질을 이용한 피부 재생 및 약물 전달 시스템으로 자연스러운 피부 개선을 도모하는 시술"
+  /extracted/mechanism = "실크 피브로인이 피부 진피층에서 콜라겐 합성을 촉진하고 세포 재생을 활성화합니다. 생분해되면서 점진적으로 약물을 방출하여 지속적인 피부 개선 효과를 제공합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선 및 주름 완화" ‖ 1:"흉터 및 모공 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 일시적 부종 및 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술 후 24-48시간 세안 및 화장품 사용 제한" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/2 M15-3 광치료(LED)
+  . {id,label,items}
+  /id = "M15-3"
+  /label = "광치료(LED)"
+  /items [7]
+@ /modality/14/subcategories/2/items/0 M15-3-1 옴니룩스
+  . {id,name,detail,extracted}
+  /id = "M15-3-1"
+  /name = "옴니룩스"
+  /detail = "LED · 재생"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 광선으로 세포 활성화 및 재생"
+  /extracted/mechanism = "LED 파장(특히 적색/근적외선)이 미토콘드리아 ATP 생성을 촉진하여 섬유아세포 활성화 및 콜라겐 합성을 유도합니다. 재상피화 과정을 가속화하여 피부 손상 회복을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"피부 재생" ‖ 1:"미세주름" ‖ 2:"피부톤 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"일시적 홍반" ‖ 1:"열감"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-5회차부터"
+  /extracted/onset_duration/duration = "시리즈 완료 후 4-8주"
+  /extracted/aftercare [2] = 0:"자외선 차단 필수" ‖ 1:"자극성 제품 피하기"
+@ /modality/14/subcategories/2/items/1 M15-3-2 힐라이트
+  . {id,name,detail,extracted}
+  /id = "M15-3-2"
+  /name = "힐라이트"
+  /detail = "LED · 염증완화"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED로 염증 완화 및 회복 촉진"
+  /extracted/mechanism = "LED 광자극이 염증 사이토카인 감소 및 항산화 방어계 증강을 통해 피부 염증을 억제합니다. 피부장벽 정상화를 지원하여 감염성 염증질환의 이차 회복을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"여드름" ‖ 1:"주사" ‖ 2:"염증성 피부질환"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"경미한 건조감" ‖ 1:"일시적 박리"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3주"
+  /extracted/onset_duration/duration = "유지 관리 필요"
+  /extracted/aftercare [2] = 0:"보습 강화(NMF+세포간 지질)" ‖ 1:"자외선 차단"
+@ /modality/14/subcategories/2/items/2 auto-49-1774737181584 아스트로더
+  . {id,name,detail,extracted}
+  /id = "auto-49-1774737181584"
+  /name = "아스트로더"
+  /detail = "LED 재생·진정"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 복합 작용으로 재생과 진정 동시 달성"
+  /extracted/mechanism = "다중 파장 LED가 섬유아세포 콜라겐 합성 자극과 동시에 염증성 사이토카인을 억제하여 재생과 진정을 병행합니다. 정상적인 탈각 주기 복원을 지원합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"손상된 피부" ‖ 1:"염증성 피부질환" ‖ 2:"색소침착"
+  /extracted/safety {common}
+  /extracted/safety/common [2] = 0:"열감" ‖ 1:"경미한 홍반"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "시리즈 완료 후 4-6주"
+  /extracted/aftercare [2] = 0:"충분한 보습" ‖ 1:"저자극 제품 사용"
+@ /modality/14/subcategories/2/items/3 auto-M15-1775362985090 옴니럭스
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362985090"
+  /name = "옴니럭스"
+  /detail = "LED 광치료 · 적색/근적외선 · 콜라겐 촉진"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 적색/근적외선 광치료를 통한 콜라겐 합성 촉진 및 피부 재생 미용 시술"
+  /extracted/mechanism = "특정 파장의 적색광(630-700nm)과 근적외선(700-1000nm)이 미토콘드리아의 시토크롬 C 옥시다아제를 활성화하여 ATP 생성을 증가시킵니다. 이로 인해 섬유아세포의 콜라겐 합성이 촉진되고 혈관신생과 조직 재생이 활발해집니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"주름 개선 및 피부 탄력 증진" ‖ 1:"여드름 및 염증성 피부 질환 치료"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"일시적 피부 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"자외선 차단제 사용 및 충분한 보습 관리" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/2/items/4 auto-M15-1775362992228 셀라이트
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362992228"
+  /name = "셀라이트"
+  /detail = "LED 기반 피부재생 광치료"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 광원을 이용하여 피부 세포의 재생과 콜라겐 합성을 촉진하는 비침습적 광치료술"
+  /extracted/mechanism = "특정 파장의 LED 광(주로 630-700nm 적색광, 415nm 청색광)이 미토콘드리아의 시토크롬 C 옥시다제를 활성화시켜 ATP 생성을 증가시킵니다. 이를 통해 콜라겐 및 엘라스틴 합성이 촉진되고 염증 반응이 감소하여 피부 재생과 개선 효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"여드름 및 염증성 피부질환" ‖ 1:"피부 노화 개선 및 주름 감소"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"일시적 피부 발적"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"자외선 차단제 사용 및 직사광선 노출 최소화" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"
+@ /modality/14/subcategories/2/items/5 auto-M15-1775362998455 데마루치
+  . {id,name,detail,extracted}
+  /id = "auto-M15-1775362998455"
+  /name = "데마루치"
+  /detail = "LED 마스크 · 클리닉용"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "LED 광치료를 이용한 피부 재생 및 염증 완화 전문 미용의학 치료 장비"
+  /extracted/mechanism = "특정 파장의 LED 광선이 피부 세포의 미토콘드리아를 자극하여 ATP 생성을 증가시킨다. 이를 통해 콜라겐 합성 촉진, 염증 감소, 세포 재생 활성화가 이루어진다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"여드름 및 염증성 피부질환" ‖ 1:"안티에이징 및 피부 탄력 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 직후 일시적인 피부 민감성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 자외선 차단제 필수 사용" ‖ 1:"시술 후 보습 유지" ‖ 2:"자극적 제품 당일 자제"

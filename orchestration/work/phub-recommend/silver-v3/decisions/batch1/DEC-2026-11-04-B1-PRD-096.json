@@ -1,0 +1,89 @@
+{
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": [
+  {
+   "detail": "제허 24-513 호 · 범용 전기 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@202/0"
+  },
+  {
+   "detail": "제허 25-451 호 · 범용 전기 수술기",
+   "kind": "license",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@202/1"
+  },
+  {
+   "detail": "https://medigatenews.com/news/2248968162",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@202/4/0"
+  },
+  {
+   "detail": "https://www.smarttoday.co.kr/ko-kr/articles/89343",
+   "kind": "web",
+   "ref": "step1-products.json:items[].evidence[].urls[]@202/4/1"
+  }
+ ],
+ "id": "DEC-2026-11-04-B1-PRD-096",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "써니",
+  "category": null,
+  "code": "M9",
+  "synonyms": [
+   "Sunny™",
+   "Sunny RF",
+   "Sunny™ PLUS"
+  ]
+ },
+ "reason": "step1 조사 산출물 — 1_identity.kind ['장비'] · 근거 2 허가 건 · 2 웹 · ledger_id auto-M9-1775362640896",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.display_name@202"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@202/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].4_license.licenses[].license_no@202/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@202/4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].evidence[].urls[]@202/4/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@202/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@202/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "step1-products.json:items[].2_names.search_names[].name@202/3"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-brief.md 결정 묶음 1-1"
+  }
+ ],
+ "status": "approved",
+ "synonyms_dropped": [
+  {
+   "locator": "step1-products.json:items[].2_names.ledger_name@202",
+   "value": "SUNNY",
+   "why": "다른 분류 항목 이름 「SUNNY」 과 같다 — 그 항목의 what 을 바꾸게 된다"
+  }
+ ],
+ "target": {
+  "dictionary": "product_name"
+ },
+ "approval_note": "결정 묶음 1 일괄 승인 — 사용자 「응 그렇게 가자」(2026-11-04)"
+}

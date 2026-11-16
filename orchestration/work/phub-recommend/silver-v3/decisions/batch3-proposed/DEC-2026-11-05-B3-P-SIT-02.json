@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-05-B3-P-SIT-02",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "코",
+  "category": null,
+  "synonyms": [
+   "코끝"
+  ]
+ },
+ "reason": "해부 이름 → 부위 동의어(미등록 조각에서 추출 · 사람 확인) — 코끝 = 코 부위의 끝(「보톡스(코끝)」).",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].to@34"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@0/2/6"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 해부 이름 → 부위 라벨 동의어 묶음(광경근→목 · 코끝→코 등) — 「교근」과 같은 원칙"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

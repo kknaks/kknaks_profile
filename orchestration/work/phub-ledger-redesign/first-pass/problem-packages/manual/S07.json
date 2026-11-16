@@ -1,0 +1,37 @@
+{
+  "section": "S07",
+  "read_status": "done",
+  "read_note": "reading/S07.txt 로 c0~c5 전부(procedures 15·combos 8·alternatives 7) 읽음.",
+  "observations": [
+    {"id": "OB-S07-01", "at": ["c0.P1", "c0.P3"], "status": "I", "text": "c0 에도 name '스킨부스터' 가 두 번(P1 '피부 재생' / P3 '콜라겐 재생') 나온다(I-07 같은 유형). S06 c4 와 구성이 같고 P2 니들RF products 만 '포텐자·시크릿'(S06 은 제니스 포함)으로 다르다."},
+    {"id": "OB-S07-02", "at": ["c0.B1.reason", "c0.B1.evidence", "S06:c3.B0.reason"], "status": "P", "text": "같은 combo '니들RF + 스킨부스터' 가 S06 에서는 reason '모공 수축 + 재생'·evidence '쥬베룩이 모공에 특화', S07 에서는 '열 수축 + 콜라겐 재생'·'쥬베룩 PDLLA가 모공에 특화' 다. problem 마다 문장 변형이 있다. '열 수축' 은 수축 기전 수식, 'PDLLA' 는 재질 약어."},
+    {"id": "OB-S07-03", "at": ["c0.A1", "c1.A0", "c2.A0", "c3.A0", "c4.A0", "c5.A0"], "status": "P", "text": "alternatives 'MTS + 스킨부스터도 가벼운 대안' — 'MTS' 는 procedures 에 없는 시술 표현이며 원문 풀이가 없다. '+' 로 함께 시술을, '도' 로 추가 선택지를, '가벼운' 으로 비교 정도를 나타낸다."},
+    {"id": "OB-S07-04", "at": ["c2.cc", "c4.cc", "c5.cc"], "status": "I", "text": "cc '프락셔널레이저'·'CO2프락셀'·'서브시전' 이 가리키는 시술이 procedures 에 없다(니들RF·스킨부스터·리프팅기기만). I-03 같은 유형."},
+    {"id": "OB-S07-05", "at": ["c2.P2.role", "c2.B1.reason", "c2.B1.evidence"], "status": "P", "text": "'처짐 개선', '처진 모공 해결', '원인(처짐)+결과(모공) 동시 치료' — '처짐' 표기(F-07). evidence 는 괄호로 원인·결과 라벨을 붙인 공식형이다."},
+    {"id": "OB-S07-06", "at": ["c0.cc", "S06:c4.cc", "c1.cc", "S06:c3.cc"], "status": "P", "text": "cc '스킨보톡스'·'아그네스' 가 P6 여드름과 P7 모공 두 problem 에 모두 있다. cc_detail('피지↓' vs '피지↓ 모공↓', '피지선 파괴' vs '피지선 파괴 · 니들RF')과 cc_group 이 다르다. 같은 cc 의 다중 소속이 원문 구조상 사실이다."},
+    {"id": "OB-S07-07", "at": ["c4.cc"], "status": "K", "text": "'CO2프락셀' 혼합 표기(로마자+숫자+한글). 형태소 분절 확인(K-04)."}
+  ],
+  "expressions": [
+    {"text": "피지↓", "at": ["c0.cc_detail"], "aspects": ["기호(↓)", "감소 표현"]},
+    {"text": "피지선 파괴", "at": ["c1.cc_detail"], "aspects": ["효과 표현", "기전 표현"]},
+    {"text": "콜라겐리모델링", "at": ["c2.cc_detail"], "aspects": ["붙여 쓴 복합어", "기전 표현"]},
+    {"text": "진피 타이트닝", "at": ["c3.cc_detail"], "aspects": ["층위(진피)", "효과 표현"]},
+    {"text": "박피성 재생", "at": ["c4.cc_detail"], "aspects": ["기전 수식(박피성)", "효과 표현"]},
+    {"text": "유착 해제", "at": ["c5.cc_detail"], "aspects": ["기전 표현"]},
+    {"text": "흉터형(열린모공)", "at": ["c4.cc_group", "c5.cc_group"], "aspects": ["유형 표현", "괄호 보충"]},
+    {"text": "피지과다형", "at": ["c0.cc_group", "c1.cc_group"], "aspects": ["유형 표현", "정도(과다)"]},
+    {"text": "탄력저하형", "at": ["c2.cc_group", "c3.cc_group"], "aspects": ["유형 표현", "감소 표현(저하)"]},
+    {"text": "CO2프락셀", "at": ["c4.cc"], "aspects": ["시술명 표현", "혼합 표기"]},
+    {"text": "진피내 피지선·입모근의 콜린성 신호 차단", "at": ["c0.P0.role"], "aspects": ["role 표현", "층위(진피내)", "기전 표현"]},
+    {"text": "마이크로보톡스로 피지·모공 감소 + 스킨부스터로 피부 재생 보조", "at": ["c0.B0.reason"], "aspects": ["기호(+)", "수단(-로)+결과", "감소 표현", "보조"]},
+    {"text": "마이크로보톡스는 피지선의 콜린성 신호 차단으로 피지·모공을 감소시킴", "at": ["c0.B0.evidence"], "aspects": ["기전 진술", "감소 표현"]},
+    {"text": "열 수축 + 콜라겐 재생", "at": ["c0.B1.reason", "c1.B0.reason", "c2.B0.reason", "c3.B0.reason", "c4.B0.reason", "c5.B0.reason"], "aspects": ["기호(+)", "기전 수식(열)"]},
+    {"text": "쥬베룩 PDLLA가 모공에 특화", "at": ["c0.B1.evidence", "c1.B0.evidence", "c2.B0.evidence", "c3.B0.evidence", "c4.B0.evidence", "c5.B0.evidence"], "aspects": ["제품명+재질 약어", "특화 주장"]},
+    {"text": "수축 + 리프팅 = 처진 모공 해결", "at": ["c2.B1.reason", "c3.B1.reason"], "aspects": ["공식형 문장", "기호(+)", "기호(=)", "상태 수식(처진)"]},
+    {"text": "원인(처짐)+결과(모공) 동시 치료", "at": ["c2.B1.evidence", "c3.B1.evidence"], "aspects": ["괄호 라벨", "기호(+ 공백 없음)", "동시성(동시)", "원인·결과"]},
+    {"text": "처짐 개선", "at": ["c2.P2.role", "c3.P2.role"], "aspects": ["role 표현", "증상 표현"]},
+    {"text": "효과 부족 시 리프팅기기 추가", "at": ["c0.A0"], "aspects": ["조건(-시)", "부족 표현", "추가 표현"]},
+    {"text": "MTS + 스킨부스터도 가벼운 대안", "at": ["c0.A1", "c1.A0", "c2.A0", "c3.A0", "c4.A0", "c5.A0"], "aspects": ["대안 표현", "기호(+)", "약어(MTS)", "비교(가벼운)", "추가(도)"]}
+  ],
+  "issues": []
+}

@@ -1,0 +1,743 @@
+{
+ "source_sha256": "4e138ffb64414995483e4201396bc4f185ec34e4d150f825ec151b0fe07512e5",
+ "rule": "모든 노드(컨테이너·말단·빈 값)는 정확히 한 구획이 소유한다(owned). context 는 함께 읽은 상위 문맥 참조이며 소유가 아니다. read_status 는 작성자 직접 읽기 기록(manual-observations.json)에서 오며 기계 추출과 구분한다.",
+ "last_read": {
+  "section": "S17",
+  "pointer": "/categories/16/emergency_signs/2",
+  "remaining_sections": []
+ },
+ "sections": [
+  {
+   "id": "S00",
+   "title": "루트 메타데이터",
+   "owned": [
+    "",
+    "/version",
+    "/updated",
+    "/description",
+    "/categories"
+   ],
+   "context": [],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s00",
+   "pointer_range": [
+    "",
+    "/categories"
+   ],
+   "leaf_count": 3
+  },
+  {
+   "id": "S01",
+   "title": "/categories/0 M1 보톡스",
+   "owned": [
+    "/categories/0",
+    "/categories/0/id",
+    "/categories/0/name",
+    "/categories/0/mandatory_disclosures",
+    "/categories/0/mandatory_disclosures/0",
+    "/categories/0/mandatory_disclosures/1",
+    "/categories/0/mandatory_disclosures/2",
+    "/categories/0/mandatory_disclosures/3",
+    "/categories/0/mandatory_disclosures/4",
+    "/categories/0/mandatory_disclosures/5",
+    "/categories/0/mandatory_disclosures/6",
+    "/categories/0/contraindications",
+    "/categories/0/contraindications/0",
+    "/categories/0/contraindications/1",
+    "/categories/0/contraindications/2",
+    "/categories/0/contraindications/3",
+    "/categories/0/contraindications/4",
+    "/categories/0/contraindications/5",
+    "/categories/0/emergency_signs",
+    "/categories/0/emergency_signs/0",
+    "/categories/0/emergency_signs/1",
+    "/categories/0/emergency_signs/2",
+    "/categories/0/emergency_signs/3"
+   ],
+   "context": [
+    "/description",
+    "/categories/0/id",
+    "/categories/0/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s01",
+   "pointer_range": [
+    "/categories/0",
+    "/categories/0/emergency_signs/3"
+   ],
+   "leaf_count": 19
+  },
+  {
+   "id": "S02",
+   "title": "/categories/1 M2 필러",
+   "owned": [
+    "/categories/1",
+    "/categories/1/id",
+    "/categories/1/name",
+    "/categories/1/mandatory_disclosures",
+    "/categories/1/mandatory_disclosures/0",
+    "/categories/1/mandatory_disclosures/1",
+    "/categories/1/mandatory_disclosures/2",
+    "/categories/1/mandatory_disclosures/3",
+    "/categories/1/mandatory_disclosures/4",
+    "/categories/1/mandatory_disclosures/5",
+    "/categories/1/mandatory_disclosures/6",
+    "/categories/1/mandatory_disclosures/7",
+    "/categories/1/contraindications",
+    "/categories/1/contraindications/0",
+    "/categories/1/contraindications/1",
+    "/categories/1/contraindications/2",
+    "/categories/1/contraindications/3",
+    "/categories/1/contraindications/4",
+    "/categories/1/contraindications/5",
+    "/categories/1/emergency_signs",
+    "/categories/1/emergency_signs/0",
+    "/categories/1/emergency_signs/1",
+    "/categories/1/emergency_signs/2",
+    "/categories/1/emergency_signs/3",
+    "/categories/1/emergency_signs/4"
+   ],
+   "context": [
+    "/description",
+    "/categories/1/id",
+    "/categories/1/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s02",
+   "pointer_range": [
+    "/categories/1",
+    "/categories/1/emergency_signs/4"
+   ],
+   "leaf_count": 21
+  },
+  {
+   "id": "S03",
+   "title": "/categories/2 M3 바이오스티뮬레이터/콜라겐부스터",
+   "owned": [
+    "/categories/2",
+    "/categories/2/id",
+    "/categories/2/name",
+    "/categories/2/mandatory_disclosures",
+    "/categories/2/mandatory_disclosures/0",
+    "/categories/2/mandatory_disclosures/1",
+    "/categories/2/mandatory_disclosures/2",
+    "/categories/2/mandatory_disclosures/3",
+    "/categories/2/mandatory_disclosures/4",
+    "/categories/2/mandatory_disclosures/5",
+    "/categories/2/mandatory_disclosures/6",
+    "/categories/2/contraindications",
+    "/categories/2/contraindications/0",
+    "/categories/2/contraindications/1",
+    "/categories/2/contraindications/2",
+    "/categories/2/contraindications/3",
+    "/categories/2/contraindications/4",
+    "/categories/2/contraindications/5",
+    "/categories/2/emergency_signs",
+    "/categories/2/emergency_signs/0",
+    "/categories/2/emergency_signs/1",
+    "/categories/2/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/2/id",
+    "/categories/2/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s03",
+   "pointer_range": [
+    "/categories/2",
+    "/categories/2/emergency_signs/2"
+   ],
+   "leaf_count": 18
+  },
+  {
+   "id": "S04",
+   "title": "/categories/3 M4 스킨부스터",
+   "owned": [
+    "/categories/3",
+    "/categories/3/id",
+    "/categories/3/name",
+    "/categories/3/mandatory_disclosures",
+    "/categories/3/mandatory_disclosures/0",
+    "/categories/3/mandatory_disclosures/1",
+    "/categories/3/mandatory_disclosures/2",
+    "/categories/3/mandatory_disclosures/3",
+    "/categories/3/mandatory_disclosures/4",
+    "/categories/3/contraindications",
+    "/categories/3/contraindications/0",
+    "/categories/3/contraindications/1",
+    "/categories/3/contraindications/2",
+    "/categories/3/contraindications/3",
+    "/categories/3/contraindications/4",
+    "/categories/3/emergency_signs",
+    "/categories/3/emergency_signs/0",
+    "/categories/3/emergency_signs/1"
+   ],
+   "context": [
+    "/description",
+    "/categories/3/id",
+    "/categories/3/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s04",
+   "pointer_range": [
+    "/categories/3",
+    "/categories/3/emergency_signs/1"
+   ],
+   "leaf_count": 14
+  },
+  {
+   "id": "S05",
+   "title": "/categories/4 M5 PRP/자가혈",
+   "owned": [
+    "/categories/4",
+    "/categories/4/id",
+    "/categories/4/name",
+    "/categories/4/mandatory_disclosures",
+    "/categories/4/mandatory_disclosures/0",
+    "/categories/4/mandatory_disclosures/1",
+    "/categories/4/mandatory_disclosures/2",
+    "/categories/4/mandatory_disclosures/3",
+    "/categories/4/mandatory_disclosures/4",
+    "/categories/4/contraindications",
+    "/categories/4/contraindications/0",
+    "/categories/4/contraindications/1",
+    "/categories/4/contraindications/2",
+    "/categories/4/contraindications/3",
+    "/categories/4/contraindications/4",
+    "/categories/4/contraindications/5",
+    "/categories/4/emergency_signs",
+    "/categories/4/emergency_signs/0",
+    "/categories/4/emergency_signs/1"
+   ],
+   "context": [
+    "/description",
+    "/categories/4/id",
+    "/categories/4/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s05",
+   "pointer_range": [
+    "/categories/4",
+    "/categories/4/emergency_signs/1"
+   ],
+   "leaf_count": 15
+  },
+  {
+   "id": "S06",
+   "title": "/categories/5 M6 지방이식",
+   "owned": [
+    "/categories/5",
+    "/categories/5/id",
+    "/categories/5/name",
+    "/categories/5/mandatory_disclosures",
+    "/categories/5/mandatory_disclosures/0",
+    "/categories/5/mandatory_disclosures/1",
+    "/categories/5/mandatory_disclosures/2",
+    "/categories/5/mandatory_disclosures/3",
+    "/categories/5/mandatory_disclosures/4",
+    "/categories/5/mandatory_disclosures/5",
+    "/categories/5/contraindications",
+    "/categories/5/contraindications/0",
+    "/categories/5/contraindications/1",
+    "/categories/5/contraindications/2",
+    "/categories/5/contraindications/3",
+    "/categories/5/contraindications/4",
+    "/categories/5/contraindications/5",
+    "/categories/5/emergency_signs",
+    "/categories/5/emergency_signs/0",
+    "/categories/5/emergency_signs/1",
+    "/categories/5/emergency_signs/2",
+    "/categories/5/emergency_signs/3"
+   ],
+   "context": [
+    "/description",
+    "/categories/5/id",
+    "/categories/5/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s06",
+   "pointer_range": [
+    "/categories/5",
+    "/categories/5/emergency_signs/3"
+   ],
+   "leaf_count": 18
+  },
+  {
+   "id": "S07",
+   "title": "/categories/6 M7 실리프팅",
+   "owned": [
+    "/categories/6",
+    "/categories/6/id",
+    "/categories/6/name",
+    "/categories/6/mandatory_disclosures",
+    "/categories/6/mandatory_disclosures/0",
+    "/categories/6/mandatory_disclosures/1",
+    "/categories/6/mandatory_disclosures/2",
+    "/categories/6/mandatory_disclosures/3",
+    "/categories/6/mandatory_disclosures/4",
+    "/categories/6/mandatory_disclosures/5",
+    "/categories/6/mandatory_disclosures/6",
+    "/categories/6/contraindications",
+    "/categories/6/contraindications/0",
+    "/categories/6/contraindications/1",
+    "/categories/6/contraindications/2",
+    "/categories/6/contraindications/3",
+    "/categories/6/contraindications/4",
+    "/categories/6/contraindications/5",
+    "/categories/6/emergency_signs",
+    "/categories/6/emergency_signs/0",
+    "/categories/6/emergency_signs/1",
+    "/categories/6/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/6/id",
+    "/categories/6/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s07",
+   "pointer_range": [
+    "/categories/6",
+    "/categories/6/emergency_signs/2"
+   ],
+   "leaf_count": 18
+  },
+  {
+   "id": "S08",
+   "title": "/categories/7 M8 레이저",
+   "owned": [
+    "/categories/7",
+    "/categories/7/id",
+    "/categories/7/name",
+    "/categories/7/mandatory_disclosures",
+    "/categories/7/mandatory_disclosures/0",
+    "/categories/7/mandatory_disclosures/1",
+    "/categories/7/mandatory_disclosures/2",
+    "/categories/7/mandatory_disclosures/3",
+    "/categories/7/mandatory_disclosures/4",
+    "/categories/7/mandatory_disclosures/5",
+    "/categories/7/mandatory_disclosures/6",
+    "/categories/7/mandatory_disclosures/7",
+    "/categories/7/contraindications",
+    "/categories/7/contraindications/0",
+    "/categories/7/contraindications/1",
+    "/categories/7/contraindications/2",
+    "/categories/7/contraindications/3",
+    "/categories/7/contraindications/4",
+    "/categories/7/contraindications/5",
+    "/categories/7/contraindications/6",
+    "/categories/7/contraindications/7",
+    "/categories/7/emergency_signs",
+    "/categories/7/emergency_signs/0",
+    "/categories/7/emergency_signs/1",
+    "/categories/7/emergency_signs/2",
+    "/categories/7/emergency_signs/3"
+   ],
+   "context": [
+    "/description",
+    "/categories/7/id",
+    "/categories/7/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s08",
+   "pointer_range": [
+    "/categories/7",
+    "/categories/7/emergency_signs/3"
+   ],
+   "leaf_count": 22
+  },
+  {
+   "id": "S09",
+   "title": "/categories/8 M9 기기 리프팅",
+   "owned": [
+    "/categories/8",
+    "/categories/8/id",
+    "/categories/8/name",
+    "/categories/8/mandatory_disclosures",
+    "/categories/8/mandatory_disclosures/0",
+    "/categories/8/mandatory_disclosures/1",
+    "/categories/8/mandatory_disclosures/2",
+    "/categories/8/mandatory_disclosures/3",
+    "/categories/8/mandatory_disclosures/4",
+    "/categories/8/mandatory_disclosures/5",
+    "/categories/8/mandatory_disclosures/6",
+    "/categories/8/contraindications",
+    "/categories/8/contraindications/0",
+    "/categories/8/contraindications/1",
+    "/categories/8/contraindications/2",
+    "/categories/8/contraindications/3",
+    "/categories/8/contraindications/4",
+    "/categories/8/contraindications/5",
+    "/categories/8/contraindications/6",
+    "/categories/8/emergency_signs",
+    "/categories/8/emergency_signs/0",
+    "/categories/8/emergency_signs/1",
+    "/categories/8/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/8/id",
+    "/categories/8/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s09",
+   "pointer_range": [
+    "/categories/8",
+    "/categories/8/emergency_signs/2"
+   ],
+   "leaf_count": 19
+  },
+  {
+   "id": "S10",
+   "title": "/categories/9 M10 HIFES/EMS",
+   "owned": [
+    "/categories/9",
+    "/categories/9/id",
+    "/categories/9/name",
+    "/categories/9/mandatory_disclosures",
+    "/categories/9/mandatory_disclosures/0",
+    "/categories/9/mandatory_disclosures/1",
+    "/categories/9/mandatory_disclosures/2",
+    "/categories/9/mandatory_disclosures/3",
+    "/categories/9/mandatory_disclosures/4",
+    "/categories/9/contraindications",
+    "/categories/9/contraindications/0",
+    "/categories/9/contraindications/1",
+    "/categories/9/contraindications/2",
+    "/categories/9/contraindications/3",
+    "/categories/9/contraindications/4",
+    "/categories/9/contraindications/5",
+    "/categories/9/contraindications/6",
+    "/categories/9/emergency_signs",
+    "/categories/9/emergency_signs/0",
+    "/categories/9/emergency_signs/1",
+    "/categories/9/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/9/id",
+    "/categories/9/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s10",
+   "pointer_range": [
+    "/categories/9",
+    "/categories/9/emergency_signs/2"
+   ],
+   "leaf_count": 17
+  },
+  {
+   "id": "S11",
+   "title": "/categories/10 M11 니들RF",
+   "owned": [
+    "/categories/10",
+    "/categories/10/id",
+    "/categories/10/name",
+    "/categories/10/mandatory_disclosures",
+    "/categories/10/mandatory_disclosures/0",
+    "/categories/10/mandatory_disclosures/1",
+    "/categories/10/mandatory_disclosures/2",
+    "/categories/10/mandatory_disclosures/3",
+    "/categories/10/mandatory_disclosures/4",
+    "/categories/10/mandatory_disclosures/5",
+    "/categories/10/contraindications",
+    "/categories/10/contraindications/0",
+    "/categories/10/contraindications/1",
+    "/categories/10/contraindications/2",
+    "/categories/10/contraindications/3",
+    "/categories/10/contraindications/4",
+    "/categories/10/contraindications/5",
+    "/categories/10/contraindications/6",
+    "/categories/10/emergency_signs",
+    "/categories/10/emergency_signs/0",
+    "/categories/10/emergency_signs/1",
+    "/categories/10/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/10/id",
+    "/categories/10/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s11",
+   "pointer_range": [
+    "/categories/10",
+    "/categories/10/emergency_signs/2"
+   ],
+   "leaf_count": 18
+  },
+  {
+   "id": "S12",
+   "title": "/categories/11 M12 마이크로니들링(MTS)",
+   "owned": [
+    "/categories/11",
+    "/categories/11/id",
+    "/categories/11/name",
+    "/categories/11/mandatory_disclosures",
+    "/categories/11/mandatory_disclosures/0",
+    "/categories/11/mandatory_disclosures/1",
+    "/categories/11/mandatory_disclosures/2",
+    "/categories/11/mandatory_disclosures/3",
+    "/categories/11/mandatory_disclosures/4",
+    "/categories/11/mandatory_disclosures/5",
+    "/categories/11/contraindications",
+    "/categories/11/contraindications/0",
+    "/categories/11/contraindications/1",
+    "/categories/11/contraindications/2",
+    "/categories/11/contraindications/3",
+    "/categories/11/contraindications/4",
+    "/categories/11/contraindications/5",
+    "/categories/11/emergency_signs",
+    "/categories/11/emergency_signs/0",
+    "/categories/11/emergency_signs/1",
+    "/categories/11/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/11/id",
+    "/categories/11/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s12",
+   "pointer_range": [
+    "/categories/11",
+    "/categories/11/emergency_signs/2"
+   ],
+   "leaf_count": 17
+  },
+  {
+   "id": "S13",
+   "title": "/categories/12 M13 플라즈마",
+   "owned": [
+    "/categories/12",
+    "/categories/12/id",
+    "/categories/12/name",
+    "/categories/12/mandatory_disclosures",
+    "/categories/12/mandatory_disclosures/0",
+    "/categories/12/mandatory_disclosures/1",
+    "/categories/12/mandatory_disclosures/2",
+    "/categories/12/mandatory_disclosures/3",
+    "/categories/12/mandatory_disclosures/4",
+    "/categories/12/contraindications",
+    "/categories/12/contraindications/0",
+    "/categories/12/contraindications/1",
+    "/categories/12/contraindications/2",
+    "/categories/12/contraindications/3",
+    "/categories/12/contraindications/4",
+    "/categories/12/emergency_signs",
+    "/categories/12/emergency_signs/0",
+    "/categories/12/emergency_signs/1",
+    "/categories/12/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/12/id",
+    "/categories/12/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s13",
+   "pointer_range": [
+    "/categories/12",
+    "/categories/12/emergency_signs/2"
+   ],
+   "leaf_count": 15
+  },
+  {
+   "id": "S14",
+   "title": "/categories/13 M14 크라이오리포라이시스",
+   "owned": [
+    "/categories/13",
+    "/categories/13/id",
+    "/categories/13/name",
+    "/categories/13/mandatory_disclosures",
+    "/categories/13/mandatory_disclosures/0",
+    "/categories/13/mandatory_disclosures/1",
+    "/categories/13/mandatory_disclosures/2",
+    "/categories/13/mandatory_disclosures/3",
+    "/categories/13/mandatory_disclosures/4",
+    "/categories/13/mandatory_disclosures/5",
+    "/categories/13/mandatory_disclosures/6",
+    "/categories/13/contraindications",
+    "/categories/13/contraindications/0",
+    "/categories/13/contraindications/1",
+    "/categories/13/contraindications/2",
+    "/categories/13/contraindications/3",
+    "/categories/13/contraindications/4",
+    "/categories/13/contraindications/5",
+    "/categories/13/contraindications/6",
+    "/categories/13/emergency_signs",
+    "/categories/13/emergency_signs/0",
+    "/categories/13/emergency_signs/1",
+    "/categories/13/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/13/id",
+    "/categories/13/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조(긴 값 man/0 은 문장 단위로 재독)",
+   "review_file": "review.md",
+   "review_anchor": "#s14",
+   "pointer_range": [
+    "/categories/13",
+    "/categories/13/emergency_signs/2"
+   ],
+   "leaf_count": 19
+  },
+  {
+   "id": "S15",
+   "title": "/categories/14 M15 메디컬스킨케어",
+   "owned": [
+    "/categories/14",
+    "/categories/14/id",
+    "/categories/14/name",
+    "/categories/14/mandatory_disclosures",
+    "/categories/14/mandatory_disclosures/0",
+    "/categories/14/mandatory_disclosures/1",
+    "/categories/14/mandatory_disclosures/2",
+    "/categories/14/mandatory_disclosures/3",
+    "/categories/14/mandatory_disclosures/4",
+    "/categories/14/mandatory_disclosures/5",
+    "/categories/14/mandatory_disclosures/6",
+    "/categories/14/contraindications",
+    "/categories/14/contraindications/0",
+    "/categories/14/contraindications/1",
+    "/categories/14/contraindications/2",
+    "/categories/14/contraindications/3",
+    "/categories/14/contraindications/4",
+    "/categories/14/contraindications/5",
+    "/categories/14/emergency_signs",
+    "/categories/14/emergency_signs/0",
+    "/categories/14/emergency_signs/1",
+    "/categories/14/emergency_signs/2",
+    "/categories/14/emergency_signs/3"
+   ],
+   "context": [
+    "/description",
+    "/categories/14/id",
+    "/categories/14/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조(긴 값 man/3 은 문장 단위로 재독)",
+   "review_file": "review.md",
+   "review_anchor": "#s15",
+   "pointer_range": [
+    "/categories/14",
+    "/categories/14/emergency_signs/3"
+   ],
+   "leaf_count": 19
+  },
+  {
+   "id": "S16",
+   "title": "/categories/15 M16 수액치료",
+   "owned": [
+    "/categories/15",
+    "/categories/15/id",
+    "/categories/15/name",
+    "/categories/15/mandatory_disclosures",
+    "/categories/15/mandatory_disclosures/0",
+    "/categories/15/mandatory_disclosures/1",
+    "/categories/15/mandatory_disclosures/2",
+    "/categories/15/mandatory_disclosures/3",
+    "/categories/15/mandatory_disclosures/4",
+    "/categories/15/mandatory_disclosures/5",
+    "/categories/15/contraindications",
+    "/categories/15/contraindications/0",
+    "/categories/15/contraindications/1",
+    "/categories/15/contraindications/2",
+    "/categories/15/contraindications/3",
+    "/categories/15/contraindications/4",
+    "/categories/15/emergency_signs",
+    "/categories/15/emergency_signs/0",
+    "/categories/15/emergency_signs/1",
+    "/categories/15/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/15/id",
+    "/categories/15/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조",
+   "review_file": "review.md",
+   "review_anchor": "#s16",
+   "pointer_range": [
+    "/categories/15",
+    "/categories/15/emergency_signs/2"
+   ],
+   "leaf_count": 16
+  },
+  {
+   "id": "S17",
+   "title": "/categories/16 M17 줄기세포치료",
+   "owned": [
+    "/categories/16",
+    "/categories/16/id",
+    "/categories/16/name",
+    "/categories/16/mandatory_disclosures",
+    "/categories/16/mandatory_disclosures/0",
+    "/categories/16/mandatory_disclosures/1",
+    "/categories/16/mandatory_disclosures/2",
+    "/categories/16/mandatory_disclosures/3",
+    "/categories/16/mandatory_disclosures/4",
+    "/categories/16/mandatory_disclosures/5",
+    "/categories/16/mandatory_disclosures/6",
+    "/categories/16/contraindications",
+    "/categories/16/contraindications/0",
+    "/categories/16/contraindications/1",
+    "/categories/16/contraindications/2",
+    "/categories/16/contraindications/3",
+    "/categories/16/contraindications/4",
+    "/categories/16/contraindications/5",
+    "/categories/16/emergency_signs",
+    "/categories/16/emergency_signs/0",
+    "/categories/16/emergency_signs/1",
+    "/categories/16/emergency_signs/2"
+   ],
+   "context": [
+    "/description",
+    "/categories/16/id",
+    "/categories/16/name"
+   ],
+   "read_status": "직접 읽음",
+   "read_method": "전체 값 통독 + 구획 표 대조(긴 값 man/0·man/6 은 문장 단위로 재독)",
+   "review_file": "review.md",
+   "review_anchor": "#s17",
+   "pointer_range": [
+    "/categories/16",
+    "/categories/16/emergency_signs/2"
+   ],
+   "leaf_count": 18
+  }
+ ]
+}

@@ -1,0 +1,6092 @@
+{
+ "version": "semantic-research v1",
+ "generated_at": "2026-10-29T23:02:34",
+ "inputs": {
+  "step1-products.json": {
+   "version": 2,
+   "mtime": "2026-10-29T12:11:34"
+  },
+  "step2-families.json": {
+   "version": "step2-families v1",
+   "mtime": "2026-10-29T17:55:44"
+  },
+  "step3-sites.json": {
+   "version": "3.0",
+   "mtime": "2026-10-29T12:11:34"
+  },
+  "step4-techniques.json": {
+   "version": "v1",
+   "mtime": "2026-10-29T17:55:44"
+  },
+  "step5-units.json": {
+   "version": "step5-units v1",
+   "mtime": "2026-10-29T18:14:55"
+  },
+  "step6-packages.json": {
+   "version": "step6-packages v1",
+   "mtime": "2026-10-29T16:31:20"
+  },
+  "step7-concerns.json": {
+   "version": "step7-concerns v1 (2026-10-29)",
+   "mtime": "2026-10-29T23:00:44"
+  },
+  "step8-relations.json": {
+   "version": "step8-v1",
+   "mtime": "2026-10-29T23:00:49"
+  }
+ },
+ "scope": "읽기 전용 · 시맨틱 정의 정본 초안(골드 규칙 제외 · 상속 규칙 정의까지). 셈은 전부 실버 json 에서 다시 셈(이 json 을 만든 스크립트가 셈).",
+ "notice": "코디 알림(10-29): 7단계 「그 부위 단위 시술 없음 → 후보 전부」 규칙이 「상위 부위로 올라가기(R21)」로 바뀜 — 이 판은 바뀐 파일(step7-decisions 22:56 · step7-concerns · step8 22:59)로 셈했고 상속 I5 · 용어 「부위로 내림」에 step7-decisions site_rules.climb 문장을 그대로 옮김. 셈은 inputs.mtime 시점 파일 기준",
+ "summary": {
+  "node_kinds": 13,
+  "node_kinds_page": 14,
+  "edge_kinds": 21,
+  "edge_kinds_page": 32,
+  "glossary": 47,
+  "dict_places": 14,
+  "dict_entries": 2454,
+  "dict_collisions": 147,
+  "decision_bundles": 12,
+  "user_final": 3,
+  "flags": 12,
+  "inherit_rules": 9
+ },
+ "node_kinds": [
+  {
+   "key": "product",
+   "page": "prod",
+   "name_site": "제품(장비 · 제품)",
+   "name_internal": "product",
+   "meaning": "허가 · 업체 · 규격을 가진 제품 · 장비 하나(라인이면 상위 제품) — 시술이 아니라 시술에 「쓰는 것」",
+   "id_rule": "원장 ledger_id 그대로(문자열) — M{n}-{n}-{n} · auto-M{n}-{timestamp} · auto-{n}-{timestamp} · new-DEV-{n} · M{n}-P-{n} · auto-M{n}-DCA-{n} · step1-new-APTOS 등 8꼴",
+   "id_patterns": {
+    "M9-9-9": 85,
+    "auto-M9-9": 176,
+    "auto-9-9": 35,
+    "auto-M9-hADM-9": 1,
+    "auto-M9-DCA-9": 7,
+    "new-DEV-9": 34,
+    "M9-P-9": 14,
+    "step9-new-APTOS": 1,
+    "step9-new-FASCELLA": 1
+   },
+   "required": [
+    "ledger_id",
+    "2_names.display_name",
+    "4_license.status(6값)",
+    "4_license.recommendable",
+    "active",
+    "계열(2단계 product_family.family)"
+   ],
+   "optional": [
+    "2_names.search_names[]{name,lang}",
+    "2_names.name_basis",
+    "1_identity.kind",
+    "4_license.licenses[] · history[] · reference[]",
+    "5_spec",
+    "6_companies{manufacturer · importer · seller · license_holder · other · conflicts}",
+    "line",
+    "taxonomy_product_ids",
+    "evidence",
+    "open"
+   ],
+   "canon": "step1-products.json",
+   "path": "items[] (active=true)",
+   "count": 354,
+   "count_note": "items 395 중 active 354 · 합침/빠짐 41 은 노드 아님(이력)",
+   "source": "_RESUME §2 10-27 「이름 규칙」 · 「허가 규칙」 · 10-27 「1단계는 제품 ↔ 허가만」 · 로그 step1 §3",
+   "page_count": 354
+  },
+  {
+   "key": "family",
+   "page": "fam",
+   "name_site": "계열",
+   "name_internal": "family",
+   "meaning": "무엇을(약제 · 장비 계열) — 문헌 카테고리(M1~M17) + 늘린 계열(N1~N10)",
+   "id_rule": "M{1..17} · N{1..10}",
+   "id_patterns": {
+    "M9": 17,
+    "N9": 10
+   },
+   "required": [
+    "id",
+    "name(공식 일반명)",
+    "definition",
+    "name_status"
+   ],
+   "optional": [
+    "synonyms[]",
+    "literature_name",
+    "literature_evidence[]",
+    "sub_families[]",
+    "sub_family_handling[]",
+    "deferred[]",
+    "new_family",
+    "note"
+   ],
+   "canon": "step2-families.json",
+   "path": "families[]",
+   "count": 27,
+   "count_note": "new_family 10 · name_status {'확정(10-27)': 1, '국내 공식 출처': 1, '공식 출처 미확인': 24, '국내 품목명 있음 · 계열 일부만 해당(3/12행) — 공식 일반명 아님': 1}",
+   "source": "_RESUME §2 10-27 「계열 이름 = 공식 일반명」 · 10-28 「2단계 계열 기준 = 교과서 · 임상 · 학회 문헌」 · 10-29 「클리닉 시술은 전부 단위 시술 — 계열을 늘린다」",
+   "page_count": 27
+  },
+  {
+   "key": "site",
+   "page": "site",
+   "name_site": "부위",
+   "name_internal": "site",
+   "meaning": "어디에 — 시술 받는 사람 몸 겉에서 가리킬 수 있는 자리(뼈 · 근육 · 혈관 · 층은 부위 아님)",
+   "id_rule": "site.{영문-kebab}(묶음은 -group)",
+   "id_patterns": {
+    "site.{en}": 53
+   },
+   "required": [
+    "id",
+    "name(일반인 용어)",
+    "parent",
+    "status"
+   ],
+   "optional": [
+    "synonyms[]{text,type,weak}",
+    "compound_strings[]",
+    "anatomical_name{en,ko,basis,level}(전문의 용어)",
+    "danger_zone{zone,relation,basis}",
+    "note"
+   ],
+   "canon": "step3-sites.json",
+   "path": "nodes[]",
+   "count": 53,
+   "count_note": "status {'tree': 37, 'added_oq206': 6, 'added_step3': 10} · 해부학 이름 근거 {'강': 20, '약': 29, '중': 4}",
+   "source": "_RESUME §2 10-28 「부위 기준 = 어디에 맞냐」 · 「부위 노드 이름 2벌」 · 10-27 부위 트리 확정",
+   "page_count": 53
+  },
+  {
+   "key": "technique",
+   "page": "tech",
+   "name_site": "기법",
+   "name_internal": "technique",
+   "meaning": "어떻게 — 큰 기법 + 세부 기법(층 · 깊이 · 대상 근육 · 도구는 단위 시술 속성)",
+   "id_rule": "K{nn} · K{nn}{a|b|c}",
+   "id_patterns": {
+    "K9": 14,
+    "K9a": 4,
+    "K9b": 4,
+    "K9c": 4
+   },
+   "required": [
+    "id",
+    "name",
+    "level(큰 · 세부)",
+    "parent"
+   ],
+   "optional": [
+    "medical_name",
+    "basis",
+    "children[]",
+    "family_default[]",
+    "family_also[]",
+    "source_expressions[]",
+    "draft_techniques[]",
+    "modes[]"
+   ],
+   "canon": "step4-techniques.json",
+   "path": "nodes[]",
+   "count": 26,
+   "count_note": "level {'큰': 14, '세부': 12}",
+   "source": "_RESUME §2 10-28 「4단계 기법 조사 반영 J1 안 1」",
+   "page_count": 26
+  },
+  {
+   "key": "unit_procedure",
+   "page": "unit",
+   "name_site": "단위 시술",
+   "name_internal": "unit_procedure",
+   "meaning": "제일 작은 단위 행위 = 계열 × [하위 계열 · 성분] × 부위 × 기법 (원천에 있는 조합만)",
+   "id_rule": "U5-{nnn}",
+   "id_patterns": {
+    "U9-9": 162
+   },
+   "required": [
+    "id",
+    "key{family,sub_family,ingredient,site,technique}",
+    "name",
+    "site_basis",
+    "decided_by",
+    "sources[]"
+   ],
+   "optional": [
+    "synonyms[]{text,type,src,ambiguous}",
+    "candidate_of[]",
+    "uses_product[]",
+    "purposes[]",
+    "route_status",
+    "market[]",
+    "pih_not_applicable",
+    "ops",
+    "step4_attrs",
+    "dose_range_text",
+    "evidence_level",
+    "notes"
+   ],
+   "canon": "step5-units.json",
+   "path": "units[]",
+   "count": 162,
+   "count_note": "하위 키 30 · 성분 키 25 · 부위 특수(해당 없음 · 병변 단위) 31",
+   "source": "_RESUME §2 10-27 「시술 = 무엇을 × 어디에 × 어떻게」 · 10-29 「5단계 원칙」 · 로그 step5 §3-1",
+   "page_count": 162
+  },
+  {
+   "key": "package",
+   "page": "pkg",
+   "name_site": "패키지",
+   "name_internal": "package",
+   "meaning": "이름 있는 단위 시술 묶음(일반 패키지 · 회차 묶음 · 병원 시그니처)",
+   "id_rule": "P6-{nn}",
+   "id_patterns": {
+    "P9-9": 24
+   },
+   "required": [
+    "id",
+    "name",
+    "kind",
+    "recommendable"
+   ],
+   "optional": [
+    "shape",
+    "menu_group",
+    "same_day_raw",
+    "synonyms[]",
+    "price[]",
+    "description",
+    "notes",
+    "detail_raw",
+    "ledger_id"
+   ],
+   "canon": "step6-packages.json",
+   "path": "packages[]",
+   "count": 24,
+   "count_note": "kind {'일반 패키지': 19, '병원 시그니처': 2, '회차 묶음': 3}",
+   "source": "_RESUME §2 10-29 「6단계 패키지 이해」 · 「6단계 시작 — 계획 승인」",
+   "page_count": 24
+  },
+  {
+   "key": "concern",
+   "page": "con",
+   "name_site": "고민",
+   "name_internal": "concern",
+   "meaning": "상태 이름(주름 · 처짐 · 기미 …) — taxonomy problem 3층 중 「고민」 갈래 + 결정 노드 3",
+   "id_rule": "대분류 P{n} · 중분류 P{n}-{n} · 항목 auto-{n}-{timestamp} · 결정 노드 J{n}-{한글} — 4꼴",
+   "id_patterns": {
+    "P9": 12,
+    "P9-9": 31,
+    "auto-9-9": 11,
+    "J9-가": 3
+   },
+   "required": [
+    "id",
+    "name"
+   ],
+   "optional": [
+    "en",
+    "source_name/source_label",
+    "kind",
+    "sites[]",
+    "parent/subcategory",
+    "related[](J10)",
+    "basis",
+    "decided_by"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "concerns.categories[node] · subcategories[node] · items[kind=고민] · extra_items[]",
+   "count": 57,
+   "count_note": "대분류 12 · 중분류 31 · 항목 11 · 결정 노드 3",
+   "source": "_RESUME §2 10-29 「7단계 시작」 · 「7단계 조사 반영」 · 로그 step7 §3-1",
+   "page_count": 57
+  },
+  {
+   "key": "purpose",
+   "page": "pur",
+   "name_site": "목적",
+   "name_internal": "purpose",
+   "meaning": "시술이 하는 일(리프팅 · 재생 · 볼륨 회복 …) — 고민과 같은 말이면 노드를 따로 안 세우고 그 고민에 붙임",
+   "id_rule": "id 없음 — 이름 문자열이 곧 키(엣지 쪽에서는 「목적:{이름}」 문자열)",
+   "id_patterns": {
+    "이름 문자열": 13
+   },
+   "required": [
+    "name",
+    "kind",
+    "node"
+   ],
+   "optional": [
+    "from[]",
+    "same_as_concern",
+    "aliases[]{source,text}"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "purposes[] (node=true)",
+   "count": 13,
+   "count_note": "purposes 30 중 노드 13 · 고민에 붙음(same_as_concern) 17",
+   "source": "_RESUME §2 10-29 J4 · 로그 step7 §3-4 · step7-decisions rules R6",
+   "page_count": 13
+  },
+  {
+   "key": "combo",
+   "page": "combo",
+   "name_site": "추천 조합(사이트 「추천 패키지」)",
+   "name_internal": "recommend_combo",
+   "meaning": "원천이 고민 · 목적별로 묶어 둔 시술 조합(원천별 · 합치지 않음) — 6단계 패키지와 다름",
+   "id_rule": "RC-{원천}-… (RC-PC · RC-SQ · RC-RE · RC-OP …)",
+   "id_patterns": {
+    "RC-PC-P9-9": 24,
+    "RC-RE-R9": 7,
+    "RC-SQ-9": 8,
+    "RC-OP-Wrinkl-가": 3,
+    "RC-OP-Saggin-가": 3,
+    "RC-OP-Volume-가": 3,
+    "RC-OP-Skin-가": 3,
+    "RC-OP-Pigmen-가": 3,
+    "RC-OP-Acne-가": 3,
+    "RC-OP-Hair-가": 3,
+    "RC-OP-Body-가": 3,
+    "RC-AN-9가": 2,
+    "RC-AN-9가+": 1,
+    "RC-AG-9가": 3,
+    "RC-AG-9가+": 1,
+    "RC-CP-lifting": 1,
+    "RC-CP-wrinkle": 1,
+    "RC-CP-volume": 1,
+    "RC-CP-skin_texture": 1,
+    "RC-CP-pigment": 1,
+    "RC-CP-hair_removal": 1,
+    "RC-CP-body_contouring": 1,
+    "RC-CP-acne": 1,
+    "RC-CP-rejuvenation": 1
+   },
+   "required": [
+    "id",
+    "kind",
+    "source",
+    "name",
+    "anchor"
+   ],
+   "optional": [
+    "tier · tier_label_site",
+    "components[]",
+    "products_text",
+    "price",
+    "effect{}",
+    "sales_copy{default_response}",
+    "site_names"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "combos[]",
+   "count": 79,
+   "count_note": "kind {'고민 패키지(사이트 「추천 패키지」)': 24, '목적 레시피': 7, '세션 조합(순서)': 8, '중증도 조합': 24, '연간 플랜': 3, '연령 플랜': 4, '비교': 9}",
+   "source": "_RESUME §2 10-28 U3 「추천 조합 노드 한 타입」 · 10-29 「6단계 패키지 이해」(사이트 「추천 패키지」 = 7단계 추천 조합)",
+   "page_count": 79
+  },
+  {
+   "key": "check_condition",
+   "page": "cond",
+   "name_site": "확인 조건",
+   "name_internal": "check_condition",
+   "meaning": "사람 쪽 조건(임신 · 약물 · 체질 …) — 시술 → 조건 엣지에 금기 · 주의 · 확인만 등급",
+   "id_rule": "C-{영문 약어}",
+   "id_patterns": {
+    "C-{ABBR}": 53
+   },
+   "required": [
+    "id",
+    "name",
+    "match_pattern"
+   ],
+   "optional": [
+    "n_claims",
+    "sources[]"
+   ],
+   "canon": "step8-relations.json",
+   "path": "conditions.nodes[]",
+   "count": 53,
+   "count_note": "",
+   "source": "_RESUME §2 10-28 「사람 조건 금기 노드 이름 = 확인 조건」 · 로그 step8 §3-10",
+   "page_count": 53
+  },
+  {
+   "key": "complication",
+   "page": "cx",
+   "name_site": "합병증(부작용 섞임 — 결정 묶음 B1)",
+   "name_internal": "complication",
+   "meaning": "계열에 생길 수 있는 이상 반응 — 지금은 흔한 예상 반응(부작용)과 드문 · 중대 반응(합병증)이 한 노드 종류에 섞여 있음",
+   "id_rule": "CX-{계열}-{nn}",
+   "id_patterns": {
+    "CX-M9-9": 65
+   },
+   "required": [
+    "id",
+    "name",
+    "family",
+    "severity"
+   ],
+   "optional": [
+    "severity_site",
+    "incidence",
+    "onset",
+    "duration",
+    "mechanism",
+    "risk_factors",
+    "management",
+    "prevention",
+    "evidence[]",
+    "units_inherit[]"
+   ],
+   "canon": "step8-relations.json",
+   "path": "safety.complications[]",
+   "count": 65,
+   "count_note": "severity {'mild': 38, 'moderate': 13, 'severe': 11, 'critical': 3} · 계열 10",
+   "source": "로그 step8 §3-11 · _RESUME §2 10-28 「해부학 용어 = … 합병증 → 안전 정보(8단계)」 · 사용자 10-29 「부작용 ≠ 합병증」(브리프)",
+   "page_count": 65
+  },
+  {
+   "key": "evidence_statement",
+   "page": "stmt",
+   "name_site": "근거 문장",
+   "name_internal": "evidence_statement",
+   "meaning": "계열 단위 문헌 문장(기전 · 효과 · 이상 반응) + 환자용 4개 언어 풀이",
+   "id_rule": "ST-{계열}-{field}-{nn}",
+   "id_patterns": {
+    "ST-M9-moa-9": 50,
+    "ST-M9-adverse_effects-9": 32,
+    "ST-M9-effects-9": 37
+   },
+   "required": [
+    "id",
+    "family",
+    "field(moa · effects · adverse_effects)",
+    "statement",
+    "evidence[]"
+   ],
+   "optional": [
+    "accuracy_score",
+    "accuracy_note",
+    "patient{ko,en,zh,ja}",
+    "added_at"
+   ],
+   "canon": "step8-relations.json",
+   "path": "evidence.statements[]",
+   "count": 119,
+   "count_note": "field {'moa': 50, 'adverse_effects': 32, 'effects': 37}",
+   "source": "로그 step8 §3-12 · source-map U4(근거 노드 8단계)",
+   "page_count": 119
+  },
+  {
+   "key": "evidence_source",
+   "page": "ev",
+   "name_site": "근거 출처",
+   "name_internal": "evidence_source",
+   "meaning": "문헌(PMID · DOI) · 웹(URL) · 가이드(원천 출처 문자열)",
+   "id_rule": "EV-LIT-{nnn} · EV-WEB-{nnn} · EV-GD-{nnn}",
+   "id_patterns": {
+    "EV-LIT-9": 25,
+    "EV-WEB-9": 29,
+    "EV-GD-9": 15
+   },
+   "required": [
+    "id",
+    "kind"
+   ],
+   "optional": [
+    "literature: pmid · doi · pmc · title · journal · year · authors · oa_url",
+    "web: url · urls[] · multi_url",
+    "guides: label · pmc",
+    "used_by[]"
+   ],
+   "canon": "step8-relations.json",
+   "path": "evidence.literature[] · web[] · guides[]",
+   "count": 69,
+   "count_note": "문헌 25 · 웹 29 · 가이드 15",
+   "source": "step8-decisions web_evidence_rule · guide_not_source_rule",
+   "page_count": 69
+  }
+ ],
+ "endpoint_set_page_only": {
+  "key": "endpoint_set(페이지만)",
+  "page": "set",
+  "page_count": 43,
+  "meaning": "8단계 끝점이 하나로 안 좁혀진 것(units:a,b,c · bundle:M|M · all · 해석 안 된 문자열) — 실버 파일에는 노드가 아니라 끝점 문자열 · target 칸",
+  "canon": "step8-relations.json",
+  "path": "edges[].a · b(문자열) · conditions.claims[].target · avoid_edges[].to"
+ },
+ "not_nodes": [
+  {
+   "what": "라인(상위 제품)",
+   "where": "step1-products.json lines{} · items[].line",
+   "count": "lines 11(summary.lines.count 20) · 라인 품목 26 · items[].line 모양 {'라인 구성': 17, '라인': 11, '품목': 6}",
+   "now": "제품 속성(페이지 엣지 없음)",
+   "note": "items[].line 이 두 모양(role 「라인」 {items[]} · 「라인 구성」 {members[]}) — 칸 모양 불일치",
+   "rec": "제품 → 제품 「라인 품목」 엣지(결정 10-27 「라인 = 상위 제품 · 품목 = 하위 제품」)"
+  },
+  {
+   "what": "업체(제조 · 수입 · 판매)",
+   "where": "step1-products.json items[].6_companies",
+   "count": "이름 269종(중복 제거 · id 없음)",
+   "now": "제품 속성 {name, role, basis}",
+   "note": "DEC-003 은 「제조사 원장」(국문명 · 원어명 · 국가 · 동의어)을 정했으나 실버 1단계는 업체 id 없이 이름 문자열",
+   "rec": "결정 묶음 B9"
+  },
+  {
+   "what": "허가",
+   "where": "step1-products.json items[].4_license.licenses[] · history[]",
+   "count": "정상 327 · 이력 104",
+   "now": "제품 속성",
+   "note": "SPEC-004 는 product_item 노드였음(옛)",
+   "rec": "제품 속성 유지(1단계 「제품 ↔ 허가만」 · 허가 이름은 허가 쪽에만)"
+  },
+  {
+   "what": "시장가 행",
+   "where": "step5-units.json market[] · units[].market[]",
+   "count": "market 122",
+   "now": "단위 시술 속성",
+   "note": "10-27 「시술 1회 = 단위 시술 + 제품 + 규격 · 양, 가격은 그 조합에」",
+   "rec": "단위 시술 속성(가격 키 = 단위 시술 × 제품 × 규격)"
+  },
+  {
+   "what": "위험지대(zone)",
+   "where": "step3-sites.json nodes[].danger_zone · step8 safety.site_caution[].zone",
+   "count": "site_caution 22 · zone 11",
+   "now": "부위 속성 + 위험지대 주의 엣지 속성",
+   "note": "",
+   "rec": "엣지 속성 유지(로그 step8 §3-11)"
+  },
+  {
+   "what": "경과 타임라인",
+   "where": "step8 safety.timelines[]",
+   "count": 10,
+   "now": "계열 · 하위 · 단위 시술 원문 속성(attach)",
+   "note": "id 가 원천 영문 키(botox · ha-filler …)",
+   "rec": "속성 유지 · 상속 규칙 I8"
+  },
+  {
+   "what": "관계 주장 · 조건 주장",
+   "where": "step8 claims[] · conditions.claims[]",
+   "count": "관계 주장 395 · 조건 주장 373",
+   "now": "엣지 안 칸(쌍 하나에 엣지 하나 + 주장 칸)",
+   "note": "",
+   "rec": "엣지 속성 유지(로그 step8 §3-1)"
+  }
+ ],
+ "edge_kinds": [
+  {
+   "key": "product_family",
+   "name": "계열 판정",
+   "meaning": "제품이 어느 계열 제품인가(2단계 판정 · 주 1 + 보조)",
+   "frm": "제품",
+   "to": "계열",
+   "directed": true,
+   "attrs": [
+    "role(주 · 보조)",
+    "sub_family · also_sub_families",
+    "verdict",
+    "evidence_level",
+    "conflict",
+    "confirm_question",
+    "pending_director",
+    "basis"
+   ],
+   "canon": "step2-families.json",
+   "path": "product_family[].family · also_families[]",
+   "count": "행 354 · 주 351 · 보조 19",
+   "inherit": false,
+   "merged_from": [
+    "prod_fam",
+    "prod_fam_also"
+   ],
+   "why": "같은 뜻(계열에 속함) · 주/보조는 속성(10-28 「하위 계열도 주 · 보조로」)"
+  },
+  {
+   "key": "key_family",
+   "name": "단위 시술 키 — 계열",
+   "meaning": "단위 시술 정체의 첫 칸(무엇을)",
+   "frm": "단위 시술",
+   "to": "계열",
+   "directed": true,
+   "attrs": [
+    "sub_family(J1 안 C 계열만)",
+    "ingredient"
+   ],
+   "canon": "step5-units.json",
+   "path": "units[].key.family · sub_family · ingredient",
+   "count": 162,
+   "inherit": false,
+   "merged_from": [
+    "unit_fam"
+   ],
+   "why": "제품의 「계열 판정」과 이름이 같았지만 뜻이 다름 — 이건 정체(키) 칸이라 판정 · 근거 칸이 없고 하나뿐 · 바뀌면 다른 단위 시술"
+  },
+  {
+   "key": "key_site",
+   "name": "단위 시술 키 — 부위",
+   "meaning": "어디에",
+   "frm": "단위 시술",
+   "to": "부위",
+   "directed": true,
+   "attrs": [
+    "site_basis(원천 · 기본값)"
+   ],
+   "canon": "step5-units.json",
+   "path": "units[].key.site",
+   "count": "131(부위 노드 있음) · 특수 부위 31 은 엣지 없음",
+   "inherit": false,
+   "merged_from": [
+    "unit_site"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "key_technique",
+   "name": "단위 시술 키 — 기법",
+   "meaning": "어떻게",
+   "frm": "단위 시술",
+   "to": "기법",
+   "directed": true,
+   "attrs": [
+    "step4_attrs(층 · 대상 근육 …)"
+   ],
+   "canon": "step5-units.json",
+   "path": "units[].key.technique",
+   "count": 162,
+   "inherit": false,
+   "merged_from": [
+    "unit_tech"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "child_of",
+   "name": "상위",
+   "meaning": "같은 종류 노드의 상하 관계(부위 트리 · 기법 큰/세부 · 고민 3층)",
+   "frm": "부위 · 기법 · 고민",
+   "to": "같은 종류",
+   "directed": true,
+   "attrs": [],
+   "canon": "step3-sites.json · step4-techniques.json · step7-concerns.json",
+   "path": "nodes[].parent · nodes[].parent · subcategories[].parent · items[].subcategory · extra_items[].parent",
+   "count": "부위 49 · 기법 12 · 고민 43",
+   "inherit": false,
+   "merged_from": [
+    "site_parent",
+    "tech_parent",
+    "con_parent(상위만)"
+   ],
+   "why": "세 트리 모두 「상위」 한 뜻 — 옛 SPEC-004 has_child 도 한 종류"
+  },
+  {
+   "key": "concern_related",
+   "name": "관련 고민(상위 없음)",
+   "meaning": "상위가 없는 결정 노드가 걸쳐 있는 고민(J10 피부결 → 모공 · 흉터 · 색소 · 항노화)",
+   "frm": "고민",
+   "to": "고민",
+   "directed": false,
+   "attrs": [],
+   "canon": "step7-concerns.json",
+   "path": "concerns.extra_items[].related[]",
+   "count": 4,
+   "inherit": false,
+   "merged_from": [
+    "con_parent(라벨 「관련(상위 없음)」)"
+   ],
+   "why": "페이지는 「상위 고민」 한 종류에 라벨로 섞음 — 상하가 아니라 옆 관계라 나눔"
+  },
+  {
+   "key": "family_technique",
+   "name": "계열 기법",
+   "meaning": "계열이 기본으로 쓰는 기법 · 함께 쓰는 기법",
+   "frm": "계열",
+   "to": "기법",
+   "directed": true,
+   "attrs": [
+    "role(기본 · 함께)",
+    "default_layer",
+    "basis"
+   ],
+   "canon": "step4-techniques.json",
+   "path": "family_defaults[].default · also[]",
+   "count": "기본 27 · 함께 7",
+   "inherit": false,
+   "merged_from": [
+    "fam_tech",
+    "fam_tech_also"
+   ],
+   "why": "같은 뜻 · 기본/함께는 속성"
+  },
+  {
+   "key": "uses_product",
+   "name": "쓰는 제품(저장)",
+   "meaning": "원천 이름이 이 제품을 부를 때만 저장한 단위 시술 → 제품",
+   "frm": "단위 시술",
+   "to": "제품",
+   "directed": true,
+   "attrs": [
+    "basis",
+    "recommendable"
+   ],
+   "canon": "step5-units.json",
+   "path": "units[].uses_product[]",
+   "count": 43,
+   "inherit": false,
+   "merged_from": [
+    "unit_prod"
+   ],
+   "why": "그대로. 「상속 후보(prod_unit_inh)」는 저장 엣지가 아니라 상속 규칙 I4 의 조회 결과 → 골드"
+  },
+  {
+   "key": "contains",
+   "name": "패키지 구성",
+   "meaning": "패키지가 담은 단위 시술(확정) · 못 푼 자리(슬롯 후보 + 원천 질문)",
+   "frm": "패키지",
+   "to": "단위 시술",
+   "directed": true,
+   "attrs": [
+    "order",
+    "status(확정 · 슬롯 후보)",
+    "quantity_raw",
+    "sessions",
+    "evidence_level",
+    "origin_question",
+    "basis"
+   ],
+   "canon": "step6-packages.json",
+   "path": "contains[] · slots[].candidates[]",
+   "count": "구성 49 · 슬롯 8(후보 22)",
+   "inherit": false,
+   "merged_from": [
+    "pkg_unit",
+    "pkg_slot"
+   ],
+   "why": "같은 뜻(구성) · 슬롯은 「후보 여럿」 표시"
+  },
+  {
+   "key": "treats",
+   "name": "추천(고민 · 목적 → 시술)",
+   "meaning": "원천 구조(①~⑧)가 고민 · 목적에 적어 둔 시술",
+   "frm": "고민 · 목적",
+   "to": "단위 시술 · 계열",
+   "directed": true,
+   "attrs": [
+    "source",
+    "source_id",
+    "target_kind(단위 시술 · 계열만)",
+    "lowering",
+    "resolve_flag",
+    "site_check",
+    "anchor_sites",
+    "severity",
+    "basis",
+    "evidence"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "edges[] (from · from_concerns · purpose_nodes → to_units · to_family)",
+   "count": "행 537 · target_kind {'단위 시술': 461, '계열만': 75, '대상 없음': 1}",
+   "inherit": true,
+   "merged_from": [
+    "con_unit",
+    "con_fam"
+   ],
+   "why": "같은 뜻 · 끝이 계열이면 상속(target_kind 속성)"
+  },
+  {
+   "key": "concern_site",
+   "name": "고민 부위",
+   "meaning": "부위가 붙은 고민의 부위(D-07 분리)",
+   "frm": "고민",
+   "to": "부위",
+   "directed": true,
+   "attrs": [],
+   "canon": "step7-concerns.json",
+   "path": "concerns.*.sites[]",
+   "count": 22,
+   "inherit": false,
+   "merged_from": [
+    "con_site"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "anchors_combo",
+   "name": "추천 조합 앵커",
+   "meaning": "추천 조합이 걸린 고민(· 목적)",
+   "frm": "고민",
+   "to": "추천 조합",
+   "directed": true,
+   "attrs": [
+    "kind"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "combos[].anchor.concern · concerns",
+   "count": 83,
+   "inherit": false,
+   "merged_from": [
+    "con_combo"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "combo_component",
+   "name": "조합 구성",
+   "meaning": "추천 조합의 구성 시술",
+   "frm": "추천 조합",
+   "to": "단위 시술",
+   "directed": true,
+   "attrs": [
+    "order",
+    "status",
+    "flag",
+    "basis"
+   ],
+   "canon": "step7-concerns.json",
+   "path": "combos[].components[].units[]",
+   "count": "구성 칸 199 · 페이지 엣지 944",
+   "inherit": false,
+   "merged_from": [
+    "combo_unit"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "procedure_relation",
+   "name": "시술 ↔ 시술 관계",
+   "meaning": "시너지 · 순서 · 간격 · 같은 날 · 대체 · 금기를 한 엣지의 주장 칸으로(쌍 하나에 엣지 하나)",
+   "frm": "단위 시술 · 계열 · (끝점 묶음)",
+   "to": "같음",
+   "directed": "주장마다(claims[].directed)",
+   "attrs": [
+    "claims[]{kind, interval{days, first, same_day, open_high, by_sub_condition, options}, level_original, level_site, reason, evidence_kind, gate_status, review_status}",
+    "conditional_claims",
+    "self_pair",
+    "review_status"
+   ],
+   "canon": "step8-relations.json",
+   "path": "edges[] + claims[]",
+   "count": "엣지 221 · 주장 395 · 끝점 {'all': 1, 'units': 137, 'bundle(여럿)': 2, 'family': 177, 'units(여럿)': 124, 'family(여럿)': 1}",
+   "inherit": true,
+   "merged_from": [
+    "rel",
+    "rel_fam"
+   ],
+   "why": "같은 뜻 — 끝점 수준(단위 · 계열 · 묶음)은 끝점 속성(endpoint_levels)"
+  },
+  {
+   "key": "concern_avoid",
+   "name": "피함(금기 조합)",
+   "meaning": "고민 조건 금기 — 이 고민이면 이 시술을 피함",
+   "frm": "고민",
+   "to": "단위 시술 · 계열",
+   "directed": true,
+   "attrs": [
+    "qualifier",
+    "scope",
+    "default_apply",
+    "scope_conditional",
+    "grade_original",
+    "strength_original",
+    "concern_basis",
+    "text"
+   ],
+   "canon": "step8-relations.json",
+   "path": "avoid_edges[]",
+   "count": "주장 5 · 끝 {'계열': 3, '단위 시술': 2}",
+   "inherit": true,
+   "merged_from": [
+    "avoid",
+    "avoid_fam"
+   ],
+   "why": "같은 뜻(U8-2 concern_avoid 한 타입) · 계열 끝은 상속"
+  },
+  {
+   "key": "requires_check",
+   "name": "확인 조건",
+   "meaning": "시술(계열 · 제품 · 단위) → 사람 조건 · 등급 3분류(금기 · 주의 · 확인만)",
+   "frm": "계열 · 제품 · 단위 시술 · (끝점 묶음)",
+   "to": "확인 조건",
+   "directed": true,
+   "attrs": [
+    "grade_original",
+    "grade_site",
+    "grade3",
+    "kind",
+    "rule",
+    "where",
+    "strength_original",
+    "scope_conditional"
+   ],
+   "canon": "step8-relations.json",
+   "path": "conditions.claims[]",
+   "count": "주장 373 · 대상 수준 {'기법 조건': 3, '해석 안 됨': 1, '용도 조건': 1, '공통': 12, '계열': 340, '제품': 6, '원장 항목(행선지 없음)': 2, '단위 시술': 3, '복합(나눔)': 3, '모든 시술': 2} · 등급 {'금기': 197, '확인만': 74, '주의': 64, '조건 아님(상담)': 22, '확인만(고지)': 11, '조건 아님(시술 준비)': 5}",
+   "inherit": true,
+   "merged_from": [
+    "cond",
+    "cond_fam"
+   ],
+   "why": "같은 뜻 · 대상 수준은 속성. 단 grade3 「조건 아님(상담 · 시술 준비)」 27 은 엣지가 아님(결정 묶음 B8)"
+  },
+  {
+   "key": "has_complication",
+   "name": "합병증",
+   "meaning": "계열 → 합병증 노드(부작용 분리 뒤엔 중대 반응만 — B1)",
+   "frm": "계열",
+   "to": "합병증",
+   "directed": true,
+   "attrs": [
+    "severity_site"
+   ],
+   "canon": "step8-relations.json",
+   "path": "safety.complications[].family(edge 칸 「has_complication」)",
+   "count": 65,
+   "inherit": true,
+   "merged_from": [
+    "fam_cx"
+   ],
+   "why": "그대로 · 부작용은 B1"
+  },
+  {
+   "key": "site_caution",
+   "name": "위험지대 주의",
+   "meaning": "부위 × 계열 위험지대(혈관 · 신경 · 안전 층)",
+   "frm": "부위",
+   "to": "계열",
+   "directed": true,
+   "attrs": [
+    "zone",
+    "danger_level",
+    "vessels",
+    "nerves",
+    "tissue_data",
+    "clinical_pearls",
+    "safe_injection_depth",
+    "site_mapping",
+    "units_affected"
+   ],
+   "canon": "step8-relations.json",
+   "path": "safety.site_caution[]",
+   "count": "22(계열 {'M1': 11, 'M2': 11})",
+   "inherit": true,
+   "merged_from": [
+    "site_caution"
+   ],
+   "why": "그대로"
+  },
+  {
+   "key": "has_statement",
+   "name": "근거 문장",
+   "meaning": "계열 → 근거 문장",
+   "frm": "계열",
+   "to": "근거 문장",
+   "directed": true,
+   "attrs": [
+    "field"
+   ],
+   "canon": "step8-relations.json",
+   "path": "evidence.statements[].family",
+   "count": 119,
+   "inherit": true,
+   "merged_from": [
+    "fam_stmt"
+   ],
+   "why": "그대로 · 문장 종류 재분류는 B2"
+  },
+  {
+   "key": "cites",
+   "name": "출처",
+   "meaning": "근거 문장 · 합병증이 기댄 근거 출처",
+   "frm": "근거 문장 · 합병증",
+   "to": "근거 출처",
+   "directed": true,
+   "attrs": [],
+   "canon": "step8-relations.json",
+   "path": "evidence.statements[].evidence[] · safety.complications[].evidence[]",
+   "count": "문장 119 · 합병증 38",
+   "inherit": false,
+   "merged_from": [
+    "stmt_ev",
+    "cx_ev",
+    "ev_claim"
+   ],
+   "why": "「출처」 3종은 한 뜻. 관계 주장의 출처(ev_claim)는 엣지가 아니라 주장 칸 claims[].evidence + guides.used_by — 페이지는 주장 출처를 끝점 노드에 이어 그렸음(주장 단위 정보가 사라짐)"
+  },
+  {
+   "key": "line_item",
+   "name": "라인 품목",
+   "meaning": "라인(상위 제품) → 품목(하위 제품)",
+   "frm": "제품",
+   "to": "제품",
+   "directed": true,
+   "attrs": [
+    "decision"
+   ],
+   "canon": "step1-products.json",
+   "path": "lines{}.items[] · items[].line",
+   "count": "라인 11 · 품목 26",
+   "inherit": false,
+   "merged_from": [],
+   "why": "페이지에 없던 것 — 10-27 결정 ④(라인 = 상위 제품)가 실버에 칸으로 있음"
+  }
+ ],
+ "page_edge_kinds": [
+  {
+   "key": "prod_fam",
+   "label": "계열",
+   "n": 346,
+   "frm": [
+    "prod"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": false,
+   "src": "step2-families.json product_family.family",
+   "to_rec": "product_family"
+  },
+  {
+   "key": "prod_fam_also",
+   "label": "함께 계열",
+   "n": 19,
+   "frm": [
+    "prod"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": false,
+   "src": "step2-families.json product_family.also_families",
+   "to_rec": "product_family"
+  },
+  {
+   "key": "site_parent",
+   "label": "상위 부위",
+   "n": 49,
+   "frm": [
+    "site"
+   ],
+   "to": [
+    "site"
+   ],
+   "inherit": false,
+   "src": "step3-sites.json nodes.parent",
+   "to_rec": "child_of"
+  },
+  {
+   "key": "tech_parent",
+   "label": "상위 기법",
+   "n": 12,
+   "frm": [
+    "tech"
+   ],
+   "to": [
+    "tech"
+   ],
+   "inherit": false,
+   "src": "step4-techniques.json nodes.parent",
+   "to_rec": "child_of"
+  },
+  {
+   "key": "fam_tech",
+   "label": "기본 기법",
+   "n": 27,
+   "frm": [
+    "fam"
+   ],
+   "to": [
+    "tech"
+   ],
+   "inherit": false,
+   "src": "step4-techniques.json family_defaults.default",
+   "to_rec": "family_technique"
+  },
+  {
+   "key": "fam_tech_also",
+   "label": "함께 쓰는 기법",
+   "n": 7,
+   "frm": [
+    "fam"
+   ],
+   "to": [
+    "tech"
+   ],
+   "inherit": false,
+   "src": "step4-techniques.json family_defaults.also",
+   "to_rec": "family_technique"
+  },
+  {
+   "key": "unit_fam",
+   "label": "계열",
+   "n": 162,
+   "frm": [
+    "unit"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": false,
+   "src": "step5-units.json units.key.family",
+   "to_rec": "key_family"
+  },
+  {
+   "key": "unit_site",
+   "label": "부위",
+   "n": 131,
+   "frm": [
+    "unit"
+   ],
+   "to": [
+    "site"
+   ],
+   "inherit": false,
+   "src": "step5-units.json units.key.site",
+   "to_rec": "key_site"
+  },
+  {
+   "key": "unit_tech",
+   "label": "기법",
+   "n": 162,
+   "frm": [
+    "unit"
+   ],
+   "to": [
+    "tech"
+   ],
+   "inherit": false,
+   "src": "step5-units.json units.key.technique",
+   "to_rec": "key_technique"
+  },
+  {
+   "key": "unit_prod",
+   "label": "쓰는 제품(저장)",
+   "n": 43,
+   "frm": [
+    "unit"
+   ],
+   "to": [
+    "prod"
+   ],
+   "inherit": false,
+   "src": "step5-units.json units.uses_product",
+   "to_rec": "uses_product"
+  },
+  {
+   "key": "prod_unit_inh",
+   "label": "상속 후보(계열 · 조회 때)",
+   "n": 1364,
+   "frm": [
+    "prod"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": true,
+   "src": "step5-units.json product_links.inherited_candidates",
+   "to_rec": "(저장 엣지 아님 — 상속 규칙 I4 · 골드)"
+  },
+  {
+   "key": "pkg_unit",
+   "label": "구성",
+   "n": 48,
+   "frm": [
+    "pkg"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step6-packages.json contains",
+   "to_rec": "contains"
+  },
+  {
+   "key": "pkg_slot",
+   "label": "구성 후보(슬롯 · 원천 질문)",
+   "n": 22,
+   "frm": [
+    "pkg"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step6-packages.json slots.candidates",
+   "to_rec": "contains"
+  },
+  {
+   "key": "con_parent",
+   "label": "상위 고민",
+   "n": 44,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "con"
+   ],
+   "inherit": false,
+   "src": "step7-concerns.json concerns.subcategories.parent · items.subcategory · extra_items.parent",
+   "to_rec": "concern_related"
+  },
+  {
+   "key": "con_site",
+   "label": "고민 부위",
+   "n": 22,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "site"
+   ],
+   "inherit": false,
+   "src": "step7-concerns.json concerns.*.sites",
+   "to_rec": "concern_site"
+  },
+  {
+   "key": "con_unit",
+   "label": "추천 단위 시술",
+   "n": 639,
+   "frm": [
+    "con",
+    "pur"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step7-concerns.json edges.to_units",
+   "to_rec": "treats"
+  },
+  {
+   "key": "con_fam",
+   "label": "추천 계열(계열만)",
+   "n": 56,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": true,
+   "src": "step7-concerns.json edges.to_family(target_kind 계열만)",
+   "to_rec": "treats"
+  },
+  {
+   "key": "con_combo",
+   "label": "추천 조합",
+   "n": 83,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "combo"
+   ],
+   "inherit": false,
+   "src": "step7-concerns.json combos.anchor",
+   "to_rec": "anchors_combo"
+  },
+  {
+   "key": "combo_unit",
+   "label": "조합 구성",
+   "n": 944,
+   "frm": [
+    "combo"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step7-concerns.json combos.components.units",
+   "to_rec": "combo_component"
+  },
+  {
+   "key": "set_member",
+   "label": "묶음 원소",
+   "n": 185,
+   "frm": [
+    "set"
+   ],
+   "to": [
+    "fam",
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json edges a·b(units:· bundle:)",
+   "to_rec": "(결정 묶음 B3 — 추천: 끝점 속성 candidates[] 로, 엣지 종류 없앰)"
+  },
+  {
+   "key": "rel",
+   "label": "시술 ↔ 시술 관계",
+   "n": 89,
+   "frm": [
+    "unit",
+    "set"
+   ],
+   "to": [
+    "unit",
+    "set"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json edges(claims)",
+   "to_rec": "procedure_relation"
+  },
+  {
+   "key": "rel_fam",
+   "label": "시술 ↔ 시술 관계(계열 · 묶음 단위)",
+   "n": 131,
+   "frm": [
+    "fam",
+    "set"
+   ],
+   "to": [
+    "fam",
+    "unit",
+    "set"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json edges(끝점이 계열 · 묶음 · 전체)",
+   "to_rec": "procedure_relation"
+  },
+  {
+   "key": "avoid",
+   "label": "피함(금기 조합)",
+   "n": 1,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "unit"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json avoid_edges",
+   "to_rec": "concern_avoid"
+  },
+  {
+   "key": "avoid_fam",
+   "label": "피함(계열 단위)",
+   "n": 1,
+   "frm": [
+    "con"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json avoid_edges(끝점 계열)",
+   "to_rec": "concern_avoid"
+  },
+  {
+   "key": "cond",
+   "label": "확인 조건",
+   "n": 12,
+   "frm": [
+    "prod",
+    "unit",
+    "set"
+   ],
+   "to": [
+    "cond"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json conditions.claims",
+   "to_rec": "requires_check"
+  },
+  {
+   "key": "cond_fam",
+   "label": "확인 조건(계열 단위)",
+   "n": 219,
+   "frm": [
+    "fam",
+    "set"
+   ],
+   "to": [
+    "cond"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json conditions.claims(대상 계열 · 공통)",
+   "to_rec": "requires_check"
+  },
+  {
+   "key": "fam_cx",
+   "label": "합병증",
+   "n": 65,
+   "frm": [
+    "fam"
+   ],
+   "to": [
+    "cx"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json safety.complications(has_complication 계열)",
+   "to_rec": "has_complication"
+  },
+  {
+   "key": "site_caution",
+   "label": "위험지대 주의",
+   "n": 22,
+   "frm": [
+    "site"
+   ],
+   "to": [
+    "fam"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json safety.site_caution",
+   "to_rec": "site_caution"
+  },
+  {
+   "key": "fam_stmt",
+   "label": "근거 문장",
+   "n": 119,
+   "frm": [
+    "fam"
+   ],
+   "to": [
+    "stmt"
+   ],
+   "inherit": true,
+   "src": "step8-relations.json evidence.statements(family)",
+   "to_rec": "has_statement"
+  },
+  {
+   "key": "stmt_ev",
+   "label": "출처",
+   "n": 119,
+   "frm": [
+    "stmt"
+   ],
+   "to": [
+    "ev"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json evidence.statements.evidence",
+   "to_rec": "cites"
+  },
+  {
+   "key": "cx_ev",
+   "label": "출처",
+   "n": 38,
+   "frm": [
+    "cx"
+   ],
+   "to": [
+    "ev"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json safety.complications.evidence",
+   "to_rec": "cites"
+  },
+  {
+   "key": "ev_claim",
+   "label": "관계 원문 출처",
+   "n": 41,
+   "frm": [
+    "ev"
+   ],
+   "to": [
+    "fam",
+    "unit",
+    "set"
+   ],
+   "inherit": false,
+   "src": "step8-relations.json evidence.guides.used_by(claims)",
+   "to_rec": "cites"
+  }
+ ],
+ "glossary": [
+  {
+   "term": "단위 시술",
+   "definition": "제일 작은 단위 행위 = 무엇을(계열) × 어디에(부위) × 어떻게(기법). 제품 · 용량은 속성, 목적은 고민 → 시술 엣지, 패키지는 단위 시술 묶음. 키 = 계열 × [하위 · 성분(J1 안 C 계열만)] × 부위 × 기법, 원천에 있는 조합만",
+   "source": "_RESUME §2 10-27 「taxonomy 는 … 분류 트리」 · 10-29 「5단계 시작」 · 로그 step5 §3-1"
+  },
+  {
+   "term": "계열",
+   "definition": "무엇을 — 공식 일반명으로 부르는 약제 · 장비 계열(M1 보툴리눔 톡신 …). 기준은 교과서 · 임상 · 학회 문헌(literature-evidence M1~M17). 계열이 없으면 시술을 빼지 않고 계열을 늘림(N1~N10)",
+   "source": "_RESUME §2 10-27 「계열 이름 = 공식 일반명」 · 10-28 「2단계 계열 기준」 · 10-29 「5단계 원칙」"
+  },
+  {
+   "term": "하위 계열",
+   "definition": "계열 안의 매질 · 재료 축(M8 광원 매질 · M9 HIFU/RF · M5 PRP/엑소좀 …). 주 1 + 보조(also_sub_families). 단위 시술 키에는 「무엇을」 자체를 바꾸는 계열만(J1 안 C — M5 · M8 · M9 · M13 · M16 성분)",
+   "source": "_RESUME §2 10-28 「하위 계열도 주 · 보조로」 · 「M8 하위 계열 = 광원 매질 한 축」 · 로그 step5 §3-1"
+  },
+  {
+   "term": "기법",
+   "definition": "어떻게 — 큰 기법 + 세부 기법 노드(K01~K13). 층 · 깊이 · 대상 근육 · 도구는 단위 시술 속성, 펄스 · 박피 · 가능 방식은 장비 속성",
+   "source": "_RESUME §2 10-28 「4단계 기법 조사 반영 J1 안 1」"
+  },
+  {
+   "term": "계열 기본 기법",
+   "definition": "계열이 따로 말하지 않을 때 쓰는 기법(family_defaults.default) · 함께 쓰는 기법(also)",
+   "source": "step4-techniques.json family_defaults · _RESUME §2 10-28"
+  },
+  {
+   "term": "부위",
+   "definition": "시술 받는 사람 몸 겉에서 가리킬 수 있는 자리. 쪼개는 규칙 = ① 원천이 따로 부른다 ② 가능 시술 · 안전이 달라진다. 뼈 · 근육 · 혈관 · 층은 부위 아님",
+   "source": "_RESUME §2 10-27 「부위 트리 확정」 · 10-28 「부위 기준 = 어디에 맞냐」"
+  },
+  {
+   "term": "부위 이름(일반인)",
+   "definition": "노드 이름 = 상담 용어(일반인 용어)",
+   "source": "_RESUME §2 10-28 「부위 노드 이름 2벌」"
+  },
+  {
+   "term": "부위 이름(전문의)",
+   "definition": "anatomical_name — 같은 겉자리의 의학 이름만(예: 팔자 = nasolabial fold). 근육이 섞이면 겉자리 이름으로 바꾸고 근육은 4단계 대상 근육",
+   "source": "_RESUME §2 10-28 「부위 노드 이름 2벌」 · 「해부학 용어 = 시술 방법 · 작용기전 · 안전 쪽」"
+  },
+  {
+   "term": "묶음 부위",
+   "definition": "하위를 묶는 부위 노드(…(묶음) · -group). 묶음 노드는 동의어 없음 · 단위 시술 키를 만들지 않음(「턱보톡스」 = 턱끝 · 사각턱 · 턱선 후보 전부)",
+   "source": "로그 step5 §3-2 · step3"
+  },
+  {
+   "term": "특수 부위 「해당 없음」 · 「병변 단위」",
+   "definition": "해당 없음 = 전신 투여(수액 · 태반 · 성장호르몬) · 병변 단위 = 병변 수 · 면적으로 매기는 시술(점 · 문신 · 쥐젖 · 켈로이드). 부위 노드 없음",
+   "source": "step5-units.json rules.special_sites · 로그 step5 §3-4"
+  },
+  {
+   "term": "기본값 부위(site_basis 기본값)",
+   "definition": "부위 이름 없는 얼굴 계열 항목 = 얼굴 전체 + 「기본값」 표시(J2). 몸 계열은 기본값 없음",
+   "source": "로그 step5 §3-4"
+  },
+  {
+   "term": "제품",
+   "definition": "허가 · 업체 · 규격을 가진 제품 · 장비. 이름 칸 3개(대표 한글 1 · 허가 이름은 허가 쪽에만 · 검색 이름[]). 같은 성분 · 용량만 다른 허가는 한 제품",
+   "source": "_RESUME §2 10-27 「이름 규칙」 · 「같은 성분 · 용량만 다른 허가는 한 제품」"
+  },
+  {
+   "term": "라인 · 품목",
+   "definition": "라인 = 상위 제품(쥬비덤 · 레스틸렌), 개별 품목 = 하위 제품",
+   "source": "_RESUME §2 10-27 「제품 이름 정규화 ④」"
+  },
+  {
+   "term": "허가 상태",
+   "definition": "정상 · 허가번호 미확인(추천 포함) · 확인 불가(추천 제외) · 미허가 · 허가 취소(이력 · 추천 제외) · 허가 대상 아님(출처 있을 때만)",
+   "source": "_RESUME §2 10-27 「허가 규칙」 · 10-28 「허가번호 미특정 규칙」 · step1 basis.fields"
+  },
+  {
+   "term": "장비 이름 = 시술 동의어",
+   "definition": "포텐자 · 써마지 · 울쎄라처럼 장비 이름이 시술 이름으로 쓰이면 장비 노드는 그대로 두고 그 이름을 단위 시술 동의어로도 연결",
+   "source": "_RESUME §2 10-27 「장비 이름이 시술 이름으로 쓰이는 경우」"
+  },
+  {
+   "term": "패키지",
+   "definition": "이름 있는 단위 시술 묶음 — 일반 패키지 · 회차 묶음 · 병원 시그니처(고정 가격 · 추천 기본 제외). 이름 없는 묶음 · 메뉴 분류 이름은 패키지 아님. 구성은 원천에 적힌 만큼",
+   "source": "로그 step6 §3-1 · _RESUME §2 10-29 「6단계 패키지 이해」"
+  },
+  {
+   "term": "슬롯",
+   "definition": "패키지 구성 중 못 푼 자리 — 후보 전부 + 원천 질문(「구성 없음」 아님)",
+   "source": "로그 step6 §3-2"
+  },
+  {
+   "term": "추천 조합",
+   "definition": "원천이 고민 · 목적별로 적어 둔 시술 조합(고민 패키지 · 중증도 조합 · 비교 · 세션 조합 · 목적 레시피 · 연령 · 연간 플랜). 원천별 · 합치지 않음. 사이트 「추천 패키지」 = 이것(6단계 패키지 아님)",
+   "source": "_RESUME §2 10-28 U3 · 10-29 「6단계 패키지 이해」 · 로그 step7 §3-8"
+  },
+  {
+   "term": "영업 문구",
+   "definition": "salesPitch · upsellHook — 보관 · 기본 응답 제외(레시피 환자 설명 · 비유는 상담 문구라 포함)",
+   "source": "로그 step7 §3-9 · step7 rules R9"
+  },
+  {
+   "term": "고민",
+   "definition": "상태 이름. 정본 = taxonomy problem 3층 중 「고민」 갈래 + 결정 노드(J8 자갈턱 · J10 피부결 · J14 잇몸미소). 쁘띠시술(시술 범주) · 기타(묶음)는 고민 아님",
+   "source": "로그 step7 §3-1 · _RESUME §2 10-29"
+  },
+  {
+   "term": "목적",
+   "definition": "시술이 하는 일(13). 고민과 같은 말이면 목적 노드를 따로 안 세우고 그 고민에 붙임(R6)",
+   "source": "로그 step7 §3-4 · step7 rules R6"
+  },
+  {
+   "term": "중증도",
+   "definition": "고민의 정도(초기 · 경미 · 중기 · 중등도 · 심화 · 중증). 중증도로 나뉜 하위 고민이 있으면 하위로(주름), 없으면 상위 + severity 속성",
+   "source": "step7 rules R18 · _RESUME §2 10-29 「주름 중증도 → 하위 고민」"
+  },
+  {
+   "term": "확인 조건",
+   "definition": "사람 쪽 조건(임신 · 수유 · 약물 · 체질 · 병력 …) 원장. 시술 → 조건 엣지에 등급(금기 · 주의 · 확인만). 사전 체크 · 금기 = 같은 「확인 조건」",
+   "source": "_RESUME §2 10-28 「사람 조건 금기 노드 이름 = 확인 조건」 · 로그 step8 §3-10"
+  },
+  {
+   "term": "등급 3분류(grade3)",
+   "definition": "금기 · 주의 · 확인만(+ 확인만(고지)). 원문 등급(grade_original)은 그대로 두고 덧붙임",
+   "source": "step8-decisions labels.grade3 · 로그 step8 §3-10"
+  },
+  {
+   "term": "피함(금기 조합)",
+   "definition": "고민 조건 금기(「기미에 고에너지 레이저 금지」) = 고민 → 단위 시술 엣지 concern_avoid. 확인 조건 노드를 따로 세우지 않음",
+   "source": "step8-decisions user_decisions U8-2 · 로그 step8 §3-8"
+  },
+  {
+   "term": "관계 주장(claim)",
+   "definition": "시술↔시술 엣지 안에 쌓는 원천 주장 한 줄(원천 · 원문 · 종류 · 원문 등급 · 사이트 라벨 · 간격 · 먼저 하는 쪽 · 이유 · 조건 · 근거)",
+   "source": "로그 step8 §3-1 · DEC-001 D-03 · D-04"
+  },
+  {
+   "term": "시너지 · 순서 · 간격 · 금기",
+   "definition": "시술↔시술 엣지 하나의 속성(주장 종류). 「대신」은 대체(택 1)로 세고 시너지로 세지 않음",
+   "source": "_RESUME §2 10-26 「방향: 메달리온」 · 로그 step8 §3-2"
+  },
+  {
+   "term": "간격(interval)",
+   "definition": "days [하한, 상한](일) · first(a|b) · same_day · open_high. 추천 · AI 는 이 숫자 칸만 읽고 원문은 보관",
+   "source": "step8 reading_contract · 로그 step8 §3-4 · §3-5"
+  },
+  {
+   "term": "합병증",
+   "definition": "계열에 생길 수 있는 드물거나 중대한 이상 반응 — 계열마다 노드 · 원천 없는 계열은 gap. 지금 노드 65 안에 흔한 예상 반응(severity mild 38)이 섞여 있음 → B1",
+   "source": "로그 step8 §3-11 · 이 조사 B1"
+  },
+  {
+   "term": "부작용",
+   "definition": "흔한 예상 반응(멍 · 부기 · 홍반 · 통증 …). 사용자 10-29 「부작용 ≠ 합병증」. 지금 네 곳에 흩어짐: 합병증 노드 severity mild · family_text 「부작용 문장 common」 · 근거 문장 adverse_effects · 5단계 extracted safety.common 키 → B1",
+   "source": "브리프(사용자 10-29) · DEC-001 D-06 「안전 엣지(금기 · 간격 · 부작용)」 · step8 safety.family_text"
+  },
+  {
+   "term": "위험지대",
+   "definition": "부위 × 계열의 혈관 · 신경 · 안전 층 위험(anatomy-danger-zones) — 부위 노드가 아니라 위험지대 주의 엣지 속성",
+   "source": "로그 step8 §3-11 · _RESUME §2 10-28 「해부학 용어 …」"
+  },
+  {
+   "term": "필수 고지",
+   "definition": "consent mandatory_disclosures — 원문 그대로 보관(쪼개지 않음) · 계열 원문 속성",
+   "source": "_RESUME §2 10-28 「자리 없는 안전 · 상담 원천 4개」 · 로그 step8 §3-11"
+  },
+  {
+   "term": "근거 문장",
+   "definition": "계열 단위 문헌 문장(moa · effects · adverse_effects) + 환자용 4개 언어. 정확도 점수는 문장 속성",
+   "source": "step8 evidence.statements · 이 조사 B2"
+  },
+  {
+   "term": "근거 출처",
+   "definition": "문헌(PMID · DOI) · 웹(URL) · 가이드(원천 출처 문자열). URL 없는 출처 문자열 = 웹 아님(「원문 출처 문자열(내부 · 통설)」) · 「;」로 이은 URL = multi_url 표시",
+   "source": "step8-decisions web_evidence_rule · guide_not_source_rule"
+  },
+  {
+   "term": "근거 강도",
+   "definition": "원문 등급만(숫자를 만들지 않음)",
+   "source": "로그 step8 §3-12"
+  },
+  {
+   "term": "evidence_level 약 · 중",
+   "definition": "판정 근거가 약하면 값을 넣고 「약」 + 확인 질문(open 으로 두지 않음)",
+   "source": "_RESUME §2 10-28 「2단계 open 40 해결안」"
+  },
+  {
+   "term": "충돌",
+   "definition": "원천끼리 다른 말(순서 · 같은 날 · 간격 · 조건 등급 · 대기 기간) — 전부 보존 + 충돌 표시 · 자동으로 고르지 않음(D-13b)",
+   "source": "step8-decisions user_decisions 「충돌」 · 로그 step8 §3-7"
+  },
+  {
+   "term": "조건부(단위 시술 미특정)",
+   "definition": "끝점 원문에 출력 · 깊이 한정어가 있는데 끝점이 묶음으로 열렸으면 scope 「조건부 — 단위 시술 미특정」 · default_apply false — 기본 상속 · 기본 응답에서 뺌",
+   "source": "step8-decisions scope_rule · user_decisions F1"
+  },
+  {
+   "term": "하위 조건별 값(by_sub_condition)",
+   "definition": "원문이 하위 조건으로 갈리면 겉 칸을 비우고 options[].sub_condition 별 값을 읽음",
+   "source": "step8-decisions user_decisions F2 · reading_contract"
+  },
+  {
+   "term": "gap(정보 없음)",
+   "definition": "원천이 없어 비워 둔 것 — 합병증 gap 계열 · PIH gap 단위 시술 · 그 부위 단위 시술 없음. 채우려면 원천이 먼저",
+   "source": "로그 step8 §6 · step5 pih_gap_units"
+  },
+  {
+   "term": "끝점 묶음",
+   "definition": "8단계 끝점 원문이 단위 시술 하나로 안 좁혀진 것(units:a,b,c · bundle:M|M · all). 실버에선 끝점 문자열 · 페이지에선 노드 → B3",
+   "source": "step8 edges a · b · silver-graph-build.py endpoint()"
+  },
+  {
+   "term": "후보 전부",
+   "definition": "이름이 여럿을 가리키면 고르지 않고 후보를 전부 달고 표시(ambiguous) — 외부 LLM 이 고르거나 되묻기",
+   "source": "_RESUME §2 10-27 「계열 이름 = 공식 일반명」(「보톡스」 둘 다) · SPEC-004 §3.3.2(옛) · step7 site_rules"
+  },
+  {
+   "term": "부위로 내림",
+   "definition": "고민 · 끝점에 부위가 있으면 그 부위(또는 하위)의 단위 시술로 내림. 그 부위에 그 계열 단위 시술이 없으면 R21 부위 올라가기 — 조상 노드 자신 → 최상위 영역의 「전체」 노드까지 · 영역 경계 안 넘음 · 그래도 없으면 계열만 + 「이 부위 단위 시술 없음」(10-29 이전 「계열 후보 전부」 대체)",
+   "source": "step7-decisions site_rules.climb · 로그 step7 §3-6 · §3-7(옛) · 코디 알림 · 사용자 10-29"
+  },
+  {
+   "term": "원천 질문",
+   "definition": "규칙으로 하나로 안 정해지는 것만 사람(병원 · 의료진 · 원장님)에게 묻는 것 — 값은 추천값으로 두고 답 오면 그 행만",
+   "source": "step8-decisions user_decisions U8-1 · _RESUME §2 10-29 「게이트 → 규칙」"
+  },
+  {
+   "term": "원천 수정 후보",
+   "definition": "오기 · 코드 어긋남은 Hub 사전이 아니라 원천 표기 수정으로(「쳐짐 → 처짐」 선례)",
+   "source": "_RESUME §2 10-27 「표기 오류는 … 원천 표기 수정」"
+  },
+  {
+   "term": "시술 아님",
+   "definition": "행위가 아닌 것 — 처방약 · 성분 · 외용제 · 확인 조건 약물(아큐탄 · 미녹시딜 …)",
+   "source": "로그 step5 §3-3 · step7-decisions resolver.no_unit"
+  },
+  {
+   "term": "추천 제외",
+   "definition": "추천 기본 응답에서 빼되 노드는 남김(허가 확인 불가 · 취소 이력 · 시그니처 · 합친 행)",
+   "source": "step1 recommendable · step6 recommendable"
+  }
+ ],
+ "dictionaries": {
+  "places": [
+   {
+    "place": "1단계 제품 이름",
+    "file": "step1-products.json",
+    "path": "items[].2_names.display_name · search_names[]{name,lang}",
+    "count": 930,
+    "target": "제품",
+    "note": "이유(음역 · 오기 · 약칭)는 name_basis 에만 — 10-27 이름 규칙"
+   },
+   {
+    "place": "2단계 계열 동의어",
+    "file": "step2-families.json",
+    "path": "families[].name · synonyms[]",
+    "count": 100,
+    "target": "계열",
+    "note": ""
+   },
+   {
+    "place": "3단계 부위 사전",
+    "file": "step3-sites.json · step3-lexicon.json",
+    "path": "nodes[].synonyms[]{text,type,weak} · lexicon entries[](정규식 · 우선순위) · residual",
+    "count": "노드 이름 · 동의어 129 · lexicon 패턴 251",
+    "target": "부위",
+    "note": "정규화 = 공백 제거 · 영문으로 시작하면 소문자 · 라틴 글자 악센트 제거(NFKD 결합 부호 · 글자 수 보존 — v4 F-B, 원천 문자열을 매칭 전에 접는다)"
+   },
+   {
+    "place": "4단계 기법 이름",
+    "file": "step4-techniques.json",
+    "path": "nodes[].name · medical_name · source_expressions[](원천 표현 181)",
+    "count": 52,
+    "target": "기법",
+    "note": "source_expressions 는 판정 기록이라 사전 원소로 셈하지 않음(페이지는 30자 미만을 별칭으로 넣음)"
+   },
+   {
+    "place": "5단계 단위 시술 동의어",
+    "file": "step5-units.json",
+    "path": "units[].name · synonyms[]{text,type,src,ambiguous} · device_name_synonyms[] · synonym_multi_unit{}",
+    "count": "553 · type {'원장 이름': 165, '시장가 이름': 104, '쁘띠시술 메뉴 이름': 15, '장비 · 제품 이름(저장 uses_product)': 25, '장비 · 제품 이름(저장 uses_product) · 모호': 11, '7단계 원천 이름': 28} · 모호 39",
+    "target": "단위 시술",
+    "note": "rules.name(family_term · sub_term · technique_term · medium_term)은 이름을 짓는 말 — 7 · 8단계 사전이 이것을 근거로 씀"
+   },
+   {
+    "place": "6단계 패키지 동의어",
+    "file": "step6-packages.json",
+    "path": "packages[].name · synonyms[]",
+    "count": 49,
+    "target": "패키지",
+    "note": ""
+   },
+   {
+    "place": "7단계 고민 · 목적 이름",
+    "file": "step7-concerns.json",
+    "path": "concerns.*.name/concern · purposes[].name · aliases[]",
+    "count": 87,
+    "target": "고민 · 목적",
+    "note": ""
+   },
+   {
+    "place": "7단계 고민 대응표",
+    "file": "step7-concerns.json",
+    "path": "correspondence[]{text, target[], match_class, gate_status}",
+    "count": "행 249 · 대상 여럿 26 · gate {'자동(완전 일치)': 151, '자동(규칙)': 98}",
+    "target": "고민 · 목적(대상 id 「P…」 · 「목적:{이름}」 문자열)",
+    "note": "규칙 R12~R20 결과 — 행별 결정 표는 없앰"
+   },
+   {
+    "place": "7단계 고민 규칙 사전",
+    "file": "step7-decisions.json",
+    "path": "concern_synonyms[] · concern_rules{split_separators, tails, state_tails, lead_words, anti_prefix, purpose_verb_tails, severity_words, severity_children, loanwords, en_extra, concern_words, purpose_concern} · rename · unknown_concern_words",
+    "count": "concern_synonyms 4 · loanwords 2 · en_extra 3 · concern_words 5 · purpose_concern 3",
+    "target": "고민 · 목적",
+    "note": "R12~R20 이 읽는 낱말 사전"
+   },
+   {
+    "place": "7단계 시술 이름 해석(resolver)",
+    "file": "step7-decisions.json",
+    "path": "resolver{fam_kw, no_unit, generic_synonyms, brands, body_words, site_kw, ambiguous_site_kw, forced_synonyms, exact_overrides}",
+    "count": "fam_kw 112 · no_unit 7 · generic_synonyms 8 · brands 19 · body_words 11 · site_kw 48 · ambiguous_site_kw 8 · forced_synonyms 2 · exact_overrides 1",
+    "target": "계열 · 단위 시술 · 부위",
+    "note": "fam_kw 는 계열 낱말을 단위 시술로 바로 내리기도 함"
+   },
+   {
+    "place": "8단계 이름 해석(resolver)",
+    "file": "step8-decisions.json",
+    "path": "resolver{strip_prefix, tail_words, tail_regex, cut_regex, bundle_paren_rule, note_filters, alias[]}",
+    "count": "alias 65 · tail_words 29 · strip_prefix 5",
+    "target": "계열(+하위 · 부위 · 기법 · 용도 조건) · 단위 시술",
+    "note": "alias 는 계열 + 조건으로 풂(7단계는 단위 시술로 풂)"
+   },
+   {
+    "place": "8단계 확인 조건 패턴",
+    "file": "step8-decisions.json · step8-relations.json",
+    "path": "conditions[]{id,name,pattern} · conditions.nodes[].match_pattern · not_person_rules · age_avoid_patterns",
+    "count": "조건 53 · not_person 3 · age 2",
+    "target": "확인 조건",
+    "note": ""
+   },
+   {
+    "place": "8단계 간격 낱말 사전",
+    "file": "step8-decisions.json",
+    "path": "interval_lexicon{units_days, branches[], word_branches[]}",
+    "count": "갈래 16 · 낱말 13",
+    "target": "관계 주장 interval 칸",
+    "note": "이름 사전이 아니라 읽는 규칙 사전(§5)"
+   },
+   {
+    "place": "8단계 문장 패턴",
+    "file": "step8-decisions.json",
+    "path": "sentence{patterns[], …}",
+    "count": "패턴 20",
+    "target": "관계 주장",
+    "note": "읽는 규칙 사전"
+   }
+  ],
+  "entries": 2454,
+  "entries_by_place": {
+   "S1 items[].2_names.display_name": 354,
+   "S1 items[].2_names.search_names[].name": 576,
+   "S2 families[].name": 27,
+   "S2 families[].synonyms[]": 73,
+   "S3 nodes[].name": 53,
+   "S3 nodes[].synonyms[].text": 76,
+   "S4 nodes[].name": 26,
+   "S4 nodes[].medical_name": 26,
+   "S5 units[].name": 162,
+   "S5 units[].synonyms[].text": 348,
+   "S5 device_name_synonyms[]": 43,
+   "S6 packages[].name": 24,
+   "S6 packages[].synonyms[].text": 25,
+   "S7 concerns.categories[].name": 12,
+   "S7 concerns.subcategories[].concern": 31,
+   "S7 concerns.items[].name": 11,
+   "S7 concerns.extra_items[].name": 3,
+   "D7 concern_synonyms[]": 6,
+   "S7 purposes[].name": 13,
+   "S7 purposes[].aliases[].text": 17,
+   "S7 correspondence[].text → target[]": 283,
+   "D7 resolver.fam_kw[]": 146,
+   "D8 resolver.alias[]": 66,
+   "S8 conditions.nodes[].name": 53
+  },
+  "collisions_by_class": {
+   "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)": 42,
+   "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)": 21,
+   "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)": 15,
+   "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)": 16,
+   "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)": 28,
+   "H 기법 이름 = 단위 시술 이름(서브시전 · 펀치 · 압출)": 4,
+   "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)": 10,
+   "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음": 5,
+   "I 나열 문자열이 부위 둘에(동의어 칸에 나열)": 2,
+   "G 부위 이름 = 단위 시술 동의어(원장 이름 「사각턱」 · 「승모근」 …)": 4
+  },
+  "collisions": [
+   {
+    "text": "aape",
+    "targets": [
+     "prod:auto-M17-1775364775191",
+     "unit:U5-143"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "asce+엑소좀",
+    "targets": [
+     "prod:M4-3-1",
+     "unit:U5-142"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "co2",
+    "targets": [
+     "fam:M8",
+     "unit:U5-028"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "coolsculptingelitesystem",
+    "targets": [
+     "prod:M14-1-1",
+     "prod:auto-M14-1775363067062"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "coolsculptingsystem(zeltiqsystem)",
+    "targets": [
+     "prod:M14-1-1",
+     "prod:auto-M14-1775363067062"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "doublo-goldtm",
+    "targets": [
+     "prod:M9-1-5",
+     "prod:M9-1-6"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "eco2",
+    "targets": [
+     "prod:auto-M8-1775362603297",
+     "prod:auto-M8-1775364775119"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "eco2evolution&surgical",
+    "targets": [
+     "prod:auto-M8-1775362603297",
+     "prod:auto-M8-1775364775119"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "eco2plus",
+    "targets": [
+     "prod:auto-M8-1775362603297",
+     "prod:auto-M8-1775364775119"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "emsculptneo",
+    "targets": [
+     "prod:M10-2-1",
+     "prod:M10-2-2"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "ems바디(팔뚝/허벅지)",
+    "targets": [
+     "unit:U5-108",
+     "unit:U5-109"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "hair",
+    "targets": [
+     "con:P10",
+     "con:P13"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "hair→모발·체모",
+    "targets": [
+     "con:P10",
+     "con:P13"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "hifu",
+    "targets": [
+     "fam:M9",
+     "unit:U5-102",
+     "unit:U5-103"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "ipl",
+    "targets": [
+     "fam:M8",
+     "unit:U5-030"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S2 families[].synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "joulebblskintyteii",
+    "targets": [
+     "prod:auto-29-1774737181584",
+     "prod:auto-32-1774737181584"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "ldm",
+    "targets": [
+     "prod:M15-4-1",
+     "unit:U5-036"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "ldm초음파관리",
+    "targets": [
+     "prod:M15-4-1",
+     "unit:U5-036"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "led",
+    "targets": [
+     "fam:M8",
+     "unit:U5-043",
+     "unit:U5-050"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "lifteracool",
+    "targets": [
+     "prod:M9-1-8",
+     "prod:auto-37-1774737181584"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "lifting",
+    "targets": [
+     "con:P3",
+     "con:P4-1",
+     "pur:리프팅"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "lifting/리프팅비교",
+    "targets": [
+     "con:P3",
+     "con:P4-1",
+     "pur:리프팅"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "m16-1미백/항산화",
+    "targets": [
+     "con:P5",
+     "pur:항산화"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "m16-3재생/면역",
+    "targets": [
+     "con:P4-1",
+     "pur:면역",
+     "pur:재생"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "oligiox",
+    "targets": [
+     "prod:M9-2-2",
+     "prod:auto-M9-1775361486532"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "prp",
+    "targets": [
+     "fam:M5",
+     "unit:U5-020",
+     "unit:U5-042"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S2 families[].synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "q-스위치",
+    "targets": [
+     "unit:U5-023",
+     "unit:U5-131"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "q스위치",
+    "targets": [
+     "unit:U5-023",
+     "unit:U5-131"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "regeneration",
+    "targets": [
+     "con:P4-1",
+     "pur:재생"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "rf",
+    "targets": [
+     "fam:M9",
+     "unit:U5-091",
+     "unit:U5-104"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "sp다이나미스",
+    "targets": [
+     "prod:auto-M8-1775360944918",
+     "unit:U5-099"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "starwalker",
+    "targets": [
+     "prod:auto-M8-1775364775120",
+     "prod:auto-M8-1775364775128"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "subcision",
+    "targets": [
+     "tech:K12a",
+     "unit:U5-045"
+    ],
+    "kinds": [
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S4 nodes[].medical_name"
+    ],
+    "class": "H 기법 이름 = 단위 시술 이름(서브시전 · 펀치 · 압출)"
+   },
+   {
+    "text": "tightening",
+    "targets": [
+     "con:P4-1",
+     "pur:타이트닝(탄력)"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "ultherapyprime",
+    "targets": [
+     "prod:M9-1-1",
+     "prod:M9-1-2"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "ultracelq+",
+    "targets": [
+     "prod:M9-1-9",
+     "prod:auto-M9-1775362627041",
+     "prod:auto-M9-1775363043305"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "겨드랑이/팔/다리",
+    "targets": [
+     "unit:U5-100",
+     "unit:U5-146",
+     "unit:U5-147"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "경화요법",
+    "targets": [
+     "con:auto-127-1774737181584",
+     "unit:U5-158"
+    ],
+    "kinds": [
+     "con",
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "고주파",
+    "targets": [
+     "unit:U5-091",
+     "unit:U5-104"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "눈밑꺼짐→꺼짐·주름·볼륨",
+    "targets": [
+     "con:P1-5",
+     "pur:볼륨 회복(충전)"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "다이오드",
+    "targets": [
+     "fam:M8",
+     "unit:U5-100",
+     "unit:U5-101"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "다크서클필러→다크서클",
+    "targets": [
+     "con:P1-5",
+     "pur:볼륨 회복(충전)"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "다한증",
+    "targets": [
+     "con:P14-3",
+     "unit:U5-010",
+     "unit:U5-011",
+     "unit:U5-012"
+    ],
+    "kinds": [
+     "con",
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text",
+     "S7 concerns.subcategories[].concern"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "더마펜4",
+    "targets": [
+     "prod:auto-M12-1775363026852",
+     "unit:U5-032"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "더블로골드",
+    "targets": [
+     "prod:M9-1-5",
+     "prod:M9-1-6",
+     "unit:U5-102"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "듀오하이드로젠",
+    "targets": [
+     "prod:new-DEV-041",
+     "unit:U5-035"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "라이넥",
+    "targets": [
+     "prod:M16-3-1",
+     "unit:U5-128"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "래디어스",
+    "targets": [
+     "prod:M3-2-1",
+     "unit:U5-090"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "리쥬란",
+    "targets": [
+     "prod:M4-1-1",
+     "unit:U5-018"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "리쥬란아이",
+    "targets": [
+     "prod:M4-1-2",
+     "unit:U5-018"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "리프팅",
+    "targets": [
+     "con:P3",
+     "con:P4-1",
+     "fam:M9",
+     "pur:리프팅"
+    ],
+    "kinds": [
+     "con",
+     "fam",
+     "pur"
+    ],
+    "places": [
+     "S2 families[].synonyms[]",
+     "S7 correspondence[].text → target[]",
+     "S7 purposes[].name"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "메조테라피",
+    "targets": [
+     "fam:M4",
+     "tech:K01a"
+    ],
+    "kinds": [
+     "fam",
+     "tech"
+    ],
+    "places": [
+     "S2 families[].synonyms[]",
+     "S4 nodes[].name"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "멜스몬",
+    "targets": [
+     "prod:auto-M16-1775364775098",
+     "unit:U5-128"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "모르페우스8",
+    "targets": [
+     "prod:M11-1-4",
+     "unit:U5-110"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "모발이식",
+    "targets": [
+     "fam:N9",
+     "unit:U5-161"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "S2 families[].name",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "목주름/턱선",
+    "targets": [
+     "unit:U5-016",
+     "unit:U5-017"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "민트리프트",
+    "targets": [
+     "prod:M7-3-1",
+     "unit:U5-022"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "바디",
+    "targets": [
+     "con:P12",
+     "site:site.body"
+    ],
+    "kinds": [
+     "con",
+     "site"
+    ],
+    "places": [
+     "S3 nodes[].name",
+     "S3 nodes[].synonyms[].text",
+     "S7 concerns.categories[].name",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "바디리프팅→라인·리프팅·탄력",
+    "targets": [
+     "con:P12-3",
+     "con:P3-3",
+     "pur:리프팅"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "보톡스",
+    "targets": [
+     "fam:M1",
+     "prod:M1-2-1"
+    ],
+    "kinds": [
+     "fam",
+     "prod"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음"
+   },
+   {
+    "text": "볼/관자놀이",
+    "targets": [
+     "site:site.cheek-group",
+     "site:site.temple"
+    ],
+    "kinds": [
+     "site"
+    ],
+    "places": [
+     "S3 nodes[].synonyms[].text"
+    ],
+    "class": "I 나열 문자열이 부위 둘에(동의어 칸에 나열)"
+   },
+   {
+    "text": "볼뉴머",
+    "targets": [
+     "prod:M9-2-3",
+     "unit:U5-091"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "브이빔",
+    "targets": [
+     "prod:M8-4-1",
+     "unit:U5-141"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "브이빔퍼펙타",
+    "targets": [
+     "prod:auto-M8-1775364775121",
+     "unit:U5-141"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "브이올렛",
+    "targets": [
+     "fam:N1",
+     "prod:auto-M16-1775403016892"
+    ],
+    "kinds": [
+     "fam",
+     "prod"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음"
+   },
+   {
+    "text": "비키니",
+    "targets": [
+     "site:site.bikini",
+     "unit:U5-148"
+    ],
+    "kinds": [
+     "site",
+     "unit"
+    ],
+    "places": [
+     "S3 nodes[].name",
+     "S3 nodes[].synonyms[].text",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "G 부위 이름 = 단위 시술 동의어(원장 이름 「사각턱」 · 「승모근」 …)"
+   },
+   {
+    "text": "비타민c",
+    "targets": [
+     "none:시술 아님",
+     "unit:U5-052"
+    ],
+    "kinds": [
+     "none",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "빼당주사",
+    "targets": [
+     "unit:U5-070",
+     "unit:U5-073",
+     "unit:U5-074"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "사각턱",
+    "targets": [
+     "site:site.masseter",
+     "unit:U5-006"
+    ],
+    "kinds": [
+     "site",
+     "unit"
+    ],
+    "places": [
+     "S3 nodes[].name",
+     "S3 nodes[].synonyms[].text",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "G 부위 이름 = 단위 시술 동의어(원장 이름 「사각턱」 · 「승모근」 …)"
+   },
+   {
+    "text": "색소/기미",
+    "targets": [
+     "con:P5",
+     "con:P5-1"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "서브시전",
+    "targets": [
+     "tech:K12a",
+     "unit:U5-045"
+    ],
+    "kinds": [
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S4 nodes[].name",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "H 기법 이름 = 단위 시술 이름(서브시전 · 펀치 · 압출)"
+   },
+   {
+    "text": "서브시전[유착해제]",
+    "targets": [
+     "con:auto-121-1774737181584",
+     "con:auto-128-1774737181584"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "성장호르몬주사",
+    "targets": [
+     "fam:N6",
+     "unit:U5-129"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "S2 families[].name",
+     "S2 families[].synonyms[]",
+     "S5 units[].name"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "소프웨이브",
+    "targets": [
+     "prod:auto-40-1774737181584",
+     "unit:U5-140"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "수염/가슴/등",
+    "targets": [
+     "unit:U5-149",
+     "unit:U5-150",
+     "unit:U5-151"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "슈링크",
+    "targets": [
+     "prod:M9-1-3",
+     "unit:U5-102",
+     "unit:U5-103"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "슈링크유니버스",
+    "targets": [
+     "prod:M9-1-4",
+     "unit:U5-102",
+     "unit:U5-103"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "스컬트라",
+    "targets": [
+     "fam:M3",
+     "prod:M3-1-1",
+     "unit:U5-090"
+    ],
+    "kinds": [
+     "fam",
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "스케일링",
+    "targets": [
+     "unit:U5-035",
+     "unit:U5-044"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "스타워커",
+    "targets": [
+     "prod:auto-M8-1775364775120",
+     "prod:auto-M8-1775364775128"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "승모근",
+    "targets": [
+     "site:site.trapezius",
+     "unit:U5-007"
+    ],
+    "kinds": [
+     "site",
+     "unit"
+    ],
+    "places": [
+     "S3 nodes[].name",
+     "S3 nodes[].synonyms[].text",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "G 부위 이름 = 단위 시술 동의어(원장 이름 「사각턱」 · 「승모근」 …)"
+   },
+   {
+    "text": "시크릿",
+    "targets": [
+     "prod:M11-1-2",
+     "unit:U5-110"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "시크릿rf",
+    "targets": [
+     "prod:M11-1-2",
+     "unit:U5-110"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "써마지",
+    "targets": [
+     "unit:U5-091",
+     "unit:U5-104"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "써마지flx",
+    "targets": [
+     "prod:M9-2-1",
+     "unit:U5-091",
+     "unit:U5-104"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "아그네스",
+    "targets": [
+     "fam:M11",
+     "prod:auto-M11-1775364775142"
+    ],
+    "kinds": [
+     "fam",
+     "prod"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음"
+   },
+   {
+    "text": "아쿠아필",
+    "targets": [
+     "prod:M15-2-1",
+     "unit:U5-035"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "알렉",
+    "targets": [
+     "unit:U5-100",
+     "unit:U5-101"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "알렉산드라이트",
+    "targets": [
+     "fam:M8",
+     "unit:U5-100",
+     "unit:U5-101"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "압출",
+    "targets": [
+     "tech:K12c",
+     "unit:U5-048"
+    ],
+    "kinds": [
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S4 nodes[].name"
+    ],
+    "class": "H 기법 이름 = 단위 시술 이름(서브시전 · 펀치 · 압출)"
+   },
+   {
+    "text": "에코2",
+    "targets": [
+     "prod:auto-M8-1775362603297",
+     "prod:auto-M8-1775364775119"
+    ],
+    "kinds": [
+     "prod"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "D 같은 검색 이름이 제품 둘(라인 · 같은 허가 · 합침 후보)"
+   },
+   {
+    "text": "엑셀v",
+    "targets": [
+     "prod:M8-4-2",
+     "unit:U5-099"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "엑소좀",
+    "targets": [
+     "fam:M5",
+     "unit:U5-019",
+     "unit:U5-040",
+     "unit:U5-142"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S2 families[].synonyms[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "엔더몰로지",
+    "targets": [
+     "fam:N8",
+     "unit:U5-160"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "S2 families[].synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "엘란쎄",
+    "targets": [
+     "fam:M3",
+     "prod:M3-3-1",
+     "unit:U5-090"
+    ],
+    "kinds": [
+     "fam",
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "엠스컬프트",
+    "targets": [
+     "fam:M10",
+     "prod:M10-2-1"
+    ],
+    "kinds": [
+     "fam",
+     "prod"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음"
+   },
+   {
+    "text": "여드름/모공",
+    "targets": [
+     "con:P6",
+     "con:P7"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "여드름/흉터",
+    "targets": [
+     "con:P6",
+     "con:P9"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "온다",
+    "targets": [
+     "prod:M9-3-1",
+     "unit:U5-139"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "올리지오",
+    "targets": [
+     "prod:M9-2-2",
+     "prod:auto-M9-1775361486532",
+     "unit:U5-091",
+     "unit:U5-104"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "울쎄라",
+    "targets": [
+     "prod:M9-1-1",
+     "prod:M9-1-2",
+     "unit:U5-102",
+     "unit:U5-103"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "이마/관자놀이",
+    "targets": [
+     "site:site.forehead-group",
+     "site:site.temple"
+    ],
+    "kinds": [
+     "site"
+    ],
+    "places": [
+     "S3 nodes[].synonyms[].text"
+    ],
+    "class": "I 나열 문자열이 부위 둘에(동의어 칸에 나열)"
+   },
+   {
+    "text": "이중턱",
+    "targets": [
+     "con:P11-2",
+     "con:auto-89-1774737181584"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 concerns.items[].name",
+     "S7 concerns.subcategories[].concern"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "이중턱→이중턱(지방)",
+    "targets": [
+     "con:P11-2",
+     "con:auto-89-1774737181584"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "인모드",
+    "targets": [
+     "prod:M9-2-5",
+     "unit:U5-091"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "인중/구레나룻",
+    "targets": [
+     "unit:U5-144",
+     "unit:U5-145"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "인트라셀",
+    "targets": [
+     "fam:M11",
+     "prod:M11-P-1"
+    ],
+    "kinds": [
+     "fam",
+     "prod"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name"
+    ],
+    "class": "C 브랜드 이름이 계열 낱말로도(사전 resolver) — 「보톡스」는 10-27 결정(둘 다) · 나머지는 결정 없음"
+   },
+   {
+    "text": "인피니",
+    "targets": [
+     "prod:auto-M11-1775364775143",
+     "unit:U5-110"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "입꼬리/잇몸미소/코끝",
+    "targets": [
+     "unit:U5-013",
+     "unit:U5-014",
+     "unit:U5-015"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "자가혈",
+    "targets": [
+     "fam:M5",
+     "unit:U5-020",
+     "unit:U5-042"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S2 families[].synonyms[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "잔주름",
+    "targets": [
+     "con:P2-3",
+     "con:auto-86-1774737181584"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 concerns.items[].name",
+     "S7 concerns.subcategories[].concern"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "재생/면역",
+    "targets": [
+     "pur:면역",
+     "pur:재생"
+    ],
+    "kinds": [
+     "pur"
+    ],
+    "places": [
+     "S7 purposes[].aliases[].text"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "전신재생",
+    "targets": [
+     "con:P4",
+     "con:P4-1",
+     "pur:재생"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "전신재생→항노화·재생",
+    "targets": [
+     "con:P4",
+     "con:P4-1",
+     "pur:재생"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "제모",
+    "targets": [
+     "con:P10",
+     "fam:M8",
+     "unit:U5-100",
+     "unit:U5-101"
+    ],
+    "kinds": [
+     "con",
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S7 concerns.categories[].name",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "종아리",
+    "targets": [
+     "site:site.calf",
+     "unit:U5-008"
+    ],
+    "kinds": [
+     "site",
+     "unit"
+    ],
+    "places": [
+     "S3 nodes[].name",
+     "S3 nodes[].synonyms[].text",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "G 부위 이름 = 단위 시술 동의어(원장 이름 「사각턱」 · 「승모근」 …)"
+   },
+   {
+    "text": "주름",
+    "targets": [
+     "con:P2",
+     "unit:U5-001",
+     "unit:U5-002",
+     "unit:U5-003",
+     "unit:U5-004",
+     "unit:U5-005"
+    ],
+    "kinds": [
+     "con",
+     "unit"
+    ],
+    "places": [
+     "S5 units[].synonyms[].text",
+     "S7 concerns.categories[].name",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "줄기세포치료",
+    "targets": [
+     "con:auto-98-1774737181584",
+     "fam:M17"
+    ],
+    "kinds": [
+     "con",
+     "fam"
+    ],
+    "places": [
+     "S2 families[].synonyms[]",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "쥬베룩",
+    "targets": [
+     "prod:M3-4-1",
+     "unit:U5-090"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "쥬베룩볼륨",
+    "targets": [
+     "prod:M3-4-2",
+     "unit:U5-090"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S1 items[].2_names.search_names[].name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "지방분해",
+    "targets": [
+     "fam:N1",
+     "pur:지방분해(지방감소)"
+    ],
+    "kinds": [
+     "fam",
+     "pur"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S7 purposes[].aliases[].text"
+    ],
+    "class": "J 종류가 다른 노드끼리(고민 · 계열 · 목적 · 부위 섞임 — 확인)"
+   },
+   {
+    "text": "지방흡입",
+    "targets": [
+     "fam:N10",
+     "unit:U5-162"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S2 families[].name"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "처짐",
+    "targets": [
+     "con:P3",
+     "con:P3-1",
+     "con:P3-2",
+     "con:P3-3"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 concerns.categories[].name",
+     "S7 concerns.subcategories[].concern",
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "처짐/탄력",
+    "targets": [
+     "con:P3",
+     "con:P4-1"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "카복시",
+    "targets": [
+     "fam:N2",
+     "unit:U5-123"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S2 families[].synonyms[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "카복시테라피",
+    "targets": [
+     "fam:N2",
+     "unit:U5-123"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "S2 families[].name",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "쿨스컬프팅",
+    "targets": [
+     "fam:M14",
+     "prod:M14-1-1",
+     "unit:U5-116",
+     "unit:U5-117",
+     "unit:U5-118",
+     "unit:U5-119",
+     "unit:U5-120"
+    ],
+    "kinds": [
+     "fam",
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "탄력",
+    "targets": [
+     "con:P12-3",
+     "con:P4-1",
+     "pur:타이트닝(탄력)"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 concerns.subcategories[].concern",
+     "S7 purposes[].aliases[].text"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "태반주사",
+    "targets": [
+     "fam:N5",
+     "unit:U5-128"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "S2 families[].synonyms[]",
+     "S5 units[].name"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "태반주사멜스몬",
+    "targets": [
+     "prod:auto-M16-1775364775098",
+     "unit:U5-128"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.search_names[].name",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "턱끝볼륨→볼륨·연장",
+    "targets": [
+     "pur:볼륨 회복(충전)",
+     "pur:연장"
+    ],
+    "kinds": [
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "토닝",
+    "targets": [
+     "fam:M8",
+     "tech:K04a",
+     "unit:U5-023",
+     "unit:U5-024",
+     "unit:U5-025"
+    ],
+    "kinds": [
+     "fam",
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S4 nodes[].name"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "파셀라",
+    "targets": [
+     "prod:step1-new-FASCELLA",
+     "unit:U5-091"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "펀치",
+    "targets": [
+     "tech:K12b",
+     "unit:U5-047"
+    ],
+    "kinds": [
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S4 nodes[].name"
+    ],
+    "class": "H 기법 이름 = 단위 시술 이름(서브시전 · 펀치 · 압출)"
+   },
+   {
+    "text": "포텐자",
+    "targets": [
+     "prod:M11-1-1",
+     "unit:U5-110"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "프락셀",
+    "targets": [
+     "prod:M8-2-4",
+     "unit:U5-026",
+     "unit:U5-027",
+     "unit:U5-028",
+     "unit:U5-029"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "S1 items[].2_names.search_names[].name"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "프락셔널",
+    "targets": [
+     "fam:M8",
+     "tech:K04b",
+     "unit:U5-026",
+     "unit:U5-027",
+     "unit:U5-028",
+     "unit:U5-029"
+    ],
+    "kinds": [
+     "fam",
+     "tech",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S4 nodes[].name"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "프랙셔널",
+    "targets": [
+     "unit:U5-026",
+     "unit:U5-027",
+     "unit:U5-028",
+     "unit:U5-029"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "프로파일로",
+    "targets": [
+     "prod:auto-M4-1775362484436",
+     "unit:U5-018"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "피부결/모공",
+    "targets": [
+     "con:J10-피부결",
+     "con:P7"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "피부결/톤/항노화",
+    "targets": [
+     "con:J10-피부결",
+     "con:P4",
+     "con:P5"
+    ],
+    "kinds": [
+     "con"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   },
+   {
+    "text": "피코",
+    "targets": [
+     "unit:U5-023",
+     "unit:U5-026",
+     "unit:U5-027",
+     "unit:U5-131"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "필링",
+    "targets": [
+     "fam:M15",
+     "unit:U5-034"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]",
+     "S2 families[].synonyms[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "항산화수액",
+    "targets": [
+     "unit:U5-051",
+     "unit:U5-052"
+    ],
+    "kinds": [
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]"
+    ],
+    "class": "E 같은 말이 단위 시술 여럿(후보 · 모호 표시)"
+   },
+   {
+    "text": "헤어셀",
+    "targets": [
+     "prod:auto-M15-1775364775178",
+     "unit:U5-130"
+    ],
+    "kinds": [
+     "prod",
+     "unit"
+    ],
+    "places": [
+     "S1 items[].2_names.display_name",
+     "S5 device_name_synonyms[]",
+     "S5 units[].synonyms[].text"
+    ],
+    "class": "B 장비 · 제품 이름 = 단위 시술 동의어(10-27 결정 · 의도)"
+   },
+   {
+    "text": "혈관레이저",
+    "targets": [
+     "fam:M8",
+     "unit:U5-099",
+     "unit:U5-138",
+     "unit:U5-141"
+    ],
+    "kinds": [
+     "fam",
+     "unit"
+    ],
+    "places": [
+     "D7 resolver.fam_kw[]",
+     "D8 resolver.alias[]"
+    ],
+    "class": "F 계열 · 기법 낱말을 사전마다 다른 수준으로 풂(7단계 → 단위 시술 · 8단계 → 계열 + 조건)"
+   },
+   {
+    "text": "흉터/재생",
+    "targets": [
+     "con:P4-1",
+     "con:P9",
+     "pur:재생"
+    ],
+    "kinds": [
+     "con",
+     "pur"
+    ],
+    "places": [
+     "S7 correspondence[].text → target[]"
+    ],
+    "class": "A 묶음 이름 → 고민 · 목적 여럿(R12 · 의도)"
+   }
+  ],
+  "step7_vs_step8": [
+   {
+    "text": "크라이오",
+    "step7": {
+     "families": [
+      "M14"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M14"
+    },
+    "same": true
+   },
+   {
+    "text": "혈관레이저",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-141",
+      "U5-099",
+      "U5-138"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "note": "혈관"
+    },
+    "same": false
+   },
+   {
+    "text": "토닝",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-023",
+      "U5-024",
+      "U5-025"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "technique": "K04a"
+    },
+    "same": false
+   },
+   {
+    "text": "프락셔널",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-026",
+      "U5-027",
+      "U5-028",
+      "U5-029"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "technique": "K04b"
+    },
+    "same": false
+   },
+   {
+    "text": "CO2",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-028"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "sub": "탄산가스 레이저"
+    },
+    "same": false
+   },
+   {
+    "text": "필링",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-034"
+     ]
+    },
+    "step8": {
+     "family": "M15",
+     "technique": "K09"
+    },
+    "same": false
+   },
+   {
+    "text": "LED",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-050",
+      "U5-043"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "sub": "LED"
+    },
+    "same": false
+   },
+   {
+    "text": "RF",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-091",
+      "U5-104"
+     ]
+    },
+    "step8": {
+     "family": "M9",
+     "sub": "RF"
+    },
+    "same": false
+   },
+   {
+    "text": "HIFU",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-102",
+      "U5-103"
+     ]
+    },
+    "step8": {
+     "family": "M9",
+     "sub": "HIFU"
+    },
+    "same": false
+   },
+   {
+    "text": "니들RF",
+    "step7": {
+     "families": [
+      "M11"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M11"
+    },
+    "same": true
+   },
+   {
+    "text": "MTS",
+    "step7": {
+     "families": [
+      "M12"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M12"
+    },
+    "same": true
+   },
+   {
+    "text": "PRP",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-020",
+      "U5-042"
+     ]
+    },
+    "step8": {
+     "family": "M5",
+     "sub": "혈소판 농축물(PRP·PRF)"
+    },
+    "same": false
+   },
+   {
+    "text": "엑소좀",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-019",
+      "U5-040",
+      "U5-142"
+     ]
+    },
+    "step8": {
+     "family": "M5",
+     "sub": "엑소좀"
+    },
+    "same": false
+   },
+   {
+    "text": "바이오스티뮬",
+    "step7": {
+     "families": [
+      "M3"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M3"
+    },
+    "same": true
+   },
+   {
+    "text": "CaHA",
+    "step7": {
+     "families": [
+      "M3"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M3",
+     "sub": "CaHA"
+    },
+    "same": false
+   },
+   {
+    "text": "카복시",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-123"
+     ]
+    },
+    "step8": {
+     "family": "N2"
+    },
+    "same": false
+   },
+   {
+    "text": "지방흡입",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-162"
+     ]
+    },
+    "step8": {
+     "family": "N10"
+    },
+    "same": false
+   },
+   {
+    "text": "제모",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-100",
+      "U5-101"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "note": "제모"
+    },
+    "same": false
+   },
+   {
+    "text": "다이오드",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-100",
+      "U5-101"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "sub": "반도체 레이저"
+    },
+    "same": false
+   },
+   {
+    "text": "알렉산드라이트",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-100",
+      "U5-101"
+     ]
+    },
+    "step8": {
+     "family": "M8",
+     "sub": "알렉산드라이트 레이저"
+    },
+    "same": false
+   },
+   {
+    "text": "지방이식",
+    "step7": {
+     "families": [
+      "M6"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M6"
+    },
+    "same": true
+   },
+   {
+    "text": "스킨부스터",
+    "step7": {
+     "families": [
+      "M4"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M4"
+    },
+    "same": true
+   },
+   {
+    "text": "보톡스",
+    "step7": {
+     "families": [
+      "M1"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M1"
+    },
+    "same": true
+   },
+   {
+    "text": "필러",
+    "step7": {
+     "families": [
+      "M2"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M2"
+    },
+    "same": true
+   },
+   {
+    "text": "실리프팅",
+    "step7": {
+     "families": [
+      "M7"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M7"
+    },
+    "same": true
+   },
+   {
+    "text": "레이저",
+    "step7": {
+     "families": [
+      "M8"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M8"
+    },
+    "same": true
+   },
+   {
+    "text": "플라즈마",
+    "step7": {
+     "families": [
+      "M13"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M13"
+    },
+    "same": true
+   },
+   {
+    "text": "줄기세포",
+    "step7": {
+     "families": [
+      "M17"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M17"
+    },
+    "same": true
+   },
+   {
+    "text": "써마지",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-091",
+      "U5-104"
+     ]
+    },
+    "step8": {
+     "units": [
+      "U5-091",
+      "U5-104"
+     ]
+    },
+    "same": true
+   },
+   {
+    "text": "마이크로니들",
+    "step7": {
+     "families": [
+      "M12"
+     ],
+     "units": null
+    },
+    "step8": {
+     "family": "M12"
+    },
+    "same": true
+   },
+   {
+    "text": "비타민C",
+    "step7": {
+     "families": null,
+     "units": [
+      "U5-052"
+     ]
+    },
+    "step8": {
+     "none": "시술 아님(비타민C 도포 = 외용제 — 7단계 not_procedure 「외용제」) · 단 U5-036 「이온토포레시스 (비타민C)」와 구분 필요"
+    },
+    "same": false
+   }
+  ],
+  "structure": {
+   "recommend": "한 사전 = 표현 행 하나 + 대상 여럿. 칸: text(원문) · norm(정규화 — 3단계 정규화 규칙 하나로) · targets[{kind, id, qualifier{sub · site · technique · note}}] · reason(이름 · 동의어 · 장비 이름 · 묶음 이름 · 외래어 · 오기 · 사이트 용어) · lang · ambiguous(대상 여럿) · source(파일 · 칸 · 결정) · status(자동 · 결정 · 원천 질문). 규칙 사전(꼬리말 · 머리말 · 나눔 구분자 · 간격 낱말 · 문장 패턴)은 표현 행과 따로 「해석 규칙」 칸으로.",
+   "why": [
+    "같은 낱말을 7단계 resolver 는 단위 시술로 · 8단계 alias 는 계열 + 조건으로 풀어(F 갈래) 수준이 둘 — 한 행에 qualifier 를 두면 「토닝 = M8 + K04a」 하나로 쓰고 단위 시술은 상속 규칙(I3)이 냄",
+    "대상이 여럿인 것은 의도(R12 · 10-27 「보톡스 = 계열 · 제품 둘 다」 · 장비 이름 = 시술 동의어) — 한 행 targets[] 로 두면 모호 표시가 자동으로 섞임",
+    "정규화가 지금 3단계 lexicon(공백 제거 · 소문자 · 악센트)에만 적혀 있음 — 한 정본으로",
+    "id 없는 대상(목적 이름 · 「목적:」 문자열)을 사전이 직접 가리켜 id 규칙이 사전에 새어 들어감 — 목적 id 먼저(B6)"
+   ],
+   "keep_separate": [
+    "간격 낱말 사전 · 문장 패턴 · 확인 조건 패턴 — 이름 → 노드가 아니라 원문 → 칸 규칙이라 「읽는 규칙」(§5)에 둠"
+   ]
+  }
+ },
+ "reading_rules": {
+  "reading_contract": "추천 · AI 는 claims[].interval.days · interval.first · interval.same_day 만 읽는다(원문 interval.text 는 보관). first = a | b(먼저 하는 쪽) · days = [하한, 상한](일) · open_high = 위로 열림(이상). 겉 칸이 비고 interval.by_sub_condition 이 true 면 options[].sub_condition 별 값(options[].days · same_day · first)을 읽는다. 끝점 · 피함에 default_apply false(scope 「조건부 — 단위 시술 미특정」)면 기본 응답 · 계열 상속에서 뺀다(조회 옵션으로만)",
+  "interval_fields": {
+   "days": "[하한, 상한](일)",
+   "open_high": "위로 열림(이상)",
+   "first": "a | b(먼저 하는 쪽)",
+   "same_day": "true · false · null",
+   "by_sub_condition": "겉 칸 비움 → options[] 를 읽음",
+   "options[]": "sub_condition 별 days · same_day · first",
+   "marks[]": "표시(원문 낱말 갈래)",
+   "text": "원문(보관만)"
+  },
+  "interval_counts": {
+   "with_interval": 258,
+   "days": 116,
+   "first": {
+    "a": 147,
+    "null": 242,
+    "b": 6
+   },
+   "same_day": {
+    "true": 78,
+    "null": 302,
+    "false": 15
+   },
+   "marks": {
+    "하위 조건별 값(by_sub_condition — options[].sub_condition 별로 읽음)": 2,
+    "하위 조건 · 「또는」 별 값(options)": 5,
+    "대체(택 1) — 간격 비움": 16,
+    "조건부(원문 「…에 한해」)": 1,
+    "의료진 판단(간격 원천 없음)": 1,
+    "같은 날 불가(구조 칸)": 6,
+    "생략 상대 = 앞 절 대상(ellipsis_rule)": 3,
+    "순서만(「…전에」)": 1,
+    "순서 유연(원문 「순서 유연 · 무관」)": 1,
+    "같은 날 · 별도 세션 문맥(문장 머리)": 2,
+    "반복 사이(사이사이) — 간격 없음": 1,
+    "앞 시술 반복(원문 「4주 간격 반복」)": 2,
+    "회차(횟수 — 간격 아님)": 1,
+    "같은 날이면 다른 부위": 1
+   }
+  },
+  "interval_lexicon": [
+   {
+    "id": "L-ALT",
+    "pattern": "택\\s*1",
+    "set": {
+     "kind": "대체(택 1)",
+     "days": null,
+     "mark": "대체(택 1) — 간격 비움"
+    },
+    "note": "「택 1 시술」 → kind 대체 · 간격 비움"
+   },
+   {
+    "id": "L-MD",
+    "pattern": "의료진이.*(평가|판단).*(간격|결정)",
+    "set": {
+     "days": null,
+     "mark": "의료진 판단(간격 원천 없음)"
+    },
+    "note": "「의료진이 … 평가해 간격 결정」 → 간격 없음 + 의료진 판단 표시"
+   },
+   {
+    "id": "L-SEP",
+    "pattern": "별도\\s*세션",
+    "set": {
+     "same_day": false,
+     "mark": "별도 세션"
+    },
+    "note": "「별도 세션」 → same_day false"
+   },
+   {
+    "id": "L-SDNO",
+    "pattern": "(동시|같은\\s*날|같은날|당일)\\s*(시술\\s*)?(금지|불가)|당일\\s+\\S+\\s*금지|후\\s*당일",
+    "set": {
+     "same_day": false
+    },
+    "note": "「동시 금지 · 동시 시술 금지 · 당일 금지 · 같은 날 불가」 → same_day false"
+   },
+   {
+    "id": "L-SAMESITE",
+    "pattern": "(같은|동일)\\s*부위|같은\\s*날이면\\s*다른\\s*부위|부위\\s+\\S+\\s*동시",
+    "set": {
+     "condition": "같은 부위"
+    },
+    "note": "「같은 부위 · 동일 부위」 조건(같은 날 불가와 함께)"
+   },
+   {
+    "id": "L-SDIFFSITE",
+    "pattern": "같은\\s*날이면\\s*다른\\s*부위",
+    "set": {
+     "same_day": false,
+     "mark": "같은 날이면 다른 부위"
+    },
+    "note": "「같은 날이면 다른 부위」 → 같은 부위 같은 날 불가"
+   },
+   {
+    "id": "L-IMM",
+    "pattern": "직후|즉시",
+    "set": {
+     "same_day": true,
+     "days_if_none": [
+      0,
+      0
+     ]
+    },
+    "note": "「직후」 → same_day true · days [0,0]"
+   },
+   {
+    "id": "L-SDOK",
+    "pattern": "(같은\\s*날|같은날|당일)\\s*(시술\\s*|에\\s*)?(가능|병행|조합)|같은\\s*날\\s*또는|(같은\\s*날|같은날)\\s*$|^같은\\s*날|동시(?!\\s*(시술\\s*)?금지)",
+    "set": {
+     "same_day": true
+    },
+    "note": "「같은 날 가능 · 당일 병행 · 동시(금지 없이)」 → same_day true"
+   },
+   {
+    "id": "L-BEFORE",
+    "pattern": "전에",
+    "set": {
+     "mark": "순서만(「…전에」)"
+    },
+    "note": "「…전에」 → first 만"
+   },
+   {
+    "id": "L-BETWEEN",
+    "pattern": "사이사이",
+    "set": {
+     "days": null,
+     "mark": "반복 사이(사이사이) — 간격 없음"
+    },
+    "note": "「사이사이」 → 반복 표시 · 간격 없음"
+   },
+   {
+    "id": "L-REPEAT",
+    "pattern": "반복|매회",
+    "set": {
+     "repeat": true,
+     "mark": "반복"
+    },
+    "note": "「N주 간격 반복」 → 반복 표시(같은 시술 회차 간격)"
+   },
+   {
+    "id": "L-COUNT",
+    "pattern": "\\d+\\s*[\\-~]?\\s*\\d*\\s*회",
+    "set": {
+     "mark": "회차(횟수 — 간격 아님)"
+    },
+    "note": "「8-10회」 → 회차 표시"
+   },
+   {
+    "id": "L-ONLY",
+    "pattern": "에\\s*한해",
+    "set": {
+     "mark": "조건부(원문 「…에 한해」)"
+    },
+    "note": "「…에 한해 같은 날 가능」 → 조건부 표시"
+   },
+   {
+    "id": "L-FLEX",
+    "pattern": "순서\\s*(유연|무관)",
+    "set": {
+     "mark": "순서 유연(원문 「순서 유연 · 무관」)"
+    },
+    "note": "「같은 날엔 순서 유연 · 순서 무관」 → 표시"
+   },
+   {
+    "id": "L-SEQ",
+    "pattern": "순차",
+    "set": {
+     "first_from_source_order": true
+    },
+    "note": "「순차 시술」 → 원천 from → to 순서"
+   },
+   {
+    "id": "L-NUM",
+    "pattern": "(\\d+(?:\\.\\d+)?)\\s*(시간|일|주|개월)?\\s*(?:[~\\-]\\s*(\\d+(?:\\.\\d+)?))?\\s*(시간|일|주|개월)",
+    "set": {
+     "days": "number"
+    },
+    "note": "「N주/N일/N개월(후 · 이상 · 간격)」 → days [N,M] (단위 일) · open_high = 이상 · 최소 · 후 · 뒤 · 부터 · 이내/내 금지(그 기간이 지나야 함)"
+   }
+  ],
+  "units_days": {
+   "시간": 0.0416667,
+   "일": 1,
+   "주": 7,
+   "개월": 30
+  },
+  "labels": {
+   "contra_level_site": {
+    "safe": "병행 가능",
+    "caution": "간격 필요",
+    "warning": "주의 필요"
+   },
+   "synergy_type": {
+    "함께": "시너지(함께)",
+    "다음에": "순서 · 간격(다음에)",
+    "대신": "대체(택 1)"
+   },
+   "precheck_type_site": {
+    "absolute_contraindication": "절대금기",
+    "relative_contraindication": "상대금기",
+    "must_check": "필수 확인",
+    "inform": "고지",
+    "safety_protocol": "시술 준비",
+    "counseling": "상담"
+   },
+   "opt_evidence_site": {
+    "high": "근거 강함",
+    "moderate": "근거 보통",
+    "low": "근거 제한적"
+   },
+   "opt_priority_site": {
+    "critical": "필수",
+    "important": "중요",
+    "moderate": "권고",
+    "caution": "주의"
+   },
+   "grade3": {
+    "absolute_contraindication": "금기",
+    "relative_contraindication": "주의",
+    "must_check": "확인만",
+    "inform": "확인만(고지)",
+    "absolute": "금기",
+    "relative": "주의",
+    "consent": "금기",
+    "item": "금기",
+    "iso_same_day": "금기",
+    "iso_wait": "주의",
+    "avoid": "주의",
+    "forbid": "금기"
+   },
+   "complication_severity_site": {
+    "mild": "경미",
+    "moderate": "중등도",
+    "severe": "중증",
+    "critical": "위급"
+   },
+   "timeline_label_site": {
+    "normal": "정상 반응",
+    "abnormal": "관찰",
+    "caution": "병원 연락",
+    "emergency": "즉시 연락"
+   }
+  },
+  "scope_rule": {
+   "words": "고출력|고에너지|고강도|강한|박리성|박리|어블레이티브|ablative|심부",
+   "group_levels": [
+    "계열",
+    "기법 조건",
+    "하위 계열",
+    "용도 조건",
+    "부위 조건",
+    "조건 일치(낱말 교집합)",
+    "계열 묶음",
+    "모든 시술"
+   ],
+   "kinds": [
+    "간격 금기",
+    "같은 날 불가",
+    "조합 금기"
+   ],
+   "applies_also": "피함 엣지 전부 · 확인 조건 주장(대상이 시술 끝점인 것)",
+   "label": "조건부 — 단위 시술 미특정",
+   "rule": "끝점 원문(앞 낱말 · 괄호 · 수식 포함)에 출력 · 깊이 한정어가 있는데 끝점이 이름 일치 단위 시술이 아니라 묶음(계열 · 기법 · 하위 · 용도 · 부위 · 낱말 교집합)으로 열렸으면 = 조건부 · default_apply false(기본 상속 · 기본 응답에서 뺌) · 한정어 원문 보관 · 원천 질문(scope_conditional). 이름 일치 단위 시술(「IPL 단독·고출력」 → U5-030)은 그대로 — 5단계 키에 출력 · 깊이 칸이 없어 한정어로 좁힐 수 없다",
+   "basis": "검수 F1 · 코디 선택 ⓑ(10-29)"
+  },
+  "claim_kinds": {
+   "병행 · 간격": 27,
+   "시너지(함께)": 50,
+   "순서 · 간격(다음에)": 49,
+   "대체(택 1)": 16,
+   "같은 날 불가": 7,
+   "간격": 9,
+   "재시술 간격(자기 쌍)": 1,
+   "순서 · 간격(문장)": 8,
+   "순서(문장)": 6,
+   "병행 · 간격(문장)": 6,
+   "순서(문장 화살표)": 63,
+   "간격 금기": 13,
+   "조합 금기": 3,
+   "시너지(CC 조합)": 137
+  },
+  "endpoint_levels": {
+   "계열": 291,
+   "단위 시술": 356,
+   "부위 조건": 6,
+   "제품 → 단위 시술": 18,
+   "기법 조건": 25,
+   "하위 계열": 42,
+   "용도 조건": 4,
+   "복합(나눔)": 39,
+   "모든 시술": 1,
+   "조건 일치(낱말 교집합)": 4,
+   "시술 아님": 2,
+   "계열 묶음": 2
+  },
+  "flags": [
+   {
+    "flag": "conflict",
+    "ko": "충돌",
+    "page": "c",
+    "fields": [
+     "step8 claims[].review_status=conflict",
+     "edges[].review_status",
+     "conflicts[]",
+     "conditions.grade_conflicts · wait_conflicts",
+     "step2 product_family[].conflict",
+     "step4 conflicts"
+    ],
+    "count": "주장 104 · 엣지 61 · 계열 쌍 19 · 조건 등급 76 · 대기 1 · 제품 계열 6",
+    "read": "고르지 않고 전부 보존 · 응답에 양쪽 원문"
+   },
+   {
+    "flag": "conditional",
+    "ko": "조건부(단위 시술 미특정)",
+    "page": "s(일부)",
+    "fields": [
+     "claims[].a|b.scope · default_apply",
+     "avoid_edges[].scope · default_apply · scope_conditional",
+     "conditions.claims[].scope_conditional"
+    ],
+    "count": "끝점 2 · 피함 3 · 조건 주장 1",
+    "read": "default_apply false → 기본 응답 · 계열 상속에서 뺌(조회 옵션으로만)"
+   },
+   {
+    "flag": "candidates",
+    "ko": "후보 여럿(하나로 안 좁혀짐)",
+    "page": "s",
+    "fields": [
+     "units[].synonyms[].ambiguous",
+     "units[].candidate_of",
+     "step7 edges[].resolve_flag=ambiguous",
+     "combos[].components[].flag",
+     "step8 claims[].a|b.flag 「후보 전부」",
+     "step6 slots[]",
+     "endpoint units:a,b,c"
+    ],
+    "count": "단위 시술 동의어 모호 39 · candidate_of 35 · 7단계 엣지 ambiguous 151 · 슬롯 8",
+    "read": "고르지 않고 후보 전부 반환 · 외부 LLM 이 고르거나 되묻기"
+   },
+   {
+    "flag": "weak",
+    "ko": "근거 약",
+    "page": "w",
+    "fields": [
+     "evidence_level 약 · 중(step2 · step5 · step6 contains)",
+     "step3 synonyms[].weak · anatomical_name.level",
+     "statements accuracy_score<70"
+    ],
+    "count": "계열 판정 약 9 · 단위 시술 중 3 · 패키지 구성 약 5 · 부위 동의어 weak 2",
+    "read": "값은 쓰되 약함 표시"
+   },
+   {
+    "flag": "question",
+    "ko": "원천 질문 걸림(병원 · 의료진 · 원장님)",
+    "page": "q · h",
+    "fields": [
+     "origin_question · staff_question · doctor_questions · pending_director · confirm_question · origin_questions[]"
+    ],
+    "count": "1단계 86 · 2단계 원장님 3 · 3단계 의료진 35 · 5단계 20+1 · 6단계 13 · 7단계 2 · 8단계 18",
+    "read": "추천값으로 쓰되 질문 표시 · 답 오면 그 행만"
+   },
+   {
+    "flag": "not_recommended",
+    "ko": "추천 제외",
+    "page": "x",
+    "fields": [
+     "step1 4_license.recommendable=false",
+     "active=false",
+     "step6 recommendable=false",
+     "combos sales_copy.default_response=false(영업 문구)"
+    ],
+    "count": "제품 118 · 패키지 2 · 영업 문구 24",
+    "read": "기본 응답에서 뺌 · 노드는 남김"
+   },
+   {
+    "flag": "gap",
+    "ko": "gap(정보 없음)",
+    "page": "g",
+    "fields": [
+     "safety.complication_gap_families",
+     "step5 pih_gap_units",
+     "step7 resolve_flag no_unit_at_site · site_check"
+    ],
+    "count": "합병증 gap 계열 17 · PIH gap 단위 시술 64 · 7단계 그 부위 단위 시술 없음 15",
+    "read": "「정보 없음」을 「안전」으로 읽지 않음"
+   },
+   {
+    "flag": "default_value",
+    "ko": "기본값(원천에 없어 규칙으로 채움)",
+    "page": "(없음)",
+    "fields": [
+     "step5 units[].site_basis",
+     "route_status 「허가 용법 미확인」",
+     "family_defaults(계열 기본 기법)"
+    ],
+    "count": "site_basis {'원천 이름': 52, '원천 이름 · de': 23, 'DEC-002 D-': 1, '기본값 — DEC-': 41, 'F3 · U4 — ': 1, '규칙 — DEC-0': 25, '근거 약 — v3 ': 1, '기본값 — 보정 「': 1, '원천 이름(쁘띠시술': 4, '규칙 — 전신 투여': 2, 'F3 — 시장가가 ': 2, '원천 이름(「바디」': 3, 'G1 결정 — 미라': 1, '원천 중분류(P8-': 1, '특수 부위 병변 단': 1, 'G6 결정 — 원천': 1, '원천 중분류(P13': 1, '원천 이름(최적화 ': 1} · route 미확인 23",
+    "read": "원천 값과 구분해 표시"
+   },
+   {
+    "flag": "unresolved",
+    "ko": "못 풂",
+    "page": "(없음)",
+    "fields": [
+     "step7 resolve_flag=unresolved · unresolved[] · unresolved_ok",
+     "step8 claims[].resolved=false",
+     "끝점 「해석 안 됨」"
+    ],
+    "count": "7단계 엣지 24 · 8단계 주장 1",
+    "read": "원문 보관 · 엣지 끝 없음"
+   },
+   {
+    "flag": "not_procedure",
+    "ko": "시술 아님",
+    "page": "(없음)",
+    "fields": [
+     "step7 resolve_flag=not_procedure · not_procedure[]",
+     "step8 claims[].not_procedure"
+    ],
+    "count": "7단계 엣지 4 · 8단계 주장 6",
+    "read": "엣지 끝 아님"
+   },
+   {
+    "flag": "by_sub_condition",
+    "ko": "하위 조건별 값",
+    "page": "(없음)",
+    "fields": [
+     "claims[].interval.by_sub_condition · options[]"
+    ],
+    "count": "by_sub_condition true 2 · options 있음 7",
+    "read": "겉 칸이 비면 options[].sub_condition 별로"
+   },
+   {
+    "flag": "license_unconfirmed",
+    "ko": "허가번호 미확인",
+    "page": "(info)",
+    "fields": [
+     "step1 4_license.status"
+    ],
+    "count": 7,
+    "read": "추천 포함 · 표시"
+   }
+  ],
+  "gate_status": {
+   "now": {
+    "step7 correspondence.gate_status": {
+     "자동(완전 일치)": 151,
+     "자동(규칙)": 98
+    },
+    "step8 claims.gate_status": {
+     "자동(규칙)": 395
+    },
+    "step7 correspondence.human_check": {
+     "false": 249
+    },
+    "step1 items.gate(사람 확인 메모)": 86
+   },
+   "old": "SPEC-004 §3.2.2(옛): approved · auto · unconfirmed 3값 · 주장 상태 = 기댄 끝 중 가장 약한 값",
+   "finding": "7 · 8단계는 「게이트 → 규칙」(10-29) 뒤 자동(완전 일치) · 자동(규칙) 둘만 남음. 1~6단계는 gate_status 칸이 없고 decided_by(사용자 결정 id) · 근거 칸으로 상태를 말함 — 공통 칸이 없음",
+   "recommend": "gate_status 를 모든 노드 · 엣지 · 주장 공통 3값으로: 자동(완전 일치) · 자동(규칙) · 결정(decided_by 있음 — 사람이 정함). 「미확인」은 상태가 아니라 표시(question · weak · gap)로. 옛 SPEC-004 의 unconfirmed 는 표시로 대체"
+  },
+  "step7_reading": {
+   "site_rules": {
+    "site_free": [
+     "해당 없음",
+     "병변 단위"
+    ],
+    "site_free_basis": "5단계 special_sites — 전신 투여(해당 없음) · 병변 수로 매김(병변 단위)은 앵커 부위와 무관",
+    "lowering": "이름 · 동의어 · 제품 · 고정 키로 잡은 단위 시술이 앵커 부위(또는 하위)에 없으면 같은 계열(하위 하나면 그 하위)을 units_at(계열, 부위)로 내린다",
+    "no_unit_at_site": "부위가 있는데 그 부위(또는 하위)에 그 계열 단위 시술이 없으면 R21(부위 올라가기)대로 — 상위 층에서 찾은 단위 시술만, 최상위 영역 「전체」 노드까지 없으면 계열만(to_units 비움 · to_family 유지) + no_unit_at_site · 표시 「이 부위 단위 시술 없음」. ① modality_ref · ③ 이름 · ③ 계열 코드 · ④ · ⑤ 경로 모두 같다. (10-29 이전: 계열 후보 전부 + no_unit_at_site(검수 W2) — 부위를 무시해 바디 · 두피 단위 시술이 얼굴 고민에 붙어 사용자 지적으로 대체)",
+    "edge_check": "엣지 단위 시술 부위 ∈ 앵커 부위(또는 하위) 또는 R21 로 올라간 층 — 어긋나면 open · 최상위 영역이 다르면 open(영역 넘음). 부위 무관 특수 부위 · 앵커 부위 없음은 검사 밖",
+    "decided_by": "검수 F2 · W2(review-step7-report · 10-29) — 이미 있는 「부위로 내림」 · R8 규칙 적용(새 사용자 결정 아님) · 10-29 사용자 — W2 「계열 후보 전부」 를 R21 부위 올라가기로 대체",
+    "climb": {
+     "rule": "앵커 부위(또는 하위)에 그 계열 단위 시술이 없으면 3단계 부위 트리의 상위로 올라가며 찾는다. 층 = 조상 노드 자신(형제 부위는 다른 부위라 넣지 않음 · 묶음 노드는 직접 붙은 단위 시술이 없어 통과) · 마지막 층 = 최상위 영역의 「전체」 노드. 처음 찾은 층의 단위 시술만",
+     "regions": "최상위 영역 = 3단계 트리에서 부모 없는 노드(계산 · 얼굴 · 목(묶음) · 두피 · 바디). 영역 경계를 넘지 않는다 — 얼굴 고민에 바디 · 두피 · 목 단위 시술 0",
+     "whole_node": "영역 R 의 「전체」 노드 = 「R 전체」 자식이 있으면 그것(얼굴 → 얼굴 전체 · 5단계 J2) · 없으면 R 자신(바디 · 두피) · R 이 묶음이면 없음(목(묶음) → 계열만)",
+     "none": "영역 「전체」 노드까지 없으면 계열 엣지만(to_units 비움 · to_family 유지) + 표시 「이 부위 단위 시술 없음 · 계열만」 · 단위 시술 후보 붙이지 않음",
+     "record": "lowering 「상위 부위로 내림(층)」 · site_layer · site_check 「상위 부위 층」 에 찾은 층을 적는다",
+     "guard": "엣지마다 단위 시술 부위의 최상위 영역 == 앵커 부위의 최상위 영역(부위 무관 특수 부위 제외) — 아니면 open 「엣지 단위 시술이 앵커 부위의 최상위 영역 밖」",
+     "decided_by": "사용자 10-29(연결 구조 페이지 「이중턱」 · 「목주름」 지적) · 층 해석 = 코디 답 10-29 「B — 층 = 그 노드 자신」"
+    }
+   },
+   "rules": [
+    "R1 고민 노드 = taxonomy problem 3층 중 「고민」인 것만",
+    "R2 고민 아닌 중분류는 노드로 안 세우고 갈래대로 녹임",
+    "R3 「시술 이름」 항목은 고민 항목 노드가 아니라 treats 엣지(⑤)",
+    "R4 부위 붙은 고민 = D-07 분리",
+    "R5 고민 대응표 = 완전 일치 + 규칙(R12~R19)으로 하나로 정해지면 자동 · 규칙으로 안 정해지는 것만 사람 질문(concern_unresolved)",
+    "R6 고민 ↔ 목적 경계(G1): 고민 = 상태 이름 · 목적 = 시술이 하는 일. 같은 말이 둘 다면 목적 노드를 따로 안 세우고 그 고민에 붙임",
+    "R7 treats 엣지 = 원천에 적힌 구조만(①~⑦) · 적응증 문장은 근거로만",
+    "R8 추천 조합 노드 한 타입 · 원천별 · 합치지 않음",
+    "R9 영업 문구(salesPitch · upsellHook) 보관 · 기본 응답 제외 / 레시피 환자 설명 · 비유 = 상담 문구(기본 포함)",
+    "R10 단위 시술 없는 이름은 엣지를 만들지 않고 「5단계 보강 후보」로 모음",
+    "R11 쌍 주장(금기 · 간격 · 순서 · 시너지)은 8단계 메모만",
+    "R12 묶음 이름은 나눠서 낱말마다 각각 붙인다 — 구분자 「/」 「·」 「,」 「+」 · 공백 나열(규칙 1)",
+    "R13 낱말 → 고민 노드: 노드 이름 · 고민 칸 · 동의어(완전) > 묶음 노드 이름의 낱말(부분) > 목적. 부위가 있으면 그 부위(또는 상위 부위)의 노드 중 가장 가까운 것 · 부위 없는 말은 부위 없는 노드",
+    "R14 꼬리말 떼기 — 비교 · 패키지 · 치료 · 개선 · 케어 · 집중 · 관리 · 풀코스 · 기본(묶음 · 행위 꼬리), 저하 · 손실(상태 꼬리), 머리말 「피부」 — 떼고 남은 말을 같은 규칙으로",
+    "R15 영문 · 외래어 → 한글 낱말: 원천 짝(taxonomy category_en ↔ 이름 · 최적화 concern_en ↔ concern · 비교 id ↔ 제목)과 외래어 사전(concern_rules.loanwords · en_extra) — 사전에 있으면 한글로 바꿔 같은 규칙. 한 영문이 두 고민에 걸리면 사람 질문",
+    "R16 목적어 → 목적 노드(J4 목적 13) + 목적 ↔ 고민 대응(concern_rules.purpose_concern — 고민 낱말로 적고 부위로 내림). 「항X」 고민 이름은 「X」로도 찾고, 목적 이름의 동사 꼬리(회복 · 감소 · 분해 · 제거 · 강화 · 보충 · 충전)를 뗀 대상 낱말도 그 목적",
+    "R17 부위 + 고민(「눈가 노화」 · 「바디리프팅」) → 부위는 3단계 부위 · 고민은 위 규칙으로(그 부위 노드가 있으면 그 노드, 없으면 부위 없는 노드 + 부위 속성). 부위 낱말이 곧 고민 대분류 이름(바디 = P12)이고 나머지가 그 부위에 맞는 노드가 없으면 그 대분류",
+    "R18 중증도 → 하위 고민: taxonomy 에 중증도로 나뉜 하위가 있으면 하위로(주름 = 초기 · 경미 → P2-3 잔주름 / 중기 · 중등도 · 심화 · 중증 → P2-2 깊은주름), 없으면 상위 + severity 속성. 최적화 severity_levels 는 단계 이름 괄호 낱말이 그 고민 아래 노드를 가리키면 그 노드",
+    "R19 시술 이름 낱말(5단계 단위 시술 이름 · 동의어 · 계열 낱말)은 고민이 아니므로 묶음에서 뗀다 · 모든 조각이 시술 이름이면 앵커 없음",
+    "R20 규칙으로 하나로 안 정해지는 것(사전에 없는 낱말 · 부위 어긋남 · 한 낱말이 두 고민)만 사람 질문 — 결정 concern_unresolved 에 적혀 있어야 하고, 없으면 open. 미용 고민 트리 밖 목적(항산화 · 피로회복 · 면역 · 영양보충)은 J9 대로 목적 노드만(사람 질문 아님 · 10-29)",
+    "R21 부위 올라가기 — 앵커 부위에 그 계열 단위 시술이 없으면 3단계 부위 트리 상위 노드 자신으로 올라가며 찾고(형제 부위 안 넣음 · 묶음 통과), 처음 찾은 층의 단위 시술만. 최상위 영역(얼굴 · 목(묶음) · 두피 · 바디 — 트리에서 계산) 경계를 넘지 않으며 영역 「전체」 노드까지 없으면 계열 엣지만 + 「이 부위 단위 시술 없음」. 찾은 층은 lowering · site_check 에 적는다 (W2 「계열 후보 전부 + no_unit_at_site」 대체)"
+   ]
+  },
+  "finding": "읽는 규칙이 8단계 관계(reading_contract)에만 정본으로 있고 7단계 엣지 · 6단계 구성 · 5단계 속성에는 「무엇을 읽고 무엇을 보관만 하나」가 칸 이름으로만 흩어짐(default_response · recommendable · resolve_flag · site_basis …)"
+ },
+ "inheritance": [
+  {
+   "id": "I1",
+   "name": "계열 → 단위 시술",
+   "rule": "계열 끝 엣지(관계 · 피함 · 확인 조건 · 합병증 · 근거 문장 · 위험지대 · 추천 계열만)는 key.family 가 그 계열인 단위 시술 전부에 상속. default_apply false 면 상속 안 함",
+   "fields": [
+    "step5 units[].key.family",
+    "step8 edges[].a|b 'family:M…'",
+    "claims[].lowering 「계열(원천 시술군 코드 — 단위 시술은 조회 때 상속 · C4)」",
+    "conditions.claims[].target_level 계열",
+    "safety.complications[].units_inherit[]",
+    "step7 edges[].target_kind 계열만 · lowering 「계열(결정)」"
+   ],
+   "count": "관계 끝점 계열 291 · 조건 주장 계열 340 · 합병증 units_inherit 합 725 · 7단계 계열만 75",
+   "note": "합병증만 units_inherit 로 미리 펼쳐 저장 · 나머지는 조회 때 — 칸이 둘(B7)"
+  },
+  {
+   "id": "I2",
+   "name": "하위 계열",
+   "rule": "하위 계열 끝(「family:M9#HIFU」 · a.sub_family)은 key.sub_family 가 같은 단위 시술로. 단위 시술 키에 그 하위가 없는 계열(J1 안 C 밖)이면 계열(+조건) 후보 전부 · 하위 원문 보관",
+   "fields": [
+    "step8 edges[].a|b 'family:M…#하위'",
+    "claims[].a|b.sub_family · flag 「단위 시술 키에 이 하위 계열 없음 …」",
+    "timeline_attach.units_where{family,sub}",
+    "step5 product_link.inherit(키 하위 있으면 같은 하위)"
+   ],
+   "count": "끝점 문자열 # 3 · 하위 계열 끝점 42 · 하위 없음 플래그 16",
+   "note": "하위 표기가 끝점 문자열 안(#) · 끝점 칸(sub_family) · timeline units_where 세 꼴"
+  },
+  {
+   "id": "I3",
+   "name": "기법 조건",
+   "rule": "기법 끝(K04b 프락셔널 …)은 key.technique 가 그 기법(또는 하위 기법)인 단위 시술로. 제품 → 단위 시술 상속은 기법 호환(technique_compat)을 통과한 것만",
+   "fields": [
+    "claims[].a|b.technique · level 기법 조건",
+    "conditions.claims[].target.technique",
+    "step5 rules.product_link.technique_compat · guards"
+   ],
+   "count": "관계 끝점 기법 조건 25 · 조건 주장 기법 조건 3",
+   "note": ""
+  },
+  {
+   "id": "I4",
+   "name": "제품 → 단위 시술",
+   "rule": "저장(uses_product)은 원천 이름이 제품을 부를 때만. 상속 후보 = 같은 계열(주 · 보조) · 키 하위 있으면 같은 하위 · 없으면 계열 전부 · 기법 호환 · 도포만 가드",
+   "fields": [
+    "step5 units[].uses_product",
+    "product_links[].inherited_candidates · stored_units · technique_excluded · guard · link",
+    "rules.product_link"
+   ],
+   "count": "link {'조회 때 상속 후보': 303, '저장 uses_product': 36, '계열 has_product 만(기법 호환 단위 시술 없음 — F1)': 7, '계열 밖(단위 시술 없음)': 5, '원장님 문의(계열 없음)': 3} · 상속 후보 합 1364",
+   "note": "페이지는 이걸 엣지 「상속 후보(prod_unit_inh)」로 그렸음 — 저장 엣지가 아니라 골드 계산"
+  },
+  {
+   "id": "I5",
+   "name": "부위 내림",
+   "rule": "고민 · 끝점 부위가 있으면 그 부위(또는 하위)의 단위 시술(site_rules.lowering). 없으면 R21 부위 올라가기: 앵커 부위(또는 하위)에 그 계열 단위 시술이 없으면 3단계 부위 트리의 상위로 올라가며 찾는다. 층 = 조상 노드 자신(형제 부위는 다른 부위라 넣지 않음 · 묶음 노드는 직접 붙은 단위 시술이 없어 통과) · 마지막 층 = 최상위 영역의 「전체」 노드. 처음 찾은 층의 단위 시술만 · 영역: 최상위 영역 = 3단계 트리에서 부모 없는 노드(계산 · 얼굴 · 목(묶음) · 두피 · 바디). 영역 경계를 넘지 않는다 — 얼굴 고민에 바디 · 두피 · 목 단위 시술 0 · 전체 노드: 영역 R 의 「전체」 노드 = 「R 전체」 자식이 있으면 그것(얼굴 → 얼굴 전체 · 5단계 J2) · 없으면 R 자신(바디 · 두피) · R 이 묶음이면 없음(목(묶음) → 계열만) · 없으면: 영역 「전체」 노드까지 없으면 계열 엣지만(to_units 비움 · to_family 유지) + 표시 「이 부위 단위 시술 없음 · 계열만」 · 단위 시술 후보 붙이지 않음 (10-29 이전 「계열 후보 전부 + no_unit_at_site」 대체 — 코디 알림 · 사용자 10-29)",
+   "fields": [
+    "step7-decisions site_rules{lowering, no_unit_at_site, edge_check, site_free, climb{rule, regions, whole_node, none, record, guard}}",
+    "step7 edges[].lowering 「상위 부위로 내림(층)」 · site_layer · site_check · anchor_sites · resolve_flag",
+    "step8 claims[].a|b.flag 「7단계 부위로 내림 …」",
+    "step3 nodes[].parent"
+   ],
+   "count": "7단계 site_check {'앵커 부위 없음': 334, '부위 안': 149, '상위 부위 얼굴 전체': 37, '이 부위 단위 시술 없음 · 계열만': 15, '상위 부위 바디': 2}",
+   "note": "규칙 문장은 step7-decisions 에만 · 8단계는 7단계 엣지를 재사용(via 「7단계 CC 추천 시술 엣지(③) 재사용」)해 같은 규칙을 물려받음 · 부위 트리(3단계 parent)가 상속 경로 — 내림(하위)과 올라가기(상위 · 영역 안) 두 방향"
+  },
+  {
+   "id": "I6",
+   "name": "끝점 묶음",
+   "rule": "units:a,b,c = 이름이 가리킨 후보 전부(OR · 고르지 않음) — 각 후보에 「후보」 표시로 적용 · bundle:M|M = 묶음 낱말이 연 계열 전부 · all = 모든 시술",
+   "fields": [
+    "step8 edges[].a|b 'units:…' · 'bundle:…' · 'all'",
+    "claims[].a|b.units · n_units · flag",
+    "conditions.claims[].target · avoid_edges[].to.units"
+   ],
+   "count": "끝점 {'all': 1, 'units': 137, 'bundle(여럿)': 2, 'family': 177, 'units(여럿)': 124, 'family(여럿)': 1}",
+   "note": "B3"
+  },
+  {
+   "id": "I7",
+   "name": "조건부 제외",
+   "rule": "default_apply false(조건부 — 단위 시술 미특정)는 기본 상속 · 기본 응답에서 뺌",
+   "fields": [
+    "claims[].a|b.default_apply",
+    "avoid_edges[].default_apply",
+    "conditions.claims[].scope_conditional"
+   ],
+   "count": "끝점 2 · 피함 3 · 조건 주장 1",
+   "note": ""
+  },
+  {
+   "id": "I8",
+   "name": "안전 원문 붙는 수준",
+   "rule": "경과 타임라인 · PIH · 운영 속성은 원천이 가리킨 수준(계열 · 하위 · 단위 · 제품)에 붙고 아래로 상속",
+   "fields": [
+    "step8-decisions timeline_attach",
+    "step8 safety.timelines[].attach_level",
+    "step5 pih[].attach · target",
+    "step8 safety.pih[].attach",
+    "step5 units[].ops.inherit"
+   ],
+   "count": "timeline {'계열': 5, '계열(하위 HA — M': 1, '하위 계열 HIFU ·': 1, '단위 시술': 1, '계열 N1(C5 — M': 1, '하위 계열 화학 박피 ': 1} · PIH attach {'unit': 9, 'family_sub': 8, 'product': 6, 'family': 3} · ops 상속 136",
+   "note": "PIH 는 5단계 pih(26 · target 칸)와 8단계 safety.pih(26 · risk_factors · prevention)로 두 곳"
+  },
+  {
+   "id": "I9",
+   "name": "해당 없음 계열",
+   "rule": "PIH 해당 없음 계열(M1~M7 · M10 · M16 · M17)은 상속 대상에서 「해당 없음」 — gap 과 다름",
+   "fields": [
+    "step5 rules.pih_not_applicable",
+    "pih_not_applicable_units",
+    "pih_gap_units"
+   ],
+   "count": "해당 없음 77 · gap 64",
+   "note": "「해당 없음」 ≠ 「gap」 — 표시를 나눠야 함"
+  }
+ ],
+ "statements": {
+  "total": 119,
+  "by_field": {
+   "moa": 50,
+   "adverse_effects": 32,
+   "effects": 37
+  },
+  "by_class": {
+   "부작용(흔한 예상 반응)": 9,
+   "색소 반응(PIH — 5단계 PIH 속성과 겹침)": 4,
+   "드문 · 중대 반응(합병증 성격)": 9,
+   "안전성 총평(내약성 · 경미 · 반응 없음)": 6,
+   "기전 · 효과 한계(이상 반응 칸에 있으나 반응 아님)": 4,
+   "효과(기전 칸에 있음)": 3,
+   "적응증(기전 칸에 있음)": 2,
+   "안전성 비교(기전 칸에 있음)": 1,
+   "근거 수준 · 규제(효과 칸에 있음)": 2,
+   "기전": 44,
+   "효과": 35
+  },
+  "class_ids": {
+   "부작용(흔한 예상 반응)": [
+    "ST-M5-adverse_effects-01",
+    "ST-M7-adverse_effects-02",
+    "ST-M7-adverse_effects-04",
+    "ST-M8-adverse_effects-02",
+    "ST-M8-adverse_effects-03",
+    "ST-M8-adverse_effects-04",
+    "ST-M12-adverse_effects-05",
+    "ST-M15-adverse_effects-01",
+    "ST-M15-adverse_effects-02"
+   ],
+   "색소 반응(PIH — 5단계 PIH 속성과 겹침)": [
+    "ST-M8-adverse_effects-01",
+    "ST-M8-adverse_effects-05",
+    "ST-M12-adverse_effects-01",
+    "ST-M12-adverse_effects-04"
+   ],
+   "드문 · 중대 반응(합병증 성격)": [
+    "ST-M1-adverse_effects-01",
+    "ST-M1-adverse_effects-02",
+    "ST-M1-adverse_effects-03",
+    "ST-M2-adverse_effects-03",
+    "ST-M4-adverse_effects-02",
+    "ST-M5-adverse_effects-02",
+    "ST-M12-adverse_effects-02",
+    "ST-M16-adverse_effects-01",
+    "ST-M17-adverse_effects-01"
+   ],
+   "안전성 총평(내약성 · 경미 · 반응 없음)": [
+    "ST-M2-adverse_effects-01",
+    "ST-M7-adverse_effects-01",
+    "ST-M7-adverse_effects-03",
+    "ST-M7-adverse_effects-05",
+    "ST-M7-adverse_effects-06",
+    "ST-M12-adverse_effects-03"
+   ],
+   "기전 · 효과 한계(이상 반응 칸에 있으나 반응 아님)": [
+    "ST-M1-adverse_effects-04",
+    "ST-M2-adverse_effects-02",
+    "ST-M3-adverse_effects-01",
+    "ST-M4-adverse_effects-01"
+   ],
+   "효과(기전 칸에 있음)": [
+    "ST-M2-moa-02",
+    "ST-M8-moa-03",
+    "ST-M8-moa-08"
+   ],
+   "적응증(기전 칸에 있음)": [
+    "ST-M15-moa-03",
+    "ST-M15-moa-04"
+   ],
+   "안전성 비교(기전 칸에 있음)": [
+    "ST-M15-moa-05"
+   ],
+   "근거 수준 · 규제(효과 칸에 있음)": [
+    "ST-M16-effects-01",
+    "ST-M16-effects-02"
+   ],
+   "기전": [
+    "ST-M1-moa-01",
+    "ST-M1-moa-02",
+    "ST-M1-moa-03",
+    "ST-M12-moa-01",
+    "ST-M12-moa-02",
+    "ST-M12-moa-03",
+    "ST-M12-moa-04",
+    "ST-M12-moa-05",
+    "ST-M12-moa-06",
+    "ST-M12-moa-07",
+    "ST-M15-moa-01",
+    "ST-M15-moa-02",
+    "ST-M16-moa-01",
+    "ST-M2-moa-01",
+    "ST-M2-moa-03",
+    "ST-M2-moa-04",
+    "ST-M2-moa-05",
+    "ST-M2-moa-06",
+    "ST-M3-moa-01",
+    "ST-M3-moa-02",
+    "ST-M3-moa-03",
+    "ST-M3-moa-04",
+    "ST-M4-moa-01",
+    "ST-M4-moa-02",
+    "ST-M5-moa-01",
+    "ST-M5-moa-02",
+    "ST-M5-moa-03",
+    "ST-M5-moa-04",
+    "ST-M7-moa-01",
+    "ST-M7-moa-02",
+    "ST-M7-moa-03",
+    "ST-M7-moa-04",
+    "ST-M7-moa-05",
+    "ST-M7-moa-06",
+    "ST-M7-moa-07",
+    "ST-M8-moa-01",
+    "ST-M8-moa-02",
+    "ST-M8-moa-04",
+    "ST-M8-moa-05",
+    "ST-M8-moa-06",
+    "ST-M8-moa-07",
+    "ST-M9-moa-01",
+    "ST-M9-moa-02",
+    "ST-M9-moa-03"
+   ],
+   "효과": [
+    "ST-M1-effects-01",
+    "ST-M1-effects-02",
+    "ST-M1-effects-03",
+    "ST-M1-effects-04",
+    "ST-M12-effects-01",
+    "ST-M12-effects-02",
+    "ST-M12-effects-03",
+    "ST-M12-effects-04",
+    "ST-M12-effects-05",
+    "ST-M12-effects-06",
+    "ST-M12-effects-07",
+    "ST-M12-effects-08",
+    "ST-M2-effects-01",
+    "ST-M2-effects-02",
+    "ST-M2-effects-03",
+    "ST-M2-effects-04",
+    "ST-M2-effects-05",
+    "ST-M4-effects-01",
+    "ST-M4-effects-02",
+    "ST-M4-effects-03",
+    "ST-M4-effects-04",
+    "ST-M5-effects-01",
+    "ST-M7-effects-01",
+    "ST-M7-effects-02",
+    "ST-M7-effects-03",
+    "ST-M7-effects-04",
+    "ST-M7-effects-05",
+    "ST-M7-effects-06",
+    "ST-M7-effects-07",
+    "ST-M8-effects-01",
+    "ST-M8-effects-02",
+    "ST-M8-effects-03",
+    "ST-M8-effects-04",
+    "ST-M8-effects-05",
+    "ST-M9-effects-01"
+   ]
+  },
+  "attributes": {
+   "accuracy_score": {
+    "있음": 17,
+    "없음": 102
+   },
+   "patient_langs": {
+    "en,ja,ko,zh": 119
+   },
+   "evidence_per_statement": {
+    "1": 119
+   }
+  },
+  "rule": "원문 낱말 기준 분류(추천) — 흔한 예상 반응 = 통증 · 부기(swelling · edema · tumefaction) · 멍 · 홍반 · 진물 · 딱지 · 자극 · 건조 · 따가움 / 드문 · 중대 = 실명 · 복시 · 감염 · 과민 · 육아종 · 종양 · 장기 기능 이상 · 위축 · 알레르기(드묾) / 색소 = PIH · 과색소 / 총평 = tolerated · minor · low reactivity · no acute / 나머지는 칸 이름과 뜻이 다른 문장. 「정확도」 · 「환자 문장」은 종류가 아니라 문장 속성(정확도 17/119만 값 · 환자 4개 언어 119/119)",
+  "texts": {
+   "ST-M1-adverse_effects-01": "Dry eye and diplopia have been reported following injection in the periocular region.",
+   "ST-M1-adverse_effects-02": "Botulinum toxin type A causes submandibular salivary gland atrophy.",
+   "ST-M1-adverse_effects-03": "Mesobotox with botulinum toxin type A induces partial lymphatic drainage insufficiency.",
+   "ST-M1-adverse_effects-04": "Botulinum toxin type A inhibits exocrine function, reducing sebum and sweat production.",
+   "ST-M12-adverse_effects-01": "Post-inflammatory hyperpigmentation can occur, particularly in darker skin phototypes.",
+   "ST-M12-adverse_effects-02": "Bacterial infection and tram-tracking scarring can occur with overly aggressive technique or inadequate aseptic practice.",
+   "ST-M12-adverse_effects-03": "Microneedling is well tolerated by patients with minimal discomfort.",
+   "ST-M12-adverse_effects-04": "Postinflammatory hyperpigmentation occurs after microneedling.",
+   "ST-M12-adverse_effects-05": "Erythema and edema follow microneedling treatments.",
+   "ST-M15-adverse_effects-01": "L-ascorbic acid at low pH can cause transient stinging and erythema in sensitive skin.",
+   "ST-M15-adverse_effects-02": "Adapalene combined with benzoyl peroxide amplifies skin irritation and drying.",
+   "ST-M15-moa-03": "Tretinoin is indicated in the treatment of acne vulgaris and photoaging.",
+   "ST-M15-moa-04": "Tazarotene is indicated in acne vulgaris and plaque psoriasis.",
+   "ST-M15-moa-05": "Adapalene is the least irritating topical retinoid and least prone to photodegradation.",
+   "ST-M16-adverse_effects-01": "Glutathione intravenous skin-lightening use has been associated with skin rashes, Stevens-Johnson-like reactions, and reports of renal and liver dysfunction.",
+   "ST-M16-effects-01": "Intravenous glutathione for skin lightening is not supported by the US FDA or multiple national regulatory agencies and has insufficient high-quality efficacy evidence.",
+   "ST-M16-effects-02": "Topical vitamin C is supported by stronger evidence than IV vitamin C for photoaging and pigmentation.",
+   "ST-M17-adverse_effects-01": "Unregulated stem cell products have caused serious adverse events including blindness after intra-ocular injection and tumor formation at ectopic sites.",
+   "ST-M2-adverse_effects-01": "Hyaluronic acid fillers exhibit limited allergic reactivity.",
+   "ST-M2-adverse_effects-02": "Hyaluronic acid fillers can cause tissue imbalance if muscle activity exceeds tissue firmness.",
+   "ST-M2-adverse_effects-03": "Allergic reactions occur rarely with hyaluronic acid fillers.",
+   "ST-M2-moa-02": "Hyaluronic acid fillers restore facial volume and contour lost due to ageing-related changes in skin, fat pads, bones, and muscles.",
+   "ST-M3-adverse_effects-01": "PLLA heterogeneous particle morphology may result in greater macrophage activation compared to uniform spherical particles of other biostimulators",
+   "ST-M4-adverse_effects-01": "Non-crosslinked hyaluronic acid shows inconsistent results due to rapid degradation.",
+   "ST-M4-adverse_effects-02": "Mesotherapy cocktails may lead to local or systemic hypersensitivity reactions including foreign-body granulomas.",
+   "ST-M5-adverse_effects-01": "Post-procedure pain, swelling, and bruising at injection sites are the most frequently reported PRP adverse events.",
+   "ST-M5-adverse_effects-02": "Transmission of infection is a theoretical risk when exogenous (non-autologous) blood products are used.",
+   "ST-M7-adverse_effects-01": "Thread lifting with absorbable barbed threads is associated with minor and reversible adverse effects.",
+   "ST-M7-adverse_effects-02": "Mild post-operation tumefaction occurs and is successfully treated with non-steroidal drugs.",
+   "ST-M7-adverse_effects-03": "No acute inflammatory responses are elicited by the procedure.",
+   "ST-M7-adverse_effects-04": "Mild post-operation tumefaction occurs and is treated with non-steroidal drugs.",
+   "ST-M7-adverse_effects-05": "Most adverse responses resolve spontaneously or with minimal supportive therapy.",
+   "ST-M7-adverse_effects-06": "Poly(L-lactide-co-ε-caprolactone) has low tissue reactivity.",
+   "ST-M8-adverse_effects-01": "Fractional CO2 laser causes worsening of hyperpigmentation.",
+   "ST-M8-adverse_effects-02": "Ablative lasers cause crusting.",
+   "ST-M8-adverse_effects-03": "Ablative lasers cause oozing.",
+   "ST-M8-adverse_effects-04": "Picosecond lasers cause postoperative oozing and crustation.",
+   "ST-M8-adverse_effects-05": "Fractional CO2 lasers worsen hyperpigmentation temporarily.",
+   "ST-M8-moa-03": "Picosecond Nd:YAG laser reduces pigmentation in hyperpigmented scars.",
+   "ST-M8-moa-08": "Picosecond Nd:YAG lasers improve pigmentation in hyperpigmented scars."
+  }
+ },
+ "side_effects": {
+  "places": [
+   {
+    "where": "step8 safety.complications[](합병증 노드)",
+    "what": "severity mild = 흔한 예상 반응 섞임",
+    "count": "전체 65 · severity {'mild': 38, 'moderate': 13, 'severe': 11, 'critical': 3} · 계열 ['M1', 'M11', 'M14', 'M15', 'M16', 'M2', 'M3', 'M7', 'M8', 'M9']"
+   },
+   {
+    "where": "step8 safety.family_text[계열]「부작용 문장 common · uncommon · serious」",
+    "what": "계열 원문 속성(「합병증 노드 아님 · B13」 라벨)",
+    "count": "common 59 · uncommon 45 · serious 37 · 계열 17(M1~M17)"
+   },
+   {
+    "where": "step8 evidence.statements[field=adverse_effects]",
+    "what": "문헌 문장",
+    "count": "32 → 분류 부작용(흔한 예상 반응) 9, 색소 반응(PIH — 5단계 PIH 속성과 겹침) 4, 드문 · 중대 반응(합병증 성격) 9, 안전성 총평(내약성 · 경미 · 반응 없음) 6, 기전 · 효과 한계(이상 반응 칸에 있으나 반응 아님) 4"
+   },
+   {
+    "where": "step5 extracted[](키 safety.common · safety.serious) — 본문은 브론즈 taxonomy modality[].products[].extracted",
+    "what": "제품 × 계열 · 단위 시술 수준 원문(5단계 「이 제품으로 했을 때」)",
+    "count": "safety.common 키 521(attach {'제품 × 계열': 207, '단위 시술': 147, '원문 보관(6단계 패키지)': 16, '제품 × 계열 × 키 하위': 111, '단위 시술 후보': 19, '원문 보관(원장님 문의)': 1, '원문 보관(값)': 17, '원문 보관(시술 아님(다른 단계))': 2, '원문 보관(시술 아님)': 1}) · safety.serious 189"
+   },
+   {
+    "where": "step8 safety.item_text_counts · item_aftercare_dest",
+    "what": "원장 항목 안전 문장 셈",
+    "count": "{\"aftercare\": 521, \"safety.common\": 521, \"safety.long_term\": 1, \"safety.note\": 4, \"safety.serious\": 187}"
+   }
+  ],
+  "gap_families": [
+   "M10",
+   "M12",
+   "M13",
+   "M17",
+   "M4",
+   "M5",
+   "M6",
+   "N1",
+   "N10",
+   "N2",
+   "N3",
+   "N4",
+   "N5",
+   "N6",
+   "N7",
+   "N8",
+   "N9"
+  ],
+  "gap_family_text": {
+   "M10": {
+    "common": 3,
+    "uncommon": 2,
+    "serious": 0
+   },
+   "M12": {
+    "common": 3,
+    "uncommon": 3,
+    "serious": 1
+   },
+   "M13": {
+    "common": 2,
+    "uncommon": 1,
+    "serious": 0
+   },
+   "M17": {
+    "common": 2,
+    "uncommon": 1,
+    "serious": 1
+   },
+   "M4": {
+    "common": 4,
+    "uncommon": 3,
+    "serious": 2
+   },
+   "M5": {
+    "common": 3,
+    "uncommon": 1,
+    "serious": 1
+   },
+   "M6": {
+    "common": 3,
+    "uncommon": 3,
+    "serious": 3
+   },
+   "N1": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N10": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N2": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N3": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N4": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N5": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N6": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N7": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N8": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   },
+   "N9": {
+    "common": 0,
+    "uncommon": 0,
+    "serious": 0
+   }
+  },
+  "gap_stmt_adverse": {
+   "M10": 0,
+   "M12": 5,
+   "M13": 0,
+   "M17": 1,
+   "M4": 2,
+   "M5": 2,
+   "M6": 0,
+   "N1": 0,
+   "N10": 0,
+   "N2": 0,
+   "N3": 0,
+   "N4": 0,
+   "N5": 0,
+   "N6": 0,
+   "N7": 0,
+   "N8": 0,
+   "N9": 0
+  },
+  "mild_not_common": [
+   {
+    "id": "CX-M1-02",
+    "name": "멍 (타박상)",
+    "incidence": "약 11-25% (부위·기법에 따라)"
+   },
+   {
+    "id": "CX-M1-04",
+    "name": "두통",
+    "incidence": "5-10%"
+   },
+   {
+    "id": "CX-M1-06",
+    "name": "독감 유사 증상",
+    "incidence": "1.7-20% (치료 방문의 약 14%)"
+   },
+   {
+    "id": "CX-M1-07",
+    "name": "안면 비대칭",
+    "incidence": "3-8%"
+   },
+   {
+    "id": "CX-M2-01",
+    "name": "멍 / 반상출혈 (Bruising / Ecchymosis)",
+    "incidence": "19-24% (필러 시술 전반, 부위·기법 무관하게 가장 흔한 부작용군)"
+   },
+   {
+    "id": "CX-M2-07",
+    "name": "비대칭 (Asymmetry)",
+    "incidence": "5-10%"
+   },
+   {
+    "id": "CX-M7-04",
+    "name": "비대칭",
+    "incidence": "5-10%"
+   },
+   {
+    "id": "CX-M7-06",
+    "name": "피부 딤플링/주름짐 (Skin Dimpling/Puckering)",
+    "incidence": "약 7-10%(50세 초과에서 최대 16%)"
+   },
+   {
+    "id": "CX-M14-07",
+    "name": "염증후 색소침착 (Post-inflammatory Hyperpigmentation, PIH)",
+    "incidence": "드묾. Fitzpatrick IV-VI(진한 피부톤)에서 상대적으로 높음"
+   }
+  ]
+ },
+ "out_of_picture": {
+  "no_anchor": {
+   "total": 52,
+   "page_note": 52,
+   "by_source": {
+    "① P1 detail 고민 낱말": 1,
+    "③ problem-packages CC 추천 시술": 30,
+    "② problem-combos": 3,
+    "④ treatment-optimization optimal_combo": 8,
+    "⑥ 5단계 units[].purposes(원장 용도)": 6,
+    "⑥ 5단계 목적 키(제품 출처)": 1,
+    "⑦ 원장 메뉴 분류(6단계 넘김)": 3
+   },
+   "by_class": {
+    "앵커 없음(결정대로) — (고민 노드 없음 — 꺼짐)": 1,
+    "앵커 없음(결정대로) — (앵커 없음 — 쁘띠시술)": 30,
+    "앵커 없음(결정대로) — (P1 — 고민 앵커 없음)": 3,
+    "앵커 있음 — from_concerns 가 「목적:{이름}」 문자열(페이지가 고민 id 로만 찾음)": 8,
+    "앵커 있음 — purpose_nodes 칸(페이지가 이 칸을 안 읽음)": 10
+   }
+  },
+  "special_site_units": {
+   "total": 31,
+   "by_site": {
+    "병변 단위": 4,
+    "해당 없음": 27
+   },
+   "by_family": {
+    "N4": 2,
+    "M16": 25,
+    "N5": 1,
+    "N6": 1,
+    "M8": 1,
+    "M13": 1
+   },
+   "rule": {
+    "해당 없음": "DEC-003 OQ-306 처리 — 전신 투여(수액 · 태반 · 성장호르몬)",
+    "병변 단위": "F3 · U4 — 병변 수 · 면적으로 매기는 시술(점 · 문신 · 쥐젖 · 켈로이드)"
+   }
+  },
+  "isolated_concern": [
+   "J14-잇몸미소"
+  ]
+ },
+ "id_issues": [
+  {
+   "where": "제품",
+   "issue": "원장 ledger_id 8꼴(타임스탬프 포함 · step1-new-APTOS)",
+   "count": {
+    "M9-9-9": 85,
+    "auto-M9-9": 176,
+    "auto-9-9": 35,
+    "auto-M9-hADM-9": 1,
+    "auto-M9-DCA-9": 7,
+    "new-DEV-9": 34,
+    "M9-P-9": 14,
+    "step9-new-APTOS": 1,
+    "step9-new-FASCELLA": 1
+   }
+  },
+  {
+   "where": "고민",
+   "issue": "4꼴(P{n} · P{n}-{n} · auto-{n}-{timestamp} · J{n}-{한글}) — 결정 노드 id 에 한글 이름이 들어감(J10-피부결)",
+   "count": {
+    "P9": 12,
+    "P9-9": 31,
+    "auto-9-9": 11,
+    "J9-가": 3
+   }
+  },
+  {
+   "where": "목적",
+   "issue": "id 없음 — 이름이 키 · 엣지는 「목적:볼륨 회복(충전)」 문자열(from · from_concerns · correspondence target) · purpose_nodes 는 「:」 없는 이름",
+   "count": {
+    "from_목적": 89,
+    "from_concerns_목적": 8,
+    "purpose_nodes": 55,
+    "corr_목적": 29
+   }
+  },
+  {
+   "where": "8단계 끝점",
+   "issue": "엣지 끝이 id 가 아니라 문자열 문법(family:M7#PDO | PDO · units:U5-018,U5-037 · bundle:M11|M8|M9 · all) — 칸 안에 하위 · 원문까지 섞임",
+   "count": {
+    "all": 1,
+    "units": 137,
+    "bundle(여럿)": 2,
+    "family": 177,
+    "units(여럿)": 124,
+    "family(여럿)": 1
+   }
+  },
+  {
+   "where": "확인 조건 대상",
+   "issue": "conditions.claims[].target 이 dict(level · units · families) · 문자열('family:' · 'ledger:' · '모든 시술') · list('product:') 세 꼴",
+   "count": {
+    "dict": 14,
+    "str": 350,
+    "list": 9
+   }
+  },
+  {
+   "where": "경과 타임라인",
+   "issue": "id = 원천 영문 키(botox · ha-filler …) · attach 문자열(family:M1 · unit:U5-028)",
+   "count": 10
+  },
+  {
+   "where": "위험지대 주의",
+   "issue": "SC-{zone}-{계열} — zone 이 부위 id 와 다른 원천 영문",
+   "count": 22
+  },
+  {
+   "where": "id 머리글 겹침",
+   "issue": "K 가 기법(K01) · 조건 주장(K8-0001) 둘 · P 가 고민(P1-1) · 패키지(P6-01) 둘 · R 이 관계 주장(R8-0001) · 7단계 규칙(R12) · 레시피 원천(RC-RE-R1) — 지금 같은 문자열은 없으나 종류 접두가 없으면 겹칠 자리",
+   "count": null
+  },
+  {
+   "where": "칸 이름",
+   "issue": "같은 뜻 다른 칸 — 근거 수준(evidence_level 약/중/강 · accuracy_score · strength_original · weak) · 질문(origin_question · staff_question · doctor_questions · pending_director · confirm_question) · 결정 출처(decided_by · decision · basis) · 동의어(synonyms[] 문자열 배열(2단계) · {text,type}(3 · 5 · 6단계) · search_names{name,lang}(1단계) · aliases{source,text}(7단계 목적))",
+   "count": null
+  },
+  {
+   "where": "라인",
+   "issue": "items[].line 두 모양(role 라인 {items[]} · 라인 구성 {members[]} · 품목)",
+   "count": {
+    "라인 구성": 17,
+    "라인": 11,
+    "품목": 6
+   }
+  }
+ ],
+ "decision_bundles": [
+  {
+   "id": "B1",
+   "title": "부작용 ≠ 합병증 — 부작용을 꺼냄",
+   "rec": "합병증 노드는 중대 반응만(severity moderate · severe · critical) · severity mild 는 부작용으로 옮겨 노드가 아닌 계열 속성 「부작용」(+ 제품 × 계열 · 단위 시술은 5단계 extracted safety.common 으로 덮어씀 — 상속 I8 과 같은 꼴). 근거 문장 adverse_effects 중 「부작용」 9 · 색소 4 는 부작용 속성의 근거, 「드문 · 중대」 9 는 합병증 근거",
+   "basis": [
+    "사용자 10-29 「부작용 ≠ 합병증」(브리프)",
+    "DEC-001 D-06 「안전 엣지(금기 · 간격 · 부작용)」 — 부작용을 따로 부름",
+    "step8 family_text 가 이미 「부작용 문장 … 합병증 노드 아님」으로 나눠 둠",
+    "severity 칸이 원천 칸이라 결정론"
+   ],
+   "count": "합병증 65 → 남는 합병증 27 · 부작용으로 38 · 예외 확인 9(mild 인데 발생률 낱말이 「흔함」 아님 — 비대칭 · 딤플링 · 두통 …)",
+   "who": "코디(추천 채택) · 예외 9건은 의료진 질문"
+  },
+  {
+   "id": "B2",
+   "title": "근거 문장 119 종류 재분류",
+   "rec": "field 칸(moa · effects · adverse_effects)은 원천 그대로 두고 class 칸을 더함(분류 위 표). 칸과 뜻이 다른 문장 12 은 원천 수정 후보",
+   "basis": [
+    "step8 evidence.statements[].field",
+    "이 조사 분류(원문 낱말 기준)"
+   ],
+   "count": "{\"부작용(흔한 예상 반응)\": 9, \"색소 반응(PIH — 5단계 PIH 속성과 겹침)\": 4, \"드문 · 중대 반응(합병증 성격)\": 9, \"안전성 총평(내약성 · 경미 · 반응 없음)\": 6, \"기전 · 효과 한계(이상 반응 칸에 있으나 반응 아님)\": 4, \"효과(기전 칸에 있음)\": 3, \"적응증(기전 칸에 있음)\": 2, \"안전성 비교(기전 칸에 있음)\": 1, \"근거 수준 · 규제(효과 칸에 있음)\": 2, \"기전\": 44, \"효과\": 35}",
+   "who": "코디"
+  },
+  {
+   "id": "B3",
+   "title": "끝점 묶음 — 노드 / 엣지 속성",
+   "rec": "엣지 속성(candidates[]). 끝점 묶음 노드 종류는 세우지 않음: 끝점 = 단위 시술 1 · 계열 1 · 계열 + 조건(하위 · 기법 · 부위 · 용도) · 모든 시술 중 하나 + 후보 목록 칸 + 표시 「후보 여럿」. units:a,b,c 는 같은 원문 이름이 가리킨 후보라 묶음 자체에 이름 · 정체가 없음(노드 기준 「원천이 따로 부른다」에 안 맞음)",
+   "basis": [
+    "step8 claims[].a|b 가 이미 units[] · n_units · flag 칸을 가짐(끝점 = 칸)",
+    "silver-graph-build.py 의 set 노드는 그림용(실버 파일에 노드 없음)",
+    "10-27 「동의어가 여러 노드면 후보 전부 반환」(W-1) — 후보는 응답 쪽 개념",
+    "부위 기준(10-28): 노드는 원천이 따로 부르는 것"
+   ],
+   "count": "페이지 끝점 묶음 노드 43 · 묶음 원소 엣지 185 · 실버 끝점 {'all': 1, 'units': 137, 'bundle(여럿)': 2, 'family': 177, 'units(여럿)': 124, 'family(여럿)': 1}",
+   "who": "코디(추천) — 사용자 표 U3"
+  },
+  {
+   "id": "B4",
+   "title": "엣지 종류 32 → 21(합침 · 나눔)",
+   "rec": "위 「엣지 종류(추천)」 표대로 — 같은 뜻 합침 9묶음 · 상위/관련 나눔 1 · 저장 엣지 아님 2(상속 후보 · 묶음 원소) · 새로 1(라인 품목)",
+   "basis": [
+    "페이지 ekind 표 · 실버 칸 경로"
+   ],
+   "count": "페이지 32 → 추천 21",
+   "who": "코디"
+  },
+  {
+   "id": "B5",
+   "title": "사전 한 정본",
+   "rec": "표현 행 하나 + targets[] + qualifier 구조(§4) — 7단계 resolver.fam_kw 와 8단계 alias 의 수준 차이는 qualifier 로 합치고 단위 시술 펼치기는 상속 규칙 I3 로",
+   "basis": [
+    "사전 겹침 셈",
+    "7 · 8단계 같은 낱말 다른 대상"
+   ],
+   "count": "사전 자리 14 · 원소 2454 · 겹침 147 · 7↔8 같은 낱말 31(대상 다름 17)",
+   "who": "코디"
+  },
+  {
+   "id": "B6",
+   "title": "id 규칙 하나로",
+   "rec": "노드 id = {종류 접두}:{안정 키}. 제품 = 원장 ledger_id 유지(원천 추적) · 목적 = 새 id(접두 + 일련) + 이름 · 결정 고민 노드 J{n}-{한글} 은 이름을 id 에서 떼어 이름 칸으로 · 8단계 끝점 문자열은 {kind, id, qualifier} 구조로 · 확인 조건 대상 세 꼴을 하나로",
+   "basis": [
+    "id 규칙 불일치 표"
+   ],
+   "count": "불일치 10갈래",
+   "who": "코디"
+  },
+  {
+   "id": "B7",
+   "title": "상속 저장 위치 하나로",
+   "rec": "상속은 저장하지 않고 골드가 계산(합병증 units_inherit 도 계산으로) — 실버는 「붙는 수준」만",
+   "basis": [
+    "상속 I1 · I4 — 합병증만 펼쳐 저장 · 페이지 상속 후보 엣지"
+   ],
+   "count": "합병증 units_inherit 합 725 · 제품 상속 후보 합 1364",
+   "who": "코디"
+  },
+  {
+   "id": "B8",
+   "title": "확인 조건 「조건 아님」 주장 27",
+   "rec": "grade3 「조건 아님(상담 · 시술 준비)」 · kind 상담 · 시술 준비 · 고지 문장은 확인 조건 엣지가 아니라 계열 원문 속성(G10 그대로) — 지금 conditions.claims 안에 섞여 있어 엣지 셈에서 빼야 함",
+   "basis": [
+    "로그 step8 §3-10 「상담 · 시술 준비 · 고지 문장은 조건 엣지가 아니라 계열 원문 속성」"
+   ],
+   "count": "grade3 {'금기': 197, '확인만': 74, '주의': 64, '조건 아님(상담)': 22, '확인만(고지)': 11, '조건 아님(시술 준비)': 5} · kind {'사람 조건': 325, '상담 항목': 22, '시술 준비 항목': 5, '고지 항목': 6, '부위 조건(사람 조건 아님) → 계열 원문 속성 · 부위 표시(site_caution 은 anatomy M1/M2 만)': 2, '효과 문장(조건 아님) → 계열 원문 속성': 1, '근거 수준 문장(조건 아님) → 계열 원문 속성': 1, '사람 조건(시술 쌍에서 옮김 · C10)': 5, '연령대 조건': 6}",
+   "who": "코디"
+  },
+  {
+   "id": "B9",
+   "title": "업체 · 허가 · 규격 자리",
+   "rec": "업체 = 노드(DEC-003 「제조사 원장」 결정) — id 는 새로(업체 이름 정규화). 허가 · 규격 = 제품 속성(1단계 그대로)",
+   "basis": [
+    "DEC-003 Decision · _RESUME §2 10-27 「실버에 제조사 … 원장 추가」",
+    "step1 6_companies 이름 문자열"
+   ],
+   "count": "업체 이름 269종 · 허가 327",
+   "who": "코디(이미 결정된 것 적용)"
+  },
+  {
+   "id": "B10",
+   "title": "그림 밖 52 정리",
+   "rec": "고민 → 시술 원천 행 중 앵커 없음 52 가운데 18 은 데이터에 앵커가 있음(purpose_nodes · 「목적:」 문자열) — 목적 id(B6) 뒤 그림 안으로. 나머지는 결정대로 앵커 없음(J5 쁘띠시술 · J9 꺼짐) — 원문 보관",
+   "basis": [
+    "step7 edges[] purpose_nodes · from_concerns",
+    "_RESUME §2 10-29 J5 · J9"
+   ],
+   "count": "{\"앵커 없음(결정대로) — (고민 노드 없음 — 꺼짐)\": 1, \"앵커 없음(결정대로) — (앵커 없음 — 쁘띠시술)\": 30, \"앵커 없음(결정대로) — (P1 — 고민 앵커 없음)\": 3, \"앵커 있음 — from_concerns 가 「목적:{이름}」 문자열(페이지가 고민 id 로만 찾음)\": 8, \"앵커 있음 — purpose_nodes 칸(페이지가 이 칸을 안 읽음)\": 10}",
+   "who": "코디"
+  },
+  {
+   "id": "B11",
+   "title": "부위 노드 없는 단위 시술 31",
+   "rec": "특수 부위 「해당 없음」 · 「병변 단위」를 부위 노드로 세우지 않고 단위 시술 key.site 값 + 표시로(지금 그대로) — 부위 기준(몸 겉에서 가리킬 수 있는 자리)에 안 맞음",
+   "basis": [
+    "_RESUME §2 10-28 「부위 기준」 · 10-27 DEC-003 OQ-306 「전신 두 뜻 분리」",
+    "step5 rules.special_sites"
+   ],
+   "count": "{\"병변 단위\": 4, \"해당 없음\": 27}",
+   "who": "코디"
+  },
+  {
+   "id": "B12",
+   "title": "gate_status · 표시 공통",
+   "rec": "gate_status 를 모든 노드 · 엣지 · 주장 공통 3값으로: 자동(완전 일치) · 자동(규칙) · 결정(decided_by 있음 — 사람이 정함). 「미확인」은 상태가 아니라 표시(question · weak · gap)로. 옛 SPEC-004 의 unconfirmed 는 표시로 대체 · 표시는 §5 표 12종 하나로(페이지 한 글자 코드 7 → 이름 있는 표시)",
+   "basis": [
+    "§5"
+   ],
+   "count": "표시 12",
+   "who": "코디"
+  }
+ ],
+ "user_final": [
+  {
+   "id": "U1",
+   "q": "합병증 gap 17계열 — 어떻게 둘까",
+   "options": [
+    "(가) gap 유지(원천이 먼저 — 로그 step8 §6)",
+    "(나) 원천 안 문장으로 일부 채움 — family_text 「부작용 문장」이 있는 gap 계열 7(M10, M12, M13, M17, M4, M5, M6): serious 문장 있는 5(M12, M17, M4, M5, M6)은 합병증으로 · common · uncommon 은 부작용(B1)으로",
+    "(다) 문헌 조사로 채움(새 원천 — 조사 워커)"
+   ],
+   "rec": "(나) 먼저 — 합병증 gap 은 12계열로 줄고(serious 없는 M10, M13 + 원천 없는 N 계열 10) 그것은 (가) 유지 · (다)는 사용자 판단",
+   "why": "gap 17 중 7계열은 브론즈에 「부작용 문장」이 있어 문헌 조사 없이 채울 수 있음(지금 B13 라벨로 「합병증 노드 아님」) · N 계열 10은 원천에 아무것도 없음",
+   "count": "{\"M10\": {\"common\": 3, \"uncommon\": 2, \"serious\": 0}, \"M12\": {\"common\": 3, \"uncommon\": 3, \"serious\": 1}, \"M13\": {\"common\": 2, \"uncommon\": 1, \"serious\": 0}, \"M17\": {\"common\": 2, \"uncommon\": 1, \"serious\": 1}, \"M4\": {\"common\": 4, \"uncommon\": 3, \"serious\": 2}, \"M5\": {\"common\": 3, \"uncommon\": 1, \"serious\": 1}, \"M6\": {\"common\": 3, \"uncommon\": 3, \"serious\": 3}, \"N1\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N10\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N2\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N3\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N4\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N5\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N6\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N7\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N8\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}, \"N9\": {\"common\": 0, \"uncommon\": 0, \"serious\": 0}}"
+  },
+  {
+   "id": "U2",
+   "q": "부작용을 어디에 둘까",
+   "options": [
+    "(가) 계열 속성 + 제품 × 계열 · 단위 시술 덮어쓰기(추천)",
+    "(나) 부작용 노드 종류 새로(합병증처럼)",
+    "(다) 합병증 노드 하나에 kind 칸만"
+   ],
+   "rec": "(가)",
+   "why": "흔한 예상 반응은 이름이 계열마다 같은 말(멍 · 부기 · 홍반)이라 노드로 세우면 같은 이름 노드가 계열 수만큼 · 사용자 요청 「단위 시술 · 제품 속성으로」(브리프)",
+   "count": "severity mild 38 · common 문장 59"
+  },
+  {
+   "id": "U3",
+   "q": "끝점 묶음 44 — 노드 / 엣지 속성",
+   "options": [
+    "(가) 엣지 속성 candidates[](추천)",
+    "(나) 정식 노드 종류"
+   ],
+   "rec": "(가)",
+   "why": "엣지 속성(candidates[]). 끝점 묶음 노드 종류는 세우지 않음: 끝점 = 단위 시술 1 · 계열 1 · 계열 + 조건(하위 · 기법 · 부위 · 용도) · 모든 시술 중 하나 + 후보 목록 칸 + 표시 「후보 여럿」. units:a,b,c 는 같은 원문 이름이 가리킨 후보라 묶음 자체에 이름 · 정체가 없음(노드 기준 「원천이 따로 부른다」에 안 맞음)",
+   "count": "페이지 끝점 묶음 노드 43 · 묶음 원소 엣지 185 · 실버 끝점 {'all': 1, 'units': 137, 'bundle(여럿)': 2, 'family': 177, 'units(여럿)': 124, 'family(여럿)': 1}"
+  }
+ ]
+}

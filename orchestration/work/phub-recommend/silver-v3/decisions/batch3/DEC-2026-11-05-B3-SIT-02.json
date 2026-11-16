@@ -1,0 +1,41 @@
+{
+ "id": "DEC-2026-11-05-B3-SIT-02",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "site"
+ },
+ "new_value": {
+  "canonical": "팔자주름",
+  "category": null,
+  "synonyms": [
+   "팔자"
+  ]
+ },
+ "reason": "부위 「팔자주름」(nasolabial)의 동의어 「팔자」 — 「필러 팔자+볼」= (필러, 팔자주름)+(필러, 볼) · 「필러 팔자」.",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:common_combos[].sequence[]@5/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/2/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.md §12 V3-4 후속 「필러 팔자+볼」의 「팔자」(부위 사전 팔자주름의 동의어?)"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-5-brief.md B — 부위 「팔자」(필러 팔자+볼)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

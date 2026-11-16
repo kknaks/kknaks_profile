@@ -1,0 +1,92 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 4/15 · 원장 문구에서 멤버 하나 전체로 쓰인 자리 12",
+ "gate_item": "b4-adv/021",
+ "gate_option": "new_event",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-ADV-021n",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "색소탈실",
+  "category": null,
+  "synonyms": []
+ },
+ "proposal_item": "b4-adv/021",
+ "reason": "결정 묶음 4 — 문구 조각 「색소탈실」 을 새 사건 값으로(원장 문구에서 멤버 하나 전체로 12 자리)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@7/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.serious[]@M15/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.serious[]@14/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.uncommon[]@M8/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].extracted.safety.uncommon[]@7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@7/1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@7/3/1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/3/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/4/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/4/1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.serious[]@7/4/11/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@7/2/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@7/3/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_event_type"
+ }
+}

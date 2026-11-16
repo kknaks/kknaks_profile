@@ -1,0 +1,49 @@
+/problems/13  problem_id='P14' problem='기타' complaints[7]
+
+## c0 /problems/13/complaints/0  cc='점제거' | cc_detail='CO2 레이저' | cc_group='점/사마귀'
+  P0 name='레이저' category='M8' role='병변 제거' products=['CO2레이저']
+  B0 name='레이저 제거' combo=['레이저']
+     reason='레이저로 정밀 제거'
+     evidence='CO2 레이저 사용'
+  A0 '전문의 상담 필수'
+
+## c1 /problems/13/complaints/1  cc='사마귀' | cc_detail='냉동/CO2' | cc_group='점/사마귀'
+  P0 name='레이저' category='M8' role='병변 제거' products=['CO2레이저']
+  B0 name='레이저 제거' combo=['레이저']
+     reason='레이저로 정밀 제거'
+     evidence='CO2 레이저 사용'
+  A0 '전문의 상담 필수'
+
+## c2 /problems/13/complaints/2  cc='문신제거' | cc_detail='피코레이저' | cc_group='문신제거'
+  P0 name='피코레이저' category='M8' role='문신 색소 파괴' products=['피코슈어', '피코웨이']
+  B0 name='피코레이저 시리즈' combo=['피코레이저']
+     reason='피코초 레이저로 색소 분해'
+     evidence='다회차 필요'
+  A0 '전문의 상담 필수'
+
+## c3 /problems/13/complaints/3  cc='보톡스' | cc_detail='겨드랑이/손/발' | cc_group='다한증'
+  P0 name='보톡스' category='M1' role='땀샘(한선) 신경전달 차단으로 발한 억제' products=['보톡스', '나보타', '보툴렉스']
+  combos=[] (빈 배열)
+  A0 '효과 부족 시 리프팅기기 추가'
+  A1 '전문의 상담 필수'
+
+## c4 /problems/13/complaints/4  cc='미라드라이' | cc_detail='마이크로웨이브 · 영구적' | cc_group='다한증'
+  P0 name='미라드라이' category='M9' role='영구적 한선 파괴' products=[]
+  B0 name='미라드라이' combo=['미라드라이']
+     reason='마이크로파로 한선 영구 파괴'
+     evidence='1~2회로 영구 효과'
+  A0 '전문의 상담 필수'
+
+## c5 /problems/13/complaints/5  cc='백반증' | cc_detail='엑시머 308nm' | cc_group='피부질환'
+  P0 name='레이저' category='M8' role='광선치료' products=[]
+  B0 name='광선치료' combo=['레이저']
+     reason='자외선 치료'
+     evidence='다회차 시리즈'
+  A0 '전문의 상담 필수'
+
+## c6 /problems/13/complaints/6  cc='건선' | cc_detail='UVB 광치료' | cc_group='피부질환'
+  P0 name='레이저' category='M8' role='광선치료' products=[]
+  B0 name='광선치료' combo=['레이저']
+     reason='자외선 치료'
+     evidence='다회차 시리즈'
+  A0 '전문의 상담 필수'

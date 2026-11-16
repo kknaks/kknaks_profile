@@ -1,0 +1,90 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "닫히는 문구 자리 5/14(unlinked → auto) · 근거 「반상출혈」 ⊃ 조각 「출혈」",
+ "gate_item": "b4-adv/027",
+ "gate_option": "syn_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-ADV-027a",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "멍",
+  "category": null,
+  "synonyms": [
+   "출혈"
+  ]
+ },
+ "proposal_item": "b4-adv/027",
+ "reason": "결정 묶음 4 — 문구 조각 「출혈」 을 adverse_event_type 「멍」 의 동의어로(근거: 「반상출혈」 ⊃ 조각 「출혈」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@11/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@3/0/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@11/0/1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@11/0/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@11/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@3/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@4/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].normal[]@6/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@6/1/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@11/0/0/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@11/1/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/12/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/13/2/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].mandatory_disclosures[]@11/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "dictionary": "adverse_event_type"
+ }
+}

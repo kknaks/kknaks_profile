@@ -1,0 +1,94 @@
+{
+ "id": "DEC-2026-11-06-B6A-ING-01",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "ingredient_material"
+ },
+ "new_value": {
+  "canonical": "HA",
+  "synonyms": []
+ },
+ "reason": "사용자 결정 2026-11-06 오후(HANDOFF 「성분 씨앗 17: HA·히알루론산·TCA·글리콜산·살리실산·페놀 6 추가」) — 성분 사전 값 「HA」 · 근거 발주서 명시(필링 산·성분) · 원장 자리 44 · 라벨 HA 볼류마이징 스킨부스터, HA 필러, HA 필러(딥), 필러(HA/CaHA). HA 와 히알루론산은 ERD §9.21 에 따로 선 값 둘(한 값+동의어로 묶는 것은 사용자 결정 없음 · 그대로 둠).",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@5/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].from@0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:minimum_intervals[].from@1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].name@1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/2"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/4"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/5"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/6"
+  },
+  {
+   "kind": "ledger",
+   "ref": "market-pricing.json:categories[].items[].name@1/7"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/seed/approved_v33/ingredient_material/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

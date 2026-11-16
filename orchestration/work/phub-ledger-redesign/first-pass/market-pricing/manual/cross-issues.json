@@ -1,0 +1,107 @@
+{
+ "preface": "원장 전반에 걸친 항목은 구획 X 로 적는다. 다른 원장은 열지 않았고, 다른 원장과의 연결은 모두 후속(F)이다.",
+ "empty_notes": {
+  "A": "없음 — 검증(verify.py)에서 Pointer·구간·원문 재현·소유 누락/중복 오류 0. 작업 중 발견해 고친 추출 오류는 validation.md §작업 중 고친 것 에 기록.",
+  "C": "0건. 잔여 B·I·P·F·K 를 검토했고, 지금 사용자가 고를 선택지는 없다 — B 는 원문 부족(사용자 추측으로 메우지 않음), I 는 원본 보존 지시 아래 후속 확인 후보, P·F 는 21개 원장 비교 후 설계 단계에서 묶어 제시할 과제다."
+ },
+ "issues": [
+  [
+   "B-X-1",
+   "B",
+   [
+    "/categories/0/items/0/low"
+   ],
+   "항목마다 가격 출처·조사 시점·지역(시·도)·표본 수가 없다(122항목). 가격 신뢰도·지역별 비교가 제한된다."
+  ],
+  [
+   "B-X-2",
+   "B",
+   [
+    "/categories/0/items/0/low",
+    "/categories/0/items/0/mid",
+    "/categories/0/items/0/high"
+   ],
+   "low·mid·high 가 1회/패키지 총액인지, 부가세 포함인지 원문에 없다(122항목). 회차 패키지(3회·4회)의 회당 가격 계산이 근거 없이 된다."
+  ],
+  [
+   "P-X-1",
+   "P",
+   [
+    "/categories/3/items/5/unit",
+    "/categories/7/items/4/name",
+    "/categories/9/items/5/name",
+    "/categories/12/items/3/name",
+    "/categories/14/items/1/name",
+    "/categories/2/name",
+    "/categories/4/name",
+    "/categories/8/name",
+    "/categories/9/name"
+   ],
+   "'/' 가 대안·나열·분모 중 무엇인지 출현마다 다를 수 있다. README '/'=둘 중 하나 규칙을 이 원장에 그대로 적용할지 잠정."
+  ],
+  [
+   "P-X-2",
+   "P",
+   [
+    "/categories/0/items/0/name"
+   ],
+   "항목 name 은 하나의 문자열에 시술/제품/장비·부위·고민·목적·용량·회차·원산지가 섞여 있다. 괄호의 역할도 항목마다 다르다(부위·용량·성분·목적·별칭·원산지). 분해 규칙은 후속."
+  ],
+  [
+   "F-X-1",
+   "F",
+   [
+    "/categories/0/items/0/name"
+   ],
+   "같은 카테고리 안 항목 이름 축이 섞인다: 부위 축(M1·M2·M6), 제품/장비 축(M3·M4·M8·M9·M11 일부), 고민 축(M11 items/4~6·M13). 시술·부위·고민 분리는 후속 의미 조사."
+  ],
+  [
+   "F-X-2",
+   "F",
+   [
+    "/categories/5/items/3/name",
+    "/categories/5/items/6/name",
+    "/categories/8/items/0/name"
+   ],
+   "'풀페이스'·'전체얼굴'·'전신' 등 범위 표현이 카테고리마다 다르다. 같은 범위인지 후속."
+  ],
+  [
+   "F-X-3",
+   "F",
+   [
+    "/categories/0/name"
+   ],
+   "카테고리 id(M1~M17)·name 이 다른 원장의 분류와 같은 체계인지 이 원장만으로 알 수 없다. 원장 간 연결은 21개 비교 후."
+  ],
+  [
+   "P-X-3",
+   "P",
+   [
+    "/categories/0/items/0/low"
+   ],
+   "122항목 모두 low < mid < high (기계 확인). mid 가 (low+high)/2 와 같은 항목은 122 중 3 — mid 는 산술 중간값이 아니다. mid 의 정의는 B-S00-2."
+  ],
+  [
+   "K-X-1",
+   "K",
+   [
+    "/categories/3/items/5/name",
+    "/categories/9/items/0/name",
+    "/categories/11/items/3/name"
+   ],
+   "제품·장비명 후보 오분절 21출현(정가·쥬베룩·리쥬란·볼뉴머·부위당·리프팅·양쪽·몰딩·이모드·더마펜·이중턱·소부위·영숫자혼합 CO2/10cm2/B1). 수식 탐색 영향: '더'(더마펜)·'딩'(몰딩) 부사 오탐, '이'(이모드)·'양'(민트 양쪽) 관형사 오탐, '볼'(볼뉴머) 부위 오탐, '소'(소부위) 크기 수식 누락, '당'(부위당) 분모 누락. 기본 결과 보존·교정 안 함. 이 목록은 직접 대조한 서명 일치분이며, 그 밖 토큰의 정답성은 보장하지 않는다."
+  ],
+  [
+   "K-X-2",
+   "K",
+   [
+    "/categories/2/items/4/name",
+    "/categories/3/items/3/name",
+    "/categories/3/items/6/name",
+    "/categories/14/items/4/name",
+    "/categories/15/items/4/name"
+   ],
+   "같은 말의 분석 불일치(오류 아님 포함): '쥬베룩' 분절/비분절, '비타민C' NNP 한 토큰 vs '비타민/NNG C/SL', '줄기세포' NNG/NNP·'줄기/세포' 분절, '엑소좀' NNP/NNG, '풀페이스' NNG/NNP. 토큰 기준 집계 시 같은 말이 갈라진다 — 원문 구간 기준으로 다룬다."
+  ]
+ ]
+}

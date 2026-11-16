@@ -1,0 +1,79 @@
+# S06 /timelines/5 dca-injection — 직접 읽기 2026-11-09
+id | dca-injection | id_code |
+category | M16-DCA | id_code | 다른 시술은 M+숫자, 이 값만 「-DCA」 접미
+name | DCA 지방분해 주사 | procedure_name,mixed_script |
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 주사 부위 강한 작열감/통증 | site,degree,alt |
+phases/0/normal/0 | (시술 중~직후) | time_range,reference_point | 「~」 범위. 시술 중부터 직후까지
+phases/0/normal/1 | 즉각적 부종 시작 | onset_speed,onset |
+phases/0/normal/2 | 주사 부위 발적/열감 | site,alt |
+phases/0/normal/3 | 감각 이상 (저림/무감각) | gloss,alt,negation | 「무」 접두 부정
+phases/0/abnormal/0 | 예상보다 광범위한 부종 | comparison,extent |
+phases/0/abnormal/1 | 멍 | event | 수식 없는 단독 값
+phases/0/caution/0 | 비정상적 심한 통증 (수시간 지속) | degree,severity,duration,approx_time |
+phases/0/caution/1 | 피부색 변화 (창백/검은색) | color_change,alt |
+phases/0/emergency/0 | 아나필락시스 | label | 수식 없는 단독 값
+phases/0/emergency/1 | 피부 괴사 초기 징후 (검은 반점) | early_sign,color |
+phases/0/emergency/2 | 하악변연신경 손상 (비대칭 미소/입꼬리 처짐) | anatomy,gloss,alt | 전문어 「하악변연신경」 오분절 주의
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 부종 피크기 | phase_label,peak |
+phases/1/normal/0 | 부종 심화 (거의 필발, 이중턱보다 부을 수 있음) | worsening,approx,comparison,possibility | 「거의 필발」 의 뜻이 원문으로 불분명(오기 여부 미상, 해석하지 않음)
+phases/1/normal/0 | 이중턱보다 부을 수 있음 | comparison,possibility | 비교 기준 = 시술 전 이중턱(잠정)
+phases/1/normal/1 | 경결감 (딱딱한 느낌) | gloss,texture |
+phases/1/normal/2 | 통증 지속 (진통제 복용 가능) | persistence,management,possibility | 관리: 진통제 복용. 약 이름·용량 없음
+phases/1/normal/3 | 감각 이상 지속 (저림/무감각) | persistence,gloss,alt |
+phases/1/abnormal/0 | 광범위 멍 | extent |
+phases/1/abnormal/1 | 연하 시 불편감 | condition | 「시」 = 삼킬 때
+phases/1/caution/0 | 부종이 목/가슴으로 확대 | extent,direction,site,alt |
+phases/1/caution/1 | 발열 (37.5도 이상) | numeric_threshold,unit |
+phases/1/caution/2 | 피부 변색 악화 | worsening |
+phases/1/emergency/0 | 피부 괴사 진행 (검은색 변색 확대) | progress,color,extent |
+phases/1/emergency/1 | 하악변연신경 손상 (비대칭 미소 지속) | anatomy,persistence |
+phases/1/emergency/2 | 호흡 곤란 (기도 주변 부종) | cause_gloss,site |
+phases/2/period | Day 3-7 | period,time_range |
+phases/2/label | 회복 시작기 | phase_label,onset |
+phases/2/normal/0 | 부종 서서히 감소 시작 | speed,change,onset | 「서서히」
+phases/2/normal/1 | 경결감 지속 (정상) | persistence,judgment |
+phases/2/normal/2 | 통증 완화 | change |
+phases/2/normal/3 | 감각 이상 지속 가능 (정상, 수주 소요) | persistence,possibility,judgment,approx_time,duration |
+phases/2/abnormal/0 | 부종 감소 없음 | negation |
+phases/2/abnormal/1 | 경결 부위 커짐 | size,worsening |
+phases/2/caution/0 | 감염 징후 (발적 + 열감 + 농) | early_sign,co_occurrence |
+phases/2/caution/1 | 피부 울퉁불퉁 심화 | texture,worsening |
+phases/2/emergency/0 | 피부 괴사 | event |
+phases/2/emergency/1 | 농양 형성 | formation |
+phases/3/period | Day 7-14 | period,time_range |
+phases/3/label | 회복기 | phase_label |
+phases/3/normal/0 | 부종 상당 부분 소실 | proportion_approx,resolution | 「상당 부분」
+phases/3/normal/1 | 경결감 점차 감소 | speed,change |
+phases/3/normal/2 | 감각 정상화 시작 | recovery,onset |
+phases/3/normal/3 | 지방 분해 효과 아직 미미 (정상) | temporal,insufficiency,judgment | 「아직」
+phases/3/abnormal/0 | 지속적 경결 | persistence |
+phases/3/abnormal/0 | 대개 정상 염증반응으로 수 주 내 자연 소실 | frequency_hedge,judgment,approx_time,resolution | 「대개」. 「수 주」(띄어씀) 표기
+phases/3/abnormal/0 | 데옥시콜산은 임의 마사지가 표적외 확산·신경손상·괴사 위험이 있어 금기 | avoidance,management,risk,cause | 회피/금기 대상 = 임의 마사지. 이유 = 세 위험(「·」 나열). 성분명 데옥시콜산
+phases/3/abnormal/0 | 임의 마사지 | management,qualifier | 「임의」 — 지시 없는 마사지만인지 원문 범위 미상
+phases/3/abnormal/0 | 지속·악화 시 시술 병원 문의 | condition,action,recommendation | 「시」 조건 + 대응 행동
+phases/3/abnormal/0 | — | punctuation | 값 안 EM DASH(U+2014). 다른 값의 「--」 와 다른 문자
+phases/3/abnormal/1 | 감각 이상 지속 | persistence |
+phases/3/caution/0 | 비대칭 경결/울퉁 | asymmetry,alt,texture |
+phases/3/caution/1 | 지연성 감염 | delayed_onset |
+phases/3/emergency/0 | 하악변연신경 손상 지속 (4주 이상 시 영구 손상 우려) | anatomy,persistence,duration_threshold,condition,possibility | 「4주 이상 시」 조건 + 「우려」 가능성. 4주 기준 = 손상 지속 기간(잠정)
+phases/3/emergency/1 | 피부 괴사/궤양 | alt |
+phases/4/period | Day 14-30 | period,time_range |
+phases/4/label | 효과 발현기 | phase_label,onset | botox 「효과 발현기」(Day 3-7)와 이름 같고 시기 다름
+phases/4/normal/0 | 지방 분해 효과 서서히 발현 | speed,onset |
+phases/4/normal/1 | 턱선 개선 시작 | site,onset,change | 시술 부위 「턱선」 이 처음 나오는 값(이 구획). 적용 부위 확정 아님
+phases/4/normal/2 | 경결감 소실 | resolution |
+phases/4/normal/3 | 감각 정상화 (대부분) | recovery,proportion_approx |
+phases/4/abnormal/0 | 효과 미미 (추가 세션 필요 가능) | insufficiency,retreatment,possibility | 「추가 세션」 — 간격 없음
+phases/4/abnormal/1 | 잔여 경결 | persistence |
+phases/4/caution/0 | 비대칭 지방 분해 | asymmetry |
+phases/4/caution/1 | 만성 감각 이상 (6주 이상) | chronicity,duration_threshold | 「만성」 을 6주 이상으로 병기
+phases/4/emergency/0 | 영구 신경 손상 징후 | permanence,early_sign |
+O | phases/3/abnormal/0 은 이 원장에서 가장 긴 값이다. 한 값 안에 증상(지속적 경결)·경과 판정(대개 정상)·소실 시기(수 주 내)·금기(임의 마사지)·이유(세 위험)·조건부 대응(지속·악화 시 문의)이 함께 있다. 후속 분해 대상(F).
+O | 시간 기준: 「시술 중~직후」(phases/0), 「수주 소요」, 「수 주 내」, 「4주 이상 시」, 「6주 이상」. 「수주」/「수 주」 표기가 섞여 있다.
+O | 「만성」 의 기간이 이 구획에서만 「6주 이상」 으로 병기된다. thread-lift 「만성 통증」 에는 없다.
+Q | B | phases/1/normal/0 | 「거의 필발」 은 원문으로 뜻을 정할 수 없다. 오기 여부를 원본 정정 없이 후속 확인 후보로 둔다(현재 사용자 선택 아님).
+Q | P | phases/3/emergency/0 | 「4주 이상」 의 기준이 손상 지속 기간인지 시술 후 경과인지 잠정.
+Q | F | phases/3/abnormal/0 | 복합 값의 절 단위 분해(증상·판정·금기·이유·조건부 대응)는 후속 의미 조사.

@@ -1,0 +1,232 @@
+{
+ "section": "S040",
+ "state": "read",
+ "last_pointer": "/modality/14/subcategories/0/items/55/extracted/aftercare/2",
+ "observations": [
+  {
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/43/detail",
+    "/modality/14/subcategories/0/items/43/extracted/mechanism"
+   ],
+   "note": "알렉스필(케미컬필링) mechanism 이 '알렉산드라이트 레이저의 755nm 파장이 멜라닌에 선택적으로 흡수…' — 필링 항목에 레이저 기전·솜털제모 서술. detail '알렉산드라이트 원리'."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/44/detail",
+    "/modality/14/subcategories/0/items/6/name"
+   ],
+   "note": "라라닥터 detail '라라필 의료용 업그레이드' — 같은 하위분류의 '라라필'을 참조하는 표현(연결 키 없음). 성분 'PLLA+H2Sol+인큐브501' — PLLA(M3 재질)가 필링 항목에."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/45/detail",
+    "/modality/14/subcategories/0/items/2"
+   ],
+   "note": "도트필 'TCA 고농도 국소 적용 · CROSS 기법 · ice-pick scar 전용' — 알라딘필링(100% TCA 위축성 흉터)과 같은 계열 서술. 동일성 판단 안 함."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/46/detail",
+    "/modality/14/subcategories/0/items/50/detail"
+   ],
+   "note": "크리스탈필(알루미늄옥사이드 결정 분사, 물리적 박피)·ASA필(Algae Soft Abrasion, 해초 미세침) — 케미컬필링 하위분류의 물리적 박피 항목(S039-F01 계속)."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/38/detail",
+    "/modality/14/subcategories/0/items/40/detail"
+   ],
+   "note": "필링 이름 다수가 원료·질감·대상 은유(생크림필·우유필·베이비필·진주필·골드필·체리필·크랜베리필). detail '생크림 텍스처' 처럼 이름 유래 설명."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/51/detail"
+   ],
+   "note": "탄앤막필링 'TAN(표피재생)+MAHK(보호막) 2단계' — 이름이 단계 약어 조합. '+' 가 순서 있는 두 단계."
+  },
+  {
+   "status": "P",
+   "pointers": [
+    "/modality/14/subcategories/0/items/54/detail",
+    "/modality/14/subcategories/0/items/15"
+   ],
+   "note": "쿰스필 '제스너 솔루션 변형' — 같은 하위분류 '제스너필링' 참조 표현."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/modality/14/subcategories/0/items/37/detail",
+   "text": "산소+비타민C · 미백+주름개선+콜라겐",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/38/extracted/mechanism",
+   "text": "순한 산성 성분(젖산, 글리콜산 등)",
+   "kinds": [
+    "수식"
+   ],
+   "note": "열린 목록"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/39/extracted/aftercare/2",
+   "text": "필링 후 3일간 각질 제거 제품 사용 금지",
+   "kinds": [
+    "수량·단위·시간",
+    "부정"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/40/detail",
+   "text": "초저자극 · 민감피부/아토피 가능 · 보습+진정",
+   "kinds": [
+    "수식",
+    "조건",
+    "가능성·빈도"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/40/extracted/mechanism",
+   "text": "저농도 과일산(AHA/PHA)",
+   "kinds": [
+    "수식",
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/41/detail",
+   "text": "금(Gold) 나노입자 · 항산화+항노화+피부 활성화",
+   "kinds": [
+    "기호"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/43/detail",
+   "text": "알렉산드라이트 원리 · 멜라닌 타겟 · 미백+솜털제모",
+   "kinds": [
+    "참조",
+    "기호"
+   ],
+   "note": "레이저 원리 차용"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/44/detail",
+   "text": "5세대 LHA · 라라필 의료용 업그레이드 · PLLA+H2Sol+인큐브501",
+   "kinds": [
+    "참조",
+    "기호",
+    "시술·제품명"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/45/detail",
+   "text": "TCA 고농도 국소 적용 · CROSS 기법 · ice-pick scar 전용",
+   "kinds": [
+    "시술·제품명",
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/45/extracted/onset_duration/duration",
+   "text": "4-6주 회복",
+   "kinds": [
+    "수량·단위·시간"
+   ],
+   "note": "duration 칸에 회복 기간"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/46/extracted/mechanism",
+   "text": "진공 흡입 시스템을 통해 제거된 각질과 결정을 동시에 흡수",
+   "kinds": [
+    "수식"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/48/extracted/mechanism",
+   "text": "체리 추출 과일산(주로 말산, 타르타르산)",
+   "kinds": [
+    "가능성·빈도"
+   ],
+   "note": "'주로'"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/49/detail",
+   "text": "약초/해초 소프트 버전 · 저자극 재생",
+   "kinds": [
+    "기호",
+    "참조"
+   ],
+   "note": "'버전' — 다른 항목 변형 표현"
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/51/detail",
+   "text": "알칼리 촉매 · TAN(표피재생)+MAHK(보호막) 2단계",
+   "kinds": [
+    "시술·제품명",
+    "기호",
+    "수량·단위·시간"
+   ],
+   "note": ""
+  },
+  {
+   "pointer": "/modality/14/subcategories/0/items/54/detail",
+   "text": "제스너 솔루션 변형 · AHA+BHA 혼합 · 여드름",
+   "kinds": [
+    "참조",
+    "기호"
+   ],
+   "note": ""
+  }
+ ],
+ "seg_errors": [
+  {
+   "scope": "all",
+   "surface": "진주필",
+   "issue": "진/NNP 주필/NNG — '진주' 를 진+주필(主筆)로",
+   "impact": "원료명 소실·다른 낱말 오탐"
+  },
+  {
+   "scope": "all",
+   "surface": "라라닥터",
+   "issue": "라/NNG 라/NNG 닥터/NNG",
+   "impact": "제품명 분해(라라필 연결 표현 손실)"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S040-I01",
+   "status": "I",
+   "pointers": [
+    "/modality/14/subcategories/0/items/43/extracted/mechanism"
+   ],
+   "note": "알렉스필(필링)에 레이저 755nm 기전.",
+   "impact": "기전 정보 채택 시 확인"
+  },
+  {
+   "id": "S040-F01",
+   "status": "F",
+   "pointers": [
+    "/modality/14/subcategories/0/items/44/detail",
+    "/modality/14/subcategories/0/items/54/detail",
+    "/modality/14/subcategories/0/items/49/detail"
+   ],
+   "note": "항목 간 변형·업그레이드 참조 표현(라라필→라라닥터, 제스너→쿰스필).",
+   "impact": "관계는 원문 표현으로만 보존 — 연결은 후속"
+  }
+ ]
+}

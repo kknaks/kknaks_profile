@@ -1,0 +1,89 @@
+/problems/12  problem_id='P13' problem='두피/탈모' complaints[11]
+
+## c0 /problems/12/complaints/0  cc='두피메조' | cc_detail='성장인자 주사' | cc_group='주사치료'
+  P0 name='PRP/자가혈' category='M5' role='모낭 활성화' products=['셀피아', '리젠ACR']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='PRP + MTS' combo=['PRP', 'MTS']
+     reason='성장인자 + 미세채널 = 침투율 향상'
+     evidence='MTS 채널로 PRP 깊이 침투'
+  A0 '약물치료 병행 추천'
+
+## c1 /problems/12/complaints/1  cc='두피PRP' | cc_detail='자가혈' | cc_group='주사치료'
+  P0 name='PRP/자가혈' category='M5' role='모낭 활성화' products=['셀피아', '리젠ACR']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='PRP + MTS' combo=['PRP', 'MTS']
+     reason='성장인자 + 미세채널 = 침투율 향상'
+     evidence='MTS 채널로 PRP 깊이 침투'
+  A0 '약물치료 병행 추천'
+
+## c2 /problems/12/complaints/2  cc='두피엑소좀' | cc_detail='ASCE+ 등 엑소좀은 국내 허가된 주사 의약품이 아닌 화장품 분류 제품으로 주사·MTS 채널 전달은 미허가·위법 소지와 감염·이물육아종 위험이 있으며 발모 효과의 임상 검증은 제한적' | cc_group='주사치료'
+  P0 name='PRP/자가혈' category='M5' role='모낭 활성화' products=['셀피아', '리젠ACR']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='PRP + MTS' combo=['PRP', 'MTS']
+     reason='성장인자 + 미세채널 = 침투율 향상'
+     evidence='MTS 채널로 PRP 깊이 침투'
+  A0 '약물치료 병행 추천'
+
+## c3 /problems/12/complaints/3  cc='LLLT' | cc_detail='저출력레이저 · LED · FDA' | cc_group='장비치료'
+  P0 name='레이저' category='M8' role='두피 혈류 촉진' products=['헤어맥스(LLLT)']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='레이저 + MTS' combo=['레이저', 'MTS']
+     reason='혈류촉진 + 자극'
+     evidence='두피 환경 개선'
+  A0 '약물치료 병행 추천'
+
+## c4 /problems/12/complaints/4  cc='두피스케일링' | cc_detail='각질/피지제거' | cc_group='장비치료'
+  P0 name='레이저' category='M8' role='두피 혈류 촉진' products=['헤어맥스(LLLT)']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='레이저 + MTS' combo=['레이저', 'MTS']
+     reason='혈류촉진 + 자극'
+     evidence='두피 환경 개선'
+  A0 '약물치료 병행 추천'
+
+## c5 /problems/12/complaints/5  cc='MTS두피' | cc_detail='약물침투' | cc_group='장비치료'
+  P0 name='레이저' category='M8' role='두피 혈류 촉진' products=['헤어맥스(LLLT)']
+  P1 name='마이크로니들링(MTS)' category='M12' role='두피 자극' products=[]
+  B0 name='레이저 + MTS' combo=['레이저', 'MTS']
+     reason='혈류촉진 + 자극'
+     evidence='두피 환경 개선'
+  A0 '약물치료 병행 추천'
+
+## c6 /problems/12/complaints/6  cc='미녹시딜' | cc_detail='외용' | cc_group='약물치료'
+  P0 name='약물치료' category='M15' role='탈모 억제' products=[]
+  P1 name='PRP/자가혈' category='M5' role='재생 보조' products=['셀피아']
+  B0 name='약물 + PRP' combo=['약물치료', 'PRP']
+     reason='억제 + 재생 = 이중 접근'
+     evidence='약물+시술 병행이 효과적'
+  A0 '약물치료 병행 추천'
+
+## c7 /problems/12/complaints/7  cc='피나스테리드' | cc_detail='경구' | cc_group='약물치료'
+  P0 name='약물치료' category='M15' role='탈모 억제' products=[]
+  P1 name='PRP/자가혈' category='M5' role='재생 보조' products=['셀피아']
+  B0 name='약물 + PRP' combo=['약물치료', 'PRP']
+     reason='억제 + 재생 = 이중 접근'
+     evidence='약물+시술 병행이 효과적'
+  A0 '약물치료 병행 추천'
+
+## c8 /problems/12/complaints/8  cc='두타스테리드' | cc_detail='경구' | cc_group='약물치료'
+  P0 name='약물치료' category='M15' role='탈모 억제' products=[]
+  P1 name='PRP/자가혈' category='M5' role='재생 보조' products=['셀피아']
+  B0 name='약물 + PRP' combo=['약물치료', 'PRP']
+     reason='억제 + 재생 = 이중 접근'
+     evidence='약물+시술 병행이 효과적'
+  A0 '약물치료 병행 추천'
+
+## c9 /problems/12/complaints/9  cc='FUE' | cc_detail='모낭단위추출' | cc_group='모발이식'
+  P0 name='모발이식' category='M15' role='영구적 모발 복원' products=[]
+  P1 name='PRP/자가혈' category='M5' role='생착률 향상' products=['셀피아']
+  B0 name='모발이식 + PRP' combo=['모발이식', 'PRP']
+     reason='이식 + 성장인자 = 생착률 향상'
+     evidence='PRP가 이식모 생존율 높임'
+  A0 '약물치료 병행 추천'
+
+## c10 /problems/12/complaints/10  cc='FUT' | cc_detail='모낭단위이식' | cc_group='모발이식'
+  P0 name='모발이식' category='M15' role='영구적 모발 복원' products=[]
+  P1 name='PRP/자가혈' category='M5' role='생착률 향상' products=['셀피아']
+  B0 name='모발이식 + PRP' combo=['모발이식', 'PRP']
+     reason='이식 + 성장인자 = 생착률 향상'
+     evidence='PRP가 이식모 생존율 높임'
+  A0 '약물치료 병행 추천'

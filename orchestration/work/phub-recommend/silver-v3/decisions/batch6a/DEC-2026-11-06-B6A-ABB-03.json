@@ -1,0 +1,33 @@
+{
+ "id": "DEC-2026-11-06-B6A-ABB-03",
+ "kind": "dictionary_add",
+ "target": {
+  "dictionary": "product_name"
+ },
+ "new_value": {
+  "canonical": "LDM",
+  "synonyms": [
+   "LDM초음파관리"
+  ],
+  "code": "M9"
+ },
+ "reason": "사용자 결정 2026-11-06 오후(HANDOFF 「줄임말 (a) 제품 동의어 추가 7: 더채움프리미어→더채움 · 엘라비에프라임→엘라비에 · LDM초음파관리→LDM · 더마펜→더마펜4 · 민트→민트리프트 · 인모드FX→인모드 · 알렉→알렉산드라이트」) — 「LDM초음파관리」 → 제품 「LDM」(ledger · code M9) 동의어 · 규칙 조각이 제품명을 접두로 포함 · 원장 자리 1.",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].name@15/6/5"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.md §9.17 product_abbrev · §12 HANDOFF 줄임말 (a)"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

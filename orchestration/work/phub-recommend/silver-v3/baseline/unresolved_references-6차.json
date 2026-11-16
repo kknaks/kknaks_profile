@@ -1,0 +1,8055 @@
+[
+ {
+  "candidates": {
+   "EMS": [],
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ],
+   "팔뚝": [],
+   "허벅지": []
+  },
+  "conflict_id": "CFL-bddecb609f",
+  "fragments": [
+   "EMS",
+   "바디",
+   "팔뚝",
+   "허벅지"
+  ],
+  "hint": "M10",
+  "label": "EMS 바디 (팔뚝/허벅지)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/5"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-73140eefc2",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "광선치료": []
+  },
+  "conflict_id": "CFL-820c3d3d3d",
+  "fragments": [
+   "광선치료"
+  ],
+  "hint": "M15",
+  "label": "LED 광선치료 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@14/3"
+  ],
+  "partial": [
+   "modality_subcategory:광치료(LED)",
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b7c6b137a0",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@14/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "탈모": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "탈모",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|탈모|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-6e527077e5",
+  "fragments": [
+   "탈모"
+  ],
+  "hint": "M12",
+  "label": "MTS (두피 탈모)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@11/5"
+  ],
+  "partial": [
+   "modality:마이크로니들링(MTS)",
+   "site:두피"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-bacbdbcaf9",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@11/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "여드름": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": "P6",
+     "dictionary": "problem",
+     "pointer": "dict:problem|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "person_condition",
+     "pointer": "dict:person_condition|여드름|canonical"
+    }
+   ],
+   "흉터": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": "P9",
+     "dictionary": "problem",
+     "pointer": "dict:problem|흉터|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|흉터|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|흉터|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-763b84e40b",
+  "fragments": [
+   "여드름",
+   "흉터"
+  ],
+  "hint": "M12",
+  "label": "MTS (여드름 흉터 집중)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@11/4"
+  ],
+  "partial": [
+   "modality:마이크로니들링(MTS)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-3e2882e0f8",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@11/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 combo_outside_fragment — 닿은 조각(둘 이상)",
+     "fragments": [
+      "site:얼굴 전체"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-0348d6b6c8",
+  "fragments": [],
+  "hint": "M12",
+  "label": "MTS + PRP (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@11/1"
+  ],
+  "partial": [
+   "modality:마이크로니들링(MTS)",
+   "procedure:PRP",
+   "site:얼굴 전체"
+  ],
+  "reason": "combo_outside_fragment",
+  "ref_id": "REF-e3b921a0a7",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@11/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "실": []
+  },
+  "conflict_id": "CFL-3a6203aa6c",
+  "fragments": [
+   "실"
+  ],
+  "hint": "M7",
+  "label": "PDO 실 (10줄 기준)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@6/0"
+  ],
+  "partial": [
+   "procedure:PDO",
+   "spec:10줄 기준"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-1ad8c7a556",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@6/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDRN": [],
+   "부위당": [],
+   "주사": []
+  },
+  "conflict_id": "CFL-1b59d2ab7d",
+  "fragments": [
+   "PDRN",
+   "주사",
+   "부위당"
+  ],
+  "hint": "M5",
+  "label": "PDRN 주사 (부위당)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@4/4"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-6bb3032c07",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@4/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "간해독": [],
+   "감초주사": []
+  },
+  "conflict_id": "CFL-c36cd38091",
+  "fragments": [
+   "감초주사",
+   "간해독"
+  ],
+  "hint": "M16",
+  "label": "감초주사 (간해독)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-f65bac7e37",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "고농도": [],
+   "비타민C": []
+  },
+  "conflict_id": "CFL-d36974180e",
+  "fragments": [
+   "고농도",
+   "비타민C"
+  ],
+  "hint": "M16",
+  "label": "고농도 비타민C 수액",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/4"
+  ],
+  "partial": [
+   "modality:수액치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-0586eaa695",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-1 국산"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-9607eed4aa",
+  "fragments": [],
+  "hint": "M1",
+  "label": "눈가 주름 (국산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/5"
+  ],
+  "partial": [
+   "site:눈가",
+   "procedure:주름",
+   "modality_subcategory:국산"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-0e3f0c39e2",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-2 수입"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-c68d2bb4ed",
+  "fragments": [],
+  "hint": "M1",
+  "label": "눈가 주름 (수입)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/4"
+  ],
+  "partial": [
+   "site:눈가",
+   "procedure:주름",
+   "modality_subcategory:수입"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-702975ccbe",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "꺼짐": [],
+   "눈밑": []
+  },
+  "conflict_id": "CFL-d5d2ecb713",
+  "fragments": [
+   "눈밑",
+   "꺼짐"
+  ],
+  "hint": "M2",
+  "label": "눈밑 꺼짐 (HA 1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@1/6"
+  ],
+  "partial": [
+   "modality:필러",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-3cf0e9f3bb",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@1/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "눈밑": []
+  },
+  "conflict_id": "CFL-8c99fb4a12",
+  "fragments": [
+   "눈밑"
+  ],
+  "hint": "M6",
+  "label": "눈밑 지방이식",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@5/2"
+  ],
+  "partial": [
+   "modality:지방이식"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d069cedf0f",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@5/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "모공축소": []
+  },
+  "conflict_id": "CFL-3ebaa4a82b",
+  "fragments": [
+   "모공축소"
+  ],
+  "hint": "M11",
+  "label": "니들RF (모공축소)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@10/5"
+  ],
+  "partial": [
+   "modality:니들RF"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-4747201c8c",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@10/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "목주름": []
+  },
+  "conflict_id": "CFL-b37400ce0e",
+  "fragments": [
+   "목주름"
+  ],
+  "hint": "M11",
+  "label": "니들RF (목주름)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@10/6"
+  ],
+  "partial": [
+   "modality:니들RF"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e1a6b13cb4",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@10/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "여드름": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": "P6",
+     "dictionary": "problem",
+     "pointer": "dict:problem|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "person_condition",
+     "pointer": "dict:person_condition|여드름|canonical"
+    }
+   ],
+   "흉터": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": "P9",
+     "dictionary": "problem",
+     "pointer": "dict:problem|흉터|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|흉터|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "흉터",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|흉터|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-d3e2c7da18",
+  "fragments": [
+   "여드름",
+   "흉터"
+  ],
+  "hint": "M11",
+  "label": "니들RF (여드름 흉터)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@10/4"
+  ],
+  "partial": [
+   "modality:니들RF"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b1d17ecc4f",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@10/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "다이어트": []
+  },
+  "conflict_id": "CFL-c6eb34ed7f",
+  "fragments": [
+   "다이어트"
+  ],
+  "hint": "M16",
+  "label": "다이어트 수액",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/7"
+  ],
+  "partial": [
+   "modality:수액치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-14208f8d02",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/7"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "래디에스": []
+  },
+  "conflict_id": "CFL-fb57a45ee9",
+  "fragments": [
+   "래디에스"
+  ],
+  "hint": "M3",
+  "label": "래디에스 (1.5cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@2/6"
+  ],
+  "partial": [
+   "spec:1.5cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ca4c8be179",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@2/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "겨드랑이": []
+  },
+  "conflict_id": "CFL-e4197cc837",
+  "fragments": [
+   "겨드랑이"
+  ],
+  "hint": "M8",
+  "label": "레이저 제모 (겨드랑이)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/6"
+  ],
+  "partial": [
+   "modality:레이저",
+   "modality_subcategory:제모"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-76e641601b",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "전신": []
+  },
+  "conflict_id": "CFL-6fda0e28cc",
+  "fragments": [
+   "전신"
+  ],
+  "hint": "M8",
+  "label": "레이저 제모 (전신)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/7"
+  ],
+  "partial": [
+   "modality:레이저",
+   "modality_subcategory:제모"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d7bbc0a39f",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/7"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "비타민B1": []
+  },
+  "conflict_id": "CFL-9b0c12e594",
+  "fragments": [
+   "비타민B1"
+  ],
+  "hint": "M16",
+  "label": "마늘주사 (비타민B1)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/2"
+  ],
+  "partial": [
+   "procedure:마늘주사"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-fbe6c43379",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "면역": [],
+   "비타민": [],
+   "종합": [
+    {
+     "basis": "동의어 「종합」 완전 일치",
+     "canonical": "vip",
+     "code": null,
+     "dictionary": "package_tier",
+     "pointer": "dict:package_tier|vip|synonym:종합"
+    }
+   ]
+  },
+  "conflict_id": "CFL-6e37edfe7a",
+  "fragments": [
+   "면역",
+   "종합",
+   "비타민"
+  ],
+  "hint": "M16",
+  "label": "면역 수액 (종합 비타민)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/5"
+  ],
+  "partial": [
+   "modality:수액치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-38a34d29a2",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "모피어스8": []
+  },
+  "conflict_id": "CFL-a74725c2cd",
+  "fragments": [
+   "모피어스8"
+  ],
+  "hint": "M11",
+  "label": "모피어스8 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@10/2"
+  ],
+  "partial": [
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-9d76084665",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@10/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "네페르티티": [],
+   "목주름": []
+  },
+  "conflict_id": "CFL-e4ad432203",
+  "fragments": [
+   "목주름",
+   "네페르티티"
+  ],
+  "hint": "M1",
+  "label": "목주름 (네페르티티)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/9"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-4ba07f3e8c",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/9"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "V라인": [],
+   "몰딩": [],
+   "실": []
+  },
+  "conflict_id": "CFL-3657cecfaa",
+  "fragments": [
+   "몰딩",
+   "실",
+   "V라인"
+  ],
+  "hint": "M7",
+  "label": "몰딩 실 (V라인)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@6/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-80e286c743",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@6/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "문신": [],
+   "제거": []
+  },
+  "conflict_id": "CFL-c066a337b9",
+  "fragments": [
+   "문신",
+   "제거"
+  ],
+  "hint": "M8",
+  "label": "문신 제거 (10cm2)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/9"
+  ],
+  "partial": [
+   "spec:10cm2"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-4773eff675",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/9"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-1 국산"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-4a3ed6728e",
+  "fragments": [],
+  "hint": "M1",
+  "label": "미간 주름 (국산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/3"
+  ],
+  "partial": [
+   "site:미간",
+   "procedure:주름",
+   "modality_subcategory:국산"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-a1dde307fa",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-2 수입"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-b9a61214a9",
+  "fragments": [],
+  "hint": "M1",
+  "label": "미간 주름 (수입)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/2"
+  ],
+  "partial": [
+   "site:미간",
+   "procedure:주름",
+   "modality_subcategory:수입"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-bd0942535a",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|리프팅|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|리프팅|canonical"
+    }
+   ],
+   "민트": []
+  },
+  "conflict_id": "CFL-6b84d9a853",
+  "fragments": [
+   "민트",
+   "리프팅"
+  ],
+  "hint": "M7",
+  "label": "민트 리프팅 (양쪽)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@6/2"
+  ],
+  "partial": [
+   "spec:양쪽"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-01910d1c7b",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@6/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "글루타치온": []
+  },
+  "conflict_id": "CFL-f3578ba86a",
+  "fragments": [
+   "글루타치온"
+  ],
+  "hint": "M16",
+  "label": "백옥주사 (글루타치온)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/0"
+  ],
+  "partial": [
+   "procedure:백옥주사"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-575e4eb478",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "볼륨": []
+  },
+  "conflict_id": "CFL-59f6f94c9f",
+  "fragments": [
+   "볼륨"
+  ],
+  "hint": "M2",
+  "label": "볼 볼륨 (HA 1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@1/5"
+  ],
+  "partial": [
+   "site:볼",
+   "modality:필러",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-0efc3dbf09",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@1/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:사각턱[M1]→catalog_item:사각턱",
+      "subcategory:M1-1 국산"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-f47efe9c9f",
+  "fragments": [],
+  "hint": "M1",
+  "label": "사각턱 (국산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/7"
+  ],
+  "partial": [
+   "procedure:사각턱",
+   "modality_subcategory:국산"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-bfcd730154",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/7"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:사각턱[M1]→catalog_item:사각턱",
+      "subcategory:M1-2 수입"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-70bf7f67ee",
+  "fragments": [],
+  "hint": "M1",
+  "label": "사각턱 (수입)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/6"
+  ],
+  "partial": [
+   "procedure:사각턱",
+   "modality_subcategory:수입"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-90f178d96e",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "턱라인": []
+  },
+  "conflict_id": "CFL-dd6c400b88",
+  "fragments": [
+   "턱라인"
+  ],
+  "hint": "M9",
+  "label": "슈링크 유니버스 (턱라인)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@8/3"
+  ],
+  "partial": [
+   "procedure:슈링크유니버스"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6c699710fd",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@8/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "물광주사": []
+  },
+  "conflict_id": "CFL-fa0f19a7d1",
+  "fragments": [
+   "물광주사"
+  ],
+  "hint": "M4",
+  "label": "스킨부스터 물광주사 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@3/6"
+  ],
+  "partial": [
+   "modality:스킨부스터",
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e45416105b",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@3/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "알파리포산": []
+  },
+  "conflict_id": "CFL-722beb61a6",
+  "fragments": [
+   "알파리포산"
+  ],
+  "hint": "M16",
+  "label": "신데렐라주사 (알파리포산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/1"
+  ],
+  "partial": [
+   "procedure:신데렐라주사"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-f8e5641606",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "EMS": [],
+   "강화": [],
+   "안면": [],
+   "표정근": []
+  },
+  "conflict_id": "CFL-85f6741677",
+  "fragments": [
+   "안면",
+   "EMS",
+   "표정근",
+   "강화"
+  ],
+  "hint": "M10",
+  "label": "안면 EMS (표정근 강화)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/4"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-40e3babab3",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "홍조": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "홍조",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|홍조|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-7aad60c458",
+  "fragments": [
+   "홍조"
+  ],
+  "hint": "M8",
+  "label": "엑셀V (혈관/홍조)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/4"
+  ],
+  "partial": [
+   "product:엑셀V",
+   "modality_subcategory:혈관"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-3ccfea9685",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "M": []
+  },
+  "conflict_id": "CFL-dffed8dc08",
+  "fragments": [
+   "M"
+  ],
+  "hint": "M3",
+  "label": "엘란쎄 M (1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@2/3"
+  ],
+  "partial": [
+   "procedure:엘란쎄",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-c8209690a9",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@2/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "S": []
+  },
+  "conflict_id": "CFL-c592e66139",
+  "fragments": [
+   "S"
+  ],
+  "hint": "M3",
+  "label": "엘란쎄 S (1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@2/2"
+  ],
+  "partial": [
+   "procedure:엘란쎄",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-df982c0092",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "턱라인": []
+  },
+  "conflict_id": "CFL-ef86581560",
+  "fragments": [
+   "턱라인"
+  ],
+  "hint": "M9",
+  "label": "울쎄라 (턱라인)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@8/1"
+  ],
+  "partial": [
+   "procedure:울쎄라"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6837397cee",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@8/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "볼륨": []
+  },
+  "conflict_id": "CFL-5be91aa4ed",
+  "fragments": [
+   "볼륨"
+  ],
+  "hint": "M2",
+  "label": "이마 볼륨 (HA 2cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@1/4"
+  ],
+  "partial": [
+   "site:이마",
+   "modality:필러",
+   "spec:2cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6189269ba0",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@1/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-1 국산"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-92e77fa813",
+  "fragments": [],
+  "hint": "M1",
+  "label": "이마 주름 (국산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/1"
+  ],
+  "partial": [
+   "site:이마",
+   "procedure:주름",
+   "modality_subcategory:국산"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-eb2fd3fae2",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:주름[M1]→catalog_item:주름",
+      "subcategory:M1-2 수입"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-09afbaa22b",
+  "fragments": [],
+  "hint": "M1",
+  "label": "이마 주름 (수입)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@0/0"
+  ],
+  "partial": [
+   "site:이마",
+   "procedure:주름",
+   "modality_subcategory:수입"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-ad18fbeef0",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "이모드": []
+  },
+  "conflict_id": "CFL-a1e0494eb4",
+  "fragments": [
+   "이모드"
+  ],
+  "hint": "M10",
+  "label": "이모드 (4회 패키지)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/3"
+  ],
+  "partial": [
+   "spec:4회 패키지"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-bfff23f5f3",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "복부": [],
+   "이모드": []
+  },
+  "conflict_id": "CFL-7f13b9a5a3",
+  "fragments": [
+   "이모드",
+   "복부"
+  ],
+  "hint": "M10",
+  "label": "이모드 (복부)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-5621e08e0a",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "복부": [],
+   "이모드": [],
+   "힙": []
+  },
+  "conflict_id": "CFL-ace49553a0",
+  "fragments": [
+   "이모드",
+   "복부",
+   "힙"
+  ],
+  "hint": "M10",
+  "label": "이모드 (복부+힙 동시)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/2"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-0abc21e857",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "이모드": [],
+   "힙": []
+  },
+  "conflict_id": "CFL-0d5defcae5",
+  "fragments": [
+   "이모드",
+   "힙"
+  ],
+  "hint": "M10",
+  "label": "이모드 (힙)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@9/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9f2d6daf51",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@9/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "비타민C": []
+  },
+  "conflict_id": "CFL-ba29a811cd",
+  "fragments": [
+   "비타민C"
+  ],
+  "hint": "M15",
+  "label": "이온토포레시스 (비타민C)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@14/4"
+  ],
+  "partial": [
+   "procedure:이온토포레시스"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e167774a2e",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@14/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "볼륨": []
+  },
+  "conflict_id": "CFL-0640df31f9",
+  "fragments": [
+   "볼륨"
+  ],
+  "hint": "M2",
+  "label": "입술 볼륨 (HA 1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@1/1"
+  ],
+  "partial": [
+   "site:입술",
+   "modality:필러",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-16da584a56",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "점": [],
+   "제거": []
+  },
+  "conflict_id": "CFL-e4e552d182",
+  "fragments": [
+   "점",
+   "제거"
+  ],
+  "hint": "M8",
+  "label": "점 제거 (1개당)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/8"
+  ],
+  "partial": [
+   "spec:1개당"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-1c3b6589e9",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/8"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "제네시스": []
+  },
+  "conflict_id": "CFL-0d7211f1ad",
+  "fragments": [
+   "제네시스"
+  ],
+  "hint": "M8",
+  "label": "제네시스 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@7/3"
+  ],
+  "partial": [
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d761e5c6e5",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@7/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 combo_outside_fragment — 닿은 조각(둘 이상)",
+     "fragments": [
+      "site:얼굴 전체"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-532099aec3",
+  "fragments": [],
+  "hint": "M17",
+  "label": "줄기세포 + MTS (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@16/2"
+  ],
+  "partial": [
+   "modality:줄기세포치료",
+   "modality:마이크로니들링(MTS)",
+   "site:얼굴 전체"
+  ],
+  "reason": "combo_outside_fragment",
+  "ref_id": "REF-0763982425",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@16/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "관절치료": []
+  },
+  "conflict_id": "CFL-4517f3466b",
+  "fragments": [
+   "관절치료"
+  ],
+  "hint": "M17",
+  "label": "줄기세포 관절치료",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@16/4"
+  ],
+  "partial": [
+   "modality:줄기세포치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-eb2a9f118a",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@16/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "두피치료": [],
+   "탈모": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "탈모",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|탈모|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-6f238e239e",
+  "fragments": [
+   "두피치료",
+   "탈모"
+  ],
+  "hint": "M17",
+  "label": "줄기세포 두피치료 (탈모)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@16/3"
+  ],
+  "partial": [
+   "modality:줄기세포치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-977e15a7e4",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@16/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "주입": []
+  },
+  "conflict_id": "CFL-cedc11a847",
+  "fragments": [
+   "주입"
+  ],
+  "hint": "M17",
+  "label": "줄기세포 배양액 주입 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@16/0"
+  ],
+  "partial": [
+   "procedure:줄기세포배양액",
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-576bed0942",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@16/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "울트라": []
+  },
+  "conflict_id": "CFL-c4f27722cc",
+  "fragments": [
+   "울트라"
+  ],
+  "hint": "M4",
+  "label": "쥬베룩 울트라 (2cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@3/3"
+  ],
+  "partial": [
+   "procedure:쥬베룩",
+   "spec:2cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-baa9c01730",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@3/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "파인": []
+  },
+  "conflict_id": "CFL-657b170fa8",
+  "fragments": [
+   "파인"
+  ],
+  "hint": "M4",
+  "label": "쥬베룩 파인 (2cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@3/2"
+  ],
+  "partial": [
+   "procedure:쥬베룩",
+   "spec:2cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a95f751941",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@3/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "시술": [],
+   "재생팩": [],
+   "진정관리": [],
+   "후": []
+  },
+  "conflict_id": "CFL-e2aa628016",
+  "fragments": [
+   "진정관리",
+   "시술",
+   "후",
+   "재생팩"
+  ],
+  "hint": "M15",
+  "label": "진정관리 (시술 후 재생팩)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@14/5"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-76f780237d",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@14/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "코그": []
+  },
+  "conflict_id": "CFL-4b53ca6cbe",
+  "fragments": [
+   "코그"
+  ],
+  "hint": "M7",
+  "label": "코그 실 리프팅 (양쪽 8줄)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@6/1"
+  ],
+  "partial": [
+   "modality:실리프팅",
+   "spec:양쪽",
+   "spec:8줄"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-32769c553f",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@6/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "소부위": []
+  },
+  "conflict_id": "CFL-c65c9d857b",
+  "fragments": [
+   "소부위"
+  ],
+  "hint": "M14",
+  "label": "쿨미니 (소부위 1개)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/5"
+  ],
+  "partial": [
+   "procedure:쿨미니",
+   "spec:1개"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-7fc5b0665b",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "러브핸들": []
+  },
+  "conflict_id": "CFL-8cacc5d6ab",
+  "fragments": [
+   "러브핸들"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (러브핸들 양쪽)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/1"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅",
+   "spec:양쪽"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-2e5702ae68",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "복부": []
+  },
+  "conflict_id": "CFL-fdcdcc1f42",
+  "fragments": [
+   "복부"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (복부 1부위)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/0"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅",
+   "spec:1부위"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-3676390eb9",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "이중턱": [],
+   "턱밑": []
+  },
+  "conflict_id": "CFL-ff94de13e7",
+  "fragments": [
+   "턱밑",
+   "이중턱"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (턱밑 이중턱)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/2"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-31cb222869",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "팔뚝": []
+  },
+  "conflict_id": "CFL-ffc3ef02b6",
+  "fragments": [
+   "팔뚝"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (팔뚝 양쪽)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/4"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅",
+   "spec:양쪽"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ae87ea7a8b",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "안쪽": [],
+   "허벅지": []
+  },
+  "conflict_id": "CFL-920615f1bd",
+  "fragments": [
+   "허벅지",
+   "안쪽"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (허벅지 안쪽 양쪽)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@13/3"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅",
+   "spec:양쪽"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e6c570510e",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@13/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "태반주사": []
+  },
+  "conflict_id": "CFL-666a4d6030",
+  "fragments": [
+   "태반주사"
+  ],
+  "hint": "M16",
+  "label": "태반주사 (라이넥)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@15/6"
+  ],
+  "partial": [
+   "product:라이넥"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-69f738348a",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@15/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "끝": [],
+   "볼륨": []
+  },
+  "conflict_id": "CFL-baa99c5b60",
+  "fragments": [
+   "끝",
+   "볼륨"
+  ],
+  "hint": "M2",
+  "label": "턱 끝 볼륨 (HA 1cc)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@1/3"
+  ],
+  "partial": [
+   "site:턱",
+   "modality:필러",
+   "spec:1cc"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-07845a4790",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@1/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "끝": []
+  },
+  "conflict_id": "CFL-50fab8825e",
+  "fragments": [
+   "끝"
+  ],
+  "hint": "M6",
+  "label": "턱 끝 지방이식",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@5/5"
+  ],
+  "partial": [
+   "site:턱",
+   "modality:지방이식"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-783d9bfd7a",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@5/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "스킨케어": [],
+   "풀코스": [],
+   "프리미엄": []
+  },
+  "conflict_id": "CFL-3856b83d1d",
+  "fragments": [
+   "프리미엄",
+   "스킨케어",
+   "풀코스"
+  ],
+  "hint": "M15",
+  "label": "프리미엄 스킨케어 (풀코스)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@14/6"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-a4589dfe11",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@14/6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "modality:플라즈마",
+      "catalog_item:주름[M1]→catalog_item:주름"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-99cfaed0d5",
+  "fragments": [],
+  "hint": "M13",
+  "label": "플라즈마 (눈가 주름)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/1"
+  ],
+  "partial": [
+   "modality:플라즈마",
+   "site:눈가",
+   "procedure:주름"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-7efaef5a25",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "눈꺼풀": [],
+   "비수술": [],
+   "처짐": []
+  },
+  "conflict_id": "CFL-5760cc72a5",
+  "fragments": [
+   "눈꺼풀",
+   "처짐",
+   "비수술"
+  ],
+  "hint": "M13",
+  "label": "플라즈마 (눈꺼풀 처짐 비수술)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/4"
+  ],
+  "partial": [
+   "modality:플라즈마"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b9827af0d0",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "여드름": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": "P6",
+     "dictionary": "problem",
+     "pointer": "dict:problem|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|여드름|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "여드름",
+     "code": null,
+     "dictionary": "person_condition",
+     "pointer": "dict:person_condition|여드름|canonical"
+    }
+   ],
+   "치료": []
+  },
+  "conflict_id": "CFL-7b3c5a3c3f",
+  "fragments": [
+   "여드름",
+   "치료"
+  ],
+  "hint": "M13",
+  "label": "플라즈마 (여드름 치료)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/2"
+  ],
+  "partial": [
+   "modality:플라즈마"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-f9491ba78c",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "사마귀": [],
+   "쥐젖": []
+  },
+  "conflict_id": "CFL-4d5616595e",
+  "fragments": [
+   "쥐젖",
+   "사마귀"
+  ],
+  "hint": "M13",
+  "label": "플라즈마 (쥐젖/사마귀 1개)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/3"
+  ],
+  "partial": [
+   "modality:플라즈마",
+   "spec:1개"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b1533c7fe5",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|리프팅|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|리프팅|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-198b44fcdb",
+  "fragments": [
+   "리프팅"
+  ],
+  "hint": "M13",
+  "label": "플라즈마 리프팅 (전체얼굴)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/0"
+  ],
+  "partial": [
+   "modality:플라즈마",
+   "site:얼굴 전체"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-7787517462",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "샤워": [],
+   "재생": [],
+   "진정": []
+  },
+  "conflict_id": "CFL-2f1bf987f3",
+  "fragments": [
+   "샤워",
+   "진정",
+   "재생"
+  ],
+  "hint": "M13",
+  "label": "플라즈마 샤워 (진정/재생)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@12/5"
+  ],
+  "partial": [
+   "modality:플라즈마"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-144e6062d3",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@12/5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "글리콜산": [],
+   "박피": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "박피",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|박피|canonical"
+    }
+   ],
+   "살리실산": [],
+   "화학": []
+  },
+  "conflict_id": "CFL-193430d8a0",
+  "fragments": [
+   "화학",
+   "박피",
+   "살리실산",
+   "글리콜산"
+  ],
+  "hint": "M15",
+  "label": "화학 박피 (살리실산/글리콜산)",
+  "locators": [
+   "market-pricing.json:categories[].items[].name@14/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-7ac262fe87",
+  "relation": "price_items",
+  "slot": "market-pricing.items[].name (122)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "market-pricing.json:categories[].items[].name@14/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "DCA": [],
+   "주사": [],
+   "지방분해": []
+  },
+  "conflict_id": "CFL-fc114557f6",
+  "fragments": [
+   "DCA",
+   "지방분해",
+   "주사"
+  ],
+  "hint": "M16",
+  "label": "DCA 지방분해 주사",
+  "locators": [
+   "post-procedure-timeline.json:timelines[].name@5"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-851be0d05a",
+  "relation": "R15",
+  "slot": "post-procedure-timeline.timelines[].name (10)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "post-procedure-timeline.json:timelines[].name@5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|리프팅|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|리프팅|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-e8f05596f5",
+  "fragments": [
+   "리프팅"
+  ],
+  "hint": "M9",
+  "label": "HIFU/RF 리프팅",
+  "locators": [
+   "post-procedure-timeline.json:timelines[].name@2"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)",
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-642f354ffe",
+  "relation": "R15",
+  "slot": "post-procedure-timeline.timelines[].name (10)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "post-procedure-timeline.json:timelines[].name@2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "고주파": [],
+   "미세침": []
+  },
+  "conflict_id": "CFL-be2584d86e",
+  "fragments": [
+   "미세침",
+   "고주파"
+  ],
+  "hint": "M11",
+  "label": "니들RF (미세침 고주파)",
+  "locators": [
+   "post-procedure-timeline.json:timelines[].name@6"
+  ],
+  "partial": [
+   "modality:니들RF"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-5c79154640",
+  "relation": "R15",
+  "slot": "post-procedure-timeline.timelines[].name (10)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "post-procedure-timeline.json:timelines[].name@6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "깊이": [],
+   "중간": []
+  },
+  "conflict_id": "CFL-16923672a5",
+  "fragments": [
+   "중간",
+   "깊이"
+  ],
+  "hint": "M15",
+  "label": "케미컬 필링 (중간 깊이)",
+  "locators": [
+   "post-procedure-timeline.json:timelines[].name@9"
+  ],
+  "partial": [
+   "modality_subcategory:케미컬필링"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-14197f4f74",
+  "relation": "R15",
+  "slot": "post-procedure-timeline.timelines[].name (10)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "post-procedure-timeline.json:timelines[].name@9"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅기기": []
+  },
+  "conflict_id": "CFL-b55dbab8b9",
+  "fragments": [
+   "리프팅기기"
+  ],
+  "hint": null,
+  "label": "리프팅기기",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/0/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/1/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/2/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/2/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/4/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/5/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@1/6/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@3/0/0/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@6/2/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@6/3/1/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-b8f9860643",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/0/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/1/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/2/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/3/2/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/4/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/5/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@1/6/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/0/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/1/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/2/2/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/3/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@2/4/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@3/0/0/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@6/2/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@6/3/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "모발이식": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "모발이식",
+     "code": "P13",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|모발이식|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-60f89c5d9b",
+  "fragments": [
+   "모발이식"
+  ],
+  "hint": null,
+  "label": "모발이식",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/10/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/9/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-d39917f1a2",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@12/10/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@12/9/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미라드라이": []
+  },
+  "conflict_id": "CFL-81eed3b738",
+  "fragments": [
+   "미라드라이"
+  ],
+  "hint": null,
+  "label": "미라드라이",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@13/4/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-c86b6a5db6",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@13/4/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미백주사": []
+  },
+  "conflict_id": "CFL-164f04a5a9",
+  "fragments": [
+   "미백주사"
+  ],
+  "hint": null,
+  "label": "미백주사",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@4/6/1/1",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@4/7/1/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-c446fabe10",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@4/6/1/1",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@4/7/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "반영구화장": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "반영구화장",
+     "code": "P1",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|반영구화장|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-51643aab08",
+  "fragments": [
+   "반영구화장"
+  ],
+  "hint": null,
+  "label": "반영구화장",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@0/13/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@0/14/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@0/15/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@0/16/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-251b05fa1b",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@0/13/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@0/14/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@0/15/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@0/16/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "병변내": [],
+   "스테로이드주사": []
+  },
+  "conflict_id": "CFL-16640b32b9",
+  "fragments": [
+   "병변내",
+   "스테로이드주사"
+  ],
+  "hint": null,
+  "label": "병변내 스테로이드주사",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@8/6/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@8/7/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e8a4c2b362",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@8/6/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@8/7/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "약물치료": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "약물치료",
+     "code": "P13",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|약물치료|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-eb06d9c693",
+  "fragments": [
+   "약물치료"
+  ],
+  "hint": null,
+  "label": "약물치료",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/6/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/7/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@12/8/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-7f2ff30d4c",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@12/6/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@12/7/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@12/8/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "제모레이저": []
+  },
+  "conflict_id": "CFL-a99a05c273",
+  "fragments": [
+   "제모레이저"
+  ],
+  "hint": null,
+  "label": "제모레이저",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@9/0/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/1/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@9/2/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@9/3/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-4690afbfbb",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@9/0/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@9/1/1/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@9/2/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@9/3/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "지방분해": []
+  },
+  "conflict_id": "CFL-4b6964f9b0",
+  "fragments": [
+   "지방분해"
+  ],
+  "hint": null,
+  "label": "지방분해",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0",
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-154291cf05",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@10/1/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@10/2/0/0",
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@10/4/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "피코레이저": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피코레이저",
+     "code": null,
+     "dictionary": "product_type",
+     "pointer": "dict:product_type|피코레이저|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-0214f6f82e",
+  "fragments": [
+   "피코레이저"
+  ],
+  "hint": null,
+  "label": "피코레이저",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@13/2/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9226d652d9",
+  "relation": "R12",
+  "slot": "problem-packages.combos[].combo[] (멤버 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].combos[].combo[]@13/2/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅기기": []
+  },
+  "conflict_id": "CFL-1f6d03b3d1",
+  "fragments": [
+   "리프팅기기"
+  ],
+  "hint": "M9",
+  "label": "리프팅기기",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/0/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/1/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/2/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/3/2",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/4/2",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/5/2",
+   "problem-packages.json:problems[].complaints[].procedures[].name@1/6/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@10/1/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@10/2/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/1/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/2/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/3/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@2/4/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@3/0/1",
+   "problem-packages.json:problems[].complaints[].procedures[].name@6/2/2",
+   "problem-packages.json:problems[].complaints[].procedures[].name@6/3/2"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-1d66b51c54",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/0/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/1/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/2/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/3/2",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/4/2",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/5/2",
+    "problem-packages.json:problems[].complaints[].procedures[].name@1/6/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@10/1/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@10/2/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@2/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@2/1/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@2/2/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@2/3/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@2/4/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@3/0/1",
+    "problem-packages.json:problems[].complaints[].procedures[].name@6/2/2",
+    "problem-packages.json:problems[].complaints[].procedures[].name@6/3/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "모발이식": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "모발이식",
+     "code": "P13",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|모발이식|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-2e37e116e4",
+  "fragments": [
+   "모발이식"
+  ],
+  "hint": "M15",
+  "label": "모발이식",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@12/10/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@12/9/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-6e7ba3cf92",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@12/10/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@12/9/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미라드라이": []
+  },
+  "conflict_id": "CFL-cfcd11827e",
+  "fragments": [
+   "미라드라이"
+  ],
+  "hint": "M9",
+  "label": "미라드라이",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@13/4/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e687587f34",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@13/4/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미백주사": []
+  },
+  "conflict_id": "CFL-aa1fa904eb",
+  "fragments": [
+   "미백주사"
+  ],
+  "hint": "M16",
+  "label": "미백주사",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@4/6/2",
+   "problem-packages.json:problems[].complaints[].procedures[].name@4/7/2"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-bd1a6c11e8",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@4/6/2",
+    "problem-packages.json:problems[].complaints[].procedures[].name@4/7/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "반영구화장": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "반영구화장",
+     "code": "P1",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|반영구화장|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-6064825e04",
+  "fragments": [
+   "반영구화장"
+  ],
+  "hint": "M15",
+  "label": "반영구화장",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@0/13/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@0/14/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@0/15/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@0/16/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e0e91f5638",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@0/13/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@0/14/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@0/15/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@0/16/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "병변내": [],
+   "스테로이드주사": []
+  },
+  "conflict_id": "CFL-e22bc331a0",
+  "fragments": [
+   "병변내",
+   "스테로이드주사"
+  ],
+  "hint": "M15",
+  "label": "병변내 스테로이드주사",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@8/6/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@8/7/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-1d57cf251b",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@8/6/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@8/7/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "약물치료": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "약물치료",
+     "code": "P13",
+     "dictionary": "problem_subcategory_label",
+     "pointer": "dict:problem_subcategory_label|약물치료|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-5e2a57dde8",
+  "fragments": [
+   "약물치료"
+  ],
+  "hint": "M15",
+  "label": "약물치료",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@12/6/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@12/7/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@12/8/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-be2343c35c",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@12/6/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@12/7/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@12/8/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "제모레이저": []
+  },
+  "conflict_id": "CFL-34d919f8a2",
+  "fragments": [
+   "제모레이저"
+  ],
+  "hint": "M8",
+  "label": "제모레이저",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@9/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@9/1/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@9/2/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@9/3/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9a8e493f02",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@9/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@9/1/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@9/2/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@9/3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "지방분해": []
+  },
+  "conflict_id": "CFL-abe217829b",
+  "fragments": [
+   "지방분해"
+  ],
+  "hint": "M14",
+  "label": "지방분해",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e1f34f89a3",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@10/1/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@10/2/0",
+    "problem-packages.json:problems[].complaints[].procedures[].name@10/4/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "피코레이저": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피코레이저",
+     "code": null,
+     "dictionary": "product_type",
+     "pointer": "dict:product_type|피코레이저|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-5e4532171d",
+  "fragments": [
+   "피코레이저"
+  ],
+  "hint": "M8",
+  "label": "피코레이저",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].name@13/2/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-3440737a2c",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].name (시술 종류 29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].name@13/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "CO2레이저": []
+  },
+  "conflict_id": "CFL-179de4e84c",
+  "fragments": [
+   "CO2레이저"
+  ],
+  "hint": null,
+  "label": "CO2레이저",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@13/0/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@13/1/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9cfcadfe38",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].products[] (제품 34)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@13/0/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@13/1/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDL": [],
+   "V빔": []
+  },
+  "conflict_id": "CFL-2f53475918",
+  "fragments": [
+   "PDL",
+   "V빔"
+  ],
+  "hint": null,
+  "label": "PDL(V빔)",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/1/0",
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/1/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9af7afebc4",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].products[] (제품 34)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/1/0",
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "±5-FU": [],
+   "트리암시놀론": []
+  },
+  "conflict_id": "CFL-42d0d0b3a6",
+  "fragments": [
+   "트리암시놀론",
+   "±5-FU"
+  ],
+  "hint": null,
+  "label": "트리암시놀론(±5-FU)",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e9a4ece5ff",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].products[] (제품 34)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@8/6/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@8/7/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "LLLT": [],
+   "헤어맥스": []
+  },
+  "conflict_id": "CFL-b0a1112e30",
+  "fragments": [
+   "헤어맥스",
+   "LLLT"
+  ],
+  "hint": null,
+  "label": "헤어맥스(LLLT)",
+  "locators": [
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@12/3/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@12/4/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].products[]@12/5/0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-f9f8bfd924",
+  "relation": "R9",
+  "slot": "problem-packages.procedures[].products[] (제품 34)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@12/3/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@12/4/0/0",
+    "problem-packages.json:problems[].complaints[].procedures[].products[]@12/5/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-0d179dc31b",
+  "fragments": [],
+  "hint": null,
+  "label": "body_contouring",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@6"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-9fce17faf2",
+  "fragments": [],
+  "hint": null,
+  "label": "hair_removal",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@5"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-f8882b10ce",
+  "fragments": [],
+  "hint": null,
+  "label": "lifting",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-4a8ff04a05",
+  "fragments": [],
+  "hint": null,
+  "label": "pigment",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@4"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-ab2505f154",
+  "fragments": [],
+  "hint": null,
+  "label": "rejuvenation",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@8"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@8"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-fd2a4606d7",
+  "fragments": [],
+  "hint": null,
+  "label": "skin_texture",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-4ee5d2cb0a",
+  "fragments": [],
+  "hint": null,
+  "label": "volume",
+  "locators": [
+   "procedure-comparison.json:comparisons[].id@2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "procedure-comparison.json:comparisons[].id",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].id@2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "프랙셔널": []
+  },
+  "conflict_id": "CFL-053656aabc",
+  "fragments": [
+   "프랙셔널"
+  ],
+  "hint": "M8",
+  "label": "CO2 프랙셔널 레이저",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@3/1"
+  ],
+  "partial": [
+   "modality:레이저",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-7abbdf5aa8",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "광선치료": []
+  },
+  "conflict_id": "CFL-a1944c1ff3",
+  "fragments": [
+   "광선치료"
+  ],
+  "hint": "M9",
+  "label": "IPL (광선치료)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@4/2"
+  ],
+  "partial": [
+   "procedure:IPL"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a6defde176",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@4/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:IPL[M8]→modality_subcategory:M8-3 IPL",
+      "subcategory:M8-5 제모"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-a8df5891e6",
+  "fragments": [],
+  "hint": "M9",
+  "label": "IPL 제모",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@5/3"
+  ],
+  "partial": [
+   "procedure:IPL",
+   "modality_subcategory:제모"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-948995865e",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@5/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "더마펜": []
+  },
+  "conflict_id": "CFL-0aa82838d9",
+  "fragments": [
+   "더마펜"
+  ],
+  "hint": "M12",
+  "label": "MTS (더마펜/더마스탬프)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@3/2"
+  ],
+  "partial": [
+   "modality:마이크로니들링(MTS)",
+   "procedure:더마스탬프"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-cf58186900",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@3/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "1064nm": []
+  },
+  "conflict_id": "CFL-5050eddc3a",
+  "fragments": [
+   "1064nm"
+  ],
+  "hint": "M8",
+  "label": "Nd:YAG (1064nm)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@5/2"
+  ],
+  "partial": [
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ba9c484fac",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@5/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDT": [],
+   "광역동치료": []
+  },
+  "conflict_id": "CFL-05222dd1d7",
+  "fragments": [
+   "PDT",
+   "광역동치료"
+  ],
+  "hint": "M8",
+  "label": "PDT (광역동치료)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@7/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-2989f5c5e5",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@7/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "자가혈": [],
+   "재생": []
+  },
+  "conflict_id": "CFL-bb58ae870e",
+  "fragments": [
+   "자가혈",
+   "재생"
+  ],
+  "hint": "M5",
+  "label": "PRP (자가혈 재생)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@8/1"
+  ],
+  "partial": [
+   "procedure:PRP"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a7019b20a2",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@8/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "Q-스위치": []
+  },
+  "conflict_id": "CFL-68a2b299f6",
+  "fragments": [
+   "Q-스위치"
+  ],
+  "hint": "M8",
+  "label": "Q-스위치 Nd:YAG",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@4/1"
+  ],
+  "partial": [
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-654a4f7928",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@4/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "808nm": [],
+   "810nm": []
+  },
+  "conflict_id": "CFL-e5b2cb2de2",
+  "fragments": [
+   "808nm",
+   "810nm"
+  ],
+  "hint": "M8",
+  "label": "다이오드 (808nm/810nm)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@5/1"
+  ],
+  "partial": [
+   "modality_subcategory:제모"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-0de4c32307",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@5/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "저출력": []
+  },
+  "conflict_id": "CFL-b626a55de6",
+  "fragments": [
+   "저출력"
+  ],
+  "hint": "M8",
+  "label": "레이저토닝 (저출력 Nd:YAG)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@4/3"
+  ],
+  "partial": [
+   "procedure:레이저토닝",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e6351579d0",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@4/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PN주사": [],
+   "리쥬란": []
+  },
+  "conflict_id": "CFL-18b39fddc2",
+  "fragments": [
+   "리쥬란",
+   "PN주사"
+  ],
+  "hint": "M4",
+  "label": "리쥬란 (PN주사)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@1/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-476cd51b2e",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@1/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리포셀": [],
+   "지방": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "지방",
+     "code": null,
+     "dictionary": "adverse_qualifier",
+     "pointer": "dict:adverse_qualifier|지방|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-4a2369aac5",
+  "fragments": [
+   "리포셀",
+   "지방"
+  ],
+  "hint": "M10",
+  "label": "리포셀 (HIFU 지방)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@6/1"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8f843f89f3",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@6/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "마이크로니들RF": []
+  },
+  "conflict_id": "CFL-f64235307b",
+  "fragments": [
+   "마이크로니들RF"
+  ],
+  "hint": "M11",
+  "label": "마이크로니들RF (시크릿/인모드)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@3/0"
+  ],
+  "partial": [
+   "product:시크릿",
+   "procedure:인모드"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-96ca40a5c2",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "메소테라피": [],
+   "물광주사": []
+  },
+  "conflict_id": "CFL-8fe485d467",
+  "fragments": [
+   "물광주사",
+   "메소테라피"
+  ],
+  "hint": "M4",
+  "label": "물광주사 (메소테라피)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@8/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-0ad5865954",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@8/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "고주파": [],
+   "바넬라": [],
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-c61660a1b8",
+  "fragments": [
+   "바넬라",
+   "고주파",
+   "바디"
+  ],
+  "hint": "M9",
+  "label": "바넬라 (고주파 바디)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@6/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e4e3b3c211",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@6/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "살리실릭": []
+  },
+  "conflict_id": "CFL-f4e647f0d8",
+  "fragments": [
+   "살리실릭"
+  ],
+  "hint": "M15",
+  "label": "살리실릭 필링",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@7/2"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-65eed9bf08",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@7/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:스컬트라[M3]→product:스컬트라",
+      "catalog_item:PLLA[M7]→catalog_item:PLLA"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-dc85c5dd88",
+  "fragments": [],
+  "hint": "M3",
+  "label": "스컬트라 (PLLA)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@2/1"
+  ],
+  "partial": [
+   "procedure:스컬트라",
+   "procedure:PLLA"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-516ab81b2c",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "스컬프슈어": [],
+   "지방분해": []
+  },
+  "conflict_id": "CFL-8df9cf4efb",
+  "fragments": [
+   "스컬프슈어",
+   "지방분해"
+  ],
+  "hint": "M8",
+  "label": "스컬프슈어 (레이저 지방분해)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@6/2"
+  ],
+  "partial": [
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-da6f8f82a5",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@6/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리쥬란": []
+  },
+  "conflict_id": "CFL-7edb766177",
+  "fragments": [
+   "리쥬란"
+  ],
+  "hint": "M4",
+  "label": "스킨부스터 (쥬베룩/리쥬란)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@8/0"
+  ],
+  "partial": [
+   "modality:스킨부스터",
+   "procedure:쥬베룩"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-bfc74ed8ee",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@8/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "실리콘피부관리": [],
+   "하이드라": []
+  },
+  "conflict_id": "CFL-aaf0543fe8",
+  "fragments": [
+   "실리콘피부관리",
+   "하이드라"
+  ],
+  "hint": "M15",
+  "label": "실리콘피부관리 (아쿠아필/하이드라)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@3/4"
+  ],
+  "partial": [
+   "procedure:아쿠아필"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-35aae74d14",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@3/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDO코그": []
+  },
+  "conflict_id": "CFL-ecba344005",
+  "fragments": [
+   "PDO코그"
+  ],
+  "hint": "M7",
+  "label": "실리프팅 (PDO코그)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@0/2"
+  ],
+  "partial": [
+   "modality:실리프팅"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-2058bcd5f6",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@0/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:써마지FLX[M9]→product:써마지FLX",
+      "subcategory:M9-2 RF (고주파)"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-c93aed8705",
+  "fragments": [],
+  "hint": "M9",
+  "label": "써마지FLX (RF)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@0/1"
+  ],
+  "partial": [
+   "procedure:써마지FLX",
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-8721f0f1f9",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "니들": [],
+   "피지선": []
+  },
+  "conflict_id": "CFL-232476b7f4",
+  "fragments": [
+   "니들",
+   "피지선"
+  ],
+  "hint": "M11",
+  "label": "아그네스 (RF 니들 피지선)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@7/0"
+  ],
+  "partial": [
+   "procedure:아그네스",
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e5ce5029bb",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@7/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "755nm": []
+  },
+  "conflict_id": "CFL-c2dfc27a69",
+  "fragments": [
+   "755nm"
+  ],
+  "hint": "M8",
+  "label": "알렉산드라이트 (755nm)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@5/0"
+  ],
+  "partial": [
+   "procedure:알렉산드라이트"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-0397083c33",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@5/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "스킨스케일링": [],
+   "압출": []
+  },
+  "conflict_id": "CFL-0216edf9f3",
+  "fragments": [
+   "압출",
+   "스킨스케일링"
+  ],
+  "hint": "M15",
+  "label": "압출+스킨스케일링",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@7/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-0810855cba",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@7/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "유래": []
+  },
+  "conflict_id": "CFL-9eeeedb003",
+  "fragments": [
+   "유래"
+  ],
+  "hint": "M17",
+  "label": "엑소좀 (줄기세포 유래)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@8/2"
+  ],
+  "partial": [
+   "modality_subcategory:엑소좀",
+   "modality:줄기세포치료"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-4c15343489",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@8/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:엘란쎄[M3]→product:엘란쎄",
+      "catalog_item:PCL[M7]→catalog_item:PCL"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-e5926e0aff",
+  "fragments": [],
+  "hint": "M3",
+  "label": "엘란쎄 (PCL)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@2/2"
+  ],
+  "partial": [
+   "procedure:엘란쎄",
+   "procedure:PCL"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-7d26020636",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:울쎄라[M9]→product:울쎄라",
+      "subcategory:M9-1 HIFU (초음파)"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-773206ca92",
+  "fragments": [],
+  "hint": "M9",
+  "label": "울쎄라 (HIFU)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@0/0"
+  ],
+  "partial": [
+   "procedure:울쎄라",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-ef5d3e0f46",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "RF마이크로니들": [],
+   "인모드FX": []
+  },
+  "conflict_id": "CFL-68bd8256a2",
+  "fragments": [
+   "인모드FX",
+   "RF마이크로니들"
+  ],
+  "hint": "M11",
+  "label": "인모드FX (RF마이크로니들)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@0/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-d35de3539c",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@0/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "자가지방이식": []
+  },
+  "conflict_id": "CFL-6e772051cd",
+  "fragments": [
+   "자가지방이식"
+  ],
+  "hint": "M6",
+  "label": "자가지방이식",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@2/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-ab95d6a80b",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@2/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "롱펄스": [],
+   "제네시스": []
+  },
+  "conflict_id": "CFL-cc33aadaea",
+  "fragments": [
+   "제네시스",
+   "롱펄스"
+  ],
+  "hint": "M8",
+  "label": "제네시스 (Nd:YAG 롱펄스)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@7/4"
+  ],
+  "partial": [
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-962faee154",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@7/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "냉동지방분해": []
+  },
+  "conflict_id": "CFL-783296d71b",
+  "fragments": [
+   "냉동지방분해"
+  ],
+  "hint": "M14",
+  "label": "쿨스컬프팅 (냉동지방분해)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@6/0"
+  ],
+  "partial": [
+   "procedure:쿨스컬프팅"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-f500045020",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@6/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "프랙셔널": []
+  },
+  "conflict_id": "CFL-de5b9a5709",
+  "fragments": [
+   "프랙셔널"
+  ],
+  "hint": "M8",
+  "label": "프락셀 (프랙셔널 레이저)",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@1/2"
+  ],
+  "partial": [
+   "product:프락셀",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-61e5788ccb",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@1/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "프랙셔널": [],
+   "피코": []
+  },
+  "conflict_id": "CFL-2855cb7e58",
+  "fragments": [
+   "피코",
+   "프랙셔널"
+  ],
+  "hint": "M8",
+  "label": "피코 프랙셔널",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@3/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-ddb1fe5c6d",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@3/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "히알루론산": []
+  },
+  "conflict_id": "CFL-1218c0ed1a",
+  "fragments": [
+   "히알루론산"
+  ],
+  "hint": "M2",
+  "label": "히알루론산 필러",
+  "locators": [
+   "procedure-comparison.json:comparisons[].procedures[].name@1/1",
+   "procedure-comparison.json:comparisons[].procedures[].name@2/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-82ac23a65f",
+  "relation": "R12",
+  "slot": "procedure-comparison.procedures[].name (39)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "procedure-comparison.json:comparisons[].procedures[].name@1/1",
+    "procedure-comparison.json:comparisons[].procedures[].name@2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "CO2레이저": []
+  },
+  "conflict_id": "CFL-2958cf0e5c",
+  "fragments": [
+   "CO2레이저"
+  ],
+  "hint": "M8",
+  "label": "CO2레이저",
+  "locators": [
+   "synergy.json:links[].from@87",
+   "synergy.json:links[].from@88",
+   "synergy.json:links[].from@89"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-7a49516d6c",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@87",
+    "synergy.json:links[].from@88",
+    "synergy.json:links[].from@89"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-3b6d342318",
+  "fragments": [
+   "바디"
+  ],
+  "hint": "M10",
+  "label": "HIFES(바디)",
+  "locators": [
+   "synergy.json:links[].to@20"
+  ],
+  "partial": [
+   "modality:HIFES/EMS"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-dc7d00f619",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].to@20"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리쥬란": []
+  },
+  "conflict_id": "CFL-0cab4faaef",
+  "fragments": [
+   "리쥬란"
+  ],
+  "hint": "M4",
+  "label": "리쥬란",
+  "locators": [
+   "synergy.json:links[].from@46",
+   "synergy.json:links[].from@47",
+   "synergy.json:links[].from@48",
+   "synergy.json:links[].from@49",
+   "synergy.json:links[].to@80"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-b94dfd210d",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@46",
+    "synergy.json:links[].from@47",
+    "synergy.json:links[].from@48",
+    "synergy.json:links[].from@49",
+    "synergy.json:links[].to@80"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅기기": []
+  },
+  "conflict_id": "CFL-faaa16e022",
+  "fragments": [
+   "리프팅기기"
+  ],
+  "hint": "M9",
+  "label": "리프팅기기",
+  "locators": [
+   "synergy.json:links[].from@114",
+   "synergy.json:links[].to@2",
+   "synergy.json:links[].to@3",
+   "synergy.json:links[].to@33",
+   "synergy.json:links[].to@37",
+   "synergy.json:links[].to@6",
+   "synergy.json:links[].to@96"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-1d66b51c54",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@114",
+    "synergy.json:links[].to@2",
+    "synergy.json:links[].to@3",
+    "synergy.json:links[].to@33",
+    "synergy.json:links[].to@37",
+    "synergy.json:links[].to@6",
+    "synergy.json:links[].to@96"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "코끝": []
+  },
+  "conflict_id": "CFL-40243774a0",
+  "fragments": [
+   "코끝"
+  ],
+  "hint": "M1",
+  "label": "보톡스(코끝)",
+  "locators": [
+   "synergy.json:links[].to@34"
+  ],
+  "partial": [
+   "modality:보툴리눔 톡신"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8d19f30f99",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].to@34"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "사각턱보톡스": []
+  },
+  "conflict_id": "CFL-7e34a5449a",
+  "fragments": [
+   "사각턱보톡스"
+  ],
+  "hint": "M1",
+  "label": "사각턱보톡스",
+  "locators": [
+   "synergy.json:links[].from@4"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-2713fbc16c",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "써마지": []
+  },
+  "conflict_id": "CFL-eb1c813061",
+  "fragments": [
+   "써마지"
+  ],
+  "hint": "M9",
+  "label": "써마지",
+  "locators": [
+   "synergy.json:links[].from@101",
+   "synergy.json:links[].from@102",
+   "synergy.json:links[].to@100",
+   "synergy.json:links[].to@108",
+   "synergy.json:links[].to@112",
+   "synergy.json:links[].to@43",
+   "synergy.json:links[].to@70"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-f179d93bfa",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@101",
+    "synergy.json:links[].from@102",
+    "synergy.json:links[].to@100",
+    "synergy.json:links[].to@108",
+    "synergy.json:links[].to@112",
+    "synergy.json:links[].to@43",
+    "synergy.json:links[].to@70"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-f7fc33e62e",
+  "fragments": [
+   "바디"
+  ],
+  "hint": "M9",
+  "label": "인모드(바디)",
+  "locators": [
+   "synergy.json:links[].to@21"
+  ],
+  "partial": [
+   "procedure:인모드"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-65195c4396",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].to@21"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "저출력레이저": []
+  },
+  "conflict_id": "CFL-f5be7cc74c",
+  "fragments": [
+   "저출력레이저"
+  ],
+  "hint": "M8",
+  "label": "저출력레이저(두피)",
+  "locators": [
+   "synergy.json:links[].to@29"
+  ],
+  "partial": [
+   "site:두피"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-53dcdd3afa",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].to@29"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "코필러": []
+  },
+  "conflict_id": "CFL-4f9b38c360",
+  "fragments": [
+   "코필러"
+  ],
+  "hint": "M2",
+  "label": "코필러",
+  "locators": [
+   "synergy.json:links[].from@34"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9d3fcdc2de",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].from@34"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "턱필러": []
+  },
+  "conflict_id": "CFL-8f55b0d358",
+  "fragments": [
+   "턱필러"
+  ],
+  "hint": "M2",
+  "label": "턱필러",
+  "locators": [
+   "synergy.json:links[].to@4"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-1e8da436d8",
+  "relation": "R18",
+  "slot": "synergy.links[].from/to (노드 52)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "synergy.json:links[].to@4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-d781980e72",
+  "fragments": [
+   "비가교 HA 메조테라피"
+  ],
+  "hint": "M4",
+  "label": "비가교 HA 메조테라피",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/13"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-603387509e",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/13"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-9a6567b9a8",
+  "fragments": [
+   "비타민 B 계열"
+  ],
+  "hint": "M16",
+  "label": "비타민 B 계열",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/1/0"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-da4661811d",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-ed178c403f",
+  "fragments": [
+   "재생형 메조테라피"
+  ],
+  "hint": "M4",
+  "label": "재생형 메조테라피",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/14"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-36ce95abaf",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/14"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-18f25584d6",
+  "fragments": [
+   "콜라겐 혼합 메조테라피"
+  ],
+  "hint": "M4",
+  "label": "콜라겐 혼합 메조테라피",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/15"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-96bb74d9a4",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@3/1/15"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-7cb26e45ab",
+  "fragments": [
+   "항산화 IV"
+  ],
+  "hint": "M16",
+  "label": "항산화 IV",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/1/1"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-aed55d89db",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-1f2bf1ee2b",
+  "fragments": [
+   "항산화·미백 IV"
+  ],
+  "hint": "M16",
+  "label": "항산화·미백 IV",
+  "locators": [
+   "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/0/0"
+  ],
+  "partial": [],
+  "reason": "canonical_category 가 하위분류 사전에 없다(질문 23)",
+  "ref_id": "CAT-740a03155f",
+  "relation": "canonical_mapping",
+  "slot": "taxonomy.json:modality[].subcategories[].items[].canonical_category",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "taxonomy.json:modality[].subcategories[].items[].canonical_category@15/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "색소": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|색소|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|색소|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-9fd6bef67c",
+  "fragments": [
+   "색소"
+  ],
+  "hint": null,
+  "label": "IPL(가을 색소 관리)",
+  "locators": [
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/9/1"
+  ],
+  "partial": [
+   "procedure:IPL"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-c640464ff3",
+  "relation": "R12",
+  "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/9/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "색소": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|색소|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|색소|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-aea16e143a",
+  "fragments": [
+   "색소"
+  ],
+  "hint": null,
+  "label": "IPL(가을 색소)",
+  "locators": [
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/9/1"
+  ],
+  "partial": [
+   "procedure:IPL"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-5da7193b15",
+  "relation": "R12",
+  "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/9/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "색소": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|색소|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "색소",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|색소|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-fe621520ca",
+  "fragments": [
+   "색소"
+  ],
+  "hint": null,
+  "label": "IPL(색소 관리)",
+  "locators": [
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/3/1"
+  ],
+  "partial": [
+   "procedure:IPL"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b572fd0bf1",
+  "relation": "R12",
+  "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리프팅": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|리프팅|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "리프팅",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|리프팅|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-231d684eb7",
+  "fragments": [
+   "리프팅"
+  ],
+  "hint": null,
+  "label": "연말 리프팅 관리(RF/HIFU 터치)",
+  "locators": [
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/11/1"
+  ],
+  "partial": [
+   "modality_subcategory:RF (고주파)",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b009d7edf1",
+  "relation": "R12",
+  "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/11/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "피부결": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피부결",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|피부결|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피부결",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|피부결|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-28599160de",
+  "fragments": [
+   "피부결"
+  ],
+  "hint": null,
+  "label": "프락셔널(피부결)",
+  "locators": [
+   "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1"
+  ],
+  "partial": [
+   "modality_subcategory:프락셔널"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-2332f364eb",
+  "relation": "R12",
+  "slot": "treatment-optimization.annual_plans.schedule[].procedures[] (29)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/6/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "울쎄라급": []
+  },
+  "conflict_id": "CFL-99fb3a6da9",
+  "fragments": [
+   "울쎄라급"
+  ],
+  "hint": null,
+  "label": "HIFU(울쎄라급)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].recommended_base[]@3/0"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d0c32b6f91",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].recommended_base[]@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "고려": [],
+   "시술": [],
+   "저하": [],
+   "회복력": []
+  },
+  "conflict_id": "CFL-d29fd7b8ef",
+  "fragments": [
+   "시술",
+   "회복력",
+   "저하",
+   "고려"
+  ],
+  "hint": null,
+  "label": "과도한 시술 빈도(피부 회복력 저하 고려)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@2/0"
+  ],
+  "partial": [
+   "layer_site:피부"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-c84d7db12d",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "노화": [],
+   "자연스러운": [],
+   "중요": []
+  },
+  "conflict_id": "CFL-66cc2af4e5",
+  "fragments": [
+   "자연스러운",
+   "노화",
+   "중요"
+  ],
+  "hint": null,
+  "label": "과도한 필러 (자연스러운 노화 중요)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@0/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a8105d006e",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "부자연스러운": [],
+   "외관": []
+  },
+  "conflict_id": "CFL-a9da686b44",
+  "fragments": [
+   "부자연스러운",
+   "외관"
+  ],
+  "hint": null,
+  "label": "과도한 필러(부자연스러운 외관)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@3/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-86e92b8035",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "자연스러움": [],
+   "필러량": []
+  },
+  "conflict_id": "CFL-ec049599c5",
+  "fragments": [
+   "필러량",
+   "자연스러움"
+  ],
+  "hint": null,
+  "label": "과도한 필러량(자연스러움 유지)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@1/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-1433f23837",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "목전용": []
+  },
+  "conflict_id": "CFL-744c85a9d1",
+  "fragments": [
+   "목전용"
+  ],
+  "hint": null,
+  "label": "목전용 HIFU/RF",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].upgrade[]@3/1"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)",
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a11fbd458e",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].upgrade[]@3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "예방적": [],
+   "투자": []
+  },
+  "conflict_id": "CFL-6bb11c7f33",
+  "fragments": [
+   "예방적",
+   "투자"
+  ],
+  "hint": null,
+  "label": "바이오스티뮬레이터 (콜라겐 예방적 투자)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].upgrade[]@1/0"
+  ],
+  "partial": [
+   "modality:바이오스티뮬레이터",
+   "modality_subcategory:콜라겐"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ec912d8bce",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].upgrade[]@1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "과잉": [],
+   "금지": [],
+   "목적": [],
+   "불필요한": [],
+   "예방": []
+  },
+  "conflict_id": "CFL-3fc36c1f22",
+  "fragments": [
+   "불필요한",
+   "예방",
+   "목적",
+   "과잉",
+   "금지"
+  ],
+  "hint": null,
+  "label": "불필요한 보톡스(예방 목적 과잉 금지)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@0/1"
+  ],
+  "partial": [
+   "modality:보툴리눔 톡신"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-067ae3ecb2",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "피부결": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피부결",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|피부결|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "피부결",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|피부결|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-8d399ece76",
+  "fragments": [
+   "피부결"
+  ],
+  "hint": null,
+  "label": "프락셔널 CO2(피부결)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+  ],
+  "partial": [
+   "modality_subcategory:프락셔널",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ce0cd41707",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].upgrade[]@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "시술": [],
+   "초과": [],
+   "회복력": []
+  },
+  "conflict_id": "CFL-4eb590d914",
+  "fragments": [
+   "회복력",
+   "초과",
+   "시술"
+  ],
+  "hint": null,
+  "label": "회복력 초과 시술 빈도",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].avoid[]@3/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-9e9471f373",
+  "relation": "R17",
+  "slot": "treatment-optimization.by_age_group recommended_base/avoid/upgrade (22)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].avoid[]@3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-339e51b0a1",
+  "fragments": [],
+  "hint": "50대+",
+  "label": "깊은 주름",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@3/1"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-84e9d6b455",
+  "fragments": [],
+  "hint": "30대",
+  "label": "눈가 노화",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@1/3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@1/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-34f57e4c98",
+  "fragments": [],
+  "hint": "50대+",
+  "label": "목주름",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@3/4"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@3/4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-573be50c78",
+  "fragments": [],
+  "hint": "40대",
+  "label": "볼륨 손실",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@2/2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-8c374dcbbd",
+  "fragments": [],
+  "hint": "50대+",
+  "label": "볼륨 손실",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@3/2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@3/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-8f79c4bf1f",
+  "fragments": [],
+  "hint": "40대",
+  "label": "색소 심화",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@2/3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@2/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-c50a0380ed",
+  "fragments": [],
+  "hint": "20대",
+  "label": "색소(기미 초기)",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@0/3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@0/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-9517fb3b02",
+  "fragments": [],
+  "hint": "30대",
+  "label": "색소/기미",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@1/2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@1/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-691b2b29c1",
+  "fragments": [],
+  "hint": "20대",
+  "label": "여드름/흉터",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@0/0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-b00d40c7af",
+  "fragments": [],
+  "hint": "40대",
+  "label": "주름 심화",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@2/0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-02e708614d",
+  "fragments": [],
+  "hint": "40대",
+  "label": "처짐",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@2/1"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-340ad6cc99",
+  "fragments": [],
+  "hint": "50대+",
+  "label": "처짐",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@3/0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-6dec29a339",
+  "fragments": [],
+  "hint": "30대",
+  "label": "초기 주름",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@1/0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-6aebe50203",
+  "fragments": [],
+  "hint": "30대",
+  "label": "탄력 저하",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@1/1"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-d0a2afd587",
+  "fragments": [],
+  "hint": "50대+",
+  "label": "피부 노화",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@3/3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@3/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-78dfd222e8",
+  "fragments": [],
+  "hint": "20대",
+  "label": "피부결",
+  "locators": [
+   "treatment-optimization.json:by_age_group[].primary_concerns[]@0/2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R17",
+  "slot": "treatment-optimization.json:by_age_group[].primary_concerns[]",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_age_group[].primary_concerns[]@0/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-2f5b67a5a4",
+  "fragments": [],
+  "hint": null,
+  "label": "바디컨투어링",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@7"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@7"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-0867a1ef95",
+  "fragments": [],
+  "hint": null,
+  "label": "볼륨 손실",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@2"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-6adb6e9619",
+  "fragments": [],
+  "hint": null,
+  "label": "색소/기미",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@4"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-b2aa9d313d",
+  "fragments": [],
+  "hint": null,
+  "label": "여드름/흉터",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@5"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@5"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-4083da790b",
+  "fragments": [],
+  "hint": null,
+  "label": "주름 개선",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@0"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {},
+  "conflict_id": "CFL-ee5f5fac3f",
+  "fragments": [],
+  "hint": null,
+  "label": "피부결/모공",
+  "locators": [
+   "treatment-optimization.json:by_concern[].concern@3"
+  ],
+  "partial": [],
+  "reason": "고민 사전 일치 없음(질문 12)",
+  "ref_id": null,
+  "relation": "R13",
+  "slot": "treatment-optimization.json:by_concern[].concern",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].concern@3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "CaHA": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "CaHA",
+     "code": null,
+     "dictionary": "ingredient_material",
+     "pointer": "dict:ingredient_material|CaHA|canonical"
+    }
+   ],
+   "레디에스": []
+  },
+  "conflict_id": "CFL-6c18b837a9",
+  "fragments": [
+   "CaHA",
+   "레디에스"
+  ],
+  "hint": null,
+  "label": "CaHA(레디에스)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-6f441e7f62",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": [],
+   "볼류마이징": []
+  },
+  "conflict_id": "CFL-15c210a91f",
+  "fragments": [
+   "HA",
+   "볼류마이징"
+  ],
+  "hint": null,
+  "label": "HA 볼류마이징 스킨부스터",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/0/0"
+  ],
+  "partial": [
+   "modality:스킨부스터"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a175d8be6c",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": []
+  },
+  "conflict_id": "CFL-9e87ce0ab9",
+  "fragments": [
+   "HA"
+  ],
+  "hint": null,
+  "label": "HA 필러",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/1/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8bca08cd7d",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": [],
+   "딥": []
+  },
+  "conflict_id": "CFL-f21b842090",
+  "fragments": [
+   "HA",
+   "딥"
+  ],
+  "hint": null,
+  "label": "HA 필러(딥)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-55570b4a55",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@2/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "블루라이트": []
+  },
+  "conflict_id": "CFL-267b60ab6d",
+  "fragments": [
+   "블루라이트"
+  ],
+  "hint": null,
+  "label": "LED(블루라이트)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/0/2"
+  ],
+  "partial": [
+   "modality_subcategory:광치료(LED)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-bc32f4547c",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/0/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "보조·근거": [],
+   "엑소좀은": [],
+   "제한적": []
+  },
+  "conflict_id": "CFL-db906a7b46",
+  "fragments": [
+   "엑소좀은",
+   "보조·근거",
+   "제한적"
+  ],
+  "hint": null,
+  "label": "PRP (엑소좀은 보조·근거 제한적)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/2/1"
+  ],
+  "partial": [
+   "procedure:PRP"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ef472bda14",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "타이트닝": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "타이트닝",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|타이트닝|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-22b07bff6c",
+  "fragments": [
+   "타이트닝"
+  ],
+  "hint": null,
+  "label": "RF 타이트닝",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/2"
+  ],
+  "partial": [
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-173f9edeff",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "Cross": [],
+   "TCA": []
+  },
+  "conflict_id": "CFL-cb22ef293d",
+  "fragments": [
+   "TCA",
+   "Cross"
+  ],
+  "hint": null,
+  "label": "TCA Cross",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-2e2722175e",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "고주파": [],
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-ca9cd9abb3",
+  "fragments": [
+   "고주파",
+   "바디"
+  ],
+  "hint": null,
+  "label": "고주파 바디 RF",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+  ],
+  "partial": [
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-85dcc44f0d",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "810nm": []
+  },
+  "conflict_id": "CFL-d5c5ef78c7",
+  "fragments": [
+   "810nm"
+  ],
+  "hint": null,
+  "label": "다이오드 레이저(810nm)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0"
+  ],
+  "partial": [
+   "modality_subcategory:제모",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-c062302516",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "810nm": []
+  },
+  "conflict_id": "CFL-7ba2c47cde",
+  "fragments": [
+   "810nm"
+  ],
+  "hint": null,
+  "label": "다이오드(810nm)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1"
+  ],
+  "partial": [
+   "modality_subcategory:제모"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d927401fa0",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "or": [],
+   "듀얼파장": [],
+   "알렉": []
+  },
+  "conflict_id": "CFL-285898fe54",
+  "fragments": [
+   "듀얼파장",
+   "알렉",
+   "or"
+  ],
+  "hint": null,
+  "label": "듀얼파장(알렉+다이오드 or 다이오드+Nd:YAG)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+  ],
+  "partial": [
+   "modality_subcategory:제모",
+   "modality_subcategory:제모",
+   "modality:레이저"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-16dcc3a613",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "마이크로니들링": [],
+   "미백약물": []
+  },
+  "conflict_id": "CFL-fa6b1edfdd",
+  "fragments": [
+   "마이크로니들링",
+   "미백약물"
+  ],
+  "hint": null,
+  "label": "마이크로니들링+미백약물",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/2"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-d7d85091f1",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리포셀": [],
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-c13fda9362",
+  "fragments": [
+   "바디",
+   "리포셀"
+  ],
+  "hint": null,
+  "label": "바디 HIFU(리포셀)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6416534ee8",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "바디": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": "P12",
+     "dictionary": "problem",
+     "pointer": "dict:problem|바디|canonical"
+    },
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "바디",
+     "code": null,
+     "dictionary": "purpose_label",
+     "pointer": "dict:purpose_label|바디|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-8ad47fa4f1",
+  "fragments": [
+   "바디"
+  ],
+  "hint": null,
+  "label": "바디 RF",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+  ],
+  "partial": [
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6633e9a989",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "비타민C": []
+  },
+  "conflict_id": "CFL-ec44c13c8c",
+  "fragments": [
+   "비타민C"
+  ],
+  "hint": null,
+  "label": "비타민C 이온토포레시스",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/0/2"
+  ],
+  "partial": [
+   "procedure:이온토포레시스"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-5518f02147",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/0/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "subcision": []
+  },
+  "conflict_id": "CFL-ac33a1ebcf",
+  "fragments": [
+   "subcision"
+  ],
+  "hint": null,
+  "label": "서브시전(subcision)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/1/1"
+  ],
+  "partial": [
+   "procedure:서브시전"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-2e6b527e4a",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리쥬란": []
+  },
+  "conflict_id": "CFL-06175f3e15",
+  "fragments": [
+   "리쥬란"
+  ],
+  "hint": null,
+  "label": "스킨부스터(리쥬란)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/0/1"
+  ],
+  "partial": [
+   "modality:스킨부스터"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-380af0e5ee",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@0/0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미백성분": []
+  },
+  "conflict_id": "CFL-879b3e61b6",
+  "fragments": [
+   "미백성분"
+  ],
+  "hint": null,
+  "label": "스킨부스터(미백성분)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/2"
+  ],
+  "partial": [
+   "modality:스킨부스터"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-c2169c9fe9",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "써마지": []
+  },
+  "conflict_id": "CFL-2e2e6d3cf5",
+  "fragments": [
+   "써마지"
+  ],
+  "hint": null,
+  "label": "써마지/RF",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/0/0"
+  ],
+  "partial": [
+   "modality_subcategory:RF (고주파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-702f43a048",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "755nm": []
+  },
+  "conflict_id": "CFL-30415dd435",
+  "fragments": [
+   "755nm"
+  ],
+  "hint": null,
+  "label": "알렉산드라이트(755nm)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/0"
+  ],
+  "partial": [
+   "procedure:알렉산드라이트"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-cc242017d0",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@6/1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:울쎄라[M9]→product:울쎄라",
+      "subcategory:M9-1 HIFU (초음파)"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-dbc42ae30a",
+  "fragments": [],
+  "hint": null,
+  "label": "울쎄라 HIFU",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/2/0"
+  ],
+  "partial": [
+   "procedure:울쎄라",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-b9e8b4f539",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@1/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "저출력": []
+  },
+  "conflict_id": "CFL-fad659b142",
+  "fragments": [
+   "저출력"
+  ],
+  "hint": null,
+  "label": "저출력 IPL(병용 보조)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/3"
+  ],
+  "partial": [
+   "procedure:IPL"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-4da628970c",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "저출력": []
+  },
+  "conflict_id": "CFL-f76c9d5610",
+  "fragments": [
+   "저출력"
+  ],
+  "hint": null,
+  "label": "저출력 피코토닝",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/0"
+  ],
+  "partial": [
+   "procedure:피코토닝"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-548cafd757",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "데옥시콜산": [],
+   "지방분해주사": []
+  },
+  "conflict_id": "CFL-91f33c896e",
+  "fragments": [
+   "지방분해주사",
+   "데옥시콜산"
+  ],
+  "hint": null,
+  "label": "지방분해주사(데옥시콜산)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-4aa3120d1a",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리포": [],
+   "지방흡입": []
+  },
+  "conflict_id": "CFL-b83a918d74",
+  "fragments": [
+   "지방흡입",
+   "리포"
+  ],
+  "hint": null,
+  "label": "지방흡입(리포)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-b508cd51f5",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "냉동지방분해": []
+  },
+  "conflict_id": "CFL-91f95e6221",
+  "fragments": [
+   "냉동지방분해"
+  ],
+  "hint": null,
+  "label": "크라이오(냉동지방분해)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0"
+  ],
+  "partial": [
+   "modality:크라이오리포라이시스"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-5e0fb0e488",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@7/0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "경구": [],
+   "주사": []
+  },
+  "conflict_id": "CFL-12c907d8c3",
+  "fragments": [
+   "경구",
+   "주사"
+  ],
+  "hint": null,
+  "label": "트라넥삼산(경구+주사)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/1"
+  ],
+  "partial": [
+   "procedure:트라넥삼산"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-616820f3af",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "경구": [],
+   "국소": []
+  },
+  "conflict_id": "CFL-7962efd6c2",
+  "fragments": [
+   "경구",
+   "국소"
+  ],
+  "hint": null,
+  "label": "트라넥삼산(경구/국소)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/1"
+  ],
+  "partial": [
+   "procedure:트라넥삼산"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-f9f0b83670",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@4/1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "CaHA": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "CaHA",
+     "code": null,
+     "dictionary": "ingredient_material",
+     "pointer": "dict:ingredient_material|CaHA|canonical"
+    }
+   ],
+   "HA": []
+  },
+  "conflict_id": "CFL-5d20403306",
+  "fragments": [
+   "HA",
+   "CaHA"
+  ],
+  "hint": null,
+  "label": "필러(HA/CaHA)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/2"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-dd55c3196d",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/2/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "글리콜산": [],
+   "살리실산": []
+  },
+  "conflict_id": "CFL-d5e4b0aaad",
+  "fragments": [
+   "살리실산",
+   "글리콜산"
+  ],
+  "hint": null,
+  "label": "필링(살리실산/글리콜산)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/0/1"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d007aa8649",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@5/0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "산": [],
+   "약한": []
+  },
+  "conflict_id": "CFL-b90ececcf6",
+  "fragments": [
+   "약한",
+   "산"
+  ],
+  "hint": null,
+  "label": "필링(약한 산)",
+  "locators": [
+   "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/0/1"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-982d629bab",
+  "relation": "R12",
+  "slot": "treatment-optimization.optimal_combo[] (57)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-optimization.json:by_concern[].severity_levels[].optimal_combo[]@3/0/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "ALA": [],
+   "도포·배양": []
+  },
+  "conflict_id": "CFL-d404fb0c76",
+  "fragments": [
+   "ALA",
+   "도포·배양"
+  ],
+  "hint": null,
+  "label": "ALA 도포·배양",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@3/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-a4fd8b4b6b",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@3/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "subcategory:M9-1 HIFU (초음파)",
+      "catalog_item:울쎄라[M9]→product:울쎄라"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-1ee3f164e6",
+  "fragments": [],
+  "hint": null,
+  "label": "HIFU 울쎄라",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@6/0"
+  ],
+  "partial": [
+   "modality_subcategory:HIFU (초음파)",
+   "procedure:울쎄라"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-3421f51130",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@6/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "미세채널": [],
+   "오픈": []
+  },
+  "conflict_id": "CFL-038b760b6f",
+  "fragments": [
+   "미세채널",
+   "오픈"
+  ],
+  "hint": null,
+  "label": "MTS(미세채널 오픈)",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@3/0"
+  ],
+  "partial": [
+   "modality:마이크로니들링(MTS)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-6f55e9f4a8",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@3/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "도포": []
+  },
+  "conflict_id": "CFL-62517de35a",
+  "fragments": [
+   "도포"
+  ],
+  "hint": null,
+  "label": "PRP 도포",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@7/2"
+  ],
+  "partial": [
+   "procedure:PRP"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-b7cf20d28b",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@7/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDT": [],
+   "광조사": []
+  },
+  "conflict_id": "CFL-84b1094614",
+  "fragments": [
+   "광조사",
+   "PDT"
+  ],
+  "hint": null,
+  "label": "광조사(PDT)",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@3/2"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-a7b844c6e1",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@3/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "비타민C": []
+  },
+  "conflict_id": "CFL-d113901ced",
+  "fragments": [
+   "비타민C"
+  ],
+  "hint": null,
+  "label": "비타민C 이온토포레시스",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@4/2"
+  ],
+  "partial": [
+   "procedure:이온토포레시스"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-5518f02147",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@4/2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:슈링크[M9]→product:슈링크",
+      "subcategory:M9-1 HIFU (초음파)"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-b0ae3c33c1",
+  "fragments": [],
+  "hint": null,
+  "label": "슈링크 HIFU",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@0/0"
+  ],
+  "partial": [
+   "procedure:슈링크",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-f98c9691ab",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@0/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "리쥬란": []
+  },
+  "conflict_id": "CFL-82f0b9f140",
+  "fragments": [
+   "리쥬란"
+  ],
+  "hint": null,
+  "label": "스킨부스터 리쥬란",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@5/1"
+  ],
+  "partial": [
+   "modality:스킨부스터"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-84f5ae9763",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@5/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "(조각 둘 이상)": [
+    {
+     "basis": "§1.4 multi_primary — 닿은 조각(둘 이상)",
+     "fragments": [
+      "catalog_item:울쎄라[M9]→product:울쎄라",
+      "subcategory:M9-1 HIFU (초음파)"
+     ]
+    }
+   ]
+  },
+  "conflict_id": "CFL-fe5841298d",
+  "fragments": [],
+  "hint": null,
+  "label": "울쎄라 HIFU",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@2/0"
+  ],
+  "partial": [
+   "procedure:울쎄라",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "multi_primary",
+  "ref_id": "REF-b9e8b4f539",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "진정팩": []
+  },
+  "conflict_id": "CFL-d085f6838c",
+  "fragments": [
+   "진정팩"
+  ],
+  "hint": null,
+  "label": "진정팩",
+  "locators": [
+   "treatment-sequence.json:common_combos[].sequence[]@3/3"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-183cbac208",
+  "relation": "R12",
+  "slot": "treatment-sequence.common_combos[].sequence[] (22 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:common_combos[].sequence[]@3/3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": []
+  },
+  "conflict_id": "CFL-9ebd39fe2d",
+  "fragments": [
+   "HA"
+  ],
+  "hint": null,
+  "label": "HA 필러",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@5/0"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8bca08cd7d",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@5/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": [],
+   "주입": [],
+   "후": []
+  },
+  "conflict_id": "CFL-e6861a14cc",
+  "fragments": [
+   "HA",
+   "주입",
+   "후"
+  ],
+  "hint": null,
+  "label": "HA 필러 주입 후 RF/HIFU",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+  ],
+  "partial": [
+   "modality:필러",
+   "modality_subcategory:RF (고주파)",
+   "modality_subcategory:HIFU (초음파)"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-d3bcd921bc",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@4/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "PDO실": []
+  },
+  "conflict_id": "CFL-99f3178f14",
+  "fragments": [
+   "PDO실"
+  ],
+  "hint": null,
+  "label": "PDO실",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@2/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-ff578032f8",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@2/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "모든": [],
+   "시술": []
+  },
+  "conflict_id": "CFL-a8db91a31f",
+  "fragments": [
+   "모든",
+   "시술"
+  ],
+  "hint": null,
+  "label": "모든 시술",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@6/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-b6d732a97b",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@6/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "비가교HA": []
+  },
+  "conflict_id": "CFL-fb72920e6c",
+  "fragments": [
+   "비가교HA"
+  ],
+  "hint": null,
+  "label": "비가교HA",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@2/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-a4d01a8c58",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@2/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "50%": [],
+   "TCA": [],
+   "심부": [],
+   "페놀": []
+  },
+  "conflict_id": "CFL-41476a3603",
+  "fragments": [
+   "심부",
+   "TCA",
+   "50%",
+   "페놀"
+  ],
+  "hint": null,
+  "label": "심부 필링(TCA 50%+/페놀)",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@6/0"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8238e69d5c",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@6/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "심부": [],
+   "페놀": []
+  },
+  "conflict_id": "CFL-6bd7248b7a",
+  "fragments": [
+   "심부",
+   "페놀"
+  ],
+  "hint": null,
+  "label": "심부 필링(페놀)",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@1/0"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-ef67cb7695",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "복용": [],
+   "중": []
+  },
+  "conflict_id": "CFL-bbb7160994",
+  "fragments": [
+   "복용",
+   "중"
+  ],
+  "hint": null,
+  "label": "이소트레티노인 복용 중",
+  "locators": [
+   "treatment-sequence.json:incompatible_same_day[].pair[]@3/0",
+   "treatment-sequence.json:incompatible_same_day[].pair[]@7/0",
+   "treatment-sequence.json:incompatible_same_day[].pair[]@8/0"
+  ],
+  "partial": [
+   "procedure:이소트레티노인"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-da0f6ec10b",
+  "relation": "R18",
+  "slot": "treatment-sequence.incompatible_same_day[].pair[] (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:incompatible_same_day[].pair[]@3/0",
+    "treatment-sequence.json:incompatible_same_day[].pair[]@7/0",
+    "treatment-sequence.json:incompatible_same_day[].pair[]@8/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "HA": []
+  },
+  "conflict_id": "CFL-d07a1e945c",
+  "fragments": [
+   "HA"
+  ],
+  "hint": null,
+  "label": "HA 필러",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].from@0",
+   "treatment-sequence.json:minimum_intervals[].from@1"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-8bca08cd7d",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].from@0",
+    "treatment-sequence.json:minimum_intervals[].from@1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "박리성": [],
+   "심부": []
+  },
+  "conflict_id": "CFL-c845819c10",
+  "fragments": [
+   "박리성",
+   "심부"
+  ],
+  "hint": null,
+  "label": "박리성(ablative) 레이저/심부 필링",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].to@3"
+  ],
+  "partial": [
+   "modality:레이저",
+   "modality:메디컬스킨케어",
+   "technique:ablative"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-e2cc35080f",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].to@3"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "심부": []
+  },
+  "conflict_id": "CFL-83429c05bb",
+  "fragments": [
+   "심부"
+  ],
+  "hint": null,
+  "label": "심부 필링",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].from@4"
+  ],
+  "partial": [
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a17da282da",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].from@4"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "얕은": []
+  },
+  "conflict_id": "CFL-d63c8398c9",
+  "fragments": [
+   "얕은"
+  ],
+  "hint": null,
+  "label": "프락셔널/얕은 필링",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].to@2"
+  ],
+  "partial": [
+   "modality_subcategory:프락셔널",
+   "modality:메디컬스킨케어"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-7bdf9e6d81",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].to@2"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "동일": [],
+   "부위": [],
+   "재시술": [
+    {
+     "basis": "정준값 완전 일치",
+     "canonical": "재시술",
+     "code": null,
+     "dictionary": "phrase_dictionary",
+     "pointer": "dict:phrase_dictionary|재시술|canonical"
+    }
+   ]
+  },
+  "conflict_id": "CFL-c8b04cf970",
+  "fragments": [
+   "동일",
+   "부위",
+   "재시술"
+  ],
+  "hint": null,
+  "label": "필러 (동일 부위 재시술)",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].to@8"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-a2ca8b866e",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].to@8"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "별도": [],
+   "세션": []
+  },
+  "conflict_id": "CFL-8eaa9bccf0",
+  "fragments": [
+   "별도",
+   "세션"
+  ],
+  "hint": null,
+  "label": "필러 (별도 세션)",
+  "locators": [
+   "treatment-sequence.json:minimum_intervals[].to@6"
+  ],
+  "partial": [
+   "modality:필러"
+  ],
+  "reason": "unregistered",
+  "ref_id": "REF-f09f46f276",
+  "relation": "R18",
+  "slot": "treatment-sequence.minimum_intervals from/to (14 distinct)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:minimum_intervals[].to@6"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "국소마취": []
+  },
+  "conflict_id": "CFL-d7a08607e5",
+  "fragments": [
+   "국소마취"
+  ],
+  "hint": null,
+  "label": "국소마취",
+  "locators": [
+   "treatment-sequence.json:sequence_order[].categories[]@1/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-d6300b8878",
+  "relation": "R18",
+  "slot": "treatment-sequence.sequence_order[].categories[] (19)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:sequence_order[].categories[]@1/0"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "연고마취": []
+  },
+  "conflict_id": "CFL-b7d6083af2",
+  "fragments": [
+   "연고마취"
+  ],
+  "hint": null,
+  "label": "연고마취",
+  "locators": [
+   "treatment-sequence.json:sequence_order[].categories[]@1/1"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-e575ba3754",
+  "relation": "R18",
+  "slot": "treatment-sequence.sequence_order[].categories[] (19)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:sequence_order[].categories[]@1/1"
+   ]
+  },
+  "status": "open"
+ },
+ {
+  "candidates": {
+   "클렌징": []
+  },
+  "conflict_id": "CFL-a1dc8f3985",
+  "fragments": [
+   "클렌징"
+  ],
+  "hint": "M15",
+  "label": "클렌징",
+  "locators": [
+   "treatment-sequence.json:sequence_order[].categories[]@0/0"
+  ],
+  "partial": [],
+  "reason": "unregistered",
+  "ref_id": "REF-cc43982e66",
+  "relation": "R18",
+  "slot": "treatment-sequence.sequence_order[].categories[] (19)",
+  "stable_key": {
+   "kind": "unresolved_reference",
+   "locators": [
+    "treatment-sequence.json:sequence_order[].categories[]@0/0"
+   ]
+  },
+  "status": "open"
+ }
+]

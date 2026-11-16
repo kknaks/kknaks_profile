@@ -1,0 +1,1311 @@
+{
+ "meta": {
+  "gold_build": "567677edfe7123e9",
+  "v6a": "b202611011935-f9a211",
+  "slots": [
+   "onset",
+   "duration",
+   "downtime",
+   "interval",
+   "sessions",
+   "price_range",
+   "anesthesia",
+   "pain"
+  ],
+  "line_chars": 80
+ },
+ "classes": {
+  "걷기가 받음(답이 안 씀)": 4,
+  "골드 fact 없음": 2,
+  "골드에 있는데 못 받음": 61
+ },
+ "rows": 67,
+ "miss_card_reach": 4,
+ "miss_card_reach_wide": 4,
+ "miss_card_slots": {
+  "duration": 3,
+  "pain": 1
+ },
+ "card_size": {
+  "n": 543,
+  "median": 1200,
+  "p95": 1555,
+  "max": 1803
+ },
+ "card_fill": {
+  "family anesthesia 빔": 27,
+  "family downtime 빔": 10,
+  "family downtime 자기": 17,
+  "family duration 빔": 10,
+  "family duration 자기": 17,
+  "family interval 빔": 21,
+  "family interval 자기": 6,
+  "family onset 빔": 10,
+  "family onset 자기": 17,
+  "family pain 빔": 10,
+  "family pain 자기": 17,
+  "family price_range 빔": 27,
+  "family sessions 빔": 16,
+  "family sessions 자기": 11,
+  "product anesthesia 빔": 354,
+  "product downtime 계열": 333,
+  "product downtime 빔": 21,
+  "product duration 계열": 30,
+  "product duration 빔": 8,
+  "product duration 자기": 316,
+  "product interval 계열": 84,
+  "product interval 빔": 47,
+  "product interval 자기": 223,
+  "product onset 계열": 31,
+  "product onset 빔": 8,
+  "product onset 자기": 315,
+  "product pain 계열": 333,
+  "product pain 빔": 21,
+  "product price_range 빔": 354,
+  "product sessions 계열": 149,
+  "product sessions 빔": 127,
+  "product sessions 자기": 78,
+  "unit_procedure anesthesia 빔": 26,
+  "unit_procedure anesthesia 자기": 136,
+  "unit_procedure downtime 계열": 136,
+  "unit_procedure downtime 빔": 26,
+  "unit_procedure duration 계열": 55,
+  "unit_procedure duration 빔": 11,
+  "unit_procedure duration 자기": 96,
+  "unit_procedure interval 계열": 53,
+  "unit_procedure interval 빔": 68,
+  "unit_procedure interval 자기": 41,
+  "unit_procedure onset 계열": 55,
+  "unit_procedure onset 빔": 11,
+  "unit_procedure onset 자기": 96,
+  "unit_procedure pain 계열": 136,
+  "unit_procedure pain 빔": 26,
+  "unit_procedure price_range 빔": 89,
+  "unit_procedure price_range 자기": 73,
+  "unit_procedure sessions 계열": 74,
+  "unit_procedure sessions 빔": 74,
+  "unit_procedure sessions 자기": 14
+ },
+ "detail": [
+  {
+   "no": "Q001",
+   "path": "patient-education.categories[0].duration_simple",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M1#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple",
+    "family:M13#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple",
+    "family:M17#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple",
+    "family:M4#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple",
+    "family:M5#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-001"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][].duration_simple"
+   ]
+  },
+  {
+   "no": "Q002",
+   "path": "extracted.M7.indications.primary",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M7#overview#step9[taxonomy.modality[6].extracted.indications.primary[1]]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-082"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.indications.primary[]]"
+   ]
+  },
+  {
+   "no": "Q003",
+   "path": "extracted.M7.onset_duration.duration",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M7#recovery#step9[taxonomy.modality[6].extracted.onset_duration.duration]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-122"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.onset_duration.duratio"
+   ]
+  },
+  {
+   "no": "Q004",
+   "path": "pre-procedure-checklist.category_specific[13].checks[2]",
+   "class": "걷기가 받음(답이 안 씀)",
+   "fact_ids": [
+    "K8-0109"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "unit_procedure:U5-118"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "K8-0109"
+   ]
+  },
+  {
+   "no": "Q005",
+   "path": "taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-010#recovery#step9[taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration]",
+    "unit_procedure:U5-011#recovery#step9[taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration]",
+    "unit_procedure:U5-012#recovery#step9[taxonomy.modality[0].subcategories[2].items[5].extracted.onset_duration.duration]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-010"
+   ],
+   "card_reach": true,
+   "card_slots": [
+    "duration"
+   ],
+   "card_reach_wide": true,
+   "fact_kinds": [
+    "step9[].subcategories[].items[].extracte"
+   ]
+  },
+  {
+   "no": "Q006",
+   "path": "pih-risk.procedures[24].prevention",
+   "class": "걷기가 받음(답이 안 씀)",
+   "fact_ids": [
+    "pih[24]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-034"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[]"
+   ]
+  },
+  {
+   "no": "Q008",
+   "path": "extracted.M8.indications.primary[0]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M8#overview#step9[taxonomy.modality[7].extracted.indications.primary[0]]"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.indications.primary[]]"
+   ]
+  },
+  {
+   "no": "Q009",
+   "path": "taxonomy.modality[8].subcategories[3].items[0].extracted.onset_duration.duration",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "product:auto-40-1774737181584#recovery#step9[taxonomy.modality[8].subcategories[3].items[0].extracted.onset_duration.duration]"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "product:auto-40-1774737181584"
+   ],
+   "card_reach": true,
+   "card_slots": [
+    "duration"
+   ],
+   "card_reach_wide": true,
+   "fact_kinds": [
+    "step9[].subcategories[].items[].extracte"
+   ]
+  },
+  {
+   "no": "Q015",
+   "path": "patient-education.categories[8].patient_name",
+   "class": "걷기가 받음(답이 안 씀)",
+   "fact_ids": [
+    "family:M9#overview#family_text[환자 설명 가이드(patient-education)][0].patient_name"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "product:M9-1-1",
+    "unit_procedure:U5-102"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][].patient_name"
+   ]
+  },
+  {
+   "no": "Q017",
+   "path": "taxonomy.modality[8].subcategories[3].items[0].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "product:auto-40-1774737181584#products#2_names.display_name"
+   ],
+   "card_nodes": [
+    "family:M2",
+    "unit_procedure:U5-082"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "2_names.display_name"
+   ]
+  },
+  {
+   "no": "Q018",
+   "path": "contraindications.rules[0]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "R8-0001#reason"
+   ],
+   "card_nodes": [
+    "family:M1",
+    "unit_procedure:U5-001"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "reason"
+   ]
+  },
+  {
+   "no": "Q020",
+   "path": "contraindications.rules[3].interval",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "R8-0002",
+    "R8-0004",
+    "R8-0006",
+    "R8-0011",
+    "R8-0022",
+    "R8-0023"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "product:auto-40-1774737181584"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "R8-0002",
+    "R8-0004",
+    "R8-0006",
+    "R8-0011"
+   ]
+  },
+  {
+   "no": "Q025",
+   "path": "problem-combos.combos[0].packages[2].expectedResult",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P1-3#evidence#effect.expectedResult"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.expectedResult"
+   ]
+  },
+  {
+   "no": "Q026",
+   "path": "problem-combos.combos[4].packages[1].expectedResult",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P5-2#evidence#effect.expectedResult"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.expectedResult"
+   ]
+  },
+  {
+   "no": "Q028",
+   "path": "problem-combos.combos[1].packages[0].clinicalRationale",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P2-1#evidence#effect.clinicalRationale"
+   ],
+   "card_nodes": [
+    "family:M1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.clinicalRationale"
+   ]
+  },
+  {
+   "no": "Q031",
+   "path": "combo-recipes.recipes[5].repeatCycle",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-AG-50대+#timeline#maintenance",
+    "combo:RC-RE-R2#evidence#effect.repeatCycle",
+    "combo:RC-RE-R6#evidence#effect.repeatCycle"
+   ],
+   "card_nodes": [
+    "product:M1-2-1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.repeatCycle",
+    "maintenance"
+   ]
+  },
+  {
+   "no": "Q035",
+   "path": "complications.categories[0].complications[1].management",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "SE-M1-02#management"
+   ],
+   "card_nodes": [
+    "product:M1-2-1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "management"
+   ]
+  },
+  {
+   "no": "Q039",
+   "path": "products.skin_booster.products[3].note",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-009#overview#step9[taxonomy.modality[3].products[3].note]"
+   ],
+   "card_nodes": [
+    "family:M1",
+    "product:M1-2-1",
+    "unit_procedure:U5-001"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].products[].note]"
+   ]
+  },
+  {
+   "no": "Q043",
+   "path": "anatomy-danger-zones.zones[5].botox_specific.key_warning",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "site_caution:SC-nasolabial-M1#site_caution#spec.key_warning"
+   ],
+   "card_nodes": [
+    "family:M2",
+    "unit_procedure:U5-082"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "spec.key_warning"
+   ]
+  },
+  {
+   "no": "Q046",
+   "path": "complications.categories[1].complications[2].mechanism",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "SE-M2-03#mechanism"
+   ],
+   "card_nodes": [
+    "family:M2",
+    "unit_procedure:U5-082"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "mechanism"
+   ]
+  },
+  {
+   "no": "Q047",
+   "path": "complications.categories[1].complications[0].management",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "SE-M2-01#management"
+   ],
+   "card_nodes": [
+    "family:M2"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "management"
+   ]
+  },
+  {
+   "no": "Q054",
+   "path": "extracted.M2.onset_duration.duration",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M2#recovery#step9[taxonomy.modality[1].extracted.onset_duration.duration]"
+   ],
+   "card_nodes": [
+    "family:M2",
+    "family:M3",
+    "unit_procedure:U5-103"
+   ],
+   "card_reach": true,
+   "card_slots": [
+    "duration"
+   ],
+   "card_reach_wide": true,
+   "fact_kinds": [
+    "step9[].extracted.onset_duration.duratio"
+   ]
+  },
+  {
+   "no": "Q058",
+   "path": "patient-education.categories[3].pain_level",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M4#overview#family_text[환자 설명 가이드(patient-education)][0].pain_level"
+   ],
+   "card_nodes": [
+    "product:M4-1-1",
+    "unit_procedure:U5-018"
+   ],
+   "card_reach": true,
+   "card_slots": [
+    "pain"
+   ],
+   "card_reach_wide": true,
+   "fact_kinds": [
+    "family_text[][].pain_level"
+   ]
+  },
+  {
+   "no": "Q064",
+   "path": "synergy.links[31].timing",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "R8-0059",
+    "package:P6-14#evidence#package_evidence[23]"
+   ],
+   "card_nodes": [
+    "family:M4",
+    "unit_procedure:U5-018"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "R8-0059",
+    "package_evidence[]"
+   ]
+  },
+  {
+   "no": "Q067",
+   "path": "market-pricing.categories[2].items[4].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-090#market#market[3]"
+   ],
+   "card_nodes": [
+    "family:M3",
+    "product:M3-4-1",
+    "unit_procedure:U5-090"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "market[]"
+   ]
+  },
+  {
+   "no": "Q072",
+   "path": "pih-risk.procedures[15].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-AN-40대+#overview#schedule[1].items[0].text",
+    "unit_procedure:U5-102#safety.pih#pih[0].source",
+    "unit_procedure:U5-103#safety.pih#pih[0].source",
+    "unit_procedure:U5-154#safety.pih#pih[0].source"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "product:M9-1-1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[].source",
+    "schedule[].items[].text"
+   ]
+  },
+  {
+   "no": "Q073",
+   "path": "procedure-comparison.comparisons[0].procedures[1].pain",
+   "class": "골드 fact 없음",
+   "fact_ids": [],
+   "card_nodes": [
+    "family:M9",
+    "product:M9-1-1",
+    "unit_procedure:U5-102"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": []
+  },
+  {
+   "no": "Q081",
+   "path": "patient-education.categories[6].duration_simple",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M7#recovery#family_text[환자 설명 가이드(patient-education)][0].duration_simple"
+   ],
+   "card_nodes": [
+    "family:M7",
+    "family:M9"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][].duration_simple"
+   ]
+  },
+  {
+   "no": "Q082",
+   "path": "synergy.links[100].timing",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "R8-0028",
+    "R8-0058",
+    "R8-0075",
+    "R8-0119",
+    "package:P6-09#evidence#package_evidence[10]",
+    "package:P6-14#evidence#package_evidence[21]"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "R8-0028",
+    "R8-0058",
+    "R8-0075",
+    "R8-0119"
+   ]
+  },
+  {
+   "no": "Q083",
+   "path": "procedure-comparison.comparisons[0].procedures[1].limitations",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-CP-lifting#evidence#members[1].attrs_text.limitations"
+   ],
+   "card_nodes": [
+    "family:M9",
+    "unit_procedure:U5-091"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "members[].attrs_text.limitations"
+   ]
+  },
+  {
+   "no": "Q084",
+   "path": "synergy.links[100]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "R8-0128#reason"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "reason"
+   ]
+  },
+  {
+   "no": "Q088",
+   "path": "market-pricing.categories[10].items[5].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-110#market#market[5]"
+   ],
+   "card_nodes": [
+    "family:M11"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "market[]"
+   ]
+  },
+  {
+   "no": "Q094",
+   "path": "consent-checklist.categories[10].mandatory_disclosures[5]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M11#disclosure#family_text[필수 고지(consent mandatory_disclosures)][5]"
+   ],
+   "card_nodes": [
+    "family:M11",
+    "unit_procedure:U5-110"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][]"
+   ]
+  },
+  {
+   "no": "Q095",
+   "path": "taxonomy.modality[10].subcategories[0].items[7].extracted.aftercare[2]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "product:auto-M11-1775360637715#aftercare#extracted[auto-M11-1775360637715].source_text.aftercare[2]"
+   ],
+   "card_nodes": [
+    "family:M11",
+    "unit_procedure:U5-110"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "extracted[].source_text.aftercare[]"
+   ]
+  },
+  {
+   "no": "Q097",
+   "path": "problem-combos.combos[6].packages[1].riskBenefit",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P9-2#evidence#effect.riskBenefit"
+   ],
+   "card_nodes": [
+    "family:M11",
+    "family:M12"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.riskBenefit"
+   ]
+  },
+  {
+   "no": "Q099",
+   "path": "extracted.M12.contraindications.absolute[3]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "K8-0253",
+    "K8-0259",
+    "K8-0319"
+   ],
+   "card_nodes": [
+    "family:M11",
+    "unit_procedure:U5-046"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "K8-0253",
+    "K8-0259",
+    "K8-0319"
+   ]
+  },
+  {
+   "no": "Q103",
+   "path": "procedure-comparison.comparisons[4].procedures[1].limitations",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-CP-pigment#evidence#members[1].attrs_text.limitations"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "unit_procedure:U5-131"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "members[].attrs_text.limitations"
+   ]
+  },
+  {
+   "no": "Q104",
+   "path": "treatment-optimization.combination_rules[4].detail",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "scope:all#evidence#step8_notes[45]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-023"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step8_notes[]"
+   ]
+  },
+  {
+   "no": "Q106",
+   "path": "problem-packages.problems[13].complaints[0].cc_detail",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "fractional-co2",
+    "unit_procedure:U5-131#overview#step9[problem-packages.problems[13].complaints[0].cc_detail]",
+    "unit_procedure:U5-131#overview#step9[taxonomy.problem[13].subcategories[0].items[0].detail]"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "family:M9",
+    "family:N1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "fractional-co2",
+    "step9[].complaints[].cc_detail]",
+    "step9[].subcategories[].items[].detail]"
+   ]
+  },
+  {
+   "no": "Q108",
+   "path": "pih-risk.procedures[3].prevention",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "pih[3]"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[]"
+   ]
+  },
+  {
+   "no": "Q113",
+   "path": "pih-risk.procedures[2].fitzpatrick_note",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-023#safety.pih#pih[2].fitzpatrick_note"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "product:M8-P-1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[].fitzpatrick_note"
+   ]
+  },
+  {
+   "no": "Q115",
+   "path": "consent-checklist.categories[7].mandatory_disclosures[4]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M8#disclosure#family_text[필수 고지(consent mandatory_disclosures)][4]"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "family:N1",
+    "unit_procedure:U5-031"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][]"
+   ]
+  },
+  {
+   "no": "Q117",
+   "path": "problem-packages.problems[5].complaints[0].alternatives[0]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-009#overview#step9[problem-packages.problems[5].complaints[4].alternatives[1]]",
+    "unit_procedure:U5-018#overview#step9[problem-packages.problems[5].complaints[7].alternatives[0]]",
+    "unit_procedure:U5-019#overview#step9[problem-packages.problems[5].complaints[7].alternatives[0]]",
+    "unit_procedure:U5-023#overview#step9[problem-packages.problems[5].complaints[6].alternatives[0]]",
+    "unit_procedure:U5-024#overview#step9[problem-packages.problems[5].complaints[6].alternatives[0]]",
+    "unit_procedure:U5-025#overview#step9[problem-packages.problems[5].complaints[6].alternatives[0]]"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].complaints[].alternatives[]]"
+   ]
+  },
+  {
+   "no": "Q121",
+   "path": "literature-evidence.categories.M8.effects[0].patient_ko",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "ST-M8-effects-01#patient.ko"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "patient.ko"
+   ]
+  },
+  {
+   "no": "Q123",
+   "path": "problem-packages.problems[8].complaints[6].cc_group",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "chemical-peel-mid#phases[3].emergency[0]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-138",
+    "unit_procedure:U5-141"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "phases[].emergency[]"
+   ]
+  },
+  {
+   "no": "Q125",
+   "path": "consent-checklist.categories[7].mandatory_disclosures[3]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M8#disclosure#family_text[필수 고지(consent mandatory_disclosures)][3]"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "family:N1",
+    "product:M8-4-1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][]"
+   ]
+  },
+  {
+   "no": "Q126",
+   "path": "taxonomy.problem[7].category_en",
+   "class": "골드 fact 없음",
+   "fact_ids": [],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": []
+  },
+  {
+   "no": "Q127",
+   "path": "problem-combos.combos[6].packages[0].expectedResult",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P9-1#evidence#effect.expectedResult"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.expectedResult"
+   ]
+  },
+  {
+   "no": "Q129",
+   "path": "pih-risk.procedures[10].fitzpatrick_note",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-141#safety.pih#pih[0].fitzpatrick_note"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[].fitzpatrick_note"
+   ]
+  },
+  {
+   "no": "Q130",
+   "path": "extracted.M11.overview",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M11#overview#step9[taxonomy.modality[10].extracted.overview]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-138"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.overview]"
+   ]
+  },
+  {
+   "no": "Q133",
+   "path": "extracted.M2.indications.primary[2]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M2#overview#step9[taxonomy.modality[1].extracted.indications.primary[2]]"
+   ],
+   "card_nodes": [
+    "family:M1"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.indications.primary[]]"
+   ]
+  },
+  {
+   "no": "Q134",
+   "path": "consent-checklist.categories[7].contraindications[2]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "K8-0182"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-028"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "K8-0182"
+   ]
+  },
+  {
+   "no": "Q135",
+   "path": "procedure-comparison.comparisons[3].procedures[3].downtime",
+   "class": "걷기가 받음(답이 안 씀)",
+   "fact_ids": [
+    "combo:RC-CP-skin_texture#evidence#members[3].attrs_text.downtime"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-027"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "members[].attrs_text.downtime"
+   ]
+  },
+  {
+   "no": "Q137",
+   "path": "problem-combos.combos[6].packages[0].expectedResult",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-PC-P9-1#evidence#effect.expectedResult"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "effect.expectedResult"
+   ]
+  },
+  {
+   "no": "Q138",
+   "path": "procedure-comparison.comparisons[3].evidence_notes[1]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "combo:RC-CP-skin_texture#evidence#evidence_notes[1]"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "family:M9"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "evidence_notes[]"
+   ]
+  },
+  {
+   "no": "Q139",
+   "path": "pih-risk.procedures[4].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-028#safety.pih#pih[0].source"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[].source"
+   ]
+  },
+  {
+   "no": "Q141",
+   "path": "extracted.M8.contraindications.absolute[2]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "K8-0291"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "K8-0291"
+   ]
+  },
+  {
+   "no": "Q147",
+   "path": "procedure-comparison.comparisons[5].procedures[0].name",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "product:M9-2-4#method#step9[taxonomy.modality[8].subcategories[1].items[4].extracted.mechanism]",
+    "product:auto-M8-1775362612108#overview#step9[taxonomy.modality[7].subcategories[4].items[6].extracted.overview]",
+    "product_family:000137#overview#basis"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "unit_procedure:U5-101"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "basis",
+    "step9[].subcategories[].items[].extracte"
+   ]
+  },
+  {
+   "no": "Q148",
+   "path": "problem-packages.problems[9].complaints[0].combos[0].evidence",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "scope:all#evidence#step8_notes[190]",
+    "scope:all#evidence#step8_notes[191]",
+    "scope:all#evidence#step8_notes[193]",
+    "scope:all#evidence#step8_notes[194]"
+   ],
+   "card_nodes": [
+    "family:M8"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step8_notes[]"
+   ]
+  },
+  {
+   "no": "Q150",
+   "path": "pih-risk.procedures[12].fitzpatrick_note",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "unit_procedure:U5-023#safety.pih#pih[3].fitzpatrick_note",
+    "unit_procedure:U5-099#safety.pih#pih[2].fitzpatrick_note"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-101"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[].fitzpatrick_note"
+   ]
+  },
+  {
+   "no": "Q155",
+   "path": "consent-checklist.categories[7].mandatory_disclosures[2]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M8#disclosure#family_text[필수 고지(consent mandatory_disclosures)][2]",
+    "unit_procedure:U5-034#aftercare#extracted[M15-1-2].source_text.aftercare[0]"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "extracted[].source_text.aftercare[]",
+    "family_text[][]"
+   ]
+  },
+  {
+   "no": "Q159",
+   "path": "problem-packages.problems[9].complaints[3].combos[0].evidence",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "scope:all#evidence#step8_notes[190]",
+    "scope:all#evidence#step8_notes[191]",
+    "scope:all#evidence#step8_notes[193]",
+    "scope:all#evidence#step8_notes[194]"
+   ],
+   "card_nodes": [],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step8_notes[]"
+   ]
+  },
+  {
+   "no": "Q160",
+   "path": "taxonomy.modality[7].subcategories[4].items[12].extracted.safety.common[1]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "product:auto-M8-1775364775126#safety.side_effects#extracted[auto-M8-1775364775126].source_text.safety.common[1]",
+    "product:auto-M8-1775364775126#safety.side_effects#product_links[auto-M8-1775364775126].side_effect_override[0].values.common[1]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-101"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "extracted[].source_text.safety.common[]",
+    "product_links[].side_effect_override[].v"
+   ]
+  },
+  {
+   "no": "Q161",
+   "path": "pre-procedure-checklist.category_specific[9]",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M14#method#step9[taxonomy.modality[13].extracted.related_techniques[0]]"
+   ],
+   "card_nodes": [
+    "family:M8",
+    "unit_procedure:U5-122"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.related_techniques[]]"
+   ]
+  },
+  {
+   "no": "Q164",
+   "path": "patient-education.categories[14].downtime",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M15#recovery#family_text[환자 설명 가이드(patient-education)][0].downtime"
+   ],
+   "card_nodes": [
+    "family:M2",
+    "unit_procedure:U5-083"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "family_text[][].downtime"
+   ]
+  },
+  {
+   "no": "Q166",
+   "path": "pih-risk.procedures[23].prevention",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "pih[23]"
+   ],
+   "card_nodes": [
+    "family:M15"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "pih[]"
+   ]
+  },
+  {
+   "no": "Q168",
+   "path": "extracted.M15.overview",
+   "class": "골드에 있는데 못 받음",
+   "fact_ids": [
+    "family:M15#overview#step9[taxonomy.modality[14].extracted.overview]"
+   ],
+   "card_nodes": [
+    "unit_procedure:U5-034"
+   ],
+   "card_reach": false,
+   "card_slots": [],
+   "card_reach_wide": false,
+   "fact_kinds": [
+    "step9[].extracted.overview]"
+   ]
+  }
+ ]
+}

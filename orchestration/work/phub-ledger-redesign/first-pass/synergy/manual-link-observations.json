@@ -1,0 +1,396 @@
+{
+ "observations": [
+  {
+   "id": "LO01",
+   "kind": "timing-direction-vs-from-to",
+   "pointers": [
+    "/links/54/from",
+    "/links/54/to",
+    "/links/54/timing",
+    "/links/54/reason",
+    "/links/24"
+   ],
+   "quote": [
+    "M4-스킨부스터",
+    "필링",
+    "필링 1주 후 스킨부스터",
+    "필링으로 표면 각질·피지를 정리한 뒤 스킨부스터(진피 주사)로"
+   ],
+   "observation": "type=다음에 49건 중 timing 이 from 이름으로 시작해 to 로 끝나지 않는 유일한 경우. from→to 는 스킨부스터→필링인데 timing·reason 의 순서는 필링→스킨부스터. 같은 쌍 /links/24 는 필링→스킨부스터·같은 timing. 역방향 중복인지, 방향 표기 오류인지 원문만으로 정할 수 없음",
+   "status": "후속 의미 조사(관계 방향). 원문 유지"
+  },
+  {
+   "id": "LO02",
+   "kind": "opposite-sequence-same-pair",
+   "pointers": [
+    "/links/11",
+    "/links/22"
+   ],
+   "quote": [
+    "니들RF 2주 후 필링",
+    "필링 2주 후 니들RF"
+   ],
+   "observation": "같은 두 끝점에 서로 반대 방향의 다음에 관계가 둘 다 있음(둘 다 2주, target 둘 다 여드름/모공). 둘 중 하나만 맞는지, 둘 다 허용되는 순서인지 원문에 기준 없음",
+   "status": "후속 의미 조사(방향·조건)"
+  },
+  {
+   "id": "LO03",
+   "kind": "opposite-sequence-same-pair",
+   "pointers": [
+    "/links/57",
+    "/links/104"
+   ],
+   "quote": [
+    "스킨부스터 2주 후 울쎄라",
+    "리프팅 2주 후 스킨부스터"
+   ],
+   "observation": "스킨부스터↔울쎄라 양방향 다음에. 둘 다 2주",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO04",
+   "kind": "opposite-sequence-same-pair",
+   "pointers": [
+    "/links/71",
+    "/links/105"
+   ],
+   "quote": [
+    "실리프팅 후 2~3개월 뒤 울쎄라",
+    "울쎄라 1개월 후 실리프팅"
+   ],
+   "observation": "실리프팅↔울쎄라 양방향 다음에. 간격도 다름(2~3개월 / 1개월)",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO05",
+   "kind": "opposite-sequence-general-vs-specific",
+   "pointers": [
+    "/links/3",
+    "/links/93",
+    "/links/97",
+    "/links/103",
+    "/links/110",
+    "/links/114/reason"
+   ],
+   "quote": [
+    "보톡스 2주 후 리프팅",
+    "더블로 2주 후 보톡스",
+    "슈링크 2주 후 보톡스",
+    "리프팅 2주 후 보톡스",
+    "인모드 2주 후 보톡스",
+    "리프팅 → 스킨부스터 → 보톡스 순서로"
+   ],
+   "observation": "총칭 '기기 리프팅'과는 보톡스→리프팅 순서, 개별 기기(더블로·슈링크·울쎄라·인모드)와는 기기→보톡스 순서. /links/114 reason 도 리프팅→…→보톡스. 총칭과 개별 이름의 상하 관계는 1차에서 정하지 않음",
+   "status": "후속 의미 조사(명칭 상하·순서 충돌)"
+  },
+  {
+   "id": "LO06",
+   "kind": "same-pair-different-type",
+   "pointers": [
+    "/links/100",
+    "/links/101"
+   ],
+   "quote": [
+    "M9-슈링크",
+    "함께",
+    "써마지FLX",
+    "같은 날 시술 가능",
+    "대신",
+    "택 1 시술"
+   ],
+   "observation": "같은 쌍이 함께(같은 날 시술 가능)이면서 대신(택 1)으로도 기록됨. /links/101 reason 은 '단순 예산 택1이 아니라 목표…에 따라 선택'이라 대신 라벨 자체를 한정함",
+   "status": "후속 의미 조사(관계 유형 의미). 사용자 결정 필요 여부는 type 라벨 정의가 정해진 뒤 판단"
+  },
+  {
+   "id": "LO07",
+   "kind": "same-pair-different-type",
+   "pointers": [
+    "/links/45",
+    "/links/55"
+   ],
+   "quote": [
+    "바이오스티뮬레이터 4주 후 스킨부스터",
+    "같은 날 또는 2주 간격"
+   ],
+   "observation": "같은 쌍이 다음에(4주) 와 함께(같은 날 또는 2주 간격)로 모두 기록됨. 간격 값도 다름",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO08",
+   "kind": "same-pair-different-type",
+   "pointers": [
+    "/links/2",
+    "/links/3"
+   ],
+   "quote": [
+    "같은 날 또는 2주 간격 순차 시술",
+    "보톡스 2주 후 리프팅"
+   ],
+   "observation": "보톡스→기기 리프팅이 함께와 다음에로 모두 있음. /links/2 는 target '안티에이징 패키지'이며 reason 이 3종 패키지를 말함",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO09",
+   "kind": "type-vs-reason-negation",
+   "pointers": [
+    "/links/14",
+    "/links/27",
+    "/links/76"
+   ],
+   "quote": [
+    "사용하지 않음",
+    "사용하지 않음",
+    "시행하지 않음"
+   ],
+   "observation": "type=함께·timing='같은 날 시술 가능'인데 reason 은 개방(미세)채널을 통한 화장품 성분 전달을 하지 않는다고 함. 부정의 범위는 '허가된 멸균 시술용 제제가 아닌' 성분(14·27) 또는 '화장품 전달·주입'(76)으로 한정되어 있어, 허가 제제라면 함께가 성립한다는 뜻인지 원문만으로 정할 수 없음",
+   "status": "후속 의미 조사(조건부 관계). 관계를 지우거나 뒤집지 않음"
+  },
+  {
+   "id": "LO10",
+   "kind": "type-vs-reason-negation",
+   "pointers": [
+    "/links/59"
+   ],
+   "quote": [
+    "배양액·엑소좀 화장품은 주사하거나 개방 채널로 전달하지 않음"
+   ],
+   "observation": "type=함께(PRP→줄기세포치료)·'같은 날 시술 가능'. reason 에 병용 효과 근거 제한 + 전달 방식 부정",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO11",
+   "kind": "timing-vs-reason-negation",
+   "pointers": [
+    "/links/87"
+   ],
+   "quote": [
+    "CO2 직후 또는 1주 후 줄기세포",
+    "시행하지 않음"
+   ],
+   "observation": "type=다음에, timing 은 직후 또는 1주 후 대안, reason 은 개방된 미세채널 통한 전달·주입을 시행하지 않음. timing 이 국소 도포만을 말하는지 원문만으로 확정 불가",
+   "status": "후속 의미 조사"
+  },
+  {
+   "id": "LO12",
+   "kind": "cross-link-claim-contrast",
+   "pointers": [
+    "/links/64/reason",
+    "/links/65/reason"
+   ],
+   "quote": [
+    "생착률·피부 질감 개선은 세포 종류와 조제법에 따라 상이하며 임상 검증이 제한적",
+    "지방 생착률(살아남는 비율)이 올라감"
+   ],
+   "observation": "같은 from(M6-지방이식)에서 /64(줄기세포 혼합)는 생착률 근거 제한, /65(PRP 혼합)는 한정 없이 상승 서술. 대상이 달라 모순으로 확정하지 않음",
+   "status": "원문 정보 부족(근거 수준 미기재)·후속"
+  },
+  {
+   "id": "LO13",
+   "kind": "condition-in-timing",
+   "pointers": [
+    "/links/64/timing"
+   ],
+   "quote": [
+    "자가 지방유래 줄기세포(SVF)에 한해 같은 날 가능"
+   ],
+   "observation": "timing 칸에 적용 대상 조건이 있음. 다른 함께 link 의 timing 은 조건이 없음",
+   "status": "후속 의미 조사(조건 칸)"
+  },
+  {
+   "id": "LO14",
+   "kind": "non-time-timing",
+   "pointers": [
+    "/links/96/timing"
+   ],
+   "quote": [
+    "의료진이 기기 원리·열부하를 평가해 간격 결정"
+   ],
+   "observation": "다음에 link 인데 간격 값이 없고 결정 주체·기준만 있음. 볼뉴머(M9)→기기 리프팅(M9)은 개별 기기→총칭",
+   "status": "원문 정보 부족(간격 미기재)"
+  },
+  {
+   "id": "LO15",
+   "kind": "timing-without-reference",
+   "pointers": [
+    "/links/114/timing"
+   ],
+   "quote": [
+    "2주 간격 순차 시술"
+   ],
+   "observation": "기준 시점(어느 시술 후인지)이 timing 안에 없음. reason 은 3단계 순서",
+   "status": "원문 정보 부족(기준 시점·끝점 밖 시술)"
+  },
+  {
+   "id": "LO16",
+   "kind": "multi-entity-reason",
+   "pointers": [
+    "/links/2/reason",
+    "/links/114/reason"
+   ],
+   "quote": [
+    "보톡스+필러+리프팅 3종",
+    "리프팅 → 스킨부스터 → 보톡스 순서로"
+   ],
+   "observation": "2개 끝점 link 의 reason 이 3개 시술을 말함. 3자 관계(패키지·순서)를 담는 구조가 원장에 없음",
+   "status": "후속(ERD 설계 때 담을 칸 검토)"
+  },
+  {
+   "id": "LO17",
+   "kind": "name-variance-timing-vs-endpoint",
+   "pointers": [
+    "/links/3/timing",
+    "/links/20/timing",
+    "/links/43/timing",
+    "/links/49/timing",
+    "/links/80/timing",
+    "/links/84/timing",
+    "/links/87/timing",
+    "/links/103/timing",
+    "/links/104/timing"
+   ],
+   "quote": [
+    "리프팅",
+    "크라이오",
+    "써마지",
+    "리쥬란",
+    "리쥬란",
+    "혈관레이저",
+    "줄기세포",
+    "리프팅",
+    "리프팅"
+   ],
+   "observation": "timing 안의 명칭이 from/to 값과 다른 표기(축약·총칭). /103·/104 는 from=M9-울쎄라 인데 timing 은 '리프팅'. 원장 README 규칙은 from/to 명칭만 정하고 timing 표기는 정하지 않음",
+   "status": "후속 연결 과제(timing 안 명칭 ↔ 끝점 대응)"
+  },
+  {
+   "id": "LO18",
+   "kind": "bare-name",
+   "pointers": [
+    "/links/84/from"
+   ],
+   "quote": [
+    "혈관"
+   ],
+   "observation": "from 값이 '혈관' 한 단어. timing·reason 은 '혈관레이저'. target 도 '홍조/혈관'",
+   "status": "후속 연결 과제(taxonomy 이름 대조는 다른 원장 조사 범위)"
+  },
+  {
+   "id": "LO19",
+   "kind": "region-in-name-forms",
+   "pointers": [
+    "/links/4/from",
+    "/links/4/to",
+    "/links/34/from",
+    "/links/34/to",
+    "/links/21/to",
+    "/links/20/to",
+    "/links/58/to",
+    "/links/29/to"
+   ],
+   "quote": [
+    "보툴리눔 톡신 사각턱",
+    "필러 턱",
+    "필러 코",
+    "M1-보톡스(코끝)",
+    "M9-인모드(바디)",
+    "HIFES/EMS 바디",
+    "마이크로니들링(MTS) 두피",
+    "저출력레이저(LLLT) 두피"
+   ],
+   "observation": "부위가 이름에 붙는 형태가 둘: 띄어 쓴 접미('필러 턱')와 괄호('M1-보톡스(코끝)'). 괄호는 '(MTS)'·'(LLLT)'처럼 약칭에도 쓰여 괄호 안이 부위인지 약칭인지 형식만으로 구분 안 됨",
+   "status": "후속 의미 조사(이름 안 부위 분해). 시술×부위 확정 안 함"
+  },
+  {
+   "id": "LO20",
+   "kind": "slash-in-value",
+   "pointers": [
+    "/links/5/from",
+    "/links/6/from",
+    "/links/19/to",
+    "/links/20/to"
+   ],
+   "quote": [
+    "HIFES/EMS",
+    "HIFES/EMS",
+    "HIFES/EMS",
+    "HIFES/EMS 바디"
+   ],
+   "observation": "README 는 '/'를 '둘 중 하나(대안)'로 정함. 이름 안의 HIFES/EMS 가 대안인지 동일 기기의 두 이름인지는 원문만으로 정할 수 없음",
+   "status": "후속 의미 조사. 기호만으로 확정 안 함"
+  },
+  {
+   "id": "LO21",
+   "kind": "slash-in-target",
+   "pointers": [
+    "/links/*/target"
+   ],
+   "quote": [
+    "여드름/모공",
+    "흉터/재생",
+    "색소/미백",
+    "홍조/혈관"
+   ],
+   "observation": "target 값 4종에 '/' 가 있음. README 의 '/' 규칙은 이름에 대한 것이고 target 에 대한 정의는 없음. '흉터'와 '흉터/재생', '안티에이징'과 '안티에이징 패키지', '여드름'과 '여드름/모공'처럼 비슷한 라벨이 공존",
+   "status": "후속 의미 조사(target 라벨 체계)"
+  },
+  {
+   "id": "LO22",
+   "kind": "unit-mix",
+   "pointers": [
+    "/links/*/timing"
+   ],
+   "quote": [
+    "4주",
+    "1개월"
+   ],
+   "observation": "간격 단위로 '주'와 '개월'이 섞임(1개월·4주 공존). 환산하지 않음",
+   "status": "기록만. 정규화는 후속"
+  },
+  {
+   "id": "LO23",
+   "kind": "sequence-within-same-day",
+   "pointers": [
+    "/links/32/reason",
+    "/links/67"
+   ],
+   "quote": [
+    "실로 잡아올린 뒤 필러로",
+    "실로 처진 살을 올리고 필러로"
+   ],
+   "observation": "/32 는 from=M2-필러·to=M7-실리프팅·함께인데 reason 은 실(to)을 먼저. 역방향 쌍 /67 이 있음",
+   "status": "후속 의미 조사(함께의 방향성 여부)"
+  },
+  {
+   "id": "LO24",
+   "kind": "alternative-label-negated",
+   "pointers": [
+    "/links/101/reason",
+    "/links/113/reason"
+   ],
+   "quote": [
+    "단순 예산 택1이 아니라",
+    "올리지오는 RF 방식, 울쎄라는 HIFU 방식으로 둘 다 리프팅 목적이라 대체 가능"
+   ],
+   "observation": "type=대신 link 의 reason 이 원리 차이를 말함. /101 은 단순 대체를 부정, /113 은 방식이 달라도 대체 가능이라 함",
+   "status": "후속 의미 조사(대신 의미)"
+  },
+  {
+   "id": "LO25",
+   "kind": "generic-specific-names",
+   "pointers": [
+    "/links/96",
+    "/links/114/from",
+    "/links/45/from",
+    "/links/55/to"
+   ],
+   "quote": [
+    "기기 리프팅",
+    "기기 리프팅",
+    "바이오스티뮬레이터",
+    "바이오스티뮬레이터"
+   ],
+   "observation": "총칭으로 보이는 이름(기기 리프팅·바이오스티뮬레이터·M11-니들RF·M4-스킨부스터)과 개별 이름(M9-울쎄라·M3-스컬트라·M11-포텐자·M4-쥬베룩)이 같은 원장에 끝점으로 공존. 상하 관계는 1차에서 정하지 않음",
+   "status": "후속 의미 조사(명칭 계층, taxonomy 대조)"
+  }
+ ]
+}

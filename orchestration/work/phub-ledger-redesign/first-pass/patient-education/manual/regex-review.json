@@ -1,0 +1,555 @@
+{
+ "note": "수동 구절(문장 제외)에 덮이지 않은 정규식 후보를 직접 읽어 판정. covered_by_sentence_only=문장 단위 기록으로 보존 · false_positive=패턴 오탐(의미 다름). 문장 텍스트는 판정 시점 기준",
+ "items": [
+  {
+   "pointer": "/categories/0/how_it_works",
+   "match": "않",
+   "span_in_value": [
+    50,
+    51
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 칼로 자르거나 꿰매지 않아요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/0/common_concerns/0/q",
+   "match": "맞으면",
+   "span_in_value": [
+    4,
+    7
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 보톡스 맞으면 표정이 굳나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/0/common_concerns/0/a",
+   "match": "수 있",
+   "span_in_value": [
+    25,
+    28
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 적절한 양을 맞으면 자연스러운 표정을 유지할 수 있어요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/1/common_concerns/0/q",
+   "match": "수 있",
+   "span_in_value": [
+    16,
+    19
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 필러가 뭉치거나 울퉁불퉁해질 수 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/1/common_concerns/2/q",
+   "match": "수 있",
+   "span_in_value": [
+    18,
+    21
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 필러 맞다가 혈관에 문제가 생길 수 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/1/common_concerns/2/a",
+   "match": "중요합니다",
+   "span_in_value": [
+    70,
+    75
+   ],
+   "kind": "instruction",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 응급 대처가 가능한 병원에서 시술받는 것이 중요합니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/how_it_works",
+   "match": "하면",
+   "span_in_value": [
+    16,
+    18
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 특수 성분을 피부 아래에 주사하면, 우리 몸이 그 주변에 새로운 콜라겐을 만들어냅니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/common_concerns/0/q",
+   "match": "바로",
+   "span_in_value": [
+    4,
+    6
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 효과가 바로 보이나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/common_concerns/1/q",
+   "match": "수 있",
+   "span_in_value": [
+    16,
+    19
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 결절(딱딱한 덩어리)이 생길 수 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/common_concerns/1/a",
+   "match": "더라도",
+   "span_in_value": [
+    123,
+    126
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 하시더라도 세게 하지 말고 부드럽게 하세요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/common_concerns/1/a",
+   "match": "하세요",
+   "span_in_value": [
+    141,
+    144
+   ],
+   "kind": "instruction",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 하시더라도 세게 하지 말고 부드럽게 하세요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/2/common_concerns/1/a",
+   "match": "부드럽게",
+   "span_in_value": [
+    136,
+    140
+   ],
+   "kind": "manner_speed",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 하시더라도 세게 하지 말고 부드럽게 하세요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/4/how_it_works",
+   "match": "하면",
+   "span_in_value": [
+    59,
+    61
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 이 농축액을 피부에 주사하면 성장인자가 피부 재생과 콜라겐 생성을 촉진합니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/4/common_concerns/0/q",
+   "match": "없",
+   "span_in_value": [
+    14,
+    15
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 내 피를 쓰니까 부작용이 없나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/4/common_concerns/0/a",
+   "match": "수 있",
+   "span_in_value": [
+    62,
+    65
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 다만 주사 부위에 일시적 붓기나 멍은 있을 수 있어요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/4/common_concerns/2/q",
+   "match": "바로",
+   "span_in_value": [
+    4,
+    6
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 효과가 바로 나타나나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/5/common_concerns/0/q",
+   "match": "않",
+   "span_in_value": [
+    12,
+    13
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 지방이 다 흡수되지는 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/5/common_concerns/1/q",
+   "match": "않",
+   "span_in_value": [
+    17,
+    18
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 지방 뽑는 부위가 움푹 꺼지지 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/5/common_concerns/2/q",
+   "match": "찌면",
+   "span_in_value": [
+    3,
+    5
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 살이 찌면 넣은 지방도 커지나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/0/a",
+   "match": "않",
+   "span_in_value": [
+    14,
+    15
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 제대로 시술하면 만져지지 않아요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/1/q",
+   "match": "녹으면",
+   "span_in_value": [
+    3,
+    6
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 실이 녹으면 다시 처지나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/1/q",
+   "match": "시 ",
+   "span_in_value": [
+    8,
+    10
+   ],
+   "kind": "condition",
+   "verdict": "false_positive",
+   "note": "「다시」의 일부 — 조건 아님"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/2/q",
+   "match": "않",
+   "span_in_value": [
+    16,
+    17
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 실리프팅 후 표정이 어색하지 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/2/q",
+   "match": "후",
+   "span_in_value": [
+    5,
+    6
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 실리프팅 후 표정이 어색하지 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/6/common_concerns/2/a",
+   "match": "없",
+   "span_in_value": [
+    52,
+    53
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 일상 표정에는 영향이 없어요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/duration_simple",
+   "match": "따라",
+   "span_in_value": [
+    11,
+    13
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 시술 종류와 목적에 따라 다릅니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/duration_simple",
+   "match": "필요합니다",
+   "span_in_value": [
+    51,
+    56
+   ],
+   "kind": "instruction",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 토닝은 주 1회씩 여러 차례, 색소 제거는 수회 반복이 필요합니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/common_concerns/0/q",
+   "match": "맞으면",
+   "span_in_value": [
+    4,
+    7
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 레이저 맞으면 피부가 얇아지나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/common_concerns/1/q",
+   "match": "수 있",
+   "span_in_value": [
+    15,
+    18
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 레이저 후 색소침착이 생길 수 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/common_concerns/1/q",
+   "match": "후",
+   "span_in_value": [
+    4,
+    5
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 레이저 후 색소침착이 생길 수 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/common_concerns/1/a",
+   "match": "수 있",
+   "span_in_value": [
+    9,
+    12
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 일시적으로 생길 수 있어요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/7/common_concerns/2/a",
+   "match": "수 있",
+   "span_in_value": [
+    53,
+    56
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 레이저로 개선할 수 있지만 재발 관리가 중요해요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/8/how_it_works",
+   "match": "하면",
+   "span_in_value": [
+    67,
+    69
+   ],
+   "kind": "condition",
+   "verdict": "false_positive",
+   "note": "「수축하면서」 — 동시·연결 어미, 조건 아님"
+  },
+  {
+   "pointer": "/categories/8/common_concerns/1/q",
+   "match": "만큼",
+   "span_in_value": [
+    10,
+    12
+   ],
+   "kind": "comparison",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 기기 리프팅이 수술만큼 효과 있나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/9/common_concerns/0/q",
+   "match": "않",
+   "span_in_value": [
+    12,
+    13
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 전기 자극이 위험하지 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/9/common_concerns/1/q",
+   "match": "바로",
+   "span_in_value": [
+    4,
+    6
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 효과가 바로 느껴지나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/10/how_it_works",
+   "match": "미세한",
+   "span_in_value": [
+    0,
+    3
+   ],
+   "kind": "degree",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 미세한 바늘이 피부 속으로 들어가 정확한 깊이에서 고주파(RF) 에너지를 전달합니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/10/common_concerns/0/a",
+   "match": "되면",
+   "span_in_value": [
+    14,
+    16
+   ],
+   "kind": "condition",
+   "verdict": "false_positive",
+   "note": "「재생되면서」 — 연결 어미, 조건 아님"
+  },
+  {
+   "pointer": "/categories/10/common_concerns/2/q",
+   "match": "중 ",
+   "span_in_value": [
+    15,
+    17
+   ],
+   "kind": "time_rel",
+   "verdict": "false_positive",
+   "note": "「레이저 중 뭐가」 — 선택 범위, 시간 아님"
+  },
+  {
+   "pointer": "/categories/10/common_concerns/2/a",
+   "match": "따라",
+   "span_in_value": [
+    36,
+    38
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 피부 상태와 목표에 따라 의사가 더 적합한 시술을 추천해드립니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/11/common_concerns/1/q",
+   "match": "후",
+   "span_in_value": [
+    3,
+    4
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 시술 후 피가 나나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/11/common_concerns/2/q",
+   "match": "없",
+   "span_in_value": [
+    7,
+    8
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 감염 위험은 없나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/12/common_concerns/0/q",
+   "match": "않",
+   "span_in_value": [
+    16,
+    17
+   ],
+   "kind": "negation",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 플라즈마가 뭔가요? 위험하지 않나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/12/common_concerns/2/q",
+   "match": "후",
+   "span_in_value": [
+    3,
+    4
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 시술 후 딱지가 생기나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/12/common_concerns/2/a",
+   "match": "수 있",
+   "span_in_value": [
+    17,
+    20
+   ],
+   "kind": "possibility",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 미세한 점 형태의 가피가 생길 수 있어요. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/13/simple_explanation",
+   "match": "없",
+   "span_in_value": [
+    20,
+    21
+   ],
+   "kind": "negation",
+   "verdict": "false_positive",
+   "note": "「없애는」 — 동사(제거), 부정 아님"
+  },
+  {
+   "pointer": "/categories/13/common_concerns/0/a",
+   "match": "따라",
+   "span_in_value": [
+    47,
+    49
+   ],
+   "kind": "condition",
+   "verdict": "false_positive",
+   "note": "「따라서」 — 접속 부사, 조건 아님"
+  },
+  {
+   "pointer": "/categories/14/duration_simple",
+   "match": "따라",
+   "span_in_value": [
+    7,
+    9
+   ],
+   "kind": "condition",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 시술 종류에 따라 다릅니다. 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/14/common_concerns/0/q",
+   "match": "후",
+   "span_in_value": [
+    3,
+    4
+   ],
+   "kind": "time_rel",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 필링 후 피부가 벗겨지는 게 정상인가요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  },
+  {
+   "pointer": "/categories/15/common_concerns/1/q",
+   "match": "자주",
+   "span_in_value": [
+    4,
+    6
+   ],
+   "kind": "frequency",
+   "verdict": "covered_by_sentence_only",
+   "note": "문장 기록 얼마나 자주 맞아야 하나요? 안에 있음 — 짧은 단문으로 단서가 문장 전체에 걸려 있어 별도 구절로 분리하지 않음(직접 확인)"
+  }
+ ]
+}

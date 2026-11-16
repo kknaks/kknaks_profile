@@ -1,0 +1,602 @@
+{
+ "segment": "S01",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M1/effects/3/added_at",
+ "read_note": "M1 진술 11개(moa 3·adverse_effects 4·effects 4)의 statement·citations·점수·patient_ko/en/zh/ja·added_at 전부 직접 읽음.",
+ "observations": [
+  {
+   "id": "S01-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/moa/0",
+    "/categories/M1/adverse_effects/0"
+   ],
+   "text": "이 구획에서 accuracy_score/accuracy_note 를 가진 진술은 moa/0(100)·adverse_effects/0(95) 두 개이고 이 둘엔 added_at 이 없다. 나머지 9개는 added_at=2026-04-19 이고 점수 없음 — 항목 키 구성이 두 유형."
+  },
+  {
+   "id": "S01-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/moa/0/citations/0",
+    "/categories/M1/adverse_effects/0/citations/0"
+   ],
+   "text": "citations 는 모두 1개. adverse_effects/0 만 Witmanowski 2020(PMID 33603602), 나머지 10개는 Park 2021(PMID 33714246) 동일 서지."
+  },
+  {
+   "id": "S01-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/adverse_effects/0/statement",
+    "/categories/M1/adverse_effects/0/patient_ko",
+    "/categories/M1/adverse_effects/0/patient_en",
+    "/categories/M1/adverse_effects/0/patient_ja"
+   ],
+   "text": "statement 는 'have been reported following injection in the periocular region'(보고됨 + 부위 조건). patient_ko 는 '드물게'(빈도)와 '-ㄹ 수 있습니다'(가능성)를 더하고, patient_en 은 'Temporary'(경과)와 'if the product reaches nearby areas'(다른 조건)를 더하며, patient_ja 는 '起こります'(가능성 표지 없음). 같은 진술의 언어별 수식·조건이 서로 다르다."
+  },
+  {
+   "id": "S01-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/adverse_effects/1/statement",
+    "/categories/M1/adverse_effects/1/patient_en",
+    "/categories/M1/adverse_effects/1/patient_ko"
+   ],
+   "text": "statement 'causes … atrophy'·patient_ko '위축시킵니다' 는 단정, patient_en·zh·ja 는 'may cause'·'可能'·'ことがあります' 가능성 표현."
+  },
+  {
+   "id": "S01-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/adverse_effects/2/statement",
+    "/categories/M1/adverse_effects/2/patient_ko",
+    "/categories/M1/adverse_effects/2/patient_en"
+   ],
+   "text": "'Mesobotox with botulinum toxin type A' — 기법(메소보톡스) 조건이 붙은 진술. patient_en 은 'Specific botulinum toxin techniques might affect' 로 기법명·'partial'·'insufficiency' 가 일반화됨."
+  },
+  {
+   "id": "S01-O6",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/adverse_effects/3/statement",
+    "/categories/M1/adverse_effects/3/patient_en"
+   ],
+   "text": "adverse_effects 배열 안의 '피지·땀 분비 감소' 진술을 patient_en 은 'helps limit oil and sweat' 로 이점처럼 서술. 배열 위치(부작용)와 서술 극성이 어긋남 — 정보 종류는 후속 판단."
+  },
+  {
+   "id": "S01-O7",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/moa/2/statement",
+    "/categories/M1/moa/2/patient_en"
+   ],
+   "text": "statement 'paralyses muscles'·patient_ko '마비시켜' 대비 patient_en 'calming'·zh '平复'·ja '穏やかに' — 정도 표현 완화."
+  },
+  {
+   "id": "S01-O8",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/effects/0/statement",
+    "/categories/M1/effects/0/patient_ko"
+   ],
+   "text": "statement 'eliminates facial wrinkles'(완전 제거), patient_ko '주름을 펴주는 주사예요'(구어체·주사 형태 추가), patient_en 'expression lines' 로 대상 한정 — 효과의 정도·대상이 언어별로 다름."
+  },
+  {
+   "id": "S01-O9",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/moa/1/patient_ko",
+    "/categories/M1/effects/0/patient_ko",
+    "/categories/M1/effects/3/patient_ko",
+    "/categories/M1/adverse_effects/2/patient_ko"
+   ],
+   "text": "patient_ko 는 '보툴리눔 톡신'·'보툴리눔 독소'·'A형 보툴리눔 독소'·'보톡스'·'메소보톡스(A형 보톡스)' 를 섞어 쓴다. statement 는 일관되게 'Botulinum toxin type A'. 명칭 동일성은 후속 판단."
+  },
+  {
+   "id": "S01-O10",
+   "status": "P",
+   "pointers": [
+    "/categories/M1/effects/1/statement",
+    "/categories/M1/effects/2/statement",
+    "/categories/M1/effects/3/statement"
+   ],
+   "text": "효과 진술의 대상 부위·고민: 'lower face'(contour), 'local hyperhidrosis', 'gummy smile'. patient_ko 는 '하안면 윤곽', '국소 다한증', '웃을 때 잇몸이 많이 보이는 거미스마일'(정의 추가)."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S01-X1",
+   "pointer": "/categories/M1/moa/0/statement",
+   "text": "inhibits the secretion of acetylcholine",
+   "facets": [
+    "mechanism",
+    "negation"
+   ]
+  },
+  {
+   "id": "S01-X2",
+   "pointer": "/categories/M1/moa/0/statement",
+   "text": "at the presynaptic neuromuscular junction",
+   "facets": [
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X3",
+   "pointer": "/categories/M1/moa/0/accuracy_note",
+   "text": "핵심 기전임",
+   "facets": [
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X4",
+   "pointer": "/categories/M1/moa/0/patient_ko",
+   "text": "근육의 움직임을 줄여줍니다",
+   "facets": [
+    "mechanism",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X5",
+   "pointer": "/categories/M1/moa/1/statement",
+   "text": "weakens skeletal muscles",
+   "facets": [
+    "mechanism",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X6",
+   "pointer": "/categories/M1/moa/1/statement",
+   "text": "by presynaptic blockade of the exocytosis of acetylcholine-containing vesicles in the neuromuscular junction",
+   "facets": [
+    "mechanism",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X7",
+   "pointer": "/categories/M1/moa/1/patient_ko",
+   "text": "[1][2][4][5]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I",
+   "note": "citations 배열은 1개"
+  },
+  {
+   "id": "S01-X8",
+   "pointer": "/categories/M1/moa/1/patient_en",
+   "text": "gently weakens",
+   "facets": [
+    "degree"
+   ],
+   "note": "statement 에 없는 'gently'"
+  },
+  {
+   "id": "S01-X9",
+   "pointer": "/categories/M1/moa/1/patient_en",
+   "text": "interrupting local communication signals",
+   "facets": [
+    "mechanism",
+    "scope"
+   ]
+  },
+  {
+   "id": "S01-X10",
+   "pointer": "/categories/M1/moa/1/patient_ja",
+   "text": "伝달",
+   "facets": [
+    "mixed_script"
+   ],
+   "status": "I",
+   "note": "일본어 값 안 한글 '달'"
+  },
+  {
+   "id": "S01-X11",
+   "pointer": "/categories/M1/moa/2/statement",
+   "text": "paralyses muscles in the face to treat wrinkles",
+   "facets": [
+    "mechanism",
+    "purpose",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X12",
+   "pointer": "/categories/M1/moa/2/patient_ko",
+   "text": "얼굴 근육을 마비시켜",
+   "facets": [
+    "mechanism",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X13",
+   "pointer": "/categories/M1/moa/2/patient_en",
+   "text": "calming the facial muscles responsible for them",
+   "facets": [
+    "mechanism",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X14",
+   "pointer": "/categories/M1/moa/2/patient_ja",
+   "text": "ボツ리ヌ",
+   "facets": [
+    "mixed_script"
+   ],
+   "status": "I",
+   "note": "일본어 값 안 한글 '리'"
+  },
+  {
+   "id": "S01-X15",
+   "pointer": "/categories/M1/adverse_effects/0/statement",
+   "text": "Dry eye and diplopia",
+   "facets": [
+    "event"
+   ]
+  },
+  {
+   "id": "S01-X16",
+   "pointer": "/categories/M1/adverse_effects/0/statement",
+   "text": "have been reported",
+   "facets": [
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S01-X17",
+   "pointer": "/categories/M1/adverse_effects/0/statement",
+   "text": "following injection in the periocular region",
+   "facets": [
+    "time",
+    "condition",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X18",
+   "pointer": "/categories/M1/adverse_effects/0/accuracy_note",
+   "text": "안구 건조 및 복시 발생 가능성이 보고됨",
+   "facets": [
+    "event",
+    "possibility",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S01-X19",
+   "pointer": "/categories/M1/adverse_effects/0/patient_ko",
+   "text": "눈 주변 시술 시",
+   "facets": [
+    "condition",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X20",
+   "pointer": "/categories/M1/adverse_effects/0/patient_ko",
+   "text": "드물게",
+   "facets": [
+    "frequency"
+   ],
+   "status": "I",
+   "note": "statement 에 빈도 표현 없음"
+  },
+  {
+   "id": "S01-X21",
+   "pointer": "/categories/M1/adverse_effects/0/patient_ko",
+   "text": "드물게 눈이 건조해지거나 사물이 겹쳐 보이는 증상이 나타날 수 있습니다",
+   "facets": [
+    "event",
+    "frequency",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S01-X22",
+   "pointer": "/categories/M1/adverse_effects/0/patient_en",
+   "text": "Temporary",
+   "facets": [
+    "duration_quality"
+   ],
+   "status": "I",
+   "note": "statement 에 없는 경과 수식"
+  },
+  {
+   "id": "S01-X23",
+   "pointer": "/categories/M1/adverse_effects/0/patient_en",
+   "text": "if the product reaches nearby areas",
+   "facets": [
+    "condition"
+   ],
+   "status": "I",
+   "note": "statement 의 조건은 periocular injection"
+  },
+  {
+   "id": "S01-X24",
+   "pointer": "/categories/M1/adverse_effects/0/patient_ja",
+   "text": "起こります",
+   "facets": [
+    "certainty"
+   ],
+   "status": "I",
+   "note": "가능성 표지 없음"
+  },
+  {
+   "id": "S01-X25",
+   "pointer": "/categories/M1/adverse_effects/1/statement",
+   "text": "causes submandibular salivary gland atrophy",
+   "facets": [
+    "event",
+    "anatomy_site",
+    "certainty"
+   ]
+  },
+  {
+   "id": "S01-X26",
+   "pointer": "/categories/M1/adverse_effects/1/patient_en",
+   "text": "may cause",
+   "facets": [
+    "possibility"
+   ],
+   "status": "I",
+   "note": "statement 는 단정"
+  },
+  {
+   "id": "S01-X27",
+   "pointer": "/categories/M1/adverse_effects/1/patient_ko",
+   "text": "턱 아래 침샘을 위축시킵니다",
+   "facets": [
+    "event",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X28",
+   "pointer": "/categories/M1/adverse_effects/2/statement",
+   "text": "Mesobotox with botulinum toxin type A",
+   "facets": [
+    "technique",
+    "name_candidate"
+   ]
+  },
+  {
+   "id": "S01-X29",
+   "pointer": "/categories/M1/adverse_effects/2/statement",
+   "text": "partial lymphatic drainage insufficiency",
+   "facets": [
+    "event",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X30",
+   "pointer": "/categories/M1/adverse_effects/2/patient_ko",
+   "text": "메소보톡스(A형 보톡스)",
+   "facets": [
+    "name_candidate",
+    "technique"
+   ]
+  },
+  {
+   "id": "S01-X31",
+   "pointer": "/categories/M1/adverse_effects/2/patient_ko",
+   "text": "림프 배출을 부분적으로 줄입니다",
+   "facets": [
+    "event",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X32",
+   "pointer": "/categories/M1/adverse_effects/2/patient_en",
+   "text": "might affect",
+   "facets": [
+    "possibility"
+   ],
+   "status": "I",
+   "note": "statement 는 단정 'induces'"
+  },
+  {
+   "id": "S01-X33",
+   "pointer": "/categories/M1/adverse_effects/3/statement",
+   "text": "inhibits exocrine function, reducing sebum and sweat production",
+   "facets": [
+    "mechanism",
+    "event"
+   ]
+  },
+  {
+   "id": "S01-X34",
+   "pointer": "/categories/M1/adverse_effects/3/patient_ko",
+   "text": "[3][9]",
+   "facets": [
+    "citation_marker"
+   ],
+   "status": "I",
+   "note": "citations 배열은 1개"
+  },
+  {
+   "id": "S01-X35",
+   "pointer": "/categories/M1/adverse_effects/3/patient_en",
+   "text": "helps limit oil and sweat",
+   "facets": [
+    "benefit_framing"
+   ],
+   "status": "F"
+  },
+  {
+   "id": "S01-X36",
+   "pointer": "/categories/M1/effects/0/statement",
+   "text": "eliminates facial wrinkles",
+   "facets": [
+    "effect",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X37",
+   "pointer": "/categories/M1/effects/0/patient_ko",
+   "text": "주름을 펴주는 주사예요",
+   "facets": [
+    "effect",
+    "form_of_delivery"
+   ]
+  },
+  {
+   "id": "S01-X38",
+   "pointer": "/categories/M1/effects/0/patient_en",
+   "text": "expression lines",
+   "facets": [
+    "concern",
+    "scope"
+   ]
+  },
+  {
+   "id": "S01-X39",
+   "pointer": "/categories/M1/effects/1/statement",
+   "text": "contours the lower face",
+   "facets": [
+    "effect",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X40",
+   "pointer": "/categories/M1/effects/1/patient_ko",
+   "text": "하안면 윤곽",
+   "facets": [
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X41",
+   "pointer": "/categories/M1/effects/2/statement",
+   "text": "treats local hyperhidrosis",
+   "facets": [
+    "effect",
+    "concern",
+    "scope"
+   ]
+  },
+  {
+   "id": "S01-X42",
+   "pointer": "/categories/M1/effects/2/patient_ko",
+   "text": "국소 다한증",
+   "facets": [
+    "concern",
+    "scope"
+   ]
+  },
+  {
+   "id": "S01-X43",
+   "pointer": "/categories/M1/effects/2/patient_en",
+   "text": "excessive local sweating",
+   "facets": [
+    "concern",
+    "degree",
+    "scope"
+   ]
+  },
+  {
+   "id": "S01-X44",
+   "pointer": "/categories/M1/effects/3/statement",
+   "text": "manages gummy smile",
+   "facets": [
+    "effect",
+    "concern"
+   ]
+  },
+  {
+   "id": "S01-X45",
+   "pointer": "/categories/M1/effects/3/patient_ko",
+   "text": "웃을 때 잇몸이 많이 보이는 거미스마일",
+   "facets": [
+    "concern",
+    "condition",
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-X46",
+   "pointer": "/categories/M1/effects/3/patient_ko",
+   "text": "입술을 올리는 근육의 활동을 줄여 개선할 수 있습니다",
+   "facets": [
+    "mechanism",
+    "possibility",
+    "anatomy_site"
+   ]
+  },
+  {
+   "id": "S01-X47",
+   "pointer": "/categories/M1/effects/3/patient_en",
+   "text": "too much gum",
+   "facets": [
+    "degree"
+   ]
+  },
+  {
+   "id": "S01-R1",
+   "pointer": "/categories/M1/adverse_effects/0/patient_en",
+   "text": "can happen",
+   "facets": [
+    "possibility"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S01-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M1/moa/1/patient_ko",
+    "/categories/M1/adverse_effects/3/patient_ko",
+    "/categories/M1/effects/1/patient_ko",
+    "/categories/M1/effects/2/patient_ko"
+   ],
+   "text": "patient_ko 끝의 인용 표지 [1][2][4][5]·[3][9]·[2]·[1][2][3] 가 해당 진술 citations(1개)와 대응하지 않는다. 표지가 가리키는 문헌 목록이 원장 안에 없다(전 구획 공통 패턴, issues.md I-CITE)."
+  },
+  {
+   "id": "S01-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M1/moa/1/patient_ja",
+    "/categories/M1/moa/2/patient_ja"
+   ],
+   "text": "patient_ja 에 한글 혼입('伝달', 'ボツ리ヌ'). 원문 그대로 보존(issues.md I-SCRIPT)."
+  },
+  {
+   "id": "S01-I3",
+   "class": "I",
+   "pointers": [
+    "/categories/M1/adverse_effects/0",
+    "/categories/M1/adverse_effects/1",
+    "/categories/M1/adverse_effects/2",
+    "/categories/M1/moa/2",
+    "/categories/M1/effects/0"
+   ],
+   "text": "같은 진술의 statement·patient_ko·en·zh·ja 사이에 빈도('드물게')·가능성('may')·경과('Temporary')·조건·정도('paralyses'↔'calming') 가 서로 다르다. 어느 언어가 기준인지 원문이 밝히지 않는다(issues.md I-LANG)."
+  },
+  {
+   "id": "S01-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M1/adverse_effects/3"
+   ],
+   "text": "adverse_effects 배열의 피지·땀 감소 진술의 정보 종류(부작용/기전/효과) 판단 — 후속 의미 조사."
+  },
+  {
+   "id": "S01-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M1/adverse_effects/0/statement"
+   ],
+   "text": "'have been reported' 만 있고 빈도·지속·대상 집단 정보 없음. patient_ko '드물게'의 근거는 원장에 없다."
+  }
+ ]
+}

@@ -1,0 +1,8690 @@
+{
+ "method": {
+  "auto": "AUTO_PATTERNS 정규식(build.py)에 실제로 일치한 구간뿐이다. 패턴 밖 표현은 이 목록에 없다 — 전수 의미 해석이 아니다.",
+  "manual": "구획별 직접 읽기에서 수집한 구절(manual/segment-notes.json). perspectives 는 탐색 관점 태그이며 확정 분류가 아니다. 겹침은 의도된 것이다(전체 구절과 하위 구절을 함께 보존).",
+  "patterns": [
+   {
+    "id": "AP-NUM-UNIT",
+    "regex": "\\d+(?:\\.\\d+)?(?:\\s*-\\s*\\d+(?:\\.\\d+)?)?\\s*(?:mg|%|개월|주|일|시간|년)",
+    "desc": "숫자(+범위)+단위"
+   },
+   {
+    "id": "AP-RANGE",
+    "regex": "\\d+(?:\\.\\d+)?\\s*-\\s*\\d+(?:\\.\\d+)?|\\b[IVX]+-[IVX]+\\b",
+    "desc": "하이픈 수치/로마숫자 범위"
+   },
+   {
+    "id": "AP-MULT",
+    "regex": "x\\d+",
+    "desc": "x+숫자 표기"
+   },
+   {
+    "id": "AP-YEAR",
+    "regex": "(?<!\\d)(?:19|20)\\d{2}(?!\\d)",
+    "desc": "연도 형태 4자리"
+   },
+   {
+    "id": "AP-PAREN",
+    "regex": "\\([^()]*\\)",
+    "desc": "괄호 안 구절"
+   },
+   {
+    "id": "AP-SLASH",
+    "regex": "[^\\s/(),—]+(?:/[^\\s/(),—]+)+",
+    "desc": "슬래시 나열"
+   },
+   {
+    "id": "AP-DASH",
+    "regex": "—[^—]*$",
+    "desc": "줄표(—) 뒤 구절"
+   },
+   {
+    "id": "AP-ALT",
+    "regex": "\\bvs\\b|\\bor\\b|또는",
+    "desc": "대안·비교 접속(vs/or/또는)"
+   },
+   {
+    "id": "AP-NEG",
+    "regex": "불가|아닌|아니|않|금기|제한|없|비(?=HA|박리성|녹는)|무감각",
+    "desc": "부정·금지·제한 어휘"
+   },
+   {
+    "id": "AP-POSS",
+    "regex": "수 있|가능성|가능|위험|어려움|예측 불가",
+    "desc": "가능성·위험 어휘"
+   },
+   {
+    "id": "AP-COND",
+    "regex": "(?<=[가-힣A-Za-z\\)]) 시(?=[ ,)\\s]|$)|경우|이내|이후|후(?=[ )]|$)|전부터|전(?=\\))|중인|중이거나|중단|대기|하에|따라|병행",
+    "desc": "조건·시점 어휘"
+   },
+   {
+    "id": "AP-MODAL",
+    "regex": "필수|필요|반드시|원칙|고려|판단|상의|확인|준비|안내|설명|고지|평가",
+    "desc": "권고·의무·행위 어휘"
+   },
+   {
+    "id": "AP-DEGREE",
+    "regex": "최소|최근|대폭|특히|충분한|과도한|고용량|중등도 이상|점진적|더|크게|장시간|일부|대부분|개인차|조기|사전|고위험군|이상",
+    "desc": "정도·범위·근사 어휘"
+   },
+   {
+    "id": "AP-ETC",
+    "regex": "(?<=[가-힣A-Za-z0-9]) 등(?=[ )—,]|$)",
+    "desc": "열린 나열 '등'"
+   }
+  ],
+  "offsets": "start/end = 디코딩된 값 문자열 코드포인트 [start,end); file_cp = 원본 전체 디코딩 문자열 기준"
+ },
+ "auto_candidates": [
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/description",
+   "segment": "S00",
+   "match": "확인",
+   "start": 48,
+   "end": 50,
+   "file_cp": [
+    103,
+    105
+   ],
+   "context_value": "시술 전 체크리스트. 카테고리별 universal + category-specific 확인 항목"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/universal_checks/0/description",
+   "segment": "S01",
+   "match": "약물/식품/라텍스",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    201,
+    210
+   ],
+   "context_value": "약물/식품/라텍스 알레르기"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/universal_checks/1/label",
+   "segment": "S01",
+   "match": "항응고제/항혈소판제",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    250,
+    260
+   ],
+   "context_value": "항응고제/항혈소판제"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "멍/출혈",
+   "start": 35,
+   "end": 39,
+   "file_cp": [
+    332,
+    336
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "— 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수.",
+   "start": 33,
+   "end": 65,
+   "file_cp": [
+    330,
+    362
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "위험",
+   "start": 40,
+   "end": 42,
+   "file_cp": [
+    337,
+    339
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "중단",
+   "start": 47,
+   "end": 49,
+   "file_cp": [
+    344,
+    346
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "안내",
+   "start": 43,
+   "end": 45,
+   "file_cp": [
+    340,
+    342
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "상의",
+   "start": 59,
+   "end": 61,
+   "file_cp": [
+    356,
+    358
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": "필수",
+   "start": 62,
+   "end": 64,
+   "file_cp": [
+    359,
+    361
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/universal_checks/1/description",
+   "segment": "S01",
+   "match": " 등",
+   "start": 30,
+   "end": 32,
+   "file_cp": [
+    327,
+    329
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/universal_checks/2/description",
+   "segment": "S01",
+   "match": "이물반응/상처",
+   "start": 33,
+   "end": 40,
+   "file_cp": [
+    469,
+    476
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/universal_checks/2/description",
+   "segment": "S01",
+   "match": "— 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가",
+   "start": 17,
+   "end": 52,
+   "file_cp": [
+    453,
+    488
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/2/description",
+   "segment": "S01",
+   "match": "어려움",
+   "start": 28,
+   "end": 31,
+   "file_cp": [
+    464,
+    467
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/2/description",
+   "segment": "S01",
+   "match": "위험",
+   "start": 47,
+   "end": 49,
+   "file_cp": [
+    483,
+    485
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/universal_checks/2/description",
+   "segment": "S01",
+   "match": " 등",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    450,
+    452
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "제한",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    594,
+    596
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "중인",
+   "start": 3,
+   "end": 5,
+   "file_cp": [
+    582,
+    584
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "경우",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    585,
+    587
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "판단",
+   "start": 26,
+   "end": 28,
+   "file_cp": [
+    605,
+    607
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "필요",
+   "start": 29,
+   "end": 31,
+   "file_cp": [
+    608,
+    610
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/3/description",
+   "segment": "S01",
+   "match": "일부",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    588,
+    590
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/4/label",
+   "segment": "S01",
+   "match": "확인",
+   "start": 4,
+   "end": 6,
+   "file_cp": [
+    647,
+    649
+   ],
+   "context_value": "기대치 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/4/description",
+   "segment": "S01",
+   "match": "설명",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    694,
+    696
+   ],
+   "context_value": "현실적인 결과 설명"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "500mg",
+   "start": 34,
+   "end": 39,
+   "file_cp": [
+    801,
+    806
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "400mg",
+   "start": 53,
+   "end": 58,
+   "file_cp": [
+    820,
+    825
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "3일",
+   "start": 66,
+   "end": 68,
+   "file_cp": [
+    833,
+    835
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-MULT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "x2",
+   "start": 40,
+   "end": 42,
+   "file_cp": [
+    807,
+    809
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-MULT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "x2",
+   "start": 59,
+   "end": 61,
+   "file_cp": [
+    826,
+    828
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "(발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)",
+   "start": 25,
+   "end": 73,
+   "file_cp": [
+    792,
+    840
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-ALT",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "또는",
+   "start": 43,
+   "end": 45,
+   "file_cp": [
+    810,
+    812
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": " 시",
+   "start": 7,
+   "end": 9,
+   "file_cp": [
+    774,
+    776
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "전부터",
+   "start": 69,
+   "end": 72,
+   "file_cp": [
+    836,
+    839
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/5/description",
+   "segment": "S01",
+   "match": "필요",
+   "start": 22,
+   "end": 24,
+   "file_cp": [
+    789,
+    791
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "6개월",
+   "start": 20,
+   "end": 23,
+   "file_cp": [
+    937,
+    940
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "12개월",
+   "start": 44,
+   "end": 48,
+   "file_cp": [
+    961,
+    965
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-YEAR",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "2017",
+   "start": 76,
+   "end": 80,
+   "file_cp": [
+    993,
+    997
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "(ablative)",
+   "start": 28,
+   "end": 38,
+   "file_cp": [
+    945,
+    955
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "프락셔널/얕은",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    917,
+    924
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "비",
+   "start": 99,
+   "end": 100,
+   "file_cp": [
+    1016,
+    1017
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "위험",
+   "start": 72,
+   "end": 74,
+   "file_cp": [
+    989,
+    991
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "가능",
+   "start": 141,
+   "end": 143,
+   "file_cp": [
+    1058,
+    1060
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "중단",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    929,
+    931
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "후",
+   "start": 15,
+   "end": 16,
+   "file_cp": [
+    932,
+    933
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "대기",
+   "start": 49,
+   "end": 51,
+   "file_cp": [
+    966,
+    968
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "이후",
+   "start": 96,
+   "end": 98,
+   "file_cp": [
+    1013,
+    1015
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "따라",
+   "start": 121,
+   "end": 123,
+   "file_cp": [
+    1038,
+    1040
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "중단",
+   "start": 145,
+   "end": 147,
+   "file_cp": [
+    1062,
+    1064
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "후",
+   "start": 148,
+   "end": 149,
+   "file_cp": [
+    1065,
+    1066
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "원칙",
+   "start": 52,
+   "end": 54,
+   "file_cp": [
+    969,
+    971
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "판단",
+   "start": 127,
+   "end": 129,
+   "file_cp": [
+    1044,
+    1046
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "고려",
+   "start": 138,
+   "end": 140,
+   "file_cp": [
+    1055,
+    1057
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "반드시",
+   "start": 153,
+   "end": 156,
+   "file_cp": [
+    1070,
+    1073
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "확인",
+   "start": 157,
+   "end": 159,
+   "file_cp": [
+    1074,
+    1076
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "최소",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    934,
+    936
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/6/description",
+   "segment": "S01",
+   "match": "조기",
+   "start": 132,
+   "end": 134,
+   "file_cp": [
+    1049,
+    1051
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/universal_checks/8/description",
+   "segment": "S01",
+   "match": " 등",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    1276,
+    1278
+   ],
+   "context_value": "항응고제, NSAIDs, 이소트레티노인 등"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/universal_checks/9/description",
+   "segment": "S01",
+   "match": "불가",
+   "start": 30,
+   "end": 32,
+   "file_cp": [
+    1395,
+    1397
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/universal_checks/9/description",
+   "segment": "S01",
+   "match": "가능성",
+   "start": 11,
+   "end": 14,
+   "file_cp": [
+    1376,
+    1379
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/9/description",
+   "segment": "S01",
+   "match": "중이거나",
+   "start": 3,
+   "end": 7,
+   "file_cp": [
+    1368,
+    1372
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/universal_checks/9/description",
+   "segment": "S01",
+   "match": "경우",
+   "start": 19,
+   "end": 21,
+   "file_cp": [
+    1384,
+    1386
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/9/description",
+   "segment": "S01",
+   "match": "대부분",
+   "start": 22,
+   "end": 25,
+   "file_cp": [
+    1387,
+    1390
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/10/label",
+   "segment": "S01",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    1437,
+    1439
+   ],
+   "context_value": "최근 시술 이력"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/universal_checks/10/description",
+   "segment": "S01",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    1482,
+    1484
+   ],
+   "context_value": "최근 받은 시술과 시기"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/0/checks/0/label",
+   "segment": "S02",
+   "match": "(중증근무력증 등)",
+   "start": 9,
+   "end": 19,
+   "file_cp": [
+    1674,
+    1684
+   ],
+   "context_value": "신경근접합부 질환(중증근무력증 등) 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/0/checks/0/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    1685,
+    1687
+   ],
+   "context_value": "신경근접합부 질환(중증근무력증 등) 확인"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/0/checks/0/label",
+   "segment": "S02",
+   "match": " 등",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    1681,
+    1683
+   ],
+   "context_value": "신경근접합부 질환(중증근무력증 등) 확인"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/0/checks/1/label",
+   "segment": "S02",
+   "match": "후",
+   "start": 14,
+   "end": 15,
+   "file_cp": [
+    1749,
+    1750
+   ],
+   "context_value": "이전 보툴리눔 독소 시술 후 이상반응 여부"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/0/checks/1/label",
+   "segment": "S02",
+   "match": "이상",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    1751,
+    1753
+   ],
+   "context_value": "이전 보툴리눔 독소 시술 후 이상반응 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/0/checks/2/label",
+   "segment": "S02",
+   "match": "(멍 위험 안내)",
+   "start": 11,
+   "end": 20,
+   "file_cp": [
+    1802,
+    1811
+   ],
+   "context_value": "항응고제 복용 여부 (멍 위험 안내)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/0/checks/2/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    1805,
+    1807
+   ],
+   "context_value": "항응고제 복용 여부 (멍 위험 안내)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/0/checks/2/label",
+   "segment": "S02",
+   "match": "안내",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    1808,
+    1810
+   ],
+   "context_value": "항응고제 복용 여부 (멍 위험 안내)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/0/checks/3/label",
+   "segment": "S02",
+   "match": "(항체 내성)",
+   "start": 16,
+   "end": 23,
+   "file_cp": [
+    1856,
+    1863
+   ],
+   "context_value": "최근 보톡스 시술 시기 확인 (항체 내성)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/0/checks/3/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    1853,
+    1855
+   ],
+   "context_value": "최근 보톡스 시술 시기 확인 (항체 내성)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/0/checks/3/label",
+   "segment": "S02",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    1840,
+    1842
+   ],
+   "context_value": "최근 보톡스 시술 시기 확인 (항체 내성)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/0/checks/4/label",
+   "segment": "S02",
+   "match": "(보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)",
+   "start": 19,
+   "end": 51,
+   "file_cp": [
+    1915,
+    1947
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/0/checks/4/label",
+   "segment": "S02",
+   "match": "— 겐타마이신, 토브라마이신 등)",
+   "start": 33,
+   "end": 51,
+   "file_cp": [
+    1929,
+    1947
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/0/checks/4/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 30,
+   "end": 32,
+   "file_cp": [
+    1926,
+    1928
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/0/checks/4/label",
+   "segment": "S02",
+   "match": " 등",
+   "start": 48,
+   "end": 50,
+   "file_cp": [
+    1944,
+    1946
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/0/checks/5/label",
+   "segment": "S02",
+   "match": "(신경근접합부 기능 감소 — 보톡스 효과 예측 불가)",
+   "start": 14,
+   "end": 43,
+   "file_cp": [
+    1994,
+    2023
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/0/checks/5/label",
+   "segment": "S02",
+   "match": "— 보톡스 효과 예측 불가)",
+   "start": 28,
+   "end": 43,
+   "file_cp": [
+    2008,
+    2023
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/0/checks/5/label",
+   "segment": "S02",
+   "match": "불가",
+   "start": 40,
+   "end": 42,
+   "file_cp": [
+    2020,
+    2022
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/0/checks/5/label",
+   "segment": "S02",
+   "match": "예측 불가",
+   "start": 37,
+   "end": 42,
+   "file_cp": [
+    2017,
+    2022
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/0/checks/6/label",
+   "segment": "S02",
+   "match": "감염/염증",
+   "start": 6,
+   "end": 11,
+   "file_cp": [
+    2062,
+    2067
+   ],
+   "context_value": "시술 부위 감염/염증 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/1/checks/1/label",
+   "segment": "S02",
+   "match": "(잔여 필러)",
+   "start": 20,
+   "end": 27,
+   "file_cp": [
+    2207,
+    2214
+   ],
+   "context_value": "이전 필러 시술 부위 및 제품 확인 (잔여 필러)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/1/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    2204,
+    2206
+   ],
+   "context_value": "이전 필러 시술 부위 및 제품 확인 (잔여 필러)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/1/checks/2/label",
+   "segment": "S02",
+   "match": "(실리콘/PMMA)",
+   "start": 7,
+   "end": 17,
+   "file_cp": [
+    2254,
+    2264
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/1/checks/2/label",
+   "segment": "S02",
+   "match": "실리콘/PMMA",
+   "start": 8,
+   "end": 16,
+   "file_cp": [
+    2255,
+    2263
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/1/checks/2/label",
+   "segment": "S02",
+   "match": "— 이물반응, 합병증 위험 대폭 증가",
+   "start": 24,
+   "end": 44,
+   "file_cp": [
+    2271,
+    2291
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/1/checks/2/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 36,
+   "end": 38,
+   "file_cp": [
+    2283,
+    2285
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/1/checks/2/label",
+   "segment": "S02",
+   "match": "대폭",
+   "start": 39,
+   "end": 41,
+   "file_cp": [
+    2286,
+    2288
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/1/checks/3/label",
+   "segment": "S02",
+   "match": "(육아종 위험)",
+   "start": 10,
+   "end": 18,
+   "file_cp": [
+    2334,
+    2342
+   ],
+   "context_value": "자가면역질환 여부 (육아종 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/1/checks/3/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    2339,
+    2341
+   ],
+   "context_value": "자가면역질환 여부 (육아종 위험)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/4/label",
+   "segment": "S02",
+   "match": "준비",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    2388,
+    2390
+   ],
+   "context_value": "혈관폐색 응급 프로토콜 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/4/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    2391,
+    2393
+   ],
+   "context_value": "혈관폐색 응급 프로토콜 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/5/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    2446,
+    2448
+   ],
+   "context_value": "히알루로니다아제 비상 비치 확인"
+  },
+  {
+   "pattern": "AP-ALT",
+   "pointer": "/category_specific/1/checks/6/label",
+   "segment": "S02",
+   "match": "vs",
+   "start": 3,
+   "end": 5,
+   "file_cp": [
+    2489,
+    2491
+   ],
+   "context_value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/1/checks/6/label",
+   "segment": "S02",
+   "match": "비",
+   "start": 6,
+   "end": 7,
+   "file_cp": [
+    2492,
+    2493
+   ],
+   "context_value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/1/checks/6/label",
+   "segment": "S02",
+   "match": "가능",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    2507,
+    2509
+   ],
+   "context_value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/6/label",
+   "segment": "S02",
+   "match": "설명",
+   "start": 27,
+   "end": 29,
+   "file_cp": [
+    2513,
+    2515
+   ],
+   "context_value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/1/checks/7/label",
+   "segment": "S02",
+   "match": "— 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음",
+   "start": 15,
+   "end": 50,
+   "file_cp": [
+    2563,
+    2598
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/1/checks/7/label",
+   "segment": "S02",
+   "match": "수 있",
+   "start": 46,
+   "end": 49,
+   "file_cp": [
+    2594,
+    2597
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/1/checks/7/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    2560,
+    2562
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/1/checks/7/label",
+   "segment": "S02",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    2548,
+    2550
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "48시간",
+   "start": 0,
+   "end": 4,
+   "file_cp": [
+    2631,
+    2635
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "(미용상)",
+   "start": 75,
+   "end": 80,
+   "file_cp": [
+    2706,
+    2711
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "— 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)",
+   "start": 21,
+   "end": 80,
+   "file_cp": [
+    2652,
+    2711
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "않",
+   "start": 41,
+   "end": 42,
+   "file_cp": [
+    2672,
+    2673
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "수 있",
+   "start": 71,
+   "end": 74,
+   "file_cp": [
+    2702,
+    2705
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "이내",
+   "start": 5,
+   "end": 7,
+   "file_cp": [
+    2636,
+    2638
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": " 시",
+   "start": 52,
+   "end": 54,
+   "file_cp": [
+    2683,
+    2685
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "장시간",
+   "start": 46,
+   "end": 49,
+   "file_cp": [
+    2677,
+    2680
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/1/checks/8/label",
+   "segment": "S02",
+   "match": "더",
+   "start": 61,
+   "end": 62,
+   "file_cp": [
+    2692,
+    2693
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/1/checks/9/label",
+   "segment": "S02",
+   "match": "피부결핵/매독",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    2740,
+    2747
+   ],
+   "context_value": "피부결핵/매독 등 만성감염 여부"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/1/checks/9/label",
+   "segment": "S02",
+   "match": " 등",
+   "start": 7,
+   "end": 9,
+   "file_cp": [
+    2747,
+    2749
+   ],
+   "context_value": "피부결핵/매독 등 만성감염 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/2/name",
+   "segment": "S02",
+   "match": "바이오스티뮬레이터/콜라겐부스터",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    2801,
+    2817
+   ],
+   "context_value": "바이오스티뮬레이터/콜라겐부스터"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/2/checks/0/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    2847,
+    2849
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/2/checks/1/label",
+   "segment": "S02",
+   "match": "(이물반응 위험)",
+   "start": 10,
+   "end": 19,
+   "file_cp": [
+    2907,
+    2916
+   ],
+   "context_value": "자가면역질환 여부 (이물반응 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/2/checks/1/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    2913,
+    2915
+   ],
+   "context_value": "자가면역질환 여부 (이물반응 위험)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/2/checks/2/label",
+   "segment": "S02",
+   "match": "확인",
+   "start": 24,
+   "end": 26,
+   "file_cp": [
+    2973,
+    2975
+   ],
+   "context_value": "이전 바이오스티뮬레이터 시술 이력 및 제품 확인"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/2/checks/3/label",
+   "segment": "S02",
+   "match": "결절/육아종",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    3008,
+    3014
+   ],
+   "context_value": "결절/육아종 발생 가능성 설명"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/2/checks/3/label",
+   "segment": "S02",
+   "match": "가능성",
+   "start": 10,
+   "end": 13,
+   "file_cp": [
+    3018,
+    3021
+   ],
+   "context_value": "결절/육아종 발생 가능성 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/2/checks/3/label",
+   "segment": "S02",
+   "match": "설명",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    3022,
+    3024
+   ],
+   "context_value": "결절/육아종 발생 가능성 설명"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/2/checks/4/label",
+   "segment": "S02",
+   "match": "1-3개월",
+   "start": 13,
+   "end": 18,
+   "file_cp": [
+    3070,
+    3075
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/2/checks/4/label",
+   "segment": "S02",
+   "match": "1-3",
+   "start": 13,
+   "end": 16,
+   "file_cp": [
+    3070,
+    3073
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/2/checks/4/label",
+   "segment": "S02",
+   "match": "(1-3개월 점진적)",
+   "start": 12,
+   "end": 23,
+   "file_cp": [
+    3069,
+    3080
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/2/checks/4/label",
+   "segment": "S02",
+   "match": "안내",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    3066,
+    3068
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/2/checks/4/label",
+   "segment": "S02",
+   "match": "점진적",
+   "start": 19,
+   "end": 22,
+   "file_cp": [
+    3076,
+    3079
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/2/checks/5/label",
+   "segment": "S02",
+   "match": "감염/활동성",
+   "start": 6,
+   "end": 12,
+   "file_cp": [
+    3119,
+    3125
+   ],
+   "context_value": "시술 부위 감염/활동성 피부질환 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/3/checks/1/label",
+   "segment": "S02",
+   "match": "(레이저, 필링 등)",
+   "start": 12,
+   "end": 23,
+   "file_cp": [
+    3262,
+    3273
+   ],
+   "context_value": "최근 피부 시술 이력 (레이저, 필링 등)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/3/checks/1/label",
+   "segment": "S02",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    3250,
+    3252
+   ],
+   "context_value": "최근 피부 시술 이력 (레이저, 필링 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/3/checks/1/label",
+   "segment": "S02",
+   "match": " 등",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    3270,
+    3272
+   ],
+   "context_value": "최근 피부 시술 이력 (레이저, 필링 등)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/3/checks/2/label",
+   "segment": "S02",
+   "match": "(멍 위험)",
+   "start": 16,
+   "end": 22,
+   "file_cp": [
+    3322,
+    3328
+   ],
+   "context_value": "항응고제/아스피린 복용 여부 (멍 위험)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/3/checks/2/label",
+   "segment": "S02",
+   "match": "항응고제/아스피린",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    3306,
+    3315
+   ],
+   "context_value": "항응고제/아스피린 복용 여부 (멍 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/3/checks/2/label",
+   "segment": "S02",
+   "match": "위험",
+   "start": 19,
+   "end": 21,
+   "file_cp": [
+    3325,
+    3327
+   ],
+   "context_value": "항응고제/아스피린 복용 여부 (멍 위험)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/3/checks/3/label",
+   "segment": "S02",
+   "match": "여드름/감염",
+   "start": 10,
+   "end": 16,
+   "file_cp": [
+    3367,
+    3373
+   ],
+   "context_value": "시술 부위 활동성 여드름/감염 여부"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/3/checks/4/label",
+   "segment": "S02",
+   "match": "1-3일",
+   "start": 17,
+   "end": 21,
+   "file_cp": [
+    3426,
+    3430
+   ],
+   "context_value": "다운타임 안내 (붉어짐, 구진 1-3일)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/3/checks/4/label",
+   "segment": "S02",
+   "match": "1-3",
+   "start": 17,
+   "end": 20,
+   "file_cp": [
+    3426,
+    3429
+   ],
+   "context_value": "다운타임 안내 (붉어짐, 구진 1-3일)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/3/checks/4/label",
+   "segment": "S02",
+   "match": "(붉어짐, 구진 1-3일)",
+   "start": 8,
+   "end": 22,
+   "file_cp": [
+    3417,
+    3431
+   ],
+   "context_value": "다운타임 안내 (붉어짐, 구진 1-3일)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/3/checks/4/label",
+   "segment": "S02",
+   "match": "안내",
+   "start": 5,
+   "end": 7,
+   "file_cp": [
+    3414,
+    3416
+   ],
+   "context_value": "다운타임 안내 (붉어짐, 구진 1-3일)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/4/name",
+   "segment": "S03",
+   "match": "PRP/자가혈",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    3475,
+    3482
+   ],
+   "context_value": "PRP/자가혈"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/4/checks/0/label",
+   "segment": "S03",
+   "match": "혈소판감소증/혈액질환",
+   "start": 0,
+   "end": 11,
+   "file_cp": [
+    3504,
+    3515
+   ],
+   "context_value": "혈소판감소증/혈액질환 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/4/checks/1/label",
+   "segment": "S03",
+   "match": "항응고제/항혈소판제",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    3566,
+    3576
+   ],
+   "context_value": "항응고제/항혈소판제 복용 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/4/checks/2/label",
+   "segment": "S03",
+   "match": "감염/패혈증",
+   "start": 4,
+   "end": 10,
+   "file_cp": [
+    3619,
+    3625
+   ],
+   "context_value": "활동성 감염/패혈증 여부"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/4/checks/4/label",
+   "segment": "S03",
+   "match": "1주",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    3738,
+    3740
+   ],
+   "context_value": "NSAIDs 복용 중단 여부 (시술 1주 전)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/4/checks/4/label",
+   "segment": "S03",
+   "match": "(시술 1주 전)",
+   "start": 16,
+   "end": 25,
+   "file_cp": [
+    3734,
+    3743
+   ],
+   "context_value": "NSAIDs 복용 중단 여부 (시술 1주 전)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/4/checks/4/label",
+   "segment": "S03",
+   "match": "중단",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    3728,
+    3730
+   ],
+   "context_value": "NSAIDs 복용 중단 여부 (시술 1주 전)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/4/checks/4/label",
+   "segment": "S03",
+   "match": "전",
+   "start": 23,
+   "end": 24,
+   "file_cp": [
+    3741,
+    3742
+   ],
+   "context_value": "NSAIDs 복용 중단 여부 (시술 1주 전)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/4/checks/5/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    3790,
+    3792
+   ],
+   "context_value": "채혈량 및 원심분리 과정 설명"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/5/checks/0/label",
+   "segment": "S03",
+   "match": "(리도카인 등)",
+   "start": 11,
+   "end": 19,
+   "file_cp": [
+    3873,
+    3881
+   ],
+   "context_value": "마취 알레르기 여부 (리도카인 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/5/checks/0/label",
+   "segment": "S03",
+   "match": " 등",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    3878,
+    3880
+   ],
+   "context_value": "마취 알레르기 여부 (리도카인 등)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/5/checks/1/label",
+   "segment": "S03",
+   "match": "경향/응고장애",
+   "start": 3,
+   "end": 10,
+   "file_cp": [
+    3932,
+    3939
+   ],
+   "context_value": "출혈 경향/응고장애 여부"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/2/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    3989,
+    3991
+   ],
+   "context_value": "공여 부위 충분한 지방량 확인"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/5/checks/2/label",
+   "segment": "S03",
+   "match": "충분한",
+   "start": 6,
+   "end": 9,
+   "file_cp": [
+    3981,
+    3984
+   ],
+   "context_value": "공여 부위 충분한 지방량 확인"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/5/checks/3/label",
+   "segment": "S03",
+   "match": "위험",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    4030,
+    4032
+   ],
+   "context_value": "지방색전증 위험 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/3/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    4033,
+    4035
+   ],
+   "context_value": "지방색전증 위험 설명"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/5/checks/4/label",
+   "segment": "S03",
+   "match": "30-70%",
+   "start": 8,
+   "end": 14,
+   "file_cp": [
+    4081,
+    4087
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/5/checks/4/label",
+   "segment": "S03",
+   "match": "30-70",
+   "start": 8,
+   "end": 13,
+   "file_cp": [
+    4081,
+    4086
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/5/checks/4/label",
+   "segment": "S03",
+   "match": "(30-70%, 개인차)",
+   "start": 7,
+   "end": 20,
+   "file_cp": [
+    4080,
+    4093
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/4/label",
+   "segment": "S03",
+   "match": "안내",
+   "start": 4,
+   "end": 6,
+   "file_cp": [
+    4077,
+    4079
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/5/checks/4/label",
+   "segment": "S03",
+   "match": "개인차",
+   "start": 16,
+   "end": 19,
+   "file_cp": [
+    4089,
+    4092
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/5/checks/5/label",
+   "segment": "S03",
+   "match": "비대칭/과교정/흡수",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    4126,
+    4136
+   ],
+   "context_value": "비대칭/과교정/흡수 가능성 설명"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/5/checks/5/label",
+   "segment": "S03",
+   "match": "가능성",
+   "start": 11,
+   "end": 14,
+   "file_cp": [
+    4137,
+    4140
+   ],
+   "context_value": "비대칭/과교정/흡수 가능성 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/5/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    4141,
+    4143
+   ],
+   "context_value": "비대칭/과교정/흡수 가능성 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/6/label",
+   "segment": "S03",
+   "match": "준비",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    4186,
+    4188
+   ],
+   "context_value": "감염 예방 항생제 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/5/checks/6/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    4189,
+    4191
+   ],
+   "context_value": "감염 예방 항생제 준비 확인"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/6/checks/2/label",
+   "segment": "S03",
+   "match": "(잔여 실)",
+   "start": 14,
+   "end": 20,
+   "file_cp": [
+    4386,
+    4392
+   ],
+   "context_value": "이전 실리프팅 이력 확인 (잔여 실)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/6/checks/2/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 11,
+   "end": 13,
+   "file_cp": [
+    4383,
+    4385
+   ],
+   "context_value": "이전 실리프팅 이력 확인 (잔여 실)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/6/checks/3/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    4433,
+    4435
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/6/checks/4/label",
+   "segment": "S03",
+   "match": "(녹는 실 vs 비녹는 실)",
+   "start": 4,
+   "end": 19,
+   "file_cp": [
+    4472,
+    4487
+   ],
+   "context_value": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명"
+  },
+  {
+   "pattern": "AP-ALT",
+   "pointer": "/category_specific/6/checks/4/label",
+   "segment": "S03",
+   "match": "vs",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    4478,
+    4480
+   ],
+   "context_value": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/6/checks/4/label",
+   "segment": "S03",
+   "match": "비",
+   "start": 13,
+   "end": 14,
+   "file_cp": [
+    4481,
+    4482
+   ],
+   "context_value": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/6/checks/4/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 26,
+   "end": 28,
+   "file_cp": [
+    4494,
+    4496
+   ],
+   "context_value": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/6/checks/5/label",
+   "segment": "S03",
+   "match": "돌출/감염/비대칭",
+   "start": 2,
+   "end": 11,
+   "file_cp": [
+    4531,
+    4540
+   ],
+   "context_value": "실 돌출/감염/비대칭 가능성 설명"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/6/checks/5/label",
+   "segment": "S03",
+   "match": "가능성",
+   "start": 12,
+   "end": 15,
+   "file_cp": [
+    4541,
+    4544
+   ],
+   "context_value": "실 돌출/감염/비대칭 가능성 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/6/checks/5/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    4545,
+    4547
+   ],
+   "context_value": "실 돌출/감염/비대칭 가능성 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/6/checks/6/label",
+   "segment": "S03",
+   "match": "입벌리기/마사지",
+   "start": 8,
+   "end": 16,
+   "file_cp": [
+    4588,
+    4596
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/6/checks/6/label",
+   "segment": "S03",
+   "match": "제한",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    4597,
+    4599
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/6/checks/6/label",
+   "segment": "S03",
+   "match": "후",
+   "start": 3,
+   "end": 4,
+   "file_cp": [
+    4583,
+    4584
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/6/checks/6/label",
+   "segment": "S03",
+   "match": "안내",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    4600,
+    4602
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/6/checks/6/label",
+   "segment": "S03",
+   "match": "크게",
+   "start": 5,
+   "end": 7,
+   "file_cp": [
+    4585,
+    4587
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/7/checks/0/label",
+   "segment": "S03",
+   "match": "I-VI",
+   "start": 21,
+   "end": 25,
+   "file_cp": [
+    4688,
+    4692
+   ],
+   "context_value": "Fitzpatrick 피부타입 확인 (I-VI)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/7/checks/0/label",
+   "segment": "S03",
+   "match": "(I-VI)",
+   "start": 20,
+   "end": 26,
+   "file_cp": [
+    4687,
+    4693
+   ],
+   "context_value": "Fitzpatrick 피부타입 확인 (I-VI)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/0/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    4684,
+    4686
+   ],
+   "context_value": "Fitzpatrick 피부타입 확인 (I-VI)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "2-4주",
+   "start": 16,
+   "end": 20,
+   "file_cp": [
+    4742,
+    4746
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "2-4",
+   "start": 16,
+   "end": 19,
+   "file_cp": [
+    4742,
+    4745
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "일광노출/태닝",
+   "start": 3,
+   "end": 10,
+   "file_cp": [
+    4729,
+    4736
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "— 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단",
+   "start": 14,
+   "end": 51,
+   "file_cp": [
+    4740,
+    4777
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-ALT",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "or",
+   "start": 40,
+   "end": 42,
+   "file_cp": [
+    4766,
+    4768
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "이내",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    4747,
+    4749
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": " 시",
+   "start": 30,
+   "end": 32,
+   "file_cp": [
+    4756,
+    4758
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "판단",
+   "start": 49,
+   "end": 51,
+   "file_cp": [
+    4775,
+    4777
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/1/label",
+   "segment": "S03",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    4726,
+    4728
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "6개월",
+   "start": 36,
+   "end": 39,
+   "file_cp": [
+    4846,
+    4849
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "12개월",
+   "start": 49,
+   "end": 53,
+   "file_cp": [
+    4859,
+    4863
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-YEAR",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "2017",
+   "start": 61,
+   "end": 65,
+   "file_cp": [
+    4871,
+    4875
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "여부/중단",
+   "start": 11,
+   "end": 16,
+   "file_cp": [
+    4821,
+    4826
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "프락셔널/얕은",
+   "start": 25,
+   "end": 32,
+   "file_cp": [
+    4835,
+    4842
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "— 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+   "start": 23,
+   "end": 113,
+   "file_cp": [
+    4833,
+    4923
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "비",
+   "start": 84,
+   "end": 85,
+   "file_cp": [
+    4894,
+    4895
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "가능",
+   "start": 111,
+   "end": 113,
+   "file_cp": [
+    4921,
+    4923
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "중단",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    4824,
+    4826
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "대기",
+   "start": 54,
+   "end": 56,
+   "file_cp": [
+    4864,
+    4866
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "이후",
+   "start": 81,
+   "end": 83,
+   "file_cp": [
+    4891,
+    4893
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "하에",
+   "start": 102,
+   "end": 104,
+   "file_cp": [
+    4912,
+    4914
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    4830,
+    4832
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "원칙",
+   "start": 57,
+   "end": 59,
+   "file_cp": [
+    4867,
+    4869
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "판단",
+   "start": 99,
+   "end": 101,
+   "file_cp": [
+    4909,
+    4911
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "고려",
+   "start": 108,
+   "end": 110,
+   "file_cp": [
+    4918,
+    4920
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/2/label",
+   "segment": "S03",
+   "match": "조기",
+   "start": 105,
+   "end": 107,
+   "file_cp": [
+    4915,
+    4917
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/7/checks/3/label",
+   "segment": "S03",
+   "match": "(독시사이클린, 아미오다론 등)",
+   "start": 14,
+   "end": 31,
+   "file_cp": [
+    4970,
+    4987
+   ],
+   "context_value": "광과민성 약물 복용 여부 (독시사이클린, 아미오다론 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/7/checks/3/label",
+   "segment": "S03",
+   "match": " 등",
+   "start": 28,
+   "end": 30,
+   "file_cp": [
+    4984,
+    4986
+   ],
+   "context_value": "광과민성 약물 복용 여부 (독시사이클린, 아미오다론 등)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "400mg",
+   "start": 44,
+   "end": 49,
+   "file_cp": [
+    5064,
+    5069
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "500mg",
+   "start": 64,
+   "end": 69,
+   "file_cp": [
+    5084,
+    5089
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "3일",
+   "start": 77,
+   "end": 79,
+   "file_cp": [
+    5097,
+    5099
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "7-10일",
+   "start": 88,
+   "end": 93,
+   "file_cp": [
+    5108,
+    5113
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "7-10",
+   "start": 88,
+   "end": 92,
+   "file_cp": [
+    5108,
+    5112
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-MULT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "x2",
+   "start": 50,
+   "end": 52,
+   "file_cp": [
+    5070,
+    5072
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-MULT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "x2",
+   "start": 70,
+   "end": 72,
+   "file_cp": [
+    5090,
+    5092
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "(아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)",
+   "start": 36,
+   "end": 97,
+   "file_cp": [
+    5056,
+    5117
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "구순/안면",
+   "start": 13,
+   "end": 18,
+   "file_cp": [
+    5033,
+    5038
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "— 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)",
+   "start": 11,
+   "end": 97,
+   "file_cp": [
+    5031,
+    5117
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-ALT",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "또는",
+   "start": 53,
+   "end": 55,
+   "file_cp": [
+    5073,
+    5075
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": " 시",
+   "start": 22,
+   "end": 24,
+   "file_cp": [
+    5042,
+    5044
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "전부터",
+   "start": 80,
+   "end": 83,
+   "file_cp": [
+    5100,
+    5103
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/4/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    5028,
+    5030
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/7/checks/5/label",
+   "segment": "S03",
+   "match": "(어블레이티브 레이저)",
+   "start": 11,
+   "end": 23,
+   "file_cp": [
+    5161,
+    5173
+   ],
+   "context_value": "켈로이드 체질 확인 (어블레이티브 레이저)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/5/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    5158,
+    5160
+   ],
+   "context_value": "켈로이드 체질 확인 (어블레이티브 레이저)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "(고위험군 사전 미백 치료)",
+   "start": 11,
+   "end": 26,
+   "file_cp": [
+    5217,
+    5232
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "위험",
+   "start": 4,
+   "end": 6,
+   "file_cp": [
+    5210,
+    5212
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "위험",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    5219,
+    5221
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "평가",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    5214,
+    5216
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "고위험군",
+   "start": 12,
+   "end": 16,
+   "file_cp": [
+    5218,
+    5222
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/6/label",
+   "segment": "S03",
+   "match": "사전",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    5223,
+    5225
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "2주",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    5280,
+    5282
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "— 피부 장벽 회복 전 레이저 시 합병증 위험",
+   "start": 24,
+   "end": 49,
+   "file_cp": [
+    5289,
+    5314
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "위험",
+   "start": 47,
+   "end": 49,
+   "file_cp": [
+    5312,
+    5314
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "후",
+   "start": 10,
+   "end": 11,
+   "file_cp": [
+    5275,
+    5276
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "대기",
+   "start": 18,
+   "end": 20,
+   "file_cp": [
+    5283,
+    5285
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": " 시",
+   "start": 40,
+   "end": 42,
+   "file_cp": [
+    5305,
+    5307
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    5286,
+    5288
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "중등도 이상",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    5265,
+    5271
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/7/checks/7/label",
+   "segment": "S03",
+   "match": "최소",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    5277,
+    5279
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": "RF/HIFU",
+   "start": 13,
+   "end": 20,
+   "file_cp": [
+    5360,
+    5367
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": "— RF/HIFU 병행 시 금속 발열 위험",
+   "start": 11,
+   "end": 34,
+   "file_cp": [
+    5358,
+    5381
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": "위험",
+   "start": 32,
+   "end": 34,
+   "file_cp": [
+    5379,
+    5381
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": "병행",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    5368,
+    5370
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": " 시",
+   "start": 23,
+   "end": 25,
+   "file_cp": [
+    5370,
+    5372
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/8/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    5355,
+    5357
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/7/checks/9/label",
+   "segment": "S03",
+   "match": "보호안경/눈",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    5414,
+    5420
+   ],
+   "context_value": "보호안경/눈 보호 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/9/label",
+   "segment": "S03",
+   "match": "준비",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    5424,
+    5426
+   ],
+   "context_value": "보호안경/눈 보호 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/9/label",
+   "segment": "S03",
+   "match": "확인",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    5427,
+    5429
+   ],
+   "context_value": "보호안경/눈 보호 준비 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/7/checks/10/label",
+   "segment": "S03",
+   "match": "설명",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    5480,
+    5482
+   ],
+   "context_value": "레이저 종류별 다운타임 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/8/checks/0/label",
+   "segment": "S04",
+   "match": "임플란트/페이스메이커",
+   "start": 6,
+   "end": 17,
+   "file_cp": [
+    5560,
+    5571
+   ],
+   "context_value": "체내 금속 임플란트/페이스메이커 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/8/checks/1/label",
+   "segment": "S04",
+   "match": "필러/실리콘",
+   "start": 6,
+   "end": 12,
+   "file_cp": [
+    5628,
+    5634
+   ],
+   "context_value": "시술 부위 필러/실리콘 존재 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/8/checks/2/label",
+   "segment": "S04",
+   "match": "실/금속",
+   "start": 6,
+   "end": 10,
+   "file_cp": [
+    5679,
+    5683
+   ],
+   "context_value": "최근 골드 실/금속 실 시술 이력"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/8/checks/2/label",
+   "segment": "S04",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    5673,
+    5675
+   ],
+   "context_value": "최근 골드 실/금속 실 시술 이력"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/8/checks/3/label",
+   "segment": "S04",
+   "match": "(간질 등)",
+   "start": 10,
+   "end": 16,
+   "file_cp": [
+    5749,
+    5755
+   ],
+   "context_value": "신경계 질환 여부 (간질 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/8/checks/3/label",
+   "segment": "S04",
+   "match": " 등",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    5752,
+    5754
+   ],
+   "context_value": "신경계 질환 여부 (간질 등)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/8/checks/4/label",
+   "segment": "S04",
+   "match": "초음파/RF",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    5788,
+    5794
+   ],
+   "context_value": "초음파/RF 에너지별 특성 및 통증 수준 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/8/checks/4/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 23,
+   "end": 25,
+   "file_cp": [
+    5811,
+    5813
+   ],
+   "context_value": "초음파/RF 에너지별 특성 및 통증 수준 설명"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/8/checks/5/label",
+   "segment": "S04",
+   "match": "(HIFU 시 화상 위험)",
+   "start": 10,
+   "end": 24,
+   "file_cp": [
+    5856,
+    5870
+   ],
+   "context_value": "지방층 두께 확인 (HIFU 시 화상 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/8/checks/5/label",
+   "segment": "S04",
+   "match": "위험",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    5867,
+    5869
+   ],
+   "context_value": "지방층 두께 확인 (HIFU 시 화상 위험)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/8/checks/5/label",
+   "segment": "S04",
+   "match": " 시",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    5861,
+    5863
+   ],
+   "context_value": "지방층 두께 확인 (HIFU 시 화상 위험)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/8/checks/5/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 7,
+   "end": 9,
+   "file_cp": [
+    5853,
+    5855
+   ],
+   "context_value": "지방층 두께 확인 (HIFU 시 화상 위험)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/9/name",
+   "segment": "S04",
+   "match": "HIFES/EMS",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    5915,
+    5924
+   ],
+   "context_value": "HIFES/EMS"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/9/checks/0/label",
+   "segment": "S04",
+   "match": "임플란트/페이스메이커",
+   "start": 6,
+   "end": 17,
+   "file_cp": [
+    5952,
+    5963
+   ],
+   "context_value": "체내 금속 임플란트/페이스메이커 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/9/checks/1/label",
+   "segment": "S04",
+   "match": "간질/경련성",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    6014,
+    6020
+   ],
+   "context_value": "간질/경련성 질환 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/9/checks/2/label",
+   "segment": "S04",
+   "match": "복부/시술",
+   "start": 3,
+   "end": 8,
+   "file_cp": [
+    6077,
+    6082
+   ],
+   "context_value": "최근 복부/시술 부위 수술 이력"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/9/checks/2/label",
+   "segment": "S04",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    6074,
+    6076
+   ],
+   "context_value": "최근 복부/시술 부위 수술 이력"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/9/checks/3/label",
+   "segment": "S04",
+   "match": "(복부 시술 시 특히 중요)",
+   "start": 6,
+   "end": 21,
+   "file_cp": [
+    6130,
+    6145
+   ],
+   "context_value": "임신 여부 (복부 시술 시 특히 중요)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/9/checks/3/label",
+   "segment": "S04",
+   "match": " 시",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    6136,
+    6138
+   ],
+   "context_value": "임신 여부 (복부 시술 시 특히 중요)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/9/checks/3/label",
+   "segment": "S04",
+   "match": "특히",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    6139,
+    6141
+   ],
+   "context_value": "임신 여부 (복부 시술 시 특히 중요)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/9/checks/4/label",
+   "segment": "S04",
+   "match": "(과도한 세팅)",
+   "start": 13,
+   "end": 21,
+   "file_cp": [
+    6206,
+    6214
+   ],
+   "context_value": "횡문근융해증 위험 설명 (과도한 세팅)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/9/checks/4/label",
+   "segment": "S04",
+   "match": "위험",
+   "start": 7,
+   "end": 9,
+   "file_cp": [
+    6200,
+    6202
+   ],
+   "context_value": "횡문근융해증 위험 설명 (과도한 세팅)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/9/checks/4/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    6203,
+    6205
+   ],
+   "context_value": "횡문근융해증 위험 설명 (과도한 세팅)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/9/checks/4/label",
+   "segment": "S04",
+   "match": "과도한",
+   "start": 14,
+   "end": 17,
+   "file_cp": [
+    6207,
+    6210
+   ],
+   "context_value": "횡문근융해증 위험 설명 (과도한 세팅)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/9/checks/5/label",
+   "segment": "S04",
+   "match": "(지방감소가 아닌 근육강화)",
+   "start": 14,
+   "end": 29,
+   "file_cp": [
+    6257,
+    6272
+   ],
+   "context_value": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/9/checks/5/label",
+   "segment": "S04",
+   "match": "아닌",
+   "start": 21,
+   "end": 23,
+   "file_cp": [
+    6264,
+    6266
+   ],
+   "context_value": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/9/checks/5/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 11,
+   "end": 13,
+   "file_cp": [
+    6254,
+    6256
+   ],
+   "context_value": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/10/checks/0/label",
+   "segment": "S04",
+   "match": "(시술 부위)",
+   "start": 14,
+   "end": 21,
+   "file_cp": [
+    6357,
+    6364
+   ],
+   "context_value": "체내 금속 임플란트 여부 (시술 부위)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/1/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    6420,
+    6422
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "6개월",
+   "start": 36,
+   "end": 39,
+   "file_cp": [
+    6491,
+    6494
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "12개월",
+   "start": 49,
+   "end": 53,
+   "file_cp": [
+    6504,
+    6508
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "start": 60,
+   "end": 91,
+   "file_cp": [
+    6515,
+    6546
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "여부/중단",
+   "start": 11,
+   "end": 16,
+   "file_cp": [
+    6466,
+    6471
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "프락셔널/얕은",
+   "start": 25,
+   "end": 32,
+   "file_cp": [
+    6480,
+    6487
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "— 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "start": 23,
+   "end": 91,
+   "file_cp": [
+    6478,
+    6546
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "비",
+   "start": 61,
+   "end": 62,
+   "file_cp": [
+    6516,
+    6517
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "가능",
+   "start": 88,
+   "end": 90,
+   "file_cp": [
+    6543,
+    6545
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "중단",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    6469,
+    6471
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "대기",
+   "start": 54,
+   "end": 56,
+   "file_cp": [
+    6509,
+    6511
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "하에",
+   "start": 79,
+   "end": 81,
+   "file_cp": [
+    6534,
+    6536
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    6475,
+    6477
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "원칙",
+   "start": 57,
+   "end": 59,
+   "file_cp": [
+    6512,
+    6514
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "판단",
+   "start": 76,
+   "end": 78,
+   "file_cp": [
+    6531,
+    6533
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "고려",
+   "start": 85,
+   "end": 87,
+   "file_cp": [
+    6540,
+    6542
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/10/checks/2/label",
+   "segment": "S04",
+   "match": "조기",
+   "start": 82,
+   "end": 84,
+   "file_cp": [
+    6537,
+    6539
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/10/checks/3/label",
+   "segment": "S04",
+   "match": "(출혈 위험)",
+   "start": 11,
+   "end": 18,
+   "file_cp": [
+    6590,
+    6597
+   ],
+   "context_value": "항응고제 복용 여부 (출혈 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/10/checks/3/label",
+   "segment": "S04",
+   "match": "위험",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    6594,
+    6596
+   ],
+   "context_value": "항응고제 복용 여부 (출혈 위험)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/10/checks/4/label",
+   "segment": "S04",
+   "match": "여드름/감염",
+   "start": 4,
+   "end": 10,
+   "file_cp": [
+    6634,
+    6640
+   ],
+   "context_value": "활동성 여드름/감염 부위 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/4/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    6644,
+    6646
+   ],
+   "context_value": "활동성 여드름/감염 부위 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/5/label",
+   "segment": "S04",
+   "match": "안내",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    6692,
+    6694
+   ],
+   "context_value": "마취크림 도포 및 시간 안내"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/10/checks/6/label",
+   "segment": "S04",
+   "match": "붉어짐/부종",
+   "start": 5,
+   "end": 11,
+   "file_cp": [
+    6728,
+    6734
+   ],
+   "context_value": "시술 후 붉어짐/부종 다운타임 설명"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/10/checks/6/label",
+   "segment": "S04",
+   "match": "후",
+   "start": 3,
+   "end": 4,
+   "file_cp": [
+    6726,
+    6727
+   ],
+   "context_value": "시술 후 붉어짐/부종 다운타임 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/10/checks/6/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    6740,
+    6742
+   ],
+   "context_value": "시술 후 붉어짐/부종 다운타임 설명"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/11/name",
+   "segment": "S04",
+   "match": "(MTS)",
+   "start": 7,
+   "end": 12,
+   "file_cp": [
+    6794,
+    6799
+   ],
+   "context_value": "마이크로니들링(MTS)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/11/checks/0/label",
+   "segment": "S04",
+   "match": "여드름/감염/헤르페스",
+   "start": 4,
+   "end": 15,
+   "file_cp": [
+    6825,
+    6836
+   ],
+   "context_value": "활동성 여드름/감염/헤르페스 여부"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/1/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    6895,
+    6897
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "6개월",
+   "start": 36,
+   "end": 39,
+   "file_cp": [
+    6966,
+    6969
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "12개월",
+   "start": 49,
+   "end": 53,
+   "file_cp": [
+    6979,
+    6983
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "start": 60,
+   "end": 91,
+   "file_cp": [
+    6990,
+    7021
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "여부/중단",
+   "start": 11,
+   "end": 16,
+   "file_cp": [
+    6941,
+    6946
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "프락셔널/얕은",
+   "start": 25,
+   "end": 32,
+   "file_cp": [
+    6955,
+    6962
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "— 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "start": 23,
+   "end": 91,
+   "file_cp": [
+    6953,
+    7021
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "비",
+   "start": 61,
+   "end": 62,
+   "file_cp": [
+    6991,
+    6992
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "가능",
+   "start": 88,
+   "end": 90,
+   "file_cp": [
+    7018,
+    7020
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "중단",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    6944,
+    6946
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "대기",
+   "start": 54,
+   "end": 56,
+   "file_cp": [
+    6984,
+    6986
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "하에",
+   "start": 79,
+   "end": 81,
+   "file_cp": [
+    7009,
+    7011
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    6950,
+    6952
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "원칙",
+   "start": 57,
+   "end": 59,
+   "file_cp": [
+    6987,
+    6989
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "판단",
+   "start": 76,
+   "end": 78,
+   "file_cp": [
+    7006,
+    7008
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "고려",
+   "start": 85,
+   "end": 87,
+   "file_cp": [
+    7015,
+    7017
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/11/checks/2/label",
+   "segment": "S04",
+   "match": "조기",
+   "start": 82,
+   "end": 84,
+   "file_cp": [
+    7012,
+    7014
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/11/checks/3/label",
+   "segment": "S04",
+   "match": "항응고제/항혈소판제",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    7054,
+    7064
+   ],
+   "context_value": "항응고제/항혈소판제 복용 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/11/checks/4/label",
+   "segment": "S04",
+   "match": "(감염 위험 증가)",
+   "start": 11,
+   "end": 21,
+   "file_cp": [
+    7114,
+    7124
+   ],
+   "context_value": "당뇨/면역저하 상태 (감염 위험 증가)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/11/checks/4/label",
+   "segment": "S04",
+   "match": "당뇨/면역저하",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    7103,
+    7110
+   ],
+   "context_value": "당뇨/면역저하 상태 (감염 위험 증가)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/11/checks/4/label",
+   "segment": "S04",
+   "match": "위험",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    7118,
+    7120
+   ],
+   "context_value": "당뇨/면역저하 상태 (감염 위험 증가)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/5/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    7169,
+    7171
+   ],
+   "context_value": "니들 깊이별 다운타임 설명"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/11/checks/6/label",
+   "segment": "S04",
+   "match": "후",
+   "start": 3,
+   "end": 4,
+   "file_cp": [
+    7207,
+    7208
+   ],
+   "context_value": "시술 후 자외선 차단 필수 안내"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/6/label",
+   "segment": "S04",
+   "match": "필수",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    7216,
+    7218
+   ],
+   "context_value": "시술 후 자외선 차단 필수 안내"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/11/checks/6/label",
+   "segment": "S04",
+   "match": "안내",
+   "start": 15,
+   "end": 17,
+   "file_cp": [
+    7219,
+    7221
+   ],
+   "context_value": "시술 후 자외선 차단 필수 안내"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/12/checks/0/label",
+   "segment": "S04",
+   "match": "페이스메이커/전자",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    7288,
+    7297
+   ],
+   "context_value": "페이스메이커/전자 의료기기 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/12/checks/2/label",
+   "segment": "S04",
+   "match": "질환/약물",
+   "start": 5,
+   "end": 10,
+   "file_cp": [
+    7407,
+    7412
+   ],
+   "context_value": "광과민성 질환/약물 복용 여부"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/12/checks/3/label",
+   "segment": "S04",
+   "match": "확인",
+   "start": 8,
+   "end": 10,
+   "file_cp": [
+    7459,
+    7461
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/12/checks/5/label",
+   "segment": "S04",
+   "match": "(딱지)",
+   "start": 4,
+   "end": 8,
+   "file_cp": [
+    7546,
+    7550
+   ],
+   "context_value": "크러스트(딱지) 형성 및 관리 방법 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/12/checks/5/label",
+   "segment": "S04",
+   "match": "설명",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    7562,
+    7564
+   ],
+   "context_value": "크러스트(딱지) 형성 및 관리 방법 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/13/checks/0/label",
+   "segment": "S05",
+   "match": "한냉두드러기/한냉글로불린혈증",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    7641,
+    7656
+   ],
+   "context_value": "한냉두드러기/한냉글로불린혈증 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/13/checks/3/label",
+   "segment": "S05",
+   "match": "(피하지방 두께 측정)",
+   "start": 14,
+   "end": 26,
+   "file_cp": [
+    7826,
+    7838
+   ],
+   "context_value": "BMI/체형 적합성 평가 (피하지방 두께 측정)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/13/checks/3/label",
+   "segment": "S05",
+   "match": "BMI/체형",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    7812,
+    7818
+   ],
+   "context_value": "BMI/체형 적합성 평가 (피하지방 두께 측정)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/13/checks/3/label",
+   "segment": "S05",
+   "match": "평가",
+   "start": 11,
+   "end": 13,
+   "file_cp": [
+    7823,
+    7825
+   ],
+   "context_value": "BMI/체형 적합성 평가 (피하지방 두께 측정)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/13/checks/4/label",
+   "segment": "S05",
+   "match": "(복부 시술 시)",
+   "start": 6,
+   "end": 15,
+   "file_cp": [
+    7877,
+    7886
+   ],
+   "context_value": "탈장 여부 (복부 시술 시)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/13/checks/4/label",
+   "segment": "S05",
+   "match": " 시",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    7883,
+    7885
+   ],
+   "context_value": "탈장 여부 (복부 시술 시)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "0.005-0.39%",
+   "start": 22,
+   "end": 33,
+   "file_cp": [
+    7941,
+    7952
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "0.005-0.39",
+   "start": 22,
+   "end": 32,
+   "file_cp": [
+    7941,
+    7951
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "(PAH)",
+   "start": 8,
+   "end": 13,
+   "file_cp": [
+    7927,
+    7932
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "(0.005-0.39%)",
+   "start": 21,
+   "end": 34,
+   "file_cp": [
+    7940,
+    7953
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "가능성",
+   "start": 14,
+   "end": 17,
+   "file_cp": [
+    7933,
+    7936
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/13/checks/5/label",
+   "segment": "S05",
+   "match": "설명",
+   "start": 18,
+   "end": 20,
+   "file_cp": [
+    7937,
+    7939
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/13/checks/6/label",
+   "segment": "S05",
+   "match": "이상/무감각",
+   "start": 12,
+   "end": 18,
+   "file_cp": [
+    7998,
+    8004
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/13/checks/6/label",
+   "segment": "S05",
+   "match": "무감각",
+   "start": 15,
+   "end": 18,
+   "file_cp": [
+    8001,
+    8004
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/13/checks/6/label",
+   "segment": "S05",
+   "match": "가능성",
+   "start": 19,
+   "end": 22,
+   "file_cp": [
+    8005,
+    8008
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/13/checks/6/label",
+   "segment": "S05",
+   "match": "안내",
+   "start": 23,
+   "end": 25,
+   "file_cp": [
+    8009,
+    8011
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/13/checks/6/label",
+   "segment": "S05",
+   "match": "이상",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    7998,
+    8000
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/13/checks/7/label",
+   "segment": "S05",
+   "match": "2-4개월",
+   "start": 13,
+   "end": 18,
+   "file_cp": [
+    8053,
+    8058
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pattern": "AP-RANGE",
+   "pointer": "/category_specific/13/checks/7/label",
+   "segment": "S05",
+   "match": "2-4",
+   "start": 13,
+   "end": 16,
+   "file_cp": [
+    8053,
+    8056
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/13/checks/7/label",
+   "segment": "S05",
+   "match": "(2-4개월 점진적)",
+   "start": 12,
+   "end": 23,
+   "file_cp": [
+    8052,
+    8063
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/13/checks/7/label",
+   "segment": "S05",
+   "match": "안내",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    8049,
+    8051
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/13/checks/7/label",
+   "segment": "S05",
+   "match": "점진적",
+   "start": 19,
+   "end": 22,
+   "file_cp": [
+    8059,
+    8062
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "6개월",
+   "start": 36,
+   "end": 39,
+   "file_cp": [
+    8173,
+    8176
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-NUM-UNIT",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "12개월",
+   "start": 49,
+   "end": 53,
+   "file_cp": [
+    8186,
+    8190
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-YEAR",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "2017",
+   "start": 61,
+   "end": 65,
+   "file_cp": [
+    8198,
+    8202
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "여부/중단",
+   "start": 11,
+   "end": 16,
+   "file_cp": [
+    8148,
+    8153
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "프락셔널/얕은",
+   "start": 25,
+   "end": 32,
+   "file_cp": [
+    8162,
+    8169
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-DASH",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "— 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+   "start": 23,
+   "end": 113,
+   "file_cp": [
+    8160,
+    8250
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "비",
+   "start": 84,
+   "end": 85,
+   "file_cp": [
+    8221,
+    8222
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "가능",
+   "start": 111,
+   "end": 113,
+   "file_cp": [
+    8248,
+    8250
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "중단",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    8151,
+    8153
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "대기",
+   "start": 54,
+   "end": 56,
+   "file_cp": [
+    8191,
+    8193
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "이후",
+   "start": 81,
+   "end": 83,
+   "file_cp": [
+    8218,
+    8220
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "하에",
+   "start": 102,
+   "end": 104,
+   "file_cp": [
+    8239,
+    8241
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    8157,
+    8159
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "원칙",
+   "start": 57,
+   "end": 59,
+   "file_cp": [
+    8194,
+    8196
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "판단",
+   "start": 99,
+   "end": 101,
+   "file_cp": [
+    8236,
+    8238
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "고려",
+   "start": 108,
+   "end": 110,
+   "file_cp": [
+    8245,
+    8247
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/14/checks/0/label",
+   "segment": "S05",
+   "match": "조기",
+   "start": 105,
+   "end": 107,
+   "file_cp": [
+    8242,
+    8244
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/14/checks/1/label",
+   "segment": "S05",
+   "match": "(레티노이드 처방 시 필수)",
+   "start": 7,
+   "end": 22,
+   "file_cp": [
+    8290,
+    8305
+   ],
+   "context_value": "임신 테스트 (레티노이드 처방 시 필수)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/1/label",
+   "segment": "S05",
+   "match": " 시",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    8299,
+    8301
+   ],
+   "context_value": "임신 테스트 (레티노이드 처방 시 필수)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/1/label",
+   "segment": "S05",
+   "match": "필수",
+   "start": 19,
+   "end": 21,
+   "file_cp": [
+    8302,
+    8304
+   ],
+   "context_value": "임신 테스트 (레티노이드 처방 시 필수)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/14/checks/2/label",
+   "segment": "S05",
+   "match": "(레티노이드/이소트레티노인 처방 시)",
+   "start": 13,
+   "end": 33,
+   "file_cp": [
+    8366,
+    8386
+   ],
+   "context_value": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/14/checks/2/label",
+   "segment": "S05",
+   "match": "레티노이드/이소트레티노인",
+   "start": 14,
+   "end": 27,
+   "file_cp": [
+    8367,
+    8380
+   ],
+   "context_value": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/2/label",
+   "segment": "S05",
+   "match": " 시",
+   "start": 30,
+   "end": 32,
+   "file_cp": [
+    8383,
+    8385
+   ],
+   "context_value": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/2/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 10,
+   "end": 12,
+   "file_cp": [
+    8363,
+    8365
+   ],
+   "context_value": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/14/checks/3/label",
+   "segment": "S05",
+   "match": "(이소트레티노인 처방 시)",
+   "start": 9,
+   "end": 23,
+   "file_cp": [
+    8428,
+    8442
+   ],
+   "context_value": "지질 수치 확인 (이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/3/label",
+   "segment": "S05",
+   "match": " 시",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    8439,
+    8441
+   ],
+   "context_value": "지질 수치 확인 (이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/3/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    8425,
+    8427
+   ],
+   "context_value": "지질 수치 확인 (이소트레티노인 처방 시)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/14/checks/4/label",
+   "segment": "S05",
+   "match": "중인",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    8481,
+    8483
+   ],
+   "context_value": "현재 사용 중인 스킨케어 제품 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/4/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 17,
+   "end": 19,
+   "file_cp": [
+    8492,
+    8494
+   ],
+   "context_value": "현재 사용 중인 스킨케어 제품 확인"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/14/checks/5/label",
+   "segment": "S05",
+   "match": "피부염/습진/건선",
+   "start": 4,
+   "end": 13,
+   "file_cp": [
+    8531,
+    8540
+   ],
+   "context_value": "활동성 피부염/습진/건선 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/14/checks/6/label",
+   "segment": "S05",
+   "match": "(살리실산, 글리콜산 등)",
+   "start": 18,
+   "end": 32,
+   "file_cp": [
+    8594,
+    8608
+   ],
+   "context_value": "화학적 필링 제제 알레르기 여부 (살리실산, 글리콜산 등)"
+  },
+  {
+   "pattern": "AP-ETC",
+   "pointer": "/category_specific/14/checks/6/label",
+   "segment": "S05",
+   "match": " 등",
+   "start": 29,
+   "end": 31,
+   "file_cp": [
+    8605,
+    8607
+   ],
+   "context_value": "화학적 필링 제제 알레르기 여부 (살리실산, 글리콜산 등)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/14/checks/7/label",
+   "segment": "S05",
+   "match": "(필링 간격)",
+   "start": 13,
+   "end": 20,
+   "file_cp": [
+    8654,
+    8661
+   ],
+   "context_value": "최근 레이저/시술 이력 (필링 간격)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/14/checks/7/label",
+   "segment": "S05",
+   "match": "레이저/시술",
+   "start": 3,
+   "end": 9,
+   "file_cp": [
+    8644,
+    8650
+   ],
+   "context_value": "최근 레이저/시술 이력 (필링 간격)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/14/checks/7/label",
+   "segment": "S05",
+   "match": "최근",
+   "start": 0,
+   "end": 2,
+   "file_cp": [
+    8641,
+    8643
+   ],
+   "context_value": "최근 레이저/시술 이력 (필링 간격)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/14/checks/8/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 12,
+   "end": 14,
+   "file_cp": [
+    8706,
+    8708
+   ],
+   "context_value": "자외선 차단 생활습관 확인"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/15/checks/0/label",
+   "segment": "S05",
+   "match": "(수분 과부하 위험)",
+   "start": 11,
+   "end": 22,
+   "file_cp": [
+    8786,
+    8797
+   ],
+   "context_value": "심부전/신부전 여부 (수분 과부하 위험)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/15/checks/0/label",
+   "segment": "S05",
+   "match": "심부전/신부전",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    8775,
+    8782
+   ],
+   "context_value": "심부전/신부전 여부 (수분 과부하 위험)"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/15/checks/0/label",
+   "segment": "S05",
+   "match": "위험",
+   "start": 19,
+   "end": 21,
+   "file_cp": [
+    8794,
+    8796
+   ],
+   "context_value": "심부전/신부전 여부 (수분 과부하 위험)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/15/checks/1/label",
+   "segment": "S05",
+   "match": "(비타민제 포함)",
+   "start": 11,
+   "end": 20,
+   "file_cp": [
+    8856,
+    8865
+   ],
+   "context_value": "약물 알레르기 여부 (비타민제 포함)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/15/checks/2/label",
+   "segment": "S05",
+   "match": "(고용량 비타민 C 시)",
+   "start": 9,
+   "end": 22,
+   "file_cp": [
+    8907,
+    8920
+   ],
+   "context_value": "신장 기능 확인 (고용량 비타민 C 시)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/15/checks/2/label",
+   "segment": "S05",
+   "match": " 시",
+   "start": 19,
+   "end": 21,
+   "file_cp": [
+    8917,
+    8919
+   ],
+   "context_value": "신장 기능 확인 (고용량 비타민 C 시)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/15/checks/2/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    8904,
+    8906
+   ],
+   "context_value": "신장 기능 확인 (고용량 비타민 C 시)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/15/checks/2/label",
+   "segment": "S05",
+   "match": "고용량",
+   "start": 10,
+   "end": 13,
+   "file_cp": [
+    8908,
+    8911
+   ],
+   "context_value": "신장 기능 확인 (고용량 비타민 C 시)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/15/checks/3/label",
+   "segment": "S05",
+   "match": "(고용량 비타민 C 금기)",
+   "start": 12,
+   "end": 26,
+   "file_cp": [
+    8965,
+    8979
+   ],
+   "context_value": "G6PD 결핍증 여부 (고용량 비타민 C 금기)"
+  },
+  {
+   "pattern": "AP-NEG",
+   "pointer": "/category_specific/15/checks/3/label",
+   "segment": "S05",
+   "match": "금기",
+   "start": 23,
+   "end": 25,
+   "file_cp": [
+    8976,
+    8978
+   ],
+   "context_value": "G6PD 결핍증 여부 (고용량 비타민 C 금기)"
+  },
+  {
+   "pattern": "AP-DEGREE",
+   "pointer": "/category_specific/15/checks/3/label",
+   "segment": "S05",
+   "match": "고용량",
+   "start": 13,
+   "end": 16,
+   "file_cp": [
+    8966,
+    8969
+   ],
+   "context_value": "G6PD 결핍증 여부 (고용량 비타민 C 금기)"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/15/checks/4/label",
+   "segment": "S05",
+   "match": "(상호작용)",
+   "start": 19,
+   "end": 25,
+   "file_cp": [
+    9046,
+    9052
+   ],
+   "context_value": "현재 복용 중인 영양제/약물 확인 (상호작용)"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/15/checks/4/label",
+   "segment": "S05",
+   "match": "영양제/약물",
+   "start": 9,
+   "end": 15,
+   "file_cp": [
+    9036,
+    9042
+   ],
+   "context_value": "현재 복용 중인 영양제/약물 확인 (상호작용)"
+  },
+  {
+   "pattern": "AP-COND",
+   "pointer": "/category_specific/15/checks/4/label",
+   "segment": "S05",
+   "match": "중인",
+   "start": 6,
+   "end": 8,
+   "file_cp": [
+    9033,
+    9035
+   ],
+   "context_value": "현재 복용 중인 영양제/약물 확인 (상호작용)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/15/checks/4/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 16,
+   "end": 18,
+   "file_cp": [
+    9043,
+    9045
+   ],
+   "context_value": "현재 복용 중인 영양제/약물 확인 (상호작용)"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/15/checks/5/label",
+   "segment": "S05",
+   "match": "확인",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    9094,
+    9096
+   ],
+   "context_value": "혈관 접근 상태 확인"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/15/checks/6/label",
+   "segment": "S05",
+   "match": "설명",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    9143,
+    9145
+   ],
+   "context_value": "수액 조성 및 기대 효과 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/16/checks/0/label",
+   "segment": "S05",
+   "match": "병력/활동성",
+   "start": 5,
+   "end": 11,
+   "file_cp": [
+    9223,
+    9229
+   ],
+   "context_value": "악성종양 병력/활동성 암 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/16/checks/1/label",
+   "segment": "S05",
+   "match": "감염/패혈증",
+   "start": 4,
+   "end": 10,
+   "file_cp": [
+    9286,
+    9292
+   ],
+   "context_value": "활동성 감염/패혈증 여부"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/16/checks/3/label",
+   "segment": "S05",
+   "match": "혈액질환/응고장애",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    9385,
+    9394
+   ],
+   "context_value": "혈액질환/응고장애 여부"
+  },
+  {
+   "pattern": "AP-PAREN",
+   "pointer": "/category_specific/16/checks/4/label",
+   "segment": "S05",
+   "match": "(자가/동종)",
+   "start": 7,
+   "end": 14,
+   "file_cp": [
+    9437,
+    9444
+   ],
+   "context_value": "줄기세포 유래(자가/동종) 및 채취 부위 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/16/checks/4/label",
+   "segment": "S05",
+   "match": "자가/동종",
+   "start": 8,
+   "end": 13,
+   "file_cp": [
+    9438,
+    9443
+   ],
+   "context_value": "줄기세포 유래(자가/동종) 및 채취 부위 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/16/checks/4/label",
+   "segment": "S05",
+   "match": "설명",
+   "start": 23,
+   "end": 25,
+   "file_cp": [
+    9453,
+    9455
+   ],
+   "context_value": "줄기세포 유래(자가/동종) 및 채취 부위 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/16/checks/5/label",
+   "segment": "S05",
+   "match": "설명",
+   "start": 14,
+   "end": 16,
+   "file_cp": [
+    9502,
+    9504
+   ],
+   "context_value": "규제 현황 및 근거 수준 설명"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/16/checks/6/label",
+   "segment": "S05",
+   "match": "가능성",
+   "start": 16,
+   "end": 19,
+   "file_cp": [
+    9553,
+    9556
+   ],
+   "context_value": "기대 효과의 한계 및 부작용 가능성 설명"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/16/checks/6/label",
+   "segment": "S05",
+   "match": "설명",
+   "start": 20,
+   "end": 22,
+   "file_cp": [
+    9557,
+    9559
+   ],
+   "context_value": "기대 효과의 한계 및 부작용 가능성 설명"
+  },
+  {
+   "pattern": "AP-SLASH",
+   "pointer": "/category_specific/16/checks/7/label",
+   "segment": "S05",
+   "match": "감염/종양",
+   "start": 0,
+   "end": 5,
+   "file_cp": [
+    9592,
+    9597
+   ],
+   "context_value": "감염/종양 발생 위험성 고지"
+  },
+  {
+   "pattern": "AP-POSS",
+   "pointer": "/category_specific/16/checks/7/label",
+   "segment": "S05",
+   "match": "위험",
+   "start": 9,
+   "end": 11,
+   "file_cp": [
+    9601,
+    9603
+   ],
+   "context_value": "감염/종양 발생 위험성 고지"
+  },
+  {
+   "pattern": "AP-MODAL",
+   "pointer": "/category_specific/16/checks/7/label",
+   "segment": "S05",
+   "match": "고지",
+   "start": 13,
+   "end": 15,
+   "file_cp": [
+    9605,
+    9607
+   ],
+   "context_value": "감염/종양 발생 위험성 고지"
+  }
+ ],
+ "manual_expressions": [
+  {
+   "pointer": "/description",
+   "text": "시술 전 체크리스트",
+   "perspectives": [
+    "시점(시술 전)",
+    "문서 성격"
+   ],
+   "note": "원장 전체의 시점 범위 진술",
+   "segment": "S00",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    55,
+    65
+   ],
+   "context_value": "시술 전 체크리스트. 카테고리별 universal + category-specific 확인 항목"
+  },
+  {
+   "pointer": "/description",
+   "text": "카테고리별 universal + category-specific 확인 항목",
+   "perspectives": [
+    "구조 진술",
+    "기호(+)"
+   ],
+   "note": "'+' 는 두 구획 이름을 잇는다. README 의 시술 '+' 규칙 적용 대상인지 원문에 없음",
+   "segment": "S00",
+   "start": 12,
+   "end": 53,
+   "file_cp": [
+    67,
+    108
+   ],
+   "context_value": "시술 전 체크리스트. 카테고리별 universal + category-specific 확인 항목"
+  },
+  {
+   "pointer": "/description",
+   "text": "category-specific",
+   "perspectives": [
+    "필드명 대응"
+   ],
+   "note": "키는 category_specific(밑줄), 설명문은 하이픈 표기",
+   "segment": "S00",
+   "start": 30,
+   "end": 47,
+   "file_cp": [
+    85,
+    102
+   ],
+   "context_value": "시술 전 체크리스트. 카테고리별 universal + category-specific 확인 항목"
+  },
+  {
+   "pointer": "/universal_checks/0/description",
+   "text": "약물/식품/라텍스 알레르기",
+   "perspectives": [
+    "슬래시 나열",
+    "대상 범위"
+   ],
+   "note": "'알레르기' 가 세 항목 모두에 걸리는지는 잠정",
+   "segment": "S01",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    201,
+    215
+   ],
+   "context_value": "약물/식품/라텍스 알레르기"
+  },
+  {
+   "pointer": "/universal_checks/1/label",
+   "text": "항응고제/항혈소판제",
+   "perspectives": [
+    "슬래시 나열",
+    "약물군"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    250,
+    260
+   ],
+   "context_value": "항응고제/항혈소판제"
+  },
+  {
+   "pointer": "/universal_checks/1/description",
+   "text": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등",
+   "perspectives": [
+    "열린 나열(등)",
+    "약물·보충제 혼합",
+    "영문 약어"
+   ],
+   "note": "label 은 약물군인데 예시에 보충제(오메가3·은행잎 추출물)가 섞임",
+   "segment": "S01",
+   "start": 0,
+   "end": 32,
+   "file_cp": [
+    297,
+    329
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pointer": "/universal_checks/1/description",
+   "text": "멍/출혈 위험 안내",
+   "perspectives": [
+    "위험",
+    "행위(안내)"
+   ],
+   "segment": "S01",
+   "start": 35,
+   "end": 45,
+   "file_cp": [
+    332,
+    342
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pointer": "/universal_checks/1/description",
+   "text": "중단 여부는 처방의와 상의 필수",
+   "perspectives": [
+    "의무(필수)",
+    "조건(중단 여부)",
+    "행위 주체(처방의)"
+   ],
+   "note": "중단을 지시하지 않고 상의를 필수로 둔다 — 회피/중단 지시와 구분",
+   "segment": "S01",
+   "start": 47,
+   "end": 64,
+   "file_cp": [
+    344,
+    361
+   ],
+   "context_value": "아스피린, 와파린, NOAC, 오메가3, 은행잎 추출물 등 — 멍/출혈 위험 안내. 중단 여부는 처방의와 상의 필수."
+  },
+  {
+   "pointer": "/universal_checks/2/description",
+   "text": "루푸스, 류마티스, 경피증 등",
+   "perspectives": [
+    "열린 나열(등)",
+    "질환 예시"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    436,
+    452
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pointer": "/universal_checks/2/description",
+   "text": "시술 반응 예측 어려움",
+   "perspectives": [
+    "불확실성"
+   ],
+   "segment": "S01",
+   "start": 19,
+   "end": 31,
+   "file_cp": [
+    455,
+    467
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pointer": "/universal_checks/2/description",
+   "text": "이물반응/상처 회복 지연 위험 증가",
+   "perspectives": [
+    "슬래시 범위",
+    "위험",
+    "증가(정도)"
+   ],
+   "note": "'위험 증가' 가 이물반응·상처 회복 지연 둘 다에 걸리는지 잠정. 자동 AP-SLASH 는 «이물반응/상처» 까지만 잡음",
+   "segment": "S01",
+   "start": 33,
+   "end": 52,
+   "file_cp": [
+    469,
+    488
+   ],
+   "context_value": "루푸스, 류마티스, 경피증 등 — 시술 반응 예측 어려움, 이물반응/상처 회복 지연 위험 증가"
+  },
+  {
+   "pointer": "/universal_checks/3/description",
+   "text": "수유 중인 경우 일부 시술 제한",
+   "perspectives": [
+    "조건(경우)",
+    "범위(일부)",
+    "제한"
+   ],
+   "note": "어떤 시술인지 원문 없음",
+   "segment": "S01",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    579,
+    596
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pointer": "/universal_checks/3/description",
+   "text": "시술별 개별 판단 필요",
+   "perspectives": [
+    "판단 유보",
+    "필요"
+   ],
+   "segment": "S01",
+   "start": 19,
+   "end": 31,
+   "file_cp": [
+    598,
+    610
+   ],
+   "context_value": "수유 중인 경우 일부 시술 제한. 시술별 개별 판단 필요"
+  },
+  {
+   "pointer": "/universal_checks/4/label",
+   "text": "기대치 확인",
+   "perspectives": [
+    "행위"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 6,
+   "file_cp": [
+    643,
+    649
+   ],
+   "context_value": "기대치 확인"
+  },
+  {
+   "pointer": "/universal_checks/4/description",
+   "text": "현실적인 결과 설명",
+   "perspectives": [
+    "형용사(현실적인)",
+    "행위(설명)"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    686,
+    696
+   ],
+   "context_value": "현실적인 결과 설명"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "text": "구순포진 병력 시 항바이러스 예방 투여 필요",
+   "perspectives": [
+    "조건(병력 시)",
+    "필요",
+    "예방"
+   ],
+   "note": "label '헤르페스 병력' 과 description '구순포진 병력' 의 범위 차이",
+   "segment": "S01",
+   "start": 0,
+   "end": 24,
+   "file_cp": [
+    767,
+    791
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "text": "발라시클로비르 500mg x2 또는 아시클로비르 400mg x2",
+   "perspectives": [
+    "대안(또는)",
+    "용량",
+    "x표기"
+   ],
+   "segment": "S01",
+   "start": 26,
+   "end": 61,
+   "file_cp": [
+    793,
+    828
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "text": "발라시클로비르 500mg x2",
+   "perspectives": [
+    "약물+용량"
+   ],
+   "segment": "S01",
+   "start": 26,
+   "end": 42,
+   "file_cp": [
+    793,
+    809
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "text": "아시클로비르 400mg x2",
+   "perspectives": [
+    "약물+용량"
+   ],
+   "segment": "S01",
+   "start": 46,
+   "end": 61,
+   "file_cp": [
+    813,
+    828
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pointer": "/universal_checks/5/description",
+   "text": "시술 3일 전부터",
+   "perspectives": [
+    "시점(시술 전)",
+    "기간 시작"
+   ],
+   "note": "종료 시점·기간은 이 항목에 없음",
+   "segment": "S01",
+   "start": 63,
+   "end": 72,
+   "file_cp": [
+    830,
+    839
+   ],
+   "context_value": "구순포진 병력 시 항바이러스 예방 투여 필요 (발라시클로비르 500mg x2 또는 아시클로비르 400mg x2, 시술 3일 전부터)"
+  },
+  {
+   "pointer": "/universal_checks/6/label",
+   "text": "이소트레티노인 복용력",
+   "perspectives": [
+    "약물 이력"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 11,
+   "file_cp": [
+    873,
+    884
+   ],
+   "context_value": "이소트레티노인 복용력"
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "프락셔널/얕은 필링은 중단 후 최소 6개월",
+   "perspectives": [
+    "슬래시 범위",
+    "시점(중단 후)",
+    "최소",
+    "기간"
+   ],
+   "note": "자동 AP-SLASH 는 «프락셔널/얕은» 까지만",
+   "segment": "S01",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    917,
+    940
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "프락셔널/얕은 필링",
+   "perspectives": [
+    "슬래시 범위",
+    "형용사(얕은)"
+   ],
+   "note": "'프락셔널 [레이저]' 인지 '프락셔널 필링' 인지 원문에 없음",
+   "segment": "S01",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    917,
+    927
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "박리성(ablative) 레이저는 12개월 대기 원칙",
+   "perspectives": [
+    "괄호 영문 병기",
+    "기간",
+    "원칙"
+   ],
+   "note": "'중단 후' 가 생략된 병렬 구조로 보임(잠정)",
+   "segment": "S01",
+   "start": 25,
+   "end": 54,
+   "file_cp": [
+    942,
+    971
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "상처 회복 지연·비후성 반흔 위험",
+   "perspectives": [
+    "가운뎃점 나열",
+    "위험"
+   ],
+   "segment": "S01",
+   "start": 56,
+   "end": 74,
+   "file_cp": [
+    973,
+    991
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "2017 AAD Task Force 이후",
+   "perspectives": [
+    "연도",
+    "출처 언급",
+    "시점(이후)"
+   ],
+   "note": "외부 출처 언급 — 내용 확인하지 않음",
+   "segment": "S01",
+   "start": 76,
+   "end": 98,
+   "file_cp": [
+    993,
+    1015
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능",
+   "perspectives": [
+    "부정 접두(비-)",
+    "형용사(얕은)",
+    "조건(상태에 따라)",
+    "주체(의사 판단)",
+    "가능성"
+   ],
+   "note": "원칙의 예외 진술",
+   "segment": "S01",
+   "start": 99,
+   "end": 143,
+   "file_cp": [
+    1016,
+    1060
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "조기 시행 고려 가능",
+   "perspectives": [
+    "가능성",
+    "시점(조기)"
+   ],
+   "segment": "S01",
+   "start": 132,
+   "end": 143,
+   "file_cp": [
+    1049,
+    1060
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/6/description",
+   "text": "중단 후 기간 반드시 확인",
+   "perspectives": [
+    "의무(반드시)",
+    "시점(중단 후)"
+   ],
+   "segment": "S01",
+   "start": 145,
+   "end": 159,
+   "file_cp": [
+    1062,
+    1076
+   ],
+   "context_value": "프락셔널/얕은 필링은 중단 후 최소 6개월, 박리성(ablative) 레이저는 12개월 대기 원칙. 상처 회복 지연·비후성 반흔 위험. 2017 AAD Task Force 이후 비박리성 얕은 시술은 피부 재생 상태에 따라 의사 판단으로 조기 시행 고려 가능. 중단 후 기간 반드시 확인."
+  },
+  {
+   "pointer": "/universal_checks/7/description",
+   "text": "자가면역질환, 켈로이드 체질, 당뇨, 간질환",
+   "perspectives": [
+    "닫힌 나열(등 없음)",
+    "질환"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 24,
+   "file_cp": [
+    1154,
+    1178
+   ],
+   "context_value": "자가면역질환, 켈로이드 체질, 당뇨, 간질환"
+  },
+  {
+   "pointer": "/universal_checks/8/description",
+   "text": "항응고제, NSAIDs, 이소트레티노인 등",
+   "perspectives": [
+    "열린 나열(등)",
+    "영문 약어"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    1255,
+    1278
+   ],
+   "context_value": "항응고제, NSAIDs, 이소트레티노인 등"
+  },
+  {
+   "pointer": "/universal_checks/9/description",
+   "text": "임신 중이거나 임신 가능성이 있는 경우",
+   "perspectives": [
+    "조건(경우)",
+    "가능성",
+    "선언(이거나)"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 21,
+   "file_cp": [
+    1365,
+    1386
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pointer": "/universal_checks/9/description",
+   "text": "대부분의 시술 불가",
+   "perspectives": [
+    "범위(대부분)",
+    "부정(불가)"
+   ],
+   "note": "type absolute_contraindication 과 '대부분' 의 범위가 함께 있음",
+   "segment": "S01",
+   "start": 22,
+   "end": 32,
+   "file_cp": [
+    1387,
+    1397
+   ],
+   "context_value": "임신 중이거나 임신 가능성이 있는 경우 대부분의 시술 불가"
+  },
+  {
+   "pointer": "/universal_checks/10/description",
+   "text": "최근 받은 시술과 시기",
+   "perspectives": [
+    "시점(최근)",
+    "기간 미정"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 12,
+   "file_cp": [
+    1482,
+    1494
+   ],
+   "context_value": "최근 받은 시술과 시기"
+  },
+  {
+   "pointer": "/universal_checks/11/description",
+   "text": "감염, 염증, 상처, 헤르페스 활성",
+   "perspectives": [
+    "닫힌 나열",
+    "상태"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    1577,
+    1596
+   ],
+   "context_value": "감염, 염증, 상처, 헤르페스 활성"
+  },
+  {
+   "pointer": "/universal_checks/5/label",
+   "text": "헤르페스 병력",
+   "perspectives": [
+    "이력(병력)"
+   ],
+   "note": "description 은 '구순포진 병력' 으로 범위가 다름",
+   "segment": "S01",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    723,
+    730
+   ],
+   "context_value": "헤르페스 병력"
+  },
+  {
+   "pointer": "/universal_checks/8/label",
+   "text": "현재 복용 약물",
+   "perspectives": [
+    "시점(현재)"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 8,
+   "file_cp": [
+    1210,
+    1218
+   ],
+   "context_value": "현재 복용 약물"
+  },
+  {
+   "pointer": "/universal_checks/10/label",
+   "text": "최근 시술 이력",
+   "perspectives": [
+    "시점(최근)",
+    "이력"
+   ],
+   "segment": "S01",
+   "start": 0,
+   "end": 8,
+   "file_cp": [
+    1437,
+    1445
+   ],
+   "context_value": "최근 시술 이력"
+  },
+  {
+   "pointer": "/category_specific/0/checks/0/label",
+   "text": "신경근접합부 질환(중증근무력증 등) 확인",
+   "perspectives": [
+    "질환군+괄호 예시",
+    "열린 나열(등)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    1665,
+    1687
+   ],
+   "context_value": "신경근접합부 질환(중증근무력증 등) 확인"
+  },
+  {
+   "pointer": "/category_specific/0/checks/1/label",
+   "text": "이전 보툴리눔 독소 시술 후 이상반응 여부",
+   "perspectives": [
+    "시점(이전·시술 후)",
+    "이력"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    1735,
+    1758
+   ],
+   "context_value": "이전 보툴리눔 독소 시술 후 이상반응 여부"
+  },
+  {
+   "pointer": "/category_specific/0/checks/2/label",
+   "text": "항응고제 복용 여부 (멍 위험 안내)",
+   "perspectives": [
+    "괄호 목적",
+    "위험",
+    "행위(안내)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    1791,
+    1811
+   ],
+   "context_value": "항응고제 복용 여부 (멍 위험 안내)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/3/label",
+   "text": "최근 보톡스 시술 시기 확인 (항체 내성)",
+   "perspectives": [
+    "시점(최근)",
+    "괄호 사유"
+   ],
+   "note": "'항체 내성' 과 시기 확인의 관계(사유)는 원문에 서술 없음",
+   "segment": "S02",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    1840,
+    1863
+   ],
+   "context_value": "최근 보톡스 시술 시기 확인 (항체 내성)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/4/label",
+   "text": "아미노글리코시드 항생제 복용 여부",
+   "perspectives": [
+    "약물군"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    1896,
+    1914
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/4/label",
+   "text": "보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등",
+   "perspectives": [
+    "위험",
+    "증강(정도)",
+    "괄호 안 줄표",
+    "열린 나열(등)"
+   ],
+   "segment": "S02",
+   "start": 20,
+   "end": 50,
+   "file_cp": [
+    1916,
+    1946
+   ],
+   "context_value": "아미노글리코시드 항생제 복용 여부 (보톡스 효과 증강 위험 — 겐타마이신, 토브라마이신 등)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/5/label",
+   "text": "D-페니실라민 복용 여부",
+   "perspectives": [
+    "약물"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    1980,
+    1993
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/5/label",
+   "text": "신경근접합부 기능 감소 — 보톡스 효과 예측 불가",
+   "perspectives": [
+    "감소(정도)",
+    "불확실성",
+    "부정(불가)"
+   ],
+   "segment": "S02",
+   "start": 15,
+   "end": 42,
+   "file_cp": [
+    1995,
+    2022
+   ],
+   "context_value": "D-페니실라민 복용 여부 (신경근접합부 기능 감소 — 보톡스 효과 예측 불가)"
+  },
+  {
+   "pointer": "/category_specific/0/checks/6/label",
+   "text": "시술 부위 감염/염증 여부",
+   "perspectives": [
+    "부위(시술 부위)",
+    "슬래시 나열"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    2056,
+    2070
+   ],
+   "context_value": "시술 부위 감염/염증 여부"
+  },
+  {
+   "pointer": "/category_specific/1/checks/0/label",
+   "text": "히알루로니다아제 알레르기 여부",
+   "perspectives": [
+    "알레르기"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    2138,
+    2154
+   ],
+   "context_value": "히알루로니다아제 알레르기 여부"
+  },
+  {
+   "pointer": "/category_specific/1/checks/1/label",
+   "text": "이전 필러 시술 부위 및 제품 확인 (잔여 필러)",
+   "perspectives": [
+    "시점(이전)",
+    "부위",
+    "제품",
+    "괄호 목적"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 27,
+   "file_cp": [
+    2187,
+    2214
+   ],
+   "context_value": "이전 필러 시술 부위 및 제품 확인 (잔여 필러)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/2/label",
+   "text": "잔여 영구필러(실리콘/PMMA) 존재 여부",
+   "perspectives": [
+    "괄호 예시",
+    "슬래시 나열",
+    "영문 약어"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    2247,
+    2270
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pointer": "/category_specific/1/checks/2/label",
+   "text": "이물반응, 합병증 위험 대폭 증가",
+   "perspectives": [
+    "위험",
+    "정도(대폭)",
+    "증가"
+   ],
+   "segment": "S02",
+   "start": 26,
+   "end": 44,
+   "file_cp": [
+    2273,
+    2291
+   ],
+   "context_value": "잔여 영구필러(실리콘/PMMA) 존재 여부 — 이물반응, 합병증 위험 대폭 증가"
+  },
+  {
+   "pointer": "/category_specific/1/checks/3/label",
+   "text": "자가면역질환 여부 (육아종 위험)",
+   "perspectives": [
+    "괄호 위험"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    2324,
+    2342
+   ],
+   "context_value": "자가면역질환 여부 (육아종 위험)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/4/label",
+   "text": "혈관폐색 응급 프로토콜 준비 확인",
+   "perspectives": [
+    "시술자 준비",
+    "응급"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    2375,
+    2393
+   ],
+   "context_value": "혈관폐색 응급 프로토콜 준비 확인"
+  },
+  {
+   "pointer": "/category_specific/1/checks/5/label",
+   "text": "히알루로니다아제 비상 비치 확인",
+   "perspectives": [
+    "시술자 준비",
+    "비상"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    2431,
+    2448
+   ],
+   "context_value": "히알루로니다아제 비상 비치 확인"
+  },
+  {
+   "pointer": "/category_specific/1/checks/6/label",
+   "text": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명",
+   "perspectives": [
+    "비교(vs)",
+    "부정 접두(비HA)",
+    "가능 여부",
+    "행위(설명)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 29,
+   "file_cp": [
+    2486,
+    2515
+   ],
+   "context_value": "HA vs 비HA 필러 선택 및 용해 가능 여부 설명"
+  },
+  {
+   "pointer": "/category_specific/1/checks/7/label",
+   "text": "최근 치과 시술 여부 확인",
+   "perspectives": [
+    "시점(최근)",
+    "다른 시술 이력"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    2548,
+    2562
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pointer": "/category_specific/1/checks/7/label",
+   "text": "구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음",
+   "perspectives": [
+    "기전 서술",
+    "가능성(수 있음)",
+    "부위(구강 내)"
+   ],
+   "segment": "S02",
+   "start": 17,
+   "end": 50,
+   "file_cp": [
+    2565,
+    2598
+   ],
+   "context_value": "최근 치과 시술 여부 확인 — 구강 내 세균이 혈행성 전파로 필러 감염 경로가 될 수 있음"
+  },
+  {
+   "pointer": "/category_specific/1/checks/8/label",
+   "text": "48시간 이내 비행기 탑승 예정 여부",
+   "perspectives": [
+    "시간(48시간 이내)",
+    "예정",
+    "시점 기준 미기재"
+   ],
+   "note": "48시간이 시술 전후 어느 쪽 기준인지 원문 없음",
+   "segment": "S02",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    2631,
+    2651
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/8/label",
+   "text": "기내 기압이 필러를 이동시키지는 않으나",
+   "perspectives": [
+    "부정(않으나)",
+    "양보",
+    "오해 반박"
+   ],
+   "segment": "S02",
+   "start": 23,
+   "end": 44,
+   "file_cp": [
+    2654,
+    2675
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/8/label",
+   "text": "장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)",
+   "perspectives": [
+    "조건(비행 시)",
+    "정도(장시간·더)",
+    "가능성",
+    "괄호 한정(미용상)"
+   ],
+   "segment": "S02",
+   "start": 46,
+   "end": 80,
+   "file_cp": [
+    2677,
+    2711
+   ],
+   "context_value": "48시간 이내 비행기 탑승 예정 여부 — 기내 기압이 필러를 이동시키지는 않으나, 장시간 비행 시 붓기·멍이 더 도드라져 보일 수 있음(미용상)"
+  },
+  {
+   "pointer": "/category_specific/1/checks/9/label",
+   "text": "피부결핵/매독 등 만성감염 여부",
+   "perspectives": [
+    "슬래시 나열",
+    "열린 나열(등)",
+    "상위어(만성감염)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    2740,
+    2757
+   ],
+   "context_value": "피부결핵/매독 등 만성감염 여부"
+  },
+  {
+   "pointer": "/category_specific/2/name",
+   "text": "바이오스티뮬레이터/콜라겐부스터",
+   "perspectives": [
+    "카테고리명 슬래시"
+   ],
+   "note": "두 이름이 같은 것인지 대안인지 원문 없음",
+   "segment": "S02",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    2801,
+    2817
+   ],
+   "context_value": "바이오스티뮬레이터/콜라겐부스터"
+  },
+  {
+   "pointer": "/category_specific/2/checks/0/label",
+   "text": "켈로이드 체질 확인",
+   "perspectives": [
+    "체질"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    2839,
+    2849
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pointer": "/category_specific/2/checks/1/label",
+   "text": "자가면역질환 여부 (이물반응 위험)",
+   "perspectives": [
+    "괄호 위험"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    2897,
+    2916
+   ],
+   "context_value": "자가면역질환 여부 (이물반응 위험)"
+  },
+  {
+   "pointer": "/category_specific/2/checks/2/label",
+   "text": "이전 바이오스티뮬레이터 시술 이력 및 제품 확인",
+   "perspectives": [
+    "시점(이전)",
+    "이력",
+    "제품"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 26,
+   "file_cp": [
+    2949,
+    2975
+   ],
+   "context_value": "이전 바이오스티뮬레이터 시술 이력 및 제품 확인"
+  },
+  {
+   "pointer": "/category_specific/2/checks/3/label",
+   "text": "결절/육아종 발생 가능성 설명",
+   "perspectives": [
+    "슬래시 나열",
+    "가능성",
+    "행위(설명)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    3008,
+    3024
+   ],
+   "context_value": "결절/육아종 발생 가능성 설명"
+  },
+  {
+   "pointer": "/category_specific/2/checks/4/label",
+   "text": "효과 발현 시기 안내 (1-3개월 점진적)",
+   "perspectives": [
+    "시간 범위",
+    "형용사(점진적)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    3057,
+    3080
+   ],
+   "context_value": "효과 발현 시기 안내 (1-3개월 점진적)"
+  },
+  {
+   "pointer": "/category_specific/2/checks/5/label",
+   "text": "시술 부위 감염/활동성 피부질환 여부",
+   "perspectives": [
+    "부위",
+    "슬래시 나열",
+    "형용사(활동성)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    3113,
+    3133
+   ],
+   "context_value": "시술 부위 감염/활동성 피부질환 여부"
+  },
+  {
+   "pointer": "/category_specific/3/checks/0/label",
+   "text": "HA 성분 알레르기 여부",
+   "perspectives": [
+    "성분",
+    "영문 약어"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    3204,
+    3217
+   ],
+   "context_value": "HA 성분 알레르기 여부"
+  },
+  {
+   "pointer": "/category_specific/3/checks/1/label",
+   "text": "최근 피부 시술 이력 (레이저, 필링 등)",
+   "perspectives": [
+    "시점(최근)",
+    "열린 나열(등)"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    3250,
+    3273
+   ],
+   "context_value": "최근 피부 시술 이력 (레이저, 필링 등)"
+  },
+  {
+   "pointer": "/category_specific/3/checks/2/label",
+   "text": "항응고제/아스피린 복용 여부 (멍 위험)",
+   "perspectives": [
+    "슬래시(약물군/개별 약물)",
+    "괄호 위험"
+   ],
+   "segment": "S02",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    3306,
+    3328
+   ],
+   "context_value": "항응고제/아스피린 복용 여부 (멍 위험)"
+  },
+  {
+   "pointer": "/category_specific/3/checks/3/label",
+   "text": "시술 부위 활동성 여드름/감염 여부",
+   "perspectives": [
+    "부위",
+    "형용사(활동성)",
+    "슬래시 범위"
+   ],
+   "note": "'활동성' 이 감염까지 걸리는지 잠정",
+   "segment": "S02",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    3357,
+    3376
+   ],
+   "context_value": "시술 부위 활동성 여드름/감염 여부"
+  },
+  {
+   "pointer": "/category_specific/3/checks/4/label",
+   "text": "다운타임 안내 (붉어짐, 구진 1-3일)",
+   "perspectives": [
+    "시간 범위",
+    "증상 나열"
+   ],
+   "note": "'1-3일' 이 붉어짐까지 걸리는지 잠정",
+   "segment": "S02",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    3409,
+    3431
+   ],
+   "context_value": "다운타임 안내 (붉어짐, 구진 1-3일)"
+  },
+  {
+   "pointer": "/category_specific/4/name",
+   "text": "PRP/자가혈",
+   "perspectives": [
+    "카테고리명 슬래시",
+    "영문 약어"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    3475,
+    3482
+   ],
+   "context_value": "PRP/자가혈"
+  },
+  {
+   "pointer": "/category_specific/4/checks/0/label",
+   "text": "혈소판감소증/혈액질환 여부",
+   "perspectives": [
+    "슬래시(개별 질환/상위군)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    3504,
+    3518
+   ],
+   "context_value": "혈소판감소증/혈액질환 여부"
+  },
+  {
+   "pointer": "/category_specific/4/checks/1/label",
+   "text": "항응고제/항혈소판제 복용 여부",
+   "perspectives": [
+    "슬래시 나열"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    3566,
+    3582
+   ],
+   "context_value": "항응고제/항혈소판제 복용 여부"
+  },
+  {
+   "pointer": "/category_specific/4/checks/2/label",
+   "text": "활동성 감염/패혈증 여부",
+   "perspectives": [
+    "형용사(활동성)",
+    "슬래시 범위"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    3615,
+    3628
+   ],
+   "context_value": "활동성 감염/패혈증 여부"
+  },
+  {
+   "pointer": "/category_specific/4/checks/4/label",
+   "text": "NSAIDs 복용 중단 여부 (시술 1주 전)",
+   "perspectives": [
+    "중단",
+    "시점(시술 1주 전)",
+    "영문 약어"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 25,
+   "file_cp": [
+    3718,
+    3743
+   ],
+   "context_value": "NSAIDs 복용 중단 여부 (시술 1주 전)"
+  },
+  {
+   "pointer": "/category_specific/4/checks/5/label",
+   "text": "채혈량 및 원심분리 과정 설명",
+   "perspectives": [
+    "행위(설명)",
+    "절차"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    3776,
+    3792
+   ],
+   "context_value": "채혈량 및 원심분리 과정 설명"
+  },
+  {
+   "pointer": "/category_specific/5/checks/0/label",
+   "text": "마취 알레르기 여부 (리도카인 등)",
+   "perspectives": [
+    "괄호 예시",
+    "열린 나열(등)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    3862,
+    3881
+   ],
+   "context_value": "마취 알레르기 여부 (리도카인 등)"
+  },
+  {
+   "pointer": "/category_specific/5/checks/1/label",
+   "text": "출혈 경향/응고장애 여부",
+   "perspectives": [
+    "슬래시 나열",
+    "경향"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    3929,
+    3942
+   ],
+   "context_value": "출혈 경향/응고장애 여부"
+  },
+  {
+   "pointer": "/category_specific/5/checks/2/label",
+   "text": "공여 부위 충분한 지방량 확인",
+   "perspectives": [
+    "부위(공여 부위)",
+    "형용사(충분한)",
+    "양 기준 미기재"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    3975,
+    3991
+   ],
+   "context_value": "공여 부위 충분한 지방량 확인"
+  },
+  {
+   "pointer": "/category_specific/5/checks/3/label",
+   "text": "지방색전증 위험 설명",
+   "perspectives": [
+    "위험",
+    "행위(설명)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 11,
+   "file_cp": [
+    4024,
+    4035
+   ],
+   "context_value": "지방색전증 위험 설명"
+  },
+  {
+   "pointer": "/category_specific/5/checks/4/label",
+   "text": "생착률 안내 (30-70%, 개인차)",
+   "perspectives": [
+    "수치 범위(%)",
+    "개인차"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    4073,
+    4093
+   ],
+   "context_value": "생착률 안내 (30-70%, 개인차)"
+  },
+  {
+   "pointer": "/category_specific/5/checks/5/label",
+   "text": "비대칭/과교정/흡수 가능성 설명",
+   "perspectives": [
+    "슬래시 나열",
+    "가능성"
+   ],
+   "note": "'비대칭' 의 '비' 는 부정 접두 형태이나 결과 상태어 — 부정 표현으로 분류하지 않음",
+   "segment": "S03",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    4126,
+    4143
+   ],
+   "context_value": "비대칭/과교정/흡수 가능성 설명"
+  },
+  {
+   "pointer": "/category_specific/5/checks/6/label",
+   "text": "감염 예방 항생제 준비 확인",
+   "perspectives": [
+    "시술자 준비",
+    "예방"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    4176,
+    4191
+   ],
+   "context_value": "감염 예방 항생제 준비 확인"
+  },
+  {
+   "pointer": "/category_specific/6/name",
+   "text": "실리프팅",
+   "perspectives": [
+    "카테고리명"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 4,
+   "file_cp": [
+    4240,
+    4244
+   ],
+   "context_value": "실리프팅"
+  },
+  {
+   "pointer": "/category_specific/6/checks/0/label",
+   "text": "시술 부위 활동성 감염 여부",
+   "perspectives": [
+    "부위",
+    "형용사(활동성)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    4266,
+    4281
+   ],
+   "context_value": "시술 부위 활동성 감염 여부"
+  },
+  {
+   "pointer": "/category_specific/6/checks/2/label",
+   "text": "이전 실리프팅 이력 확인 (잔여 실)",
+   "perspectives": [
+    "시점(이전)",
+    "괄호 목적"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    4372,
+    4392
+   ],
+   "context_value": "이전 실리프팅 이력 확인 (잔여 실)"
+  },
+  {
+   "pointer": "/category_specific/6/checks/3/label",
+   "text": "켈로이드 체질 확인",
+   "perspectives": [
+    "체질"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    4425,
+    4435
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pointer": "/category_specific/6/checks/4/label",
+   "text": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명",
+   "perspectives": [
+    "비교(vs)",
+    "부정 접두(비녹는)",
+    "행위(설명)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 28,
+   "file_cp": [
+    4468,
+    4496
+   ],
+   "context_value": "실 종류(녹는 실 vs 비녹는 실) 및 장단점 설명"
+  },
+  {
+   "pointer": "/category_specific/6/checks/5/label",
+   "text": "실 돌출/감염/비대칭 가능성 설명",
+   "perspectives": [
+    "슬래시 나열",
+    "가능성"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    4529,
+    4547
+   ],
+   "context_value": "실 돌출/감염/비대칭 가능성 설명"
+  },
+  {
+   "pointer": "/category_specific/6/checks/6/label",
+   "text": "시술 후 크게 입벌리기/마사지 제한 안내",
+   "perspectives": [
+    "시점(시술 후)",
+    "부사(크게)",
+    "제한",
+    "슬래시 범위"
+   ],
+   "note": "시술 전 체크리스트 안의 시술 후 지시. '크게' 가 마사지까지 걸리지 않는 것으로 보임(잠정)",
+   "segment": "S03",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    4580,
+    4602
+   ],
+   "context_value": "시술 후 크게 입벌리기/마사지 제한 안내"
+  },
+  {
+   "pointer": "/category_specific/7/checks/0/label",
+   "text": "Fitzpatrick 피부타입 확인 (I-VI)",
+   "perspectives": [
+    "분류 체계 언급",
+    "로마숫자 범위"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 26,
+   "file_cp": [
+    4667,
+    4693
+   ],
+   "context_value": "Fitzpatrick 피부타입 확인 (I-VI)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/1/label",
+   "text": "최근 일광노출/태닝 여부",
+   "perspectives": [
+    "시점(최근)",
+    "슬래시 나열"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    4726,
+    4739
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pointer": "/category_specific/7/checks/1/label",
+   "text": "2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단",
+   "perspectives": [
+    "시간 범위(2-4주 이내)",
+    "조건(노출 시)",
+    "대안(or)",
+    "감소",
+    "연기",
+    "판단"
+   ],
+   "segment": "S03",
+   "start": 16,
+   "end": 51,
+   "file_cp": [
+    4742,
+    4777
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pointer": "/category_specific/7/checks/1/label",
+   "text": "에너지 감소 or 시술 연기",
+   "perspectives": [
+    "대안 행위",
+    "영문 접속사"
+   ],
+   "segment": "S03",
+   "start": 33,
+   "end": 48,
+   "file_cp": [
+    4759,
+    4774
+   ],
+   "context_value": "최근 일광노출/태닝 여부 — 2-4주 이내 자외선 노출 시 에너지 감소 or 시술 연기 판단"
+  },
+  {
+   "pointer": "/category_specific/7/checks/2/label",
+   "text": "이소트레티노인 복용 여부/중단 시점 확인",
+   "perspectives": [
+    "슬래시(여부/시점)",
+    "중단"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    4810,
+    4832
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/7/checks/2/label",
+   "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+   "perspectives": [
+    "기간",
+    "원칙",
+    "슬래시 범위"
+   ],
+   "note": "universal 문구와 달리 '중단 후 최소' 가 없음",
+   "segment": "S03",
+   "start": 25,
+   "end": 59,
+   "file_cp": [
+    4835,
+    4869
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/7/checks/2/label",
+   "text": "2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+   "perspectives": [
+    "연도·출처",
+    "부정 접두(비-)",
+    "주체(의사 판단 하에)",
+    "가능성"
+   ],
+   "segment": "S03",
+   "start": 61,
+   "end": 113,
+   "file_cp": [
+    4871,
+    4923
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/7/checks/3/label",
+   "text": "광과민성 약물 복용 여부 (독시사이클린, 아미오다론 등)",
+   "perspectives": [
+    "약물군",
+    "열린 나열(등)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 31,
+   "file_cp": [
+    4956,
+    4987
+   ],
+   "context_value": "광과민성 약물 복용 여부 (독시사이클린, 아미오다론 등)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/4/label",
+   "text": "구순/안면 레이저 시 예방적 항바이러스제",
+   "perspectives": [
+    "부위(구순/안면)",
+    "조건(레이저 시)",
+    "예방"
+   ],
+   "segment": "S03",
+   "start": 13,
+   "end": 35,
+   "file_cp": [
+    5033,
+    5055
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/4/label",
+   "text": "아시클로비르 400mg x2 또는 발라시클로비르 500mg x2",
+   "perspectives": [
+    "대안(또는)",
+    "용량",
+    "x표기"
+   ],
+   "note": "universal 과 약물 순서 반대",
+   "segment": "S03",
+   "start": 37,
+   "end": 72,
+   "file_cp": [
+    5057,
+    5092
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/4/label",
+   "text": "시술 3일 전부터 시작, 7-10일 복용",
+   "perspectives": [
+    "시점(시술 전)",
+    "기간 범위"
+   ],
+   "segment": "S03",
+   "start": 74,
+   "end": 96,
+   "file_cp": [
+    5094,
+    5116
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/5/label",
+   "text": "켈로이드 체질 확인 (어블레이티브 레이저)",
+   "perspectives": [
+    "괄호 조건/범위",
+    "외래어 표기(어블레이티브)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    5150,
+    5173
+   ],
+   "context_value": "켈로이드 체질 확인 (어블레이티브 레이저)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/6/label",
+   "text": "PIH 위험도 평가 (고위험군 사전 미백 치료)",
+   "perspectives": [
+    "위험도",
+    "대상(고위험군)",
+    "시점(사전)",
+    "선행 처치"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 26,
+   "file_cp": [
+    5206,
+    5232
+   ],
+   "context_value": "PIH 위험도 평가 (고위험군 사전 미백 치료)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/7/label",
+   "text": "중등도 이상 필링 후 최소 2주 대기 확인",
+   "perspectives": [
+    "정도(중등도 이상)",
+    "시점(필링 후)",
+    "최소",
+    "기간"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    5265,
+    5288
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pointer": "/category_specific/7/checks/7/label",
+   "text": "피부 장벽 회복 전 레이저 시 합병증 위험",
+   "perspectives": [
+    "조건(회복 전·레이저 시)",
+    "위험"
+   ],
+   "segment": "S03",
+   "start": 26,
+   "end": 49,
+   "file_cp": [
+    5291,
+    5314
+   ],
+   "context_value": "중등도 이상 필링 후 최소 2주 대기 확인 — 피부 장벽 회복 전 레이저 시 합병증 위험"
+  },
+  {
+   "pointer": "/category_specific/7/checks/8/label",
+   "text": "RF/HIFU 병행 시 금속 발열 위험",
+   "perspectives": [
+    "다른 시술 참조",
+    "조건(병행 시)",
+    "위험"
+   ],
+   "segment": "S03",
+   "start": 13,
+   "end": 34,
+   "file_cp": [
+    5360,
+    5381
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pointer": "/category_specific/7/checks/9/label",
+   "text": "보호안경/눈 보호 준비 확인",
+   "perspectives": [
+    "시술자 준비",
+    "슬래시"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    5414,
+    5429
+   ],
+   "context_value": "보호안경/눈 보호 준비 확인"
+  },
+  {
+   "pointer": "/category_specific/7/checks/10/label",
+   "text": "레이저 종류별 다운타임 설명",
+   "perspectives": [
+    "종류별(범위)",
+    "행위(설명)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    5467,
+    5482
+   ],
+   "context_value": "레이저 종류별 다운타임 설명"
+  },
+  {
+   "pointer": "/category_specific/7/checks/4/label",
+   "text": "헤르페스 병력 확인",
+   "perspectives": [
+    "이력(병력)"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    5020,
+    5030
+   ],
+   "context_value": "헤르페스 병력 확인 — 구순/안면 레이저 시 예방적 항바이러스제 (아시클로비르 400mg x2 또는 발라시클로비르 500mg x2, 시술 3일 전부터 시작, 7-10일 복용)"
+  },
+  {
+   "pointer": "/category_specific/7/checks/8/label",
+   "text": "금속 임플란트 확인",
+   "perspectives": [
+    "기기·재질"
+   ],
+   "segment": "S03",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    5347,
+    5357
+   ],
+   "context_value": "금속 임플란트 확인 — RF/HIFU 병행 시 금속 발열 위험"
+  },
+  {
+   "pointer": "/category_specific/8/checks/0/label",
+   "text": "체내 금속 임플란트/페이스메이커 여부",
+   "perspectives": [
+    "부위(체내)",
+    "슬래시 나열",
+    "기기"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    5554,
+    5574
+   ],
+   "context_value": "체내 금속 임플란트/페이스메이커 여부"
+  },
+  {
+   "pointer": "/category_specific/8/checks/1/label",
+   "text": "시술 부위 필러/실리콘 존재 여부",
+   "perspectives": [
+    "부위",
+    "다른 시술 잔여물"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    5622,
+    5640
+   ],
+   "context_value": "시술 부위 필러/실리콘 존재 여부"
+  },
+  {
+   "pointer": "/category_specific/8/checks/2/label",
+   "text": "최근 골드 실/금속 실 시술 이력",
+   "perspectives": [
+    "시점(최근)",
+    "슬래시 나열",
+    "재질"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    5673,
+    5691
+   ],
+   "context_value": "최근 골드 실/금속 실 시술 이력"
+  },
+  {
+   "pointer": "/category_specific/8/checks/3/label",
+   "text": "신경계 질환 여부 (간질 등)",
+   "perspectives": [
+    "괄호 예시",
+    "열린 나열(등)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    5739,
+    5755
+   ],
+   "context_value": "신경계 질환 여부 (간질 등)"
+  },
+  {
+   "pointer": "/category_specific/8/checks/4/label",
+   "text": "초음파/RF 에너지별 특성 및 통증 수준 설명",
+   "perspectives": [
+    "슬래시(에너지 종류)",
+    "별(범위)",
+    "수준",
+    "행위(설명)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 25,
+   "file_cp": [
+    5788,
+    5813
+   ],
+   "context_value": "초음파/RF 에너지별 특성 및 통증 수준 설명"
+  },
+  {
+   "pointer": "/category_specific/8/checks/5/label",
+   "text": "지방층 두께 확인 (HIFU 시 화상 위험)",
+   "perspectives": [
+    "두께(기준 미기재)",
+    "조건(HIFU 시)",
+    "위험"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 24,
+   "file_cp": [
+    5846,
+    5870
+   ],
+   "context_value": "지방층 두께 확인 (HIFU 시 화상 위험)"
+  },
+  {
+   "pointer": "/category_specific/9/name",
+   "text": "HIFES/EMS",
+   "perspectives": [
+    "카테고리명 슬래시",
+    "영문 약어"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 9,
+   "file_cp": [
+    5915,
+    5924
+   ],
+   "context_value": "HIFES/EMS"
+  },
+  {
+   "pointer": "/category_specific/9/checks/0/label",
+   "text": "체내 금속 임플란트/페이스메이커 여부",
+   "perspectives": [
+    "부위(체내)",
+    "슬래시 나열"
+   ],
+   "note": "`/category_specific/8/checks/0/label` 과 같은 문자열",
+   "segment": "S04",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    5946,
+    5966
+   ],
+   "context_value": "체내 금속 임플란트/페이스메이커 여부"
+  },
+  {
+   "pointer": "/category_specific/9/checks/1/label",
+   "text": "간질/경련성 질환 여부",
+   "perspectives": [
+    "슬래시 나열"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 12,
+   "file_cp": [
+    6014,
+    6026
+   ],
+   "context_value": "간질/경련성 질환 여부"
+  },
+  {
+   "pointer": "/category_specific/9/checks/2/label",
+   "text": "최근 복부/시술 부위 수술 이력",
+   "perspectives": [
+    "시점(최근)",
+    "부위(복부/시술 부위)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    6074,
+    6091
+   ],
+   "context_value": "최근 복부/시술 부위 수술 이력"
+  },
+  {
+   "pointer": "/category_specific/9/checks/3/label",
+   "text": "임신 여부 (복부 시술 시 특히 중요)",
+   "perspectives": [
+    "조건(복부 시술 시)",
+    "강조(특히)"
+   ],
+   "note": "type absolute_contraindication 과 조건적 강조가 함께 있음",
+   "segment": "S04",
+   "start": 0,
+   "end": 21,
+   "file_cp": [
+    6124,
+    6145
+   ],
+   "context_value": "임신 여부 (복부 시술 시 특히 중요)"
+  },
+  {
+   "pointer": "/category_specific/9/checks/4/label",
+   "text": "횡문근융해증 위험 설명 (과도한 세팅)",
+   "perspectives": [
+    "위험",
+    "괄호 조건/원인",
+    "형용사(과도한)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 21,
+   "file_cp": [
+    6193,
+    6214
+   ],
+   "context_value": "횡문근융해증 위험 설명 (과도한 세팅)"
+  },
+  {
+   "pointer": "/category_specific/9/checks/5/label",
+   "text": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)",
+   "perspectives": [
+    "한계",
+    "부정 대조(아닌)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 29,
+   "file_cp": [
+    6243,
+    6272
+   ],
+   "context_value": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)"
+  },
+  {
+   "pointer": "/category_specific/9/checks/5/label",
+   "text": "지방감소가 아닌 근육강화",
+   "perspectives": [
+    "부정 대조"
+   ],
+   "segment": "S04",
+   "start": 15,
+   "end": 28,
+   "file_cp": [
+    6258,
+    6271
+   ],
+   "context_value": "기대 효과 및 한계 설명 (지방감소가 아닌 근육강화)"
+  },
+  {
+   "pointer": "/category_specific/10/name",
+   "text": "니들RF",
+   "perspectives": [
+    "카테고리명",
+    "한영 혼합"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 4,
+   "file_cp": [
+    6317,
+    6321
+   ],
+   "context_value": "니들RF"
+  },
+  {
+   "pointer": "/category_specific/10/checks/0/label",
+   "text": "체내 금속 임플란트 여부 (시술 부위)",
+   "perspectives": [
+    "부위(체내 vs 괄호 시술 부위)",
+    "괄호 한정"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 21,
+   "file_cp": [
+    6343,
+    6364
+   ],
+   "context_value": "체내 금속 임플란트 여부 (시술 부위)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/2/label",
+   "text": "이소트레티노인 복용 여부/중단 시점 확인",
+   "perspectives": [
+    "슬래시(여부/시점)",
+    "중단"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    6455,
+    6477
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/2/label",
+   "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+   "perspectives": [
+    "기간",
+    "원칙"
+   ],
+   "segment": "S04",
+   "start": 25,
+   "end": 59,
+   "file_cp": [
+    6480,
+    6514
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/2/label",
+   "text": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "perspectives": [
+    "괄호 예외",
+    "부정 접두(비-)",
+    "가능성"
+   ],
+   "note": "'2017 AAD Task Force' 언급 없음",
+   "segment": "S04",
+   "start": 60,
+   "end": 91,
+   "file_cp": [
+    6515,
+    6546
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/3/label",
+   "text": "항응고제 복용 여부 (출혈 위험)",
+   "perspectives": [
+    "괄호 위험"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    6579,
+    6597
+   ],
+   "context_value": "항응고제 복용 여부 (출혈 위험)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/4/label",
+   "text": "활동성 여드름/감염 부위 확인",
+   "perspectives": [
+    "형용사(활동성)",
+    "슬래시 범위",
+    "부위"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    6630,
+    6646
+   ],
+   "context_value": "활동성 여드름/감염 부위 확인"
+  },
+  {
+   "pointer": "/category_specific/10/checks/5/label",
+   "text": "마취크림 도포 및 시간 안내",
+   "perspectives": [
+    "절차",
+    "시간(값 미기재)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    6679,
+    6694
+   ],
+   "context_value": "마취크림 도포 및 시간 안내"
+  },
+  {
+   "pointer": "/category_specific/10/checks/6/label",
+   "text": "시술 후 붉어짐/부종 다운타임 설명",
+   "perspectives": [
+    "시점(시술 후)",
+    "증상 나열"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    6723,
+    6742
+   ],
+   "context_value": "시술 후 붉어짐/부종 다운타임 설명"
+  },
+  {
+   "pointer": "/category_specific/11/name",
+   "text": "마이크로니들링(MTS)",
+   "perspectives": [
+    "카테고리명",
+    "괄호 약어"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 12,
+   "file_cp": [
+    6787,
+    6799
+   ],
+   "context_value": "마이크로니들링(MTS)"
+  },
+  {
+   "pointer": "/category_specific/11/checks/0/label",
+   "text": "활동성 여드름/감염/헤르페스 여부",
+   "perspectives": [
+    "형용사(활동성)",
+    "슬래시 범위"
+   ],
+   "note": "'활동성' 이 세 항목 모두에 걸리는지 잠정",
+   "segment": "S04",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    6821,
+    6839
+   ],
+   "context_value": "활동성 여드름/감염/헤르페스 여부"
+  },
+  {
+   "pointer": "/category_specific/11/checks/2/label",
+   "text": "(비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)",
+   "perspectives": [
+    "괄호 예외",
+    "부정 접두(비-)",
+    "가능성"
+   ],
+   "note": "`/category_specific/10/checks/2/label` 과 같은 문자열",
+   "segment": "S04",
+   "start": 60,
+   "end": 91,
+   "file_cp": [
+    6990,
+    7021
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/11/checks/3/label",
+   "text": "항응고제/항혈소판제 복용 여부",
+   "perspectives": [
+    "슬래시 나열"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    7054,
+    7070
+   ],
+   "context_value": "항응고제/항혈소판제 복용 여부"
+  },
+  {
+   "pointer": "/category_specific/11/checks/4/label",
+   "text": "당뇨/면역저하 상태 (감염 위험 증가)",
+   "perspectives": [
+    "슬래시 나열",
+    "괄호 위험",
+    "증가"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 21,
+   "file_cp": [
+    7103,
+    7124
+   ],
+   "context_value": "당뇨/면역저하 상태 (감염 위험 증가)"
+  },
+  {
+   "pointer": "/category_specific/11/checks/5/label",
+   "text": "니들 깊이별 다운타임 설명",
+   "perspectives": [
+    "깊이(값 미기재)",
+    "별(범위)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    7157,
+    7171
+   ],
+   "context_value": "니들 깊이별 다운타임 설명"
+  },
+  {
+   "pointer": "/category_specific/11/checks/6/label",
+   "text": "시술 후 자외선 차단 필수 안내",
+   "perspectives": [
+    "시점(시술 후)",
+    "의무(필수)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    7204,
+    7221
+   ],
+   "context_value": "시술 후 자외선 차단 필수 안내"
+  },
+  {
+   "pointer": "/category_specific/12/checks/0/label",
+   "text": "페이스메이커/전자 의료기기 여부",
+   "perspectives": [
+    "슬래시(개별/상위)",
+    "기기"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 17,
+   "file_cp": [
+    7288,
+    7305
+   ],
+   "context_value": "페이스메이커/전자 의료기기 여부"
+  },
+  {
+   "pointer": "/category_specific/12/checks/1/label",
+   "text": "시술 부위 금속 임플란트 여부",
+   "perspectives": [
+    "부위(시술 부위)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    7353,
+    7369
+   ],
+   "context_value": "시술 부위 금속 임플란트 여부"
+  },
+  {
+   "pointer": "/category_specific/12/checks/2/label",
+   "text": "광과민성 질환/약물 복용 여부",
+   "perspectives": [
+    "슬래시 범위"
+   ],
+   "note": "'복용' 이 질환에는 걸리지 않음 — 슬래시가 '질환/약물 복용' 의 축약으로 보임(잠정)",
+   "segment": "S04",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    7402,
+    7418
+   ],
+   "context_value": "광과민성 질환/약물 복용 여부"
+  },
+  {
+   "pointer": "/category_specific/12/checks/4/label",
+   "text": "시술 부위 활동성 감염 여부",
+   "perspectives": [
+    "부위",
+    "형용사(활동성)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    7494,
+    7509
+   ],
+   "context_value": "시술 부위 활동성 감염 여부"
+  },
+  {
+   "pointer": "/category_specific/12/checks/5/label",
+   "text": "크러스트(딱지) 형성 및 관리 방법 설명",
+   "perspectives": [
+    "괄호 풀이(동의 표기)",
+    "행위(설명)"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    7542,
+    7564
+   ],
+   "context_value": "크러스트(딱지) 형성 및 관리 방법 설명"
+  },
+  {
+   "pointer": "/category_specific/11/checks/2/label",
+   "text": "이소트레티노인 복용 여부/중단 시점 확인",
+   "perspectives": [
+    "슬래시(여부/시점)",
+    "중단"
+   ],
+   "note": "읽기 검토에서 누락 발견 후 추가(A-S04-6)",
+   "segment": "S04",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    6930,
+    6952
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/11/checks/2/label",
+   "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+   "perspectives": [
+    "기간",
+    "원칙",
+    "슬래시 범위"
+   ],
+   "note": "읽기 검토에서 누락 발견 후 추가(A-S04-6)",
+   "segment": "S04",
+   "start": 25,
+   "end": 59,
+   "file_cp": [
+    6955,
+    6989
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙 (비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능)"
+  },
+  {
+   "pointer": "/category_specific/10/checks/1/label",
+   "text": "켈로이드 체질 확인",
+   "perspectives": [
+    "체질"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    6412,
+    6422
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pointer": "/category_specific/11/checks/1/label",
+   "text": "켈로이드 체질 확인",
+   "perspectives": [
+    "체질"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    6887,
+    6897
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pointer": "/category_specific/12/checks/3/label",
+   "text": "켈로이드 체질 확인",
+   "perspectives": [
+    "체질"
+   ],
+   "segment": "S04",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    7451,
+    7461
+   ],
+   "context_value": "켈로이드 체질 확인"
+  },
+  {
+   "pointer": "/category_specific/13/checks/0/label",
+   "text": "한냉두드러기/한냉글로불린혈증 여부",
+   "perspectives": [
+    "슬래시 나열",
+    "질환"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 18,
+   "file_cp": [
+    7641,
+    7659
+   ],
+   "context_value": "한냉두드러기/한냉글로불린혈증 여부"
+  },
+  {
+   "pointer": "/category_specific/13/checks/1/label",
+   "text": "발작성 한냉혈색소뇨증 여부",
+   "perspectives": [
+    "형용사(발작성)",
+    "질환"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    7707,
+    7721
+   ],
+   "context_value": "발작성 한냉혈색소뇨증 여부"
+  },
+  {
+   "pointer": "/category_specific/13/checks/2/label",
+   "text": "레이노 증후군 여부",
+   "perspectives": [
+    "질환"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 10,
+   "file_cp": [
+    7769,
+    7779
+   ],
+   "context_value": "레이노 증후군 여부"
+  },
+  {
+   "pointer": "/category_specific/13/checks/3/label",
+   "text": "BMI/체형 적합성 평가 (피하지방 두께 측정)",
+   "perspectives": [
+    "영문 약어",
+    "적합성",
+    "두께(기준 미기재)",
+    "측정"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 26,
+   "file_cp": [
+    7812,
+    7838
+   ],
+   "context_value": "BMI/체형 적합성 평가 (피하지방 두께 측정)"
+  },
+  {
+   "pointer": "/category_specific/13/checks/4/label",
+   "text": "탈장 여부 (복부 시술 시)",
+   "perspectives": [
+    "조건(복부 시술 시)",
+    "부위(복부)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    7871,
+    7886
+   ],
+   "context_value": "탈장 여부 (복부 시술 시)"
+  },
+  {
+   "pointer": "/category_specific/13/checks/5/label",
+   "text": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)",
+   "perspectives": [
+    "형용사(역설적)",
+    "괄호 약어",
+    "가능성",
+    "수치 범위(%)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 34,
+   "file_cp": [
+    7919,
+    7953
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pointer": "/category_specific/13/checks/5/label",
+   "text": "0.005-0.39%",
+   "perspectives": [
+    "수치 범위",
+    "백분율"
+   ],
+   "note": "모집단·출처는 원문에 없음",
+   "segment": "S05",
+   "start": 22,
+   "end": 33,
+   "file_cp": [
+    7941,
+    7952
+   ],
+   "context_value": "역설적 지방증식(PAH) 가능성 설명 (0.005-0.39%)"
+  },
+  {
+   "pointer": "/category_specific/13/checks/6/label",
+   "text": "시술 부위 피부 감각 이상/무감각 가능성 안내",
+   "perspectives": [
+    "부위",
+    "부정 접두(무-)",
+    "가능성"
+   ],
+   "note": "'감각 이상' 의 '이상' 은 정도 표현 아님(자동 AP-DEGREE 오탐)",
+   "segment": "S05",
+   "start": 0,
+   "end": 25,
+   "file_cp": [
+    7986,
+    8011
+   ],
+   "context_value": "시술 부위 피부 감각 이상/무감각 가능성 안내"
+  },
+  {
+   "pointer": "/category_specific/13/checks/7/label",
+   "text": "효과 발현 시기 안내 (2-4개월 점진적)",
+   "perspectives": [
+    "시간 범위",
+    "형용사(점진적)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    8040,
+    8063
+   ],
+   "context_value": "효과 발현 시기 안내 (2-4개월 점진적)"
+  },
+  {
+   "pointer": "/category_specific/14/name",
+   "text": "메디컬스킨케어",
+   "perspectives": [
+    "카테고리명"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 7,
+   "file_cp": [
+    8108,
+    8115
+   ],
+   "context_value": "메디컬스킨케어"
+  },
+  {
+   "pointer": "/category_specific/14/checks/0/label",
+   "text": "이소트레티노인 복용 여부/중단 시점 확인",
+   "perspectives": [
+    "슬래시(여부/시점)",
+    "중단"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    8137,
+    8159
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/14/checks/0/label",
+   "text": "프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙",
+   "perspectives": [
+    "기간",
+    "원칙"
+   ],
+   "segment": "S05",
+   "start": 25,
+   "end": 59,
+   "file_cp": [
+    8162,
+    8196
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/14/checks/0/label",
+   "text": "2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능",
+   "perspectives": [
+    "연도·출처",
+    "부정 접두(비-)",
+    "가능성"
+   ],
+   "note": "`/category_specific/7/checks/2/label` 과 같은 문자열",
+   "segment": "S05",
+   "start": 61,
+   "end": 113,
+   "file_cp": [
+    8198,
+    8250
+   ],
+   "context_value": "이소트레티노인 복용 여부/중단 시점 확인 — 프락셔널/얕은 필링 6개월, 박리성 레이저 12개월 대기 원칙. 2017 AAD Task Force 이후 비박리성 얕은 시술은 의사 판단 하에 조기 고려 가능"
+  },
+  {
+   "pointer": "/category_specific/14/checks/1/label",
+   "text": "임신 테스트 (레티노이드 처방 시 필수)",
+   "perspectives": [
+    "검사 행위",
+    "조건(처방 시)",
+    "의무(필수)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    8283,
+    8305
+   ],
+   "context_value": "임신 테스트 (레티노이드 처방 시 필수)"
+  },
+  {
+   "pointer": "/category_specific/14/checks/2/label",
+   "text": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)",
+   "perspectives": [
+    "검사",
+    "조건(처방 시)",
+    "슬래시 나열"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 33,
+   "file_cp": [
+    8353,
+    8386
+   ],
+   "context_value": "간기능 검사 결과 확인 (레티노이드/이소트레티노인 처방 시)"
+  },
+  {
+   "pointer": "/category_specific/14/checks/3/label",
+   "text": "지질 수치 확인 (이소트레티노인 처방 시)",
+   "perspectives": [
+    "검사 수치(값 미기재)",
+    "조건(처방 시)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 23,
+   "file_cp": [
+    8419,
+    8442
+   ],
+   "context_value": "지질 수치 확인 (이소트레티노인 처방 시)"
+  },
+  {
+   "pointer": "/category_specific/14/checks/4/label",
+   "text": "현재 사용 중인 스킨케어 제품 확인",
+   "perspectives": [
+    "시점(현재)",
+    "제품"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 19,
+   "file_cp": [
+    8475,
+    8494
+   ],
+   "context_value": "현재 사용 중인 스킨케어 제품 확인"
+  },
+  {
+   "pointer": "/category_specific/14/checks/5/label",
+   "text": "활동성 피부염/습진/건선 여부",
+   "perspectives": [
+    "형용사(활동성)",
+    "슬래시 범위"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    8527,
+    8543
+   ],
+   "context_value": "활동성 피부염/습진/건선 여부"
+  },
+  {
+   "pointer": "/category_specific/14/checks/6/label",
+   "text": "화학적 필링 제제 알레르기 여부 (살리실산, 글리콜산 등)",
+   "perspectives": [
+    "형용사(화학적)",
+    "열린 나열(등)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 32,
+   "file_cp": [
+    8576,
+    8608
+   ],
+   "context_value": "화학적 필링 제제 알레르기 여부 (살리실산, 글리콜산 등)"
+  },
+  {
+   "pointer": "/category_specific/14/checks/7/label",
+   "text": "최근 레이저/시술 이력 (필링 간격)",
+   "perspectives": [
+    "시점(최근)",
+    "간격(값 미기재)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    8641,
+    8661
+   ],
+   "context_value": "최근 레이저/시술 이력 (필링 간격)"
+  },
+  {
+   "pointer": "/category_specific/14/checks/8/label",
+   "text": "자외선 차단 생활습관 확인",
+   "perspectives": [
+    "생활습관"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 14,
+   "file_cp": [
+    8694,
+    8708
+   ],
+   "context_value": "자외선 차단 생활습관 확인"
+  },
+  {
+   "pointer": "/category_specific/15/checks/0/label",
+   "text": "심부전/신부전 여부 (수분 과부하 위험)",
+   "perspectives": [
+    "슬래시 나열",
+    "괄호 위험"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    8775,
+    8797
+   ],
+   "context_value": "심부전/신부전 여부 (수분 과부하 위험)"
+  },
+  {
+   "pointer": "/category_specific/15/checks/1/label",
+   "text": "약물 알레르기 여부 (비타민제 포함)",
+   "perspectives": [
+    "괄호 범위 확장(포함)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 20,
+   "file_cp": [
+    8845,
+    8865
+   ],
+   "context_value": "약물 알레르기 여부 (비타민제 포함)"
+  },
+  {
+   "pointer": "/category_specific/15/checks/2/label",
+   "text": "신장 기능 확인 (고용량 비타민 C 시)",
+   "perspectives": [
+    "조건(고용량 … 시)",
+    "정도(고용량, 기준 미기재)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    8898,
+    8920
+   ],
+   "context_value": "신장 기능 확인 (고용량 비타민 C 시)"
+  },
+  {
+   "pointer": "/category_specific/15/checks/3/label",
+   "text": "G6PD 결핍증 여부 (고용량 비타민 C 금기)",
+   "perspectives": [
+    "금기(명시어)",
+    "정도(고용량)",
+    "영문·숫자 혼합 명칭"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 26,
+   "file_cp": [
+    8953,
+    8979
+   ],
+   "context_value": "G6PD 결핍증 여부 (고용량 비타민 C 금기)"
+  },
+  {
+   "pointer": "/category_specific/15/checks/4/label",
+   "text": "현재 복용 중인 영양제/약물 확인 (상호작용)",
+   "perspectives": [
+    "시점(현재)",
+    "슬래시",
+    "괄호 목적"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 25,
+   "file_cp": [
+    9027,
+    9052
+   ],
+   "context_value": "현재 복용 중인 영양제/약물 확인 (상호작용)"
+  },
+  {
+   "pointer": "/category_specific/15/checks/5/label",
+   "text": "혈관 접근 상태 확인",
+   "perspectives": [
+    "상태"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 11,
+   "file_cp": [
+    9085,
+    9096
+   ],
+   "context_value": "혈관 접근 상태 확인"
+  },
+  {
+   "pointer": "/category_specific/15/checks/6/label",
+   "text": "수액 조성 및 기대 효과 설명",
+   "perspectives": [
+    "행위(설명)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    9129,
+    9145
+   ],
+   "context_value": "수액 조성 및 기대 효과 설명"
+  },
+  {
+   "pointer": "/category_specific/16/checks/0/label",
+   "text": "악성종양 병력/활동성 암 여부",
+   "perspectives": [
+    "슬래시(병력/활동성)",
+    "형용사(활동성)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    9218,
+    9234
+   ],
+   "context_value": "악성종양 병력/활동성 암 여부"
+  },
+  {
+   "pointer": "/category_specific/16/checks/1/label",
+   "text": "활동성 감염/패혈증 여부",
+   "perspectives": [
+    "형용사(활동성)",
+    "슬래시 범위"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 13,
+   "file_cp": [
+    9282,
+    9295
+   ],
+   "context_value": "활동성 감염/패혈증 여부"
+  },
+  {
+   "pointer": "/category_specific/16/checks/3/label",
+   "text": "혈액질환/응고장애 여부",
+   "perspectives": [
+    "슬래시 나열"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 12,
+   "file_cp": [
+    9385,
+    9397
+   ],
+   "context_value": "혈액질환/응고장애 여부"
+  },
+  {
+   "pointer": "/category_specific/16/checks/4/label",
+   "text": "줄기세포 유래(자가/동종) 및 채취 부위 설명",
+   "perspectives": [
+    "괄호 대안(자가/동종)",
+    "부위(채취 부위)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 25,
+   "file_cp": [
+    9430,
+    9455
+   ],
+   "context_value": "줄기세포 유래(자가/동종) 및 채취 부위 설명"
+  },
+  {
+   "pointer": "/category_specific/16/checks/5/label",
+   "text": "규제 현황 및 근거 수준 설명",
+   "perspectives": [
+    "규제",
+    "근거 수준"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 16,
+   "file_cp": [
+    9488,
+    9504
+   ],
+   "context_value": "규제 현황 및 근거 수준 설명"
+  },
+  {
+   "pointer": "/category_specific/16/checks/6/label",
+   "text": "기대 효과의 한계 및 부작용 가능성 설명",
+   "perspectives": [
+    "한계",
+    "가능성"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 22,
+   "file_cp": [
+    9537,
+    9559
+   ],
+   "context_value": "기대 효과의 한계 및 부작용 가능성 설명"
+  },
+  {
+   "pointer": "/category_specific/16/checks/7/label",
+   "text": "감염/종양 발생 위험성 고지",
+   "perspectives": [
+    "위험",
+    "행위(고지)"
+   ],
+   "segment": "S05",
+   "start": 0,
+   "end": 15,
+   "file_cp": [
+    9592,
+    9607
+   ],
+   "context_value": "감염/종양 발생 위험성 고지"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "batch": "결정 묶음 4 (동의어 · 게이트 out/gate/batch4.json · 발주서 silver-build-6-brief.md C)",
+ "decided_at": null,
+ "decided_by": null,
+ "effect": "풀리는 ⑨ 참조 0/3(원장 자리 0) · 근거 「색소/토닝」 ⊃ 조각 「색소」",
+ "gate_item": "b4-prc/015",
+ "gate_option": "map_1",
+ "gate_recommended": false,
+ "id": "DEC-2026-11-05-B4-PRC-015a",
+ "kind": "canonical_mapping",
+ "new_value": {
+  "to_id": "SUB-a6011da318"
+ },
+ "proposal_item": "b4-prc/015",
+ "reason": "결정 묶음 4 — 참조 조각 「색소」 을 그 참조들(⑨ 3)에서 modality_subcategory_label 「색소/토닝」(SUB-a6011da318)로 읽는다(근거: 「색소/토닝」 ⊃ 조각 「색소」)",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/3/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@0/9/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "treatment-optimization.json:annual_plans[].schedule[].procedures[]@2/9/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.1.md §5.2"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-6-brief.md C — 결정 묶음 4(동의어)"
+  }
+ ],
+ "status": "proposed",
+ "target": {
+  "from_ref": "색소",
+  "scope": [
+   "REF-5da7193b15",
+   "REF-b572fd0bf1",
+   "REF-c640464ff3"
+  ]
+ }
+}

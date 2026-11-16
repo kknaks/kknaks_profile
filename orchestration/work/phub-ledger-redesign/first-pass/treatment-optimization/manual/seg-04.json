@@ -1,0 +1,515 @@
+{
+  "segment": "SEG-04",
+  "read_status": "direct_read_done",
+  "read_note": "/by_concern/3 (피부결/모공) 전체 필드, severity_levels 3단계, 중증 단계에만 있는 caveats 2문장을 원문 순서로 직접 읽음",
+  "observations": [
+    {
+      "id": "O04-1",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats"
+      ],
+      "status": "P",
+      "text": "caveats 는 이 원장에서 /by_concern/3/severity_levels/2 에만 있는 선택적 필드다. 다른 단계에 caveats 가 없다는 것이 주의사항이 없다는 뜻인지는 원문에 없다(B)."
+    },
+    {
+      "id": "O04-2",
+      "pointers": [
+        "/by_concern/3/severity_levels/0/optimal_combo/1",
+        "/by_concern/3/severity_levels/0/sequence"
+      ],
+      "status": "P",
+      "text": "optimal_combo 「필링(약한 산)」(괄호 = 강도/재질) 을 sequence 는 「같은날 얕은 필링 가능」(깊이 수식)으로 부른다. 「약한」과 「얕은」 은 서로 다른 수식어다. 수치 농도·깊이는 원문에 없다."
+    },
+    {
+      "id": "O04-3",
+      "pointers": [
+        "/by_concern/3/severity_levels/0/rationale"
+      ],
+      "status": "P",
+      "text": "「토닝으로 멜라닌/각질 관리 + 필링으로 각질 제거 + 스킨부스터로 보습/재생」: rationale 의 `+` 는 효과 나열. 「각질」 이 토닝과 필링 양쪽에 대상으로 나온다(효과 겹침 후보)."
+    },
+    {
+      "id": "O04-4",
+      "pointers": [
+        "/by_concern/3/severity_levels/1/optimal_combo/1",
+        "/by_concern/3/severity_levels/1/sequence",
+        "/by_concern/3/severity_levels/1/rationale",
+        "/by_concern/3/severity_levels/1/expected_sessions"
+      ],
+      "status": "I",
+      "text": "optimal_combo 「MTS/니들RF」 가 sequence 에서는 「프락셔널 or 니들RF」, rationale·expected_sessions 에서는 「프락셔널/니들RF」 로 나와 MTS 가 sequence·rationale·sessions 에서 빠진다. 「프락셔널/니들RF」가 대안인지 묶음인지 원문에 없다."
+    },
+    {
+      "id": "O04-5",
+      "pointers": [
+        "/by_concern/3/severity_levels/1/sequence"
+      ],
+      "status": "P",
+      "text": "「4주 간격 반복 → 사이사이 스킨부스터」: 반복(「반복」 명시)과 사이 끼워 넣기(「사이사이」)가 있다. 스킨부스터의 정확한 간격은 없다."
+    },
+    {
+      "id": "O04-6",
+      "pointers": [
+        "/by_concern/3/severity_levels/1/contraindicated_combos/0",
+        "/by_concern/3/severity_levels/2/contraindicated_combos/0"
+      ],
+      "status": "P",
+      "text": "「프락셔널 후 당일 필러 금지」(중등도) 와 「CO2 프락셔널 후 당일 필러 금지(감염 위험)」(중증): 같은 꼴, 중증만 괄호 사유가 있다. 두 단계 optimal_combo 에 필러가 없다. 「당일」 + 「후」 순서 조건(필러→프락셔널 순서의 당일 허용 여부는 원문에 없다, B)."
+    },
+    {
+      "id": "O04-7",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/optimal_combo/1"
+      ],
+      "status": "P",
+      "text": "optimal_combo 원소 「PRP (엑소좀은 보조·근거 제한적)」 은 시술 이름 칸 안에 다른 대상(엑소좀)에 대한 근거 평가를 괄호로 넣었다. 괄호가 PRP 를 수식하지 않는다."
+    },
+    {
+      "id": "O04-8",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/sequence",
+        "/by_concern/3/severity_levels/2/rationale"
+      ],
+      "status": "P",
+      "text": "「직후 PRP/엑소좀 도포」: 「직후」 는 같은 회차 바로 뒤로 읽히는 시간 표현, 「도포」 는 방식. `/` 는 PRP 와 엑소좀의 대안 또는 병용 중 무엇인지 원문만으로 정하지 않았다. rationale 의 「(LAED, 레이저 보조 전달)」 은 약어+풀이."
+    },
+    {
+      "id": "O04-9",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats/0"
+      ],
+      "status": "P",
+      "text": "caveats/0 은 규제 서술(美 FDA 승인 0건·경고서한·집행 확대, 韓 MFDS 2025-01-21부터 광고 표현 제한)과 문구 지침(「효능 단정 표현은 사용 금지, 보조요법으로만 안내」)을 한 문장에 담는다. 원장에 적힌 서술로만 기록했고 사실 여부는 검증·보충하지 않았다. 한자 국가 약칭(美·韓)과 영어 따옴표 표기('exosome')가 섞인다."
+    },
+    {
+      "id": "O04-10",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats/0",
+        "/by_concern/3/severity_levels/2/rationale"
+      ],
+      "status": "I",
+      "text": "caveats/0 은 「'재생 촉진·콜라겐 생성' 등 효능 단정 표현은 사용 금지」라 하고, 같은 단계 rationale 은 「PRP/엑소좀 도포 … 로 회복·재생 보조」라 쓴다. 「보조」 로 낮춰 쓴 것이 지침에 맞는지 원문은 판정하지 않는다(원문 내 긴장 후보, 판정 안 함)."
+    },
+    {
+      "id": "O04-11",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats/1"
+      ],
+      "status": "P",
+      "text": "caveats/1 은 근거 수준 서술: 「파일럿(가설 생성 수준)+소규모 split-face RCT 1건(보조요법으로 유의 개선, 추가 RCT 필요)」, 「PRP 대비 제한적」, 「핵심 효과는 CO2 프락셔널/니들RF에 기인」. 비교(대비)·귀속(기인)·필요(추가 RCT 필요) 서술이 있다. 문헌 식별자는 없다(B)."
+    },
+    {
+      "id": "O04-12",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/expected_sessions",
+        "/by_concern/3/severity_levels/2/optimal_combo/1"
+      ],
+      "status": "P",
+      "text": "expected_sessions 는 「PRP 3회」만 있고 엑소좀 회차는 없다."
+    }
+  ],
+  "manual_expressions": [
+    {
+      "pointer": "/by_concern/3/concern",
+      "text": "피부결/모공",
+      "kinds": [
+        "target_concern",
+        "slash_non_alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/concern_en",
+      "text": "Skin Texture / Pores",
+      "kinds": [
+        "language_en",
+        "slash_non_alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/level",
+      "text": "(가벼운 피부결 저하)",
+      "kinds": [
+        "parenthetical",
+        "severity",
+        "degree_modifier"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/optimal_combo/1",
+      "text": "필링(약한 산)",
+      "kinds": [
+        "procedure_like",
+        "parenthetical",
+        "degree_modifier",
+        "material"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/sequence",
+      "text": "같은날 얕은 필링 가능",
+      "kinds": [
+        "same_day",
+        "possibility",
+        "layer_depth",
+        "degree_modifier"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/sequence",
+      "text": "2주 후 스킨부스터",
+      "kinds": [
+        "interval_after",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/rationale",
+      "text": "토닝으로 멜라닌/각질 관리",
+      "kinds": [
+        "effect_purpose",
+        "slash_non_alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/rationale",
+      "text": "필링으로 각질 제거",
+      "kinds": [
+        "effect_purpose"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/rationale",
+      "text": "스킨부스터로 보습/재생",
+      "kinds": [
+        "effect_purpose",
+        "slash_non_alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/0/expected_sessions",
+      "text": "필링 3-5회",
+      "kinds": [
+        "session_count",
+        "range"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/level",
+      "text": "(넓은 모공, 거친 피부결)",
+      "kinds": [
+        "parenthetical",
+        "severity",
+        "degree_modifier"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/optimal_combo/1",
+      "text": "MTS/니들RF",
+      "kinds": [
+        "procedure_like",
+        "alternative",
+        "language_mixed"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/sequence",
+      "text": "프락셔널 or 니들RF",
+      "kinds": [
+        "alternative",
+        "language_en"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/sequence",
+      "text": "4주 간격 반복",
+      "kinds": [
+        "interval_repeat",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/sequence",
+      "text": "사이사이 스킨부스터",
+      "kinds": [
+        "interleave",
+        "interval_unspecified"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/rationale",
+      "text": "프락셔널/니들RF로 미세 상처",
+      "kinds": [
+        "alternative",
+        "effect_mechanism",
+        "degree_modifier"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/rationale",
+      "text": "스킨부스터로 재생 촉진",
+      "kinds": [
+        "effect_purpose",
+        "effect_complement"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/expected_sessions",
+      "text": "프락셔널/니들RF 3-5회",
+      "kinds": [
+        "session_count",
+        "range",
+        "alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/1/contraindicated_combos/0",
+      "text": "프락셔널 후 당일 필러 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "same_day",
+        "order_sequence"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/level",
+      "text": "(심한 모공/흉터급 피부결)",
+      "kinds": [
+        "parenthetical",
+        "severity",
+        "degree_modifier",
+        "approximation"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/optimal_combo/1",
+      "text": "PRP (엑소좀은 보조·근거 제한적)",
+      "kinds": [
+        "procedure_like",
+        "parenthetical",
+        "evidence_limit",
+        "adjunct"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/optimal_combo/1",
+      "text": "엑소좀은 보조·근거 제한적",
+      "kinds": [
+        "evidence_limit",
+        "adjunct"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/sequence",
+      "text": "직후 PRP/엑소좀 도포",
+      "kinds": [
+        "immediately_after",
+        "time",
+        "alternative",
+        "manner"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/sequence",
+      "text": "4주 후 니들RF",
+      "kinds": [
+        "interval_after",
+        "time"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/sequence",
+      "text": "→ 스킨부스터",
+      "kinds": [
+        "order_sequence",
+        "interval_unspecified"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/rationale",
+      "text": "CO2로 깊은 리서페이싱",
+      "kinds": [
+        "effect_purpose",
+        "layer_depth",
+        "degree_modifier"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/rationale",
+      "text": "직후 PRP/엑소좀 도포(LAED, 레이저 보조 전달)로 회복·재생 보조",
+      "kinds": [
+        "immediately_after",
+        "manner",
+        "parenthetical",
+        "abbreviation",
+        "adjunct",
+        "effect_purpose"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/rationale",
+      "text": "니들RF로 추가 리모델링",
+      "kinds": [
+        "effect_purpose",
+        "additional"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/rationale",
+      "text": "스킨부스터로 유지",
+      "kinds": [
+        "maintenance"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/expected_sessions",
+      "text": "CO2 프락셔널 2-3회",
+      "kinds": [
+        "session_count",
+        "range"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/contraindicated_combos/0",
+      "text": "CO2 프락셔널 후 당일 필러 금지(감염 위험)",
+      "kinds": [
+        "avoid_prohibit",
+        "same_day",
+        "order_sequence",
+        "parenthetical",
+        "risk_reason"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+      "text": "엑소좀: 국내외 미승인",
+      "kinds": [
+        "regulatory",
+        "negation"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+      "text": "美 FDA 미용·치료 목적 승인 0건(경고서한·집행 확대)",
+      "kinds": [
+        "regulatory",
+        "quantity_unit",
+        "negation",
+        "parenthetical",
+        "language_hanja"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+      "text": "韓 MFDS는 2025-01-21부터 화장품 광고 내 'exosome' 의학적 표현 제한",
+      "kinds": [
+        "regulatory",
+        "date",
+        "time_from",
+        "language_hanja",
+        "language_en",
+        "restriction"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+      "text": "'재생 촉진·콜라겐 생성' 등 효능 단정 표현은 사용 금지",
+      "kinds": [
+        "avoid_prohibit",
+        "wording_guidance",
+        "quoted"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+      "text": "보조요법으로만 안내",
+      "kinds": [
+        "wording_guidance",
+        "restriction",
+        "adjunct"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+      "text": "파일럿(가설 생성 수준)",
+      "kinds": [
+        "evidence_level_text",
+        "parenthetical"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+      "text": "소규모 split-face RCT 1건(보조요법으로 유의 개선, 추가 RCT 필요)",
+      "kinds": [
+        "evidence_level_text",
+        "quantity_unit",
+        "degree_modifier",
+        "language_en",
+        "parenthetical",
+        "need"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+      "text": "PRP 대비 제한적",
+      "kinds": [
+        "comparison",
+        "evidence_limit"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+      "text": "핵심 효과는 CO2 프락셔널/니들RF에 기인",
+      "kinds": [
+        "attribution",
+        "effect_purpose",
+        "alternative"
+      ]
+    },
+    {
+      "pointer": "/by_concern/3/severity_levels/2/caveats/1",
+      "text": "엑소좀 근거는",
+      "kinds": [
+        "topic_subject",
+        "evidence_level_text"
+      ],
+      "note": "미덮임 어절 검토에서 추가: 근거 서술 전체의 주제(대상) 표지"
+    }
+  ],
+  "issues": [
+    {
+      "id": "B-04-1",
+      "class": "B",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats"
+      ],
+      "text": "caveats 가 한 단계에만 있다. 다른 단계·고민에 주의사항이 없는 것인지 기록하지 않은 것인지 원문에 없다."
+    },
+    {
+      "id": "B-04-2",
+      "class": "B",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats/1"
+      ],
+      "text": "근거 서술(파일럿·RCT 1건)에 문헌 식별자가 없다. 근거 연결은 원장만으로 할 수 없다."
+    },
+    {
+      "id": "I-04-1",
+      "class": "I",
+      "pointers": [
+        "/by_concern/3/severity_levels/1/optimal_combo/1",
+        "/by_concern/3/severity_levels/1/sequence",
+        "/by_concern/3/severity_levels/1/expected_sessions"
+      ],
+      "text": "optimal_combo 「MTS/니들RF」 와 sequence·sessions 「프락셔널 …/니들RF」: MTS 가 뒤 필드에서 사라진다(원문 내 불일치 후보)."
+    },
+    {
+      "id": "I-04-2",
+      "class": "I",
+      "pointers": [
+        "/by_concern/3/severity_levels/2/caveats/0",
+        "/by_concern/3/severity_levels/2/rationale"
+      ],
+      "text": "caveats/0 의 효능 단정 금지 지침과 rationale 의 「회복·재생 보조」 문구 사이의 긴장 후보. 판정하지 않음."
+    }
+  ]
+}

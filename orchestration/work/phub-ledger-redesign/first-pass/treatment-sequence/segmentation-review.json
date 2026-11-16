@@ -1,0 +1,2351 @@
+{
+ "method": "build 1회차 Kiwi 출력 1,429토큰을 값별로 원문과 나란히 직접 읽고 찾은 출현을 하나씩 기록. raw_tokens 는 phrase_span 안에 완전히 들어가는 원시 토큰(실제 출력 복사, build.py 가 매 실행 대조). 교정·사용자 사전 적용 없음.",
+ "kinds": {
+  "meaning-risk": "의미 표현(시술·부위·제품·수식·조건·순서)이 형태소에서 소실·왜곡",
+  "tag-only": "분절은 맞고 품사만 다름",
+  "minor": "분절 차이가 있으나 의미 영향 작음",
+  "code-split": "코드값 접두 분리",
+  "range-token": "숫자 범위 단일 토큰",
+  "negation-prefix-fused": "부정 접두 미분리",
+  "zero-length": "surface 길이 0 토큰"
+ },
+ "scope_limit": "전 토큰을 읽었으나 여기 없는 토큰이 모두 맞다는 보증은 아니다. NNG/NNP 혼용(예: 보톡스·필러가 출현마다 NNG/NNP), 재표면화 재/NNG 등 의미 영향이 작다고 본 품사 차이는 기록하지 않았다.",
+ "occurrences": [
+  {
+   "id": "S001",
+   "pointer": "/principles/1",
+   "phrase": "열시술",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    13,
+    16
+   ],
+   "raw_tokens": [
+    [
+     "열",
+     "NR",
+     [
+      13,
+      14
+     ]
+    ],
+    [
+     "시",
+     "NNB",
+     [
+      14,
+      15
+     ]
+    ],
+    [
+     "술",
+     "NNG",
+     [
+      15,
+      16
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'열'(熱)이 수사 NR(열=10)로, '시술'이 시/NNB+술/NNG 로 분석",
+   "impact": "열 시술(열을 쓰는 시술 묶음) 표현이 형태소에서 사라지고 NR 이 수량으로 오인될 수 있음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S002",
+   "pointer": "/principles/1",
+   "phrase": "열시술",
+   "occurrence_in_value": 1,
+   "phrase_span": [
+    35,
+    38
+   ],
+   "raw_tokens": [
+    [
+     "열",
+     "NR",
+     [
+      35,
+      36
+     ]
+    ],
+    [
+     "시",
+     "NNB",
+     [
+      36,
+      37
+     ]
+    ],
+    [
+     "술",
+     "NNG",
+     [
+      37,
+      38
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'열'(熱)이 수사 NR(열=10)로, '시술'이 시/NNB+술/NNG 로 분석",
+   "impact": "열 시술(열을 쓰는 시술 묶음) 표현이 형태소에서 사라지고 NR 이 수량으로 오인될 수 있음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S003",
+   "pointer": "/sequence_order/2/reason",
+   "phrase": "열시술",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    21,
+    24
+   ],
+   "raw_tokens": [
+    [
+     "열",
+     "NR",
+     [
+      21,
+      22
+     ]
+    ],
+    [
+     "시",
+     "NNB",
+     [
+      22,
+      23
+     ]
+    ],
+    [
+     "술",
+     "NNG",
+     [
+      23,
+      24
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'열'(熱)이 수사 NR(열=10)로, '시술'이 시/NNB+술/NNG 로 분석",
+   "impact": "열 시술(열을 쓰는 시술 묶음) 표현이 형태소에서 사라지고 NR 이 수량으로 오인될 수 있음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S004",
+   "pointer": "/sequence_order/7/reason",
+   "phrase": "열 시술",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    30,
+    34
+   ],
+   "raw_tokens": [
+    [
+     "열",
+     "NR",
+     [
+      30,
+      31
+     ]
+    ],
+    [
+     "시",
+     "NNB",
+     [
+      32,
+      33
+     ]
+    ],
+    [
+     "술",
+     "NNG",
+     [
+      33,
+      34
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'열'(熱)이 수사 NR(열=10)로, '시술'이 시/NNB+술/NNG 로 분석",
+   "impact": "열 시술(열을 쓰는 시술 묶음) 표현이 형태소에서 사라지고 NR 이 수량으로 오인될 수 있음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S005",
+   "pointer": "/principles/0",
+   "phrase": "진정",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    16,
+    18
+   ],
+   "raw_tokens": [
+    [
+     "진정",
+     "NNP",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "kind": "tag-only",
+   "issue": "'진정'(진정 처치)이 NNP 로 태깅",
+   "impact": "품사만 다름. 고유명사 집계 시 오탐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S006",
+   "pointer": "/sequence_order/10/phase",
+   "phrase": "진정",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    2
+   ],
+   "raw_tokens": [
+    [
+     "진정",
+     "MAG",
+     [
+      0,
+      2
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'진정'(진정 처치)이 부사 MAG(정말로)로 태깅",
+   "impact": "modifier_phrase 후보 오탐 생성. 처치 단계명이 부사로 읽힘",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S007",
+   "pointer": "/sequence_order/10/reason",
+   "phrase": "진정",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    4,
+    6
+   ],
+   "raw_tokens": [
+    [
+     "진정",
+     "MAG",
+     [
+      4,
+      6
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'진정'이 부사 MAG 로 태깅",
+   "impact": "modifier_phrase 후보 오탐 생성. 목적(진정) 명사가 부사로 읽힘",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S008",
+   "pointer": "/principles/5",
+   "phrase": "세럼",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    70,
+    72
+   ],
+   "raw_tokens": [
+    [
+     "세",
+     "MM",
+     [
+      70,
+      71
+     ]
+    ],
+    [
+     "럼",
+     "NNG",
+     [
+      71,
+      72
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'세럼'이 세/MM+럼/NNG 로 분절",
+   "impact": "제형명 소실, MM 이 관형 수식으로 오인(modifier_phrase 오탐)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S009",
+   "pointer": "/principles/5",
+   "phrase": "이물",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    122,
+    124
+   ],
+   "raw_tokens": [
+    [
+     "이",
+     "MM",
+     [
+      122,
+      123
+     ]
+    ],
+    [
+     "물",
+     "NNG",
+     [
+      123,
+      124
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'이물'(異物)이 이/MM(지시)+물/NNG 로 분절",
+   "impact": "'진피 내 이물 잔류' 위험 원인 표현이 '이 물'로 읽힘, MM 오탐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S010",
+   "pointer": "/principles/5",
+   "phrase": "육아종",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    129,
+    132
+   ],
+   "raw_tokens": [
+    [
+     "육아",
+     "NNG",
+     [
+      129,
+      131
+     ]
+    ],
+    [
+     "종",
+     "NNG",
+     [
+      131,
+      132
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'육아종'이 육아/NNG+종/NNG 로 분절(같은 원장 다른 두 출현은 단일 NNG)",
+   "impact": "부작용명 소실·'육아'(育兒)로 오인",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S011",
+   "pointer": "/principles/8",
+   "phrase": "유연",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    72,
+    74
+   ],
+   "raw_tokens": [
+    [
+     "유",
+     "NNG",
+     [
+      72,
+      73
+     ]
+    ],
+    [
+     "연",
+     "NNG",
+     [
+      73,
+      74
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'유연'이 유/NNG+연/NNG 로 분절",
+   "impact": "'같은 날엔 순서 유연' 의 완화(허용) 수식이 형태소에서 사라짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S012",
+   "pointer": "/principles/9",
+   "phrase": "필러",
+   "occurrence_in_value": 2,
+   "phrase_span": [
+    44,
+    46
+   ],
+   "raw_tokens": [
+    [
+     "필",
+     "NNG",
+     [
+      44,
+      45
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      45,
+      46
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'필러'가 필/N*+러/EC 로 분절",
+   "impact": "시술명 '필러' 출현이 형태소 기준 집계·검색에서 빠짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S013",
+   "pointer": "/principles/11",
+   "phrase": "필러",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    10,
+    12
+   ],
+   "raw_tokens": [
+    [
+     "필",
+     "NNP",
+     [
+      10,
+      11
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      11,
+      12
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'필러'가 필/N*+러/EC 로 분절",
+   "impact": "시술명 '필러' 출현이 형태소 기준 집계·검색에서 빠짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S014",
+   "pointer": "/principles/11",
+   "phrase": "먼저",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    30,
+    32
+   ],
+   "raw_tokens": [
+    [
+     "먼저",
+     "NNG",
+     [
+      30,
+      32
+     ]
+    ]
+   ],
+   "kind": "tag-only",
+   "issue": "'먼저'가 NNG 로 태깅(다른 출현은 MAG)",
+   "impact": "MAG 기반 수식 후보에서 빠짐. 순서 표현은 keyword 규칙으로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S015",
+   "pointer": "/sequence_order/5/reason",
+   "phrase": "필러",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    10,
+    12
+   ],
+   "raw_tokens": [
+    [
+     "필",
+     "NNG",
+     [
+      10,
+      11
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      11,
+      12
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'필러'가 필/N*+러/EC 로 분절",
+   "impact": "시술명 '필러' 출현이 형태소 기준 집계·검색에서 빠짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S016",
+   "pointer": "/sequence_order/5/reason",
+   "phrase": "몰딩",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    22,
+    24
+   ],
+   "raw_tokens": [
+    [
+     "몰",
+     "NNG",
+     [
+      22,
+      23
+     ]
+    ],
+    [
+     "딩",
+     "MAG",
+     [
+      23,
+      24
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'몰딩'이 몰/NNG+딩/MAG 로 분절",
+   "impact": "시술 후 처치(몰딩) 소실, 딩/MAG 수식 후보 오탐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S017",
+   "pointer": "/sequence_order/7/reason",
+   "phrase": "필러",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    39,
+    41
+   ],
+   "raw_tokens": [
+    [
+     "필",
+     "NNP",
+     [
+      39,
+      40
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      40,
+      41
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'필러'가 필/N*+러/EC 로 분절",
+   "impact": "시술명 '필러' 출현이 형태소 기준 집계·검색에서 빠짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S018",
+   "pointer": "/minimum_intervals/6/reason",
+   "phrase": "필러",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    13,
+    15
+   ],
+   "raw_tokens": [
+    [
+     "필",
+     "NNG",
+     [
+      13,
+      14
+     ]
+    ],
+    [
+     "러",
+     "EC",
+     [
+      14,
+      15
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'필러'가 필/N*+러/EC 로 분절",
+   "impact": "시술명 '필러' 출현이 형태소 기준 집계·검색에서 빠짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S019",
+   "pointer": "/sequence_order/4/phase",
+   "phrase": "니들RF",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "니",
+     "NP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "들",
+     "XSN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "RF",
+     "SL",
+     [
+      2,
+      4
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'니들'이 니/NP(대명사)+들/XSN 로 분절(다른 출현은 니들/NNP)",
+   "impact": "장비·시술 계열명 소실",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S020",
+   "pointer": "/sequence_order/9/categories/0",
+   "phrase": "도포",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    4,
+    6
+   ],
+   "raw_tokens": [
+    [
+     "도",
+     "NNG",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "포",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "카테고리 이름 '도포'가 도/NNG+포/NNG 로 분절",
+   "impact": "카테고리 라벨 처치명 소실(코드값 자체는 원문 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S021",
+   "pointer": "/sequence_order/9/reason",
+   "phrase": "경피",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    18,
+    20
+   ],
+   "raw_tokens": [
+    [
+     "경",
+     "NNG",
+     [
+      18,
+      19
+     ]
+    ],
+    [
+     "피",
+     "NNG",
+     [
+      19,
+      20
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'경피'(經皮)가 경/NNG+피/NNG 로 분절",
+   "impact": "전달 경로 표현 소실",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S022",
+   "pointer": "/sequence_order/9/reason",
+   "phrase": "코스메슈티컬의",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    80,
+    87
+   ],
+   "raw_tokens": [
+    [
+     "코스메슈티컬의",
+     "NNG",
+     [
+      80,
+      87
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "조사 '의'가 분리되지 않은 단일 NNG",
+   "impact": "제품군명 표면형에 조사가 붙어 집계 불일치",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S023",
+   "pointer": "/common_combos/7/note",
+   "phrase": "경피",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    26,
+    28
+   ],
+   "raw_tokens": [
+    [
+     "경",
+     "NNG",
+     [
+      26,
+      27
+     ]
+    ],
+    [
+     "피",
+     "XPN",
+     [
+      27,
+      28
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'경피'가 경/NNG+피/XPN 로 분절",
+   "impact": "전달 경로 표현 소실",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S024",
+   "pointer": "/sequence_order/10/reason",
+   "phrase": "항염",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    2
+   ],
+   "raw_tokens": [
+    [
+     "항",
+     "NNG",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "염",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'항염'이 항/NNG+염/NNG 로 분절",
+   "impact": "목적 표현 '항염'이 단일 형태로 남지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S025",
+   "pointer": "/incompatible_same_day/3/reason",
+   "phrase": "비박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    21,
+    25
+   ],
+   "raw_tokens": [
+    [
+     "비",
+     "XPN",
+     [
+      21,
+      22
+     ]
+    ],
+    [
+     "박",
+     "NNG",
+     [
+      22,
+      23
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      23,
+      24
+     ]
+    ],
+    [
+     "성",
+     "XSN",
+     [
+      24,
+      25
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'비박리성'이 비/XPN+박/NNG+리/XSN+성/* 로 쪼개짐(비/XPN 자체는 맞음)",
+   "impact": "부정 접두 '비'는 남지만 '박리' 용어가 사라져 '비박리성 프락셔널' 범위가 형태소로 재구성되지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S026",
+   "pointer": "/incompatible_same_day/3/reason",
+   "phrase": "박리성",
+   "occurrence_in_value": 1,
+   "phrase_span": [
+    85,
+    88
+   ],
+   "raw_tokens": [
+    [
+     "박",
+     "NNG",
+     [
+      85,
+      86
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      86,
+      87
+     ]
+    ],
+    [
+     "성",
+     "NNG",
+     [
+      87,
+      88
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'박리성'(ablative) 이 박/N*+리/XSN|NNG+성 으로 쪼개짐",
+   "impact": "박리성 시술 범위 표현이 형태소에서 사라짐. '비박리성'과의 구분(부정 접두 비)이 형태소만으로는 판단 불가",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S027",
+   "pointer": "/incompatible_same_day/7/reason",
+   "phrase": "비박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "비",
+     "XPN",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "박",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "성",
+     "NNG",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'비박리성'이 비/XPN+박/NNG+리/XSN+성/* 로 쪼개짐(비/XPN 자체는 맞음)",
+   "impact": "부정 접두 '비'는 남지만 '박리' 용어가 사라져 '비박리성 프락셔널' 범위가 형태소로 재구성되지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S028",
+   "pointer": "/incompatible_same_day/7/reason",
+   "phrase": "박리성",
+   "occurrence_in_value": 1,
+   "phrase_span": [
+    49,
+    52
+   ],
+   "raw_tokens": [
+    [
+     "박",
+     "NNG",
+     [
+      49,
+      50
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      50,
+      51
+     ]
+    ],
+    [
+     "성",
+     "NNG",
+     [
+      51,
+      52
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'박리성'(ablative) 이 박/N*+리/XSN|NNG+성 으로 쪼개짐",
+   "impact": "박리성 시술 범위 표현이 형태소에서 사라짐. '비박리성'과의 구분(부정 접두 비)이 형태소만으로는 판단 불가",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S029",
+   "pointer": "/minimum_intervals/2/reason",
+   "phrase": "비박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "비",
+     "XPN",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "박",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     "성",
+     "XSN",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'비박리성'이 비/XPN+박/NNG+리/XSN+성/* 로 쪼개짐(비/XPN 자체는 맞음)",
+   "impact": "부정 접두 '비'는 남지만 '박리' 용어가 사라져 '비박리성 프락셔널' 범위가 형태소로 재구성되지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S030",
+   "pointer": "/minimum_intervals/2/reason",
+   "phrase": "박리성",
+   "occurrence_in_value": 1,
+   "phrase_span": [
+    71,
+    74
+   ],
+   "raw_tokens": [
+    [
+     "박",
+     "NNG",
+     [
+      71,
+      72
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      72,
+      73
+     ]
+    ],
+    [
+     "성",
+     "NNG",
+     [
+      73,
+      74
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'박리성'(ablative) 이 박/N*+리/XSN|NNG+성 으로 쪼개짐",
+   "impact": "박리성 시술 범위 표현이 형태소에서 사라짐. '비박리성'과의 구분(부정 접두 비)이 형태소만으로는 판단 불가",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S031",
+   "pointer": "/minimum_intervals/3/to",
+   "phrase": "박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "박",
+     "NNP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "리",
+     "NNG",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "성",
+     "XSN",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'박리성'(ablative) 이 박/N*+리/XSN|NNG+성 으로 쪼개짐",
+   "impact": "박리성 시술 범위 표현이 형태소에서 사라짐. '비박리성'과의 구분(부정 접두 비)이 형태소만으로는 판단 불가",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S032",
+   "pointer": "/minimum_intervals/3/reason",
+   "phrase": "박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    4,
+    7
+   ],
+   "raw_tokens": [
+    [
+     "박",
+     "NNG",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      5,
+      6
+     ]
+    ],
+    [
+     "성",
+     "NNG",
+     [
+      6,
+      7
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'박리성'(ablative) 이 박/N*+리/XSN|NNG+성 으로 쪼개짐",
+   "impact": "박리성 시술 범위 표현이 형태소에서 사라짐. '비박리성'과의 구분(부정 접두 비)이 형태소만으로는 판단 불가",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S033",
+   "pointer": "/minimum_intervals/3/reason",
+   "phrase": "비박리성",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    43,
+    47
+   ],
+   "raw_tokens": [
+    [
+     "비",
+     "XPN",
+     [
+      43,
+      44
+     ]
+    ],
+    [
+     "박",
+     "NNG",
+     [
+      44,
+      45
+     ]
+    ],
+    [
+     "리",
+     "XSN",
+     [
+      45,
+      46
+     ]
+    ],
+    [
+     "성",
+     "XSN",
+     [
+      46,
+      47
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'비박리성'이 비/XPN+박/NNG+리/XSN+성/* 로 쪼개짐(비/XPN 자체는 맞음)",
+   "impact": "부정 접두 '비'는 남지만 '박리' 용어가 사라져 '비박리성 프락셔널' 범위가 형태소로 재구성되지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S034",
+   "pointer": "/incompatible_same_day/7/reason",
+   "phrase": "전안면",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    45,
+    48
+   ],
+   "raw_tokens": [
+    [
+     "저",
+     "NP",
+     [
+      45,
+      46
+     ]
+    ],
+    [
+     "ᆫ",
+     "JX",
+     [
+      45,
+      46
+     ]
+    ],
+    [
+     "안면",
+     "NNG",
+     [
+      46,
+      48
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'전'(全)이 저/NP+ᆫ/JX('저는')로 분석",
+   "impact": "적용 범위(전안면) 수식이 대명사로 바뀌어 범위 조건 소실",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S035",
+   "pointer": "/minimum_intervals/3/reason",
+   "phrase": "전안면",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "저",
+     "NP",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "ᆫ",
+     "JX",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "안면",
+     "NNG",
+     [
+      1,
+      3
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'전'(全)이 저/NP+ᆫ/JX 로 분석",
+   "impact": "적용 범위(전안면) 수식 소실 — 이 문장의 '에 한해' 범위 조건 대상",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S036",
+   "pointer": "/incompatible_same_day/3/reason",
+   "phrase": "전안면",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    81,
+    84
+   ],
+   "raw_tokens": [
+    [
+     "전",
+     "MM",
+     [
+      81,
+      82
+     ]
+    ],
+    [
+     "안면",
+     "NNG",
+     [
+      82,
+      84
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'전'(全)이 관형사 MM 으로 태깅, 안면/NNG 분리",
+   "impact": "범위 수식은 MM 으로 남지만 '전안면' 단일 표현은 없음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S037",
+   "pointer": "/minimum_intervals/2/reason",
+   "phrase": "전안면",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    67,
+    70
+   ],
+   "raw_tokens": [
+    [
+     "전",
+     "MM",
+     [
+      67,
+      68
+     ]
+    ],
+    [
+     "안면",
+     "NNG",
+     [
+      68,
+      70
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'전'(全)이 관형사 MM 으로 태깅, 안면/NNG 분리",
+   "impact": "범위 수식은 MM 으로 남지만 '전안면' 단일 표현은 없음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S038",
+   "pointer": "/minimum_intervals/3/reason",
+   "phrase": "한해",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    21,
+    23
+   ],
+   "raw_tokens": [
+    [
+     "한",
+     "MM",
+     [
+      21,
+      22
+     ]
+    ],
+    [
+     "해",
+     "NNB",
+     [
+      22,
+      23
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'(에) 한해'(限해)가 한/MM(하나)+해/NNB(年)로 분석",
+   "impact": "범위 제한 조건이 '한 해'(1년) 시간 수량으로 오인될 수 있음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S039",
+   "pointer": "/sequence_order/1/reason",
+   "phrase": "전",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    10,
+    11
+   ],
+   "raw_tokens": [
+    [
+     "전",
+     "MM",
+     [
+      10,
+      11
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'30-60분 전'의 '전'(前)이 관형사 MM 으로 태깅",
+   "impact": "시점 기준(시술 전) 표현이 관형 수식으로 읽힘",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S040",
+   "pointer": "/common_combos/0/sequence/1",
+   "phrase": "이마",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    4,
+    6
+   ],
+   "raw_tokens": [
+    [
+     "이",
+     "MM",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "마",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "부위 '이마'가 이/MM+마/NNG 로 분절",
+   "impact": "부위 표현 소실, MM 오탐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S041",
+   "pointer": "/common_combos/5/sequence/2",
+   "phrase": "이마",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    4,
+    6
+   ],
+   "raw_tokens": [
+    [
+     "이",
+     "MM",
+     [
+      4,
+      5
+     ]
+    ],
+    [
+     "마",
+     "NNG",
+     [
+      5,
+      6
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "부위 '이마'가 이/MM+마/NNG 로 분절",
+   "impact": "부위 표현 소실, MM 오탐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S042",
+   "pointer": "/common_combos/0/sequence/2",
+   "phrase": "팔자",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    3,
+    5
+   ],
+   "raw_tokens": [
+    [
+     "팔",
+     "VV",
+     [
+      3,
+      4
+     ]
+    ],
+    [
+     "자",
+     "EC",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "부위 '팔자'가 팔/VV(팔다)+자/EC 로 분절",
+   "impact": "부위 표현 소실·동사로 오인",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S043",
+   "pointer": "/common_combos/5/sequence/0",
+   "phrase": "팔자",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    3,
+    5
+   ],
+   "raw_tokens": [
+    [
+     "팔",
+     "VV",
+     [
+      3,
+      4
+     ]
+    ],
+    [
+     "자",
+     "EC",
+     [
+      4,
+      5
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "부위 '팔자'가 팔/VV+자/EC 로 분절",
+   "impact": "부위 표현 소실·동사로 오인",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S044",
+   "pointer": "/common_combos/5/sequence/1",
+   "phrase": "리쥬란",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    6,
+    9
+   ],
+   "raw_tokens": [
+    [
+     "리쥬",
+     "NNG",
+     [
+      6,
+      8
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      8,
+      8
+     ]
+    ],
+    [
+     "란",
+     "ETM",
+     [
+      8,
+      9
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "제품명 '리쥬란'이 리쥬/NNG+이/VCP(길이0)+란/ETM 으로 분석",
+   "impact": "제품명 소실. VCP 토큰은 surface 길이 0",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S045",
+   "pointer": "/incompatible_same_day/4/reason",
+   "phrase": "나중",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    68,
+    70
+   ],
+   "raw_tokens": [
+    [
+     "나",
+     "JC",
+     [
+      68,
+      69
+     ]
+    ],
+    [
+     "중",
+     "NNG",
+     [
+      69,
+      70
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "'나중'이 나/JC+중/NNG 로 분절",
+   "impact": "역순 설명의 순서 표지(나중) 소실",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S046",
+   "pointer": "/incompatible_same_day/4/reason",
+   "phrase": ">",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    12,
+    13
+   ],
+   "raw_tokens": [
+    [
+     ">",
+     "SSC",
+     [
+      12,
+      13
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "비교 기호 '>'가 닫는 괄호 SSC 로 태깅",
+   "impact": "온도 조건 '>55°C'의 초과 비교가 형태소에서 사라짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S047",
+   "pointer": "/minimum_intervals/0/reason",
+   "phrase": ">",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    12,
+    13
+   ],
+   "raw_tokens": [
+    [
+     ">",
+     "SSC",
+     [
+      12,
+      13
+     ]
+    ]
+   ],
+   "kind": "meaning-risk",
+   "issue": "비교 기호 '>'가 SSC 로 태깅",
+   "impact": "온도 조건 '>55°C'의 초과 비교가 형태소에서 사라짐",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S048",
+   "pointer": "/minimum_intervals/7/reason",
+   "phrase": "먼저",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    17,
+    19
+   ],
+   "raw_tokens": [
+    [
+     "먼저",
+     "NNG",
+     [
+      17,
+      19
+     ]
+    ]
+   ],
+   "kind": "tag-only",
+   "issue": "'먼저'가 NNG 로 태깅",
+   "impact": "MAG 기반 수식 후보에서 빠짐. 순서 표현은 keyword 규칙으로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S049",
+   "pointer": "/incompatible_same_day/2/pair/1",
+   "phrase": "비가교",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "비가교",
+     "NNP",
+     [
+      0,
+      3
+     ]
+    ]
+   ],
+   "kind": "negation-prefix-fused",
+   "issue": "부정 접두 '비'가 분리되지 않은 단일 NNP '비가교'",
+   "impact": "부정(비-가교) 성질이 형태소로 드러나지 않음",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S050",
+   "pointer": "/sequence_order/5/reason",
+   "phrase": "순서든",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    191,
+    194
+   ],
+   "raw_tokens": [
+    [
+     "순서",
+     "NNG",
+     [
+      191,
+      193
+     ]
+    ],
+    [
+     "이",
+     "VCP",
+     [
+      193,
+      193
+     ]
+    ],
+    [
+     "든",
+     "EC",
+     [
+      193,
+      194
+     ]
+    ]
+   ],
+   "kind": "zero-length",
+   "issue": "'순서든'에서 이/VCP 가 길이 0 토큰([193,193))",
+   "impact": "surface 가 빈 문자열인 토큰 존재(Kiwi 복원형). 구간 대조에서 빈 surface 로 기록",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S051",
+   "pointer": "/incompatible_same_day/0/pair/0",
+   "phrase": "CO2",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'CO2'가 CO/SL+2/SN 로 분리",
+   "impact": "2/SN 이 수량으로 오인될 수 있음. 장비·시술명 'CO2 프락셔널' 표면형은 원문 구간으로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S052",
+   "pointer": "/common_combos/7/sequence/0",
+   "phrase": "CO2",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    5,
+    8
+   ],
+   "raw_tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      5,
+      7
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'CO2'가 CO/SL+2/SN 로 분리",
+   "impact": "2/SN 이 수량으로 오인될 수 있음. 장비·시술명 'CO2 프락셔널' 표면형은 원문 구간으로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S053",
+   "pointer": "/minimum_intervals/5/from",
+   "phrase": "CO2",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    5,
+    8
+   ],
+   "raw_tokens": [
+    [
+     "CO",
+     "SL",
+     [
+      5,
+      7
+     ]
+    ],
+    [
+     "2",
+     "SN",
+     [
+      7,
+      8
+     ]
+    ]
+   ],
+   "kind": "minor",
+   "issue": "'CO2'가 CO/SL+2/SN 로 분리",
+   "impact": "2/SN 이 수량으로 오인될 수 있음. 장비·시술명 'CO2 프락셔널' 표면형은 원문 구간으로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S054",
+   "pointer": "/incompatible_same_day/2/reason",
+   "phrase": "24-72",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    9,
+    14
+   ],
+   "raw_tokens": [
+    [
+     "24-72",
+     "W_SERIAL",
+     [
+      9,
+      14
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S055",
+   "pointer": "/sequence_order/1/reason",
+   "phrase": "30-60",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    3,
+    8
+   ],
+   "raw_tokens": [
+    [
+     "30-60",
+     "W_SERIAL",
+     [
+      3,
+      8
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S056",
+   "pointer": "/common_combos/0/total_time",
+   "phrase": "60-90",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    5
+   ],
+   "raw_tokens": [
+    [
+     "60-90",
+     "W_SERIAL",
+     [
+      0,
+      5
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S057",
+   "pointer": "/common_combos/1/total_time",
+   "phrase": "45-60",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    5
+   ],
+   "raw_tokens": [
+    [
+     "45-60",
+     "W_SERIAL",
+     [
+      0,
+      5
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S058",
+   "pointer": "/common_combos/2/total_time",
+   "phrase": "90-120",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    6
+   ],
+   "raw_tokens": [
+    [
+     "90-120",
+     "W_SERIAL",
+     [
+      0,
+      6
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S059",
+   "pointer": "/common_combos/5/total_time",
+   "phrase": "60-90",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    5
+   ],
+   "raw_tokens": [
+    [
+     "60-90",
+     "W_SERIAL",
+     [
+      0,
+      5
+     ]
+    ]
+   ],
+   "kind": "range-token",
+   "issue": "숫자 범위 'a-b' 가 단일 W_SERIAL 토큰",
+   "impact": "범위의 하한·상한이 형태소에서 분리되지 않음. 원문 구간·표현 후보(quantity_unit_time)로 보존",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S060",
+   "pointer": "/sequence_order/0/categories/0",
+   "phrase": "M15-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "15",
+     "SN",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S061",
+   "pointer": "/sequence_order/2/categories/0",
+   "phrase": "M9-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "9",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S062",
+   "pointer": "/sequence_order/2/categories/1",
+   "phrase": "M9-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "9",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S063",
+   "pointer": "/sequence_order/2/categories/2",
+   "phrase": "M8-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "8",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S064",
+   "pointer": "/sequence_order/3/categories/0",
+   "phrase": "M8-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "8",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S065",
+   "pointer": "/sequence_order/3/categories/1",
+   "phrase": "M8-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "8",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S066",
+   "pointer": "/sequence_order/3/categories/2",
+   "phrase": "M8-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    3
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "8",
+     "SN",
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      2,
+      3
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S067",
+   "pointer": "/sequence_order/9/categories/0",
+   "phrase": "M15-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "15",
+     "SN",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S068",
+   "pointer": "/sequence_order/10/categories/0",
+   "phrase": "M15-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "15",
+     "SN",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  },
+  {
+   "id": "S069",
+   "pointer": "/sequence_order/10/categories/1",
+   "phrase": "M15-",
+   "occurrence_in_value": 0,
+   "phrase_span": [
+    0,
+    4
+   ],
+   "raw_tokens": [
+    [
+     "M",
+     "SL",
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     "15",
+     "SN",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "-",
+     "SO",
+     [
+      3,
+      4
+     ]
+    ]
+   ],
+   "kind": "code-split",
+   "issue": "카테고리 코드 접두 'Mn-' 이 M/SL+n/SN+-/SO 로 분리",
+   "impact": "코드 번호가 수사(SN)로 나옴. 형태소는 코드 식별에 쓰지 않는다(원문 값 그대로 보존)",
+   "status": "표시됨(교정 아님) — 원시 Kiwi 토큰 유지"
+  }
+ ]
+}

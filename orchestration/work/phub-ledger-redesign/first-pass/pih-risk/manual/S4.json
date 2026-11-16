@@ -1,0 +1,61 @@
+{
+ "direct_read": true,
+ "status": "read",
+ "last_read_pointer": "/procedures/14/prevention",
+ "observations": [
+  {"status": "I", "pointers": ["/procedures/12/pih_risk", "/procedures/12/pih_rate", "/risk_levels/very_low", "/risk_levels/low"], "text": "12번 장파장 제모: pih_risk 'very_low'(risk_levels '< 1%') 인데 pih_rate '~1%' — 근사 1% 는 '< 1%' 경계에 걸치고 low '1-5%' 의 하한과 같다. 원문 내 경계 불일치로 기록."},
+  {"status": "P", "pointers": ["/procedures/12/procedure_ref", "/procedures/13/procedure_ref", "/procedures/14/procedure_ref"], "text": "제모 세 행의 procedure_ref 가 'M8-5', 'M8-5-3', 'M8-5' — 12·14 번은 하위 번호 없는 상위 코드를 공유하고 13번만 3단 코드. 참조 깊이가 행마다 다르다(P1·F1)."},
+  {"status": "P", "pointers": ["/procedures/12/fitzpatrick_note"], "text": "'긴 파장(1064nm) + 긴 펄스폭으로 표피 멜라닌 보호' — '+' 는 두 이유의 결합. '어두운 피부에도 가장 안전한 제모 레이저' 는 제모 레이저 범위 최상급 진술."},
+  {"status": "P", "pointers": ["/procedures/13/fitzpatrick_note"], "text": "13번 '755nm은 멜라닌 흡수가 높아 Fitzpatrick I-III에 최적. IV에서는 1064nm 권장' — 원장 기준 집단(III-IV, description)과 다른 범위 I-III 를 최적 대상으로 든다. 13번 pih_rate '2-5%' 가 어느 피부형 기준인지 원문만으로 불명(B1 과 같은 원인)."},
+  {"status": "P", "pointers": ["/procedures/13/risk_factors/0"], "text": "'어두운 피부(IV+)' — 이 원장에서 '어두운 피부' 에 피부형 기준을 괄호로 준 유일한 출현. 다른 행의 '어두운 피부' 에 이 기준을 옮겨 적용하지 않는다."},
+  {"status": "F", "pointers": ["/procedures/13/prevention", "/procedures/14/fitzpatrick_note"], "text": "13번 '1064nm Nd:YAG 우선', 14번 '1064nm 대비 약간 높은 PIH' 는 다른 행(12번 장파장 제모 Nd:YAG 1064nm LP 로 보임)을 파장으로 지칭한다. 연결은 후속(F3)."},
+  {"status": "P", "pointers": ["/procedures/14/prevention"], "text": "'Fitzpatrick IV에서 주의' — 무엇을 어떻게 주의하는지 없는 일반 주의."},
+  {"status": "P", "pointers": ["/procedures/12/prevention"], "text": "'표피 냉각(DCD/contact cooling)' — 괄호 안 '/' 로 두 냉각 방식. 13번 '적절한 냉각 시스템', 14번 '표피 냉각 사용' 과 표현이 다르다."},
+  {"status": "P", "pointers": ["/procedures/14/fitzpatrick_note"], "text": "'중간 파장으로 III-IV에서 비교적 안전' — '중간' 은 상대 표현(무엇들 사이인지 원문에 없음)."}
+ ],
+ "open": [
+  "I-S4-1 12번 very_low ↔ ~1% 경계 (issues.md I2)",
+  "F-S4-1 1064nm 지칭 행 연결 (issues.md F3)",
+  "P-S4-1 procedure_ref 깊이 혼재 M8-5 / M8-5-3 (issues.md P1)"
+ ],
+ "expressions": [
+  ["/procedures/12/subcategory", "제모", ["claim_scope"], "하위분류명이 목적", "P"],
+  ["/procedures/12/name", "장파장 제모", ["name_candidate", "degree"], "'장파장' 상대 표현", "P"],
+  ["/procedures/12/name", "Nd:YAG 1064nm LP", ["device_param", "mixed_language"], "", "P"],
+  ["/procedures/12/pih_rate", "~1%", ["approx", "rate"], "very_low 와 경계 — I2", "I"],
+  ["/procedures/12/fitzpatrick_note", "긴 파장(1064nm) + 긴 펄스폭으로 표피 멜라닌 보호", ["cause_reason", "device_param", "symbol_ambiguity", "tissue_layer"], "'+' = 이유 결합", "P"],
+  ["/procedures/12/fitzpatrick_note", "어두운 피부에도 가장 안전한 제모 레이저", ["population", "degree", "comparison", "claim_scope"], "최상급", "P"],
+  ["/procedures/12/risk_factors/0", "과도한 fluence", ["risk_factor_phrase", "device_param"], "", "B"],
+  ["/procedures/12/risk_factors/1", "짧은 펄스폭", ["risk_factor_phrase", "device_param"], "", "B"],
+  ["/procedures/12/prevention", "적정 fluence", ["recommendation", "device_param"], "", "B"],
+  ["/procedures/12/prevention", "표피 냉각(DCD/contact cooling) 사용", ["recommendation", "tissue_layer", "symbol_ambiguity", "mixed_language"], "", "P"],
+  ["/procedures/13/subcategory", "제모", ["claim_scope"], "", "P"],
+  ["/procedures/13/name", "알렉산드라이트 제모", ["name_candidate"], "", "P"],
+  ["/procedures/13/name", "755nm LP", ["device_param"], "", "P"],
+  ["/procedures/13/pih_rate", "2-5%", ["range", "rate"], "", "P"],
+  ["/procedures/13/fitzpatrick_note", "755nm은 멜라닌 흡수가 높아 Fitzpatrick I-III에 최적", ["cause_reason", "population", "range", "degree"], "기준 집단과 다른 범위", "P"],
+  ["/procedures/13/fitzpatrick_note", "IV에서는 1064nm 권장", ["condition", "population", "recommendation", "reference"], "", "F"],
+  ["/procedures/13/risk_factors/0", "어두운 피부(IV+)", ["risk_factor_phrase", "population", "comparison", "symbol_ambiguity"], "'어두운' 의 유일한 기준 표기", "P"],
+  ["/procedures/13/risk_factors/1", "높은 fluence", ["risk_factor_phrase", "device_param"], "", "B"],
+  ["/procedures/13/risk_factors/2", "불충분한 냉각", ["risk_factor_phrase", "negation"], "", "P"],
+  ["/procedures/13/prevention", "Fitzpatrick IV 이상은 1064nm Nd:YAG 우선", ["condition", "population", "comparison", "recommendation", "reference"], "", "F"],
+  ["/procedures/13/prevention", "적절한 냉각 시스템 사용", ["recommendation"], "", "P"],
+  ["/procedures/14/subcategory", "제모", ["claim_scope"], "", "P"],
+  ["/procedures/14/name", "다이오드 제모", ["name_candidate"], "", "P"],
+  ["/procedures/14/name", "800-810nm LP", ["device_param", "range"], "", "P"],
+  ["/procedures/14/pih_rate", "1-3%", ["range", "rate"], "", "P"],
+  ["/procedures/14/fitzpatrick_note", "중간 파장으로 III-IV에서 비교적 안전", ["cause_reason", "population", "degree"], "", "P"],
+  ["/procedures/14/fitzpatrick_note", "1064nm 대비 약간 높은 PIH", ["comparison", "degree", "reference"], "", "F"],
+  ["/procedures/14/risk_factors/0", "높은 fluence", ["risk_factor_phrase", "device_param"], "", "B"],
+  ["/procedures/14/risk_factors/1", "어두운 피부", ["risk_factor_phrase", "population"], "", "P"],
+  ["/procedures/14/prevention", "적정 fluence", ["recommendation"], "", "B"],
+  ["/procedures/14/prevention", "표피 냉각 사용", ["recommendation", "tissue_layer"], "", "P"],
+  ["/procedures/14/prevention", "Fitzpatrick IV에서 주의", ["condition", "population", "recommendation"], "주의 내용 없음", "B"]
+ ],
+ "segmentation": [
+  ["/procedures/14/fitzpatrick_note", "비교적", "비교/NNG 적/XSN", "다른 칸(0번)에선 비교적/MAG — 정도 부사가 명사+접미사로", "K"],
+  ["/procedures/13/risk_factors/0", "IV+", "IV/SL +/SW", "'+'(이상) 기호 분리 — 비교 의미 형태소에 없음", "K"],
+  ["/procedures/12/pih_rate", "~", "~/SO", "근사 '~'", "K"],
+  ["/procedures/14/name", "800-810", "800-810/W_SERIAL", "범위가 일련번호 한 토큰", "K"]
+ ]
+}

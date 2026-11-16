@@ -1,0 +1,146 @@
+{
+ "note": "자동 정규식 후보 중 직접 대조로 확인한 오탐(출현별)과, 수동 구절에 덮이지 않은 수식·부정 토큰의 개별 검토. 경계만 잘린 R04/R05 후보 전반의 한계는 issues K-03.",
+ "auto_false_positives": [
+  {
+   "pointer": "/by_concern/6/severity_levels/1/rationale",
+   "pattern": "R04-slash-join",
+   "span": [
+    29,
+    36
+   ],
+   "text": "다이오드/Nd",
+   "note": "경계 오류: 장비명 「Nd:YAG」의 콜론에서 끊겨 「다이오드/Nd」만 잡힘. 실제 구절은 「다이오드/Nd:YAG」(수동 구절에 있음)"
+  },
+  {
+   "pointer": "/by_concern/5/concern_en",
+   "pattern": "R04-slash-join",
+   "span": [
+    0,
+    11
+   ],
+   "text": "Acne / Acne",
+   "note": "경계 오류: 「Acne / Acne Scars」의 뒤 어절이 잘림(수동 구절에 전체 있음)"
+  },
+  {
+   "pointer": "/annual_plans/2/plan_name",
+   "pattern": "R05-plus-join",
+   "span": [
+    0,
+    10
+   ],
+   "text": "40대+ 안티에이징",
+   "note": "`+` 가 연령 열린 범위(40대 이상)라 「함께」 결합이 아님"
+  },
+  {
+   "pointer": "/by_concern/6/severity_levels/2/optimal_combo/0",
+   "pattern": "R05-plus-join",
+   "span": [
+    16,
+    23
+   ],
+   "text": "다이오드+Nd",
+   "note": "경계 오류: 「다이오드+Nd:YAG」의 콜론에서 끊김"
+  },
+  {
+   "pointer": "/by_concern/6/severity_levels/2/rationale",
+   "pattern": "R10-sameday",
+   "span": [
+    18,
+    20
+   ],
+   "text": "동시",
+   "note": "「다양한 깊이의 모낭 동시 타겟」 — 한 시술 안의 동시 작용이며 시술 간 같은 날·동시 일정이 아님"
+  },
+  {
+   "pointer": "/by_age_group/2/annual_focus",
+   "pattern": "R10-sameday",
+   "span": [
+    17,
+    19
+   ],
+   "text": "동시",
+   "note": "「처짐/볼륨 동시 관리」 — 고민 두 개를 함께 관리한다는 뜻, 시술 일정의 동시가 아님"
+  },
+  {
+   "pointer": "/optimization_principles/2",
+   "pattern": "R11-within-after",
+   "span": [
+    5,
+    7
+   ],
+   "text": "최소",
+   "note": "「최소화」(최소로 줄임)의 일부. 간격 하한 「최소」가 아님"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+   "pattern": "R11-within-after",
+   "span": [
+    77,
+    78
+   ],
+   "text": "내",
+   "note": "「화장품 광고 내」 — 공간·범위의 「안」. 기간 「이내」가 아님"
+  },
+  {
+   "pointer": "/by_concern/2/severity_levels/0/level",
+   "pattern": "R14-risk",
+   "span": [
+    10,
+    12
+   ],
+   "text": "저하",
+   "note": "「미세 볼륨 저하」 — 고민 상태 서술, 시술 위험·부작용 어휘 아님"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/0/level",
+   "pattern": "R14-risk",
+   "span": [
+    12,
+    14
+   ],
+   "text": "저하",
+   "note": "「가벼운 피부결 저하」 — 고민 상태 서술"
+  },
+  {
+   "pointer": "/by_age_group/1/primary_concerns/1",
+   "pattern": "R14-risk",
+   "span": [
+    3,
+    5
+   ],
+   "text": "저하",
+   "note": "「탄력 저하」 — 고민 이름"
+  },
+  {
+   "pointer": "/by_concern/7/severity_levels/1/level",
+   "pattern": "R16-limit-only",
+   "span": [
+    9,
+    10
+   ],
+   "text": "만",
+   "note": "「비만」의 일부. 제한 「만」이 아님"
+  },
+  {
+   "pointer": "/combination_rules/2/detail",
+   "pattern": "R16-limit-only",
+   "span": [
+    69,
+    70
+   ],
+   "text": "만",
+   "note": "「지지하지만」의 양보 어미 「-지만」. 제한 「만」이 아님"
+  },
+  {
+   "pointer": "/by_concern/3/severity_levels/2/caveats/0",
+   "pattern": "R17-negation",
+   "span": [
+    21,
+    22
+   ],
+   "text": "미",
+   "note": "「FDA 미용·치료 목적」의 미용(美容). 부정 접두 「미(未)」가 아님(같은 값의 0번째 「미」는 「미승인」으로 정탐)"
+  }
+ ],
+ "uncovered_token_reviews": []
+}

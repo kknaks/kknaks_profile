@@ -1,0 +1,30 @@
+{
+  "section": "S08",
+  "read_status": "done",
+  "read_note": "reading/S08.txt 로 c0~c4 전부(procedures 10·combos 5·alternatives 5) 읽음.",
+  "observations": [
+    {"id": "OB-S08-01", "at": ["c0.P0", "c1.P0", "c2.P0", "c3.P0", "c4.P0"], "status": "B", "text": "다섯 complaint 의 procedures·combos·alternatives 가 글자 그대로 같다. cc 'V빔'(cc_detail '595nm PDL')·'IPL홍조'·'리쥬란+LDM'·'엑셀V'(cc_detail '532+1064nm')·'혈관레이저' 로 cc 는 서로 다른 장비·시술 표현인데 products 는 모두 '엑셀V' 하나다(B-02)."},
+    {"id": "OB-S08-02", "at": ["c3.cc_detail"], "status": "P", "text": "cc_detail '532+1064nm' — '+' 가 두 수치를 잇고 단위 'nm' 는 뒤 수치에만 붙어 있다. 여기의 '+' 는 '함께 시술' 이 아니라 수치 병기로 읽힌다(F-02). 앞 수치의 단위를 채우지 않는다."},
+    {"id": "OB-S08-03", "at": ["c2.cc", "c2.cc_detail"], "status": "P", "text": "cc '리쥬란+LDM', cc_detail '장벽강화+재생' — cc 값 자체가 '+' 조합이다. 'LDM' 은 procedures 에 없고 원문에 풀이가 없다(B-03 같은 유형)."},
+    {"id": "OB-S08-04", "at": ["c0.A0", "c1.A0", "c2.A0", "c3.A0", "c4.A0"], "status": "P", "text": "alternatives 'LDM 진정 관리 병행' — 병행 관리 지시. 대안 시술 목록이 아니다(F-04)."},
+    {"id": "OB-S08-05", "at": ["c0.P0.role"], "status": "P", "text": "role '혈관 수축/파괴' — '/' 로 두 기전을 나란히 둔다. 대안인지 병렬인지 정해지지 않는다(F-02). reason 은 '혈관 수축' 만 쓴다."},
+    {"id": "OB-S08-06", "at": ["c0.P1.role"], "status": "P", "text": "스킨부스터 role 이 여기서는 '피부 장벽 강화'(다른 구획: 피부 재생·콜라겐 재생·재생·톤개선). 같은 name 의 role 이 problem 마다 다르다."}
+  ],
+  "expressions": [
+    {"text": "595nm PDL", "at": ["c0.cc_detail"], "aspects": ["수량·단위(nm)", "약어(PDL)"]},
+    {"text": "532+1064nm", "at": ["c3.cc_detail"], "aspects": ["수량·단위(nm)", "기호(+ 수치 병기)"]},
+    {"text": "광범위", "at": ["c1.cc_detail"], "aspects": ["범위 수식(광범위)"]},
+    {"text": "장벽강화+재생", "at": ["c2.cc_detail"], "aspects": ["기호(+ 공백 없음)", "효과 표현"]},
+    {"text": "선택적 혈관파괴", "at": ["c4.cc_detail"], "aspects": ["기전 수식(선택적)", "기전 표현"]},
+    {"text": "리쥬란+LDM", "at": ["c2.cc"], "aspects": ["제품·시술 표현", "기호(+ 공백 없음)", "약어(LDM)"]},
+    {"text": "IPL홍조", "at": ["c1.cc"], "aspects": ["시술+증상 표현", "혼합 표기"]},
+    {"text": "V빔", "at": ["c0.cc"], "aspects": ["장비명 표현", "혼합 표기"]},
+    {"text": "모세혈관확장", "at": ["c3.cc_group", "c4.cc_group"], "aspects": ["증상 표현", "붙여 쓴 복합어"]},
+    {"text": "혈관 수축/파괴", "at": ["c0.P0.role", "c1.P0.role", "c2.P0.role", "c3.P0.role", "c4.P0.role"], "aspects": ["role 표현", "기호(/)", "기전 표현"]},
+    {"text": "피부 장벽 강화", "at": ["c0.P1.role", "c1.P1.role", "c2.P1.role", "c3.P1.role", "c4.P1.role"], "aspects": ["role 표현", "증가 표현(강화)"]},
+    {"text": "혈관 수축 + 장벽 강화", "at": ["c0.B0.reason", "c1.B0.reason", "c2.B0.reason", "c3.B0.reason", "c4.B0.reason"], "aspects": ["기호(+)", "결과 없는 공식형"]},
+    {"text": "레이저 후 재생 촉진", "at": ["c0.B0.evidence", "c1.B0.evidence", "c2.B0.evidence", "c3.B0.evidence", "c4.B0.evidence"], "aspects": ["시간 순서(후)", "증가 표현(촉진)"]},
+    {"text": "LDM 진정 관리 병행", "at": ["c0.A0", "c1.A0", "c2.A0", "c3.A0", "c4.A0"], "aspects": ["병행", "약어(LDM)", "관리 지시"]}
+  ],
+  "issues": []
+}

@@ -1,0 +1,25 @@
+{"section":"S026","state":"read","last_pointer":"/modality/7/name",
+"observations":[
+ {"status":"I","pointers":["/modality/7/products/3/type","/modality/7/products/3/extracted/overview"],"note":"클라리티2 제품 type 'Nd:YAG+알렉산드라이트' 인데 overview '1064nm와 532nm 이중 파장의 Q-switched Nd:YAG'. 항목(M8-4/M8-5) 쪽은 '롱펄스 532+1064nm'. type·펄스 방식 서술이 서로 다르다."},
+ {"status":"I","pointers":["/modality/7/products/5/extracted/safety/common/2","/modality/7/subcategories/1/items/5/extracted/mechanism"],"note":"프락셀(1550nm 비박리성) safety/common 'PIH 약 50% 발생 가능성' — 같은 원장에서 50% 는 CO2(박리성)에 쓰인 수치. 비박리성 서술과 맞지 않아 보임(판단 후속)."},
+ {"status":"P","pointers":["/modality/7/products/4/name","/modality/7/subcategories/3/items/2/name","/modality/7/subcategories/3/items/5/name"],"note":"제품 '엑셀V' 와 항목 '엑셀브이', '엑셀V+' — 세 표기."},
+ {"status":"P","pointers":["/modality/7/products/4/extracted/onset_duration/duration"],"note":"duration 값이 시술 계획('4-6주 간격 5-10회 시술')."}
+],
+"expressions":[
+ {"pointer":"/modality/7/products/3/extracted/mechanism","text":"짧은 펄스폭(수십 ns)으로","kinds":["수량·단위·시간"],"note":"비수치 '수십'"},
+ {"pointer":"/modality/7/products/3/extracted/indications/primary/1","text":"문신(흑색, 청색, 적색)","kinds":["수식"],"note":"색상 조건"},
+ {"pointer":"/modality/7/products/3/extracted/onset_duration/duration","text":"영구적(색소 제거), 문신은 여러 회차 필요","kinds":["조건","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/products/3/extracted/aftercare/1","text":"자외선 차단(SPF 50+ 이상) 필수","kinds":["범위","기호"],"note":"'+' 와 '이상' 중복"},
+ {"pointer":"/modality/7/products/3/extracted/aftercare/4","text":"색소침착 고위험군은 사전 예방 관리","kinds":["조건"],"note":"시술 전 지시"},
+ {"pointer":"/modality/7/products/4/extracted/onset_duration/duration","text":"일반적으로 4-6주 간격 5-10회 시술","kinds":["가능성·빈도","수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/7/products/4/extracted/aftercare/1","text":"최소 1주일 강한 햇빛 노출 피하기","kinds":["범위","수량·단위·시간","부정"],"note":""},
+ {"pointer":"/modality/7/products/4/extracted/aftercare/3","text":"시술 부위 절대 문지르기 금지","kinds":["부정","수식"],"note":"강조 부사 '절대'"},
+ {"pointer":"/modality/7/products/5/extracted/safety/common/0","text":"홍반 (1-2주)","kinds":["수량·단위·시간"],"note":""},
+ {"pointer":"/modality/7/products/5/extracted/safety/common/2","text":"일시적 색소변화 (PIH 약 50% 발생 가능성)","kinds":["가능성·빈도","수량·단위·시간"],"note":"S026-I02"},
+ {"pointer":"/modality/7/products/5/extracted/onset_duration/onset","text":"즉시부터 1-2주 (최대 효과는 3개월)","kinds":["수량·단위·시간","범위"],"note":""}
+],
+"seg_errors":[],
+"issues":[
+ {"id":"S026-I01","status":"I","pointers":["/modality/7/products/3/type","/modality/7/products/3/extracted/overview"],"note":"클라리티2 type 과 서술 불일치.","impact":"장비 유형 정규화 후속"},
+ {"id":"S026-I02","status":"I","pointers":["/modality/7/products/5/extracted/safety/common/2"],"note":"비박리성 프락셀에 PIH 50%.","impact":"빈도 수치 채택 시 확인"}
+]}

@@ -1,0 +1,25 @@
+{"section":"S036","state":"read","last_pointer":"/modality/12/name",
+"observations":[
+ {"status":"P","pointers":["/modality/12/subcategories/0/label","/modality/12/subcategories/1/label","/modality/12/subcategories/1/items/0/name"],"note":"M13 하위분류 '핫플라즈마'·'콜드플라즈마'(온도 축). '콜드플라즈마' 는 label 과 항목 name 이 같다. products 빈 배열."},
+ {"status":"P","pointers":["/modality/12/subcategories/0/items/0/detail","/modality/12/subcategories/0"],"note":"플라듀오 detail '듀얼 플라즈마 · 핫+콜드' — 핫플라즈마 하위분류에 핫·콜드 겸용 장비. '+' 함께."},
+ {"status":"P","pointers":["/modality/12/subcategories/0/items/1/detail","/modality/12/subcategories/0/items/1/extracted/onset_duration/duration"],"note":"뉴라클플라즈마 detail '비수술블레파로'(눈꺼풀 성형 대체), duration '2-3년'."},
+ {"status":"P","pointers":["/modality/12/subcategories/0/items/0/extracted/aftercare","/modality/12/subcategories/1/items/0/extracted/aftercare"],"note":"M13 항목 aftercare 에 '[시술 주기 참고]' 상용구 없음."},
+ {"status":"P","pointers":["/modality/12/extracted/overview","/modality/12/subcategories"],"note":"모달리티 overview 의 통칭 '플라즈마 샤워','플라즈젯','플렉스마' 는 항목명에 없다(참조만)."},
+ {"status":"P","pointers":["/modality/12/extracted/onset_duration/duration","/modality/12/subcategories/1/items/0/extracted/onset_duration/duration"],"note":"duration 칸에 기간이 아닌 진술('단독 시술보다 다른 시술과 병합 시 시너지 효과', '지속적 관리 필요')."}
+],
+"expressions":[
+ {"pointer":"/modality/12/subcategories/0/items/0/extracted/aftercare/0","text":"시술 후 24시간 세안 시 찬물 사용 및 강한 마찰 자제","kinds":["수량·단위·시간","조건","부정"],"note":""},
+ {"pointer":"/modality/12/subcategories/0/items/1/extracted/safety/common/2","text":"색소침착 가능성","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/detail","text":"저온 · 살균/침투촉진/재생","kinds":["기호"],"note":"'/' 효과 나열"},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/mechanism","text":"상온 이하의 저온 플라즈마","kinds":["범위","수식"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/mechanism","text":"후속 약물 및 미용 성분의 경피 흡수율을 현저히 증대","kinds":["수식","주장"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/safety/common/2","text":"경미한 부종 (24시간 내 소실)","kinds":["수식","수량·단위·시간"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/safety/serious/1","text":"색소침착 (색소성 피부에서 드물게)","kinds":["조건","가능성·빈도"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/onset_duration/onset","text":"1-3회 시술 후 효과 체감, 누적 효과로 2-4주 후 뚜렷함","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/12/subcategories/1/items/0/extracted/aftercare/0","text":"시술 직후 4-6시간 물 접촉 피하기","kinds":["수량·단위·시간","범위","부정"],"note":""},
+ {"pointer":"/modality/12/extracted/mechanism","text":"기체(주로 질소 또는 헬륨)에 고에너지를 가해","kinds":["가능성·빈도","조건"],"note":"'주로'+대안"},
+ {"pointer":"/modality/12/extracted/indications/extended/0","text":"아토피 피부염 보조 치료","kinds":["수식"],"note":""},
+ {"pointer":"/modality/12/extracted/related_techniques/0","text":"메디컬스킨케어(필링) -- 병합 시 약물 흡수율 향상","kinds":["참조","조건"],"note":"M15 참조"}
+],
+"seg_errors":[],
+"issues":[]}

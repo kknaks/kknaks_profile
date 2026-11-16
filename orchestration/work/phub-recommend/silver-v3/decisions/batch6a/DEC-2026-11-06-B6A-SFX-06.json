@@ -1,0 +1,50 @@
+{
+ "id": "DEC-2026-11-06-B6A-SFX-06",
+ "kind": "canonical_rename",
+ "target": {
+  "dictionary": "adverse_event_type",
+  "code": null,
+  "canonical": "자극감"
+ },
+ "new_value": {
+  "canonical": "자극",
+  "old_as_synonym": true,
+  "old_id_as_alias": true,
+  "is_marketing_name": null
+ },
+ "reason": "사용자 2026-11-06 「형성은 같은거고 … 둘다 증상아니야 ?」→「응 같다고 하자」 — ~감·~증·~형성 접미사 쌍은 같은 사건(V3.3-D · 대표 이름 = 현상 이름) · §9.22 #6 「자극감」 ↔ 「자극」(규칙 suffix_감) · 대표 이름 자극. 사전 쪽이 접미 꼴이라 canonical_rename(자극감 → 자극 · 옛 값은 동의어 · 옛 DIC- id alias). fold_approve 는 쓰지 않았다 — 이름을 바꾸면 원장 핵심어 「자극」이 결정 전 분해에서 노드가 아니라 사전 값이 되어 fold 대상 노드가 없다(ERD 질문).",
+ "decided_by": "사용자",
+ "decided_at": "2026-11-06",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].products[].extracted.safety.common[]@8/4/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/10/5/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/10/10/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@14/10/11/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].items[].extracted.safety.common[]@16/3/1/0"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v3.3.json#/tuple_rules/phrase_kinds/suffix_pairs_v33/5"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-build-8-brief.md §3 · HANDOFF-2026-11-05.md 「2026-11-06 추가」"
+  }
+ ],
+ "batch": "결정 묶음 6-A (2026-11-06 · 발주서 silver-build-8-brief.md §3 · ERD v3.3 · 8차 적용)"
+}

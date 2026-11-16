@@ -1,0 +1,260 @@
+{
+ "segment": "S11",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/10/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "니들RF",
+    "name",
+    "혼합 표기(한글+영문)"
+   ]
+  ],
+  "/patient_name": [
+   [
+    "미세바늘 고주파 (포텐자/인모드 등)",
+    "name,device,paraphrase",
+    "괄호 안 「/」 제품 나열 · 「등」"
+   ],
+   [
+    "포텐자",
+    "name",
+    ""
+   ],
+   [
+    "인모드",
+    "name",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "아주 가는 바늘을 피부에 찔러 넣고, 바늘 끝에서 고주파 에너지를 쏘아 피부를 재생시키는 시술입니다.",
+    "sentence,device,degree,device_param,sequence,effect",
+    ""
+   ],
+   [
+    "아주 가는 바늘",
+    "device,degree",
+    "두께(바늘 굵기) 수식"
+   ],
+   [
+    "바늘 끝에서",
+    "site",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "미세한 바늘이 피부 속으로 들어가 정확한 깊이에서 고주파(RF) 에너지를 전달합니다.",
+    "sentence,device,depth,device_param,paraphrase",
+    ""
+   ],
+   [
+    "정확한 깊이에서",
+    "depth,manner",
+    "깊이 수치 미기재"
+   ],
+   [
+    "고주파(RF)",
+    "device_param,paraphrase",
+    ""
+   ],
+   [
+    "피부 표면은 크게 손상시키지 않으면서 피부 안쪽에서 콜라겐이 새로 만들어져 모공, 흉터, 주름이 개선됩니다.",
+    "sentence,site,degree,negation,mechanism,effect,concern",
+    ""
+   ],
+   [
+    "피부 표면은 크게 손상시키지 않으면서",
+    "site,degree,negation",
+    "「크게」 — 손상 정도 부분 부정"
+   ],
+   [
+    "모공, 흉터, 주름이 개선됩니다",
+    "concern,effect",
+    ""
+   ],
+   [
+    "미세한 바늘",
+    "device,degree",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "효과가 1-2주 후 나타나기 시작하며, 6-12개월 지속됩니다.",
+    "sentence,time,range,quantity",
+    "시간 역할: 시작·지속"
+   ],
+   [
+    "1-2주 후 나타나기 시작하며",
+    "time,range,quantity",
+    ""
+   ],
+   [
+    "6-12개월 지속됩니다",
+    "time,range,quantity",
+    ""
+   ]
+  ],
+  "/pain_level": [
+   [
+    "마취 크림 도포 후 시술, 따끔한 느낌과 열감",
+    "time,substance,sensory",
+    ""
+   ],
+   [
+    "마취 크림 도포 후",
+    "time,substance,sequence",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "붉은기와 약간의 붓기 2-3일, 미세한 딱지 3-5일",
+    "adverse,degree,time,range,quantity",
+    ""
+   ],
+   [
+    "붉은기와 약간의 붓기 2-3일",
+    "adverse,degree,time,range,quantity",
+    ""
+   ],
+   [
+    "미세한 딱지 3-5일",
+    "adverse,degree,time,range,quantity",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "모공이 정말 줄어드나요?",
+    "sentence,concern,effect",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "모공 주변의 콜라겐이 재생되면서 모공이 조여드는 효과가 있습니다.",
+    "sentence,site,mechanism,effect",
+    ""
+   ],
+   [
+    "1회로도 개선을 느끼실 수 있고, 3-4회 반복하면 더 좋아요.",
+    "sentence,frequency,quantity,range,possibility,condition,comparison",
+    ""
+   ],
+   [
+    "1회로도",
+    "quantity,scope",
+    ""
+   ],
+   [
+    "3-4회 반복하면 더 좋아요",
+    "frequency,range,quantity,condition,comparison",
+    "간격 미기재"
+   ],
+   [
+    "1회로도 개선을 느끼실 수 있고",
+    "quantity,scope,possibility",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "모공이 조여드는 효과가 있습니다",
+    "effect,concern",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "여드름 흉터에도 효과가 있나요?",
+    "sentence,concern",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "네, 여드름으로 파인 흉터 개선에 효과적인 시술 중 하나예요.",
+    "sentence,concern,effect,scope",
+    ""
+   ],
+   [
+    "여드름으로 파인 흉터",
+    "concern,cause",
+    ""
+   ],
+   [
+    "효과적인 시술 중 하나",
+    "scope,effect",
+    ""
+   ],
+   [
+    "흉터 깊이에 따라 필요한 횟수가 달라집니다.",
+    "sentence,condition,depth,frequency",
+    "흉터 깊이 — 주입 깊이와 다른 대상 · 횟수 수치 없음"
+   ],
+   [
+    "흉터 깊이에 따라",
+    "condition,depth",
+    ""
+   ],
+   [
+    "필요한 횟수가 달라집니다",
+    "frequency,condition",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "니들RF와 프락셔널 레이저 중 뭐가 좋나요?",
+    "sentence,comparison,reference",
+    "다른 카테고리(레이저 하위 프락셔널) 참조"
+   ],
+   [
+    "프락셔널 레이저",
+    "name,reference",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "둘 다 피부 재생 시술이지만 방식이 달라요.",
+    "sentence,comparison",
+    ""
+   ],
+   [
+    "피부 상태와 목표에 따라 의사가 더 적합한 시술을 추천해드립니다.",
+    "sentence,condition,actor,comparison",
+    ""
+   ],
+   [
+    "의사가 더 적합한 시술을 추천해드립니다",
+    "actor,comparison",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/1/a",
+   "P",
+   "「흉터 깊이」는 고민(흉터)의 깊이로 시술 깊이(how_it_works 「정확한 깊이」)와 대상이 다르다"
+  ],
+  [
+   "/how_it_works",
+   "B",
+   "전달 깊이 수치 미기재"
+  ],
+  [
+   "/common_concerns/2/q",
+   "F",
+   "「프락셔널 레이저」는 S08(M8) downtime·pain_level 의 「프락셔널」과 연결될 수 있으나 후속"
+  ],
+  [
+   "/common_concerns/0/a",
+   "B",
+   "반복 간격 미기재"
+  ]
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "segment": "S16",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/15/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "수액치료",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "영양 수액 (비타민 주사)",
+    "name,substance,paraphrase",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "비타민, 항산화 성분 등을 혈관에 직접 넣어주는 주사입니다.",
+    "sentence,substance,site,route,manner",
+    ""
+   ],
+   [
+    "비타민, 항산화 성분 등",
+    "substance",
+    "「등」"
+   ],
+   [
+    "혈관에 직접",
+    "site,route,manner",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "팔 혈관에 수액 줄을 꽂고 글루타치온(항산화), 비타민C, 비타민B 등의 영양 성분을 직접 혈관으로 투여합니다.",
+    "sentence,site,device,substance,paraphrase,route",
+    ""
+   ],
+   [
+    "팔 혈관",
+    "site",
+    ""
+   ],
+   [
+    "글루타치온(항산화)",
+    "substance,paraphrase",
+    ""
+   ],
+   [
+    "비타민C",
+    "substance",
+    ""
+   ],
+   [
+    "비타민B",
+    "substance",
+    ""
+   ],
+   [
+    "정맥 투여는 혈중 농도를 빠르게 높이지만 수용성 비타민은 신장으로 배설되며, 결핍이 없는 경우 경구 섭취보다 추가적인 임상 이득이 있다는 근거는 제한적입니다.",
+    "sentence,route,manner,mechanism,condition,comparison,evidence",
+    ""
+   ],
+   [
+    "혈중 농도를 빠르게 높이지만",
+    "manner,mechanism",
+    "속도 수식"
+   ],
+   [
+    "수용성 비타민은 신장으로 배설되며",
+    "substance,site,mechanism",
+    ""
+   ],
+   [
+    "결핍이 없는 경우",
+    "condition,target,negation",
+    ""
+   ],
+   [
+    "경구 섭취보다 추가적인 임상 이득이 있다는 근거는 제한적입니다",
+    "comparison,evidence,degree",
+    "근거 강도 제한"
+   ],
+   [
+    "직접 혈관으로 투여합니다",
+    "manner,route,site",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "1-2주 지속, 정기적으로 맞으면 효과가 유지됩니다.",
+    "time,range,quantity,frequency,condition,course",
+    "지속 대상 생략"
+   ],
+   [
+    "정기적으로 맞으면",
+    "frequency,condition",
+    ""
+   ]
+  ],
+  "/pain_level": [
+   [
+    "일반 주사와 비슷한 찔림, 수액 투여 중 통증 없음",
+    "comparison,sensory,time,negation",
+    ""
+   ],
+   [
+    "수액 투여 중 통증 없음",
+    "time,sensory,negation",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "없음 - 바로 일상 복귀 가능",
+    "negation,time,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "수액치료로 피부가 하얘지나요?",
+    "sentence,effect",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "정맥 글루타치온의 미백 효과는 아직 임상적으로 충분히 입증되지 않았고 미용 목적 사용은 허가 외입니다.",
+    "sentence,evidence,negation,degree,regulatory",
+    ""
+   ],
+   [
+    "아직 임상적으로 충분히 입증되지 않았고",
+    "evidence,negation,degree,time",
+    ""
+   ],
+   [
+    "미용 목적 사용은 허가 외입니다",
+    "regulatory,scope",
+    ""
+   ],
+   [
+    "알레르기·아나필락시스, 드물게 중증 피부반응(SJS/TEN), 고용량 시 간·신장 부담이 발생할 수 있어 의료진과 위험을 충분히 상의해야 합니다.",
+    "sentence,adverse,frequency,condition,site,possibility,instruction,actor",
+    ""
+   ],
+   [
+    "알레르기·아나필락시스",
+    "adverse,emergency",
+    "아나필락시스 — 응급 사건(징후 기술 없음)"
+   ],
+   [
+    "드물게 중증 피부반응(SJS/TEN)",
+    "frequency,degree,adverse,paraphrase",
+    "「드물게」가 수식하는 범위=중증 피부반응(잠정)"
+   ],
+   [
+    "고용량 시 간·신장 부담",
+    "condition,degree,site,adverse",
+    "용량 기준 미기재"
+   ],
+   [
+    "의료진과 위험을 충분히 상의해야 합니다",
+    "instruction,actor,degree",
+    ""
+   ],
+   [
+    "발생할 수 있어",
+    "possibility",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "얼마나 자주 맞아야 하나요?",
+    "sentence,frequency",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "목적에 따라 다르지만, 보통 주 1-2회 또는 격주 1회로 시작합니다.",
+    "sentence,condition,frequency,time,range,quantity,alternative",
+    ""
+   ],
+   [
+    "보통 주 1-2회 또는 격주 1회로 시작합니다",
+    "frequency,time,range,quantity,alternative",
+    "「또는」 두 주기 · 「시작」 — 초기 주기"
+   ],
+   [
+    "의사와 상담하여 본인에게 맞는 주기를 정하시면 됩니다.",
+    "sentence,actor,instruction,frequency",
+    ""
+   ],
+   [
+    "목적에 따라 다르지만",
+    "condition",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "의사와 상담하여 본인에게 맞는 주기를 정하시면 됩니다",
+    "actor,instruction,frequency",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "영양제를 먹는 것과 뭐가 다른가요?",
+    "sentence,comparison,route",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "정맥 투여는 혈중으로 직접 들어가지만, 결핍이 없는 경우 경구 섭취보다 임상적 이득이 더 크다는 근거는 제한적입니다.",
+    "sentence,route,condition,comparison,evidence,degree",
+    ""
+   ],
+   [
+    "결핍이 없는 경우",
+    "condition,target,negation",
+    ""
+   ],
+   [
+    "정맥염·감염·수액 과부하·전해질 이상과 성분 알레르기 위험도 있어 의료진의 평가가 필요합니다.",
+    "sentence,adverse,instruction,actor",
+    ""
+   ],
+   [
+    "정맥염·감염·수액 과부하·전해질 이상과 성분 알레르기 위험",
+    "adverse",
+    "5개 나열"
+   ],
+   [
+    "경구 섭취보다 임상적 이득이 더 크다는 근거는 제한적입니다",
+    "comparison,evidence,degree",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "의료진의 평가가 필요합니다",
+    "actor,instruction",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "혈중으로 직접 들어가지만",
+    "manner,route,contrast",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/0/a",
+   "P",
+   "질문(미백)에 근거 부족·허가 외·위험 목록으로 답한다. 「드물게」는 중증 피부반응에, 「고용량 시」는 간·신장 부담에 붙은 것으로 읽힘(잠정) — 알레르기·아나필락시스에는 빈도 수식 없음. 임상적으로 승인하지 않는다"
+  ],
+  [
+   "/common_concerns/0/a",
+   "B",
+   "「고용량」 기준 · 각 위험 빈도 수치 · 아나필락시스 응급 징후·대처 미기재"
+  ],
+  [
+   "/how_it_works",
+   "P",
+   "how_it_works 와 cc2 a 가 같은 근거 제한 문장(결핍이 없는 경우 경구 섭취보다 … 근거는 제한적)을 반복"
+  ],
+  [
+   "/duration_simple",
+   "B",
+   "무엇이 1-2주 지속되는지(효과) 생략 · 「정기적」 간격은 cc1 a 에 「주 1-2회 또는 격주 1회」"
+  ]
+ ]
+}

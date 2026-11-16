@@ -1,0 +1,352 @@
+{
+ "segment": "S16",
+ "reading_state": "read_direct",
+ "last_read_pointer": "/categories/M16/effects/1/patient_ja",
+ "read_note": "M16 진술 4개(moa 1·adverse_effects 1·effects 2) 모든 값 직접 읽음. 4개 모두 점수 진술.",
+ "observations": [
+  {
+   "id": "S16-O1",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/moa/0/statement"
+   ],
+   "text": "'in cultured melanocytes' — 배양 세포(시험관) 조건의 기전 진술. patient_ko/en/zh/ja 는 이 조건을 모두 뺌."
+  },
+  {
+   "id": "S16-O2",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/adverse_effects/0/statement",
+    "/categories/M16/adverse_effects/0/accuracy_note",
+    "/categories/M16/adverse_effects/0/patient_ko",
+    "/categories/M16/adverse_effects/0/patient_en"
+   ],
+   "text": "statement 'has been associated with skin rashes, Stevens-Johnson-like reactions, and reports of renal and liver dysfunction'(연관·보고, 빈도 없음). accuracy_note·patient_ko 는 '드물게' 추가, patient_en 'Very rare sensitivities like temporary skin reactions … with focused wellness care' — 정맥 투여·SJS·간신장 탈락, 'temporary' 추가."
+  },
+  {
+   "id": "S16-O3",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/effects/0/statement",
+    "/categories/M16/effects/0/patient_en",
+    "/categories/M16/effects/0/patient_zh",
+    "/categories/M16/effects/0/patient_ja"
+   ],
+   "text": "effects/0 statement 는 부정 진술 'is not supported by the US FDA or multiple national regulatory agencies and has insufficient high-quality efficacy evidence'. patient_ko 는 부정을 유지('승인이나 명확한 효과 증거가 부족'). patient_en/zh/ja 는 부정을 없애고 긍정 효과 문장('works to support your body's natural clarity and radiance')으로 바뀜 — 극성 반전."
+  },
+  {
+   "id": "S16-O4",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/effects/1/statement",
+    "/categories/M16/effects/1/patient_ko",
+    "/categories/M16/effects/1/patient_en"
+   ],
+   "text": "effects/1 'Topical vitamin C is supported by stronger evidence than IV vitamin C for photoaging and pigmentation' — 근거 강도 비교(효과 크기 비교 아님). patient_ko '더 확실한 효과를 보입니다'(근거→효과로 바뀜), patient_en 'Daily topical care is a reliable way'(IV 비교 탈락, 'Daily' 추가). 이 진술의 주어(topical vitamin C)는 M16 정맥요법이 아니라 바르는 제형이다(M15 와의 연결은 후속)."
+  },
+  {
+   "id": "S16-O5",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/moa/0/citations/0"
+   ],
+   "text": "Sonthalia 2016 'Glutathione as a skin whitening agent: Facts, myths, evidence and controversies.' — pmc·oa_url 없는 6키 인용. moa/0·AE/0·effects/0 근거."
+  },
+  {
+   "id": "S16-O6",
+   "status": "P",
+   "pointers": [
+    "/categories/M16/name"
+   ],
+   "text": "name 'Intravenous micronutrient / antioxidant therapy (aesthetic)' — '/' 병기, '(aesthetic)' 목적 한정."
+  }
+ ],
+ "expressions": [
+  {
+   "id": "S16-X1",
+   "pointer": "/categories/M16/name",
+   "text": "Intravenous micronutrient / antioxidant therapy",
+   "facets": [
+    "name_candidate",
+    "route",
+    "alternative_list"
+   ]
+  },
+  {
+   "id": "S16-X2",
+   "pointer": "/categories/M16/name",
+   "text": "(aesthetic)",
+   "facets": [
+    "purpose",
+    "scope"
+   ]
+  },
+  {
+   "id": "S16-X3",
+   "pointer": "/categories/M16/moa/0/statement",
+   "text": "inhibits tyrosinase activity",
+   "facets": [
+    "mechanism",
+    "negation"
+   ]
+  },
+  {
+   "id": "S16-X4",
+   "pointer": "/categories/M16/moa/0/statement",
+   "text": "shifts melanogenesis from eumelanin toward pheomelanin",
+   "facets": [
+    "mechanism",
+    "direction"
+   ]
+  },
+  {
+   "id": "S16-X5",
+   "pointer": "/categories/M16/moa/0/statement",
+   "text": "in cultured melanocytes",
+   "facets": [
+    "evidence_context",
+    "condition"
+   ]
+  },
+  {
+   "id": "S16-X6",
+   "pointer": "/categories/M16/moa/0/patient_ko",
+   "text": "어두운 톤 대신 밝은 톤이 돌도록",
+   "facets": [
+    "direction",
+    "comparison"
+   ]
+  },
+  {
+   "id": "S16-X7",
+   "pointer": "/categories/M16/adverse_effects/0/statement",
+   "text": "Glutathione intravenous skin-lightening use",
+   "facets": [
+    "route",
+    "purpose",
+    "ingredient"
+   ]
+  },
+  {
+   "id": "S16-X8",
+   "pointer": "/categories/M16/adverse_effects/0/statement",
+   "text": "has been associated with",
+   "facets": [
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S16-X9",
+   "pointer": "/categories/M16/adverse_effects/0/statement",
+   "text": "skin rashes, Stevens-Johnson-like reactions, and reports of renal and liver dysfunction",
+   "facets": [
+    "event",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S16-X10",
+   "pointer": "/categories/M16/adverse_effects/0/accuracy_note",
+   "text": "드물게 스티븐스-존슨 증후군 등 심각한 피부 반응 보고가 있음",
+   "facets": [
+    "frequency",
+    "degree",
+    "event",
+    "evidence_status"
+   ],
+   "status": "I",
+   "note": "statement 에 빈도 없음"
+  },
+  {
+   "id": "S16-X11",
+   "pointer": "/categories/M16/adverse_effects/0/patient_ko",
+   "text": "드물게 심한 피부 발진이나 간, 신장 수치 변화를 일으킬 수 있습니다",
+   "facets": [
+    "frequency",
+    "degree",
+    "event",
+    "possibility"
+   ]
+  },
+  {
+   "id": "S16-X12",
+   "pointer": "/categories/M16/adverse_effects/0/patient_en",
+   "text": "Very rare sensitivities like temporary skin reactions can occur",
+   "facets": [
+    "frequency",
+    "duration_quality",
+    "possibility"
+   ],
+   "status": "I",
+   "note": "SJS·간신장 탈락"
+  },
+  {
+   "id": "S16-X13",
+   "pointer": "/categories/M16/adverse_effects/0/patient_en",
+   "text": "focused wellness care",
+   "facets": [
+    "name_candidate"
+   ],
+   "status": "I",
+   "note": "정맥 투여 표현 탈락"
+  },
+  {
+   "id": "S16-X14",
+   "pointer": "/categories/M16/effects/0/statement",
+   "text": "is not supported by the US FDA or multiple national regulatory agencies",
+   "facets": [
+    "negation",
+    "regulatory"
+   ]
+  },
+  {
+   "id": "S16-X15",
+   "pointer": "/categories/M16/effects/0/statement",
+   "text": "has insufficient high-quality efficacy evidence",
+   "facets": [
+    "negation",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S16-X16",
+   "pointer": "/categories/M16/effects/0/accuracy_note",
+   "text": "FDA 승인 사항이 아니며 근거 수준에 논란이 있음",
+   "facets": [
+    "negation",
+    "regulatory",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S16-X17",
+   "pointer": "/categories/M16/effects/0/patient_ko",
+   "text": "아직 공식적인 승인이나 명확한 효과 증거가 부족합니다",
+   "facets": [
+    "negation",
+    "regulatory",
+    "evidence_status",
+    "time"
+   ]
+  },
+  {
+   "id": "S16-X18",
+   "pointer": "/categories/M16/effects/0/patient_en",
+   "text": "works to support your body's natural clarity and radiance",
+   "facets": [
+    "effect"
+   ],
+   "status": "I",
+   "note": "부정 진술이 긍정으로"
+  },
+  {
+   "id": "S16-X19",
+   "pointer": "/categories/M16/effects/1/statement",
+   "text": "is supported by stronger evidence than IV vitamin C",
+   "facets": [
+    "comparison",
+    "evidence_status",
+    "route"
+   ]
+  },
+  {
+   "id": "S16-X20",
+   "pointer": "/categories/M16/effects/1/statement",
+   "text": "for photoaging and pigmentation",
+   "facets": [
+    "concern",
+    "scope"
+   ]
+  },
+  {
+   "id": "S16-X21",
+   "pointer": "/categories/M16/effects/1/accuracy_note",
+   "text": "바르는 비타민 C의 근거가 더 풍부함",
+   "facets": [
+    "comparison",
+    "evidence_status"
+   ]
+  },
+  {
+   "id": "S16-X22",
+   "pointer": "/categories/M16/effects/1/patient_ko",
+   "text": "주사보다 피부에 직접 바르는 형태가 더 확실한 효과를 보입니다",
+   "facets": [
+    "comparison",
+    "route",
+    "effect"
+   ],
+   "status": "I",
+   "note": "근거 비교가 효과 비교로"
+  },
+  {
+   "id": "S16-X23",
+   "pointer": "/categories/M16/effects/1/patient_en",
+   "text": "Daily topical care",
+   "facets": [
+    "frequency",
+    "route"
+   ],
+   "status": "I",
+   "note": "IV 비교 탈락·'Daily' 추가"
+  },
+  {
+   "id": "S16-R1",
+   "pointer": "/categories/M16/effects/1/patient_en",
+   "text": "uneven tones and signs of aging",
+   "facets": [
+    "concern",
+    "negation"
+   ],
+   "note": "읽기 검토(정규식 미포함 후보 대조)에서 추가"
+  }
+ ],
+ "issues": [
+  {
+   "id": "S16-I1",
+   "class": "I",
+   "pointers": [
+    "/categories/M16/effects/0/patient_en",
+    "/categories/M16/effects/0/patient_zh",
+    "/categories/M16/effects/0/patient_ja"
+   ],
+   "text": "부정·불승인 진술(effects/0)이 en/zh/ja 에서 긍정 효과 문장으로 반전. 가장 영향 큰 언어 간 불일치 사례. I-LANG."
+  },
+  {
+   "id": "S16-I2",
+   "class": "I",
+   "pointers": [
+    "/categories/M16/adverse_effects/0/patient_en",
+    "/categories/M16/adverse_effects/0/accuracy_note",
+    "/categories/M16/adverse_effects/0/patient_ko",
+    "/categories/M16/effects/1/patient_ko",
+    "/categories/M16/effects/1/patient_en"
+   ],
+   "text": "중증 사건 탈락·'temporary'·'드물게' 추가, 근거 비교→효과 비교. I-LANG."
+  },
+  {
+   "id": "S16-F1",
+   "class": "F",
+   "pointers": [
+    "/categories/M16/effects/1/statement"
+   ],
+   "text": "topical vitamin C 진술이 IV 카테고리에 있음 — 대상 시술 연결(M15 등)은 후속, 원문 위치 보존."
+  },
+  {
+   "id": "S16-F2",
+   "class": "F",
+   "pointers": [
+    "/categories/M16/effects/0"
+   ],
+   "text": "effects 배열의 '효과 근거 불충분' 진술 — 정보 종류(근거 상태) 후속 판단."
+  },
+  {
+   "id": "S16-B1",
+   "class": "B",
+   "pointers": [
+    "/categories/M16/adverse_effects/0/statement"
+   ],
+   "text": "빈도 정보 없음('드물게' 근거 없음)."
+  }
+ ]
+}

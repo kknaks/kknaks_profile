@@ -1,0 +1,335 @@
+{
+ "segment": "S04",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/3/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "스킨부스터",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "피부 재생 주사 (스킨부스터)",
+    "name,effect,route,paraphrase",
+    "괄호 안에 카테고리명"
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "피부 속에 영양 성분을 직접 넣어주어 피부결과 탄력을 개선하는 주사입니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "피부 속에",
+    "site,depth",
+    ""
+   ],
+   [
+    "영양 성분",
+    "substance",
+    "성분명 미기재(how_it_works 에 예시)"
+   ],
+   [
+    "직접 넣어주어",
+    "manner,route",
+    ""
+   ],
+   [
+    "피부결과 탄력을 개선하는",
+    "effect,concern",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "피부 재생을 돕는 성분(히알루론산, PN 등)을 피부 얕은 층에 여러 번 주사합니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "피부 재생을 돕는 성분(히알루론산, PN 등)",
+    "substance,paraphrase",
+    "괄호는 예시 목록 · 「등」 열린 목록"
+   ],
+   [
+    "히알루론산",
+    "substance",
+    ""
+   ],
+   [
+    "PN",
+    "substance,name",
+    "약어 — 풀이 없음(S04 cc1 a 에 「연어 DNA에서 추출한 성분(PN)」)"
+   ],
+   [
+    "피부 얕은 층에",
+    "site,depth",
+    "깊이 수식 「얕은」 — mm 아님"
+   ],
+   [
+    "여러 번 주사합니다",
+    "frequency,route",
+    "한 회 시술 안의 주사 횟수(잠정)"
+   ],
+   [
+    "피부가 안쪽부터 촉촉해지고, 잔주름과 피부결이 개선됩니다.",
+    "sentence,effect",
+    ""
+   ],
+   [
+    "안쪽부터",
+    "site,manner",
+    ""
+   ],
+   [
+    "잔주름과 피부결이 개선됩니다",
+    "effect,concern",
+    ""
+   ],
+   [
+    "피부가 안쪽부터 촉촉해지고",
+    "site,manner,effect",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "약 3-6개월 지속됩니다.",
+    "sentence,time,approx,range,quantity",
+    "지속 대상 생략"
+   ],
+   [
+    "보통 2-3회 반복 시술합니다.",
+    "sentence,frequency,range,quantity",
+    "간격 미기재"
+   ],
+   [
+    "약 3-6개월",
+    "approx,range,quantity",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "보통 2-3회 반복 시술",
+    "frequency,range,quantity",
+    "간격 미기재 · regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "가는 바늘로 여러 번 찔리는 따끔함, 마취 크림 사용",
+    "sensory,degree,frequency",
+    ""
+   ],
+   [
+    "가는 바늘",
+    "device,degree",
+    "두께 수식 「가는」 — 바늘 굵기"
+   ],
+   [
+    "여러 번 찔리는 따끔함",
+    "frequency,sensory",
+    ""
+   ],
+   [
+    "마취 크림 사용",
+    "substance",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "시술 부위에 자잘한 주사 자국이 1-2일, 일상생활 가능",
+    "site,adverse,degree,time,range,quantity,possibility",
+    ""
+   ],
+   [
+    "자잘한 주사 자국이 1-2일",
+    "degree,adverse,time,range,quantity",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "스킨부스터와 필러는 같은 건가요?",
+    "sentence,comparison,reference",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "다릅니다.",
+    "negation,comparison",
+    ""
+   ],
+   [
+    "필러는 볼륨을 채우는 용도이고, 스킨부스터는 피부 자체의 질감과 탄력을 개선하는 용도예요.",
+    "sentence,comparison,reference,effect",
+    ""
+   ],
+   [
+    "스킨부스터는 더 묽은 제형을 얕게 넣습니다.",
+    "sentence,comparison,degree,depth",
+    ""
+   ],
+   [
+    "더 묽은 제형",
+    "comparison,degree,substance",
+    "비교 대상(필러) 생략"
+   ],
+   [
+    "얕게",
+    "depth",
+    "깊이 수식 — 수치 없음"
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "리쥬란(연어주사)이 생선 알레르기와 관련 있나요?",
+    "sentence,name,paraphrase,adverse",
+    ""
+   ],
+   [
+    "리쥬란(연어주사)",
+    "name,paraphrase",
+    "제품명+통칭"
+   ],
+   [
+    "생선 알레르기",
+    "adverse,condition",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "리쥬란은 연어 DNA에서 추출한 성분(PN)으로, 고도로 정제되어 일반적으로 반응은 드뭅니다.",
+    "sentence,name,substance,frequency",
+    ""
+   ],
+   [
+    "연어 DNA에서 추출한 성분(PN)",
+    "substance,paraphrase",
+    ""
+   ],
+   [
+    "고도로 정제되어",
+    "degree,rationale",
+    ""
+   ],
+   [
+    "일반적으로 반응은 드뭅니다",
+    "frequency,adverse",
+    "「반응」 종류 미특정 · 수치 없음"
+   ],
+   [
+    "다만 연어·어류 등 심한 해산물(생선) 알레르기가 있는 분은 금기에 해당할 수 있으므로 시술 전 반드시 알레르기 이력을 의료진에게 알리고, 필요 시 대체 시술을 상의하세요.",
+    "sentence,target,condition,contraindication,possibility,instruction,time",
+    ""
+   ],
+   [
+    "연어·어류 등 심한 해산물(생선) 알레르기가 있는 분",
+    "target,condition,degree",
+    "대상 집단 · 「심한」 정도 조건"
+   ],
+   [
+    "금기에 해당할 수 있으므로",
+    "contraindication,possibility",
+    "금기를 가능성으로 표현"
+   ],
+   [
+    "시술 전 반드시 알레르기 이력을 의료진에게 알리고",
+    "time,instruction,actor",
+    ""
+   ],
+   [
+    "필요 시 대체 시술을 상의하세요",
+    "condition,instruction",
+    "대체 시술 이름 미기재"
+   ],
+   [
+    "다만",
+    "contrast,condition",
+    "예외·주의 도입 · 별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "바르는 화장품보다 효과가 좋나요?",
+    "sentence,comparison",
+    ""
+   ],
+   [
+    "바르는 화장품보다",
+    "comparison,route",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "피부 속에 직접 성분을 넣어주기 때문에 흡수율이 화장품보다 훨씬 높습니다.",
+    "sentence,rationale,comparison,degree",
+    ""
+   ],
+   [
+    "흡수율이 화장품보다 훨씬 높습니다",
+    "comparison,degree",
+    "수치 없음"
+   ],
+   [
+    "다만 화장품과 시술은 서로 보완하는 관계예요.",
+    "sentence,relation",
+    ""
+   ],
+   [
+    "서로 보완하는 관계",
+    "relation",
+    ""
+   ],
+   [
+    "직접 성분을 넣어주기 때문에",
+    "manner,rationale",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ],
+   [
+    "다만",
+    "contrast",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/how_it_works",
+   "P",
+   "「여러 번 주사합니다」(한 회 안 다회 주사로 보임)와 duration_simple 「2-3회 반복 시술」(회차)은 다른 횟수 개념일 수 있다 — 잠정"
+  ],
+  [
+   "/common_concerns/1/q",
+   "P",
+   "제품명 「리쥬란」이 카테고리 설명 안에 처음 등장. 「연어주사」는 통칭"
+  ],
+  [
+   "/common_concerns/1/a",
+   "P",
+   "금기를 「해당할 수 있으므로」 가능성으로 표현 · 대상=「심한 해산물(생선) 알레르기가 있는 분」 · 시점=「시술 전」 행동 지시. 임상적으로 승인하지 않는다"
+  ],
+  [
+   "/common_concerns/1/a",
+   "B",
+   "「반응」의 종류와 「드뭅니다」 빈도 수치 미기재 · 「대체 시술」 이름 미기재"
+  ],
+  [
+   "/common_concerns/2/a",
+   "B",
+   "「흡수율이 … 훨씬 높습니다」 근거·수치 미기재"
+  ],
+  [
+   "/common_concerns/1/a",
+   "F",
+   "리쥬란·PN 과 카테고리 스킨부스터의 관계(제품/성분/카테고리)는 다른 원장과 함께 후속 판단"
+  ]
+ ]
+}

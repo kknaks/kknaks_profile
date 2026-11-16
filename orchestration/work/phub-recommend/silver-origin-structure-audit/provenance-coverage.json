@@ -1,0 +1,4145 @@
+{
+  "method": "literal existing-field presence probes, not schema errors; indirect lineage can exist in other fields or file-level metadata; exact field spelling matters",
+  "collections": [
+    {
+      "collection": "step1.items",
+      "denominator": 395,
+      "fields": {
+        "source": {
+          "present": 395,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step2.product_family",
+      "denominator": 354,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 354,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step3.strings",
+      "denominator": 176,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 176,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 176,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step4.expressions",
+      "denominator": 181,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 181,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 181,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 181,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 164,
+          "missing": 17,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 181,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step5.ledger",
+      "denominator": 521,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 521,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 521,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 521,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 521,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step5.units",
+      "denominator": 162,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 162,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 162,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 162,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step5.product_links",
+      "denominator": 354,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 354,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step5.extracted",
+      "denominator": 521,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 521,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step5.taxonomy_products",
+      "denominator": 59,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 1,
+          "missing": 58,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 1,
+          "missing": 58,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 59,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step6.contains",
+      "denominator": 49,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 49,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 49,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step6.slots",
+      "denominator": 8,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 8,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 8,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step7.correspondence",
+      "denominator": 249,
+      "fields": {
+        "source": {
+          "present": 249,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 249,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 1,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 249,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 249,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step7.edges",
+      "denominator": 437,
+      "fields": {
+        "source": {
+          "present": 437,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 437,
+          "missing": 0,
+          "null": 2,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 154,
+          "missing": 283,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 437,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 267,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 437,
+          "missing": 0,
+          "null": 255,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 437,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 437,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step7.step8_notes",
+      "denominator": 245,
+      "fields": {
+        "source": {
+          "present": 245,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 245,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step7.combo_members",
+      "denominator": 243,
+      "fields": {
+        "source": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 243,
+          "missing": 0,
+          "null": 80,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 243,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 243,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 243,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step8.claims",
+      "denominator": 395,
+      "fields": {
+        "source": {
+          "present": 395,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 395,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 23,
+          "missing": 372,
+          "null": 0,
+          "empty_list": 0,
+          "false": 21
+        },
+        "condition": {
+          "present": 240,
+          "missing": 155,
+          "null": 27,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 115,
+          "missing": 280,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 395,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 395,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 395,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step8.condition_claims",
+      "denominator": 373,
+      "fields": {
+        "source": {
+          "present": 373,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 373,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 14,
+          "missing": 359,
+          "null": 0,
+          "empty_list": 0,
+          "false": 13
+        },
+        "condition": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 373,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 31,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 373,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 373,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "rule": {
+          "present": 3,
+          "missing": 370,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 373,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    },
+    {
+      "collection": "step9.records",
+      "denominator": 5847,
+      "fields": {
+        "source": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_id": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_ids": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_index": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "file": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "key": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.file": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.path": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.record": {
+          "present": 5847,
+          "missing": 0,
+          "null": 962,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source.sha256": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_refs": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "source_record_id": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "snapshot_ref": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "version": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "scope_conditional": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "condition": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "conditions": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "anchor_sites": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "target_level": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "role": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flag": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "flags": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "resolve_flag": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "status": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.status": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "attach.flags": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 5491,
+          "false": 0
+        },
+        "rule": {
+          "present": 5847,
+          "missing": 0,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "decided_by": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "basis": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        },
+        "review_status": {
+          "present": 0,
+          "missing": 5847,
+          "null": 0,
+          "empty_list": 0,
+          "false": 0
+        }
+      }
+    }
+  ]
+}

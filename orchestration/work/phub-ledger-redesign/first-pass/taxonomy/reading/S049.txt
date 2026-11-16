@@ -1,0 +1,201 @@
+# S049  scope=M16 수액치료  units=M16-new-1774325959851 items/3 | M16-new-1774325959851 items/4 | M16-new-1774325959851 items/5 | M16-new-1774325959851 items/6 | M16-new-1774325959851 items/7 | M16-new-1774325959851 items/8 | M16-new-1774325959851 items/9 | M16-new-1774325959851 items/10 | M16-new-1774325959851 items/11 | M16-new-1774325959851 items/12 | M16-new-1774325959851 items/13 | extracted | products 컨테이너 | name
+# 상위 문맥: [{"pointer": "/modality/15", "id": "M16", "category": "수액치료", "name": "수액치료"}, {"pointer": "/modality/15/subcategories/6", "id": "M16-new-1774325959851", "label": "기타"}]
+@ /modality/15/subcategories/6/items/3 auto-M16-1775361179334 HP주사(감초주사)
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775361179334"
+  /name = "HP주사(감초주사)"
+  /detail = "지방분해 주사"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "대두 레시틴+데옥시콜산 지방분해 주사"
+  /extracted/mechanism = "포스파티딜콜린(PPC)이 지방세포막을 유화(emulsification)하고, 데옥시콜산이 세포막을 파괴하여 지방세포를 용해한다. 용해된 지방은 대사 경로를 통해 체외로 배출된다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [5] = 0:"이중턱" ‖ 1:"팔뚝" ‖ 2:"복부" ‖ 3:"옆구리" ‖ 4:"허벅지 국소지방"
+  /extracted/safety {common,serious}
+  /extracted/safety/common [4] = 0:"부종(1-2주)" ‖ 1:"통증" ‖ 2:"경결감" ‖ 3:"멍"
+  /extracted/safety/serious [2] = 0:"피부 괴사(과량 주입 시)" ‖ 1:"비대칭"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "2-4주 간격 3-5회"
+  /extracted/aftercare [2] = 0:"시술 부위 강한 압박 자제" ‖ 1:"음주 자제 1주"
+@ /modality/15/subcategories/6/items/4 auto-M16-1775361777675 미녹시딜 두피 메조
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775361777675"
+  /name = "미녹시딜 두피 메조"
+  /detail = "미녹시딜 진피 주입 · 탈모 치료"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "미녹시딜을 직접 두피 진피층에 주입하여 탈모 부위의 모발 성장을 촉진하는 메조테라피 치료법"
+  /extracted/mechanism = "미녹시딜이 혈관을 확장시켜 모낭 주변의 혈류량을 증가시키고 산소 및 영양분 공급을 개선합니다. 또한 모낭의 성장기를 연장시키고 휴지기 모낭을 활성화하여 새로운 모발 성장을 유도합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"남성형 탈모 (안드로겐성 탈모)" ‖ 1:"여성형 탈모"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주입 부위 일시적 발적 및 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술 당일 샴푸 자제" ‖ 1:"24시간 내 음주 및 사우나 자제" ‖ 2:"시술 부위 강한 압박 자제"
+@ /modality/15/subcategories/6/items/5 auto-M16-1775363074847 LDM초음파관리
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775363074847"
+  /name = "LDM초음파관리"
+  /detail = "제이시스 · 국소동적미세마사지 · HA 합성 촉진"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "제이시스 LDM 초음파를 이용한 국소동적미세마사지로 히알루론산 합성을 촉진하는 비침습적 피부재생 관리"
+  /extracted/mechanism = "특정 주파수의 초음파가 피부 깊숙이 침투하여 국소적인 동적 미세마사지 효과를 생성합니다. 이러한 물리적 자극이 섬유아세포를 활성화하여 히알루론산과 콜라겐 합성을 촉진하고 피부 재생을 도모합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선 및 주름 완화" ‖ 1:"건조한 피부의 수분 공급 및 보습력 향상"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 직후 일시적인 홍조나 따끔거림"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [2] = 0:"주사 부위 압박 수분간" ‖ 1:"충분한 수분 섭취"
+@ /modality/15/subcategories/6/items/6 auto-M16-1775364775099 성장호르몬주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364775099"
+  /name = "성장호르몬주사"
+  /detail = "GH 항노화"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "GH 성장호르몬을 이용한 항노화와 신체활력 증진을 위한 수액치료"
+  /extracted/mechanism = "외부에서 공급된 성장호르몬이 IGF-1 생성을 촉진합니다. 단백질 합성과 세포재생 활성화로 근육량 증가와 피부탄력 개선효과를 나타냅니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"항노화" ‖ 1:"근육량 증가"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"부종 가능성"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "3-6개월"
+  /extracted/aftercare [2] = 0:"정기적인 혈액검사" ‖ 1:"운동병행 권장"
+@ /modality/15/subcategories/6/items/7 auto-M16-1775364797151 프로락틴주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364797151"
+  /name = "프로락틴주사"
+  /detail = "프로작 탈모주입"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "프로작 성분을 탈모부위에 직접 주입하여 모발재생을 돕는 수액치료"
+  /extracted/mechanism = "프로락틴이 모낭의 성장기를 연장시킵니다. 두피혈액순환 개선과 모낭세포 활성화로 모발굵기와 밀도가 증가합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"안드로겐성 탈모" ‖ 1:"모발밀도 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"두피 일시적 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-3개월"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술부위 24시간 세발자제" ‖ 1:"주사 부위 압박 수분간" ‖ 2:"충분한 수분 섭취"
+@ /modality/15/subcategories/6/items/8 auto-M16-1775364797152 콘드로이틴주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775364797152"
+  /name = "콘드로이틴주사"
+  /detail = "관절+피부 보조"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "관절연골 보호와 피부탄력 개선을 동시에 돕는 콘드로이틴 수액치료"
+  /extracted/mechanism = "콘드로이틴황산이 연골기질의 구성성분을 보충합니다. 히알루론산 합성 촉진으로 관절윤활과 피부수분보유력이 동시에 개선됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"관절염 완화" ‖ 1:"피부건조 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사부위 경미한 부종"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-4개월"
+  /extracted/aftercare [2] = 0:"관절부위 무리한 운동 자제" ‖ 1:"충분한 수분섭취"
+@ /modality/15/subcategories/6/items/9 auto-M16-1775403097837 러브핸들주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403097837"
+  /name = "러브핸들주사"
+  /detail = "옆구리 지방분해 주사"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "옆구리 부위의 지방세포를 분해하여 체형을 개선하는 비수술적 미용시술"
+  /extracted/mechanism = "포스파티딜콜린, 데옥시콜산 등의 지방분해 성분이 지방세포막을 파괴하여 세포 내 지방을 유리시킵니다. 분해된 지방은 림프계와 혈액순환을 통해 체외로 배출됩니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"옆구리 국소 지방 축적" ‖ 1:"허리라인 개선 희망자"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"시술 부위 부종 및 멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [3] = 0:"시술 후 24시간 음주 금지" ‖ 1:"충분한 수분 섭취" ‖ 2:"가벼운 마사지 권장"
+@ /modality/15/subcategories/6/items/10 auto-M16-1775403120672 셀룰라이트주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403120672"
+  /name = "셀룰라이트주사"
+  /detail = "셀룰라이트 부위 지방+결합조직 분해"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "셀룰라이트 부위에 지방분해효소나 혈관확장제를 주사하여 지방세포와 섬유결합조직을 분해하는 미용시술"
+  /extracted/mechanism = "포스파티딜콜린, 데옥시콜산 등의 지방분해 성분이 지방세포막을 파괴하고 지방을 유화시킵니다. 동시에 혈관확장제가 혈액순환을 개선하여 섬유화된 결합조직을 이완시키고 림프배액을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"허벅지, 엉덩이 부위의 셀룰라이트" ‖ 1:"국소적인 오렌지껍질 피부 개선"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사부위 부종, 멍, 압통"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "2-4주"
+  /extracted/onset_duration/duration = "6-12개월"
+  /extracted/aftercare [1] = 0:"충분한 수분섭취와 가벼운 마사지로 림프순환 촉진"
+@ /modality/15/subcategories/6/items/11 auto-M16-1775403149102 나드주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403149102"
+  /name = "나드주사"
+  /detail = "NAD+ 정맥주사 · 세포에너지 재생 · 항노화"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "NAD+ 정맥주사를 통해 세포의 에너지 대사를 활성화하고 노화 과정을 지연시키는 항노화 미용시술"
+  /extracted/mechanism = "NAD+는 세포 내 미토콘드리아에서 ATP 생성을 촉진하여 세포 에너지 대사를 활성화합니다. 또한 DNA 손상 복구 효소인 PARP와 시르투인을 활성화하여 세포 노화를 억제하고 재생을 촉진합니다."
+  /extracted/indications {primary}
+  /extracted/indications/primary [2] = 0:"피부 탄력 개선 및 주름 감소" ‖ 1:"세포 에너지 증진을 통한 전반적 항노화"
+  /extracted/safety {common}
+  /extracted/safety/common [1] = 0:"주사 부위 통증 및 혈관염"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "1-2주"
+  /extracted/onset_duration/duration = "2-3개월"
+  /extracted/aftercare [2] = 0:"충분한 수분 섭취" ‖ 1:"규칙적인 수면과 균형잡힌 식단 유지"
+@ /modality/15/subcategories/6/items/12 auto-M16-1775403176938 복부슬림주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403176938"
+  /name = "복부슬림주사"
+  /detail = "복부 지방분해"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "복부 지방을 집중적으로 분해하는 전용 지방분해 주사"
+  /extracted/mechanism = "복부 지방의 특성에 맞춘 지방분해 성분으로 효과적인 복부 라인 개선"
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"복부 지방 감소" ‖ 1:"복부 라인 개선" ‖ 2:"뱃살 제거"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"부종" ‖ 1:"압통" ‖ 2:"일시적 경결" ‖ 3:"멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "4-6주"
+  /extracted/onset_duration/duration = "12-18개월"
+  /extracted/aftercare [4] = 0:"복대 착용" ‖ 1:"운동 병행" ‖ 2:"식이조절" ‖ 3:"충분한 수분 섭취"
+@ /modality/15/subcategories/6/items/13 auto-M16-1775403176939 등살주사
+  . {id,name,detail,extracted}
+  /id = "auto-M16-1775403176939"
+  /name = "등살주사"
+  /detail = "등 브라라인"
+  /extracted {overview,mechanism,indications,safety,onset_duration,aftercare}
+  /extracted/overview = "등 브라라인의 불필요한 지방을 제거하여 매끄러운 등 라인을 만드는 시술"
+  /extracted/mechanism = "등 부위의 지방축적 특성을 고려한 맞춤형 지방분해 성분 적용"
+  /extracted/indications {primary}
+  /extracted/indications/primary [3] = 0:"등살 제거" ‖ 1:"브라라인 개선" ‖ 2:"등 라인 정리"
+  /extracted/safety {common}
+  /extracted/safety/common [4] = 0:"부종" ‖ 1:"압통" ‖ 2:"일시적 불편감" ‖ 3:"멍"
+  /extracted/onset_duration {onset,duration}
+  /extracted/onset_duration/onset = "3-5주"
+  /extracted/onset_duration/duration = "10-14개월"
+  /extracted/aftercare [4] = 0:"꽉 끼는 속옷 피하기" ‖ 1:"등 마사지" ‖ 2:"자세 교정" ‖ 3:"스트레칭"
+@ /modality/15 M16 수액치료 수액치료
+  /extracted {overview,mechanism,indications,contraindications,safety,onset_duration,aftercare,related_techniques}
+  /extracted/overview = "수액치료는 비타민, 미네랄, 아미노산, 항산화제 등의 영양 성분을 정맥주사(IV)를 통해 혈관에 직접 투여하는 시술이다. 한국 피부과와 미용 클리닉에서 '백옥주사(글루타치온)', '신데렐라주사(알파리포산)', '마늘주사(비타민B1)' 등의 이름으로 널리 시행되고 있다. 경구 복용보다 높은 혈중 농도를 빠르게 달성할 수 있다는 것이 장점이다."
+  /extracted/mechanism = "영양 성분을 정맥을 통해 직접 혈류에 투여하면, 소화기관을 거치지 않으므로(위장관 초회통과효과 회피) 생체이용률(몸이 실제로 사용하는 비율)이 거의 100%에 가깝다. 경구 복용 시 흡수율이 10~30%에 불과한 비타민C 같은 성분도, 정맥주사로는 훨씬 높은 혈중 농도를 달성할 수 있다. 고농도로 투여된 항산화 성분(글루타치온, 비타민C 등)은 활성산소를 중화하고, 멜라닌(피부 색소) 생성을 억제하며, 세포 대사를 촉진하는 효과를 나타낸다."
+  /extracted/indications {primary,extended}
+  /extracted/indications/primary [3] = 0:"피부 미백 및 톤 개선 (글루타치온, 비타민C)" ‖ 1:"피로 회복 및 활력 증진 (비타민B군, 아미노산)" ‖ 2:"항산화/노화 방지 (비타민C, 알파리포산)"
+  /extracted/indications/extended [4] = 0:"숙취 해소" ‖ 1:"면역력 강화" ‖ 2:"체중 감량 보조 (지방 대사 촉진 성분)" ‖ 3:"모발 건강 개선"
+  /extracted/contraindications {absolute,relative}
+  /extracted/contraindications/absolute [3] = 0:"주입 성분에 알레르기가 있는 경우" ‖ 1:"G6PD 결핍증 환자 (고용량 비타민C 투여 시 용혈 위험)" ‖ 2:"심한 신부전 환자 (전해질 불균형 위험)"
+  /extracted/contraindications/relative [3] = 0:"심부전 환자 (과다한 수액으로 심장 부담)" ‖ 1:"당뇨병 환자 (포도당 포함 수액 주의)" ‖ 2:"임신 중이거나 수유 중인 경우"
+  /extracted/safety {common,uncommon,serious}
+  /extracted/safety/common [3] = 0:"주사 부위 통증 및 멍" ‖ 1:"주입 중 혈관 따라 약간의 화끈거림" ‖ 2:"일시적 어지러움"
+  /extracted/safety/uncommon [2] = 0:"정맥염 (혈관 벽 자극으로 인한 염증)" ‖ 1:"알레르기 반응 (피부 발진, 가려움)"
+  /extracted/safety/serious [3] = 0:"아나필락시스 (심각한 전신 알레르기 반응 -- 극히 드묾)" ‖ 1:"전해질 불균형 (부적절한 성분 투여 시)" ‖ 2:"감염 (무균 관리가 안 될 경우)"
+  /extracted/onset_duration {onset,peak,duration}
+  /extracted/onset_duration/onset = "주입 중~직후 피로 회복 효과 체감"
+  /extracted/onset_duration/peak = "시술 후 1~3일 뒤 피부 톤 개선 체감"
+  /extracted/onset_duration/duration = "1~2주 유지 (정기적 시술로 효과 누적)"
+  /extracted/aftercare [3] = 0:"주사 부위를 5분 이상 눌러서 지혈" ‖ 1:"시술 당일 과도한 음주 피하기" ‖ 2:"충분한 수분 섭취"
+  /extracted/related_techniques [3] = 0:"메조테라피 -- 피부에 직접 영양 성분 주입" ‖ 1:"PRP(혈소판풍부혈장) -- 자가 혈액 활용 재생 치료" ‖ 2:"경구 영양제 -- 유지 요법으로 병행"
+  /products [0]
+  /name = "수액치료"

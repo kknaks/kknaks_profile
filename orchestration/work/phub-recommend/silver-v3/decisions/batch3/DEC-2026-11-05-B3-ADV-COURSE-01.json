@@ -1,0 +1,29 @@
+{
+ "id": "DEC-2026-11-05-B3-ADV-COURSE-01",
+ "kind": "adverse_tuple_assign",
+ "target": {
+  "locator": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@M16/6",
+  "kind": "expression"
+ },
+ "new_value": {
+  "tuples": [
+   {
+    "event_id": "DIC-962963588f",
+    "site_id": "none",
+    "course_id": "DIC-13f6ec5720",
+    "qualifier_id": "none"
+   }
+  ]
+ },
+ "reason": "표현 「지속적 경결 (…)」(M16 DCA 타임라인) → (경결, none, 지속). 경과 「지속」은 DICT-COURSE-01 로 사전에 추가. 단위가 없으면 이 결정이 세운다. 사용자 「지속도 있을 거야」(2026-11-05) · 표현 locator 는 ERD 코드 키 형식(post-procedure-timeline.json:timelines[].phases[].abnormal[]@M16/6) · 원장 위치 post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/3/0",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].abnormal[]@5/3/0"
+  }
+ ],
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "approval_note": "결정 묶음 3 추가"
+}

@@ -1,0 +1,235 @@
+{
+ "segment": "S10",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/9/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "HIFES/EMS",
+    "name,alternative",
+    "「/」 두 약어 — 관계 미확정 · 풀이 없음"
+   ]
+  ],
+  "/patient_name": [
+   [
+    "얼굴 근육 운동 기기 (엠페이스 등)",
+    "name,site,device,paraphrase",
+    "괄호 안 제품명 · 「등」"
+   ],
+   [
+    "엠페이스",
+    "name",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "전기 자극으로 얼굴 근육을 운동시켜 탄력을 높이는 시술입니다.",
+    "sentence,device_param,site,effect",
+    ""
+   ],
+   [
+    "얼굴 근육",
+    "site",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "기기가 얼굴 근육에 전기 자극을 보내 근육을 수축시킵니다.",
+    "sentence,device_param,site,mechanism",
+    ""
+   ],
+   [
+    "동시에 고주파 에너지로 피부 콜라겐 재생도 유도합니다.",
+    "sentence,time,device_param,mechanism",
+    "「동시에」 — 두 에너지 병행"
+   ],
+   [
+    "얼굴 근육이 탄탄해지면서 자연스러운 리프팅 효과가 나타납니다.",
+    "sentence,effect,manner",
+    ""
+   ],
+   [
+    "자연스러운 리프팅 효과",
+    "manner,effect",
+    "별도 읽기 검토(형태소 수식어 대조)로 보충"
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "약 3-6개월 지속, 정기적 시술로 유지합니다.",
+    "time,approx,range,quantity,frequency",
+    ""
+   ],
+   [
+    "정기적 시술로 유지합니다",
+    "frequency,management",
+    "간격 미기재"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "전기 자극에 의한 근육 떨림 느낌, 통증은 거의 없음",
+    "cause,sensory,degree,negation",
+    ""
+   ],
+   [
+    "통증은 거의 없음",
+    "sensory,degree,negation",
+    ""
+   ]
+  ],
+  "/downtime": [
+   [
+    "없음 - 바로 일상 복귀 가능",
+    "negation,time,possibility",
+    ""
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "전기 자극이 위험하지 않나요?",
+    "sentence,adverse,negation",
+    ""
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "심장 박동기·제세동기 등 몸에 이식된 전자기기가 있거나 임신 중이신 분, 치료 부위에 활동성 감염이 있는 분은 시술 대상이 아닙니다.",
+    "sentence,target,condition,contraindication,negation",
+    ""
+   ],
+   [
+    "심장 박동기·제세동기 등 몸에 이식된 전자기기가 있거나",
+    "target,condition,device",
+    "「등」 열린 목록"
+   ],
+   [
+    "임신 중이신 분",
+    "target,condition,time",
+    ""
+   ],
+   [
+    "치료 부위에 활동성 감염이 있는 분",
+    "target,condition,site",
+    ""
+   ],
+   [
+    "시술 대상이 아닙니다",
+    "contraindication,negation",
+    "단정 표현(가능성 아님)"
+   ],
+   [
+    "치료 부위에 금속 임플란트가 있는 분도 반드시 사전에 알려주세요.",
+    "sentence,target,condition,site,instruction,time",
+    ""
+   ],
+   [
+    "금속 임플란트가 있는 분도",
+    "target,condition",
+    "「도」 — 대상 아님인지 알림 대상인지 원문은 알림만 지시"
+   ],
+   [
+    "반드시 사전에 알려주세요",
+    "instruction,time",
+    ""
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "효과가 바로 느껴지나요?",
+    "sentence,time,effect",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "1-2주 후부터 서서히 느껴지며, 4주 후에 확실한 변화를 느끼시는 분이 많아요.",
+    "sentence,time,range,quantity,manner,frequency",
+    ""
+   ],
+   [
+    "1-2주 후부터 서서히",
+    "time,range,quantity,manner",
+    "기준 시점 생략(첫 시술 후/코스 시작 후 불명)"
+   ],
+   [
+    "4주 후에 확실한 변화",
+    "time,quantity,degree",
+    ""
+   ],
+   [
+    "느끼시는 분이 많아요",
+    "frequency,target",
+    "비율 수치 없음"
+   ],
+   [
+    "보통 4회 정도 코스로 시술합니다.",
+    "sentence,frequency,quantity,approx",
+    "간격 미기재"
+   ],
+   [
+    "보통 4회 정도 코스로",
+    "frequency,quantity,approx",
+    "간격 미기재 · regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "얼굴 운동을 직접 해도 같은 효과인가요?",
+    "sentence,comparison",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "일반적인 얼굴 운동으로는 깊은 표정근까지 자극하기 어렵습니다.",
+    "sentence,comparison,depth,site,possibility,negation",
+    ""
+   ],
+   [
+    "깊은 표정근까지",
+    "depth,site",
+    ""
+   ],
+   [
+    "자극하기 어렵습니다",
+    "possibility,negation",
+    ""
+   ],
+   [
+    "기기는 특정 근육에 정확하게 강한 수축을 유도할 수 있어요.",
+    "sentence,site,manner,degree,possibility",
+    ""
+   ],
+   [
+    "정확하게 강한 수축",
+    "manner,degree",
+    ""
+   ],
+   [
+    "유도할 수 있어요",
+    "possibility",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/0/a",
+   "P",
+   "질문(전기 자극 위험)에 금기 대상 목록으로 답한다. 대상 3종은 「시술 대상이 아닙니다」 단정, 금속 임플란트는 「알려주세요」 알림 지시로 강도가 다르다. 임상적으로 승인하지 않는다"
+  ],
+  [
+   "/common_concerns/1/a",
+   "B",
+   "효과 체감 시점의 기준(첫 시술/코스) 미기재 · 「분이 많아요」 비율 없음 · 코스 간격 미기재"
+  ],
+  [
+   "/name",
+   "B",
+   "HIFES·EMS 약어 풀이 없음"
+  ]
+ ]
+}

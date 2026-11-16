@@ -1,0 +1,37 @@
+{
+ "segment": "S01", "direct_read": true, "read_note": "M1 보톡스 10항목 name·unit·low·mid·high 전부 직접 읽음.",
+ "last_pointer": "/categories/0/items/9/high",
+ "observations": [
+  ["/categories/0/name", "카테고리 이름 '보톡스'. 항목 name 에는 시술명(보톡스)이 반복되지 않고 부위·고민 표현만 있음 — 항목 정체를 이해하려면 카테고리 이름이 상위 문맥으로 필요.", "P"],
+  ["/categories/0/items/0/name", "'<부위> 주름 (수입|국산)' 형태가 이마·미간·눈가 3부위 × 수입/국산 2종(items/0~5), '사각턱 (수입|국산)'(items/6~7). 괄호 안 '수입'·'국산'은 제품 원산지 수식으로 보이며 제품명은 없음.", "P"],
+  ["/categories/0/items/8/name", "'승모근' — 수입/국산 표기가 없음. 같은 카테고리의 다른 항목과 표기 형식이 다름.", "P"],
+  ["/categories/0/items/9/name", "'목주름 (네페르티티)' — 괄호 안이 원산지가 아니라 다른 이름(기법/별칭 후보). 같은 카테고리 안에서 괄호의 역할이 다름.", "P"],
+  ["/categories/0/items/0/unit", "10항목 모두 unit '1회'. 사용 용량(유닛 수)·제품명은 없음 — 같은 '1회' 라도 부위별 용량이 다를 수 있으나 원문에 없음.", "B"],
+  ["/categories/0/items/0/low", "10항목 모두 low < mid < high (기계 확인과 일치). 수입 항목이 같은 부위의 국산 항목보다 세 값 모두 높음(이마·미간·눈가·사각턱).", "P"]
+ ],
+ "expressions": [
+  ["/categories/0/items/0/name", "이마 주름", ["부위 후보", "고민 후보"], "부위(이마)+고민(주름) 결합. 분리는 후속."],
+  ["/categories/0/items/0/name", "(수입)", ["원산지 수식"], ""],
+  ["/categories/0/items/1/name", "이마 주름", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/1/name", "(국산)", ["원산지 수식"], ""],
+  ["/categories/0/items/2/name", "미간 주름", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/2/name", "(수입)", ["원산지 수식"], ""],
+  ["/categories/0/items/3/name", "미간 주름", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/3/name", "(국산)", ["원산지 수식"], ""],
+  ["/categories/0/items/4/name", "눈가 주름", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/4/name", "(수입)", ["원산지 수식"], ""],
+  ["/categories/0/items/5/name", "눈가 주름", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/5/name", "(국산)", ["원산지 수식"], ""],
+  ["/categories/0/items/6/name", "사각턱", ["부위 후보", "고민 후보"], "부위인지 윤곽 고민인지 원문만으로 구분 불가."],
+  ["/categories/0/items/6/name", "(수입)", ["원산지 수식"], ""],
+  ["/categories/0/items/7/name", "사각턱", ["부위 후보", "고민 후보"], ""],
+  ["/categories/0/items/7/name", "(국산)", ["원산지 수식"], ""],
+  ["/categories/0/items/8/name", "승모근", ["부위 후보"], "근육 이름. 원산지 수식 없음."],
+  ["/categories/0/items/9/name", "목주름", ["부위 후보", "고민 후보"], "띄어쓰기 없이 '목주름' — 다른 항목('이마 주름')과 띄어쓰기 다름."],
+  ["/categories/0/items/9/name", "(네페르티티)", ["괄호 부가", "기법/별칭 후보"], "원산지가 아닌 이름. 무엇의 이름인지 원문에 없음."]
+ ],
+ "issues": [
+  ["B-S01-1", "B", ["/categories/0/items/0/unit"], "보톡스 '1회' 가격의 용량(유닛)·제품명이 없다(10항목). 용량 기준 가격 비교가 제한된다."],
+  ["P-S01-1", "P", ["/categories/0/items/9/name"], "'(네페르티티)' 의 역할(기법명·별칭)은 잠정. 같은 카테고리의 괄호가 원산지·별칭 두 역할로 쓰인다."]
+ ]
+}

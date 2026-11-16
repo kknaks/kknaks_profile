@@ -1,0 +1,108 @@
+{
+ "approval_note": "결정 묶음 2A — 코디 추천을 사용자 승인",
+ "decided_at": "2026-11-04",
+ "decided_by": "사용자(이건학)",
+ "evidence": {
+  "fragment": "혈관레이저",
+  "fragment_count": 3,
+  "fragment_occurrence_locators": [
+   "problem-packages.json:problems[].complaints[].combos[].combo[]@7/0/0/0",
+   "problem-packages.json:problems[].complaints[].procedures[].name@7/0/0",
+   "synergy.json:links[].from@84"
+  ],
+  "other_axis_note": "다른 축(부작용 표현) 출현은 이 결정이 바꾸지 않는다 — 시술 축 분해 사전만 바뀐다",
+  "other_axis_occurrence_locators": {},
+  "target": {
+   "canonical": "혈관",
+   "code": "M8",
+   "dictionary": "modality_subcategory_label",
+   "entity_id": "SUB-44b94d64eb",
+   "label_locators": [
+    "taxonomy.json:modality[].subcategories[].label@7/3",
+    "taxonomy.json:modality[].subcategories[].id@7/3"
+   ],
+   "pointer": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/30/canonical"
+  },
+  "unresolved_references": [
+   {
+    "hint": null,
+    "label": "혈관레이저",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@7/0/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@7/1/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@7/2/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@7/3/0/0",
+     "problem-packages.json:problems[].complaints[].combos[].combo[]@7/4/0/0"
+    ],
+    "ref_id": "REF-16c3e001be",
+    "relation": "R12"
+   },
+   {
+    "hint": "M8",
+    "label": "혈관레이저",
+    "locators": [
+     "problem-packages.json:problems[].complaints[].procedures[].name@7/0/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@7/1/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@7/2/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@7/3/0",
+     "problem-packages.json:problems[].complaints[].procedures[].name@7/4/0"
+    ],
+    "ref_id": "REF-9bfcec0a27",
+    "relation": "R9"
+   },
+   {
+    "hint": "M8",
+    "label": "혈관레이저",
+    "locators": [
+     "synergy.json:links[].from@84"
+    ],
+    "ref_id": "REF-9bfcec0a27",
+    "relation": "R18"
+   }
+  ]
+ },
+ "id": "DEC-2026-11-04-B2A-SYN-004",
+ "kind": "dictionary_add",
+ "new_value": {
+  "canonical": "혈관",
+  "category": null,
+  "synonyms": [
+   "혈관레이저"
+  ]
+ },
+ "reason": "결정 묶음 2A(코디 추천 · 사용자 승인) — 조각 「혈관레이저」 → 하위분류 M8-4 「혈관」(M8). 사전 modality_subcategory_label 정준값 「혈관」에 동의어로 더한다(결정 묶음 1 SYN 과 같은 방식). 1차·2차 빌드에서 「혈관레이저」는 시술 축 미등록 조각 3 곳.",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].label@7/3"
+  },
+  {
+   "kind": "ledger",
+   "ref": "taxonomy.json:modality[].subcategories[].id@7/3"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4-dictionaries.json#/dictionaries/38/entries/30/canonical"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].combos[].combo[]@7/0/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "problem-packages.json:problems[].complaints[].procedures[].name@7/0/0"
+  },
+  {
+   "kind": "ledger",
+   "ref": "synergy.json:links[].from@84"
+  },
+  {
+   "kind": "approval",
+   "ref": "사용자 2026-11-04 「진행」 — 결정 묶음 2A"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "dictionary": "modality_subcategory_label"
+ }
+}

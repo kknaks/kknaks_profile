@@ -1,0 +1,25 @@
+{
+ "segment": "S06", "direct_read": true, "read_note": "M6 지방이식 7항목 전부 직접 읽음.",
+ "last_pointer": "/categories/5/items/6/high",
+ "observations": [
+  ["/categories/5/items/0/name", "items/0~5 는 '<부위> 지방이식' 형태로 부위가 괄호 밖 앞에 옴 — 다른 카테고리(괄호 안 부위)와 어순이 다름.", "P"],
+  ["/categories/5/items/3/name", "'풀페이스 지방이식' 과 '나노 지방이식 (전체얼굴)' — 같은 카테고리 안에서 얼굴 전체 표현이 '풀페이스'·'전체얼굴' 두 가지. 같은 범위인지 원문만으로 확정 불가.", "P"],
+  ["/categories/5/items/6/name", "'나노' 는 지방이식 방식(입자 크기) 수식 후보. 뜻은 원문에 없음.", "B"],
+  ["/categories/5/items/0/unit", "7항목 모두 '1회'. 지방 채취·주입량(cc)은 없음.", "B"],
+  ["/categories/5/items/0/low", "7항목 모두 low < mid < high. 볼·눈밑 두 항목은 세 값이 같음(800000/1500000/2500000).", "P"]
+ ],
+ "expressions": [
+  ["/categories/5/items/0/name", "이마", ["부위 후보"], ""],
+  ["/categories/5/items/1/name", "볼", ["부위 후보"], ""],
+  ["/categories/5/items/2/name", "눈밑", ["부위 후보"], ""],
+  ["/categories/5/items/3/name", "풀페이스", ["적용 범위", "부위 후보"], ""],
+  ["/categories/5/items/4/name", "관자놀이", ["부위 후보"], ""],
+  ["/categories/5/items/5/name", "턱 끝", ["부위 후보", "위치 수식"], ""],
+  ["/categories/5/items/6/name", "나노 지방이식", ["기법 수식", "시술명 후보"], "'나노' — 크기 관련 수식 후보."],
+  ["/categories/5/items/6/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""]
+ ],
+ "issues": [
+  ["B-S06-1", "B", ["/categories/5/items/0/unit"], "지방이식 '1회' 의 주입량·채취 부위·마취 포함 여부가 없다."],
+  ["P-S06-1", "P", ["/categories/5/items/3/name", "/categories/5/items/6/name"], "'풀페이스' 와 '전체얼굴' 이 같은 범위인지 잠정 — 원장 전반(M8·M9·M11 등)에 두 표기가 섞여 있다."]
+ ]
+}

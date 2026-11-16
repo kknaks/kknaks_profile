@@ -1,0 +1,290 @@
+{
+ "segment": "S09",
+ "read_status": "direct_read",
+ "last_read_pointer": "/categories/8/common_concerns/2/a",
+ "expressions": {
+  "/name": [
+   [
+    "기기 리프팅",
+    "name",
+    ""
+   ]
+  ],
+  "/patient_name": [
+   [
+    "비수술 리프팅 (울쎄라/써마지 등)",
+    "name,negation,paraphrase",
+    "괄호 안 「/」 제품 나열 · 「등」"
+   ],
+   [
+    "울쎄라",
+    "name",
+    ""
+   ],
+   [
+    "써마지",
+    "name",
+    ""
+   ]
+  ],
+  "/simple_explanation": [
+   [
+    "초음파나 고주파 에너지로 피부 깊은 층을 자극하여 처짐을 개선하는 비수술 시술입니다.",
+    "sentence",
+    ""
+   ],
+   [
+    "초음파나 고주파 에너지",
+    "device_param",
+    "「나」 대안"
+   ],
+   [
+    "피부 깊은 층",
+    "site,depth",
+    "「깊은」 — 수치 없음"
+   ],
+   [
+    "처짐을 개선하는",
+    "concern,effect",
+    ""
+   ],
+   [
+    "비수술 시술",
+    "negation,name",
+    ""
+   ]
+  ],
+  "/how_it_works": [
+   [
+    "기기에서 나오는 에너지(초음파 또는 고주파)가 피부 깊은 곳의 조직에 열을 가합니다.",
+    "sentence,device_param,site,depth,mechanism",
+    ""
+   ],
+   [
+    "에너지(초음파 또는 고주파)",
+    "device_param,paraphrase",
+    "「또는」 대안"
+   ],
+   [
+    "피부 깊은 곳의 조직",
+    "site,depth",
+    ""
+   ],
+   [
+    "이 열 자극으로 기존 콜라겐이 수축하면서 즉각적인 당김 효과가 나타나고, 이후 새로운 콜라겐이 만들어져 탄력이 개선됩니다.",
+    "sentence,mechanism,time,effect,sequence",
+    ""
+   ],
+   [
+    "즉각적인 당김 효과",
+    "time,effect",
+    "시간 역할 두 단계(즉각·이후)"
+   ],
+   [
+    "이후 새로운 콜라겐이 만들어져",
+    "time,sequence,mechanism",
+    ""
+   ]
+  ],
+  "/duration_simple": [
+   [
+    "약 6-12개월 지속되며, 3개월에 걸쳐 점진적으로 효과가 나타납니다.",
+    "sentence,time,approx,range,quantity,manner",
+    ""
+   ],
+   [
+    "약 6-12개월 지속",
+    "time,approx,range,quantity",
+    ""
+   ],
+   [
+    "3개월에 걸쳐 점진적으로 효과가 나타납니다",
+    "time,quantity,manner,effect",
+    "발현 경과"
+   ]
+  ],
+  "/pain_level": [
+   [
+    "시술 중 열감과 뻐근함이 있음, 부위에 따라 마취 크림 사용",
+    "time,sensory,condition,site,substance",
+    ""
+   ],
+   [
+    "시술 중 열감과 뻐근함",
+    "time,sensory",
+    ""
+   ],
+   [
+    "부위에 따라 마취 크림 사용",
+    "condition,site,substance",
+    "어느 부위인지 미기재"
+   ]
+  ],
+  "/downtime": [
+   [
+    "거의 없음 - 약간의 붉은기와 붓기가 수시간~1일",
+    "negation,degree,adverse,time,range,approx",
+    ""
+   ],
+   [
+    "거의 없음",
+    "negation,degree",
+    ""
+   ],
+   [
+    "약간의 붉은기와 붓기가 수시간~1일",
+    "degree,adverse,time,range,approx",
+    "「~」 범위"
+   ]
+  ],
+  "/common_concerns/0/q": [
+   [
+    "울쎄라와 써마지은 뭐가 다른가요?",
+    "sentence,name,comparison",
+    "「써마지은」 조사 표기 원문 그대로"
+   ]
+  ],
+  "/common_concerns/0/a": [
+   [
+    "울쎄라는 초음파로 피부 깊은 층(SMAS)까지 도달하고, 써마지은 고주파로 넓은 면적의 피부 탄력을 개선합니다.",
+    "sentence,name,comparison,device_param,depth,site",
+    ""
+   ],
+   [
+    "울쎄라는 초음파로 피부 깊은 층(SMAS)까지 도달하고",
+    "name,device_param,depth,site,paraphrase",
+    ""
+   ],
+   [
+    "피부 깊은 층(SMAS)",
+    "site,depth,paraphrase",
+    "전문어 괄호"
+   ],
+   [
+    "써마지은 고주파로 넓은 면적의 피부 탄력을 개선합니다",
+    "name,device_param,degree,effect",
+    ""
+   ],
+   [
+    "넓은 면적",
+    "degree,site",
+    ""
+   ],
+   [
+    "의사가 피부 상태에 맞게 추천해드려요.",
+    "sentence,actor,condition",
+    ""
+   ]
+  ],
+  "/common_concerns/1/q": [
+   [
+    "기기 리프팅이 수술만큼 효과 있나요?",
+    "sentence,comparison",
+    ""
+   ]
+  ],
+  "/common_concerns/1/a": [
+   [
+    "수술적 리프팅만큼 극적이지는 않지만, 비수술적으로 피부 탄력을 개선하는 데 효과적이에요.",
+    "sentence,comparison,negation,degree,effect",
+    ""
+   ],
+   [
+    "수술적 리프팅만큼 극적이지는 않지만",
+    "comparison,negation,degree",
+    ""
+   ],
+   [
+    "처짐 정도에 따라 의사와 상담하시면 됩니다.",
+    "sentence,condition,degree,instruction,actor",
+    ""
+   ],
+   [
+    "처짐 정도에 따라",
+    "condition,degree",
+    ""
+   ],
+   [
+    "비수술적으로 피부 탄력을 개선하는 데 효과적이에요",
+    "negation,effect",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ],
+   [
+    "의사와 상담하시면 됩니다",
+    "instruction,actor",
+    "regex 대조 후 보충(구절 누락 수정)"
+   ]
+  ],
+  "/common_concerns/2/q": [
+   [
+    "기기 리프팅이 지방을 녹이나요?",
+    "sentence,adverse",
+    ""
+   ]
+  ],
+  "/common_concerns/2/a": [
+   [
+    "일부 고출력 시술에서 지방층에 영향을 줄 수 있습니다.",
+    "sentence,scope,condition,degree,site,possibility,adverse",
+    ""
+   ],
+   [
+    "일부 고출력 시술에서",
+    "scope,condition,degree",
+    "「고출력」 기준 미기재"
+   ],
+   [
+    "지방층에 영향을 줄 수 있습니다",
+    "site,possibility,adverse",
+    ""
+   ],
+   [
+    "의사가 볼륨이 필요한 부위는 피하거나 강도를 조절합니다.",
+    "sentence,actor,site,avoid,degree,management",
+    ""
+   ],
+   [
+    "볼륨이 필요한 부위는 피하거나",
+    "site,avoid,condition",
+    "회피 부위 — 시술자 행동"
+   ],
+   [
+    "강도를 조절합니다",
+    "degree,management",
+    ""
+   ]
+  ]
+ },
+ "observations": [
+  [
+   "/common_concerns/0/q",
+   "I",
+   "「써마지은」 — patient_name 「써마지」 뒤 조사 「는」 대신 「은」(받침 없음). 같은 표기가 a 에도 「써마지은」. 원문 표기 그대로 보존"
+  ],
+  [
+   "/common_concerns/0/q",
+   "K",
+   "「써마지은」 형태소 분절 이상 확인됨 — q 는 써마지/NNG 이/VCP(길이0) 은/EC, a 는 써마지은/NNG 로 출현마다 다르게 깨진다. 출현별 기록은 issues.md K 표(교정 안 함)"
+  ],
+  [
+   "/pain_level",
+   "B",
+   "마취 크림 사용 부위 미기재"
+  ],
+  [
+   "/common_concerns/2/a",
+   "B",
+   "「일부 고출력 시술」 어느 시술인지·출력 기준 미기재"
+  ],
+  [
+   "/patient_name",
+   "F",
+   "울쎄라·써마지(제품명)와 카테고리 「기기 리프팅」의 관계는 후속(다른 원장 연결)"
+  ],
+  [
+   "/how_it_works",
+   "P",
+   "효과 시간 역할 두 단계: 즉각적 당김 → 이후 콜라겐(duration_simple 「3개월에 걸쳐 점진적」)"
+  ]
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "approval_note": "결정 묶음 2B — 사용자 게이트 답(아티팩트 저장소 덤프 2026-11-05)",
+ "decided_at": "2026-11-05",
+ "decided_by": "사용자(이건학)",
+ "gate_answer": {
+  "item": "two-event-candidates-10/04",
+  "label": "(홍반, none, 일시) 하나",
+  "note": "추천대로",
+  "option": "only_1"
+ },
+ "id": "DEC-2026-11-04-B2B-TEV-04",
+ "kind": "adverse_tuple_assign",
+ "new_value": {
+  "tuples": [
+   {
+    "course_id": "DIC-ff4e6c4fd1",
+    "event_id": "DIC-3976550d98",
+    "site_id": "none"
+   }
+  ]
+ },
+ "reason": "결정 묶음 2B — 표현 「일시적 홍반 (빨개짐)」 → (홍반, none, 일시) · 사용자 메모: 추천대로",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "extracted.json:{code}.safety.common[]@M4/1"
+  },
+  {
+   "kind": "erd",
+   "ref": "erd-v2.4.md §12"
+  }
+ ],
+ "status": "approved",
+ "target": {
+  "kind": "expression",
+  "locator": "extracted.json:{code}.safety.common[]@M4/1"
+ }
+}

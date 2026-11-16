@@ -1,0 +1,289 @@
+[
+  {
+    "name": "scope_exclusion",
+    "expected_code": "SCOPE_AXIS_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 32,
+    "codes": {
+      "SCOPE_AXIS_SOURCE": 1,
+      "MEMBERSHIP_SCOPE_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_AXIS_SOURCE",
+        "field": "axes.product",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:38f338f3243c339de3a68e236186ab211f215d533ca39eea3aa29d504277c16c"
+      },
+      {
+        "code": "MEMBERSHIP_SCOPE_SOURCE",
+        "field": "scope_ref",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "map:00b06a08629ef0d6990076ea1b3b8b48fa53aa031d2ce78eb612f3d8b31b8a76"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "qualifier_erasure",
+    "expected_code": "SCOPE_QUALIFIER_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_QUALIFIER_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_QUALIFIER_SOURCE",
+        "field": "statement_qualifiers",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:fe7b8d14a785db1b3610affdc6c22a27fe0281f0e94e07d8d38751fe000afb12"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "line_erasure",
+    "expected_code": "PRODUCT_LINE_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 0,
+    "codes": {
+      "PRODUCT_LINE_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "PRODUCT_LINE_SOURCE",
+        "field": "line_memberships",
+        "reason": "Exact explicit row.line and lines.items ledger_id/line_row relationships, roles and nullable approval reasons",
+        "source_locator": "product:auto-M2-1775364775108"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "axis_knowledge",
+    "expected_code": "SCOPE_AXIS_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_AXIS_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_AXIS_SOURCE",
+        "field": "axes.site",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:fa928e6dde1054b9a24022f13efb62a3cf9696ea3ca3044f61ec2c89d6b5d99c"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "axis_value_kind",
+    "expected_code": "SCOPE_AXIS_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_AXIS_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_AXIS_SOURCE",
+        "field": "axes.site",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:b8aabac3f5ff8f8eddfb477b1667917cf5d47d7da6d2d8472016c4a67c7049ce"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "axis_inclusion",
+    "expected_code": "SCOPE_AXIS_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "REF_TYPE": 1,
+      "SCOPE_AXIS_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "REF_TYPE",
+        "field": "site.included/excluded",
+        "reason": "Unreachable or wrong target type: family:M1",
+        "source_locator": "scp:616b087d97323bb7c63c64f73c037c0627f704754f8f7a70c5847d361e209f2d"
+      },
+      {
+        "code": "SCOPE_AXIS_SOURCE",
+        "field": "axes.site",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:616b087d97323bb7c63c64f73c037c0627f704754f8f7a70c5847d361e209f2d"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "scope_parent",
+    "expected_code": "SCOPE_PARENT_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_PARENT": 1,
+      "SCOPE_PARENT_SOURCE": 1,
+      "EXACT_TYPE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_PARENT",
+        "field": "container_scope_ref",
+        "reason": "Batch has no new context parent synthesis",
+        "source_locator": "scp:3654443dd90cbcc8d67e3f5f429373b16ba88330b7821392686eb07f9729e7f0"
+      },
+      {
+        "code": "SCOPE_PARENT_SOURCE",
+        "field": "container_scope_ref",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:3654443dd90cbcc8d67e3f5f429373b16ba88330b7821392686eb07f9729e7f0"
+      },
+      {
+        "code": "EXACT_TYPE",
+        "field": "scope.container_scope_ref",
+        "reason": "Expected scope.id|null including declared nullable exceptions",
+        "source_locator": "scp:3654443dd90cbcc8d67e3f5f429373b16ba88330b7821392686eb07f9729e7f0"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "scope_conflicts",
+    "expected_code": "SCOPE_CONFLICT_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_CONFLICT_SOURCE": 1,
+      "EXACT_TYPE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_CONFLICT_SOURCE",
+        "field": "conflicts",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:d57c6c28154d2588a44e8168bdfd881ed7d205a35e2873de2236ab2eb22eb246"
+      },
+      {
+        "code": "EXACT_TYPE",
+        "field": "scope.conflicts",
+        "reason": "Expected array<{axis,container,statement,source_ref}> including declared nullable exceptions",
+        "source_locator": "scp:d57c6c28154d2588a44e8168bdfd881ed7d205a35e2873de2236ab2eb22eb246"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "scope_application",
+    "expected_code": "SCOPE_APPLICATION_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "CLINICAL_STATE": 1,
+      "SCOPE_APPLICATION_SOURCE": 1,
+      "EXACT_TYPE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "CLINICAL_STATE",
+        "field": "application_state",
+        "reason": "Source preservation is not clinical approval",
+        "source_locator": "scp:2eafc6131278dff2a6f6a94cbed103773796cc07bb6511f98515491a8bcdfe11"
+      },
+      {
+        "code": "SCOPE_APPLICATION_SOURCE",
+        "field": "application_state",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:2eafc6131278dff2a6f6a94cbed103773796cc07bb6511f98515491a8bcdfe11"
+      },
+      {
+        "code": "EXACT_TYPE",
+        "field": "scope.application_state",
+        "reason": "Expected unknown|conditional|explicit|not_applicable including declared nullable exceptions",
+        "source_locator": "scp:2eafc6131278dff2a6f6a94cbed103773796cc07bb6511f98515491a8bcdfe11"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "qualifier_axis",
+    "expected_code": "SCOPE_QUALIFIER_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 11,
+    "codes": {
+      "SCOPE_QUALIFIER_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "SCOPE_QUALIFIER_SOURCE",
+        "field": "statement_qualifiers",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "scp:5060842da40c3f984ae3908293aea73c129b783d703bd3bebecb3f8be37ad557"
+      }
+    ],
+    "stderr": ""
+  },
+  {
+    "name": "line_reason_loss",
+    "expected_code": "PRODUCT_LINE_SOURCE",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 0,
+    "codes": {
+      "PRODUCT_LINE_SOURCE": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "PRODUCT_LINE_SOURCE",
+        "field": "line_memberships",
+        "reason": "Exact explicit row.line and lines.items ledger_id/line_row relationships, roles and nullable approval reasons",
+        "source_locator": "product:auto-M2-1775364775108"
+      }
+    ]
+  },
+  {
+    "name": "line_unresolved_state_retry",
+    "expected_code": "PRODUCT_LINE_UNRESOLVED",
+    "passed": true,
+    "exit_code": 1,
+    "normalized_ids_remapped": 1,
+    "codes": {
+      "PRODUCT_LINE_UNRESOLVED": 1
+    },
+    "consistency_noise": {},
+    "diagnostics": [
+      {
+        "code": "PRODUCT_LINE_UNRESOLVED",
+        "field": "line membership unresolved mappings",
+        "reason": "Independent original value/contract mismatch",
+        "source_locator": "records.mappings"
+      }
+    ]
+  }
+]

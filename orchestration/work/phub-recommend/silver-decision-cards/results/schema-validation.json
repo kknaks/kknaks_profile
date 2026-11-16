@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "positive": 678,
+  "negative": 16,
+  "engine": "pre-existing Ajv 8.20.0 / JSON Schema 2020-12",
+  "runtime_extra_checks": [
+    "duplicate card IDs",
+    "existing edit conflicts",
+    "input size / text size limits"
+  ]
+}

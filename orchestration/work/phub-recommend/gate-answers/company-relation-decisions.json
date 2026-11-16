@@ -1,0 +1,809 @@
+{
+ "version": 1,
+ "generated_at": "2026-10-27T08:52:27+00:00",
+ "basis": "사용자 결정 2026-10-27(_RESUME §2 「업체 관계 조사 반영」) · 코디 답 2건(젠틀레이즈 = 허가 미확인 · 울쎄라 = 09-1024 연결) · 근거는 company-relation-check.json 그대로(새 호출 없음)",
+ "decision_values": {
+  "link": "허가 연결(license_keys)",
+  "no_license": "해당 허가 없음(이름만 같은 다른 제품)",
+  "unconfirmed": "허가 미확인"
+ },
+ "roles_values": {
+  "manufacturer": "제조사",
+  "importer": "수입사",
+  "seller": "판매사(브랜드사)"
+ },
+ "summary": {
+  "link": 18,
+  "link_canceled": [
+   "디클래씨",
+   "벡터스",
+   "E-MAX"
+  ],
+  "no_license": 2,
+  "unconfirmed": 3,
+  "total": 23
+ },
+ "items": [
+  {
+   "ledger_id": "M2-1-2",
+   "name": "더채움",
+   "ledger_company": "휴젤 · PCL / 휴젤",
+   "decision": "link",
+   "license_keys": [
+    "device:2020004171",
+    "device:2017006909"
+   ],
+   "licenses": [
+    {
+     "key": "device:2020004171",
+     "license_no": "제허 20-527 호",
+     "model": "더채움 시그니처 4 외 28건",
+     "company": "(주)아크로스",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    },
+    {
+     "key": "device:2017006909",
+     "license_no": "제허 17-809 호",
+     "model": "더채움 쉐이프 10 외 4건",
+     "company": "(주)아크로스",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)아크로스",
+    "importer": null,
+    "seller": "휴젤(주)"
+   },
+   "same_product_research": "예",
+   "relation": "같은 그룹 계열사",
+   "conflict": null,
+   "note": "복수 허가 — 정상 허가 전부(시그니처 20-527 · 쉐이프 17-809). 원장이 어느 라인인지는 원장에 없음",
+   "sources": [
+    "https://medigatenews.com/news/2630225735",
+    "https://core.asiae.co.kr/article/2020110315220832017",
+    "https://www.smarttoday.co.kr/ko-kr/articles/109584",
+    "https://dailypharm.com/user/news/340605"
+   ]
+  },
+  {
+   "ledger_id": "auto-M2-1775364775108",
+   "name": "더채움프리미어",
+   "ledger_company": "휴젤",
+   "decision": "unconfirmed",
+   "license_keys": [],
+   "licenses": [],
+   "license_state": null,
+   "roles": {
+    "manufacturer": "(주)아크로스",
+    "importer": null,
+    "seller": "휴젤(주)"
+   },
+   "same_product_research": "확인 불가",
+   "relation": "같은 그룹 계열사",
+   "conflict": null,
+   "note": "「프리미엄」 라인이 시그니처 · 쉐이프 허가 중 어디에 드는지 확인 못 함 — 프리미엄 전용 허가가 따로 있을 수 있음",
+   "sources": [
+    "https://medigatenews.com/news/2630225735",
+    "https://www.smarttoday.co.kr/ko-kr/articles/109584",
+    "https://m.dailypharm.com/user/news/340605"
+   ]
+  },
+  {
+   "ledger_id": "auto-10-1774737181584",
+   "name": "올리디아",
+   "ledger_company": "PRP사이언스",
+   "decision": "link",
+   "license_keys": [
+    "device:2021003840"
+   ],
+   "licenses": [
+    {
+     "key": "device:2021003840",
+     "license_no": "제허 21-599 호",
+     "model": "올리디아(Olidia) MYO 240 외 44건",
+     "company": "(주)피알피사이언스",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)피알피사이언스",
+    "importer": null,
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류(표기 차이 — 같은 회사)",
+   "conflict": "성분: smarttoday(PLLA) vs gangnamunni(PCL)",
+   "note": null,
+   "sources": [
+    "https://www.smarttoday.co.kr/ko-kr/articles/102952",
+    "https://www.gangnamunni.com/events/147799"
+   ]
+  },
+  {
+   "ledger_id": "auto-11-1774737181584",
+   "name": "에스테필",
+   "ledger_company": "레지메드/휴메딕스 유통",
+   "decision": "link",
+   "license_keys": [
+    "device:2014004906",
+    "device:2012004787"
+   ],
+   "licenses": [
+    {
+     "key": "device:2014004906",
+     "license_no": "제허 14-920 호",
+     "model": "AestheFill-V50-WF 외 12건",
+     "company": "(주)리젠바이오텍",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    },
+    {
+     "key": "device:2012004787",
+     "license_no": "제허 12-1014 호",
+     "model": "AestheFill-V400 외 5건",
+     "company": "(주)리젠바이오텍",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)리젠바이오텍",
+    "importer": null,
+    "seller": "(주)휴메딕스(국내 독점 유통)"
+   },
+   "same_product_research": "예",
+   "relation": "제조사 ≠ 판매사(판매 계약)",
+   "conflict": null,
+   "note": "허가 2건(V50 14-920 · V400 12-1014) 둘 다 정상 · 같은 AestheFill — 정상 허가 전부 연결. 조사 미결 1 목록(5건)에는 없던 항목",
+   "sources": [
+    "https://www.ceoscoredaily.com/page/view/2025122311303291288",
+    "https://dailypharm.com/user/news/343293"
+   ]
+  },
+  {
+   "ledger_id": "auto-12-1774737181584",
+   "name": "디클래씨",
+   "ledger_company": "대웅제약",
+   "decision": "link",
+   "license_keys": [
+    "device:2023000474"
+   ],
+   "licenses": [
+    {
+     "key": "device:2023000474",
+     "license_no": "제허 23-60 호",
+     "model": "Facetem S BACF15P 외 3건",
+     "company": "(주)디엔컴퍼니",
+     "mfds_manufacturer": "(주)시지바이오",
+     "state": "취소"
+    }
+   ],
+   "license_state": "취소",
+   "roles": {
+    "manufacturer": "(주)시지바이오",
+    "importer": null,
+    "seller": "디엔컴퍼니(DNC) · 대웅제약 공동 브랜드 — 실제 판매 주체 확인 안 됨"
+   },
+   "same_product_research": "예",
+   "relation": "제조사 ≠ 판매사(판매 계약) + 같은 그룹 계열사",
+   "conflict": "newsis는 'DNC 에스테틱스가 디클래시 CaHA를 개발', dailypharm은 '시지바이오의 Facetem을 국내에 DCLASSY CaHA로 판매' — 개발 주체 표현 충돌",
+   "note": "이름 일치 허가가 취소뿐 — 취소 허가로 연결, 상태 「취소」",
+   "sources": [
+    "https://dailypharm.com/user/news/339272",
+    "https://www.newsis.com/view/NISX20260612_0003666695",
+    "https://dealsite.co.kr/articles/50864",
+    "https://www.kukinews.com/article/view/kuk202504240153"
+   ]
+  },
+  {
+   "ledger_id": "auto-17-1774737181584",
+   "name": "리투오",
+   "ledger_company": "휴메딕스",
+   "decision": "no_license",
+   "license_keys": [],
+   "licenses": [],
+   "license_state": null,
+   "roles": {
+    "manufacturer": "(주)엘앤씨바이오",
+    "importer": null,
+    "seller": "(주)휴메딕스(국내 판권)"
+   },
+   "same_product_research": "아니오",
+   "relation": "다른 제품(이름만 같음)",
+   "conflict": null,
+   "note": "후보 RE2O I-Ject(메디허브 · 마취액 주입 도구)는 다른 제품. 리투오 본품은 인체조직(의료기기 DB 밖)",
+   "sources": [
+    "https://www.medipharmhealth.co.kr/mobile/article.html?no=105489",
+    "https://m.dailypharm.com/user/news/343227"
+   ]
+  },
+  {
+   "ledger_id": "M4-2-1",
+   "name": "스킨바이브",
+   "ledger_company": "앨러간",
+   "decision": "link",
+   "license_keys": [
+    "device:2018002597"
+   ],
+   "licenses": [
+    {
+     "key": "device:2018002597",
+     "license_no": "수허 18-134 호",
+     "model": "SKINVIVE by Juvederm",
+     "company": "한국애브비(주)",
+     "mfds_manufacturer": "Allergan",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Allergan (AbbVie 계열)",
+    "importer": "한국애브비(주)",
+    "seller": "한국애브비(주)"
+   },
+   "same_product_research": "예",
+   "relation": "같은 그룹 계열사",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://www.biospace.com/abbvie-completes-transformative-acquisition-of-allergan"
+   ]
+  },
+  {
+   "ledger_id": "M4-2-2",
+   "name": "리바이브",
+   "ledger_company": "멀츠 · 신형",
+   "decision": "link",
+   "license_keys": [
+    "device:2022002385"
+   ],
+   "licenses": [
+    {
+     "key": "device:2022002385",
+     "license_no": "수허 22-105 호",
+     "model": "Belotero Revive 1.0ml",
+     "company": "멀츠아시아퍼시픽피티이엘티디",
+     "mfds_manufacturer": "Anteis SA",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Anteis SA (Merz 자회사)",
+    "importer": "멀츠아시아퍼시픽피티이엘티디",
+    "seller": "Merz(멀츠)"
+   },
+   "same_product_research": "예",
+   "relation": "같은 그룹 계열사",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://www.startupticker.ch/en/news/merz-pharma-acquires-swiss-aesthetic-medicine-specialist-anteis",
+    "https://practicaldermatology.com/news/20131112-merz_pharma_group_acquires_anteis_sa/2459418/"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775364775120",
+   "name": "스타워커",
+   "ledger_company": "포토나",
+   "decision": "link",
+   "license_keys": [
+    "device:2026006315",
+    "device:2017008237",
+    "device:200603460"
+   ],
+   "licenses": [
+    {
+     "key": "device:2026006315",
+     "license_no": "수허 26-216 호",
+     "model": "M031-3A/2 PICO Pro",
+     "company": "(주)신한씨스텍",
+     "mfds_manufacturer": "Fotona d.o.o",
+     "state": "정상"
+    },
+    {
+     "key": "device:2017008237",
+     "license_no": "수허 17-572 호",
+     "model": "M031-3A/2 QX",
+     "company": "(주)신한씨스텍",
+     "mfds_manufacturer": "Fotona d.o.o.",
+     "state": "정상"
+    },
+    {
+     "key": "device:200603460",
+     "license_no": "수허 06-516 호",
+     "model": "Fotona QX Max M031-3A/2",
+     "company": "(주)신한씨스텍",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Fotona d.o.o.",
+    "importer": "(주)신한씨스텍",
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "예",
+   "relation": "수입사 ≠ 제조사(수입)",
+   "conflict": null,
+   "note": "복수 허가 — 정상 허가 전부(QX Max 06-516 · QX 17-572 · PICO Pro 26-216)",
+   "sources": [
+    "https://www.praiston.pl/en/catalog/view/12916/fotona-starwalker-m031-3a2-maqx-laser",
+    "https://www.imcas.com/en/academy/profile/fotona/products/526/starwalker-maqx"
+   ]
+  },
+  {
+   "ledger_id": "auto-34-1774737181584",
+   "name": "노블린",
+   "ledger_company": "화인맥",
+   "decision": "link",
+   "license_keys": [
+    "device:2018001441"
+   ],
+   "licenses": [
+    {
+     "key": "device:2018001441",
+     "license_no": "제허 18-176 호",
+     "model": "Nobleen",
+     "company": "화인엠이씨(주)",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "화인엠이씨(주) (FineMEC)",
+    "importer": null,
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류(표기 차이 — 같은 회사)",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://fda.innolitics.com/device/K182663",
+    "https://healthmanagement.org/site/p/finemec-ltd"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775362912344",
+   "name": "젠틀레이즈",
+   "ledger_company": "시너론캔델라",
+   "decision": "unconfirmed",
+   "license_keys": [],
+   "licenses": [],
+   "license_state": null,
+   "roles": {
+    "manufacturer": "Candela Corporation",
+    "importer": "이전 (주)신한씨스텍 / 2018-10 이후 시너론켄델라코리아(제품별 허가 확인 안 됨)",
+    "seller": "시너론캔델라(Candela)"
+   },
+   "same_product_research": "확인 불가",
+   "relation": "수입사 변경(이전 신한 → 현재 시너론캔델라코리아 직판)",
+   "conflict": null,
+   "note": "이름 일치 허가는 취소(신한씨스텍 99-1506)뿐 · 현재 수입사 시너론켄델라코리아 명의 허가가 GentleLase 계열인지 근거 없음 — 코디 답(사용자 결정 우선): 허가 미확인",
+   "sources": [
+    "https://plasticsurgerypractice.com/treatment-solutions/products/syneron-candela-announces-launch-direct-operation-korea/",
+    "https://www.biospace.com/syneron-medical-ltd-successfully-completes-merger-with-candela"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775362928187",
+   "name": "벡터스",
+   "ledger_company": "팔로마/시너론",
+   "decision": "link",
+   "license_keys": [
+    "device:2013002012"
+   ],
+   "licenses": [
+    {
+     "key": "device:2013002012",
+     "license_no": "수허 13-532 호",
+     "model": "Vectus",
+     "company": "(주)루트로닉",
+     "mfds_manufacturer": "Cogmedix, Inc",
+     "state": "취소"
+    }
+   ],
+   "license_state": "취소",
+   "roles": {
+    "manufacturer": "Palomar(현 Cynosure) — 식약처 제조원 표기는 Cogmedix, Inc",
+    "importer": "(주)루트로닉(이전, 허가 취소)",
+    "seller": "Cynosure"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류 + 수입사(이전)",
+   "conflict": "원장 '팔로마/시너론' vs 출처 'Palomar → Cynosure'",
+   "note": "이름 일치 허가가 취소뿐 — 취소 허가로 연결, 상태 「취소」",
+   "sources": [
+    "https://www.sec.gov/Archives/edgar/data/0000881695/000119312513112490/d503633dex991.htm",
+    "https://www.smarttoday.co.kr/ko-kr/articles/42188"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775361417735",
+   "name": "E-MAX",
+   "ledger_company": "시네론캔델라",
+   "decision": "link",
+   "license_keys": [
+    "device:200504230"
+   ],
+   "licenses": [
+    {
+     "key": "device:200504230",
+     "license_no": "수허 05-596 호",
+     "model": "e (윗첨자 max)",
+     "company": "시너론켄델라코리아 유한회사",
+     "mfds_manufacturer": "SYNERON MEDICAL LTD",
+     "state": "취소"
+    }
+   ],
+   "license_state": "취소",
+   "roles": {
+    "manufacturer": "Syneron Medical Ltd.",
+    "importer": "시너론켄델라코리아 유한회사",
+    "seller": "Syneron Candela"
+   },
+   "same_product_research": "예",
+   "relation": "같은 그룹 계열사(표기 차이)",
+   "conflict": null,
+   "note": "이름 일치 허가 e^max 05-596(취소)만 연결, 상태 「취소」. 후보 elos Plus(15-1663 정상)는 조사상 다른 제품이라 제외",
+   "sources": [
+    "https://healthmanagement.org/products/view/aesthetic-medicine-radiofrequency-generator-emax-syneron-candela",
+    "https://www.biospace.com/syneron-medical-ltd-successfully-completes-merger-with-candela"
+   ]
+  },
+  {
+   "ledger_id": "auto-M8-1775360601666",
+   "name": "엔라이튼",
+   "ledger_company": "큐테라",
+   "decision": "link",
+   "license_keys": [
+    "device:2018006796",
+    "device:2018001651",
+    "device:2015001125"
+   ],
+   "licenses": [
+    {
+     "key": "device:2018006796",
+     "license_no": "수허 18-332 호",
+     "model": "enlighten SR",
+     "company": "(주)큐텍코리아",
+     "mfds_manufacturer": "Cutera Inc.",
+     "state": "정상"
+    },
+    {
+     "key": "device:2018001651",
+     "license_no": "수허 18-98 호",
+     "model": "enlighten Ⅲ Laser System",
+     "company": "(주)큐텍코리아",
+     "mfds_manufacturer": "CUTERA, INC.",
+     "state": "정상"
+    },
+    {
+     "key": "device:2015001125",
+     "license_no": "수허 15-410 호",
+     "model": "enlighten Laser System",
+     "company": "(주)큐텍코리아",
+     "mfds_manufacturer": "CUTERA INC.",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Cutera, Inc.",
+    "importer": "(주)큐텍코리아",
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "예",
+   "relation": "수입사 ≠ 제조사(수입)",
+   "conflict": null,
+   "note": "복수 허가 — 정상 허가 전부(15-410 · III 18-98 · SR 18-332)",
+   "sources": [
+    "https://www.biospace.com/cutera-inc-announces-korean-clearance-of-enlighten"
+   ]
+  },
+  {
+   "ledger_id": "M9-1-1",
+   "name": "울쎄라",
+   "ledger_company": "멀츠 · 신형",
+   "decision": "link",
+   "license_keys": [
+    "device:2009004877"
+   ],
+   "licenses": [
+    {
+     "key": "device:2009004877",
+     "license_no": "수허 09-1024 호",
+     "model": "Ultherapy Prime",
+     "company": "멀츠아시아퍼시픽피티이엘티디",
+     "mfds_manufacturer": "Jabil Inc.",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Ulthera(Merz) — 식약처 제조원 Jabil Inc.",
+    "importer": "멀츠아시아퍼시픽피티이엘티디",
+    "seller": "Merz Aesthetics"
+   },
+   "same_product_research": "확인 불가",
+   "relation": "같은 그룹 계열사 + 위탁 생산(제조원 표기)",
+   "conflict": null,
+   "note": "사용자 결정(코디 정정 10-27): 울쎄라피프라임과 같은 허가 09-1024 에 연결. 현재 허가 모델명 Ultherapy Prime — 구형 모델 별도 허가 여부 미확인",
+   "sources": [
+    "https://www.fiercebiotech.com/medical-devices/merz-to-buy-ulthera-to-strengthen-beautification-biz",
+    "https://practicaldermatology.com/news/20140630-merz_to_acquire_ulthera_inc/2459184/"
+   ]
+  },
+  {
+   "ledger_id": "M9-1-2",
+   "name": "울쎄라피프라임",
+   "ledger_company": "멀츠 · 신형",
+   "decision": "link",
+   "license_keys": [
+    "device:2009004877"
+   ],
+   "licenses": [
+    {
+     "key": "device:2009004877",
+     "license_no": "수허 09-1024 호",
+     "model": "Ultherapy Prime",
+     "company": "멀츠아시아퍼시픽피티이엘티디",
+     "mfds_manufacturer": "Jabil Inc.",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "Ulthera(Merz) — 식약처 제조원 Jabil Inc.",
+    "importer": "멀츠아시아퍼시픽피티이엘티디",
+    "seller": "Merz Aesthetics"
+   },
+   "same_product_research": "예",
+   "relation": "같은 그룹 계열사 + 위탁 생산(제조원 표기)",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://businesswire.com/news/home/20240923820281/en/Merz-Aesthetics-Announces-the-Launch-of-Ultherapy-PRIME-Platform-as-the-Next-Generation-of-Nonsurgical-Skin-Lifting-Treatments",
+    "https://www.fiercebiotech.com/medical-devices/merz-to-buy-ulthera-to-strengthen-beautification-biz"
+   ]
+  },
+  {
+   "ledger_id": "M9-1-10",
+   "name": "텐쎄라",
+   "ledger_company": "원텍",
+   "decision": "unconfirmed",
+   "license_keys": [],
+   "licenses": [],
+   "license_state": null,
+   "roles": {
+    "manufacturer": "충돌 — 식약처 (주)아스테라시스 / 해외 보도 TENTECH",
+    "importer": null,
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "확인 불가",
+   "relation": "확인 불가",
+   "conflict": "제조사: 식약처 허가 (주)아스테라시스 vs vietnamnews 'TENTECH' vs 원장 '원텍'",
+   "note": "제조사 충돌 — 식약처 (주)아스테라시스 / 해외 보도 TENTECH / 원장 원텍",
+   "sources": [
+    "https://vietnamnews.vn/media-outreach/1311604/pretty-beauty-summer-skin-aging-stops-today-with-10-thera-hifu.html",
+    "https://ko.wikipedia.org/wiki/%EC%95%84%EC%8A%A4%ED%85%8C%EB%9D%BC%EC%8B%9C%EC%8A%A4",
+    "https://www.imcas.com/es/sponsor/imcas-asia-2019/view/9254"
+   ]
+  },
+  {
+   "ledger_id": "auto-M9-1775361433713",
+   "name": "버츄RF",
+   "ledger_company": "비올",
+   "decision": "link",
+   "license_keys": [
+    "device:2021006453"
+   ],
+   "licenses": [
+    {
+     "key": "device:2021006453",
+     "license_no": "제허 21-970 호",
+     "model": "VirtueRF",
+     "company": "(주)쉬엔비",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)쉬엔비",
+    "importer": null,
+    "seller": "(주)쉬엔비(국내) · Cartessa(미국)"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://mdon.co.kr/mobile/article.html?no=32027",
+    "http://www.bosa.co.kr/news/articleView.html?idxno=2209773",
+    "https://www.hitnews.co.kr/news/articleView.html?idxno=47120"
+   ]
+  },
+  {
+   "ledger_id": "auto-M9-1775361486532",
+   "name": "올리지오X",
+   "ledger_company": "클래시스",
+   "decision": "link",
+   "license_keys": [
+    "device:2023004933"
+   ],
+   "licenses": [
+    {
+     "key": "device:2023004933",
+     "license_no": "제허 23-860 호",
+     "model": "Oligio X",
+     "company": "원텍(주)",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "원텍(주)",
+    "importer": null,
+    "seller": "원텍(주)"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류",
+   "conflict": null,
+   "note": null,
+   "sources": [
+    "https://www.news1.kr/bio/healthcare/6109292",
+    "https://www.hankyung.com/article/202605146962r"
+   ]
+  },
+  {
+   "ledger_id": "M9-3-1",
+   "name": "온다",
+   "ledger_company": "DEKA",
+   "decision": "no_license",
+   "license_keys": [],
+   "licenses": [],
+   "license_state": null,
+   "roles": {
+    "manufacturer": "DEKA (El.En. 그룹)",
+    "importer": "(주)데카코리아 — 웹 요약만, 식약처 데이터 미확인",
+    "seller": "확인 안 됨"
+   },
+   "same_product_research": "아니오",
+   "relation": "다른 제품(이름만 같음)",
+   "conflict": null,
+   "note": "후보 SSONDAR-SHARK(쏜다 · 전기 수술 장치)는 다른 제품. ONDA 본품 허가는 받은 데이터에 없음",
+   "sources": [
+    "https://www.vegannews.co.kr/news/article.html?no=384464",
+    "https://businesswire.com/news/home/20230703368498/en/After-the-Great-Success-Achieved-in-the-United-States-and-Canada-DEKA-Launches-Three-Extraordinary-Laser-and-Microwave-Platforms-at-the-World-Congress-of-Dermatology-in-Singapore"
+   ]
+  },
+  {
+   "ledger_id": "M11-1-1",
+   "name": "포텐자",
+   "ledger_company": "사이노슈어(Cynosure)",
+   "decision": "link",
+   "license_keys": [
+    "device:2019001172",
+    "device:2019000684"
+   ],
+   "licenses": [
+    {
+     "key": "device:2019001172",
+     "license_no": "제허 19-126 호",
+     "model": "POTENZA™",
+     "company": "(주)제이시스메디칼",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    },
+    {
+     "key": "device:2019000684",
+     "license_no": "제허 19-78 호",
+     "model": "POTENZA RF 외 1건",
+     "company": "(주)제이시스메디칼",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)제이시스메디칼",
+    "importer": null,
+    "seller": "국내 제이시스메디칼 / 북미 Cynosure"
+   },
+   "same_product_research": "예",
+   "relation": "제조사 ≠ 판매사(판매 계약 — 북미)",
+   "conflict": "원장은 사이노슈어를 업체로 적었으나 출처상 사이노슈어는 북미 판매 파트너",
+   "note": "복수 허가 — 정상 허가 전부(19-126 · 19-78)",
+   "sources": [
+    "https://www.smarttoday.co.kr/ko-kr/articles/42188",
+    "https://www.smarttoday.co.kr/ko-kr/articles/38567"
+   ]
+  },
+  {
+   "ledger_id": "auto-M11-1775361447933",
+   "name": "비바체",
+   "ledger_company": "쉬엔비",
+   "decision": "link",
+   "license_keys": [
+    "device:2024000828"
+   ],
+   "licenses": [
+    {
+     "key": "device:2024000828",
+     "license_no": "제허 24-117 호",
+     "model": "VIVACE",
+     "company": "(주)쉬엔비",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "(주)쉬엔비",
+    "importer": null,
+    "seller": "(주)쉬엔비"
+   },
+   "same_product_research": "예",
+   "relation": "다른 제품(이름만 같음) — 유니맘 후보에 한함",
+   "conflict": null,
+   "note": "쉬엔비 VIVACE 24-117 만 연결. 후보 유니맘 비바체(착유기 · 제인 26-4068)는 다른 제품이라 제외",
+   "sources": [
+    "https://mdon.co.kr/mobile/article.html?no=32027"
+   ]
+  },
+  {
+   "ledger_id": "auto-M16-1775363074847",
+   "name": "LDM초음파관리",
+   "ledger_company": "제이시스",
+   "decision": "link",
+   "license_keys": [
+    "device:2021006509",
+    "device:2011002498"
+   ],
+   "licenses": [
+    {
+     "key": "device:2021006509",
+     "license_no": "제인 21-5008 호",
+     "model": "LDM-Smart Tri 외 1건",
+     "company": "(주)웰코멧아시아",
+     "mfds_manufacturer": null,
+     "state": "정상"
+    },
+    {
+     "key": "device:2011002498",
+     "license_no": "수인 11-587 호",
+     "model": "LDM-Triple 외 3건",
+     "company": "(주)웰코멧아시아",
+     "mfds_manufacturer": "WELLCOMET GmbH",
+     "state": "정상"
+    }
+   ],
+   "license_state": "정상",
+   "roles": {
+    "manufacturer": "WELLCOMET GmbH (Smart Tri는 웰코멧아시아 제조 허가)",
+    "importer": "(주)웰코멧아시아",
+    "seller": "웰코멧코리아"
+   },
+   "same_product_research": "예",
+   "relation": "원장 업체 표기 오류(확인된 관계 없음)",
+   "conflict": null,
+   "note": "복수 허가 — 정상 허가 전부(수입 LDM-Triple 11-587 · 국내 제조 LDM-Smart Tri 21-5008)",
+   "sources": [
+    "https://wellcometkorea.com/history",
+    "https://www.wellcometkorea.com/",
+    "http://www.wellcometasia.com/"
+   ]
+  }
+ ]
+}

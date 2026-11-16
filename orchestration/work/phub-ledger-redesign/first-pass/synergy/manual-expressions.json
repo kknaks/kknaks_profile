@@ -1,0 +1,453 @@
+{
+ "note": "원문 전체를 직접 읽으며 지정한 절·구 단위 표현. 문맥 보존용 후보이며 범주는 확정 분류가 아니다. 위치는 build.py 가 원문에서 찾아 span 을 기록한다(없으면 build 실패).",
+ "expressions": [
+  {
+   "pointer": "/links/2/reason",
+   "text": "보톡스+필러+리프팅 3종으로 근육·볼륨·처짐을 한번에 해결하는 풀 패키지",
+   "category_candidate": "multi_entity_reference",
+   "note": "reason 이 끝점 2개(from 보톡스·to 기기 리프팅) 밖의 '필러'까지 3종을 묶어 말함"
+  },
+  {
+   "pointer": "/links/2/timing",
+   "text": "같은 날 또는 2주 간격 순차 시술",
+   "category_candidate": "time_alternative",
+   "note": "type=함께 인데 '2주 간격 순차' 대안이 같이 있음"
+  },
+  {
+   "pointer": "/links/114/reason",
+   "text": "리프팅 → 스킨부스터 → 보톡스 순서로 단계별 안티에이징 관리",
+   "category_candidate": "multi_entity_reference",
+   "note": "3단계 순서. '보톡스'는 이 link 의 끝점이 아님"
+  },
+  {
+   "pointer": "/links/114/timing",
+   "text": "2주 간격 순차 시술",
+   "category_candidate": "time_interval",
+   "note": "기준 시점(어느 시술 후인지) 명시 없음"
+  },
+  {
+   "pointer": "/links/4/reason",
+   "text": "사각턱 보톡스로 근육 축소",
+   "category_candidate": "region_procedure_phrase",
+   "note": "부위+시술 구절. from 은 '보툴리눔 톡신 사각턱'"
+  },
+  {
+   "pointer": "/links/4/reason",
+   "text": "턱끝 필러로 갸름한 V라인 완성",
+   "category_candidate": "region_procedure_phrase",
+   "note": "to 는 '필러 턱', reason 은 '턱끝 필러' — 부위 표기가 다름"
+  },
+  {
+   "pointer": "/links/5/reason",
+   "text": "과도한 근육만 선택적으로 이완",
+   "category_candidate": "condition_scope",
+   "note": "'만'·'선택적으로' 범위 한정 + '과도한' 정도"
+  },
+  {
+   "pointer": "/links/14/reason",
+   "text": "엑소좀은 주로 줄기세포 배양액 유래 세포외소포를 포함한 화장품 분류 성분으로",
+   "category_candidate": "definitional_statement",
+   "note": "'주로' 한정. 성분·분류 서술"
+  },
+  {
+   "pointer": "/links/14/reason",
+   "text": "피부 재생 보조에 대한 임상 검증은 제한적",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/14/reason",
+   "text": "MTS 미세채널을 통한 전달은 바늘 매개 주입에 해당해 미허가·위법 소지가 있으며",
+   "category_candidate": "regulatory_statement",
+   "note": "가능성('소지가 있으며')"
+  },
+  {
+   "pointer": "/links/14/reason",
+   "text": "감염·이물육아종 위험이 있으므로",
+   "category_candidate": "risk_statement",
+   "note": "사건 2종 + 이유 연결('으므로'). 빈도·정도 없음"
+  },
+  {
+   "pointer": "/links/14/reason",
+   "text": "허가된 멸균 시술용 제제가 아닌 화장품 엑소좀은 개방 채널에 사용하지 않음",
+   "category_candidate": "negation_scope",
+   "note": "부정의 대상은 '허가된 멸균 시술용 제제가 아닌 화장품 엑소좀'을 '개방 채널에' 쓰는 것. type=함께·timing='같은 날 시술 가능'과 긴장(link-observations)"
+  },
+  {
+   "pointer": "/links/25/reason",
+   "text": "미용 수액 자체의 항노화 효과는 확립된 임상근거가 제한적이라 보조적 성격이며",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/25/reason",
+   "text": "피부 개선의 주 시술은 스킨부스터임",
+   "category_candidate": "role_assignment",
+   "note": "두 끝점 사이의 주·보조 역할 서술"
+  },
+  {
+   "pointer": "/links/27/reason",
+   "text": "국소 도포의 회복 보조 효과에 대한 검증은 제한적",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/27/reason",
+   "text": "MTS 미세채널을 통한 화장품 전달은 미허가·위법 소지가 있고",
+   "category_candidate": "regulatory_statement"
+  },
+  {
+   "pointer": "/links/27/reason",
+   "text": "감염·육아종 위험이 있으므로",
+   "category_candidate": "risk_statement"
+  },
+  {
+   "pointer": "/links/27/reason",
+   "text": "허가된 멸균 시술용 제제가 아닌 배양액은 개방 채널에 사용하지 않음",
+   "category_candidate": "negation_scope",
+   "note": "type=함께(줄기세포치료→MTS)와 긴장"
+  },
+  {
+   "pointer": "/links/59/reason",
+   "text": "병용 효과의 임상 검증은 제한적",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/59/reason",
+   "text": "PRP는 자가혈 시술로 구분하고",
+   "category_candidate": "definitional_statement"
+  },
+  {
+   "pointer": "/links/59/reason",
+   "text": "배양액·엑소좀 화장품은 주사하거나 개방 채널로 전달하지 않음",
+   "category_candidate": "negation_scope",
+   "note": "부정 대상 2(주사·개방 채널 전달), 대상 물질 2(배양액·엑소좀 화장품)"
+  },
+  {
+   "pointer": "/links/64/timing",
+   "text": "자가 지방유래 줄기세포(SVF)에 한해 같은 날 가능",
+   "category_candidate": "condition_scope",
+   "note": "timing 칸에 적용 조건이 있음"
+  },
+  {
+   "pointer": "/links/64/reason",
+   "text": "세포 종류와 조제법에 따라 상이하며 임상 검증이 제한적",
+   "category_candidate": "hedge_evidence",
+   "note": "조건에 따른 차이 + 근거 제한"
+  },
+  {
+   "pointer": "/links/64/reason",
+   "text": "같은 날 병행은 지방흡입 후 획득한 자가 지방유래 줄기세포(SVF)에 한정하며",
+   "category_candidate": "condition_scope"
+  },
+  {
+   "pointer": "/links/64/reason",
+   "text": "배양 줄기세포 제제 투여는 불가하고",
+   "category_candidate": "negation_scope"
+  },
+  {
+   "pointer": "/links/64/reason",
+   "text": "첨단재생의료 해당 시 심의·승인 체계를 준수",
+   "category_candidate": "regulatory_statement",
+   "note": "조건('해당 시')"
+  },
+  {
+   "pointer": "/links/65/reason",
+   "text": "지방 생착률(살아남는 비율)이 올라감",
+   "category_candidate": "outcome_claim",
+   "note": "괄호 정의 + 수식 없는 효과 서술. 같은 원장 /links/64/reason 의 '생착률… 임상 검증이 제한적'과 대조(link-observations)"
+  },
+  {
+   "pointer": "/links/76/reason",
+   "text": "프락셔널 후 줄기세포 배양액(화장품 성분)의 국소 도포는 회복 보조 목적으로 고려할 수 있으나 검증은 제한적",
+   "category_candidate": "hedge_evidence",
+   "note": "가능성('고려할 수 있으나') + 근거 제한"
+  },
+  {
+   "pointer": "/links/76/reason",
+   "text": "미세채널을 통한 화장품 전달·주입은 미허가·위법 소지가 있고",
+   "category_candidate": "regulatory_statement"
+  },
+  {
+   "pointer": "/links/76/reason",
+   "text": "감염·육아종 위험이 있으므로 시행하지 않음",
+   "category_candidate": "negation_scope",
+   "note": "부정 대상 = 미세채널 통한 화장품 전달·주입(앞 절). type=함께·'같은 날 시술 가능'과 긴장"
+  },
+  {
+   "pointer": "/links/84/reason",
+   "text": "보습·피부장벽 회복을 보조할 수 있으나",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/84/reason",
+   "text": "재발 방지 효과는 입증되지 않았으며",
+   "category_candidate": "negation_scope"
+  },
+  {
+   "pointer": "/links/84/reason",
+   "text": "홍조 유지관리는 반복 레이저/IPL이 표준",
+   "category_candidate": "comparison_clause",
+   "note": "이 link 끝점(스킨부스터) 밖의 시술을 표준으로 언급"
+  },
+  {
+   "pointer": "/links/87/reason",
+   "text": "CO2 레이저 후 줄기세포 배양액(화장품 성분)의 국소 도포는 회복 보조 목적으로 고려할 수 있으나 검증은 제한적",
+   "category_candidate": "hedge_evidence"
+  },
+  {
+   "pointer": "/links/87/reason",
+   "text": "개방된 미세채널을 통한 화장품 전달·주입은 미허가·위법 소지가 있고 감염·육아종 위험이 있어 시행하지 않음",
+   "category_candidate": "negation_scope",
+   "note": "timing='CO2 직후 또는 1주 후 줄기세포'와 함께 읽어야 함"
+  },
+  {
+   "pointer": "/links/87/timing",
+   "text": "CO2 직후 또는 1주 후 줄기세포",
+   "category_candidate": "time_alternative",
+   "note": "'직후'와 '1주 후' 대안"
+  },
+  {
+   "pointer": "/links/71/timing",
+   "text": "실리프팅 후 2~3개월 뒤 울쎄라",
+   "category_candidate": "time_range",
+   "note": "범위 2~3개월. '후'와 '뒤'가 함께 쓰임"
+  },
+  {
+   "pointer": "/links/82/timing",
+   "text": "피코토닝 1~2주 후 스킨부스터",
+   "category_candidate": "time_range"
+  },
+  {
+   "pointer": "/links/96/timing",
+   "text": "의료진이 기기 원리·열부하를 평가해 간격 결정",
+   "category_candidate": "decision_delegation",
+   "note": "timing 칸에 시간값이 아니라 결정 주체·기준이 있음"
+  },
+  {
+   "pointer": "/links/96/reason",
+   "text": "다른 원리의 HIFU 등 리프팅 기기를 조합할 때는 목표 층과 열에너지를 고려해 계획",
+   "category_candidate": "condition_scope",
+   "note": "조건('조합할 때는') + 고려 기준. 'HIFU 등' 개방 목록"
+  },
+  {
+   "pointer": "/links/101/reason",
+   "text": "써마지=RF로 진피 표면 타이트닝·피부결 개선",
+   "category_candidate": "depth_contrast"
+  },
+  {
+   "pointer": "/links/101/reason",
+   "text": "슈링크=HIFU로 SMAS 심부 리프팅",
+   "category_candidate": "depth_contrast"
+  },
+  {
+   "pointer": "/links/101/reason",
+   "text": "작용 깊이·적응증이 달라",
+   "category_candidate": "comparison_clause"
+  },
+  {
+   "pointer": "/links/101/reason",
+   "text": "단순 예산 택1이 아니라 목표(표면 탄력 vs 깊은 처짐)에 따라 선택",
+   "category_candidate": "selection_criterion_clause",
+   "note": "부정('아니라') + 선택 기준. type=대신 이지만 reason 은 단순 대체를 부정"
+  },
+  {
+   "pointer": "/links/100/reason",
+   "text": "슈링크 HIFU가 깊은 층, 써마지 RF가 얕은 층을 조여 전층 리프팅",
+   "category_candidate": "depth_contrast",
+   "note": "같은 끝점 쌍이 /links/101 에서는 type=대신"
+  },
+  {
+   "pointer": "/links/108/reason",
+   "text": "HIFU로 깊은 층 리프팅 + RF로 표피 타이트닝 = 전체 층 리프팅",
+   "category_candidate": "depth_contrast"
+  },
+  {
+   "pointer": "/links/109/reason",
+   "text": "HIFU가 깊은 층을 당기고, RF가 피부 표면을 조이는 이중 리프팅",
+   "category_candidate": "depth_contrast"
+  },
+  {
+   "pointer": "/links/102/reason",
+   "text": "써마지가 원조이고 올리지오가 후발 대안",
+   "category_candidate": "comparison_clause"
+  },
+  {
+   "pointer": "/links/106/reason",
+   "text": "더블로가 가격이 더 합리적인 대안",
+   "category_candidate": "comparison_clause"
+  },
+  {
+   "pointer": "/links/107/reason",
+   "text": "가격·통증 정도로 선택",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/8/reason",
+   "text": "팁 종류와 가격 차이로 선택",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/9/reason",
+   "text": "병원 보유 장비에 따라 선택",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/79/reason",
+   "text": "파장과 특성 차이로 선택",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/85/reason",
+   "text": "피부 톤과 부위에 따라 선택이 달라짐",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/86/reason",
+   "text": "상황에 맞게 선택 가능",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/99/reason",
+   "text": "예산과 선호에 따라 교체 가능",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/112/reason",
+   "text": "예산과 선호로 선택",
+   "category_candidate": "selection_criterion_clause"
+  },
+  {
+   "pointer": "/links/113/reason",
+   "text": "둘 다 리프팅 목적이라 대체 가능",
+   "category_candidate": "selection_criterion_clause",
+   "note": "앞 절에서 방식(RF·HIFU)이 다르다고 함"
+  },
+  {
+   "pointer": "/links/7/reason",
+   "text": "모공·흉터 개선 효과가 비슷함",
+   "category_candidate": "comparison_clause"
+  },
+  {
+   "pointer": "/links/40/reason",
+   "text": "효과와 지속기간이 비슷",
+   "category_candidate": "comparison_clause",
+   "note": "지속기간 수치 없음"
+  },
+  {
+   "pointer": "/links/36/reason",
+   "text": "엘란쎄(PCL)와 래디어스(CaHA)는 비슷한 볼륨+콜라겐 효과의 대체재",
+   "category_candidate": "definitional_annotation",
+   "note": "괄호 안 성분/재질 표기"
+  },
+  {
+   "pointer": "/links/41/reason",
+   "text": "스컬트라(PLLA)와 래디어스(CaHA)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/48/reason",
+   "text": "리쥬란(연어DNA)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/48/reason",
+   "text": "쥬베룩(PDLLA)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/24/reason",
+   "text": "스킨부스터(진피 주사)",
+   "category_candidate": "definitional_annotation",
+   "note": "방식·층 표기"
+  },
+  {
+   "pointer": "/links/54/reason",
+   "text": "스킨부스터(진피 주사)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/19/reason",
+   "text": "HIFES(근육 강화)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/78/reason",
+   "text": "PRP(자가혈)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/96/reason",
+   "text": "볼뉴머(모노폴라 RF)",
+   "category_candidate": "definitional_annotation"
+  },
+  {
+   "pointer": "/links/32/reason",
+   "text": "실로 잡아올린 뒤 필러로 빈 공간을 채워",
+   "category_candidate": "sequence_within_link",
+   "note": "type=함께(같은 날)이지만 reason 안에 '뒤' 순서가 있음. 순서는 to(실리프팅)→from(필러)"
+  },
+  {
+   "pointer": "/links/34/reason",
+   "text": "코필러로 콧대 높이고 코끝 보톡스로 코끝 올려",
+   "category_candidate": "region_procedure_phrase"
+  },
+  {
+   "pointer": "/links/29/reason",
+   "text": "줄기세포 성장인자로 모낭 재생",
+   "category_candidate": "region_procedure_phrase"
+  },
+  {
+   "pointer": "/links/29/reason",
+   "text": "저출력레이저로 두피 혈액순환 개선",
+   "category_candidate": "region_procedure_phrase"
+  },
+  {
+   "pointer": "/links/58/reason",
+   "text": "두피 MTS로 미세 구멍을 내고",
+   "category_candidate": "region_procedure_phrase"
+  },
+  {
+   "pointer": "/links/73/reason",
+   "text": "흉터 아래 유착 풀고",
+   "category_candidate": "region_procedure_phrase",
+   "note": "위치('흉터 아래')"
+  },
+  {
+   "pointer": "/links/69/reason",
+   "text": "실리프팅 후 손상된 조직에",
+   "category_candidate": "state_after_procedure",
+   "note": "시술 후 상태 서술"
+  },
+  {
+   "pointer": "/links/104/reason",
+   "text": "리프팅 시술 후 손상된 피부에",
+   "category_candidate": "state_after_procedure"
+  },
+  {
+   "pointer": "/links/57/reason",
+   "text": "울쎄라로 리프팅하면 회복이 빠름",
+   "category_candidate": "outcome_claim",
+   "note": "조건 연결('하면') + 속도"
+  },
+  {
+   "pointer": "/links/94/reason",
+   "text": "스킨부스터로 수분 보충하면 피부 회복이 빠름",
+   "category_candidate": "outcome_claim"
+  },
+  {
+   "pointer": "/links/16/reason",
+   "text": "PRP 성장인자가 피부 속 깊이 들어가 재생 촉진",
+   "category_candidate": "depth_contrast",
+   "note": "깊이 수치 없음"
+  },
+  {
+   "pointer": "/links/110/reason",
+   "text": "보톡스로 근육까지 쉬게 하면 시너지",
+   "category_candidate": "outcome_claim"
+  },
+  {
+   "pointer": "/links/65/reason",
+   "text": "이식한 지방에 PRP 성장인자를 섞으면",
+   "category_candidate": "condition_scope",
+   "note": "조건 연결('으면')"
+  }
+ ]
+}

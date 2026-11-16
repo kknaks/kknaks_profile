@@ -1,0 +1,644 @@
+{
+ "source_sha256": "6c96520c514b76ef7f93d7f685e53023afe91b05133a9b9ca5db0a95d42d91ac",
+ "status_legend": {
+  "A": "에이전트 추출/해석 오류",
+  "B": "원문 정보 부족",
+  "C": "사용자 결정 필요",
+  "K": "알려진 분석 한계",
+  "P": "잠정 관찰",
+  "F": "후속 의미 조사",
+  "I": "원문 내 불일치·표기 이상"
+ },
+ "observations": [
+  {
+   "id": "S00-O1",
+   "segment": "S00",
+   "pointer": "/version",
+   "status": "P",
+   "text": "버전 식별자 \"1.3\". 언어 텍스트 아님 — 형태소 제외"
+  },
+  {
+   "id": "S00-O2",
+   "segment": "S00",
+   "pointer": "/updated",
+   "status": "P",
+   "text": "날짜 \"2026-07-26\". 무엇의 갱신일인지(파일 전체/개별 항목) 원문에 범위 표기 없음"
+  },
+  {
+   "id": "S00-O3",
+   "segment": "S00",
+   "pointer": "/categories",
+   "status": "P",
+   "text": "배열 17개, 각 원소는 동일 9키(id·name·patient_name·simple_explanation·how_it_works·duration_simple·pain_level·downtime·common_concerns). common_concerns 는 모두 {q,a} 3개"
+  },
+  {
+   "id": "S00-O4",
+   "segment": "S00",
+   "pointer": "/categories",
+   "status": "F",
+   "text": "id(M1~M17)·name 은 다른 원장의 카테고리 체계를 가리키는 것으로 보이나 이 원장 안에는 대응 정의가 없다. 연결은 후속 과제(다른 원장은 열지 않았다)"
+  },
+  {
+   "id": "S01-O1",
+   "segment": "S01",
+   "pointer": "/categories/0/duration_simple",
+   "status": "B",
+   "text": "무엇이 3-6개월 지속되는지(효과) 문장에 주어가 생략됨"
+  },
+  {
+   "id": "S01-O2",
+   "segment": "S01",
+   "pointer": "/categories/0/how_it_works",
+   "status": "B",
+   "text": "주사하는 「약」의 이름·성분이 이 항목에 없다"
+  },
+  {
+   "id": "S01-O3",
+   "segment": "S01",
+   "pointer": "/categories/0/common_concerns/0/a",
+   "status": "B",
+   "text": "「적절한 양」「과도하게」의 기준값 미기재"
+  },
+  {
+   "id": "S01-O4",
+   "segment": "S01",
+   "pointer": "/categories/0/common_concerns/1/a",
+   "status": "B",
+   "text": "「의학적으로」의 근거 출처 미기재"
+  },
+  {
+   "id": "S01-O5",
+   "segment": "S01",
+   "pointer": "/categories/0/common_concerns/2/a",
+   "status": "P",
+   "text": "행동 지시(삼가·눕지 말고·문지르지 마세요)와 근거 설명(최근 연구…·이 주의사항은…)이 한 값에 섞여 있다. 시간 기준이 「당일(대략 24시간)」「시술 후 약 4시간」 두 개"
+  },
+  {
+   "id": "S01-O6",
+   "segment": "S01",
+   "pointer": "/categories/0/common_concerns/2/a",
+   "status": "F",
+   "text": "「톡신」과 name 「보톡스」의 관계(호칭 차이)는 의미 단계 과제. 「최근 연구」의 주장과 주의사항이 서로 다른 강도라 구조화 시 근거·지시 분리 필요"
+  },
+  {
+   "id": "S01-O7",
+   "segment": "S01",
+   "pointer": "/categories/0/common_concerns/2/a",
+   "status": "B",
+   "text": "「최근 연구」의 출처 미기재"
+  },
+  {
+   "id": "S02-O1",
+   "segment": "S02",
+   "pointer": "/categories/1/how_it_works",
+   "status": "P",
+   "text": "히알루론산은 「과 비슷한 젤」로 비교 대상이며, 필러 성분이 히알루론산이라고 단정하지 않는다. 같은 카테고리 a(/common_concerns/0/a)는 「히알루론산 필러는」으로 하위 종류를 한정해 필러에 다른 종류가 있음을 시사"
+  },
+  {
+   "id": "S02-O2",
+   "segment": "S02",
+   "pointer": "/categories/1/how_it_works",
+   "status": "P",
+   "text": "「팔자주름」은 고민 명칭이 부위 나열(입술·광대)에 함께 쓰였다. 부위/고민 구분은 후속"
+  },
+  {
+   "id": "S02-O3",
+   "segment": "S02",
+   "pointer": "/categories/1/duration_simple",
+   "status": "B",
+   "text": "제품별·부위별 지속 기간 값은 원문에 없다(「따라 다름」만)"
+  },
+  {
+   "id": "S02-O4",
+   "segment": "S02",
+   "pointer": "/categories/1/common_concerns/0/a",
+   "status": "B",
+   "text": "「녹이는 약」 이름 미기재. 「매우 드뭅니다」 수치 없음 — 백분율로 바꾸지 않는다"
+  },
+  {
+   "id": "S02-O5",
+   "segment": "S02",
+   "pointer": "/categories/1/common_concerns/2/a",
+   "status": "B",
+   "text": "혈관 문제의 구체 사건·응급 징후·대처 방법이 기재되지 않음(「응급 대처가 가능한 병원」만)"
+  },
+  {
+   "id": "S02-O6",
+   "segment": "S02",
+   "pointer": "/categories/1/common_concerns/2/q",
+   "status": "F",
+   "text": "「혈관에 문제」가 어떤 사건을 가리키는지는 다른 원장(합병증 등)과 연결해 판단할 후속 과제"
+  },
+  {
+   "id": "S03-O1",
+   "segment": "S03",
+   "pointer": "/categories/2/name",
+   "status": "F",
+   "text": "「/」 로 묶인 두 호칭의 관계(동의어/대안/상하) 미확정 — README 기호 규칙만으로 확정하지 않는다"
+  },
+  {
+   "id": "S03-O2",
+   "segment": "S03",
+   "pointer": "/categories/2/how_it_works",
+   "status": "B",
+   "text": "「특수 성분」 이름 미기재"
+  },
+  {
+   "id": "S03-O3",
+   "segment": "S03",
+   "pointer": "/categories/2/duration_simple",
+   "status": "P",
+   "text": "시간 역할이 발현(4-6주)과 지속(1-3년)으로 분리 기재된 사례"
+  },
+  {
+   "id": "S03-O4",
+   "segment": "S03",
+   "pointer": "/categories/2/common_concerns/0/a",
+   "status": "P",
+   "text": "「4-6주 후부터」 기준 시점 생략. duration_simple 「효과 발현까지 4-6주」와 같은 수치. 「보통 3회」 간격 미기재(B)"
+  },
+  {
+   "id": "S03-O5",
+   "segment": "S03",
+   "pointer": "/categories/2/common_concerns/1/a",
+   "status": "P",
+   "text": "마사지 권고에 대한 부정(입증되지 않음)·조건부 허용(하시더라도…부드럽게)이 겹친 구조"
+  },
+  {
+   "id": "S03-O6",
+   "segment": "S03",
+   "pointer": "/categories/2/common_concerns/2/a",
+   "status": "F",
+   "text": "「필러」 참조는 S02(/categories/1)로 보이나 연결은 후속. 「지속 기간도 더 길어요」 비교는 원문 수치(1-3년 vs 6-18개월)로 정합 확인 가능 — 의미 단계에서 확인"
+  },
+  {
+   "id": "S04-O1",
+   "segment": "S04",
+   "pointer": "/categories/3/how_it_works",
+   "status": "P",
+   "text": "「여러 번 주사합니다」(한 회 안 다회 주사로 보임)와 duration_simple 「2-3회 반복 시술」(회차)은 다른 횟수 개념일 수 있다 — 잠정"
+  },
+  {
+   "id": "S04-O2",
+   "segment": "S04",
+   "pointer": "/categories/3/common_concerns/1/q",
+   "status": "P",
+   "text": "제품명 「리쥬란」이 카테고리 설명 안에 처음 등장. 「연어주사」는 통칭"
+  },
+  {
+   "id": "S04-O3",
+   "segment": "S04",
+   "pointer": "/categories/3/common_concerns/1/a",
+   "status": "P",
+   "text": "금기를 「해당할 수 있으므로」 가능성으로 표현 · 대상=「심한 해산물(생선) 알레르기가 있는 분」 · 시점=「시술 전」 행동 지시. 임상적으로 승인하지 않는다"
+  },
+  {
+   "id": "S04-O4",
+   "segment": "S04",
+   "pointer": "/categories/3/common_concerns/1/a",
+   "status": "B",
+   "text": "「반응」의 종류와 「드뭅니다」 빈도 수치 미기재 · 「대체 시술」 이름 미기재"
+  },
+  {
+   "id": "S04-O5",
+   "segment": "S04",
+   "pointer": "/categories/3/common_concerns/2/a",
+   "status": "B",
+   "text": "「흡수율이 … 훨씬 높습니다」 근거·수치 미기재"
+  },
+  {
+   "id": "S04-O6",
+   "segment": "S04",
+   "pointer": "/categories/3/common_concerns/1/a",
+   "status": "F",
+   "text": "리쥬란·PN 과 카테고리 스킨부스터의 관계(제품/성분/카테고리)는 다른 원장과 함께 후속 판단"
+  },
+  {
+   "id": "S05-O1",
+   "segment": "S05",
+   "pointer": "/categories/4/how_it_works",
+   "status": "P",
+   "text": "부위 역할이 둘: 채혈 부위(팔)와 주사 부위(피부). 시술 대상 부위 자체는 「피부」로만 기재"
+  },
+  {
+   "id": "S05-O2",
+   "segment": "S05",
+   "pointer": "/categories/4/common_concerns/0/a",
+   "status": "B",
+   "text": "「매우 낮습니다」 수치·근거 미기재"
+  },
+  {
+   "id": "S05-O3",
+   "segment": "S05",
+   "pointer": "/categories/4/common_concerns/1/a",
+   "status": "P",
+   "text": "how_it_works 「소량」의 수치가 이 값(10-20ml 정도)에 있다 — 같은 카테고리 안 값 간 대응(잠정)"
+  },
+  {
+   "id": "S05-O4",
+   "segment": "S05",
+   "pointer": "/categories/4/common_concerns/2/a",
+   "status": "B",
+   "text": "반복 시술 간격 미기재"
+  },
+  {
+   "id": "S06-O1",
+   "segment": "S06",
+   "pointer": "/categories/5/duration_simple",
+   "status": "P",
+   "text": "이 키는 다른 카테고리처럼 「N개월 지속」이 아니라 생착률(%)·부위별 비교·노화 경과를 담는다. 같은 키 이름 아래 정보 종류가 다르다"
+  },
+  {
+   "id": "S06-O2",
+   "segment": "S06",
+   "pointer": "/categories/5/duration_simple",
+   "status": "B",
+   "text": "「평균 약 40~50%」의 분모·대상 집단·측정 시점·보고 출처 미기재. 환자 실제 생착률로 바꾸지 않는다"
+  },
+  {
+   "id": "S06-O3",
+   "segment": "S06",
+   "pointer": "/categories/5/duration_simple",
+   "status": "P",
+   "text": "「~」가 이 값에서는 범위 기호로 쓰였다(다른 값은 「-」). 근사 표현 「약」「정도」가 함께 붙음"
+  },
+  {
+   "id": "S06-O4",
+   "segment": "S06",
+   "pointer": "/categories/5/how_it_works",
+   "status": "P",
+   "text": "부위 역할 두 개: 채취(복부·허벅지)와 주입(볼·이마·관자놀이). duration_simple 의 코·이마·볼·턱은 생착률 비교 대상 부위로 how_it_works 목록과 다르다(코·턱은 how_it_works 에 없음, 「등」으로 열림)"
+  },
+  {
+   "id": "S06-O5",
+   "segment": "S06",
+   "pointer": "/categories/5/common_concerns/0/a",
+   "status": "P",
+   "text": "「보통 3개월 후 안정화」 기준 시점 생략(시술 후로 보임)"
+  },
+  {
+   "id": "S07-O1",
+   "segment": "S07",
+   "pointer": "/categories/6/simple_explanation",
+   "status": "B",
+   "text": "「녹는 실」의 재질·종류 미기재(duration_simple 은 「실 종류에 따라」만)"
+  },
+  {
+   "id": "S07-O2",
+   "segment": "S07",
+   "pointer": "/categories/6/duration_simple",
+   "status": "B",
+   "text": "실 종류별 지속 값 미기재"
+  },
+  {
+   "id": "S07-O3",
+   "segment": "S07",
+   "pointer": "/categories/6/common_concerns/0/a",
+   "status": "B",
+   "text": "「제대로」의 기준, 「간단히 조치」의 내용 미기재"
+  },
+  {
+   "id": "S07-O4",
+   "segment": "S07",
+   "pointer": "/categories/6/common_concerns/2/a",
+   "status": "P",
+   "text": "시간 역할: 당김감 소실(1-2주). downtime 의 붓기 3-5일·복귀 2-3일 후와 다른 역할"
+  },
+  {
+   "id": "S08-O1",
+   "segment": "S08",
+   "pointer": "/categories/7/downtime",
+   "status": "P",
+   "text": "「 / 」가 대안이 아니라 종류별 항목 구분자로 쓰였다(README 기호 규칙과 다른 쓰임 — 기호만으로 의미 확정 금지)"
+  },
+  {
+   "id": "S08-O2",
+   "segment": "S08",
+   "pointer": "/categories/7/downtime",
+   "status": "P",
+   "text": "토닝·프락셔널·어블레이티브는 카테고리(레이저) 하위 종류명으로 보이나 이 원장 안에 정의 없음. duration_simple 은 토닝·색소 제거, pain_level 은 토닝·프락셔널로 세분 축이 값마다 다르다"
+  },
+  {
+   "id": "S08-O3",
+   "segment": "S08",
+   "pointer": "/categories/7/how_it_works",
+   "status": "B",
+   "text": "파장 수치·레이저 종류명 미기재"
+  },
+  {
+   "id": "S08-O4",
+   "segment": "S08",
+   "pointer": "/categories/7/common_concerns/0/a",
+   "status": "B",
+   "text": "「적절한 세기와 간격」「과도하게 자주」 기준 미기재"
+  },
+  {
+   "id": "S08-O5",
+   "segment": "S08",
+   "pointer": "/categories/7/common_concerns/1/a",
+   "status": "B",
+   "text": "자외선 차단 기간·수단 미기재 · 「수 주~수 개월」 불명확 수치"
+  },
+  {
+   "id": "S08-O6",
+   "segment": "S08",
+   "pointer": "/categories/7/common_concerns/0/q",
+   "status": "P",
+   "text": "두께 표현 「얇아지나요」 — 피부 두께 변화(부작용 우려)로 읽힘. 주입 깊이와 다른 정보"
+  },
+  {
+   "id": "S09-O1",
+   "segment": "S09",
+   "pointer": "/categories/8/common_concerns/0/q",
+   "status": "I",
+   "text": "「써마지은」 — patient_name 「써마지」 뒤 조사 「는」 대신 「은」(받침 없음). 같은 표기가 a 에도 「써마지은」. 원문 표기 그대로 보존"
+  },
+  {
+   "id": "S09-O2",
+   "segment": "S09",
+   "pointer": "/categories/8/common_concerns/0/q",
+   "status": "K",
+   "text": "「써마지은」 형태소 분절 이상 확인됨 — q 는 써마지/NNG 이/VCP(길이0) 은/EC, a 는 써마지은/NNG 로 출현마다 다르게 깨진다. 출현별 기록은 issues.md K 표(교정 안 함)"
+  },
+  {
+   "id": "S09-O3",
+   "segment": "S09",
+   "pointer": "/categories/8/pain_level",
+   "status": "B",
+   "text": "마취 크림 사용 부위 미기재"
+  },
+  {
+   "id": "S09-O4",
+   "segment": "S09",
+   "pointer": "/categories/8/common_concerns/2/a",
+   "status": "B",
+   "text": "「일부 고출력 시술」 어느 시술인지·출력 기준 미기재"
+  },
+  {
+   "id": "S09-O5",
+   "segment": "S09",
+   "pointer": "/categories/8/patient_name",
+   "status": "F",
+   "text": "울쎄라·써마지(제품명)와 카테고리 「기기 리프팅」의 관계는 후속(다른 원장 연결)"
+  },
+  {
+   "id": "S09-O6",
+   "segment": "S09",
+   "pointer": "/categories/8/how_it_works",
+   "status": "P",
+   "text": "효과 시간 역할 두 단계: 즉각적 당김 → 이후 콜라겐(duration_simple 「3개월에 걸쳐 점진적」)"
+  },
+  {
+   "id": "S10-O1",
+   "segment": "S10",
+   "pointer": "/categories/9/common_concerns/0/a",
+   "status": "P",
+   "text": "질문(전기 자극 위험)에 금기 대상 목록으로 답한다. 대상 3종은 「시술 대상이 아닙니다」 단정, 금속 임플란트는 「알려주세요」 알림 지시로 강도가 다르다. 임상적으로 승인하지 않는다"
+  },
+  {
+   "id": "S10-O2",
+   "segment": "S10",
+   "pointer": "/categories/9/common_concerns/1/a",
+   "status": "B",
+   "text": "효과 체감 시점의 기준(첫 시술/코스) 미기재 · 「분이 많아요」 비율 없음 · 코스 간격 미기재"
+  },
+  {
+   "id": "S10-O3",
+   "segment": "S10",
+   "pointer": "/categories/9/name",
+   "status": "B",
+   "text": "HIFES·EMS 약어 풀이 없음"
+  },
+  {
+   "id": "S11-O1",
+   "segment": "S11",
+   "pointer": "/categories/10/common_concerns/1/a",
+   "status": "P",
+   "text": "「흉터 깊이」는 고민(흉터)의 깊이로 시술 깊이(how_it_works 「정확한 깊이」)와 대상이 다르다"
+  },
+  {
+   "id": "S11-O2",
+   "segment": "S11",
+   "pointer": "/categories/10/how_it_works",
+   "status": "B",
+   "text": "전달 깊이 수치 미기재"
+  },
+  {
+   "id": "S11-O3",
+   "segment": "S11",
+   "pointer": "/categories/10/common_concerns/2/q",
+   "status": "F",
+   "text": "「프락셔널 레이저」는 S08(M8) downtime·pain_level 의 「프락셔널」과 연결될 수 있으나 후속"
+  },
+  {
+   "id": "S11-O4",
+   "segment": "S11",
+   "pointer": "/categories/10/common_concerns/0/a",
+   "status": "B",
+   "text": "반복 간격 미기재"
+  },
+  {
+   "id": "S12-O1",
+   "segment": "S12",
+   "pointer": "/categories/11/how_it_works",
+   "status": "P",
+   "text": "「0.2~2.0mm」가 바늘 길이인지 침투 깊이인지 원문은 괄호 수치로만 제시. 단위 대상 확정하지 않음"
+  },
+  {
+   "id": "S12-O2",
+   "segment": "S12",
+   "pointer": "/categories/11/common_concerns/0/a",
+   "status": "P",
+   "text": "홈케어 「0.25mm 이하」와 병원 「더 깊은 깊이」 비교. how_it_works 범위 하한 0.2mm 는 0.25mm 이하와 겹친다 — 원문 내 범위 겹침은 의미 단계 확인(I 로 확정하지 않음, P)"
+  },
+  {
+   "id": "S12-O3",
+   "segment": "S12",
+   "pointer": "/categories/11/downtime",
+   "status": "P",
+   "text": "「24시간 후 세안 및 화장 가능」 기준 시점 생략. cc2 a 「세안 시기」 안내와 연결될 수 있음"
+  },
+  {
+   "id": "S12-O4",
+   "segment": "S12",
+   "pointer": "/categories/11/how_it_works",
+   "status": "B",
+   "text": "「바른 약물」 종류 미기재"
+  },
+  {
+   "id": "S12-O5",
+   "segment": "S12",
+   "pointer": "/categories/11/common_concerns/2/a",
+   "status": "B",
+   "text": "「자극 제품」 범위·자제 기간 미기재"
+  },
+  {
+   "id": "S13-O1",
+   "segment": "S13",
+   "pointer": "/categories/12/common_concerns/0/a",
+   "status": "P",
+   "text": "「피부색이 진한 편이면」 대상 조건 + 위험 증가 · 「적절한 평가」 내용 미기재(B). 임상적으로 승인하지 않는다"
+  },
+  {
+   "id": "S13-O2",
+   "segment": "S13",
+   "pointer": "/categories/12/common_concerns/1/a",
+   "status": "P",
+   "text": "질문(효과 있나)에 효과 단정 없이 「일부 클리닉에서 사용」과 위험만 답한다 — 효과 정보 부재(B)"
+  },
+  {
+   "id": "S13-O3",
+   "segment": "S13",
+   "pointer": "/categories/12/common_concerns/1/q",
+   "status": "F",
+   "text": "「눈꺼풀 처짐」이 S01 a 에서는 부작용, 여기서는 고민으로 쓰인다 — 같은 문자열의 역할이 다르다. 병합하지 않는다"
+  },
+  {
+   "id": "S13-O4",
+   "segment": "S13",
+   "pointer": "/categories/12/downtime",
+   "status": "P",
+   "text": "가피(딱지) 소실 시간: downtime 은 「자연 탈락 대기」만, cc2 a 는 「보통 5-7일」 — 같은 카테고리 내 값 분산"
+  },
+  {
+   "id": "S13-O5",
+   "segment": "S13",
+   "pointer": "/categories/12/pain_level",
+   "status": "B",
+   "text": "마취 크림 사용 부위 미기재"
+  },
+  {
+   "id": "S14-O1",
+   "segment": "S14",
+   "pointer": "/categories/13/common_concerns/2/a",
+   "status": "P",
+   "text": "빈도 표현 3층: 「드물지만」(어휘)·「보고 발생률 약 0.2~0.5%」(보고 수치)·「과소보고 가능성 … 이보다 높을 수 있고」(수치 한정). 보고 수치를 환자 실제 발생률로 바꾸지 않는다"
+  },
+  {
+   "id": "S14-O2",
+   "segment": "S14",
+   "pointer": "/categories/13/common_concerns/2/a",
+   "status": "B",
+   "text": "보고 발생률의 분모·출처·기간 미기재 · 「남성에서 더 흔합니다」 비교 수치 없음"
+  },
+  {
+   "id": "S14-O3",
+   "segment": "S14",
+   "pointer": "/categories/13/common_concerns/1/a",
+   "status": "B",
+   "text": "「약 20-25%」 측정 방법·출처 미기재"
+  },
+  {
+   "id": "S14-O4",
+   "segment": "S14",
+   "pointer": "/categories/13/duration_simple",
+   "status": "P",
+   "text": "이 키는 지속 기간이 아니라 최대 효과 시점(3개월 후)과 「반영구적」 성질을 담는다"
+  },
+  {
+   "id": "S14-O5",
+   "segment": "S14",
+   "pointer": "/categories/13/downtime",
+   "status": "P",
+   "text": "값 안에 마침표로 두 문장 — 이 키에서 문장 종결형이 있는 값"
+  },
+  {
+   "id": "S15-O1",
+   "segment": "S15",
+   "pointer": "/categories/14/downtime",
+   "status": "P",
+   "text": "세분 축이 「가벼운/중간/깊은 필링」 — duration_simple·pain_level 은 「가벼운/깊은」 2단, downtime 은 3단(중간 추가). 「깊은 필링: 1-2주」는 무엇의 기간인지 생략(B)"
+  },
+  {
+   "id": "S15-O2",
+   "segment": "S15",
+   "pointer": "/categories/14/common_concerns/1/a",
+   "status": "P",
+   "text": "S08 cc0 a 와 거의 같은 문형(적절한 …와 간격으로 시술하면 오히려 … 과도하게 자주 받지 않는 것이 중요) — 다른 카테고리 간 반복 문형. 병합하지 않는다"
+  },
+  {
+   "id": "S15-O3",
+   "segment": "S15",
+   "pointer": "/categories/14/how_it_works",
+   "status": "B",
+   "text": "AHA·BHA·TCA 풀이·농도 미기재 · 전문 기기 이름 미기재"
+  },
+  {
+   "id": "S15-O4",
+   "segment": "S15",
+   "pointer": "/categories/14/common_concerns/2/a",
+   "status": "B",
+   "text": "「효과와 안전성 모두 높아요」 근거 미기재"
+  },
+  {
+   "id": "S15-O5",
+   "segment": "S15",
+   "pointer": "/categories/14/duration_simple",
+   "status": "P",
+   "text": "「가벼운」은 정도, 「깊은」은 깊이 수식으로 필링 종류를 가른다 — 정도/깊이 축 혼재(잠정)"
+  },
+  {
+   "id": "S16-O1",
+   "segment": "S16",
+   "pointer": "/categories/15/common_concerns/0/a",
+   "status": "P",
+   "text": "질문(미백)에 근거 부족·허가 외·위험 목록으로 답한다. 「드물게」는 중증 피부반응에, 「고용량 시」는 간·신장 부담에 붙은 것으로 읽힘(잠정) — 알레르기·아나필락시스에는 빈도 수식 없음. 임상적으로 승인하지 않는다"
+  },
+  {
+   "id": "S16-O2",
+   "segment": "S16",
+   "pointer": "/categories/15/common_concerns/0/a",
+   "status": "B",
+   "text": "「고용량」 기준 · 각 위험 빈도 수치 · 아나필락시스 응급 징후·대처 미기재"
+  },
+  {
+   "id": "S16-O3",
+   "segment": "S16",
+   "pointer": "/categories/15/how_it_works",
+   "status": "P",
+   "text": "how_it_works 와 cc2 a 가 같은 근거 제한 문장(결핍이 없는 경우 경구 섭취보다 … 근거는 제한적)을 반복"
+  },
+  {
+   "id": "S16-O4",
+   "segment": "S16",
+   "pointer": "/categories/15/duration_simple",
+   "status": "B",
+   "text": "무엇이 1-2주 지속되는지(효과) 생략 · 「정기적」 간격은 cc1 a 에 「주 1-2회 또는 격주 1회」"
+  },
+  {
+   "id": "S17-O1",
+   "segment": "S17",
+   "pointer": "/categories/16/common_concerns/1/a",
+   "status": "P",
+   "text": "규제 서술(국내·허가·적응증)이 들어 있다. 시점·출처 미기재 — 현재 유효성은 외부 확인 대상이며 여기서 승인·보충하지 않는다(B)"
+  },
+  {
+   "id": "S17-O2",
+   "segment": "S17",
+   "pointer": "/categories/16/common_concerns/2/a",
+   "status": "P",
+   "text": "조합 질문에 「함께 사용하는 경우가 있습니다」(현황) + 위험 + 「의사와 상담」으로 답한다. 동시 가능·보완 효과·순서를 단정하지 않는다. 선후 표현 「MTS(미세침)나 레이저 시술 후」는 조합의 시점"
+  },
+  {
+   "id": "S17-O3",
+   "segment": "S17",
+   "pointer": "/categories/16/common_concerns/2/a",
+   "status": "F",
+   "text": "「MTS(미세침)」「레이저」는 S12(M12)·S08(M8) 참조로 보이며 「앞서 안내드린 미허가 주사」는 같은 카테고리 cc1 a 참조. 연결은 후속"
+  },
+  {
+   "id": "S17-O4",
+   "segment": "S17",
+   "pointer": "/categories/16/common_concerns/2/a",
+   "status": "B",
+   "text": "「보고된 사례」 출처·빈도 미기재 · 「검증된 제품」 기준 미기재"
+  },
+  {
+   "id": "S17-O5",
+   "segment": "S17",
+   "pointer": "/categories/16/how_it_works",
+   "status": "P",
+   "text": "how_it_works 는 「도포하거나 주사합니다」로 주사를 일반 방법으로 기술하나, cc1 a 는 주사 사용이 허가 적응증이 아니라고 기술 — 같은 카테고리 안 서술 긴장(I 후보). 임상·규제 판단은 하지 않는다"
+  }
+ ]
+}

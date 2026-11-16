@@ -1,0 +1,49 @@
+{
+ "id": "DEC-2026-11-05-B3-R30-01",
+ "kind": "edge_create",
+ "target": {
+  "relation": "R30",
+  "from_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "동상",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  },
+  "to_ref": {
+   "kind": "adverse_tuple",
+   "tuple": {
+    "event": "괴사",
+    "site": "none",
+    "course": "미상",
+    "qualifier": "none"
+   }
+  }
+ },
+ "new_value": {
+  "attrs": {
+   "basis": "complications M14 「과도한 냉각 … 피부 혈류 차단 → 허혈성 괴사(동상)」"
+  }
+ },
+ "reason": "인과 R30 leads_to: 동상 → 괴사. 「괴사」는 결과 사건 하나, 원인 사건을 분리(사용자 모델).",
+ "decided_by": "사용자(이건학)",
+ "decided_at": "2026-11-05",
+ "status": "approved",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "complications.json:categories[].complications[].mechanism@7/1"
+  },
+  {
+   "kind": "ledger",
+   "ref": "consent-checklist.json:categories[].emergency_signs[]@13/1"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「동상의 결과 괴사가 일어나고 필러에서도 괴사가 일어나잖아」"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

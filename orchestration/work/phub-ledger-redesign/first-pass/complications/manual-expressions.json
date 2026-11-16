@@ -1,0 +1,1517 @@
+{
+ "note": "직접 읽기로 고른 구절. 범주는 탐색 관점 후보이며 확정 분류가 아니다. build.py 가 원문 값에서 text 의 occurrence 번째 출현 위치를 찾고, 없으면 실패한다. 목록은 대표 구절이며 해당 범주의 전수 목록이 아니다(전수 후보는 regex·keyword 규칙 결과).",
+ "expressions": [
+  {
+   "id": "M000",
+   "pointer": "/categories/0/complications/0/mechanism",
+   "text": "부위별 강도 차이는 site_specific에 별도 기재",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M001",
+   "pointer": "/categories/0/complications/6/mechanism",
+   "text": "미소 특이 비대칭은 입꼬리/perioral의 '비대칭 미소'로 별도 분리",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M002",
+   "pointer": "/categories/1/complications/0/evidence",
+   "text": "anatomy-danger-zones.json (internal)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M003",
+   "pointer": "/categories/1/complications/1/evidence",
+   "text": "anatomy-danger-zones.json (internal)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M004",
+   "pointer": "/categories/1/complications/2/evidence",
+   "text": "anatomy-danger-zones.json (internal)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M005",
+   "pointer": "/categories/1/complications/3/evidence",
+   "text": "anatomy-danger-zones.json (internal)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M006",
+   "pointer": "/categories/1/complications/1/mechanism",
+   "text": "별도 부위특이 항목화(site_specific 참조)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M007",
+   "pointer": "/categories/1/complications/5/incidence",
+   "text": "입술 등 점막 인접 부위는 별도 상향 항목 참조",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M008",
+   "pointer": "/categories/2/complications/4/evidence",
+   "text": "taxonomy.json M3 각 제품 safety.common (부종/압통/멍/홍반 반복 등장)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M009",
+   "pointer": "/categories/3/complications/7/mechanism",
+   "text": "관자·측두의 천측두동정맥 등 명명 혈관 손상에 의한 국소 혈종은 부위 특이 항목으로 별도 분류.",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M010",
+   "pointer": "/categories/5/complications/1/evidence",
+   "text": "taxonomy.json M9 safety.common (홍반)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M011",
+   "pointer": "/categories/5/complications/2/evidence",
+   "text": "taxonomy.json M9 safety.common (부종)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M012",
+   "pointer": "/categories/5/complications/3/evidence",
+   "text": "taxonomy.json M9 safety.common (따끔거림)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M013",
+   "pointer": "/categories/5/complications/4/evidence",
+   "text": "taxonomy.json M9 safety.common (일시적 감각 둔화)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M014",
+   "pointer": "/categories/5/complications/5/evidence",
+   "text": "taxonomy.json M9 safety.uncommon (색소침착)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M015",
+   "pointer": "/categories/5/complications/4/management",
+   "text": "부위 특이 신경손상으로 감별 필요",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M016",
+   "pointer": "/categories/6/complications/4/evidence",
+   "text": "taxonomy.json M11 extracted.safety.common (일시적 홍반·부종·딱지)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M017",
+   "pointer": "/categories/8/complications/0/management",
+   "text": "중~심부는 별도 지속성 홍반 항목 참조",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M018",
+   "pointer": "/categories/9/complications/3/prevention",
+   "text": "(운동신경 손상은 부위별 특이 항목 참조)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M019",
+   "pointer": "/categories/9/complications/4/mechanism",
+   "text": "(바디의 지속·대형 결절/파열은 별도 특이 항목)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M020",
+   "pointer": "/categories/9/complications/6/evidence",
+   "text": "taxonomy M16 safety.common (전 제제 공통 기재)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M021",
+   "pointer": "/categories/9/complications/9/mechanism",
+   "text": "(성분별은 site_specific 참조)",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M022",
+   "pointer": "/categories/6/complications/3/incidence",
+   "text": "이보다 흔함",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M023",
+   "pointer": "/categories/2/complications/0/management",
+   "text": "2024 ASJ 구조적 접근법",
+   "category_candidate": "cross_reference",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M024",
+   "pointer": "/categories/9/complications/0/incidence",
+   "text": "~87%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M025",
+   "pointer": "/categories/9/complications/1/incidence",
+   "text": "~70%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M026",
+   "pointer": "/categories/9/complications/2/incidence",
+   "text": "~72%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M027",
+   "pointer": "/categories/9/complications/3/incidence",
+   "text": "~66%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M028",
+   "pointer": "/categories/9/complications/4/incidence",
+   "text": "~23-30%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M029",
+   "pointer": "/categories/9/complications/5/incidence",
+   "text": "~27%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M030",
+   "pointer": "/categories/9/complications/7/incidence",
+   "text": "수%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M031",
+   "pointer": "/categories/0/complications/1/incidence",
+   "text": "약 11-25%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M032",
+   "pointer": "/categories/0/complications/5/incidence",
+   "text": "약 14%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M033",
+   "pointer": "/categories/3/complications/5/incidence",
+   "text": "약 7-10%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M034",
+   "pointer": "/categories/6/complications/3/incidence",
+   "text": "약 6.3%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M035",
+   "pointer": "/categories/7/complications/0/incidence",
+   "text": "약 0.2%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M036",
+   "pointer": "/categories/8/complications/0/incidence",
+   "text": "약 15%",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M037",
+   "pointer": "/categories/1/complications/4/onset",
+   "text": "약 16.8개월",
+   "category_candidate": "approx_prefix",
+   "occurrence": 0,
+   "note": "앞이 공백인 '~숫자'·'약'·'수%' — 근사 표기. 범위 regex 대상 아님"
+  },
+  {
+   "id": "M038",
+   "pointer": "/categories/5/complications/1/prevention",
+   "text": "예방 대상이라기보다 예측 가능한 정상 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M039",
+   "pointer": "/categories/5/complications/1/mechanism",
+   "text": "조사 직후 나타나는 정상 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M040",
+   "pointer": "/categories/5/complications/1/management",
+   "text": "정상 경과로 안내",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M041",
+   "pointer": "/categories/6/complications/4/incidence",
+   "text": "예상되는 정상 회복 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M042",
+   "pointer": "/categories/6/complications/4/prevention",
+   "text": "(합병증 아닌 정상 경과)",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M043",
+   "pointer": "/categories/6/complications/4/evidence",
+   "text": "예상 회복 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M044",
+   "pointer": "/categories/8/complications/2/incidence",
+   "text": "표재 필링의 의도된 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M045",
+   "pointer": "/categories/9/complications/0/mechanism",
+   "text": "부위와 무관하게 발생하는 정상 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M046",
+   "pointer": "/categories/9/complications/0/prevention",
+   "text": "예상 반응임을 사전 고지",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M047",
+   "pointer": "/categories/9/complications/4/mechanism",
+   "text": "치유 과정의 정상 반응",
+   "category_candidate": "normal_reaction_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M048",
+   "pointer": "/categories/0/complications/6/management",
+   "text": "강한 쪽 재주사는 금지(과교정 위험)",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M049",
+   "pointer": "/categories/2/complications/0/prevention",
+   "text": "얇은 피부 부위(입술, 눈꺼풀) 주입 금지",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M050",
+   "pointer": "/categories/2/complications/1/prevention",
+   "text": "이물반응/육아종 병력 환자 시술 금지",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M051",
+   "pointer": "/categories/2/complications/5/management",
+   "text": "★감염/바이오필름 의심 시 스테로이드 단독 주사 금지(악화)",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M052",
+   "pointer": "/categories/3/complications/4/prevention",
+   "text": "적절한 텐션(과도한 당김 금지)",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M053",
+   "pointer": "/categories/7/complications/0/management",
+   "text": "추가 크라이오 시술은 PAH 악화 가능 — 금기",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M054",
+   "pointer": "/categories/7/complications/1/management",
+   "text": "서서히 재가온(급격한 가온 금지)",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M055",
+   "pointer": "/categories/7/complications/1/prevention",
+   "text": "한랭 두드러기·한랭글로불린혈증·발작성 한랭혈색소뇨증은 절대 금기 확인",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M056",
+   "pointer": "/categories/7/complications/1/prevention",
+   "text": "Raynaud는 상대 금기로 개별 평가",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M057",
+   "pointer": "/categories/8/complications/0/prevention",
+   "text": "시술 후 물리적 자극 금지",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M058",
+   "pointer": "/categories/9/complications/10/prevention",
+   "text": "같은 부위 24-72시간 이상 카테터 거치 금지",
+   "category_candidate": "prohibition_contraindication",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M059",
+   "pointer": "/categories/0/complications/4/duration",
+   "text": "완전 영구는 아님",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M060",
+   "pointer": "/categories/0/complications/4/management",
+   "text": "3-6개월 휴약만으로 회복을 기대하지 않음",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M061",
+   "pointer": "/categories/0/complications/6/mechanism",
+   "text": "특정 부위에 귀속하지 않음",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M062",
+   "pointer": "/categories/0/complications/6/management",
+   "text": "2주 이내 재주사 불필요",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M063",
+   "pointer": "/categories/1/complications/4/mechanism",
+   "text": "부위 특이가 아닌 공통",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M064",
+   "pointer": "/categories/2/complications/0/management",
+   "text": "1차 옵션으로 권고하지 않음",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M065",
+   "pointer": "/categories/2/complications/0/prevention",
+   "text": "24시간 이상 수화가 필수인 것은 아님",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M066",
+   "pointer": "/categories/2/complications/1/management",
+   "text": "1차 옵션에서 제외",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M067",
+   "pointer": "/categories/2/complications/3/mechanism",
+   "text": "CaHA/PLLA에는 용해 역전제가 없고 hyaluronidase가 무효",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M068",
+   "pointer": "/categories/2/complications/3/prevention",
+   "text": "음성 결과가 안전을 보장하지 않는 보조 수단으로만",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M069",
+   "pointer": "/categories/5/complications/1/management",
+   "text": "특별 치료 불필요",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M070",
+   "pointer": "/categories/5/complications/5/mechanism",
+   "text": "특정 부위 특이가 아닌 공통 위험",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M071",
+   "pointer": "/categories/6/complications/0/prevention",
+   "text": "관례적 6개월 대기는 근거 부족으로 더 이상 권고되지 않음",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M072",
+   "pointer": "/categories/6/complications/3/incidence",
+   "text": "실제 발생률은 과소보고로 불명확",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M073",
+   "pointer": "/categories/7/complications/0/duration",
+   "text": "영구적 (자연 소실 없음)",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M074",
+   "pointer": "/categories/7/complications/0/management",
+   "text": "경과 관찰로 소실되지 않음(영구적)",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M075",
+   "pointer": "/categories/7/complications/0/prevention",
+   "text": "현재 완전한 예방법은 없음",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M076",
+   "pointer": "/categories/7/complications/3/management",
+   "text": "특별 처치 불필요",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M077",
+   "pointer": "/categories/8/complications/2/management",
+   "text": "물리적으로 각질을 뜯지 않도록 교육",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M078",
+   "pointer": "/categories/8/complications/0/management",
+   "text": "대개 처치 없이 소실",
+   "category_candidate": "negated_statement",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M079",
+   "pointer": "/categories/1/complications/3/management",
+   "text": "48시간 이상 지속·확대 시",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M080",
+   "pointer": "/categories/0/complications/5/management",
+   "text": "지속·악화 또는 호흡·연하 곤란 동반 시",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M081",
+   "pointer": "/categories/5/complications/4/management",
+   "text": "4주 이상 지속하거나 운동마비(입꼬리·눈썹 비대칭)를 동반하면",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M082",
+   "pointer": "/categories/0/complications/4/risk_factors/0",
+   "text": "잦은 시술 간격(3개월 미만)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M083",
+   "pointer": "/categories/0/complications/4/risk_factors/1",
+   "text": "1회 고용량 투여(100U 이상)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M084",
+   "pointer": "/categories/2/complications/0/risk_factors/0",
+   "text": "불충분한 희석(PLLA: 8mL 미만)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M085",
+   "pointer": "/categories/9/complications/10/mechanism",
+   "text": "공기 50mL 이상이 정맥 내 유입 시",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M086",
+   "pointer": "/categories/9/complications/11/risk_factors/1",
+   "text": "만성 신부전(eGFR<30)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M087",
+   "pointer": "/categories/9/complications/11/prevention",
+   "text": "고위험군 100-125mL/h",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M088",
+   "pointer": "/categories/7/complications/0/management",
+   "text": "PAH 확진 후 최소 6-9개월 이후",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M089",
+   "pointer": "/categories/3/complications/0/management",
+   "text": "불가능 시 노출 부분 절단 또는 실 제거",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M090",
+   "pointer": "/categories/3/complications/0/management",
+   "text": "감염 동반 시 항생제 투여 + 실 제거",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M091",
+   "pointer": "/categories/3/complications/2/management",
+   "text": "항생제 불응 시 실 제거 필수",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M092",
+   "pointer": "/categories/8/complications/1/management",
+   "text": "조절 불가능한 통증은 과도 침투 신호이므로 즉시 중단",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M093",
+   "pointer": "/categories/0/complications/1/management",
+   "text": "심하면 레이저(PDL/KTP)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M094",
+   "pointer": "/categories/1/complications/0/prevention",
+   "text": "(의학적 필요 시 처방의 상의)",
+   "category_candidate": "condition_threshold",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M095",
+   "pointer": "/categories/0/complications/3/mechanism",
+   "text": "만성 편두통 환자에서는 오히려 완화 효과",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M096",
+   "pointer": "/categories/3/complications/5/incidence",
+   "text": "50세 초과에서 최대 16%",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M097",
+   "pointer": "/categories/4/complications/0/incidence",
+   "text": "CO2 레이저 시 최대 50%, Fitzpatrick IV-VI에서 높음",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M098",
+   "pointer": "/categories/4/complications/0/mechanism",
+   "text": "동아시아인(Fitzpatrick III-IV) 특히 고위험",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M099",
+   "pointer": "/categories/6/complications/1/incidence",
+   "text": "5-20% (Fitzpatrick III-V)",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M100",
+   "pointer": "/categories/6/complications/1/mechanism",
+   "text": "동아시아인(Fitzpatrick III-IV)에서 높은 빈도",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M101",
+   "pointer": "/categories/7/complications/0/prevention",
+   "text": "시술 전 PAH 위험 고지(특히 남성)",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M102",
+   "pointer": "/categories/7/complications/6/incidence",
+   "text": "Fitzpatrick IV-VI(진한 피부톤)에서 상대적으로 높음",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M103",
+   "pointer": "/categories/9/complications/11/incidence",
+   "text": "기저 심부전·신부전 환자에 한해 임상적으로 의미",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M104",
+   "pointer": "/categories/3/complications/2/prevention",
+   "text": "예방적 항생제 투여 고려(고위험군)",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M105",
+   "pointer": "/categories/2/complications/0/incidence",
+   "text": "5-10% (PLLA), 2-5% (CaHA)",
+   "category_candidate": "population_subgroup",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M106",
+   "pointer": "/categories/7/complications/0/risk_factors/2",
+   "text": "높은 BMI 가능 인자(근거 불확실)",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M107",
+   "pointer": "/categories/7/complications/0/incidence",
+   "text": "과소보고 가능성 높음",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M108",
+   "pointer": "/categories/7/complications/0/incidence",
+   "text": "신세대 기기에서 발생률 감소 경향",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M109",
+   "pointer": "/categories/7/complications/0/mechanism",
+   "text": "정확한 기전 불명이나 cold-induced adipogenesis 가설",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M110",
+   "pointer": "/categories/7/complications/0/management",
+   "text": "시도 보고 있으나 효과 제한적",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M111",
+   "pointer": "/categories/7/complications/5/mechanism",
+   "text": "신경병증으로 추정",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M112",
+   "pointer": "/categories/2/complications/0/management",
+   "text": "근거가 제한적이고 효능 논란",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M113",
+   "pointer": "/categories/9/complications/0/prevention",
+   "text": "부종이 상대적으로 경미하다는 보고",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M114",
+   "pointer": "/categories/9/complications/3/incidence",
+   "text": "바디는 평균 18.6일 지속 보고",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M115",
+   "pointer": "/categories/9/complications/9/incidence",
+   "text": "특히 보고",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M116",
+   "pointer": "/categories/6/complications/2/mechanism",
+   "text": "드물게 NTM(비결핵항산균) 감염 보고",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M117",
+   "pointer": "/categories/4/complications/1/evidence",
+   "text": "clinical-standard: universal laser thermal response",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M118",
+   "pointer": "/categories/4/complications/2/evidence",
+   "text": "clinical-standard: universal laser thermal response",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M119",
+   "pointer": "/categories/9/complications/7/evidence",
+   "text": "임상 표준 (needle-related vasovagal syncope, 주사 시술 공통)",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M120",
+   "pointer": "/categories/6/complications/0/prevention",
+   "text": "2017 ASDS 합의상",
+   "category_candidate": "evidence_level_marker",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M121",
+   "pointer": "/categories/2/complications/1/mechanism",
+   "text": "만성 염증 → 상피양 세포·거대세포 집적 → 육아종 형성",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M122",
+   "pointer": "/categories/4/complications/0/mechanism",
+   "text": "표피 손상 → 염증성 사이토카인 → 멜라닌 과생성",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M123",
+   "pointer": "/categories/6/complications/1/mechanism",
+   "text": "니들 + RF 열에 의한 표피/진피 염증 반응 → 멜라닌세포 활성화 → 멜라닌 과생성",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M124",
+   "pointer": "/categories/7/complications/1/mechanism",
+   "text": "과도한 냉각 또는 흡입 압력에 의한 피부 혈류 차단 → 허혈성 괴사(동상)",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M125",
+   "pointer": "/categories/9/complications/7/mechanism",
+   "text": "통증·불안·바늘 공포에 의한 미주신경 항진 → 서맥·말초혈관 확장·혈압저하 → 뇌관류 저하로 전실신/실신",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M126",
+   "pointer": "/categories/1/complications/4/mechanism",
+   "text": "여러 필러 주입 부위에 동시다발로 나타나는 특성 → 부위 특이가 아닌 공통",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M127",
+   "pointer": "/categories/2/complications/5/mechanism",
+   "text": "주입 과정 세균 오염 → 급성: 국소 농양/봉와직염",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M128",
+   "pointer": "/categories/2/complications/5/incidence",
+   "text": "지연 결절·육아종의 원인",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M129",
+   "pointer": "/categories/1/complications/6/mechanism",
+   "text": "이차적 필러 이동",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M130",
+   "pointer": "/categories/0/complications/4/management",
+   "text": "Type A → Type B",
+   "category_candidate": "causal_chain",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M131",
+   "pointer": "/categories/0/complications/1/management",
+   "text": "24-48시간 냉찜질 후 온찜질",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M132",
+   "pointer": "/categories/0/complications/1/prevention",
+   "text": "시술 전 1주간",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M133",
+   "pointer": "/categories/1/complications/1/prevention",
+   "text": "시술 후 24-48시간 열노출(사우나·격한 운동·음주) 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M134",
+   "pointer": "/categories/1/complications/4/prevention",
+   "text": "치과 시술 전후 2주 간격",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M135",
+   "pointer": "/categories/2/complications/1/management",
+   "text": "4주 간격 3-5회",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M136",
+   "pointer": "/categories/2/complications/1/prevention",
+   "text": "예방접종 전후 2주 시술 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M137",
+   "pointer": "/categories/2/complications/1/prevention",
+   "text": "정기 추적 관찰(6개월/1년)",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M138",
+   "pointer": "/categories/3/complications/1/prevention",
+   "text": "시술 후 3-4주 격렬한 안면 운동·마사지·치과 시술 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M139",
+   "pointer": "/categories/3/complications/2/prevention",
+   "text": "시술 전후 2주 치과 시술 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M140",
+   "pointer": "/categories/3/complications/4/prevention",
+   "text": "시술 간 최소 6개월 간격",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M141",
+   "pointer": "/categories/3/complications/6/prevention",
+   "text": "시술 후 2-3주 심한 표정·저작·마사지 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M142",
+   "pointer": "/categories/4/complications/0/prevention",
+   "text": "고위험군 시술 전 2-4주 하이드로퀴논 전처치",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M143",
+   "pointer": "/categories/4/complications/0/prevention",
+   "text": "시술 후 4-6주 철저한 자외선 차단",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M144",
+   "pointer": "/categories/6/complications/0/prevention",
+   "text": "시술 전후 1주 중단",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M145",
+   "pointer": "/categories/6/complications/1/prevention",
+   "text": "고위험군 시술 전 2주 하이드로퀴논 전처치",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M146",
+   "pointer": "/categories/6/complications/2/prevention",
+   "text": "시술 후 24시간 자극적 화장 자제",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M147",
+   "pointer": "/categories/7/complications/5/onset",
+   "text": "지연성 통증은 시술 3-4일 후 발현",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M148",
+   "pointer": "/categories/9/complications/8/prevention",
+   "text": "주입 중 15-30분마다 유출 확인",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M149",
+   "pointer": "/categories/9/complications/9/management",
+   "text": "이원성(biphasic) 반응 대비 4-6시간 관찰",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M150",
+   "pointer": "/categories/9/complications/9/prevention",
+   "text": "초기 15분 밀착 관찰",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M151",
+   "pointer": "/categories/0/complications/6/management",
+   "text": "2주 후 경과 관찰",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M152",
+   "pointer": "/categories/0/complications/6/prevention",
+   "text": "2주 후 터치업 계획",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M153",
+   "pointer": "/categories/1/complications/6/management",
+   "text": "2주 후 부종 소실 시점 재평가",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M154",
+   "pointer": "/categories/3/complications/3/management",
+   "text": "2-4주 경과 관찰(부종 소실 후 재평가)",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M155",
+   "pointer": "/categories/9/complications/4/management",
+   "text": "급성 부종 소실 후 온찜질·부드러운 마사지",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M156",
+   "pointer": "/categories/3/complications/0/duration",
+   "text": "제거 시까지 지속",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M157",
+   "pointer": "/categories/3/complications/1/management",
+   "text": "경과 관찰(실 흡수 시까지)",
+   "category_candidate": "time_window_or_sequence",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M158",
+   "pointer": "/categories/0/complications/0/incidence",
+   "text": "대부분 (일시적)",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M159",
+   "pointer": "/categories/0/complications/0/management",
+   "text": "대부분 수 분 내 소실",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M160",
+   "pointer": "/categories/1/complications/0/incidence",
+   "text": "부위·기법 무관하게 가장 흔한 부작용군",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M161",
+   "pointer": "/categories/1/complications/1/incidence",
+   "text": "사실상 전 사례에서 경도 발생",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M162",
+   "pointer": "/categories/2/complications/3/incidence",
+   "text": "드물지만 피부괴사·실명 등 비가역적 손상 가능",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M163",
+   "pointer": "/categories/2/complications/4/incidence",
+   "text": "각 제품 안전정보의 최빈 공통 항목",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M164",
+   "pointer": "/categories/3/complications/6/incidence",
+   "text": "거의 전례에서 일시적",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M165",
+   "pointer": "/categories/3/complications/7/incidence",
+   "text": "유의 혈종은 드묾",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M166",
+   "pointer": "/categories/4/complications/1/incidence",
+   "text": "거의 전례(일과성)",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M167",
+   "pointer": "/categories/5/complications/5/incidence",
+   "text": "대개 일시적, 수주~수개월",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M168",
+   "pointer": "/categories/7/complications/1/incidence",
+   "text": "극히 드묾 (<0.01%)",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M169",
+   "pointer": "/categories/7/complications/2/incidence",
+   "text": "시술 후 가장 흔한 부작용군의 하나(대부분의 환자에서 일시적으로 경험)",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M170",
+   "pointer": "/categories/7/complications/5/incidence",
+   "text": "지연성 통증(LOP)은 소수에서 보고",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M171",
+   "pointer": "/categories/7/complications/5/incidence",
+   "text": "넓은 치료면적·복부에서 다소 빈도↑이나 부위 전반에 발생",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M172",
+   "pointer": "/categories/8/complications/1/incidence",
+   "text": "매우 흔함 (도포 중 대부분)",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M173",
+   "pointer": "/categories/9/complications/0/incidence",
+   "text": "거의 필발",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M174",
+   "pointer": "/categories/9/complications/10/incidence",
+   "text": "드물지만 치명적 가능",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M175",
+   "pointer": "/categories/8/complications/3/mechanism",
+   "text": "중~심부에서 더 강할 수 있음",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M176",
+   "pointer": "/categories/8/complications/1/mechanism",
+   "text": "농도·pH가 낮을수록, 장벽이 손상된 피부일수록 강함",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M177",
+   "pointer": "/categories/4/complications/1/mechanism",
+   "text": "박피 깊이·에너지·밀도가 클수록 강도·지속기간 증가",
+   "category_candidate": "frequency_degree_scoped",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M178",
+   "pointer": "/categories/0/complications/0/mechanism",
+   "text": "손바닥/발바닥·두피 등 신경분포 밀집 부위는 더 심함",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M179",
+   "pointer": "/categories/0/complications/1/mechanism",
+   "text": "혈관이 풍부·표재한 부위(눈가 등)는 현저히 높음",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M180",
+   "pointer": "/categories/0/complications/6/mechanism",
+   "text": "어느 부위(이마·미간·눈가·교근 등)에서든 양측 시술 시 발생 가능한 공통 위험",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M181",
+   "pointer": "/categories/1/complications/1/mechanism",
+   "text": "눈밑·입술처럼 조직이 성긴 부위에서는 과다 부종",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M182",
+   "pointer": "/categories/2/complications/3/risk_factors/0",
+   "text": "미간·비배부·측두부 등 고위험 부위",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M183",
+   "pointer": "/categories/4/complications/2/incidence",
+   "text": "안와주위·구주위 등 피부가 얇고 성긴 부위에서 특히 현저하나 발생 자체는 부위 무관",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M184",
+   "pointer": "/categories/5/complications/0/mechanism",
+   "text": "골 돌출부(이마·하악연·관자)와 얇은 피부에서 열 축적으로 위험이 상대적으로 높고",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M185",
+   "pointer": "/categories/5/complications/3/prevention",
+   "text": "골막 근접 부위(이마·하악연) 에너지 감량",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M186",
+   "pointer": "/categories/6/complications/3/prevention",
+   "text": "얇은 부위(관자·안와주위·목) 저에너지",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M187",
+   "pointer": "/categories/6/complications/3/mechanism",
+   "text": "FDA는 안면·목·복부 등 다부위 보고",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  },
+  {
+   "id": "M188",
+   "pointer": "/categories/9/complications/0/incidence",
+   "text": "턱밑 임상 ~87%",
+   "category_candidate": "site_mention_with_scope",
+   "occurrence": 0,
+   "note": null
+  }
+ ]
+}

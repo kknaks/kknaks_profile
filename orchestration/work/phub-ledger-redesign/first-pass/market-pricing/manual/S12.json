@@ -1,0 +1,30 @@
+{
+ "segment": "S12", "direct_read": true, "read_note": "M12 마이크로니들링(MTS) 6항목 전부 직접 읽음.",
+ "last_pointer": "/categories/11/items/5/high",
+ "observations": [
+  ["/categories/11/name", "'마이크로니들링(MTS)' — 한글 명칭+괄호 영문 약어. 항목 name 은 약어 'MTS' 를 씀.", "P"],
+  ["/categories/11/items/1/name", "'MTS + PRP (전체얼굴)' (150000/300000/500000) — M5 'PRP + MTS 콤보'(200000/350000/600000)와 구성 요소가 같아 보이나 순서·'콤보'·부위 표기·가격이 다름.", "P"],
+  ["/categories/11/items/2/name", "'MTS + 스킨부스터' — 함께 시행 조합. '스킨부스터' 는 M4 카테고리 이름과 같은 문자열이며 어떤 제품인지·용량은 없음. 적용 범위 없음.", "B"],
+  ["/categories/11/items/3/name", "'더마펜4' — MTS 카테고리 안의 장비명 후보(숫자 포함).", "P"],
+  ["/categories/11/items/4/name", "'MTS (여드름 흉터 집중)' — '집중' 은 시술 강도/범위 수식 후보. 무엇이 다른지(밀도·깊이·회차) 원문에 없음.", "B"],
+  ["/categories/11/items/5/name", "'MTS (두피 탈모)' — 부위(두피)+고민(탈모).", "P"],
+  ["/categories/11/items/0/low", "6항목 모두 low < mid < high.", "P"]
+ ],
+ "expressions": [
+  ["/categories/11/name", "마이크로니들링(MTS)", ["분류명", "영문 약어"], ""],
+  ["/categories/11/items/0/name", "MTS", ["시술명 후보", "영문 약어"], ""],
+  ["/categories/11/items/0/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/11/items/1/name", "MTS + PRP", ["조합", "'+' 연결"], ""],
+  ["/categories/11/items/1/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/11/items/2/name", "MTS + 스킨부스터", ["조합", "'+' 연결"], ""],
+  ["/categories/11/items/3/name", "더마펜4", ["장비명 후보", "숫자 포함"], ""],
+  ["/categories/11/items/3/name", "(전체얼굴)", ["적용 범위", "부위 후보"], ""],
+  ["/categories/11/items/4/name", "(여드름 흉터 집중)", ["고민/적응증 후보", "강도/범위 수식"], ""],
+  ["/categories/11/items/4/name", "집중", ["강도/범위 수식"], ""],
+  ["/categories/11/items/5/name", "(두피 탈모)", ["부위 후보", "고민 후보"], ""]
+ ],
+ "issues": [
+  ["B-S12-1", "B", ["/categories/11/items/2/name"], "'MTS + 스킨부스터' 의 스킨부스터 제품·용량·범위가 없다."],
+  ["B-S12-2", "B", ["/categories/11/items/4/name"], "'집중' 의 차이(밀도·깊이·회차)가 없다."]
+ ]
+}

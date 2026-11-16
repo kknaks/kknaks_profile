@@ -1,0 +1,385 @@
+[
+  {
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "raw_path": "$.problems[8].complaints[4]",
+    "original": {
+      "cc": "니들RF",
+      "cc_detail": "포텐자/시크릿",
+      "cc_group": "여드름흉터",
+      "procedures": [
+        {
+          "name": "프락셔널",
+          "category": "M8",
+          "role": "리서페이싱",
+          "products": [
+            "프락셀"
+          ]
+        },
+        {
+          "name": "서브시전",
+          "category": "M8",
+          "role": "유착 박리",
+          "products": []
+        },
+        {
+          "name": "PRP/자가혈",
+          "category": "M5",
+          "role": "재생 촉진",
+          "products": [
+            "셀피아",
+            "리젠ACR"
+          ]
+        },
+        {
+          "name": "니들RF",
+          "category": "M11",
+          "role": "콜라겐 자극",
+          "products": [
+            "인트라셀",
+            "포텐자"
+          ]
+        }
+      ],
+      "combos": [
+        {
+          "name": "프락셔널 + PRP",
+          "combo": [
+            "프락셔널",
+            "PRP"
+          ],
+          "reason": "미세구멍 + 성장인자 = 재생 2배",
+          "evidence": "PRP가 채널로 깊이 침투"
+        },
+        {
+          "name": "서브시전 + 프락셔널 + PRP",
+          "combo": [
+            "서브시전",
+            "프락셔널",
+            "PRP"
+          ],
+          "reason": "박리+리서페이싱+재생 = 최대 효과",
+          "evidence": "가장 강력한 흉터 콤보"
+        }
+      ],
+      "alternatives": [
+        "여러 회 시리즈 필요"
+      ]
+    },
+    "legacy_key": "P9:니들RF",
+    "correspondence_targets": [
+      "auto-132-1774737181584"
+    ],
+    "correspondence_item_parent": [
+      "P9-1"
+    ],
+    "emitted_claims": [
+      {
+        "id": "R8-0353",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#0"
+      },
+      {
+        "id": "R8-0354",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0355",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0356",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0367",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#0"
+      }
+    ]
+  },
+  {
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "raw_path": "$.problems[8].complaints[11]",
+    "original": {
+      "cc": "니들RF",
+      "cc_detail": "콜라겐리모델링",
+      "cc_group": "튼살",
+      "procedures": [
+        {
+          "name": "프락셔널",
+          "category": "M8",
+          "role": "리서페이싱",
+          "products": [
+            "프락셀"
+          ]
+        },
+        {
+          "name": "스킨부스터",
+          "category": "M4",
+          "role": "재생",
+          "products": [
+            "쥬베룩",
+            "리쥬란 힐러"
+          ]
+        }
+      ],
+      "combos": [
+        {
+          "name": "프락셔널 + 스킨부스터",
+          "combo": [
+            "프락셔널",
+            "스킨부스터"
+          ],
+          "reason": "리서페이싱 + 재생",
+          "evidence": "프락셔널 후 재생 촉진"
+        }
+      ],
+      "alternatives": [
+        "여러 회 시리즈 필요"
+      ]
+    },
+    "legacy_key": "P9:니들RF",
+    "correspondence_targets": [
+      "auto-139-1774737181584"
+    ],
+    "correspondence_item_parent": [
+      "P9-4"
+    ],
+    "emitted_claims": [
+      {
+        "id": "R8-0353",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#0"
+      },
+      {
+        "id": "R8-0354",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0355",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0356",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#1"
+      },
+      {
+        "id": "R8-0367",
+        "condition": {
+          "cc": "니들RF",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-1"
+          ]
+        },
+        "source_index": "P9:니들RF#0"
+      }
+    ]
+  },
+  {
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "raw_path": "$.problems[8].complaints[8]",
+    "original": {
+      "cc": "프락셔널레이저",
+      "cc_detail": "CO2/어븀",
+      "cc_group": "수술흉터/화상흉터",
+      "procedures": [
+        {
+          "name": "프락셔널",
+          "category": "M8",
+          "role": "리서페이싱",
+          "products": [
+            "프락셀"
+          ]
+        },
+        {
+          "name": "스킨부스터",
+          "category": "M4",
+          "role": "재생",
+          "products": [
+            "쥬베룩",
+            "리쥬란 힐러"
+          ]
+        }
+      ],
+      "combos": [
+        {
+          "name": "프락셔널 + 스킨부스터",
+          "combo": [
+            "프락셔널",
+            "스킨부스터"
+          ],
+          "reason": "리서페이싱 + 재생",
+          "evidence": "프락셔널 후 재생 촉진"
+        }
+      ],
+      "alternatives": [
+        "여러 회 시리즈 필요"
+      ]
+    },
+    "legacy_key": "P9:프락셔널레이저",
+    "correspondence_targets": [
+      "auto-136-1774737181584"
+    ],
+    "correspondence_item_parent": [
+      "P9-3"
+    ],
+    "emitted_claims": [
+      {
+        "id": "R8-0364",
+        "condition": {
+          "cc": "프락셔널레이저",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-3"
+          ]
+        },
+        "source_index": "P9:프락셔널레이저#0"
+      },
+      {
+        "id": "R8-0366",
+        "condition": {
+          "cc": "프락셔널레이저",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-3"
+          ]
+        },
+        "source_index": "P9:프락셔널레이저#0"
+      }
+    ]
+  },
+  {
+    "raw_file": "/Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-stg-2026-10-26/problem-packages.json",
+    "raw_path": "$.problems[8].complaints[10]",
+    "original": {
+      "cc": "프락셔널레이저",
+      "cc_detail": "성장선/임신선",
+      "cc_group": "튼살",
+      "procedures": [
+        {
+          "name": "프락셔널",
+          "category": "M8",
+          "role": "리서페이싱",
+          "products": [
+            "프락셀"
+          ]
+        },
+        {
+          "name": "스킨부스터",
+          "category": "M4",
+          "role": "재생",
+          "products": [
+            "쥬베룩",
+            "리쥬란 힐러"
+          ]
+        }
+      ],
+      "combos": [
+        {
+          "name": "프락셔널 + 스킨부스터",
+          "combo": [
+            "프락셔널",
+            "스킨부스터"
+          ],
+          "reason": "리서페이싱 + 재생",
+          "evidence": "프락셔널 후 재생 촉진"
+        }
+      ],
+      "alternatives": [
+        "여러 회 시리즈 필요"
+      ]
+    },
+    "legacy_key": "P9:프락셔널레이저",
+    "correspondence_targets": [
+      "auto-138-1774737181584"
+    ],
+    "correspondence_item_parent": [
+      "P9-4"
+    ],
+    "emitted_claims": [
+      {
+        "id": "R8-0364",
+        "condition": {
+          "cc": "프락셔널레이저",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-3"
+          ]
+        },
+        "source_index": "P9:프락셔널레이저#0"
+      },
+      {
+        "id": "R8-0366",
+        "condition": {
+          "cc": "프락셔널레이저",
+          "problem": "P9",
+          "concern_ids": [
+            "P9-3"
+          ]
+        },
+        "source_index": "P9:프락셔널레이저#0"
+      }
+    ]
+  }
+]

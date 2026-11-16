@@ -1,0 +1,582 @@
+{
+  "run_id": "run_05ed91e27327",
+  "batch": "01",
+  "agent": "claude",
+  "model": "opus",
+  "state": "first_pass_closed",
+  "workers": [
+    {
+      "ledger": "products",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/products.json",
+      "source_sha256": "090955cccd35468ace2882024f0e0f216d3ebdb58b38d77693c0cf402338b854",
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/products",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-01-products-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "685f6eb2-aaaa-4566-9fd9-eb74b8fbc53a",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_164afda39f57",
+          "dispatchId": "ctx_530d46081363",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_ce280e3c-c3c9-4c13-9589-03e11f08329e",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_ce280e3c-c3c9-4c13-9589-03e11f08329e",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "8c05a71a-cf4d-4fcf-80d9-43c691ccca15",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "20888ea8-b438-4d50-8413-cbcc73985532",
+            "generation": 126,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "8c05a71a-cf4d-4fcf-80d9-43c691ccca15",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_164afda39f57",
+      "dispatchId": "ctx_530d46081363",
+      "stage": "input_accepted",
+      "handle": "term_ce280e3c-c3c9-4c13-9589-03e11f08329e",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_recorded_limits",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/products/review.md",
+      "remaining": {
+        "source_insufficiency_groups": 7,
+        "provisional": 2,
+        "followup": 7,
+        "known_analysis_errors": 32,
+        "user_decisions_pending": 0
+      },
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "procedure-comparison",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/procedure-comparison.json",
+      "source_sha256": "eba7ae5af919ef77ff52cb07b2f6117b458751319f530f38cf30c61e94989571",
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/procedure-comparison",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-01-procedure-comparison-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "1344e6d9-872f-4613-a976-8dff4ba96eed",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_a1b235060c1f",
+          "dispatchId": "ctx_3012fe7b1626",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_652c9d9e-e35f-4e74-b203-a23f4a03d213",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_652c9d9e-e35f-4e74-b203-a23f4a03d213",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "a1a72af5-3b7e-4c0c-8922-6bec56a63dbf",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "76e51879-6c0f-4328-8256-82c6b84fa94c",
+            "generation": 127,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "a1a72af5-3b7e-4c0c-8922-6bec56a63dbf",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_a1b235060c1f",
+      "dispatchId": "ctx_3012fe7b1626",
+      "stage": "input_accepted",
+      "handle": "term_652c9d9e-e35f-4e74-b203-a23f4a03d213",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_recorded_limits",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/procedure-comparison/review.md",
+      "remaining": {
+        "source_insufficiency_groups": 9,
+        "followup": 7,
+        "known_analysis_errors": 52,
+        "user_decisions_pending": 0
+      },
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "complications",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/complications.json",
+      "source_sha256": "7bf0573efa955225f63cc33d96b68a20693ddaac647ee2a0c679c1de32d3d932",
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/complications",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-01-complications-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "31b52bcf-3944-414a-901e-b764002b2f2d",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_522207718f55",
+          "dispatchId": "ctx_636185241aac",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_f4e72e40-8ddd-4efa-9da7-c2baa33b3960",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_f4e72e40-8ddd-4efa-9da7-c2baa33b3960",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "3345b3ba-8b9c-49e8-a76d-0be2a8643dbd",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "854bb027-18e8-4323-95fb-bc19dc270440",
+            "generation": 128,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "3345b3ba-8b9c-49e8-a76d-0be2a8643dbd",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_522207718f55",
+      "dispatchId": "ctx_636185241aac",
+      "stage": "input_accepted",
+      "handle": "term_f4e72e40-8ddd-4efa-9da7-c2baa33b3960",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_recorded_limits",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/complications/review.md",
+      "remaining": {
+        "source_insufficiency_groups": 9,
+        "provisional": 4,
+        "followup": 9,
+        "analysis_limitations_groups": 4,
+        "user_decisions_pending": 0
+      },
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "treatment-sequence",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/treatment-sequence.json",
+      "source_sha256": "e2f74d41d75a0b4b9d1f6216ccc17402af64bbd455b1c1627395a819ce76cfaf",
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/treatment-sequence",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-01-treatment-sequence-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "55c76d80-491d-42c4-bdd4-620f68a55911",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_cd8f8550b783",
+          "dispatchId": "ctx_353e5d138621",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_bfbebe79-c1c8-4e0b-a317-5e0436b7b32e",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_bfbebe79-c1c8-4e0b-a317-5e0436b7b32e",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "dc9367e0-9c02-4cb2-8c70-50bc45402629",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "9b5e66d2-5fd7-4ecc-a78f-245c84ec627e",
+            "generation": 129,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "dc9367e0-9c02-4cb2-8c70-50bc45402629",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_cd8f8550b783",
+      "dispatchId": "ctx_353e5d138621",
+      "stage": "input_accepted",
+      "handle": "term_bfbebe79-c1c8-4e0b-a317-5e0436b7b32e",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_recorded_limits",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/treatment-sequence/review.md",
+      "remaining": {
+        "source_insufficiency_groups": 10,
+        "source_internal_inconsistency_groups": 8,
+        "followup": 8,
+        "known_analysis_errors": 69,
+        "user_decisions_pending": 0
+      },
+      "classification_note": "Local C means source inconsistencies; local E means user decisions. Map by meaning, not letter.",
+      "whole_ledger_complete": false
+    },
+    {
+      "ledger": "synergy",
+      "source": "orchestration/work/phub-recommend/bronze/phub-ledger/synergy.json",
+      "source_sha256": "2c0fb244f6dc7f8521be355e83586bc7b6446979c041a51c77046bae1c3c653f",
+      "output": "orchestration/work/phub-ledger-redesign/first-pass/synergy",
+      "brief": "orchestration/work/phub-ledger-redesign/batch-01-synergy-brief.md",
+      "state": "first_pass_closed",
+      "receipt": {
+        "id": "7d3d04dd-c1af-4bf0-8a61-58ebd4bb1214",
+        "ok": true,
+        "result": {
+          "runId": "run_05ed91e27327",
+          "taskId": "task_7658fce59d96",
+          "dispatchId": "ctx_755c24f1c306",
+          "state": "ready",
+          "stage": "input_accepted",
+          "turnStart": "observed",
+          "setup": {
+            "requested": "not_applicable",
+            "effective": "not_applicable",
+            "source": "existing_worktree",
+            "hookFound": false,
+            "startupPolicy": "start-immediately",
+            "state": "not_applicable"
+          },
+          "launch": {
+            "requested": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            },
+            "effective": {
+              "agent": "claude",
+              "model": "opus",
+              "effort": null
+            }
+          },
+          "mode": {
+            "mode": "terminal",
+            "preferred": "terminal",
+            "reason": "user_default",
+            "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+          },
+          "timeoutMs": 60000,
+          "effects": [
+            {
+              "kind": "worktree",
+              "action": "reused",
+              "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/프로시져허브메달리온"
+            },
+            {
+              "kind": "setup",
+              "action": "not_applicable",
+              "state": "not_applicable"
+            },
+            {
+              "kind": "terminal",
+              "role": "agent",
+              "action": "created",
+              "id": "term_8a736f17-5212-473d-b4ce-de8ca4a0d9e9",
+              "surface": "visible"
+            },
+            {
+              "kind": "dispatch_input",
+              "role": "agent",
+              "id": "term_8a736f17-5212-473d-b4ce-de8ca4a0d9e9",
+              "state": "accepted"
+            }
+          ],
+          "prompt": {
+            "requestId": "bbaea05d-4683-41a5-9639-57c46bf059fe",
+            "stages": [
+              "input_accepted",
+              "turn_started"
+            ],
+            "provider": "claude",
+            "observation": "supported",
+            "processIncarnation": "ad4f5f72-613b-4871-8204-8d6672d67532",
+            "generation": 130,
+            "baselineWorkingSequence": 0,
+            "baselineExplicitWorkingStartedAt": null,
+            "baselinePermissionSequence": 0
+          },
+          "residualResources": [],
+          "mutation": {
+            "requestId": "bbaea05d-4683-41a5-9639-57c46bf059fe",
+            "replayed": false
+          }
+        },
+        "_meta": {
+          "runtimeId": "36a4b1e2-6c65-42b7-9cc4-fae383aacbb5"
+        }
+      },
+      "taskId": "task_7658fce59d96",
+      "dispatchId": "ctx_755c24f1c306",
+      "stage": "input_accepted",
+      "handle": "term_8a736f17-5212-473d-b4ce-de8ca4a0d9e9",
+      "effective_model": "opus",
+      "coordinator_machine_verification": "pass",
+      "read_review": "independent_batch_review_accepted_with_recorded_limits",
+      "report": "orchestration/work/phub-ledger-redesign/first-pass/synergy/review.md",
+      "remaining": {
+        "source_insufficiency_groups": 10,
+        "provisional": 5,
+        "followup": 10,
+        "worker_proposed_user_decisions": 2
+      },
+      "coordinator_disposition": "U1/U2 do not require current selection: originals already read-only by user instruction. Preserve observed direction/prefix issues for later meaning/transform review. Worker wording needs batch-review reclassification, no source edit or user choice authorized.",
+      "whole_ledger_complete": false
+    }
+  ],
+  "skill_sha256": "bc443eb14e7f127b6863087063639a0f19db61b429aaa029727a21638f06ae2a",
+  "review": {
+    "taskId": "task_a85872b21e73",
+    "dispatchId": "ctx_15e5d7fecd82",
+    "handle": "term_51e5ba61-e5ef-4380-90a6-86bc4241354e",
+    "model": "opus",
+    "state": "settled",
+    "brief": "orchestration/work/phub-ledger-redesign/batch-01-review-brief.md",
+    "outcome": "PASS 3; WARN 2; all five first-pass closable; extraction_errors=0",
+    "report": "orchestration/work/phub-ledger-redesign/batch-01-review.md"
+  },
+  "final_documentation": {
+    "taskId": "task_13017333a603",
+    "dispatchId": "ctx_b00064993d59",
+    "handle": "term_a412509a-8a52-4fc7-abb4-0a8028c9028a",
+    "state": "settled",
+    "model": "opus",
+    "brief": "orchestration/work/phub-ledger-redesign/batch-01-final-brief.md",
+    "outcome": "accepted",
+    "report": "orchestration/work/phub-ledger-redesign/batch-01-final-note.md",
+    "release": "released; closed_agent_terminal"
+  },
+  "coordinator_acceptance": "5/5 verification rerun exit0; source hashes match dispatch baseline; documentation and U1/U2 followup disposition checked; whole-ledger completion not claimed"
+}

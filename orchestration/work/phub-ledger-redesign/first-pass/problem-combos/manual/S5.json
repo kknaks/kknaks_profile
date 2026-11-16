@@ -1,0 +1,329 @@
+{
+ "segment_id": "S5",
+ "read_pointers_prefix": "/combos/4",
+ "observations": [
+  {
+   "pointer": "/combos/4/packages/0/priceRange",
+   "status": "P",
+   "note": "P5 묶음 priceRange는 모두 \"/회\" 접미(5~15만/회 등). P1~P4는 접미 없음. 회당 가격 여부가 묶음마다 다르게 표기됨 — 접미 없는 값이 패키지가인지 회당인지는 B."
+  },
+  {
+   "pointer": "/combos/4/packages/0/productTier",
+   "status": "P",
+   "note": "\"국산/수입\" — '/' 대안 표기. P5-2는 \"혼합\", P1-2는 \"국산+수입 혼합\". productTier 값 표면형이 일정하지 않음."
+  },
+  {
+   "pointer": "/combos/4/packages/0/products/0",
+   "status": "P",
+   "note": "3개 대안을 \"or\"로 나열(피코슈어 or 레블라이트 or 클라리티)."
+  },
+  {
+   "pointer": "/combos/4/packages/1/clinicalRationale",
+   "status": "P",
+   "note": "\"기여할 수 있으나 근거는 제한적\" — 가능성+유보 문체. P3-4처럼 다른 항목보다 유보적."
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "status": "P",
+   "note": "긴 서술(3문장): 연구 수(8개 소규모 연구), 연도 기준(2026 기준), 다른 성분(트라넥사민산(TXA)) 언급. 출처 표기 없음. 이 원장 안에서 TXA는 procedures·products에 없음 — 참조 표현으로만 보존."
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "status": "P",
+   "note": "riskBenefit에 '증거 수준' 진술이 포함 — upsell 문구(\"재생이 빨라져서 색소침착 재발이 훨씬 줄어요\", P5-1 upsellHook)의 단정과 같은 원장 안에서 어조가 다름. 의학적 판단 안 함(I 후보: 원문 내 어조 불일치)."
+  },
+  {
+   "pointer": "/combos/4/packages/2/riskBenefit",
+   "status": "P",
+   "note": "\"레이저→니들RF→PRP→SB\" 순서와 procedures M8,M11,M5,M4 순서 일치. SB 약어 재등장."
+  },
+  {
+   "pointer": "/combos/4/packages/2/name",
+   "status": "P",
+   "note": "name \"피코레이저 + 니들RF ...\" — name에 장비 계열명(피코레이저)이 들어감."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/4/packages/0/productTier",
+   "text": "국산/수입",
+   "kind": "제품 등급 대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/products/0",
+   "text": "피코슈어 or 레블라이트 or 클라리티",
+   "kind": "제품 대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/priceRange",
+   "text": "5~15만/회",
+   "kind": "수량·범위·회당",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/expectedResult",
+   "text": "점진적 색소 개선",
+   "kind": "정도·시간",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/expectedResult",
+   "text": "5~10회 반복 시 확연한 톤 개선",
+   "kind": "회차·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/salesPitch",
+   "text": "점심시간에 하고 바로 일상 복귀 가능해요",
+   "kind": "시간·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/salesPitch",
+   "text": "5회 패키지로 시작하시면 할인돼요",
+   "kind": "회차·조건·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/upsellHook",
+   "text": "토닝만 하시면 아까워요",
+   "kind": "조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/upsellHook",
+   "text": "PRP를 같이 하시면 재생이 빨라져서 색소침착 재발이 훨씬 줄어요",
+   "kind": "조건·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/clinicalRationale",
+   "text": "Nd:YAG/피코레이저의 선택적 광열분해로 멜라닌 파괴",
+   "kind": "장비·기전",
+   "note": "Nd:YAG 콜론 포함"
+  },
+  {
+   "pointer": "/combos/4/packages/0/clinicalRationale",
+   "text": "낮은 에너지 반복 조사로 PIH(시술 후 색소침착) 최소화",
+   "kind": "정도·조건·부작용",
+   "note": "'낮은' 수치화 금지"
+  },
+  {
+   "pointer": "/combos/4/packages/0/riskBenefit",
+   "text": "PIH 가능성 있으나 적절한 에너지·간격으로 관리 가능",
+   "kind": "가능성·양보·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/0/riskBenefit",
+   "text": "자외선 차단 필수",
+   "kind": "관리",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/productTier",
+   "text": "혼합",
+   "kind": "제품 등급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/products/0",
+   "text": "피코레이저 + PRP + 리쥬란",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/priceRange",
+   "text": "25~45만/회",
+   "kind": "수량·범위·회당",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/expectedResult",
+   "text": "토닝 단독보다 효과 빠르고 색소침착 재발 감소",
+   "kind": "비교",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/salesPitch",
+   "text": "하얗고 깨끗한 피부가 더 빨리 나와요",
+   "kind": "형용사·비교",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/upsellHook",
+   "text": "색소 + 모공까지 같이 하시려면 니들RF를 추가하시면 돼요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/clinicalRationale",
+   "text": "PRP(성장인자로 정상 멜라노사이트 회복 보조)",
+   "kind": "시술-기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/clinicalRationale",
+   "text": "스킨부스터(PDRN 기반 회복 보조)",
+   "kind": "시술-성분",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/clinicalRationale",
+   "text": "PIH 위험 완화에 기여할 수 있으나 근거는 제한적",
+   "kind": "가능성·유보",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "text": "레이저 토닝 후 PRP 병용이 재생을 도와 PIH를 줄일 수 있다는 소규모 연구·증례 보고는 있으나 근거는 아직 제한적",
+   "kind": "근거 수준·가능성·양보",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "text": "멜라스마 대상 PRP는 8개 소규모 연구 수준",
+   "kind": "근거 수량",
+   "note": "출처 미기재"
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "text": "레이저 토닝 병용·PIH 감소 데이터는 예비적",
+   "kind": "근거 수준",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "text": "레이저 토닝 자체가 색소 재발·저색소·PIH 위험을 가지므로 저플루언스·적정 간격 준수가 필요",
+   "kind": "위험·인과·조건",
+   "note": "'저플루언스' 전문어"
+  },
+  {
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "text": "2026 기준 레이저 후 PIH 예방 근거가 가장 확립된 것은 트라넥사민산(TXA)이며 PRP는 보조적 위치",
+   "kind": "시간 기준·근거 비교",
+   "note": "원장 밖 성분 참조"
+  },
+  {
+   "pointer": "/combos/4/packages/2/products/0",
+   "text": "피코슈어/피코웨이 + 포텐자 + PRP + 리쥬란",
+   "kind": "제품 결합+대안",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/priceRange",
+   "text": "60~100만/회",
+   "kind": "수량·범위·회당",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/expectedResult",
+   "text": "난치성 색소 + 모공 + 피부결 종합 개선",
+   "kind": "효과 나열",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/expectedResult",
+   "text": "깊은 기미까지 개선",
+   "kind": "깊이·범위",
+   "note": "'깊은' 수치화 금지"
+  },
+  {
+   "pointer": "/combos/4/packages/2/salesPitch",
+   "text": "일반 토닝으로 안 되는 깊은 색소까지 잡는",
+   "kind": "부정·깊이",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/upsellHook",
+   "text": "5회 패키지로 하시면 확실한 차이가 나요",
+   "kind": "회차·조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/upsellHook",
+   "text": "유지 관리 1회 무료",
+   "kind": "회차·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/clinicalRationale",
+   "text": "피코레이저(표피 색소·진피 색소)",
+   "kind": "층",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/clinicalRationale",
+   "text": "니들RF(진피 리모델링·모공 수축)",
+   "kind": "층·기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/clinicalRationale",
+   "text": "색소의 다층 구조를 타겟",
+   "kind": "층",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/riskBenefit",
+   "text": "니들RF 후 PIH 주의",
+   "kind": "시간·부작용",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/riskBenefit",
+   "text": "레이저→니들RF→PRP→SB 순서 엄수",
+   "kind": "순서 제약",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/packages/2/riskBenefit",
+   "text": "열 시술 2개이므로 간격 관리 중요",
+   "kind": "수량·인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/4/problem",
+   "text": "색소/미백",
+   "kind": "problem 값 / 나열",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/4/packages/1/clinicalRationale",
+   "text": "레이저(멜라닌 파괴)",
+   "kind": "시술-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/4/packages/2/clinicalRationale",
+   "text": "PRP(재생) + 스킨부스터(보호)",
+   "kind": "시술-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-10",
+   "status": "I",
+   "pointer": "/combos/4/packages/*/priceRange",
+   "note": "priceRange '/회' 접미가 P5·P9 묶음에만 있음 — 원문 내 표기 불일치"
+  },
+  {
+   "id": "I-PC-11",
+   "status": "I",
+   "pointer": "/combos/*/packages/*/productTier",
+   "note": "productTier 표면형 불일치: '국산+수입 혼합'·'수입+국산'·'국산/수입'·'혼합'"
+  },
+  {
+   "id": "I-PC-12",
+   "status": "F",
+   "pointer": "/combos/4/packages/1/riskBenefit",
+   "note": "연구 수·2026 기준·TXA 등 근거 진술 출처 미기재 — 외부 보충 금지, 후속 근거 원장(literature-evidence) 연결 과제"
+  }
+ ]
+}

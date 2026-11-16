@@ -1,0 +1,47 @@
+{"section":"S014","state":"read","last_pointer":"/modality/4/name",
+"observations":[
+ {"status":"P","pointers":["/modality/4/subcategories/2/label","/modality/4/subcategories/2/items/0/name","/modality/4/subcategories/3/label","/modality/4/subcategories/3/items/0/name"],"note":"하위분류 label 과 항목 name 약어가 다르다: 'MCT (메타셀)' → 항목 'CPR', 'ACT' → 항목 'ACR'. 약어 풀이 없음(B)."},
+ {"status":"P","pointers":["/modality/4/subcategories/0/items/0/detail"],"note":"PRP detail '원심분리 → 성장인자 농축 → 주입' — '→' 로 시술 절차 순서를 표기."},
+ {"status":"P","pointers":["/modality/4/subcategories/0/items/0/extracted/aftercare/3"],"note":"M5 상용구 '[시술 주기 참고] 1-3개월 간격, 2-3회 코스 권장 (스킨부스터에 준함). 효과 발현 4-8주. NSAIDs 자제 …' — 다른 모달리티(스킨부스터)를 참조하는 상용구."},
+ {"status":"I","pointers":["/modality/4/products/3/note","/modality/4/products/3/type","/modality/4/products/3/extracted/overview","/modality/4/products/3/extracted/aftercare/0"],"note":"ASCEplus: note '화장품 허가 (주사 사용 불법)', type '엑소좀' 인데 overview '자가혈 유래 성장인자 복합 제제', aftercare '주입 후 냉찜질', safety '주입 부위 통증'. 허가 상태 메모와 사용 서술이 충돌하고 성분 서술도 type 과 다르다."},
+ {"status":"I","pointers":["/modality/4/products/4/name","/modality/4/products/4/name_en","/modality/4/products/4/note"],"note":"EXOSOME SKIN name_en 'ExoSCRT' — name 과 영문명 불일치. note '화장품 허가' 인데 safety '주입 부위 부종'."},
+ {"status":"P","pointers":["/modality/4/products/0/type","/modality/4/products/3/type"],"note":"M5 products 에 type 필드(PRP키트, 엑소좀). M5 products 는 키트·화장품 허가 제제까지 포함. 엑소좀은 M4-3 하위분류에도 있다."},
+ {"status":"P","pointers":["/modality/4/extracted/safety/serious/0","/modality/4/extracted/safety/uncommon/0"],"note":"M5 모달리티 safety/serious 원소가 부작용이 아니라 안심 문구('알레르기·거부반응이 거의 없음 (매우 안전한 시술)'), uncommon 원소가 결과 편차 설명. 키 이름과 내용 종류 불일치."},
+ {"status":"P","pointers":["/modality/4/subcategories/1/items/0/extracted/indications/primary/2"],"note":"PRF indications 에 '질 주름 개선' — 안면 외 부위(여성 생식기) 적응증. 해석하지 않고 보존."},
+ {"status":"P","pointers":["/modality/4/products/2/extracted/aftercare/3"],"note":"마이셀 aftercare '여성 환자는 높은 EGF/HGF 농도로 더 효과적' — 관리 지시가 아닌 효과 주장이 aftercare 에."}
+],
+"expressions":[
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/overview","text":"자가혈액 혈소판 3-5배 농축 성장인자 치료","kinds":["수량·단위·시간","범위"],"note":"배수"},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/mechanism","text":"혈소판을 3-5배 농축(≥1,000,000 plt/μL)","kinds":["수량·단위·시간","범위","기호"],"note":"≥ 하한"},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/mechanism","text":"4000+ 단백질을 함유","kinds":["수량·단위·시간","기호"],"note":"'+' = 이상"},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/mechanism","text":"활성화 1시간 내 95% 성장인자 방출 후 7-10일간 추가 합성","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/safety/serious/1","text":"TGF-beta1에 의한 비후성 반흔 촉진 가능","kinds":["가능성·빈도","조건"],"note":"β 대신 beta 표기"},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/safety/serious/2","text":"알레르기 반응(드묾)","kinds":["가능성·빈도"],"note":""},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/aftercare/1","text":"NSAIDs 사용 자제 (혈소판 기능 억제)","kinds":["부정","조건"],"note":"이유 괄호"},
+ {"pointer":"/modality/4/subcategories/1/items/0/extracted/mechanism","text":"14-28일에 걸쳐 지속 방출","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/4/subcategories/1/items/0/extracted/mechanism","text":"PRP 대비 장시간 생체활성 유지","kinds":["비교"],"note":""},
+ {"pointer":"/modality/4/subcategories/2/items/0/extracted/mechanism","text":"I형 콜라겐 생성 능력을 4-6배 증강하고 MMP-1/3 발현 조절","kinds":["수량·단위·시간","범위","기호"],"note":""},
+ {"pointer":"/modality/4/subcategories/2/items/0/extracted/aftercare/3","text":"비후성 반흔 위험군은 의료진 상담 필수","kinds":["조건"],"note":""},
+ {"pointer":"/modality/4/subcategories/0/items/0/extracted/aftercare/3","text":"(스킨부스터에 준함)","kinds":["참조","비교"],"note":"모달리티 간 참조"},
+ {"pointer":"/modality/4/extracted/overview","text":"1987년 심장수술에서 처음 사용된 후","kinds":["수량·단위·시간","주장"],"note":""},
+ {"pointer":"/modality/4/extracted/overview","text":"피부에 주사하거나 바르는 재생 시술","kinds":["조건"],"note":"적용 방법 대안"},
+ {"pointer":"/modality/4/extracted/indications/extended/3","text":"다른 시술과 병행 — MTS, 프랙셔널 레이저, 메조테라피 후 도포","kinds":["참조","시술·제품명"],"note":""},
+ {"pointer":"/modality/4/extracted/contraindications/relative/2","text":"색소성 질환에 대한 치료 효과는 적은 편","kinds":["비교","수식"],"note":"금기 칸의 효과 진술"},
+ {"pointer":"/modality/4/extracted/safety/common/1","text":"1~2일 정도 붓기","kinds":["수량·단위·시간","범위"],"note":""},
+ {"pointer":"/modality/4/extracted/safety/common/2","text":"3~7일 정도 멍이 들 수 있음","kinds":["수량·단위·시간","범위","가능성·빈도"],"note":""},
+ {"pointer":"/modality/4/extracted/safety/serious/0","text":"알레르기·거부반응이 거의 없음 (매우 안전한 시술)","kinds":["부정","주장"],"note":""},
+ {"pointer":"/modality/4/extracted/onset_duration/duration","text":"1회 시술로 6~12개월 유지 (반복시술은 4~6주 간격 가능)","kinds":["수량·단위·시간","범위","가능성·빈도"],"note":"상용구 '1-3개월 간격' 과 다름"},
+ {"pointer":"/modality/4/extracted/aftercare/2","text":"깊은 주름이나 심한 노화에는 고주파, IPL, 필러, 보톡스 등과 병행하는 것이 좋음","kinds":["조건","참조"],"note":""},
+ {"pointer":"/modality/4/extracted/related_techniques/0","text":"MTS + PRP — MTS로 미세 구멍을 낸 후 PRP를 도포해 흡수 촉진","kinds":["시술·제품명","기호","참조"],"note":"'+' = 함께(병행)"},
+ {"pointer":"/modality/4/products/3/note","text":"화장품 허가 (주사 사용 불법)","kinds":["주장","부정"],"note":"규제 주장"},
+ {"pointer":"/modality/4/products/4/extracted/mechanism","text":"자가혈 유래 혹은 배양 성장인자","kinds":["조건"],"note":"대안"},
+ {"pointer":"/modality/4/products/2/extracted/aftercare/3","text":"여성 환자는 높은 EGF/HGF 농도로 더 효과적","kinds":["조건","비교","주장"],"note":""}
+],
+"seg_errors":[
+ {"scope":"all","surface":"엑소솜","issue":"'엑소솜'(다른 곳 '엑소좀') — 표기 변형. 분석 결과는 표기를 따른다","impact":"같은 성분명 두 표기"}
+],
+"issues":[
+ {"id":"S014-I01","status":"I","pointers":["/modality/4/products/3/note","/modality/4/products/3/extracted/overview","/modality/4/products/3/type"],"note":"ASCEplus 허가 메모·type·서술 충돌.","impact":"제품 정보 채택 시 확인"},
+ {"id":"S014-I02","status":"I","pointers":["/modality/4/products/4/name","/modality/4/products/4/name_en"],"note":"EXOSOME SKIN / ExoSCRT 이름 불일치.","impact":"제품 식별"},
+ {"id":"S014-B01","status":"B","pointers":["/modality/4/subcategories/2/label","/modality/4/subcategories/3/label"],"note":"MCT·CPR·ACT·ACR 약어 정의 없음.","impact":"하위분류·항목 의미 식별 제한"}
+]}

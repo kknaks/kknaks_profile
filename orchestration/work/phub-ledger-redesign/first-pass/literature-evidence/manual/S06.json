@@ -1,0 +1,13 @@
+{"segment":"S06","reading_state":"read_direct","last_read_pointer":"/categories/M6/effects",
+"read_note":"M6 name 과 빈 배열 3개 직접 확인.",
+"observations":[
+{"id":"S06-O1","status":"P","pointers":["/categories/M6/moa","/categories/M6/adverse_effects","/categories/M6/effects"],"text":"moa·adverse_effects·effects 모두 빈 배열. 카테고리 이름만 있다."},
+{"id":"S06-O2","status":"P","pointers":["/categories/M6/name"],"text":"name 'Autologous fat grafting / lipotransfer for facial rejuvenation' — '/' 로 두 명칭 병기, 'for facial rejuvenation' 목적·부위 한정."}
+],
+"expressions":[
+{"id":"S06-X1","pointer":"/categories/M6/name","text":"Autologous fat grafting / lipotransfer","facets":["name_candidate","alternative_list"]},
+{"id":"S06-X2","pointer":"/categories/M6/name","text":"for facial rejuvenation","facets":["purpose","anatomy_site"]}
+],
+"issues":[
+{"id":"S06-B1","class":"B","pointers":["/categories/M6/moa","/categories/M6/adverse_effects","/categories/M6/effects"],"text":"진술 0개 — 기전·부작용·효과 근거가 원장에 없다(source_method 상 검증 인용 없는 주장이 제외됐을 가능성은 원문이 개별 확인해 주지 않음)."}
+]}

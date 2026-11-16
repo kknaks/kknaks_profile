@@ -1,0 +1,175 @@
+{
+ "section": "S00",
+ "read_status": "done",
+ "read_note": "루트 객체·version·updated·description·problems 배열 컨테이너를 직접 읽음. 원본 한 줄(줄바꿈 0)·BOM 없음·이스케이프 0.",
+ "observations": [
+  {
+   "id": "OB-S00-01",
+   "at": [
+    "/description"
+   ],
+   "status": "P",
+   "text": "description 은 'taxonomy P1~P14 하위구조 기반 CC 자동 생성' — 이 원장이 다른 원장(taxonomy)에서 자동 생성됐다고 스스로 밝힌다. 참조 대상(taxonomy)의 해당 구조는 이번 범위에서 열지 않았다(후속 연결 F-01)."
+  },
+  {
+   "id": "OB-S00-02",
+   "at": [
+    "/description"
+   ],
+   "status": "P",
+   "text": "'CC' 는 약어로만 나오고 원문에 풀이가 없다. 하위 항목 키 cc·cc_detail·cc_group 과 같은 표기다."
+  },
+  {
+   "id": "OB-S00-03",
+   "at": [
+    "/version",
+    "/updated"
+   ],
+   "status": "P",
+   "text": "version '6.2' 는 문자열, updated '2026-07-26' 은 ISO 날짜 형식 문자열. README 의 '1판=10-26 스냅샷' 서술과 날짜가 다르다(파일 내부 updated 는 스냅샷 날짜가 아님일 수 있음 — 판단하지 않음)."
+  },
+  {
+   "id": "OB-S00-04",
+   "at": [
+    "/problems"
+   ],
+   "status": "P",
+   "text": "problems 14개, 각 원소 키는 전부 problem_id·problem·complaints 3개로 동일. complaints 115개 전부 키 6개(cc·cc_detail·cc_group·procedures·combos·alternatives) 동일 순서. procedures 254개 키 4개(name·category·role·products), combos 146개 키 4개(name·combo·reason·evidence). 선택적 필드 없음, 빈 값은 빈 배열 48개(products 47·combos 1)만."
+  },
+  {
+   "id": "OB-S00-05",
+   "at": [
+    "/problems/0/complaints/3/combos/0/combo/1",
+    "/problems/0/complaints/12/combos/0/combo/1",
+    "/problems/3/complaints/3/combos/1/combo/1",
+    "/problems/3/complaints/4/combos/0/combo/1",
+    "/problems/3/complaints/4/combos/1/combo/1",
+    "/problems/5/complaints/0/combos/0/combo/1",
+    "/problems/5/complaints/1/combos/0/combo/1",
+    "/problems/5/complaints/2/combos/0/combo/1",
+    "/problems/8/complaints/0/combos/0/combo/1",
+    "/problems/8/complaints/0/combos/1/combo/2",
+    "/problems/8/complaints/1/combos/0/combo/1",
+    "/problems/8/complaints/1/combos/1/combo/2",
+    "/problems/8/complaints/2/combos/0/combo/1",
+    "/problems/8/complaints/2/combos/1/combo/2",
+    "/problems/8/complaints/3/combos/0/combo/1",
+    "/problems/8/complaints/3/combos/1/combo/2",
+    "/problems/8/complaints/4/combos/0/combo/1",
+    "/problems/8/complaints/4/combos/1/combo/2",
+    "/problems/8/complaints/5/combos/1/combo/1",
+    "/problems/8/complaints/5/combos/2/combo/2",
+    "/problems/10/complaints/5/combos/0/combo/1",
+    "/problems/10/complaints/6/combos/0/combo/1",
+    "/problems/12/complaints/0/combos/0/combo/0",
+    "/problems/12/complaints/0/combos/0/combo/1",
+    "/problems/12/complaints/1/combos/0/combo/0",
+    "/problems/12/complaints/1/combos/0/combo/1",
+    "/problems/12/complaints/2/combos/0/combo/0",
+    "/problems/12/complaints/2/combos/0/combo/1",
+    "/problems/12/complaints/3/combos/0/combo/1",
+    "/problems/12/complaints/4/combos/0/combo/1",
+    "/problems/12/complaints/5/combos/0/combo/1",
+    "/problems/12/complaints/6/combos/0/combo/1",
+    "/problems/12/complaints/7/combos/0/combo/1",
+    "/problems/12/complaints/8/combos/0/combo/1",
+    "/problems/12/complaints/9/combos/0/combo/1",
+    "/problems/12/complaints/10/combos/0/combo/1"
+   ],
+   "status": "I",
+   "text": "읽기 검토 중 전 구획 대조(기계 보조 비교 후 원문 확인): combos.combo 원소가 같은 complaint 의 procedures.name 에 글자 그대로 없는 출현 36곳 — 'PRP' 23(procedures 는 'PRP/자가혈'), 'MTS' 6('마이크로니들링(MTS)'), '바이오스티뮬레이터' 4('바이오스티뮬레이터/콜라겐부스터'), '필링' 3('메디컬스킨케어'). I-01·I-06 의 전체 출현 목록이다."
+  },
+  {
+   "id": "OB-S00-06",
+   "at": [
+    "/problems/5/complaints/3/cc",
+    "/problems/6/complaints/1/cc",
+    "/problems/5/complaints/4/cc",
+    "/problems/6/complaints/0/cc",
+    "/problems/6/complaints/2/cc",
+    "/problems/8/complaints/8/cc",
+    "/problems/8/complaints/10/cc",
+    "/problems/6/complaints/3/cc",
+    "/problems/8/complaints/4/cc",
+    "/problems/8/complaints/11/cc",
+    "/problems/6/complaints/5/cc",
+    "/problems/8/complaints/0/cc",
+    "/problems/10/complaints/2/cc",
+    "/problems/11/complaints/4/cc"
+   ],
+   "status": "P",
+   "text": "같은 cc 문자열이 여러 complaint 에 나오는 경우 6종: 아그네스(P6·P7), 스킨보톡스(P6·P7), 프락셔널레이저(P7·P9×2), 니들RF(P7·P9×2), 서브시전(P7·P9), 브이올렛(P11·P12). cc 만으로 complaint 를 식별할 수 없고 Pointer 로만 구분된다."
+  },
+  {
+   "id": "OB-S00-07",
+   "at": [
+    "/problems/0/complaints/3/procedures/1/category",
+    "/problems/3/complaints/2/procedures/0/category",
+    "/problems/5/complaints/0/procedures/1/category",
+    "/problems/0/complaints/13/procedures/0/category"
+   ],
+   "status": "P",
+   "text": "category 코드 하나에 procedures.name 이 여럿: M5 = PRP·PRP/자가혈, M8 = 레이저·서브시전·제모레이저·프락셔널·피코레이저·혈관레이저, M9 = 리프팅기기·미라드라이·인모드, M14 = 지방분해·크라이오, M15 = 메디컬스킨케어·모발이식·반영구화장·병변내 스테로이드주사·약물치료, M16 = 미백주사·수액. M13 은 출현하지 않는다. 코드 체계 해석은 taxonomy 대조(F-01)."
+  }
+ ],
+ "expressions": [
+  {
+   "text": "taxonomy P1~P14 하위구조 기반 CC 자동 생성",
+   "at": [
+    "/description"
+   ],
+   "aspects": [
+    "출처·생성 방법",
+    "다른 원장 참조"
+   ]
+  },
+  {
+   "text": "P1~P14",
+   "at": [
+    "/description"
+   ],
+   "aspects": [
+    "범위(~)",
+    "ID 범위"
+   ]
+  },
+  {
+   "text": "CC",
+   "at": [
+    "/description"
+   ],
+   "aspects": [
+    "약어(원문 풀이 없음)"
+   ]
+  },
+  {
+   "text": "자동 생성",
+   "at": [
+    "/description"
+   ],
+   "aspects": [
+    "출처·생성 방법"
+   ]
+  }
+ ],
+ "issues": [
+  {
+   "id": "F-01",
+   "status": "F",
+   "at": [
+    "/description"
+   ],
+   "summary": "description 이 taxonomy P1~P14 하위구조를 생성 원천으로 지목한다. problem_id(P1~P14)·category(M코드)·procedures.name·products 가 taxonomy 의 어느 값과 대응하는지는 이 원장만으로 확인할 수 없다.",
+   "impact": "원장 간 연결(후속 비교 단계). 이번 1차에서는 참조 표현과 위치만 보존."
+  },
+  {
+   "id": "B-01",
+   "status": "B",
+   "at": [
+    "/description"
+   ],
+   "summary": "'CC' 의 풀이가 원문에 없다.",
+   "impact": "cc 필드의 정보 종류(호소/요청/시술 요구 등)를 원문만으로 확정할 수 없다. 후속 의미 조사에서 다른 원장·사용자 정의 확인."
+  }
+ ]
+}

@@ -1,0 +1,133 @@
+/problems/0  problem_id='P1' problem='쁘띠시술' complaints[17]
+
+## c0 /problems/0/complaints/0  cc='코필러' | cc_detail='콧대/코끝' | cc_group='코'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤', '이브아르']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c1 /problems/0/complaints/1  cc='코실리프팅' | cc_detail='코끝 거상' | cc_group='코'
+  P0 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트', '실루엣소프트']
+  P1 name='필러' category='M2' role='볼륨 보충' products=['쥬비덤', '레스틸렌']
+  B0 name='실리프팅 + 필러' combo=['실리프팅', '필러']
+     reason='거상 + 볼륨 = 입체적 리프팅'
+     evidence='실이 당기고 필러가 채움'
+  A0 '실 시술 후 2개월간 HIFU/RF 피할 것'
+
+## c2 /problems/0/complaints/2  cc='이마필러' | cc_detail='볼륨/라운딩' | cc_group='이마/관자놀이'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤', '레스틸렌', '이브아르']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c3 /problems/0/complaints/3  cc='이마지방이식' | cc_detail='자가지방' | cc_group='이마/관자놀이'
+  P0 name='지방이식' category='M6' role='자가지방 이식' products=[]
+  P1 name='PRP/자가혈' category='M5' role='생착률 향상' products=['셀피아', '리젠ACR']
+  B0 name='지방이식 + PRP' combo=['지방이식', 'PRP']
+     reason='자가지방 + 성장인자 = 생착률 향상'
+     evidence='PRP가 지방세포 생존율 높임'
+  A0 '필러가 간편한 대안'
+
+## c4 /problems/0/complaints/4  cc='턱필러' | cc_detail='턱끝 연장' | cc_group='턱/턱선'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c5 /problems/0/complaints/5  cc='턱보톡스' | cc_detail='사각턱 축소' | cc_group='턱/턱선'
+  P0 name='보톡스' category='M1' role='근육 이완' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 피부재생 동시 개선'
+     evidence='보톡스는 동적주름 완화, 스킨부스터는 피부결·재생 개선으로 상호 보완 (근이완이 스킨부스터 흡수·효능을 높인다는 직접 임상근거는 없음)'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c6 /problems/0/complaints/6  cc='턱선실리프팅' | cc_detail='V라인' | cc_group='턱/턱선'
+  P0 name='실리프팅' category='M7' role='물리적 거상' products=['민트리프트', '테스리프트', '실루엣소프트']
+  P1 name='필러' category='M2' role='볼륨 보충' products=['쥬비덤', '레스틸렌']
+  B0 name='실리프팅 + 필러' combo=['실리프팅', '필러']
+     reason='거상 + 볼륨 = 입체적 리프팅'
+     evidence='실이 당기고 필러가 채움'
+  A0 '실 시술 후 2개월간 HIFU/RF 피할 것'
+
+## c7 /problems/0/complaints/7  cc='입술필러' | cc_detail='볼륨/모양' | cc_group='입술'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['레스틸렌', '쥬비덤']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c8 /problems/0/complaints/8  cc='애교필러' | cc_detail='눈밑 볼륨' | cc_group='눈가'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['레스틸렌']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c9 /problems/0/complaints/9  cc='눈가보톡스' | cc_detail='까마귀발 주름' | cc_group='눈가'
+  P0 name='보톡스' category='M1' role='근육 이완' products=['보톡스', '나보타', '보툴렉스']
+  P1 name='스킨부스터' category='M4' role='피부 재생' products=['리쥬란 HB+', '쥬베룩']
+  B0 name='보톡스 + 스킨부스터' combo=['보톡스', '스킨부스터']
+     reason='근이완 + 피부재생 동시 개선'
+     evidence='보톡스는 동적주름 완화, 스킨부스터는 피부결·재생 개선으로 상호 보완 (근이완이 스킨부스터 흡수·효능을 높인다는 직접 임상근거는 없음)'
+  A0 '효과 부족 시 리프팅기기 추가'
+
+## c10 /problems/0/complaints/10  cc='다크서클필러' | cc_detail='눈밑꺼짐' | cc_group='눈가'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['레스틸렌']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c11 /problems/0/complaints/11  cc='볼필러' | cc_detail='볼륨 회복' | cc_group='볼/광대'
+  P0 name='필러' category='M2' role='볼륨 충전' products=['쥬비덤', '레스틸렌', '이브아르']
+  P1 name='보톡스' category='M1' role='근이완 보조' products=['보톡스', '나보타']
+  B0 name='필러 + 보톡스' combo=['필러', '보톡스']
+     reason='볼륨 + 근이완 = 시너지'
+     evidence='보톡스가 근육 움직임 줄여 필러 유지력 향상'
+  A0 '바이오스티뮬레이터로 장기 관리'
+
+## c12 /problems/0/complaints/12  cc='볼지방이식' | cc_detail='자가지방' | cc_group='볼/광대'
+  P0 name='지방이식' category='M6' role='자가지방 이식' products=[]
+  P1 name='PRP/자가혈' category='M5' role='생착률 향상' products=['셀피아', '리젠ACR']
+  B0 name='지방이식 + PRP' combo=['지방이식', 'PRP']
+     reason='자가지방 + 성장인자 = 생착률 향상'
+     evidence='PRP가 지방세포 생존율 높임'
+  A0 '필러가 간편한 대안'
+
+## c13 /problems/0/complaints/13  cc='눈썹반영구' | cc_detail='엠보/콤보/파우더' | cc_group='반영구화장'
+  P0 name='반영구화장' category='M15' role='반영구 색소 시술' products=[]
+  B0 name='반영구 단독' combo=['반영구화장']
+     reason='단독 시술'
+     evidence='전문 시술자 필요'
+  A0 '터치업 3-6개월 후'
+
+## c14 /problems/0/complaints/14  cc='아이라인반영구' | cc_detail='상/하' | cc_group='반영구화장'
+  P0 name='반영구화장' category='M15' role='반영구 색소 시술' products=[]
+  B0 name='반영구 단독' combo=['반영구화장']
+     reason='단독 시술'
+     evidence='전문 시술자 필요'
+  A0 '터치업 3-6개월 후'
+
+## c15 /problems/0/complaints/15  cc='입술반영구' | cc_detail='틴트/풀립' | cc_group='반영구화장'
+  P0 name='반영구화장' category='M15' role='반영구 색소 시술' products=[]
+  B0 name='반영구 단독' combo=['반영구화장']
+     reason='단독 시술'
+     evidence='전문 시술자 필요'
+  A0 '터치업 3-6개월 후'
+
+## c16 /problems/0/complaints/16  cc='헤어라인반영구' | cc_detail='SMP' | cc_group='반영구화장'
+  P0 name='반영구화장' category='M15' role='반영구 색소 시술' products=[]
+  B0 name='반영구 단독' combo=['반영구화장']
+     reason='단독 시술'
+     evidence='전문 시술자 필요'
+  A0 '터치업 3-6개월 후'

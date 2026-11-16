@@ -1,0 +1,362 @@
+{
+ "segment_id": "S2",
+ "read_pointers_prefix": "/combos/1",
+ "observations": [
+  {
+   "pointer": "/combos/1/packages/3/tier",
+   "status": "P",
+   "note": "P2에만 4번째 tier \"vip\"(tierLabel \"종합\")가 있음. P1은 entry/recommended/premium 3단."
+  },
+  {
+   "pointer": "/combos/1/packages/2/procedures",
+   "status": "P",
+   "note": "procedures 순서 M9,M1,M2,M4 가 name 순서(보톡스+필러+HIFU+스킨부스터)와 다르고 clinicalRationale의 화살표 순서(HIFU→보톡스→필러→스킨부스터)와 일치. 배열 순서가 시술 순서를 뜻하는지는 원문에 정의 없음(F)."
+  },
+  {
+   "pointer": "/combos/1/packages/1/products/0",
+   "status": "P",
+   "note": "이 항목은 대안을 \"/\"로(쥬비덤/이브아르), P1-2는 \"or\"로 표기. 같은 원장 안 대안 기호 불일치."
+  },
+  {
+   "pointer": "/combos/1/packages/1/clinicalRationale",
+   "status": "P",
+   "note": "M코드를 문장 안 괄호로 직접 참조(동적주름(M1)). procedures 값과 텍스트 사이 대응 단서."
+  },
+  {
+   "pointer": "/combos/1/packages/2/riskBenefit",
+   "status": "P",
+   "note": "riskBenefit 안에 시술 순서 제약(\"열 시술 후 주입 시술 순서 준수 필수\")이 있음 — 다른 필드가 아닌 위험 칸에 순서 규칙이 섞임."
+  },
+  {
+   "pointer": "/combos/1/packages/2/expectedResult",
+   "status": "P",
+   "note": "\"'5살 어려 보이는' 수준\" — 따옴표 인용된 비유적 수치. 수치로 해석하지 않음."
+  },
+  {
+   "pointer": "/combos/1/packages/3/salesPitch",
+   "status": "P",
+   "note": "\"6개월~1년에 한 번\" 주기 표현이 salesPitch에 있음."
+  },
+  {
+   "pointer": "/combos/1/packages/3/riskBenefit",
+   "status": "P",
+   "note": "\"그러나\"로 위험 진술과 이점 진술이 대조됨. 위험/이점 분리 시 접속 문맥 보존 필요."
+  },
+  {
+   "pointer": "/combos/1/packages/0/riskBenefit",
+   "status": "P",
+   "note": "\"3~6개월 유지\" 유지 기간이 riskBenefit 칸에 있음."
+  }
+ ],
+ "expressions": [
+  {
+   "pointer": "/combos/1/packages/0/priceRange",
+   "text": "5~10만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/expectedResult",
+   "text": "이마·미간·눈가 동적 주름 개선",
+   "kind": "부위+효과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/expectedResult",
+   "text": "3~7일 후 효과 시작",
+   "kind": "시간·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/salesPitch",
+   "text": "주름은 보톡스로 시작하는 게 정석이에요",
+   "kind": "평가",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/upsellHook",
+   "text": "이미 깊게 파인 주름은 필러로 채워야 완벽해요",
+   "kind": "조건·정도",
+   "note": "'깊게' 정도 부사, 수치화 금지"
+  },
+  {
+   "pointer": "/combos/1/packages/0/clinicalRationale",
+   "text": "동적 주름(표정 지을 때 생기는 주름)의 1차 치료",
+   "kind": "정의+순서",
+   "note": "괄호가 용어 풀이"
+  },
+  {
+   "pointer": "/combos/1/packages/0/clinicalRationale",
+   "text": "근이완으로 추가 진행 방지 효과",
+   "kind": "인과",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/riskBenefit",
+   "text": "3~6개월 유지",
+   "kind": "시간·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/0/riskBenefit",
+   "text": "반복 시 주름 예방 효과",
+   "kind": "조건",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/products/0",
+   "text": "나보타 + 쥬비덤/이브아르 + 리쥬란",
+   "kind": "제품 결합+대안",
+   "note": "/ 대안"
+  },
+  {
+   "pointer": "/combos/1/packages/1/priceRange",
+   "text": "40~70만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/expectedResult",
+   "text": "잔주름·피부결(스킨부스터)",
+   "kind": "문제-시술 대응",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/expectedResult",
+   "text": "완벽 해결",
+   "kind": "정도",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/salesPitch",
+   "text": "이 조합이 만족도 1위입니다",
+   "kind": "순위 주장",
+   "note": "근거 미기재"
+  },
+  {
+   "pointer": "/combos/1/packages/1/upsellHook",
+   "text": "탄력까지 신경 쓰시면 HIFU 추가하시는 분들이 많아요",
+   "kind": "조건·업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/clinicalRationale",
+   "text": "동적주름(M1)+정적주름(M2)+미세주름·피부결(M4)",
+   "kind": "문제-코드 대응",
+   "note": "텍스트 속 M코드"
+  },
+  {
+   "pointer": "/combos/1/packages/1/clinicalRationale",
+   "text": "주름의 3가지 유형을 각각 다른 메커니즘으로 타겟",
+   "kind": "수량",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/clinicalRationale",
+   "text": "보톡스·필러 시술 부위 재생 촉진",
+   "kind": "부위(지시적)",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/1/riskBenefit",
+   "text": "3가지 메커니즘이 겹치지 않아 부작용 최소",
+   "kind": "부정·인과",
+   "note": "'않아' 부정"
+  },
+  {
+   "pointer": "/combos/1/packages/1/riskBenefit",
+   "text": "만족도 매우 높은 조합",
+   "kind": "정도",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/products/0",
+   "text": "보톡스(엘러간) + 쥬비덤 + 울쎄라 + 리쥬란",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/priceRange",
+   "text": "100~180만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/expectedResult",
+   "text": "'5살 어려 보이는' 수준의 변화",
+   "kind": "인용·비유",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/salesPitch",
+   "text": "울쎄라로 탄력까지 잡으면 주름이 다시 생기기 어려워져요",
+   "kind": "조건·가능성",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/upsellHook",
+   "text": "실리프팅으로 구조적 리프팅까지",
+   "kind": "업셀",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/clinicalRationale",
+   "text": "HIFU(콜라겐 수축·리모델링) → 보톡스(근이완) → 필러(볼륨) → 스킨부스터(재생)",
+   "kind": "순서+기전",
+   "note": "→ 순서"
+  },
+  {
+   "pointer": "/combos/1/packages/2/clinicalRationale",
+   "text": "주름의 원인(근육+볼륨손실+콜라겐감소+피부노화)을 전부 타겟",
+   "kind": "원인 나열",
+   "note": "+ 가 원인 나열"
+  },
+  {
+   "pointer": "/combos/1/packages/2/riskBenefit",
+   "text": "열 시술 후 주입 시술 순서 준수 필수",
+   "kind": "순서 제약",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/2/riskBenefit",
+   "text": "울쎄라의 SMAS 열응고가 장기적 콜라겐 리모델링을 유도하여 주름 재발 방지",
+   "kind": "기전·인과",
+   "note": "SMAS 영문 약어"
+  },
+  {
+   "pointer": "/combos/1/packages/3/productTier",
+   "text": "수입 프리미엄",
+   "kind": "제품 등급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/products/0",
+   "text": "실루엣소프트 + 울쎄라 + 보톡스(엘러간) + 쥬비덤 + 리쥬란",
+   "kind": "제품 결합",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/priceRange",
+   "text": "200~350만",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/expectedResult",
+   "text": "수술 없이 최대 효과",
+   "kind": "부정·최상급",
+   "note": "'없이'"
+  },
+  {
+   "pointer": "/combos/1/packages/3/salesPitch",
+   "text": "비수술로 가능한 최고의 주름·리프팅 풀패키지",
+   "kind": "가능성·최상급",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/salesPitch",
+   "text": "6개월~1년에 한 번",
+   "kind": "주기·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/upsellHook",
+   "text": "연간 프로그램으로 가입하시면 매번 할인 + 스킨부스터 유지 시술 무료",
+   "kind": "조건·가격",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/clinicalRationale",
+   "text": "실(물리적 거상) + HIFU(열 응고·콜라겐 수축)",
+   "kind": "시술-기전",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/clinicalRationale",
+   "text": "5가지 메커니즘으로 노화의 모든 축을 타겟",
+   "kind": "수량·범위",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/riskBenefit",
+   "text": "시술 순서·간격 엄격 준수",
+   "kind": "순서·간격 제약",
+   "note": "간격 수치 미기재"
+  },
+  {
+   "pointer": "/combos/1/packages/3/riskBenefit",
+   "text": "실리프팅 부위 열 시술 주의",
+   "kind": "부위+주의",
+   "note": ""
+  },
+  {
+   "pointer": "/combos/1/packages/3/riskBenefit",
+   "text": "개별 시술보다 적은 양·강도로도 더 좋은 결과",
+   "kind": "비교",
+   "note": "양·강도 수치 미기재"
+  },
+  {
+   "pointer": "/combos/1/packages/0/salesPitch",
+   "text": "가볍게 한번 해보시면 왜 다들 하는지 아실 거예요",
+   "kind": "조건·추측",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/2/upsellHook",
+   "text": "여기서 더 가시면",
+   "kind": "조건·업셀",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/1/salesPitch",
+   "text": "주름 3총사",
+   "kind": "수량",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/0/products/0",
+   "text": "나보타 or 보툴렉스",
+   "kind": "제품 대안",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/1/expectedResult",
+   "text": "동적주름(보톡스) + 정적주름(필러) + 잔주름·피부결(스킨부스터)",
+   "kind": "문제-시술 대응",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/1/clinicalRationale",
+   "text": "PN(폴리뉴클레오타이드)",
+   "kind": "약어 풀이",
+   "note": "",
+   "added_in": "읽기 검토"
+  },
+  {
+   "pointer": "/combos/1/packages/3/clinicalRationale",
+   "text": "보톡스(근이완) + 필러(볼륨) + 스킨부스터(재생)",
+   "kind": "시술-기전",
+   "note": "",
+   "added_in": "읽기 검토"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I-PC-04",
+   "status": "F",
+   "pointer": "/combos/1/packages/2/procedures",
+   "note": "procedures 배열 순서와 name 순서 불일치, rationale 화살표 순서와 일치 — 배열 순서 의미 미정의"
+  },
+  {
+   "id": "I-PC-05",
+   "status": "B",
+   "pointer": "/combos/1/packages/3/riskBenefit",
+   "note": "'시술 순서·간격' 구체 간격 원문 없음"
+  }
+ ]
+}

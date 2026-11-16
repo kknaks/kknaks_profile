@@ -1,0 +1,26 @@
+{
+ "id": "DEC-2026-11-05-B3-P-NEC-01",
+ "kind": "scope_review",
+ "target": {
+  "erd_ref": "§4.1 사건 사전 괴사 동의어 「피부 괴사」 · §2.8 site layer",
+  "review_item": "피부 괴사 → (괴사, 피부)"
+ },
+ "new_value": {
+  "disposition": "표현 「피부 괴사 …」(post-procedure-timeline · taxonomy safety 등 20 남짓)도 (괴사, 피부)로 읽으려면 사건 사전 동의어 「피부 괴사」를 빼야 한다(그러면 「피부」 layer + 「괴사」로 갈린다) — 동의어 제거 kind 가 없다. 이번 묶음은 complications M14 이름만 지정(ADV-04)"
+ },
+ "reason": "피부 괴사 후속 — 표현까지 넓히는 방법 제안.",
+ "decided_by": null,
+ "decided_at": null,
+ "status": "proposed",
+ "source_refs": [
+  {
+   "kind": "ledger",
+   "ref": "post-procedure-timeline.json:timelines[].phases[].emergency[]@5/2/0"
+  },
+  {
+   "kind": "brief",
+   "ref": "silver-v3/decisions/_batch3-candidates.md — 사용자 2026-11-05 「피부 괴사」→ (괴사, 피부)"
+  }
+ ],
+ "batch": "결정 묶음 3 (2026-11-05 · 발주서 silver-build-5-brief.md)"
+}

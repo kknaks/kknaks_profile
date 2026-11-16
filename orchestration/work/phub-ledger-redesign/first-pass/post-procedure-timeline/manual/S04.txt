@@ -1,0 +1,72 @@
+# S04 /timelines/3 fractional-co2 — 직접 읽기 2026-11-09
+id | fractional-co2 | id_code |
+category | M8 | id_code |
+name | 프락셔널 CO2 레이저 | procedure_name,mixed_script | CO2 는 영문+숫자. 형태소 분절 주의
+phases/0/period | Day 0 | period |
+phases/0/label | 시술 당일 | reference_point |
+phases/0/normal/0 | 강한 홍반/화끈감 (선번 유사) | degree,alt,similarity,loanword | 「선번」 = sunburn 외래어(잠정). 「강한」
+phases/0/normal/1 | 부종 (특히 눈 주위) | site,emphasis | 「특히」
+phases/0/normal/2 | 미세한 점상 출혈 | size,pattern |
+phases/0/normal/3 | 삼출액 분비 | event |
+phases/0/abnormal/0 | 예상보다 심한 부종 | comparison,severity |
+phases/0/abnormal/1 | 지속적 출혈 | persistence |
+phases/0/caution/0 | 심한 수포 형성 | severity,formation |
+phases/0/caution/1 | 비정상적 통증 (통증 스케일 8 이상) | degree,scale_threshold | ha-filler 는 7 이상. 척도 정의 없음
+phases/0/emergency/0 | 아나필락시스 (마취크림 관련) | label,cause_ref | 「관련」 원인 연결 약함. 마취크림 = 시술 전 처치(잠정)
+phases/0/emergency/1 | 광범위 수포/화상 | extent,alt |
+phases/1/period | Day 1-3 | period,time_range |
+phases/1/label | 삼출/가피 형성기 | phase_label,alt |
+phases/1/normal/0 | Day 1: 삼출액 지속, 홍반 심함 | time_anchor,persistence,severity | 값 안 「Day 1:」 머리표
+phases/1/normal/1 | Day 2-3: 가피(딱지) 형성 시작 | time_anchor,time_range,gloss,onset |
+phases/1/normal/2 | 부종 피크 (Day 1-2) 후 점차 감소 | peak,peak_time,sequence,speed | 「후」 선후. 「점차」
+phases/1/normal/3 | 피부 조임감/당김 | alt,subjective |
+phases/1/abnormal/0 | Day 3에도 삼출 지속 | time_anchor,concessive,persistence |
+phases/1/abnormal/1 | 가피 형성 불량 | quality_negative |
+phases/1/caution/0 | 농성 삼출 (노란/초록 분비물) | color,alt,gloss |
+phases/1/caution/1 | 발열 (37.5도 이상) | numeric_threshold,unit |
+phases/1/caution/2 | 통증 악화 (감소가 아닌 증가) | worsening,negation,contrast | 「아닌」
+phases/1/emergency/0 | 감염 (고열 + 농 + 발적 확대) | cause_label,co_occurrence,extent | 「+」 세 증상 동반
+phases/1/emergency/1 | 헤르페스 재활성화 (수포 군집) | recurrence,pattern |
+phases/2/period | Day 3-5 | period,time_range |
+phases/2/label | 필링기 | phase_label,loanword |
+phases/2/normal/0 | 가피 건조/갈색 변화 | alt,color_change |
+phases/2/normal/1 | 가피 가장자리부터 벗겨짐 시작 | site_within,onset,sequence | 「가장자리부터」 시작 위치
+phases/2/normal/2 | 홍반 점차 감소 | speed,change |
+phases/2/normal/3 | 가려움 (정상 치유 반응) | judgment |
+phases/2/abnormal/0 | 가피 아래 농 | location |
+phases/2/abnormal/1 | 가피 조기 탈락 (자연 탈락 전 뜯음) | timing,cause,behavior,sequence | 「전」 선후. 환자 행동이 원인(잠정)
+phases/2/caution/0 | 감염 징후 (발적 확대 + 열감 + 통증) | early_sign,co_occurrence |
+phases/2/caution/1 | 가피 아래 이상 분비물 | location,abnormality |
+phases/2/emergency/0 | 봉와직염 (광범위 발적 + 고열) | label,extent,co_occurrence |
+phases/2/emergency/1 | 반흔 초기 징후 (비정상적 조직 증식) | early_sign,gloss |
+phases/3/period | Day 5-7 | period,time_range |
+phases/3/label | 재상피화기 | phase_label |
+phases/3/normal/0 | 대부분의 가피 자연 탈락 | proportion_approx |
+phases/3/normal/1 | Day 7-10: 재상피화 완료 | time_anchor,time_range,completion | 기간(Day 5-7) 밖 Day 8-10 까지 걸치는 값
+phases/3/normal/2 | 분홍빛 새 피부 노출 | color |
+phases/3/normal/3 | 홍반 지속 (정상, 수주 소요) | persistence,judgment,approx_time,duration | 「수주 소요」 지속 기간 근사
+phases/3/abnormal/0 | Day 7에도 가피 잔존 | time_anchor,concessive,persistence |
+phases/3/abnormal/1 | 불균일한 재상피화 | quality_negative |
+phases/3/caution/0 | 재상피화 지연 (10일 이상) | delay,duration_threshold | 「10일 이상」 이 시술 후 10일인지 지연 기간인지 불분명
+phases/3/caution/1 | 비후성 반흔 초기 징후 | early_sign |
+phases/3/emergency/0 | 감염 (지연성) | delayed_onset |
+phases/3/emergency/1 | 반흔 형성 진행 | formation,progress |
+phases/4/period | Day 7-14 | period,time_range |
+phases/4/label | 회복 완성기 | phase_label |
+phases/4/normal/0 | 재상피화 완료 | completion | phases/3/normal/1 과 같은 사건이 두 기간에 나옴
+phases/4/normal/1 | 분홍빛 홍반 지속 (정상, 1-3개월 소요) | color,persistence,judgment,duration,time_range | 「개월」 단위. phases/3/normal/3 「수주 소요」 와 기간 표현이 다름
+phases/4/normal/2 | 피부 질감 개선 시작 | onset,change |
+phases/4/normal/3 | 메이크업 가능 (재상피화 후) | activity,possibility,condition,sequence | 「후」 조건 — 관리·활동 재개
+phases/4/abnormal/0 | 지속적 홍반 (예상보다 진함) | persistence,comparison,color_degree |
+phases/4/abnormal/1 | 색소침착 시작 (PIH) | onset,abbreviation |
+phases/4/caution/0 | PIH (염증 후 과색소침착) 진행 | abbreviation,gloss,progress,sequence | 괄호 풀이 안의 「후」 는 용어 일부(조건 아님)
+phases/4/caution/1 | 비후성 반흔 형성 | formation |
+phases/4/emergency/0 | 켈로이드 형성 | formation |
+phases/4/emergency/1 | 지연성 감염 | delayed_onset |
+O | 기간 Day 0 / 1-3 / 3-5 / 5-7 / 7-14. 값 안에 「Day 1:」「Day 2-3:」「Day 7-10:」 같은 세부 시점 머리표가 있다. phases/3 의 「Day 7-10」 은 그 기간(Day 5-7) 밖까지 간다.
+O | 「재상피화 완료」 가 phases/3(Day 7-10 머리표)와 phases/4 에 두 번 나온다. 홍반 지속 기간이 phases/3 「수주 소요」, phases/4 「1-3개월 소요」 로 다르게 적혔다.
+O | 관리·활동 표현: 「메이크업 가능 (재상피화 후)」 — 시간 대신 사건(재상피화) 을 기준으로 한 조건.
+O | 「자연 탈락 전 뜯음」 은 환자 행동을 원인으로 적은 유일한 값이다(이 구획 안).
+Q | I | phases/3/normal/3 phases/4/normal/1 | 홍반 지속 기간 표현이 두 기간에서 다르다(수주 / 1-3개월). 원문 내 불일치 후보(I-DUR).
+Q | B | phases/3/caution/0 | 「10일 이상」 의 기준(시술 후 경과일인지 지연 기간인지)이 원문에 없다.
+Q | B | phases/0/caution/1 | 통증 스케일 정의 없음(S02 와 같은 원인).
