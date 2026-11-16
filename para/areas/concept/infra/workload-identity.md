@@ -10,8 +10,12 @@ aliases:
   - OIDC 배포
   - 장기 키 없이
   - federated credential
+  - iam.disableServiceAccountKeyCreation
+  - 서비스 계정 키 생성 제한
+  - 조직 정책
 up:
   - 2026-11-09-day-data-architecture
+  - 2026-11-16-android-app
 tags:
   - 인프라
   - 인증
@@ -66,3 +70,10 @@ SSH 키 · 클라우드 비밀 키: 저장소에 0
 
 - [[2026-11-09-day-data-architecture]] §2 — DAY 배포: GitHub OIDC(장기 키 없이) · VM system identity 로 ACR pull · Key Vault 읽기 · SSH 없이 run-command(코드 `937dbb68` · 설정 `day.json` infra)
 - [[2026-11-11-fix]] §2 「비밀 없는 저장소 접근(관리 ID)」 — DAY 파일 저장소: 연결 문자열 → VM 관리 ID · 환경 = 컨테이너(`dev` · `prod`) · 없앤 비밀 이름은 금지 목록에 남김(`be-4-report.md` · `review-be-3-report.md` · CENTURION_DAY#242)
+
+### 키 파일 생성이 조직 정책으로 막혔을 때 (DAY android-app)
+
+- Google Cloud 조직에 `iam.disableServiceAccountKeyCreation`(보안 기본값으로 자동 적용되기도 함)이 걸려 있으면 JSON 키를 받을 수 없다.
+- 길은 셋이다. ① **키 없이** — 사람 계정으로 로그인한 `gcloud` 가 서비스 계정을 impersonate(「서비스 계정 토큰 생성자」 역할) ② 이미 있는 다른 키 재사용(용도가 섞인다) ③ **프로젝트 하나만** 「상위 정책 재정의 → 사용 안 함」으로 열고, 받은 뒤 되돌린다(조직 정책 관리자 필요).
+- DAY 는 ③을 골랐다. 정책은 새 키 **생성만** 막으므로 되돌려도 받은 키는 계속 동작한다. 정책을 바꾼 직후 몇 분은 반영이 안 돼 같은 오류가 다시 난다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

@@ -9,9 +9,13 @@ aliases:
   - secret manager
   - 레포 env 금지
   - Key Vault 방화벽
+  - Android Keystore
+  - Keystore
+  - EncryptedSharedPreferences
 up:
   - 2026-11-12-prod-deploy-re1
   - 2026-11-09-day-data-architecture
+  - 2026-11-16-android-app
 tags:
   - 인프라
   - 비밀
@@ -64,3 +68,11 @@ DB 비밀번호 · 외부 API 키 · 외부 시스템 주소처럼 **레포에 �
 - [[2026-11-11-day-app]] §2 — 선택 비밀(채팅 Blob · APNs 키)은 보관소에 없으면 app.env 에 안 넣고 기능만 꺼짐(fail-closed) · 배포는 성공(`scripts/deploy/day_vm.py` OPTIONAL_SECRETS)
 - [[2026-11-11-fix]] §2 「방화벽 뒤 비밀 저장소에 허용된 경로로 넣기」 — APNs · Soniox 키를 VM 경유로 Key Vault 에 · `RETIRED_SECRETS`(`be-4-report.md` · `review-doc-3-report.md` W5)
 - [[2026-11-12-prod-deploy-re1]] §2 「비밀을 화면에 안 내는 운영 등록」 — 운영 연결 값을 prod 컨테이너 안 `--stdin` 1회로 · 테넌트 id 는 컨테이너에서 받아 로컬 600 파일에만 · 값 파일은 쓰자마자 삭제(`backend/day/register_connection.py` · `be-1-report.md`)
+
+## 모바일 기기 안 — Android Keystore (DAY android-app)
+
+- 앱 세션 묶음(토큰 · 연결 주소 · 만료)을 **AndroidKeyStore 의 AES-256-GCM 키**로 암호화해 앱 전용 prefs 에 암호문 하나로 둔다. 키는 기기 밖으로 꺼낼 수 없고, IV 는 Keystore 가 매번 무작위로 만든다. iOS Keychain `ThisDeviceOnly` 와 같은 자리다.
+- Jetpack `EncryptedSharedPreferences` 는 deprecated 라 쓰지 않았다. 플랫폼 API 로 80줄 안팎이면 iOS 구현과 줄 단위로 대조된다.
+- **읽기 · 비교 · 삭제(`clearIf`)는 한 직렬 실행기 안에서** 돈다. 사이에 `save` 가 끼면 새 로그인을 지운다. 예외가 나도 답을 꼭 돌려준다 — 안 그러면 호출한 쪽의 로그아웃이 멈춘다.
+- 백업 · 기기 이전 대상에서 뺀다(세션이 다른 폰으로 따라가지 않게).
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

@@ -7,8 +7,14 @@ aliases:
   - build once deploy many
   - prod fast-forward 배포
   - 같은 SHA 이미지
+  - Play 트랙
+  - 버전 승격
+  - internal
+  - alpha
+  - closed testing
 up:
   - 2026-11-12-prod-deploy-re1
+  - 2026-11-16-android-app
 tags:
   - 인프라
   - 배포
@@ -45,3 +51,11 @@ DAY 첫 prod 배포에서 `prod` 브랜치는 있었지만 워크플로 파일�
 ## 출처
 
 - [[2026-11-12-prod-deploy-re1]] §2 「같은 서버 · 다른 스키마 prod 첫 배포」 — CENTURION_DAY `382827d5` · `0b2f8cff` prod fast-forward · deploy-prod run 43153893222 · migrate-prod 43154046130 · `40-architecture/deployment.md`
+
+### Play 트랙 승격과 업로드 스크립트의 짝 고정 (DAY android-app)
+
+- Play 는 같은 AAB 를 **내부 테스트 → 비공개 테스트(alpha) → 프로덕션**으로 승격한다. 다시 빌드하지 않는다. versionCode 는 늘기만 하면 되므로 트랙 사이에서 번호를 건너뛰어도 된다.
+- 업로드 스크립트(`play_upload.py`)는 Developer API edits(`insert → bundles.upload → tracks.update → commit`) 를 묶고, 실패하면 edit 을 지운다. dry-run 은 commit 대신 `edits.validate`.
+- **패키지와 트랙 짝을 표로 고정**했다(개발 앱 → internal · 정식 앱 → alpha). 프로덕션은 스크립트로 못 올린다 — 공개 출시는 사람이 Console 에서 승격한다.
+- commit 은 됐는데 결과 다시 읽기만 실패하면 「성공 + 안내」로 끝낸다. 실패로 보이면 같은 versionCode 로 다시 올려 거절당한다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

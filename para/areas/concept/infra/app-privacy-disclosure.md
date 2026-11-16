@@ -7,8 +7,13 @@ aliases:
   - 앱이 수집하는 개인정보
   - 개인정보 영양 성분표
   - privacy nutrition label
+  - 데이터 보안
+  - Data safety
+  - 사진 및 동영상 권한
+  - READ_MEDIA_IMAGES
 up:
   - 2026-11-12-prod-deploy-re1
+  - 2026-11-16-android-app
 tags:
   - 모바일
   - 앱스토어
@@ -46,3 +51,10 @@ Apple 정의: 「Collect」 = 데이터를 **기기 밖으로 보내, 요청을 
 ## 출처
 
 - [[2026-11-12-prod-deploy-re1]] §2 「App Store 「수집」 정의로 App Privacy 답하기」 — DAY 7종 신고 · EMR · 통역 · 접속 IP 제외(`mobile-asc-answers.md` · `mobile-asc-apply-report.md` · https://developer.apple.com/app-store/app-privacy-details/)
+
+### Play 데이터 보안 · 사진 권한 신고 (DAY android-app)
+
+- Play 「데이터 보안」은 앱이 기기 밖으로 보내는 데이터를 유형별로 적는다(수집 / 공유 · 임시 처리 · 필수 / 선택 · 목적). 서비스 제공업체에 처리만 맡기는 건 「공유」가 아니다. 서버가 저장하면 「임시 처리」가 아니다.
+- 「로그인 세부정보」(앱 액세스)에 심사용 데모 계정을 넣고 [저장] 을 눌러야 「완료됨」이 된다 — 저장 없이 나가면 빈칸이다.
+- `READ_MEDIA_IMAGES/VIDEO` 는 「시스템 사진 선택 도구로 안 되는 핵심 기능」 신고를 따로 요구한다. DAY 는 「채팅 입력창 아래 최근 사진 줄」로 신고했고 통과했다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]

@@ -7,8 +7,13 @@ aliases:
   - 비공개 앱 배포
   - 링크 배포
   - unlisted app
+  - 비공개 테스트
+  - closed testing
+  - 참여 링크
+  - opt-in
 up:
   - 2026-11-12-prod-deploy-re1
+  - 2026-11-16-android-app
 tags:
   - 모바일
   - 앱스토어
@@ -52,3 +57,11 @@ DAY 는 병원이 계속 늘고 병원들이 Apple Business 를 쓰지 않아 Un
 ## 출처
 
 - [[2026-11-12-prod-deploy-re1]] §2 「Unlisted 배포」 — DAY 정식 앱 0.1.0 신청 · 신청서 동의 문구(https://developer.apple.com/support/unlisted-app-distribution/ · `40-architecture/mobile-deployment.md`)
+
+### Android 에는 Unlisted 가 없다 (DAY android-app)
+
+- Play 에는 iOS 「등록되지 않은 앱」 같은 링크 전용 공개가 없다. 고를 수 있는 건 **테스트 트랙(검색 안 됨 · 참여 링크로만)** 이나 **프로덕션(누구나 검색)** 이다.
+- 비공개 · 내부 테스트 앱은 테스터 계정이어도 검색에 안 나온다. 참여 링크는 `play.google.com/apps/testing/<package>` 로 꼴이 정해져 있다 — Console 테스터 탭의 링크가 「앱을 게시하면 표시됩니다」로 회색이어도 이 주소로 열면 「테스터 되기」가 된다. 게시 직후 몇 시간은 「항목을 찾을 수 없음」이다.
+- 조직 계정은 개인 계정의 「테스터 12명 × 14일」 조건 없이 바로 프로덕션에 낼 수 있다.
+- DAY 는 iOS 는 Unlisted 로, Android 정식은 **프로덕션(공개)** 으로 갔다(2026-11-15). 어느 쪽이든 병원 계정 로그인으로 막는 것은 같다.
+- 출처: [[para/projects/company/day/log/2026-11-16-android-app|android-app 회고]]
