@@ -1,0 +1,77 @@
+{
+  "idempotency_key": "day/android-dev-app-local-run",
+  "title": "DAY 직원 앱 Android 개발 앱(DAY Dev) 로컬 에뮬레이터 실행 — app/android 생성 · day/session 구현 · day/push · day/video 스텁 (DAY-SPEC-003 개정 ⑭)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "risk_level": "L2",
+  "target_specs": ["DAY-SPEC-003"],
+  "spec_baseline_revision": "321a434b628cb7eee16c4a399d4197e060350b8b",
+  "target_delta": [
+    "app/android/ 생성 — 개발 앱 Application ID day.medisolveai.dev · 앱 이름 DAY Dev(iOS 개발 앱과 같게 · mobile-deployment §3 · §7-0). 빌드에 id · 이름을 넣는 방식(productFlavors · 명령줄 빌드 값 등)은 구현이 정하고 PR 에 적는다",
+    "네이티브 채널 day/session Android(Kotlin) 구현 — load · save · clear · clearIf(token · api_base_url 이 같을 때만 지움 · 직렬로 원자적) · iOS AppDelegate.swift 와 같은 동작(DAY-SPEC-003 §3 「세션 보관」 · 「Android 개발 앱 — 네이티브 채널」). 저장 위치는 mobile-deployment §7-2 [제안](Android Keystore 로 보호되는 암호화 저장소)을 따른다 — 사용자 확정 사항 아님",
+    "네이티브 채널 day/push Android 스텁 — 권한 false · 토큰 없음 · installId · appId · appName 정도만 값(FCM 없음 · 기기 등록 일어나지 않음)",
+    "네이티브 채널 day/video Android 스텁 — probe · convert · audioSave · audioFollowSilent · audioRestore. 채팅 동영상 보내기는 지금 Dart 변환 실패 처리를 그대로 탐(새 문구 없음)",
+    "플러그인이 요구하는 Android 권한 · 설정 — 인터넷 · 마이크(record) · 사진 / 동영상(image_picker · photo_manager) · flutter_tts · url_launcher 등 pubspec.yaml 플러그인이 요구하는 것만",
+    "app/README.md 에 Android 실행법 한 절(에뮬레이터 · dev 서버 --dart-define · 로컬 day-local 로 붙일 때 10.0.2.2 · cleartext 는 저장소에 넣지 않고 개발자 로컬에서만)"
+  ],
+  "acceptance": [
+    "A1 (구현 워커 · 실물) 로컬 Android 에뮬레이터에서 DAY Dev(day.medisolveai.dev)로 실제 dev 서버 로그인 → 시술 현황 · 채팅 목록이 뜬다(DAY-SPEC-003 A-48)",
+    "A2 (구현 워커 · 실물) 앱을 다시 켜면 자동 로그인(day/session load) · 로그아웃 뒤 세션 묶음 없음 · 푸시 권한 요청 · 기기 등록이 일어나지 않아도 오류 화면 없음",
+    "A3 (구현 워커) iOS fvm flutter build ios --no-codesign 통과 · ios/ 변경 0",
+    "A4 (구현 워커) Dart lib/ 동작 변경 0 · 기존 flutter test · flutter analyze 통과"
+  ],
+  "non_goals": [
+    "iOS 변경(정식 0.1.0 (2) 심사 중)",
+    "Dart 동작 · 화면 · 문구 변경",
+    "FCM · Firebase · google-services.json · 알림 [수락] Android 판",
+    "day/video Kotlin 실제 구현(동영상 변환 · 재생 오디오 전환)",
+    "Play Console · Google 개발자 계정 · 서명 keystore · Android 배포 · 실기기 배포",
+    "정식 앱 Android Application ID",
+    "서버 변경"
+  ],
+  "review_surface": [
+    "baseline = origin/main 321a434b(DAY-SPEC-003 stable). 이번 결정을 적은 스펙 개정(DAY-SPEC-003 개정 ⑭ · mobile-deployment 2026-11-12 ② · DAY-SPEC-004 개정 ⑥)은 스펙 브랜치 kknaksss/android-app-spec 에 있고 아직 머지 전. 다음 단계: 스펙 PR 머지 → 같은 key contract_version 2 로 baseline 재결속 → 사용자 승인(v1 plan_digest 는 개정 ⑭ 가 없는 baseline 이라 승인하지 않는다)",
+    "위험 L2 근거: 새 플랫폼(app/android) 생성 · 세션 토큰을 보관하는 Android 네이티브 코드 추가 · 빌드 주입 방식 미정. 서버 · 공개 API · migration · 배포 · 외부 쓰기 없음 · iOS 무변경",
+    "사용자가 정하지 않은 것(구현이 정하고 PR 에 적는다 · [확정]으로 올리지 않음): Android 세션 저장 위치(mobile-deployment §7-2 [제안] 따름) · Application ID · 앱 이름 빌드 주입 방식(mobile-deployment §3 끝 줄) · 최소 Android 버전(M-7)",
+    "열린 그대로: 정식 앱 Android id(M-4) · 배포 방식 · Google 계정(M-3) · keystore(M-11) · FCM(M-9) · 출시 여부와 시점(M-17)",
+    "근거 = 사용자 2026-11-12 결정(코디 fix-web/android-app-handoff.md §2 · android-app planner 브리프 §1). 통역 오디오는 day/video 를 거치지 않는다(app/lib/interpret/audio_io.dart 는 audio_session 플러그인) — Android 통역 동작 확인은 이번 완료 조건 밖"
+  ],
+  "execution": {
+    "code_surface": [
+      "app/android/(새로 생성 — Gradle · AndroidManifest · MainActivity Kotlin)",
+      "app/ios/Runner/AppDelegate.swift(읽기만 — day/session · day/push · day/video 동작 원본)",
+      "app/lib/data/session_store.dart(day/session · :79 · 읽기만)",
+      "app/lib/data/push_bridge.dart(day/push · :35 · 읽기만)",
+      "app/lib/chat/video_pick.dart(day/video · :22 · 읽기만)",
+      "app/pubspec.yaml(권한이 필요한 플러그인 확인 · 읽기만)",
+      "app/README.md(Android 실행법 한 절)"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "mediness 스펙 PR(kknaksss/android-app-spec · DAY-SPEC-003 개정 ⑭) 머지 → baseline 재결속(같은 key · version+1)",
+      "로컬 Android SDK · 에뮬레이터(AVD) · fvm Flutter 3.44.8 · dev 데모 테넌트 계정"
+    ],
+    "phases": [
+      "AND-1 app/android 생성 · Application ID day.medisolveai.dev · 이름 DAY Dev · 플러그인 권한",
+      "AND-2 day/session Kotlin 구현(load · save · clear · clearIf 원자적)",
+      "AND-3 day/push · day/video Kotlin 스텁",
+      "AND-4 README Android 실행법 · 에뮬레이터 dev 로그인 실물 · iOS build --no-codesign"
+    ],
+    "verification": [
+      "fvm flutter analyze · fvm flutter test",
+      "에뮬레이터 실물: dev 로그인 → 시술 현황 · 채팅 목록 · 재실행 자동 로그인 · 로그아웃",
+      "fvm flutter build ios --no-codesign",
+      "git diff 에 app/lib · app/ios 변경 0"
+    ],
+    "predeploy": [],
+    "rollback": [
+      "코드 PR revert — app/android 디렉토리 · README 절 제거로 끝(서버 · iOS · Dart 무변경 · 배포 없음)"
+    ],
+    "open_questions": [
+      "Application ID · 앱 이름 빌드 주입 방식(productFlavors · 명령줄 빌드 값 등)",
+      "Android 세션 저장 위치 구현(§7-2 [제안] 따름 · 사용자 확정 아님)",
+      "minSdk(플러그인 요구 · M-7 미결)"
+    ]
+  }
+}
