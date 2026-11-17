@@ -1,0 +1,75 @@
+{
+  "idempotency_key": "day/fix-feedback-2026-11-17",
+  "title": "DAY 현장 피드백 — 귀가 대기 취소 · 정렬 탭 · 바로 시작 · 웹 원장 호출 OS 알림 · 차트 아이콘 · 원장 계정 수락 (F-1 · F-2 · F-3 · F-4 · F-6 · F-7)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "risk_level": "L2",
+  "target_specs": ["DAY-SPEC-002", "DAY-SPEC-005", "DAY-SPEC-003"],
+  "spec_baseline_revision": "c3639503159bf1861cff5ada5277270be6ac406d",
+  "target_delta": [
+    "F-1 귀가 대기 취소 — 웹 「시술 완료」 탭의 「귀가 대기」 배지 카드에 세로 ⋮ 더보기 → 「귀가 대기 취소」. 단순 되돌리기 = 귀가 대기 직전 상태(시술 전부 완료)로 복귀 → 그 방문 카드가 판에 다시 보인다(DAY-SPEC-002 개정 ㉑ U-9 · 규칙 35 · 새 엔드포인트 제안 POST /board/visits/{visit_id}/undo-home · KOS change-flow-step 직전 단계).",
+    "F-2 정렬 탭 — /board 페이지 머리 오른쪽 끝 탭 「시술순」 · 「방별순」(이름 임시 · 확정 아님). 시술순 = 지금 그대로(카드 순서 · 끌어 놓기). 방별순 = 방 이름 오름차순 · 끌어 놓기 없음 · 빈 방 안 보임(U-2 · 규칙 36).",
+    "F-3 바로 시작 — 액션바 「의사 호출 · N건」 옆 「바로 시작 · N건」. 선택한 준비중 줄을 원장 호출 없이 바로 시작. KOS 집도의에 원장이 있으면 지금처럼 시작, 없으면 병원 시스템 계정을 KOS 집도의로(change-tasks-doctors · doctorIds=[시스템 계정]) 쓰고 시작. 호출 중 줄 대상 아님 · N = 선택 중 준비중 줄 수 · 일부만 시작되면 나머지 토스트 · 서버 엔드포인트 하나(제안 POST /board/visits/{visit_id}/quick-start · taskIds[]) · 웹만. SPEC-002 U-7 「원장 없이 시작하는 길 없음(2026-11-09)」을 바로 시작에 한해 뒤집음(사용자 2026-11-17).",
+    "F-4 웹 원장 호출 OS 알림 — DAY 웹 탭이 열려 있으면 로그인 뒤 모든 웹 화면(공통 틀)에서 원장 호출 알림 행이 생길 때 브라우저 Notification(다른 화면 · 다른 탭 · 다른 프로그램 위). 받는 계정 · 설정 규칙 그대로(DAY-SPEC-005 2026-11-17 개정 U-5 · §3 「웹 — 브라우저 OS 알림」).",
+    "F-6 차트 아이콘 — 판 카드 완료 줄과 「시술 완료」 탭에서 작성된 차트만 파란(brand) 아이콘, 미작성(회색) 안 그림 · 미완료 줄은 지금처럼 없음 · 개발용 키트 견본도 같은 규칙(ui.chart_icons 한 곳 · 규칙 37).",
+    "F-7 원장 계정 수락 — 웹 로그인 계정이 원장(snapshot.doctors)이면 「수락 대기」 카드 [수락]이 팝오버 없이 본인을 집도의로 바로 수락(다른 원장 지정 호출도 본인) · 그 밖 직원은 지금처럼 원장 골라 대리 수락 · 버튼 글자 「수락」 그대로 · 서버 · API · 앱 변경 없음(U-6)."
+  ],
+  "acceptance": [
+    "A1: 귀가 대기 카드 ⋮ → 「귀가 대기 취소」 후 그 방문이 판에 시술 전부 완료 · [귀가 대기] 켜짐으로 다시 보이고 「시술 완료」 탭에서 빠진다. 「귀가」 카드에는 ⋮ 가 없다. 귀가 대기 아닌 방문 요청은 409.",
+    "A2: 정렬 탭 「시술순」은 지금 순서 · 끌어 놓기 그대로, 「방별순」은 방 이름 오름차순 · 끌어 놓기 없음 · board_card_order 를 바꾸지 않는다 · 빈 방 카드 없음.",
+    "A3: 「바로 시작 · N건」 — N = 선택 중 준비중 줄 수. 담당의 있는 줄은 단건 [시작]과 같은 쓰기로, 담당의 없는 줄은 KOS change-tasks-doctors[시스템 계정] → [시작] 쓰기 순으로 시작된다. 호출 중 줄은 시작되지 않고 거절 줄은 토스트. 단건 [시작] · canStart · no_doctor 는 그대로. 호출 행 · change-tasks-assignees · call-tasks-doctors 를 만들지 않는다.",
+    "A4: 원장 계정으로 로그인한 웹 탭이 뒤에 있을 때 그 계정 원장 호출 알림 행이 생기면 브라우저 OS 알림(제목 · 본문 = 알림 행 title · body)이 뜬다. /board 밖 로그인 화면에서도. 간호 계정 · 알림 끈 계정 · 권한 거절이면 안 뜬다.",
+    "A5: 완료 줄 · 「시술 완료」 탭 · 키트에서 작성된 차트만 파란 아이콘, 미작성 아이콘 없음 · 줄을 누르면 차트가 열린다.",
+    "A6: 원장 계정 웹 [수락] = 팝오버 없이 doctorStaffId=본인으로 수락(다른 원장 지정 호출 포함) · 원장 아닌 계정은 원장 고르기 팝오버 그대로.",
+    "A7: 기존 판 · 앱 회귀 없음(백엔드 pytest · 웹 화면 테스트 · 앱 테스트 통과) · migration 없음."
+  ],
+  "non_goals": [
+    "F-5 더보기 → 이전 단계 되돌리기(사용자 보류)",
+    "빈 방 표시(방별순 포함 — 다음 스펙)",
+    "웹 푸시(서비스워커 · 탭을 닫아도 오는 알림) · 웹 알림 목록 · 종 · 웹 알림 설정 화면 · 원장 호출 밖 웹 알림",
+    "앱(Flutter) 변경 — 앱 「바로 시작」 버튼 · 정렬 탭 · 차트 아이콘 · 귀가 대기 취소 없음",
+    "기획안(products/day/00-baseline/planning/) 수정",
+    "DB migration · 칸 · 인덱스 변경",
+    "단건 [시작]의 no_doctor 완화(SPEC-002 OQ-60 결정 전)"
+  ],
+  "review_surface": [
+    "baseline: 개정 ㉑(SPEC-002) · SPEC-005 2026-11-17 개정 · SPEC-003 개정 ⑰ 은 스펙 PR 머지 전(워크트리 미커밋) — 지금 baseline c3639503 은 옛 계약. 스펙 PR 머지 → 같은 key 로 contract_version 2 재결속 → 그 뒤 사용자 plan 승인 권장.",
+    "F-3 정할 것: SPEC-002 OQ-60(단건 no_doctor) · OQ-61(N=0 버튼 · 수락 줄) · OQ-62(원장 없이 시작한 줄 글자 — 웹 · 앱 「담당의 미정」) · OQ-63(일부 · 전부 거절 응답 · event_log) · OQ-65(시스템 계정 집도의 줄의 의사차트) · OQ-66(KOS 확인 안 됨 · 시스템 계정 id 없음).",
+    "F-1 정할 것: SPEC-002 OQ-58 — 직전 단계 값 · KOS change-flow-step(PROCEDURE_DONE→PROCEDURE) 데모 실물 확인 · 취소한 「방 배정」 · 닫은 마취 되살림 · 확인 창 · 토스트 글자 · 방 없는 방문 · 카드 자리.",
+    "F-2 정할 것: SPEC-002 OQ-59 — 탭 이름(임시) · 처음 탭 · 기억 · 같은 방 이름 순서 · 정렬 방식(자연 정렬) · 화면/서버 · 다시 그릴 때 유지.",
+    "F-4 정할 것: SPEC-005 OQ-N8 ~ N13 — 권한 묻는 때 · 거절 시 · 탭 앞일 때 · 눌렀을 때 · 이벤트 이름(기존 notification+GET / 새 이벤트 doctor_call / 웹 전용 경로) · 여러 탭 · 끊긴 동안.",
+    "F-7 정할 것: SPEC-002 OQ-64 — 원장 태그 공용 계정 PC 의 본인 즉시 수락."
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/services/board.py (start · home · 새 quick_start · undo_home)",
+      "backend/day/services/board_rules.py (start_block · home 판정)",
+      "backend/day/routers/board.py (새 라우트 quick-start · undo-home)",
+      "backend/day/emr/kos/writes.py (change-tasks-doctors · change-flow-step)",
+      "backend/day/templates/partials/board_parts.html · board_regions.html · board_main.html (액션바 · 수락 · ⋮ · 정렬 탭)",
+      "backend/day/templates/ui.html (chart_icons) · base.html (알림 스트림 연결) · board.html",
+      "backend/day/static/day.js (N 세기 · 정렬 탭 · Notification)",
+      "backend/day/routers/api/notifications.py · services/notification_events.py (F-4 이벤트 결정에 따라)",
+      "backend/day/templates/partials/kit_page.html · routers/kit.py · routers/kit_board.py (키트 견본)"
+    ],
+    "domain_candidates": [],
+    "dependencies": ["스펙 PR 머지 · contract_version 2 재결속 · 사용자 plan 승인", "SPEC-002 OQ-58 ~ 66 · SPEC-005 OQ-N8 ~ N13 결정"],
+    "phases": [
+      "P1 화면만: F-6 차트 아이콘 · F-7 원장 계정 수락",
+      "P2 F-3 바로 시작(서비스 · 라우트 · KOS 쓰기 · 액션바)",
+      "P3 F-1 귀가 대기 취소 · F-2 정렬 탭",
+      "P4 F-4 웹 OS 알림(공통 틀 스트림 · Notification)"
+    ],
+    "verification": [
+      "backend pytest (tests/day — board 서비스 · 라우트 · KOS writes · 화면 글자 test_screen_copy)",
+      "웹 화면 테스트 test_board_page.py 수락 · 차트 아이콘 · 액션바",
+      "데모 지점 실물: change-tasks-doctors[시스템 계정] → 시작 → 종료 · change-flow-step PROCEDURE_DONE→PROCEDURE",
+      "브라우저 실물: 다른 탭 · 다른 프로그램 위 OS 알림",
+      "lint-pipeline --strict"
+    ],
+    "predeploy": [],
+    "rollback": ["Code PR revert — migration 없음 · 새 라우트 제거로 원복"],
+    "open_questions": ["SPEC-002 OQ-58 ~ OQ-66", "SPEC-005 OQ-N8 ~ OQ-N13"]
+  }
+}
