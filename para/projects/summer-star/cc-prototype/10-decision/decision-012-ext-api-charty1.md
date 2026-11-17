@@ -6,7 +6,7 @@ status: accepted
 product: cc-prototype
 feature: procedure
 created_at: 2026-11-16
-updated_at: 2026-11-16
+updated_at: 2026-11-17
 tags:
   - product/cc-prototype
   - feature/procedure
@@ -94,7 +94,7 @@ sources:
 | D-12 | **오더 메모 쓰기** `PUT /api/ext/reservations/{reservationId}/order-memo` — 등록과 수정을 한 경로로 한다. 글 전체를 통째로 바꾼다. 원천은 내부 `schedule/v1/commands/change-order-memo` 다. 예약 메모와 다른 칸이다 | 사용자 결정 · 조사 1차 §4-1 |
 | D-13 | **상담 메모 쓰기** `PUT /api/ext/reservations/{reservationId}/consultation-memo` — 원천은 공개 `updateScheduleConsultationInfo` 다 | 사용자 결정 · 조사 1차 §4-5 |
 | D-14 | **병원 정보** `GET /api/ext/clinic` — 내부 `get-hospital`(17칸 중 연동처에 낼 칸) + 운영 시간(내부 `get-default-operation-timetable`) + 휴무(내부 `get-default-days-off`)를 준다. 운영 시간 · 휴무 응답 모양은 `상담대기2.har` 을 따른다 | 사용자 결정 · 조사 2차 §1 · 조사 3차 §2 |
-| D-15 | **직원 목록** `GET /api/ext/clinics/{clinicId}/staff` — 칸 = `staffId`(ccc) · 이름 · 역할 이름(내부 `account/v2/queries/get-accounts` 의 `roleName`) · `roleTags` · 활성. 비활성 직원도 싣고 `active` 로 구분한다. 이메일은 내지 않는다 | 사용자 결정 · 조사 2차 §2 · §3 |
+| D-15 | **직원 목록** `GET /api/ext/clinics/{clinicId}/staff` — 칸 = `staffId`(ccc) · 이름 · 역할 이름(내부 `account/v2/queries/get-accounts` 의 `roleName`) · `roleTags` · 활성. 비활성 직원도 싣고 `active` 로 구분한다. ~~이메일은 내지 않는다~~ (2026-11-17 고침 → D-48: 이메일 · 실명 · KOS 계정 id 를 낸다) | 사용자 결정 · 조사 2차 §2 · §3 |
 
 ### 코디 기본값
 
@@ -139,6 +139,12 @@ SPEC-008 0.4.0 부록 G 의 planner 질문 Q1 ~ Q14 와 문서 검수 r1(`review
 | D-45 | **코드 검수 r1 의 계약 한 줄들**(SPEC-008 0.4.4) — ① 처음 봄(D-38 ② ⓐ) 때 사본 상태가 이미 귀가면 그 1번이 귀가 뒤 몫(ⓒ · D-40)도 겸한다 — 귀가 일정은 하루 1번. ② lookup `customerId` 갈래에서 KOS 「고객 없음」은 HTTP 404 **또는** 400 + `errorProperties` `id NotFound` 둘 다 같은 `404 customer_not_found`(문진 `visitorId NotFound` 선례 · 실물 꼴은 E2E-LOCAL ①). ③ 예약 상세 `customer.customerId` 는 고객 사본이 없으면 null(직원 상세의 0 과 다름 · 외부에 없는 id 를 내지 않음). ④ board 는 판정용 `event_log` 를 그날 예약 id 로 걸러 읽는다(전체 읽기 아님). ⑤ lookup 요청의 명시 `null` 은 「없음」 — 섞임 판정은 값이 있는 칸 기준 | 코디 기본값 · 코드 검수 r1 Q1 ~ Q3 · W5 |
 | D-46 | **로컬 e2e 의 lookup 502 — 시술권 거르기 먼저 · 0 값**(SPEC-008 0.4.5 §4.3 · T50) — ① 장 상태로 **산 묶음**(`AVAILABLE` 또는 `IN_USE` 1장 이상 · D-08 ②)만 먼저 고르고, 고른 묶음만 모양 검사 · 칸 만들기를 한다. 걸러진 묶음의 모양 오류는 `502` 사유가 아니다. ② 내부 원천은 0 값을 빼고 보낸다 — `price` 가 객체인데 `value` 가 없으면 `bundlePrice.value = 0`. `price` 없음 · 객체 아님 · 숫자 아닌 `value` 는 그대로 `502`. ③ 공개 시술권 쪽(기존 코드)은 바꾸지 않는다. 근거: 2026-11-16 로컬 e2e · 데모 고객 1명의 묶음 12 중 4 가 `price = {currency}` 만 왔다(다 쓴 · 다 취소된 묶음 · 같은 묶음을 공개 원천은 `value` 와 함께 줌) — 지금 코드는 거르기 전에 칸을 만들어 lookup 전체가 `502` | 코디 기본값 · 로컬 e2e(코디 실물 확인 · `be-fix-e2e1-instructions.md`) · D-08 ② · D-44 |
 | D-47 | **로컬 e2e 2번째 — 상담 메모는 KOS 에서 비울 수 없다**(SPEC-008 0.4.6 §6.15 · §6.12 · §8 · T64) — ① 상담 메모 빈 값(앞뒤 공백 지운 뒤 빈 문자열)은 `400 invalid_request` · message `body.consultationMemo: KOS 는 상담 메모를 비울 수 없어요` 꼴 · KOS 를 부르지 않는다(`event_log` 0). 200 인데 안 바뀌는 것보다 낫다. **D-35 의 「빈 값 = 비움」을 상담 메모만 고친다** — 오더 메모는 빈 값 = 비움 그대로. ② 예약을 만든 직후 예약 상세의 `404 reservation_gone` 은 코드로 막지 않는다(재시도 없음) — Swagger 상세 description 에 「예약을 만든 직후에는 KOS 반영이 늦어 `reservation_gone` 이 잠깐 날 수 있다 · 다시 부르면 된다」 한 줄. 근거: 2026-11-16 로컬 e2e 2번째(데모 KOS · 시험 고객의 시험 예약 2건 · 끝나고 취소) — 공개 상담 메모 쓰기에 `""` · `null` 을 보내면 200 인데 KOS 값이 그대로 · 공백 한 칸은 그대로 저장 · 오더 메모는 `""` 로 비워짐 · 상담 메모를 써도 상담사 · 의사 칸 그대로 · 상담 전 일정에도 200 · 새 예약 2건 중 1건이 첫 상세 404 뒤 다시 부르면 200 | 코디 기본값 · 로컬 e2e 2번째(코디 실물 확인 · `fix-e2e2-instructions.md`) · D-35 · D-13 |
+
+### 직원 목록 칸 추가 (2026-11-17 · slug `ext-api-staff-fields`)
+
+| ID | 결정 | 근거 |
+|---|---|---|
+| D-48 | **직원 목록(D-15)에 칸 셋을 더한다 — `email` · `realName` · `kosAccountId`.** 연동처가 직원을 자기 계정과 잇는 데 필요하다고 요청했다. ① `email` = 내부 `get-accounts` 원소의 `email` ② `realName` = 같은 원소의 `realName`(기존 `name` 은 KOS 표시 이름 그대로 둔다 · 둘은 다른 칸) ③ `kosAccountId` = 같은 원소의 `id`(KOS 계정 id · 다른 ext 응답의 `staffId` 와 다른 체계 — 둘을 잇는 곳은 이 목록뿐). `email` · `realName` 은 KOS 가 `null` · 빈 문자열을 주거나 칸을 빼면 `null`(2026-11-17 · 문서 검수 r1 W3 코디 기본값). **필드 추가만** 한다 — 기존 다섯 칸 · 행 고르기(D-21) · KOS 호출 수(1)는 그대로다. CC 직원 사본에 이메일을 저장하지 않는 것도 그대로다(매 호출 KOS 값을 그대로 옮긴다). 이 경로 응답 밖(`ext_call` · 로그 · 리포트 · 시험 데이터)에는 세 값을 남기지 않는다(DEC-010 D-24 · public) | 사용자 결정(2026-11-17 「이메일 실명 코스 id 다 받아야」 · 필드 이름 제안 승인) · 조사 2차 §2.2(내부 원소 `{id, userId, email, name, realName, …}`) |
 
 ### 열림
 

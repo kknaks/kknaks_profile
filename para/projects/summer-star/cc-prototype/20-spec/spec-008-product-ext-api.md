@@ -2,12 +2,12 @@
 type: spec
 id: SPEC-008
 title: "시술 · 상품 메뉴 저장 + 외부 연동 API(`/api/ext` — 메뉴 · 고객 조회(이름+이메일 · customerId) · 남은 시술권 · 선불카드 · 예약 · 예약 가능 시간대 · 과거 시술 · 예약 내역 · 접수 목록 · 예약 상세 · 고객 언어 · 오더 메모 · 상담 메모 · 병원 정보 · 직원 목록) · 연동처별 키 계약"
-version: 0.4.6
+version: 0.4.7
 status: draft
 product: cc-prototype
 feature: procedure
 created_at: 2026-11-11
-updated_at: 2026-11-16
+updated_at: 2026-11-17
 tags:
   - product/cc-prototype
   - feature/procedure
@@ -29,6 +29,7 @@ links:
     - "[[work-012-product-ext-api|WORK-012]]"
     - "[[work-013-ext-api-add1|WORK-013]]"
     - "[[work-014-ext-api-charty1|WORK-014]]"
+    - "[[work-015-ext-api-staff-fields|WORK-015]]"
   releases: []
   related: []
 sources:
@@ -48,7 +49,7 @@ sources:
   - "cc-prototype procedure/back main e0e4a16 (읽기만 — §6.6 ~ §6.9 의 코드 규약 줄)"
   - "planner 질문 add1 Q1 ~ Q4 코디 답(2026-11-12 · 부록 E)"
   - "orchestration/work/api-swagger-docs/review-doc-add1.md (문서 검수 add1 · WARN 6 · Q-add1-A → 0.3.1)"
-  - "para/projects/summer-star/cc-prototype/10-decision/decision-012-ext-api-charty1.md (DEC-012 · accepted · D-01 ~ D-47 · 2026-11-16 · charty 1차 상담 — 0.4.0 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6)"
+  - "para/projects/summer-star/cc-prototype/10-decision/decision-012-ext-api-charty1.md (DEC-012 · accepted · D-01 ~ D-48 · 2026-11-16 · charty 1차 상담 — 0.4.0 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6 · D-48 은 0.4.7(2026-11-17 · 직원 목록 칸 셋 더함))"
   - "orchestration/work/ext-api-charty1/research-charty1-sources.md (조사 1차 · C1 §)"
   - "orchestration/work/ext-api-charty1/research-clinic-staff.md (조사 2차 · C2 §)"
   - "orchestration/work/ext-api-charty1/research-har-history-hospital.md (조사 3차 · C3 §)"
@@ -65,6 +66,9 @@ sources:
   - "orchestration/work/ext-api-charty1/be-fix-e2e1-instructions.md (로컬 e2e lookup 502 · 코디 실물 확인 · 코디 기본값 — 0.4.5)"
   - "orchestration/work/ext-api-charty1/fix-e2e2-instructions.md (로컬 e2e 2번째 · 상담 메모 비움 불가 · 예약 직후 404 · 코디 기본값 — 0.4.6)"
   - "reference/2026-11-16-cc-charty1/har/상담대기3.har (내부 get-visitor-prepaid-card-balance 금액 객체 키 · 일정 상세 orderMemo · consultation.consultationMemo 키 — 키 · 꼴만)"
+  - "orchestration/work/ext-api-staff-fields/ext-api-staff-fields-spec-brief.md (0.4.7 지시 · DEC-012 D-48 계약 표)"
+  - "orchestration/work/ext-api-staff-fields/review-doc-r1.md (문서 검수 r1 · WARN W1 ~ W5 — 0.4.7 같은 판 고침)"
+  - "cc-prototype procedure/back main 969f44f (읽기만 — 0.4.7 §6.17 의 코드 규약 줄 · app/service/ext.py staff() · app/schemas/ext.py ExtStaff · app/api/ext.py STAFF_DOC · tests/test_ext_clinic.py)"
 ---
 
 # 시술 · 상품 메뉴 저장 + 외부 연동 API 계약
@@ -74,7 +78,8 @@ sources:
 >
 > 근거 표기: `D-nn` = DEC-010 · `R1 §` · `R2 §` · `R3 §` · `R4 §` = 조사 1 ~ 4 리포트의 절 · `KDA` = `kos-demo-api.md` · **`코드 규약: 파일:줄`** = DEC 에 없는 세부(이름 · 경로 · 표 · 코드 문자열)를 지금 코드에서 끌어온 곳(`procedure/back/` 아래 경로 · origin/main `c9f30ac` 줄) · **`코디 Q1 ~ Q5`** = DEC 와 코드 규약으로 정해지지 않아 planner 가 묻고 코디가 답한 것(부록 B · 2026-11-11).
 > **0.3.0(add1)**: §6.6 ~ §6.9 · §9 T32 ~ T47 · 부록 D · E 는 **DEC-011(D-01 ~ D-16)** 을 근거로 한다 — 그 자리의 `DEC-011 D-nn` 은 DEC-011 번호이고, 꾸밈 없는 `D-nn` 은 지금처럼 DEC-010 이다. 그 절의 「코드 규약」 줄은 main `e0e4a16` 기준이다(앞 판 절은 `c9f30ac` 그대로).
-> **0.4.0(charty 1차)**: §4.3 고침 · §4.4 · §6.4 고침 · §6.10 ~ §6.18 · §9 T48 ~ T73 · 부록 F · G 는 **DEC-012(D-01 ~ D-47 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6)** 를 근거로 한다 — 그 자리의 `DEC-012 D-nn` 은 DEC-012 번호다. `C1 §` · `C2 §` · `C3 §` = 조사 1 · 2 · 3차 리포트(`orchestration/work/ext-api-charty1/research-*.md`)의 절. 그 절의 「코드 규약」 줄은 origin/main `0a58aba` 기준이다. **「제안(Qn)」** 이 붙은 칸은 DEC-012 와 코드 규약만으로 정해지지 않아 planner 가 제안값을 적고 물은 것이다(부록 G). **0.4.1**: Q1 ~ Q14 는 답이 와서 DEC-012 D-24 ~ D-38 이 되었고 본문 표기를 그 D 번호로 바꿨다. 0.4.1 에서 새로 생긴 Q15 · Q16 도 답이 와서 DEC-012 D-39 · D-40 이 되었다. **0.4.2**: 0.4.2 에서 새로 생긴 Q17 도 답이 와서 DEC-012 D-41 이 되었다. 남은 「제안(Qn)」 은 없다.
+> **0.4.0(charty 1차)**: §4.3 고침 · §4.4 · §6.4 고침 · §6.10 ~ §6.18 · §9 T48 ~ T73 · 부록 F · G 는 **DEC-012(D-01 ~ D-48 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6 · D-48 은 0.4.7)** 를 근거로 한다 — 그 자리의 `DEC-012 D-nn` 은 DEC-012 번호다. `C1 §` · `C2 §` · `C3 §` = 조사 1 · 2 · 3차 리포트(`orchestration/work/ext-api-charty1/research-*.md`)의 절. 그 절의 「코드 규약」 줄은 origin/main `0a58aba` 기준이다. **「제안(Qn)」** 이 붙은 칸은 DEC-012 와 코드 규약만으로 정해지지 않아 planner 가 제안값을 적고 물은 것이다(부록 G). **0.4.1**: Q1 ~ Q14 는 답이 와서 DEC-012 D-24 ~ D-38 이 되었고 본문 표기를 그 D 번호로 바꿨다. 0.4.1 에서 새로 생긴 Q15 · Q16 도 답이 와서 DEC-012 D-39 · D-40 이 되었다. **0.4.2**: 0.4.2 에서 새로 생긴 Q17 도 답이 와서 DEC-012 D-41 이 되었다. 남은 「제안(Qn)」 은 없다.
+> **0.4.7(직원 목록 칸 더함)**: §6.17 의 세 칸(`email` · `realName` · `kosAccountId`) · §4.4 괄호 · §6.1 「id」 예외 줄 · §8 직원 설명 · §8 앱 설명 id 줄 · §9 T67 · T70 은 **DEC-012 D-48** 을 근거로 한다. 그 자리의 「코드 규약」 줄은 main `969f44f` 기준이다. 필드 추가만이다 — 그 밖의 절은 0.4.6 그대로다.
 > **이 레포는 public 이다** — 키 · 토큰 · 비밀번호 · 실명 · 이메일 · 연락처 · KOS id 값 · 실제 금액을 쓰지 않는다. env 는 이름만 적는다. 예시 값은 자리표시(`<이름>` · `a@example.com` · `<KOS id>`)다.
 
 **변경 이력**
@@ -97,6 +102,7 @@ sources:
 | 0.4.4 | 2026-11-16 | 코드 검수 r1(`review-code-r1.md`) Q1 ~ Q3 · W5 의 SPEC 한 줄들(DEC-012 D-45) — ⓐ 처음 봄 때 이미 귀가면 ⓒ 몫도 겸함(`final_tried = 1` · T57) · lookup `customerId` 갈래의 KOS 「고객 없음」 = HTTP 404 또는 400 + `errorProperties` `id NotFound` → 같은 `404 customer_not_found`(T48) · 예약 상세 `customer.customerId` = 고객 사본이 없으면 null(직원 상세의 0 과 다름) · board 는 `event_log` 를 그날 예약 id 로 걸러 읽음(§6.11 3 · §6.9) · T49 명시 `null` = 없음(섞임은 값이 있는 칸 기준) |
 | 0.4.5 | 2026-11-16 | 로컬 e2e 결과(`be-fix-e2e1-instructions.md` · 2026-11-16 로컬 e2e · 데모 고객 1명의 묶음 12 중 4 가 `price` 에 `value` 없이 옴 → lookup 전체 `502`) 반영(DEC-012 D-46) — §4.3 **거르기를 먼저**(장 상태로 산 묶음만 고른 뒤 그 묶음만 칸을 만든다 · 걸러진 묶음의 모양 오류는 502 사유가 아님) · `bundlePrice` 는 내부 원천이 0 값을 뺀다 → `price` 객체에 `value` 없음 = `0`(`price` 없음 · 객체 아님 · 숫자 아닌 `value` 는 그대로 `502`) · T50 두 갈래 더함. 칸 이름 · 뜻 바뀐 것 0 |
 | 0.4.6 | 2026-11-16 | 로컬 e2e 2번째(`fix-e2e2-instructions.md`) 반영(DEC-012 D-47 · D-35 를 상담 메모만 고침) — **상담 메모 빈 값 = `400 invalid_request`**(앞뒤 공백 지운 뒤 빈 문자열 · message `body.consultationMemo: KOS 는 상담 메모를 비울 수 없어요` 꼴 · KOS 호출 0 · `event_log` 0 · 실물: KOS 가 `""` · `null` 에 200 을 주고 값을 그대로 둠) · 오더 메모 빈 값 = 비움 그대로 · §6.15 요청 · 오류 · 모르던 두 가지(다른 상담 칸 · 상담 전 일정) 결과 · §6.12 · §8 상세 설명 「예약을 만든 직후에는 `reservation_gone` 이 잠깐 날 수 있다 · 다시 부르면 된다」 한 줄(코드로 막지 않음 · 재시도 없음) · T64 · 실물 확인 ④ 결과. 응답 칸 이름 · 뜻 바뀐 것 0 |
+| 0.4.7 | 2026-11-17 | 직원 목록 칸 셋 더함(DEC-012 D-48 · D-15 의 「이메일은 내지 않는다」 를 뒤집음 · slug `ext-api-staff-fields`) — §6.17 `staff[]` 원소에 **`email`**(string \| null · 내부 `email`) · **`realName`**(string \| null · 내부 `realName` · 기존 `name` 과 다른 칸) · **`kosAccountId`**(string · 내부 원소 `id`) · 「넣지 않는 칸」 에서 셋을 뺌(`userId` · `licenseNumber` · `mfaMethods` · `roleId` 는 그대로 안 냄) · Swagger 설명의 「이메일 · 실명 · KOS id 는 내지 않는다」 를 고침(§6.17 · §8) · §6.1 「id」 에 직원 KOS 계정 id 예외 한 줄 · T67 고침(「키 0」 → 세 키 있음) · 부록 F D-15 줄 고침 · D-48 줄. **필드 추가만** — 기존 다섯 칸 · 행 고르기 · 차례 · 오류 · KOS 호출 수(1) · 직원 사본 · `ext_call` 바뀐 것 0. **문서 검수 r1(`review-doc-r1.md` · WARN W1 ~ W5) 반영**(같은 판 고침 · 미배포): §4.4 「KOS id 는 … 에만」 괄호에 직원 목록 `kosAccountId` 더함(W1) · T70 에 직원 목록 설명 단언(`kosAccountId` 있음 · 옛 문장 없음 · W2) · `email` · `realName` null 규칙 = `null` · 빈 문자열 · 칸 없음(W3 · 코디 기본값) · §6.17 2단계에 원소가 객체 아님 · `id` 없음 → 502(지금 코드 그대로 · W4) · T67 `id` 없는 원소 갈래 · §0 3차 줄 근거 칸 D-46 · D-47 메움 · 코드 검수 r1 W1 반영 — §8 「앱 설명 id 줄」(`app/openapi_docs.py` 외부 절 id 괄호에 직원 예외 · 코디) |
 
 ## 0. 이 판에서 정한 것 한눈에
 
@@ -111,7 +117,7 @@ sources:
 | 시술권 가격 | `bundlePrice` = KOS 묶음 `price` 그대로 — 고객이 낸 돈이 아니고 부가세 포함 여부를 표기하지 않는다 | D-31 |
 | 예약 | 1명이면 그 고객, 0명이면 새 고객(이름 + 이메일)으로 예약한다. 2명 이상이거나 KOS 중복 검사에 걸리면 `409 customer_ambiguous`. 이 409 가 이메일 존재를 드러내는 것은 받아들이고 Swagger 에 적는다 | D-32 · D-35 · 코디 Q1 |
 | 2차(add1) | `GET /api/ext/availability?date=` · `POST /api/ext/customers/visits` · `POST /api/ext/customers/reservations`. 가능 시간대 = 기본 그룹 하나 · 예약 정원 검사와 같은 규칙 · 요청마다 KOS 슬롯 1번. 과거 시술 · 예약 내역 = 조회 규칙으로 고객을 정하고 KOS 고객 일정 1번 | DEC-011 D-01 ~ D-16 |
-| 3차(charty 1차 · 0.4.0) | lookup 고침(`customerId` 갈래 · 내부 시술권 · `inUseCount` · `prepaidCards`) + 일곱 경로(접수 목록 · 예약 상세 · 고객 언어 · 오더 메모 · 상담 메모 · 병원 정보 · 직원 목록). 연동처 공통 · 권한 분기 없음 · 새 경로에는 DEC-011 D-03(메모 · 의사 미노출)과 이름+이메일 규칙을 걸지 않는다(기존 여섯은 그대로) · 쓰기 = KOS 먼저 · 열람 = 선택 헤더 직원 id → `event_log`(신고값 · 검증 안 함) | DEC-012 D-01 ~ D-45 |
+| 3차(charty 1차 · 0.4.0) | lookup 고침(`customerId` 갈래 · 내부 시술권 · `inUseCount` · `prepaidCards`) + 일곱 경로(접수 목록 · 예약 상세 · 고객 언어 · 오더 메모 · 상담 메모 · 병원 정보 · 직원 목록). 연동처 공통 · 권한 분기 없음 · 새 경로에는 DEC-011 D-03(메모 · 의사 미노출)과 이름+이메일 규칙을 걸지 않는다(기존 여섯은 그대로) · 쓰기 = KOS 먼저 · 열람 = 선택 헤더 직원 id → `event_log`(신고값 · 검증 안 함) · (0.4.7) 직원 목록 원소에 `email` · `realName` · `kosAccountId` 더함(§6.17 · DEC-012 D-48) | DEC-012 D-01 ~ D-48 |
 
 ---
 
@@ -371,7 +377,7 @@ sources:
 | `balance` | `remainingBalance{balance, total}` | `{remaining, total}` — 둘 다 **§6.1 금액 꼴 `{value: int, currency}`**(KOS 금액 객체 · `value` 는 정수로 바꿔 준다). 값이 없으면 그 칸 null | C1 §3-5 · `상담대기3.har` 내부 `get-visitor-prepaid-card-balance` 의 `remainingBalance.balance` · `.total` = 금액 객체(키 · 꼴만) · 검수 r1 W3 · KOS0 ③(공개 요약 · 금액 객체 확인) |
 | `point` | `remainingPoint{balance, total}` | `{remaining, total}` — 위와 같은 금액 꼴 | C1 §3-5 · 같은 HAR `remainingPoint.balance` · `.total` = 금액 객체 |
 
-- 내지 않는 칸: 카드 KOS id · `description` · `ownerId` · `updatedDateTimeUtc`(KOS id 는 메뉴 · 시술권 id 에만 낸다 — 코디 Q2 · 부록 B)
+- 내지 않는 칸: 카드 KOS id · `description` · `ownerId` · `updatedDateTimeUtc`(KOS id 는 메뉴 · 시술권 id 와 직원 목록 `kosAccountId`(§6.17 · 0.4.7)에만 낸다 — 코디 Q2 · 부록 B · DEC-012 D-48)
 - (0.4.1 고침) 금액 꼴의 근거는 KOS 웹이 부르는 **내부** 합산 조회(`get-visitor-prepaid-card-balance`)다. 우리가 부르는 **공개** 요약 조회의 원소도 같은 금액 객체다 — (0.4.3) WORK-014 KOS0 ③ 확인함(카드가 있는 데모 고객 1명 · 4/4 장 · `value` int). 표 · T51 고침 없음. 만료 시각 꼴은 초 없는 `YYYY-MM-DDTHH:MMZ` 로 온다(파싱 몫 · BE1 시험). ~~「원 단위 숫자」~~
 - 순서 = KOS 배열 순서
 
@@ -409,7 +415,7 @@ sources:
 | 형식 | JSON · 칸 이름 camelCase · 요청에 모르는 키가 있으면 `400 invalid_request` | 코드 규약: `app/openapi_docs.py:54-62` · `app/schemas/reservations.py:696`(`_Req`) |
 | 시각 | 요청 `start` = ISO-8601(오프셋이 없으면 KST). 응답 날짜 = KST `YYYY-MM-DD` · 응답 시각 = ISO `+09:00` 초 단위 | 코드 규약: `app/domain/reservation_rules.py:63-69` · `app/openapi_docs.py:60-62` |
 | 금액 | `{value: int(원), currency: "KRW"}`. 메뉴 정가는 칸 이름으로 부가세 별도(`…ExVat`)를 밝힌다. 시술권 `bundlePrice` 는 KOS 묶음 가격 그대로이고 부가세 포함 여부를 표기하지 않는다(§4.3) | D-09 · D-30 · D-31 · R1 §1.1 `Money` |
-| id | 메뉴 · 시술권의 카테고리 · 상품 · 옵션 · 시술 id = **KOS id 문자열**. 고객 id · 예약 id = **ccc 정수**(직원 API 와 같다). 고객의 KOS id 는 내지 않는다 | 코디 Q2 · D-08 · D-12 |
+| id | 메뉴 · 시술권의 카테고리 · 상품 · 옵션 · 시술 id = **KOS id 문자열**. 고객 id · 예약 id = **ccc 정수**(직원 API 와 같다). 고객의 KOS id 는 내지 않는다. (0.4.7) **예외 하나** — 직원 목록(§6.17)의 `kosAccountId` 는 직원의 KOS 계정 id 문자열이다(DEC-012 D-48 · 다른 응답의 `staffId` 는 그대로 ccc 정수) | 코디 Q2 · D-08 · D-12 · DEC-012 D-48 |
 | 오류 | `{"error": {"code", "message"}}`. 분기는 `code` 로 한다. 외부 API 오류에는 `step` · `candidate` 를 싣지 않는다 | 코드 규약: `app/main.py:66-67` · `:113-125` · `app/api/docs.py:23-37` |
 | 캐시 | 모든 `/api/ext` 응답(오류 포함)에 `Cache-Control: no-store` | 코드 규약: `app/main.py:104-111`(공개 경로 선례) |
 | 검사 순서 | **키(`401 ext_unauthorized`) → 제한(`429 too_many_requests`) → 칸 검증(`400 invalid_request` — 필수 · 타입 · 모르는 키 · 빈 값) → 엔드포인트 규칙.** 단 ① IP 차단(§7.3 — `429`)은 미들웨어라서 무엇보다 먼저다. ② JSON 이 아닌 본문(형식이 깨진 JSON)은 FastAPI 가 본문을 읽는 단계에서 끝나므로 **키보다 먼저 `400`** 이다. ③ 없는 경로는 라우터 밖이라 **키 없이 `404 not_found`** 다 | 코드 규약: `app/openapi_docs.py:40`(검사 순서를 문서에 적는 선례) · `app/main.py:117-125` · FastAPI 요청 처리 순서(본문 JSON 읽기 → 의존성 → 칸 검증 오류) · review-doc r1 W6 |
@@ -857,16 +863,16 @@ sources:
 - **오류**: 공통 + `502 kos_unavailable`(1 · 3단계)
 - **KOS 비용**: 내부 3
 
-### 6.17 (0.4.0) `GET /api/ext/clinics/{clinicId}/staff` — 직원 목록 (DEC-012 D-06 · D-15 · D-20 · D-21 · D-29)
+### 6.17 (0.4.0) `GET /api/ext/clinics/{clinicId}/staff` — 직원 목록 (DEC-012 D-06 · D-15 · D-20 · D-21 · D-29 · 0.4.7 D-48)
 
 **요청**: 경로 `clinicId`(정수). §6.16 의 `clinicId` 가 아니면 `404 clinic_not_found`(KOS 호출 0).
 
 **처리**:
 
 1. runtime 이 없으면 `502 kos_unavailable`
-2. 내부 `account/v2/queries/get-accounts` 본문 `{}` 1번(C2 §2.2 · `상담대기.har` #11). 실패 · `data` 가 배열 아님 → `502 kos_unavailable`
+2. 내부 `account/v2/queries/get-accounts` 본문 `{}` 1번(C2 §2.2 · `상담대기.har` #11). 실패 · `data` 가 배열 아님 · (0.4.7 · 검수 r1 W4) 원소가 객체가 아님 · 원소에 `id` 없음(빈 값) → `502 kos_unavailable`(지금 코드 그대로 적은 것 — 동작 변화 0 · 코드 규약: `app/service/ext.py:884`)
 3. 원소마다 한 줄. **KOS 시스템 계정**(`KosClient.system_kos_id()`)과 **제외 목록**(`KOS_EXCLUDE_ACCOUNT_IDS`)의 계정은 뺀다(DEC-012 D-21 · 원장 · 상담사 목록과 같은 기준 · 코드 규약: `app/service/reservations.py:109-115` · `app/kos/sync.py:175` · `app/config.py:81-83`)
-4. 칸 결합 — DEC-012 D-29: 이름 · 역할 이름 · 활성은 내부 응답(지금 KOS 값)에서, `staffId` 와 `roleTags` 는 ccc 직원 사본(`staff` · 1시간마다 공개 `getAccounts` 로 덮어씀)에서 KOS 계정 id 로 잇는다. 내부 `role.roleTags` 는 숫자이고, 이름과의 대응은 순서로 맞춘 추정이라(C2 §2.2) 쓰지 않는다. 사본에 없는 계정(1시간 동기화 전 새 계정)은 `staffId = null` · `roleTags = []`
+4. 칸 결합 — DEC-012 D-29: 이름 · 역할 이름 · 활성은 내부 응답(지금 KOS 값)에서, `staffId` 와 `roleTags` 는 ccc 직원 사본(`staff` · 1시간마다 공개 `getAccounts` 로 덮어씀)에서 KOS 계정 id 로 잇는다. 내부 `role.roleTags` 는 숫자이고, 이름과의 대응은 순서로 맞춘 추정이라(C2 §2.2) 쓰지 않는다. 사본에 없는 계정(1시간 동기화 전 새 계정)은 `staffId = null` · `roleTags = []`. (0.4.7 · DEC-012 D-48) `email` · `realName` · `kosAccountId` 도 **내부 응답**(지금 KOS 값)에서 그대로 옮긴다 — 사본을 읽지 않고 사본에 저장하지도 않는다. `kosAccountId` 는 지금 사본을 잇는 데 쓰는 바로 그 값이다(코드 규약: `app/service/ext.py:894` `str(a["id"])`). 원소에 `id` 가 없으면 지금처럼 2단계의 `502` 다(코드 규약: `app/service/ext.py:884` — 바꾸지 않는다)
 5. 차례 = KOS 배열 순서. 비활성 직원도 싣는다
 
 **응답 200** `ExtStaffList`:
@@ -880,9 +886,14 @@ sources:
 | `.roleName` | string \| null | 내부 `roleName`(KOS 역할 설정 값 · 지점마다 다름 · 예 「CS팀(콜센터)」 = 외주 직원) | DEC-012 D-06 · D-15 · C2 §2.2 |
 | `.roleTags` | string[] | 공개 역할 태그(`ADMIN` · `DOCTOR` · `COUNSELOR` · `NURSE` · `SKINCARE` · `CALL_COUNSELOR` · `COORDINATOR`) | DEC-012 D-15 · C2 §2.1 |
 | `.active` | bool | 내부 `activate` | DEC-012 D-15 |
+| `.email` | string \| null | (0.4.7) 내부 원소 `email` 그대로. `null` · 빈 문자열 · 칸 없음 → null | DEC-012 D-48 · C2 §2.2 |
+| `.realName` | string \| null | (0.4.7) 내부 원소 `realName` 그대로. `null` · 빈 문자열 · 칸 없음 → null. **`name` 과 다른 칸이다** — `name`(KOS 표시 이름)은 그대로 둔다 | DEC-012 D-48 · C2 §2.2 |
+| `.kosAccountId` | string | (0.4.7) 내부 원소 `id` = KOS 계정 id 를 문자열로. null 이 없다(3 · 4단계가 이미 이 값으로 계정을 거르고 사본을 잇는다). **`staffId` 와 다른 체계다** — 다른 ext 응답의 `staffId`(ccc 정수)와 이 값을 잇는 곳은 이 목록뿐이다 | DEC-012 D-48 · 코드 규약: `app/service/ext.py:884` · `:894` |
 
-- 응답에 **넣지 않는** 칸: 이메일 · `realName` · `userId` · `licenseNumber` · `mfaMethods` · `roleId` · KOS 계정 id(DEC-012 D-15 · 코디 Q2)
+- 응답에 **넣지 않는** 칸: ~~이메일 · `realName`~~ · `userId` · `licenseNumber` · `mfaMethods` · `roleId` ~~· KOS 계정 id~~(DEC-012 D-15 · 코디 Q2 · 0.4.7 — 이메일 · `realName` · KOS 계정 id 는 **낸다** · DEC-012 D-48. 남은 넷은 그대로 내지 않는다)
+- (0.4.7) **응답 밖에 남기지 않는다**: 세 값(`email` · `realName` · `kosAccountId`)을 `ext_call` · 앱 로그에 쓰지 않는다. CC 직원 사본(`staff`)에 이메일 · 실명을 저장하지 않는다 — 사본 표 · 동기화는 바꾸지 않고 매 호출 KOS 값을 옮긴다(DEC-012 D-48 · DEC-010 D-24)
 - Swagger 설명: 「외주 직원은 역할 이름으로 구분한다(예 CS팀(콜센터)). `roleTags` 에 `CALL_COUNSELOR` 가 있다고 외주가 아니다 — 코디 · 관리자에게도 붙는다」(C2 §2.2)
+- (0.4.7) Swagger 설명 고침: 지금 `STAFF_DOC` 의 「이메일 · 실명 · KOS id 는 내지 않는다」 를 지우고 「`email` · `realName` · `kosAccountId` 를 낸다 — `kosAccountId` 는 KOS 계정 id 이고 `staffId`(ccc)와 다른 체계다 · `email` · `realName` 은 KOS 에 값이 없으면 null」 로 바꾼다(시험 = §9 T70). 첫 줄의 칸 나열에도 셋을 더한다. `ExtStaff` 의 새 세 칸에 `description` 을 단다(§8 「모든 칸 `description`」 · 코드 규약: `app/api/ext.py:520-529` · `app/schemas/ext.py:491-501` · DEC-012 D-48)
 - **오류**: `400`(`clinicId` 정수 아님) · `404 clinic_not_found` · `502 kos_unavailable`
 - **KOS 비용**: 내부 1(404 면 0)
 
@@ -978,9 +989,10 @@ sources:
 | 「셋」 문구(0.3.1) | 코드에 남은 「세 경로 합산」(`app/openapi_docs.py:85` 앱 설명 호출 제한 줄) · 「세 엔드포인트 합산」(`app/api/ext.py:100` `EXT_RATE` — `COMMON` 으로 여섯 경로의 429 표에 다 붙는다) 문구를 **「외부 경로 전부 합산」** 으로 바꾼다. 「셋」 · 「세 경로」 · 「세 엔드포인트」를 `app/` 에서 전부 세어 고친다 | §7.3 · DEC-011 D-01 · 문서 검수 add1 W4 |
 | 엔드포인트(0.3.0) | 새 셋도 `summary` · `description` · 모든 응답 칸 `description` · 응답 표를 단다. 설명에 적을 것: 가능 시간대 = 기본 그룹 하나 · 운영 구간 안 간격 칸 · 남은 자리 0 · 지난 시각 · 자리 수를 모르는 시각은 나오지 않음(「목록에 없어도 예약이 될 수 있다」) · 「이 목록의 `start` 로 예약하면 정원 때문에 거절되지 않는다 — 그 사이 다른 예약이 끼면 `409 slot_full`」 · 날짜 범위 오늘 ~ 90일 / 과거 시술 = 최근 50 · 메모 · 의사 없음 / 예약 내역 = 오늘 0시 이후 · 취소 포함 · `reservationId` null 뜻 / 둘 다 = 조회와 같은 고객 찾기(이름 띄어쓰기 · 「없음」 같은 응답) · **오늘 겹침 문장**(「오늘 이미 시작한 일정은 과거 시술과 예약 내역 둘 다에 나온다」) · KOS 호출 비용(§6.9) | DEC-011 D-02 ~ D-14 · 코드 규약: `app/api/ext.py:119-169`(`SHARED` · `NAME_RULE` · 설명 꼴) |
 | tag · 보안(0.4.0) | 새 일곱도 tag `외부 연동` 하나 · `security [{ExtApiKey: []}]` · 응답 표 `responses=errors(*COMMON, …)` | DEC-012 D-01 · 코드 규약: `app/api/ext.py:100-115` `COMMON` |
-| 엔드포인트(0.4.0) | 새 일곱 + lookup 의 `summary` · `description` · 모든 칸 `description` · 응답 표. 설명에 적을 것: lookup = **`customerId` 갈래(이름 + 이메일 없이 열림)** · 「(0.4.0 행동 변화) 사용 중 장만 남은 묶음도 나온다 · `inUseCount` · `totalCount` 는 사용 중 장도 센다」 · **(0.4.1 행동 변화) 「선불카드 조회가 실패해도 `200` — `prepaidCards: null` · `partialErrors: ["prepaidCards"]`」 · 「요청은 `name` + `email` 또는 `customerId` 하나 — 섞이거나 한쪽만이면 `400`(message `body: …`)」** · 선불카드 칸(금액 꼴) · 만료일 칸 없음 / board = 「오늘만 · 예약 단위 · 10초 사본(`sync.lastError` 면 낡음)」 · **「`counselor` = KOS 희망 상담사(실제 상담자 아님)」** · 「`roomTitle` = 가장 늦게 배정된 방」 · 「`consultation` = CC 판정」 · `firstConsultationWaitingAt` null 뜻 · (0.4.1) 「두 칸은 따로 정한다 — `consultation = false` 여도 시각이 있을 수 있다」 · 「아직 못 찾은 시각은 일정의 단계가 바뀔 때(상담 대기 · 귀가) 다시 확인한다 — 화면을 자주 불러도 늘지 않는다」 / 상세 = 이전 방문 메모 · 의사 · 상담자를 준다(「과거 시술 경로와 다르다」) · (0.4.1) 지금 오더 메모 · 상담 메모(쓰기 전에 읽는 곳) · `partialErrors` 뜻 · (0.4.6 · D-47) 「예약을 만든 직후에는 KOS 반영이 늦어 `reservation_gone` 이 잠깐 날 수 있다 · 다시 부르면 된다」 / 언어 = 「다시 읽고 묶음 전체 보냄 — 그 사이 KOS 웹 변경을 덮을 수 있다」 / 오더 메모 = 「예약 메모와 다른 칸 · 통째로 바꿈」 / 상담 메모 = 「= 차트 메모」 · (0.4.6 · D-47) 「KOS 는 상담 메모를 비울 수 없다 — 빈 값(공백만 포함)은 `400`」 · 응답 표 `400` 줄에 빈 값 / 병원 = `clinicId` 뜻(전역 유일 아님) · 운영 시간 = 병원 기본(그룹별 아님) · (0.4.3) 휴무 = 「`{startDate, endDate}` KST 날짜 범위(끝 포함 · 하루면 둘이 같음) · 이름 칸 없음」 / 직원 = 「외주는 역할 이름으로 · `CALL_COUNSELOR` 태그만으로 가르지 않는다」 / 쓰기 셋 = 「KOS 먼저 · KOS 실패 = 그 오류 그대로」 · 각 경로 KOS 호출 수(§6.9) | DEC-012 D-03 · D-09 ~ D-15 · D-23 |
+| 엔드포인트(0.4.0) | 새 일곱 + lookup 의 `summary` · `description` · 모든 칸 `description` · 응답 표. 설명에 적을 것: lookup = **`customerId` 갈래(이름 + 이메일 없이 열림)** · 「(0.4.0 행동 변화) 사용 중 장만 남은 묶음도 나온다 · `inUseCount` · `totalCount` 는 사용 중 장도 센다」 · **(0.4.1 행동 변화) 「선불카드 조회가 실패해도 `200` — `prepaidCards: null` · `partialErrors: ["prepaidCards"]`」 · 「요청은 `name` + `email` 또는 `customerId` 하나 — 섞이거나 한쪽만이면 `400`(message `body: …`)」** · 선불카드 칸(금액 꼴) · 만료일 칸 없음 / board = 「오늘만 · 예약 단위 · 10초 사본(`sync.lastError` 면 낡음)」 · **「`counselor` = KOS 희망 상담사(실제 상담자 아님)」** · 「`roomTitle` = 가장 늦게 배정된 방」 · 「`consultation` = CC 판정」 · `firstConsultationWaitingAt` null 뜻 · (0.4.1) 「두 칸은 따로 정한다 — `consultation = false` 여도 시각이 있을 수 있다」 · 「아직 못 찾은 시각은 일정의 단계가 바뀔 때(상담 대기 · 귀가) 다시 확인한다 — 화면을 자주 불러도 늘지 않는다」 / 상세 = 이전 방문 메모 · 의사 · 상담자를 준다(「과거 시술 경로와 다르다」) · (0.4.1) 지금 오더 메모 · 상담 메모(쓰기 전에 읽는 곳) · `partialErrors` 뜻 · (0.4.6 · D-47) 「예약을 만든 직후에는 KOS 반영이 늦어 `reservation_gone` 이 잠깐 날 수 있다 · 다시 부르면 된다」 / 언어 = 「다시 읽고 묶음 전체 보냄 — 그 사이 KOS 웹 변경을 덮을 수 있다」 / 오더 메모 = 「예약 메모와 다른 칸 · 통째로 바꿈」 / 상담 메모 = 「= 차트 메모」 · (0.4.6 · D-47) 「KOS 는 상담 메모를 비울 수 없다 — 빈 값(공백만 포함)은 `400`」 · 응답 표 `400` 줄에 빈 값 / 병원 = `clinicId` 뜻(전역 유일 아님) · 운영 시간 = 병원 기본(그룹별 아님) · (0.4.3) 휴무 = 「`{startDate, endDate}` KST 날짜 범위(끝 포함 · 하루면 둘이 같음) · 이름 칸 없음」 / 직원 = 「외주는 역할 이름으로 · `CALL_COUNSELOR` 태그만으로 가르지 않는다」 · (0.4.7 · DEC-012 D-48) 「`email` · `realName` · `kosAccountId` 를 낸다 · `kosAccountId` 는 `staffId` 와 다른 체계 · 값이 없으면 `email` · `realName` 은 null」(옛 문장 「이메일 · 실명 · KOS id 는 내지 않는다」 지움 · §6.17) / 쓰기 셋 = 「KOS 먼저 · KOS 실패 = 그 오류 그대로」 · 각 경로 KOS 호출 수(§6.9) | DEC-012 D-03 · D-09 ~ D-15 · D-23 |
 | 열람 헤더(0.4.0) | `X-Ext-Staff-Id` 를 `Header(default=None, alias=…, description=…)` 로 받는 공통 의존성 — (0.4.1) **둘**(lookup 용 너그러운 것 · 새 넷 용 엄격한 것 · 꼴 검사 함수 하나 공유)이고 **다섯 경로에만** 단다. 설명은 §6.10 「Swagger」 줄 | DEC-012 D-18 · D-37 |
 | 시험 고침(0.4.0) | `tests/test_openapi_docs.py` 의 `n_ops - 5 - 6` → **`n_ops - 5 - 13`** · `tests/test_ext_docs.py` 의 `OPS` 를 열셋으로. parameters 단언은 지우지 않고 넓힌다 — 허용 = `X-Api-Key`(header) · `X-Ext-Staff-Id`(header — (0.4.1) **lookup · 예약 상세 · 쓰기 셋 다섯 operation 에만** · 그 밖 operation 에 있으면 실패) · availability `date`(query) · 경로 정수 칸 `reservationId` · `customerId` · `clinicId`(path)뿐. `name` · `email` 이 질의 · 경로에 생기면 실패해야 한다(D-24 · DEC-011 D-06) | 코드 규약: `tests/test_openapi_docs.py:87-97` · `tests/test_ext_docs.py:6` · `:61` · §8 시험 고침(0.3.1) |
+| 앱 설명 id 줄(0.4.7) | `DESCRIPTION` 외부 절의 **id** 줄 괄호에 직원 예외 한 구절을 더한다: 「(고객의 KOS id 는 내지 않는다 · 예외 — 직원 목록 `kosAccountId` 는 직원의 KOS 계정 id 문자열)」. §6.1 「id」 예외 줄과 같은 뜻 | DEC-012 D-48 · §6.1 「id」 · 코드 검수 r1 W1 · 코드 규약: `app/openapi_docs.py:108-109` |
 
 ---
 
@@ -1056,10 +1068,10 @@ KOS 는 지금 시험 방식(`tests/fake_kos.py` 가짜 전송)으로 흉내 낸
 | T64 | 상담 메모(0.4.0 · 0.4.6 고침) | 공개 `update-schedule-consultation-info` 본문 `{scheduleId, consultationMemo}` · `event_log` `consultation_memo`(`{reservationId, length}`) · 404 · 409 · 502 · (0.4.6 · D-47) `""` · `"  "`(공백만) → `400 invalid_request` · message 가 `body.consultationMemo: ` 로 시작 · KOS 호출 0 · `event_log` 0 · 0.4.0 판의 「빈 값 = 비움」 상담 메모 시험이 있으면 이 단언으로 바꾼다(오더 메모 T63 의 빈 값 = 비움은 그대로) | DEC-012 D-04 · D-13 · D-47 · §6.15 |
 | T65 | 쓰기 = KOS 먼저(0.4.0) | 세 쓰기 모두 KOS 실패 → 성공 `event_log` 줄 0 · 사본 변경 0 · `kos_rejected` 1줄 · 응답 = KOS 오류 code 그대로 | DEC-012 D-04 · §6.13 ~ §6.15 |
 | T66 | 병원 정보(0.4.0) | 응답 키 = §6.16 표의 「냄」 칸만(안 내는 10칸 키 0) · 빈 문자열 → null · 주소 셋 다 빔 → `address` null · `operatingHours` = `timetable_of` 결과(KST `HH:MM`) · (0.4.3) `daysOff` 원소 키 집합 = `{startDate, endDate}` 뿐(`id` · `name` 키 0) · 가짜 KOS 원소 KST 0시 ~ 다음날 KST 0시(UTC `…T15:00:00Z` 꼴) → `startDate = endDate` · 사흘 휴무 → 한 원소 · `endDate` = 끝 직전 날짜 · ~~KOS 원소 그대로~~ · 국적 · 언어 · 웹사이트 · `translsMap` 키 0 · 세 호출 동시 · 휴무 본문 기간 = 오늘 0시 ~ 90일 끝 · 하나라도 5xx → `502` · runtime 없음 → `502` · `clinicId` = 1 | DEC-012 D-14 · D-20 · D-22 · D-24 ~ D-28 · D-43 · §6.16 · 검수 r1 W11 |
-| T67 | 직원 목록(0.4.0) | `clinicId` 다름 → `404 clinic_not_found`(KOS 0) · 정수 아님 → 400 · 시스템 계정 · 제외 목록 계정 빠짐 · 비활성 포함(`active: false`) · `staffId` = 사본 id · 사본에 없는 계정 → `staffId` null · `roleTags` `[]` · `roleTags` = 사본 문자열 태그 · `roleName` = 내부 값 · 이메일 · `realName` · KOS id 키 0 · 실패 · `data` 배열 아님 → 502 | DEC-012 D-06 · D-15 · D-21 · D-29 · §6.17 |
+| T67 | 직원 목록(0.4.0) | `clinicId` 다름 → `404 clinic_not_found`(KOS 0) · 정수 아님 → 400 · 시스템 계정 · 제외 목록 계정 빠짐 · 비활성 포함(`active: false`) · `staffId` = 사본 id · 사본에 없는 계정 → `staffId` null · `roleTags` `[]` · `roleTags` = 사본 문자열 태그 · `roleName` = 내부 값 · ~~이메일 · `realName` · KOS id 키 0~~ · (0.4.7 · DEC-012 D-48) **원소 키 집합 = §6.17 표의 여덟**(`staffId` · `name` · `roleName` · `roleTags` · `active` · `email` · `realName` · `kosAccountId`) · `email` = 내부 `email` · `realName` = 내부 `realName`(`name` 은 내부 `name` 그대로 — 둘이 다른 값인 가짜 원소로 본다) · `kosAccountId` = 내부 `id` 문자열(사본에 없는 계정도 값이 있다 · `staffId` null 과 함께) · `email` · `realName` 이 `null` → null · 빈 문자열 → null · 칸 없음 → null(가짜 원소 세 갈래) · `userId` · `licenseNumber` · `mfaMethods` · `roleId` 는 여전히 키 0 · KOS 호출 1 그대로 · `ext_call` 행과 앱 로그에 세 값 0 · 가짜 KOS 원소의 세 칸은 **지어낸 값만**(`…@example.com` · `<실명…>` 꼴) · 실패 · `data` 배열 아님 → 502 · (0.4.7 · 검수 r1 W4) `id` 없는 원소가 하나라도 있음 → 502 | DEC-012 D-06 · D-15 · D-21 · D-29 · D-48 · §6.17 |
 | T68 | 새 일곱 공유 규칙(0.4.0) | 키 없음 → `401 ext_unauthorized` · 응답(오류 포함) `no-store` · `ext_call.endpoint` = 경로 틀(예 `GET /api/ext/reservations/{reservationId}` — 실제 id 숫자 없음) · 키당 제한을 열셋 경로가 함께 셈 · 틀린 메서드 405 · Swagger 응답 표에 공통 줄(401 · 429 · 405 · 500) | DEC-012 D-01 |
 | T69 | `ext_call` 원칙(0.4.0) | 새 경로 · lookup 호출 뒤 `ext_call` 표 전체와 앱 로그(caplog)에 직원 id 헤더 값 · 고객 id · 예약 id · 이름 · 이메일 문자열 0 | DEC-012 D-18 · DEC-010 D-24 |
-| T70 | Swagger(0.4.0) | `n_ops - 5 - 13` · `OPS` 열셋 · parameters = §8 「시험 고침(0.4.0)」 허용 목록뿐(0.4.1 — `X-Ext-Staff-Id` 는 다섯 operation 에만) · board 설명에 「희망 상담사」 · lookup 설명에 사용 중 묶음 행동 변화 문장 · (0.4.2 · N4) lookup 설명 · 응답 스키마에 옛 문장 「`AVAILABLE` 이 0장인 묶음은 KOS 가 주지 않는다」 · 「사용 가능한 묶음」 **없음** · 헤더 설명에 「신고값 · 검증 안 함」 · 언어 설명에 덮어쓰기 위험 · `test_openapi_docs.py` 전부 통과 | §8 |
+| T70 | Swagger(0.4.0) | `n_ops - 5 - 13` · `OPS` 열셋 · parameters = §8 「시험 고침(0.4.0)」 허용 목록뿐(0.4.1 — `X-Ext-Staff-Id` 는 다섯 operation 에만) · board 설명에 「희망 상담사」 · lookup 설명에 사용 중 묶음 행동 변화 문장 · (0.4.2 · N4) lookup 설명 · 응답 스키마에 옛 문장 「`AVAILABLE` 이 0장인 묶음은 KOS 가 주지 않는다」 · 「사용 가능한 묶음」 **없음** · 헤더 설명에 「신고값 · 검증 안 함」 · 언어 설명에 덮어쓰기 위험 · (0.4.7 · 검수 r1 W2 · DEC-012 D-48) 직원 목록 설명에 `kosAccountId` **있음** · 옛 문장 「이메일 · 실명 · KOS id 는 내지 않는다」 **없음**(`tests/test_ext_docs.py`) · `test_openapi_docs.py` 전부 통과 | §8 · §6.17 |
 | T71 | 기존 여섯 회귀(0.4.0) | 기존 `tests/test_ext_*.py` 전부 통과. 바꾸는 단언은 lookup 의 시술권 경로(공개 → 내부 · 가짜 KOS) · 비용(2 → 3) · 키 집합(`inUseCount` · `prepaidCards` · (0.4.2 · N6) `partialErrors` 더함) · (0.4.2 · N4) 옛 Swagger 문장 단언(있으면)뿐이고, 그 밖 단언은 그대로 · 과거 시술 응답에 메모 · 의사 키 여전히 0(T38) · (0.4.1 · 검수 r1 F2) **헤더를 읽지 않는 다섯 경로**(메뉴 · 예약 · 가능 시간대 · 과거 시술 · 예약 내역)에 이상한 `X-Ext-Staff-Id`(65자 · 한글 · `@` · `:`)를 실어도 **헤더 없을 때와 같은 응답**(상태 · 본문) · 예약의 `event_log.actor` = `ext:<연동처>` 그대로 · (0.4.2 · 검수 r2 N1) **과거 시술 · 예약 내역 본문 모델 그대로**: ⓐ 두 경로에 `{customerId: 1}` · `{name, email, customerId}` → `400 invalid_request`(모르는 키 · KOS 0) ⓑ `{name}` 만 → 지금과 같은 message(`body.email: …` 꼴 · `body: ` 갈래 문구 아님) ⓒ Swagger 두 경로의 요청 스키마 `required` 에 `name` · `email` 이 있고 `customerId` 칸이 없다 | DEC-012 D-02 · D-03 · D-37 · O14 · 검수 r2 N1 |
 | T72 | 직원 API 회귀(0.4.0) | T30 그대로 + 직원 상세 `flow.consultation` 이 판정 함수를 옮기기 전과 같음 · 이전 방문 실패 때 직원 `previousVisits` 는 지금처럼 `[]` · 직원 `personal` 의 `event_log.actor` = `login_id` 그대로 | §2.1 · O11 |
 | T73 | ~~(D-17 대안일 때만) CC 조회 시각~~ (0.4.3 · KOS0 판정 D-16 그대로 — **쓰지 않음** · 이 시험은 두지 않는다 · 기록으로 둔다) | KOS0 결과로 대안을 고르면: **요청이 와서 도는 날짜 조회**(`fetch_day` — 직원 · 외부 화면 요청이 캐시를 낡았다고 볼 때)가 `CONSULTATION_WAITING` 을 처음 본 일정에 §3.6 행(`source = cc_poll` · `first_at` = 그 조회의 `now`) · board 이력 호출 0 · 날짜 조회가 돌지 않은 동안 지나간 대기는 null(늦음 상한 없음) · (0.4.2 · 검수 r2 N5) **덮어쓰기**: `source = kos_event_log` 로 굳은 행 · `first_at` null 시도 행이 있는 일정 → 대안이 본 뒤 `source = cc_poll` · `first_at` = 본 시각으로 덮임 · 그 뒤 같은 일정을 다시 보아도 다시 덮지 않음 · 응답 칸 모양 T54 와 같음. D-16 이 서면 이 시험은 두지 않는다 | DEC-012 D-17 · D-38 ⑥ · §3.6 |
@@ -1188,7 +1200,7 @@ DEC-010 과 코드 규약으로 정해지지 않아 물은 것(Q1 ~ Q5)과 doc �
 | D-15 | `deleted: true` 일정은 과거 시술 · 예약 내역에서 뺌(사본 쓰기와 같은 규칙 · Q-add1-A) | §6.7 3 · §6.8 3 · §9 T38 · T40 |
 | D-16 | 일정 원소 모양이 깨지면 두 경로 `502 kos_unavailable`(원문 0) | §6.7 2 · §6.7 오류 · §6.8 2(같은 규칙) · §9 T47 |
 
-## 부록 F. DEC-012 대응표 (D-01 ~ D-47 → 이 문서 · 빠짐 0 · 0.4.0 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6)
+## 부록 F. DEC-012 대응표 (D-01 ~ D-48 → 이 문서 · 빠짐 0 · 0.4.0 · D-24 ~ D-40 은 0.4.1 · D-41 은 0.4.2 · D-42 ~ D-44 는 0.4.3 · D-45 는 0.4.4 · D-46 은 0.4.5 · D-47 은 0.4.6 · D-48 은 0.4.7)
 
 | D | 결정(줄임) | 반영한 곳 |
 |---|---|---|
@@ -1206,7 +1218,7 @@ DEC-010 과 코드 규약으로 정해지지 않아 물은 것(Q1 ~ Q5)과 doc �
 | D-12 | 오더 메모 — 내부 `change-order-memo` · 통째 교체 | §6.14 · §6.18 · §9 T63 |
 | D-13 | 상담 메모 — 공개 `updateScheduleConsultationInfo` | §6.15 · §6.18 · §9 T64 |
 | D-14 | 병원 정보 — `get-hospital` + 운영 시간 + 휴무 | §6.16 · §6.18 · §9 T66 |
-| D-15 | 직원 목록 — staffId · 이름 · roleName · roleTags · 활성 · 비활성 포함 · 이메일 없음 | §6.17 · §9 T67 |
+| D-15 | 직원 목록 — staffId · 이름 · roleName · roleTags · 활성 · 비활성 포함 · ~~이메일 없음~~ (2026-11-17 고침 → D-48) | §6.17 · §9 T67 |
 | D-16 | 처음 상담 대기 — ① 원천 = 단계 이력(사용자) ② 경로 = `get-schedule-event-logs`(코디) ③ 대상 = 접수 뒤 일정 전부 · CC 판정 아님(사용자) · (0.4.2 고침 줄) 「건수 비례 안 함」 → board 요청 수에 비례 안 함 · 하루 합 = 접수 뒤 일정 수의 작은 배수 | §3.6 · §6.11 4 · §6.9 · §8 · §9 T57 · T58 |
 | D-17 | 이력 실응답 미확인 → WORK Phase 0 · 대안 = CC 날짜 조회가 본 시각(요청이 와야 돎 · 늦음 상한 없음) · 칸 모양 같음 | §3.6 `source` · §6.11 4 · §9 T73 · §10 0.4.0 · 실물 확인(0.4.0) ⓪ |
 | D-18 | 열람 = 선택 헤더 직원 id → event_log 새 type · 두 경로 · ext_call 원칙 그대로 · 신고값 | §3.5 `ext_view` · §6.10 · §6.4 · §6.12 · §9 T52 · T53 · T61 · T69 |
@@ -1239,6 +1251,7 @@ DEC-010 과 코드 규약으로 정해지지 않아 물은 것(Q1 ~ Q5)과 doc �
 | D-45 | 코드 검수 r1 SPEC 한 줄들 — ⓐ 귀가면 ⓒ 겸함 · KOS 「고객 없음」 400 NotFound 도 404 · 상세 `customerId` null · board `event_log` 그날 예약 id 로 거름 · 명시 null = 없음 | §6.4 · §6.9 · §6.11 3 · 4 ⓐ · §6.12 표 · §9 T48 · T49 · T55 · T57 |
 | D-46 | 로컬 e2e — 시술권 거르기 먼저(걸러진 묶음 모양은 502 사유 아님) · 내부 `price` 에 `value` 없음 = 0 · `price` 없음 · 숫자 아닌 `value` 는 502 | §4.3 「거르기」 · 「모양 오류」 · `bundlePrice` · §9 T50 |
 | D-47 | 로컬 e2e 2번째 — 상담 메모 빈 값 = `400`(KOS 가 비우지 못함 · KOS 0) · 오더 메모 빈 값 = 비움 그대로 · 예약 직후 `reservation_gone` 은 막지 않고 Swagger 한 줄 | §6.12 오류 표 · §6.15 요청 · 오류 · 실물 결과 · §8 엔드포인트(0.4.0) · §9 T64 · 실물 확인 ④ |
+| D-48 | 직원 목록에 칸 셋 더함 — `email` · `realName`(`name` 과 다른 칸) · `kosAccountId`(= 내부 `id`) · `null` · 빈 문자열 · 칸 없음 = null(`email` · `realName`) · 필드 추가만(다섯 칸 · 행 고르기 · KOS 1 그대로) · 사본에 이메일 저장 안 함 · 응답 밖에 세 값 안 남김 | §0 · §4.4 · §6.1 「id」 · §6.17 2 · 4 · 응답 표 · 「넣지 않는 칸」 · 「응답 밖」 · Swagger 설명 · §8 엔드포인트(0.4.0) · §9 T67 · T70 |
 
 ## 부록 G. planner 질문 (0.4.0 · 2026-11-16 · Q1 ~ Q17 **답함**)
 

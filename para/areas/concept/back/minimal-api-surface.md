@@ -17,6 +17,7 @@ up:
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
   - 2026-11-16-ext-api-charty1
+  - 2026-11-17-ext-api-staff-fields
 tags:
   - 보안
   - api
@@ -74,6 +75,7 @@ def test_no_seed_words_in_any_response(client):
 - **인증이 있어도 필요하다** — 인증은 「누가」 를 막고, 최소 노출은 「들어온 사람이 무엇을 보나」 를 줄인다. 공개 데모처럼 인증 문턱이 낮으면 이쪽이 실질 방어다
 - **사용자 문구는 남긴다** — 로그인 401 · 429 처럼 화면에 그대로 보이는 문구에는 내부 정보가 없으니 둔다. 일반화 대상은 내부 원인을 말하는 문구다
 - **「안 보인다」 ≠ 「안 남긴다」** — 최소 노출은 밖으로 내는 것을 줄일 뿐 서버 안에 기록하지 말라는 뜻이 아니다. 내부 기록은 밖에 입구가 없으면 표면이 아니다. 다만 담긴 것(대화 문장)은 그 자체로 민감하므로 보관 기간 · 담는 칸을 같이 줄인다
+- **비노출을 풀 때도 고정 시험을 지우지 않는다** — 빼 두었던 칸을 쓰는 쪽이 필요하다고 해서 내보낼 때는, 그 칸의 「없음」 단언만 「있음」 으로 뒤집고 나머지 비노출 칸 단언은 그대로 둔다. 응답에 실어도 사본 · 기록 · 로그에는 남기지 않는다는 단언도 함께 둔다. 「내지 않는다」 는 규약 문장이 SPEC · Swagger 공통 설명 여러 곳에 있으면 전부 찾아 예외를 적는다 — 한 곳만 고치면 다른 번호 체계(`kosAccountId` ≠ `staffId`)를 같은 것으로 읽게 된다
 - 표면을 세는 일 자체는 [[contract-surface-enumeration]] — 바꿀 때 닿는 자리를 세는 것과 같은 grep 이다
 
 ## 함께 보는 개념
@@ -89,3 +91,4 @@ def test_no_seed_words_in_any_response(client):
 - [[2026-10-28-interpret-pwa-v2]] §2 — 내부 검토용 통역 기록을 화면 · API 없이 서버 PVC 의 날짜별 JSONL 로 · 꺼내기는 kubectl · 음성 · 토큰 · IP · 계정값 없음 · 7일 삭제 · 쓰기 실패는 통역을 안 끊음 · 허용 경로 고정 시험이 수정 없이 통과(`back/app/service/records.py` · `back/tests/test_records.py` · `test_api_surface.py` · DEC-001 D-41 · SPEC-001 §5.9)
 - [[2026-11-12-api-swagger-docs]] §2 — 협업자에게 admin 계정을 공유하던 것을 연동처별 키 + `/api/ext` 6개로 좁힘 · 메모 · 의사 · 담당자 · KOS 고객 id 미노출 · 이름 · 이메일은 URL 에 두지 않고 Swagger parameters 시험으로 고정(`date` 하나만 허용 · 코드 #22 · #23)
 - [[2026-11-16-ext-api-charty1]] §2 — 기존 계약을 깨지 않고 넓히기: 열람 헤더 검사를 쓰는 다섯 경로에만(모든 경로에 걸면 기존 여섯에 새 400) · lookup 모델을 상속하던 과거 시술 · 예약 내역 모델을 끊어 칸 · 검증 · Swagger 고정 · 경로 고정 시험은 넓히고 지우지 않음(DEC-012 D-37 · 시험 T71 · `test_order.py`)
+- [[2026-11-17-ext-api-staff-fields]] §2 — 직원 목록 비노출(D-15)을 D-48 로 풀어 `email` · `realName` · `kosAccountId` 세 칸만 더함 · `userId` · `licenseNumber` · `mfaMethods` · `roleId` 「없음」 단언 유지 · 사본 · `ext_call` · 로그 0 시험 · SPEC §6.1 「id」 · Swagger 공통 id 줄에 예외(코드 검수 W1 · 코드 #25)
