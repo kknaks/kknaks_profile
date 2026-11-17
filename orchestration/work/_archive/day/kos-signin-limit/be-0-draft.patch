@@ -1,0 +1,220 @@
+diff --git a/backend/day/emr/kos/client.py b/backend/day/emr/kos/client.py
+index 02a904ad..892686cc 100644
+--- a/backend/day/emr/kos/client.py
++++ b/backend/day/emr/kos/client.py
+@@ -11,6 +11,12 @@
+   kos-client-uri 를 싣는다** — 2026-11-03 부터 KOS 내부 API 는 브라우저 UA 가 아니면 매 요청 403
+   `Unsupported client.`. 공개 API 에는 싣지 않는다. KOS 가 더 막으면 멈출 수 있는 의존이다.
+ - 401 이면 토큰을 다시 받고 같은 요청을 한 번 더.
++- User-Agent 끝에 ` (<KOS_CLIENT_TAG>)`(local · dev · prod)를 붙여 KOS 로그인 기기 목록에서 서버 환경을
++  가른다(사용자 2026-11-17). 비면 붙이지 않는다.
++- KOS 는 계정당 동시 로그인 5개 — 넘으면 sign-in 401 `message: SignInLimitExceeded`(틀린 비밀번호도
++  401 `InvalidRequestException` 이라 `message` 로 가른다). 시스템 계정은 **막혔을 때만** 목록에서
++  UA 가 이 서버와 정확히 같은 세션을 해제하고 sign-in 을 한 번 더 한다. 태그가 비면(= UA 가 사람
++  브라우저와 같으면) 해제하지 않는다. 평소에는 목록 · 해제를 부르지 않는다.
+ - 키 · 비밀번호 · 토큰은 로그 · 오류에 싣지 않는다(`KosError` 는 HTTP 상태 · 오류 이름만).
+ - 토큰은 이 객체(= worker 프로세스 메모리)에만 둔다. DB · Redis 에 쓰지 않는다.
+ """
+@@ -33,6 +39,10 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
+ 
+ OPEN_TOKEN_PATH = "open/authorization/commands/exchange-token"
+ SIGN_IN_PATH = "common/v1/user/commands/sign-in"
++# 로그인 기기 목록 · 해제 — `common/user/v1/…`(sign-in 의 `common/v1/user/…` 와 순서가 다르다).
++ACTIVE_SIGN_INS_PATH = "common/user/v1/queries/get-active-sign-ins"
++REVOKE_SIGN_IN_PATH = "common/user/v1/commands/revoke-active-sign-in"
++SIGN_IN_LIMIT = "SignInLimitExceeded"
+ USER_ACCOUNT_PATH = "v1/account/queries/get-user-account"
+ REFRESH_BEFORE = timedelta(minutes=10)
+ # KOS 웹 HAR 의 User-Agent 값(cc #20 과 같음).
+@@ -44,6 +54,12 @@ WEB_USER_AGENT = (
+ ApiKind = Literal["open", "internal"]
+ 
+ 
++def web_user_agent(tag: str = "") -> str:
++    """KOS 내부 요청 User-Agent — 브라우저 값 + ` (<tag>)`. 태그가 비면 브라우저 값 그대로."""
++    tag = tag.strip()
++    return f"{WEB_USER_AGENT} ({tag})" if tag else WEB_USER_AGENT
++
++
+ class KosError(EmrError):
+     """KOS 호출 실패 — 메시지에 비밀값 · 응답 본문을 넣지 않는다."""
+ 
+@@ -59,6 +75,13 @@ class KosEndpoints(BaseSettings):
+     kos_open_api_base: str = ""
+     kos_internal_api_base: str = ""
+     kos_web_base: str = ""
++    # 서버 환경 표시(local · dev · prod) — User-Agent 끝 ` (<값>)`. `APP_ENV` 로 정하지 않는다
++    # (로컬도 APP_ENV=dev). 비면 표시 없음 · 시스템 계정 자동 정리 꺼짐.
++    kos_client_tag: str = ""
++
++    @property
++    def user_agent(self) -> str:
++        return web_user_agent(self.kos_client_tag)
+ 
+     def require(self) -> "KosEndpoints":
+         missing = [
+@@ -99,6 +122,90 @@ def _parse_utc(value: Any) -> datetime | None:
+     return at if at.tzinfo else at.replace(tzinfo=UTC)
+ 
+ 
++def is_sign_in_limit(resp: httpx.Response) -> bool:
++    """sign-in 401 이 기기 수 제한(`message: SignInLimitExceeded`)인지 — 틀린 비밀번호와 가른다."""
++    if resp.status_code != 401:
++        return False
++    try:
++        body = resp.json()
++    except ValueError:
++        return False
++    return isinstance(body, dict) and body.get("message") == SIGN_IN_LIMIT
++
++
++def sign_in_limit_error() -> KosError:
++    return KosError(f"HTTP 401 {SIGN_IN_LIMIT}", 401, SIGN_IN_LIMIT)
++
++
++@dataclass(frozen=True)
++class ActiveSignIn:
++    """KOS 로그인 기기 목록 한 줄 — 해제에 쓰는 id 와 고르는 데 쓰는 UA 만."""
++
++    id: str
++    user_agent: str
++
++
++async def _post_json(
++    http: httpx.AsyncClient, url: str, body: dict[str, Any], headers: dict[str, str]
++) -> dict[str, Any]:
++    try:
++        resp = await http.post(url, json=body, headers=headers)
++    except httpx.HTTPError as exc:
++        raise KosError(f"network {type(exc).__name__}") from None
++    if resp.status_code // 100 != 2:
++        raise _error_of(resp)
++    if not resp.content:
++        return {}
++    try:
++        out = resp.json()
++    except ValueError:
++        raise KosError("response is not JSON", resp.status_code) from None
++    return out if isinstance(out, dict) else {}
++
++
++async def list_active_sign_ins(
++    http: httpx.AsyncClient,
++    internal_base: str,
++    email: str,
++    password: str,
++    headers: dict[str, str],
++) -> list[ActiveSignIn]:
++    """`get-active-sign-ins {email, password}` → `data[{id, userAgent, …}]` (시스템 · 직원 공용)."""
++    body = await _post_json(
++        http,
++        f"{internal_base.rstrip('/')}/{ACTIVE_SIGN_INS_PATH}",
++        {"email": email, "password": password},
++        headers,
++    )
++    rows = body.get("data")
++    if not isinstance(rows, list):
++        raise KosError("get-active-sign-ins: unexpected response shape")
++    out: list[ActiveSignIn] = []
++    for row in rows:
++        if not isinstance(row, dict) or not row.get("id"):
++            continue
++        agent = row.get("userAgent")
++        out.append(ActiveSignIn(id=str(row["id"]), user_agent=agent if isinstance(agent, str) else ""))
++    return out
++
++
++async def revoke_active_sign_in(
++    http: httpx.AsyncClient,
++    internal_base: str,
++    email: str,
++    password: str,
++    sign_in_id: str,
++    headers: dict[str, str],
++) -> None:
++    """`revoke-active-sign-in {email, password, signInId}` → `{}` (시스템 · 직원 공용)."""
++    await _post_json(
++        http,
++        f"{internal_base.rstrip('/')}/{REVOKE_SIGN_IN_PATH}",
++        {"email": email, "password": password, "signInId": sign_in_id},
++        headers,
++    )
++
++
+ def _error_of(resp: httpx.Response) -> KosError:
+     name = ""
+     try:
+@@ -151,7 +258,7 @@ class KosClient:
+         """내부 API 요청 헤더 — KOS 웹 값(cc `_internal_headers`)."""
+         web = self.endpoints.kos_web_base.rstrip("/")
+         headers = {
+-            "User-Agent": WEB_USER_AGENT,
++            "User-Agent": self.endpoints.user_agent,
+             "Origin": web,
+             "kos-client-uri": f"{web}/{self.credentials.tenant_id}/reservation/schedule/",
+         }
+@@ -213,14 +320,9 @@ class KosClient:
+             if fresh and not force:
+                 assert self._internal_token is not None
+                 return self._internal_token
+-            resp = await self._post(
+-                self._internal_url(SIGN_IN_PATH, tenant=False),
+-                {
+-                    "email": self.credentials.system_email,
+-                    "password": self.credentials.system_password,
+-                },
+-                self.internal_headers(),
+-            )
++            resp = await self._sign_in()
++            if is_sign_in_limit(resp):
++                resp = await self._sign_in_after_revoking_own()
+             if resp.status_code // 100 != 2:
+                 raise _error_of(resp)
+             body = self._json(resp)
+@@ -237,6 +339,46 @@ class KosClient:
+             logger.info("KOS internal token issued hospital=%s", self.log_label)
+             return token
+ 
++    async def _sign_in(self) -> httpx.Response:
++        return await self._post(
++            self._internal_url(SIGN_IN_PATH, tenant=False),
++            {"email": self.credentials.system_email, "password": self.credentials.system_password},
++            self.internal_headers(),
++        )
++
++    async def _sign_in_after_revoking_own(self) -> httpx.Response:
++        """기기 수 제한 — UA 가 이 서버와 정확히 같은 세션만 해제하고 sign-in 한 번 더.
++
++        다시 막히면 그대로 실패(반복하지 않는다). 태그가 비면 UA 가 사람 브라우저와 같아 해제하지
++        않는다.
++        """
++        if not self.endpoints.kos_client_tag.strip():
++            logger.warning(
++                "KOS sign-in limit — KOS_CLIENT_TAG empty, not revoking hospital=%s",
++                self.log_label,
++            )
++            raise sign_in_limit_error()
++        email, password = self.credentials.system_email, self.credentials.system_password
++        base = self.endpoints.kos_internal_api_base
++        headers = self.internal_headers()
++        own = [
++            row
++            for row in await list_active_sign_ins(self._http, base, email, password, headers)
++            if row.user_agent == self.endpoints.user_agent
++        ]
++        for row in own:
++            await revoke_active_sign_in(self._http, base, email, password, row.id, headers)
++        logger.warning(
++            "KOS sign-in limit — revoked %d own sign-ins hospital=%s", len(own), self.log_label
++        )
++        if not own:
++            raise sign_in_limit_error()
++        resp = await self._sign_in()
++        if is_sign_in_limit(resp):
++            logger.warning("KOS sign-in limit — still blocked hospital=%s", self.log_label)
++            raise sign_in_limit_error()
++        return resp
++
+     async def _user_account_id(self, token: str) -> str:
+         resp = await self._post(
+             self._internal_url(USER_ACCOUNT_PATH), {}, self.internal_headers(token)

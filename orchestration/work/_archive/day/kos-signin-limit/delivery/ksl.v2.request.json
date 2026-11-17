@@ -1,0 +1,71 @@
+{
+  "idempotency_key": "day/kos-signin-limit-2026-11-17",
+  "title": "KOS 동시 로그인 5개 제한 — 직원 웹 기기 선택 단계 · 시스템 계정 환경 표시 자동 정리 (DAY-SPEC-001 개정 ⑨ · SPEC-003 ⑱ · SPEC-002 ㉓)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 2,
+  "risk_level": "L3",
+  "target_specs": ["DAY-SPEC-001", "DAY-SPEC-003", "DAY-SPEC-000", "DAY-SPEC-002"],
+  "spec_baseline_revision": "51f85837c11a4c9904a04d6f27da4dc129fe844b",
+  "target_delta": [
+    "K-1 공통 — KOS sign-in 401 의 본문 message = SignInLimitExceeded 만 「기기 제한」으로 판정해 틀린 비밀번호(같은 401 InvalidRequestException)와 가른다. 본문을 못 읽으면 기기 제한 아님. 기기 제한이면 활성 로그인 목록(get-active-sign-ins) → 해제(revoke-active-sign-in) → sign-in 다시(DAY-SPEC-001 §3 「KOS 동시 로그인 제한」).",
+    "K-2 시스템 계정 — 새 서버 env KOS_CLIENT_TAG(local/dev/prod · APP_ENV 안 씀)를 KOS 요청 User-Agent 끝에 ' (<표시>)' 로 싣는다. sign-in 이 기기 제한일 때만(매번 아님) 이 서버 UA 와 글자까지 같은 로그인 중 가장 오래된 1개만 해제 후 sign-in 1회 다시. 표시가 비면 정리 안 함 · 같은 UA 없음 · 다시 막힘 · 해제 4xx = 그 호출 실패(다음 회차). 로그에 이메일 · 비밀번호 · signInId · IP · UA 원문 없음.",
+    "K-3 직원 — 기기 선택 단계는 웹만. 웹 POST /login 기기 제한 → 병원 고르기와 같은 틀의 기기 선택 조각(DS · 라디오 카드 · 첫 항목 기본 · KOS 화면 글자 그대로 · [계속하기] · 「처음으로」 링크 없음) → POST /login/device → 고른 로그인 해제 → sign-in 다시 → 기존 흐름(병원 고르기 · 세션 발급) · 다시 막히면 새 목록. 앱 JSON POST /api/auth/login 은 기기 제한이어도 지금과 같은 401 invalid_credentials(새 코드 · 새 단계 없음 · 서버 로그에만 기기 제한 표시) · /api/auth/device 없음.",
+    "보안 — 비밀번호는 기기 선택 동안 임시 값 안에만(값 통째 encrypt_value 암호문 · Redis 5분 · 종류(kind) 표시 · 꺼내면 지움 · 되돌리지 않음). DB · 로그 · 응답 · 화면 숨은 칸(pending_token 만) · URL · 쿠키에 없음. 이어지는 병원 고르기 임시 값에 비밀번호 없음. 병원 고르기 토큰과 섞이면 session_expired.",
+    "오류 · 만료 — 임시 토큰 만료 · 이미 쓰임 · 종류 다름 · 목록 밖 device_id = /login?reason=session_expired(되돌리지 않음) · 목록 · 해제 · 다시 sign-in 중 KOS 장애 = kos_unavailable · 다시 sign-in 비밀번호 틀림 = invalid_credentials.",
+    "K-4 · K-5 — 로그아웃 때 KOS 로그인을 해제하지 않는다(변경 없음). 앱(Flutter) 코드는 고치지 않는다 — 깔린 앱 화면은 틀린 비밀번호와 같은 글자(DAY-SPEC-003 개정 ⑱).",
+    "SPEC-002 개정 ㉓(같은 Code PR · 사용자 로컬 확인) — 차트 여는 곳 = 시술명 영역 전체(1줄 이름 + 2줄 상태 · 체크박스 · 줄 버튼 · ⋮ · 「원장 변경」 버튼 제외 · 판 줄 · 「시술 완료」 탭 줄) · 호버 · 포커스 배경 · 테두리 없음 · 툴팁 「차트 작성」만. 정렬 탭 글자 「시술대기 순」 · 「방별 순」(OQ-59 ⓐ 닫음)."
+  ],
+  "acceptance": [
+    "A1: KOS sign-in 401 이 message SignInLimitExceeded 면 기기 제한, 그 밖 401/400 은 지금처럼 invalid_credentials · 본문 못 읽으면 기기 제한 아님 — 단위 테스트로 두 401 을 가른다.",
+    "A2: 웹 POST /login 기기 제한 → 기기 선택 조각(제목 · 안내 2줄 · 라디오 카드 · [계속하기] 글자가 SPEC 「기기 선택 글자」와 같음 · 「처음으로」 없음 · 첫 항목 선택 · 인라인 스크립트 · 스타일 없음) · 조각과 응답 어디에도 비밀번호 · 이메일 없음 · 숨은 칸은 pending_token 만.",
+    "A3: POST /login/device — 고른 signInId 만 해제 → sign-in 다시 → 병원 1개면 세션 발급 · 여럿이면 병원 고르기 · 다시 막히면 새 기기 선택(새 토큰) · 임시 토큰은 한 번 쓰면 지워져 두 번째 제출은 session_expired · 만료 · 종류 다름 · 목록 밖 = session_expired(되돌림 0) · KOS 장애 = kos_unavailable.",
+    "A4: 앱 JSON POST /api/auth/login 기기 제한 = 401 invalid_credentials(지금과 같음) · /api/auth/device 없음 · 앱(app/) diff 0.",
+    "A5: 비밀번호는 Redis 임시 값 암호문에만 — 로그(caplog) · 응답 본문 · HTML · URL 에 없음을 테스트로 확인 · 병원 고르기 임시 값에 password 칸 없음.",
+    "A6: 시스템 계정 — KOS_CLIENT_TAG 가 있으면 KOS 요청 UA 끝 ' (<표시>)'. sign-in 기기 제한이면 같은 UA 로그인 중 가장 오래된 1개만 해제 후 1회 다시 · 표시 비면 해제 없음 · 같은 UA 없음 · 다시 막힘 · 해제 4xx = 실패 · 평소 sign-in 은 목록 · 해제를 부르지 않음 · 로그에 민감값 없음.",
+    "A7: 판 줄 · 「시술 완료」 탭 줄의 시술명 영역 전체가 차트를 열고(체크박스 · 줄 버튼 · ⋮ · 원장 변경 버튼 제외) 호버 · 포커스에 배경 · 테두리 없이 툴팁 「차트 작성」만 · 정렬 탭 글자 「시술대기 순」 · 「방별 순」.",
+    "A8: 로그아웃은 KOS 해제를 부르지 않는다 · 기존 로그인 · 병원 고르기 · 데모 넘김 · 판 · 앱 회귀 없음(backend 전체 테스트 · ruff 통과) · migration 없음."
+  ],
+  "non_goals": [
+    "앱(Flutter) 기기 선택 화면 · 앱 전용 기기 제한 응답 · 앱 코드 변경(심사 중 — 다음 앱 버전 · OQ-K14)",
+    "로그아웃 때 KOS 로그인 해제(K-4 — 하지 않음)",
+    "prod 배포 · 배포 전 생긴 표시 없는 시스템 계정 세션 정리(배포 뒤 운영 작업)",
+    "시스템 계정 sign-in 이 로그인을 쌓는 원인 자체(토큰 재사용 · 공유 — OQ-K16)",
+    "UA 끝 환경 표시 · DAY 서버 로그인을 기기 선택 목록에서 따로 보이기(글자 미정 · OQ-K6)",
+    "DB migration · 칸 변경",
+    "기획안(products/day/00-baseline/planning/) 수정"
+  ],
+  "review_surface": [
+    "열린 것(이번 결과 계약 아님): OQ-K6 기기 목록에서 DAY 서버 로그인 · 환경 표시 구분(지금은 모두 같은 「macOS Chrome · 서버 IP」 줄) · OQ-K11 해제가 다른 DAY 세션의 KOS 토큰을 바로 막는지 실물 확인 · OQ-K16 시스템 계정 로그인 쌓임 원인.",
+    "운영: prod 배포 시 KOS_CLIENT_TAG=prod(deploy/config/prod.env 에 들어감) · 배포 뒤 표시 없는 옛 시스템 계정 세션 한 번 정리."
+  ],
+  "scope_delta": "v1→v2: 스펙 PR mediness#946 머지(51f85837)로 baseline 재결속 · 사용자 2026-11-17 결정 반영 — 기기 선택 단계는 웹만(앱 JSON 은 choose_device · /api/auth/device · 데모 넘김 대신 지금과 같은 401 invalid_credentials · OQ-K17 닫음) · 시스템 계정 = 같은 UA 중 가장 오래된 1개만(OQ-K1 닫음) · 해제 4xx = 실패 · 잘못된 device_id = session_expired(되돌리지 않음) · 「처음으로」 없음(OQ-K10 닫음) · 임시 토큰 종류 표시(검수 W-1) · 같은 PR 의 SPEC-002 개정 ㉓ 화면 변경(차트 영역 · 정렬 탭 글자)을 target_delta · acceptance 로 추가하고 target_specs 에 DAY-SPEC-002 추가 · KOS_CLIENT_TAG 배포 값은 Code PR 에서 deploy/config 에 들어가 non_goal 에서 뺌 · review_surface 는 남은 열린 것만 · execution 은 머지된 코드 CENTURION_DAY#257(a6aa4ba5) 기준.",
+  "execution": {
+    "code_surface": [
+      "backend/day/emr/kos/client.py · staff_client.py · mapper.py · emr/base.py · emr/normalized.py (기기 제한 판정 · 목록 · 해제 · UA 표시 · 시스템 계정 자동 정리)",
+      "backend/day/services/auth.py · dtos/auth.py · routers/api/auth.py (기기 선택 임시 토큰 · choose_device · 앱 401 invalid_credentials 유지)",
+      "backend/day/routers/login.py · templates/partials/login_card.html · templates/ui.html (POST /login/device · 기기 선택 조각)",
+      "backend/day/templates/partials/board_main.html · board_parts.html · static/day.js · styles/app.css → static/day.css (SPEC-002 ㉓ 차트 영역 · 정렬 탭 글자)",
+      "deploy/config/dev.env · prod.env · local.env.example · compose.local.yaml (KOS_CLIENT_TAG)",
+      "backend/tests/day/auth/test_device_choice_api.py · test_device_choice_rules.py · tests/day/emr/test_kos_signin_limit.py · test_kos_client.py · test_kos_staff_client.py · tests/day/web/test_login_device.py · test_board_page.py · tests/architecture/test_screen_copy.py"
+    ],
+    "domain_candidates": [],
+    "dependencies": ["baseline 51f85837(mediness#946 머지)", "Code PR CENTURION_DAY#257 머지(dev a6aa4ba5)"],
+    "phases": [
+      "P1 KOS 클라이언트: 기기 제한 판정 · 목록 · 해제 · UA 표시 · 시스템 계정 자동 정리",
+      "P2 서비스: 기기 선택 임시 토큰(암호문 · 종류) · choose_device · 앱 401 유지",
+      "P3 웹: /login/device · 기기 선택 조각(DS) · SPEC-002 ㉓ 차트 영역 · 정렬 탭 글자",
+      "P4 테스트 · 로컬 day-local 사용자 확인 · 시스템 계정 (local) 표시 실물"
+    ],
+    "verification": [
+      "backend scripts/test.sh 전체(infra 포함) 1359 passed(코디 2026-11-17) · ruff 통과 · CSS 빌드 동기",
+      "코드 검수 review-code-1 PASS(FAIL 0 · WARN 4)",
+      "로컬 day-local 사용자 확인 · 로컬 시스템 계정 KOS 세션 (local) 표시 실물 확인",
+      "dev 배포 GitHub Actions DAY dev run 44062996534 성공(a6aa4ba5)",
+      "mediness lint-pipeline --strict 0 error"
+    ],
+    "predeploy": ["prod 배포 사용자 판단(2026-11-17 20시 예정) · KOS_CLIENT_TAG=prod · migration 없음 · 배포 뒤 표시 없는 시스템 계정 세션 한 번 정리"],
+    "rollback": ["Code PR #257 revert — migration 없음 · 새 라우트 제거로 원복 · KOS_CLIENT_TAG 비우면 UA · 자동 정리 원래대로"],
+    "open_questions": ["OQ-K6 기기 목록 DAY 서버 로그인 구분", "OQ-K11 해제 뒤 다른 DAY 세션 KOS 쓰기", "OQ-K16 시스템 계정 로그인 쌓임 원인"]
+  }
+}
