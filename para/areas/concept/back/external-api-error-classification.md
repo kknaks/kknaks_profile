@@ -9,6 +9,7 @@ aliases:
   - 401 vs 403
 up:
   - 2026-10-07-strong-hajin-inbox
+  - 2026-11-17-fix-feedback
 tags:
   - 연동
   - 오류 처리
@@ -40,6 +41,7 @@ tags:
 - **403 은 토큰을 다시 받아도 안 풀린다** — 401 만 재발급 대상으로 두면 403 은 같은 요청을 주기마다 되풀이한다. KOS 내부 API 의 `403 Unsupported client.` 는 인증이 아니라 호출 클라이언트를 거절한 것이었다. 첫 403 시각에 토큰이 아직 유효했다는 사실이 「만료 아님」 의 근거였다
 - **되돌릴 수 있는 처리는 넓게, 되돌릴 수 없는 처리는 좁게** — 재시도는 여러 코드에 걸어도 되지만, 끊기는 확실한 신호에만 건다
 - 조용히 삼키는 것과 다르다 — 분류해서 각자 드러낸다 → [[no-silent-fallback]]
+- **같은 상태 코드 안에서도 사유가 갈린다** — KOS sign-in 은 틀린 비밀번호도, 로그인 기기 수 초과(`SignInLimitExceeded` · 최대 5대)도 401 `InvalidRequestException` 이다. 401 을 통째로 「자격 증명 틀림」으로 묶으면 사용자에게 틀린 안내가 가고 로그에도 원인이 안 남는다 — 본문의 `message` 로 가른다
 
 ## 함께 보는 개념
 
@@ -53,3 +55,4 @@ tags:
 - [[2026-10-07-strong-hajin-inbox]] §2 — Strong Hajin WORK-011 외부 채널 오류 처리(be-fix-45-report · 커밋 2807351)
 - [[2026-11-06-kos-client-headers]] §2 — KOS 내부 API 403 `Unsupported client.`: 토큰 유효 기간과 첫 403 시각을 맞대 만료를 배제하고, 본문 사유로 클라이언트 거절을 짚음
 - [[2026-11-12-api-swagger-docs]] §2 — 「없음」과 「모양 깨짐」을 가름: KOS `{}` · `[]` = 빈 목록 · `data` 배열 아님 · 원소 깨짐 = 502 · 이름 검색 모양이 깨지면 「0명 → 새 고객 생성」으로 흐르던 갈래를 502 로 막음(`ext-review-r1.md` W1 · DEC-011 D-16)
+- [[2026-11-17-fix-feedback]] §2 — DAY 로그인이 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) → E2E 중 기기 제한을 못 알아봄 · HAR 본문 `SignInLimitExceeded` 로 판정
