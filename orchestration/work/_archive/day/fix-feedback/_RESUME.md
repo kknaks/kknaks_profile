@@ -24,7 +24,7 @@
 
 - [ ] 스펙 마무리(코드 뒤 · PR 전 · planner 한 판): review-doc-3 F1(spec-005:444 migration 문장 취소선 — be 브리프에 「알림 · migration 없음」 고정으로 대신하고 코드 진행) · W1(spec-005:34) · W2(spec-003:70) · W4(규칙 38 원래 알림으로 수락 결과) · W3(log 그대로 · PR 본문) · 그리고 옛 항목: review-doc-2 D1(spec-002 :586 undo-home 응답 = 판 전체 다시 받기 · :584 sort 는 GET 만) · D2 · D3(log.md:17 PR 칸) · D4(옛 room.order) — 구현 방식 확정 뒤 planner 한 판
 - [ ] be · fe 완료 → reviewer 코드 검수 → 로컬 스택 준비 · 사용자 E2E
-- [!] **새 항목(범위 밖 · 11-17 E2E 중 발견)**: KOS 로그인 기기 제한 — sign-in 401 `SignInLimitExceeded`(errorProperties user reason 10) · `maxSignInCount` 5 · 조회 `common/user/v1/queries/get-active-sign-ins` · 해제 `common/user/v1/commands/revoke-active-sign-in`(email · password · signInId). DAY 는 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) · 다른 기기 로그인에 밀린 직원 토큰 401 → 세션 종료 · 시스템 계정(동기화)도 같은 제한. 11-17 코디가 사용자 요청으로 시스템 계정의 52.231.77.47(DAY 서버) 외 로그인 3개 해제. 근거 HAR `~/Downloads/기기로그인.har`(비밀번호 평문 포함 — 레포에 넣지 않음)
+- [!] **새 항목(범위 밖 · 11-17 E2E 중 발견)**: KOS 로그인 기기 제한 — sign-in 401 `SignInLimitExceeded`(errorProperties user reason 10) · `maxSignInCount` 5 · 조회 `common/user/v1/queries/get-active-sign-ins` · 해제 `common/user/v1/commands/revoke-active-sign-in`(email · password · signInId). DAY 는 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) · 다른 기기 로그인에 밀린 직원 토큰 401 → 세션 종료 · 시스템 계정(동기화)도 같은 제한. 11-17 코디가 사용자 요청으로 시스템 계정의 <DAY 서버 IP>(DAY 서버) 외 로그인 3개 해제. 근거 HAR `~/Downloads/기기로그인.har`(비밀번호 평문 포함 — 레포에 넣지 않음)
 - [!] F-5(더보기 → 이전 단계 되돌리기)는 보류 — 사용자가 더 줄 것이 있음
 
 ## 2. 결정 (SoT)

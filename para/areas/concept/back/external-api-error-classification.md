@@ -10,6 +10,7 @@ aliases:
 up:
   - 2026-10-07-strong-hajin-inbox
   - 2026-11-17-fix-feedback
+  - 2026-11-17-kos-signin-limit
 tags:
   - 연동
   - 오류 처리
@@ -56,3 +57,4 @@ tags:
 - [[2026-11-06-kos-client-headers]] §2 — KOS 내부 API 403 `Unsupported client.`: 토큰 유효 기간과 첫 403 시각을 맞대 만료를 배제하고, 본문 사유로 클라이언트 거절을 짚음
 - [[2026-11-12-api-swagger-docs]] §2 — 「없음」과 「모양 깨짐」을 가름: KOS `{}` · `[]` = 빈 목록 · `data` 배열 아님 · 원소 깨짐 = 502 · 이름 검색 모양이 깨지면 「0명 → 새 고객 생성」으로 흐르던 갈래를 502 로 막음(`ext-review-r1.md` W1 · DEC-011 D-16)
 - [[2026-11-17-fix-feedback]] §2 — DAY 로그인이 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) → E2E 중 기기 제한을 못 알아봄 · HAR 본문 `SignInLimitExceeded` 로 판정
+- [[2026-11-17-kos-signin-limit]] §2 — DAY 가 KOS sign-in 401 을 본문 `message` 로 가름: `SignInLimitExceeded` 만 기기 제한(직원 웹 기기 선택 · 시스템 계정 자동 해제) · 나머지는 기존 자격 틀림 · 앱 JSON 은 깔린 앱 때문에 같은 401 `invalid_credentials` 유지

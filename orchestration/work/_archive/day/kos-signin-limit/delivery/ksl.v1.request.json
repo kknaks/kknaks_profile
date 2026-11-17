@@ -1,0 +1,88 @@
+{
+ "idempotency_key": "day/kos-signin-limit-2026-11-17",
+ "title": "KOS 동시 로그인 5개 제한 — 직원 기기 선택 단계 · 시스템 계정 환경 표시 자동 정리 (DAY-SPEC-001 개정 ⑨)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 1,
+ "risk_level": "L3",
+ "target_specs": [
+  "DAY-SPEC-001",
+  "DAY-SPEC-003",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "4443a99ac616cc29bf681cf47a84f719d532fb94",
+ "target_delta": [
+  "K-1 공통 — KOS sign-in 401 의 본문 message = SignInLimitExceeded 를 「기기 제한」으로 판정해 틀린 비밀번호(같은 401 InvalidRequestException)와 가른다. 기기 제한이면 활성 로그인 목록(POST common/user/v1/queries/get-active-sign-ins {email,password}) → 해제(POST common/user/v1/commands/revoke-active-sign-in {email,password,signInId}) → sign-in 다시. kos-client-uri = <web>/auth/active-sign-in-limit(HAR). 15초 · 브라우저 헤더 규칙 그대로(DAY-SPEC-001 §3 「KOS 동시 로그인 제한」).",
+  "K-2 시스템 계정 — 새 서버 env KOS_CLIENT_TAG(local/dev/prod · APP_ENV 안 씀)를 KOS 웹 User-Agent 끝에 ' (<표시>)' 로 싣는다. 시스템 계정 sign-in 이 기기 제한일 때만 userAgent 가 이 서버 UA 와 글자까지 같은 이전 로그인을 해제(개수 OQ-K1 기본 = 가장 오래된 하나) 후 sign-in 한 번 다시. 표시가 비면 자동 정리 안 함(경고 로그 · 실패). 같은 UA 없음 · 다시 막힘 = 실패(다음 회차). 로그에 이메일 · 비밀번호 · signInId · IP · UA 원문 없음.",
+  "K-3 직원 — 웹 POST /login · 앱 POST /api/auth/login 이 기기 제한이면 그 자리에서 목록을 받아 200 choose_device(이름 제안 OQ-K4: pending_token · expires_in_seconds · devices[{id,label,ip_address,signed_in_at}] · 앱이면 environment · api_base_url)를 준다. 웹 = 병원 고르기와 같은 틀의 기기 선택 조각(DS · 라디오 카드 하나 선택 · 첫 항목 기본 · KOS 화면 글자 그대로: 「이미 로그인 중인 기기가 있습니다」 · 「최대 5개 기기에서만 동시 로그인이 가능합니다.」 · 「아래 목록 중 로그아웃 시킬 기기를 선택해주세요.」 · 「{OS} {브라우저} · {IP}」 · 「n분 전」/「방금 전」 · [계속하기]). 제출 = 웹 POST /login/device · 앱 POST /api/auth/device {pending_token, device_id, client} → 해제 + sign-in 다시 → 로그인 흐름 그대로(병원 고르기 · 세션 발급 · 오류) · 다시 막히면 새 목록. CSRF 미적용(로그인 전).",
+  "보안 — 비밀번호는 기기 선택 동안 임시 토큰 값 안에만(PendingStore 와 같은 틀: 값 통째 encrypt_value 암호문 · Redis 5분 · 꺼내면 지움 · 잘못된 선택일 때만 되돌림 · OQ-K3). DB · 로그 · 응답 · 화면 숨은 칸 · URL · 쿠키에 없음. 다시 sign-in 뒤 버림(병원 고르기 임시 값에는 KOS 토큰만).",
+  "오류 · 만료 — 기기 선택 임시 토큰 만료 · 이미 쓰임 = 401 session_expired(웹 /login?reason=session_expired) · 목록 밖 · 빈 device_id = 400 invalid_request field device_id + 토큰 되돌림(웹은 OQ-K8 기본 /login?reason=session_expired) · 목록 · 해제 · 다시 sign-in 중 KOS 장애 = 503 kos_unavailable · 목록 비어 있음 = OQ-K12 기본 kos_unavailable · 해제 4xx = OQ-K8 기본 그래도 sign-in 다시.",
+  "데모 넘김 — prod → dev 데모 앱 로그인이 dev 의 choose_device 를 choose_hospital 과 같은 모양(environment dev · api_base_url · 대상 검사)으로 넘긴다(DAY-SPEC-001 「앱 환경 연결」 규칙 9 · OQ-K7 기본). 지금 코드는 503 environment_unavailable.",
+  "K-4 · K-5 — 로그아웃 때 KOS 로그인을 해제하지 않는다(변경 없음 확인). 앱 코드는 고치지 않는다 — 깔린 앱은 choose_device 를 모르는 status 로 보아 unexpected_response 코드만 보인다(DAY-SPEC-003 개정 ⑱ · session_controller.dart:203 · copy.dart:51)."
+ ],
+ "acceptance": [
+  "A1: KOS sign-in 401 이 message SignInLimitExceeded 면 기기 제한, 그 밖 401/400 은 지금처럼 invalid_credentials(직원) — 본문 못 읽으면 기기 제한 아님. 단위 테스트로 두 401 을 가른다.",
+  "A2: 웹 POST /login 기기 제한 → 기기 선택 조각(제목 · 안내 2줄 · 라디오 카드 · [계속하기] 글자가 SPEC 「기기 선택 글자」와 같음 · 첫 항목 선택 · 손 CSS · 인라인 스크립트 없음) · 조각 HTML 과 응답 어디에도 비밀번호 · 이메일 없음 · 숨은 칸은 pending_token 만.",
+  "A3: POST /login/device · /api/auth/device — 고른 signInId 만 해제 → sign-in 다시 → 연결 병원 1개면 세션 발급 · 여럿이면 병원 고르기 · 다시 막히면 새 choose_device(새 토큰) · 임시 토큰은 한 번 쓰면 지워져 두 번째 제출은 session_expired.",
+  "A4: 만료(5분) = session_expired · 목록 밖 · 빈 device_id = 400 invalid_request(field device_id) + 토큰 되돌림 · 목록 · 해제 · 재 sign-in KOS 장애 = 503 kos_unavailable · 재 sign-in 비밀번호 틀림 = invalid_credentials.",
+  "A5: 앱 JSON POST /api/auth/login 기기 제한 = 200 choose_device(앱이면 environment · api_base_url) · 데모 넘김이 choose_device 를 전달하고 /api/auth/device 응답도 대상 검사.",
+  "A6: 비밀번호는 Redis 임시 값 암호문에만 — DB 행 · 로그(caplog) · 응답 본문 · HTML 에 비밀번호 문자열이 없음을 테스트로 확인. 다시 sign-in 뒤 병원 고르기 임시 값에 비밀번호 없음.",
+  "A7: 시스템 계정 — KOS_CLIENT_TAG=dev 면 내부 API UA 끝 ' (dev)'. sign-in 기기 제한이면 UA 가 같은 로그인만 해제(OQ-K1 기본 = 가장 오래된 하나) 후 한 번 다시 · 표시 비면 해제 없음 · 같은 UA 없음 · 다시 막힘 = 실패 · 평소 sign-in 은 목록 · 해제를 부르지 않음 · 로그에 이메일 · 비밀번호 · signInId · IP · UA 원문 없음.",
+  "A8: 로그아웃은 KOS 해제를 부르지 않는다 · 기존 로그인 · 병원 고르기 · 데모 넘김 · 앱 회귀 없음(backend pytest · ruff · architecture 통과) · migration 없음 · app/ 변경 없음."
+ ],
+ "non_goals": [
+  "앱(Flutter) 기기 선택 화면 · 앱 코드 변경(심사 중 — 다음 스펙 · OQ-K14)",
+  "로그아웃 때 KOS 로그인 해제(K-4 — 하지 않음)",
+  "배포 · 서버 env 값 넣기 · deployment.md env 표(K-6 · OQ-K15 — 사용자가 정할 때)",
+  "시스템 계정 sign-in 이 로그인을 쌓는 원인 자체(토큰 재사용 · 공유 — OQ-K16)",
+  "UA 끝 환경 표시를 기기 선택 화면에 따로 보이기(글자 미정)",
+  "DB migration · 칸 변경",
+  "기획안(products/day/00-baseline/planning/) 수정"
+ ],
+ "review_surface": [
+  "baseline: DAY-SPEC-001 개정 ⑨ · DAY-SPEC-003 개정 ⑱ · DAY-SPEC-000 2026-11-17 개정은 스펙 PR 머지 전(워크트리 미커밋) — 지금 baseline 4443a99a 는 옛 계약. 스펙 PR 머지 → 같은 key 로 contract_version 2 재결속 → 그 뒤 사용자 plan 승인 권장.",
+  "착수 막는 정할 것(기본값으로 시작 가능 · 사용자가 뒤집을 수 있음): OQ-K1 시스템 계정 해제 개수(가장 오래된 하나) · OQ-K2 직원 요청 UA 표시(싣는다) · OQ-K3 비밀번호 임시 보관 방식 · OQ-K4 새 이름(choose_device · /api/auth/device · /login/device · devices 칸) · OQ-K5 60분 넘는 상대 시각(「n분 전」 그대로) · OQ-K6 UA 읽기 · 못 읽으면 원문 · OQ-K7 데모 넘김 전달 · OQ-K8 해제 4xx · 웹 잘못된 선택 · OQ-K12 빈 목록.",
+  "그 밖 열린 것: OQ-K9 목록 순서 · OQ-K10 「처음으로」 두기 · OQ-K11 해제가 토큰을 바로 막는지(데모 실물 확인) · OQ-K13 「최대 5개」 고정.",
+  "보안: 비밀번호 5분 서버 임시 보관은 「비밀번호를 저장하지 않는다」 규칙의 유일한 예외 — 보관 범위 · 암호화 · 로그 금지를 리뷰가 확인.",
+  "외부 쓰기: KOS revoke-active-sign-in 은 KOS 세션을 끊는 쓰기 — 시스템 계정 자동 해제가 사람 · 다른 환경 로그인을 건드리지 않는지(UA 글자까지 같음 · 표시 비면 안 함) 리뷰 확인."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/emr/kos/client.py (WEB_USER_AGENT · KosEndpoints KOS_CLIENT_TAG · _error_of · internal_token 기기 제한 처리 · 목록 · 해제 함수)",
+   "backend/day/emr/kos/staff_client.py (headers UA · sign_in 400/401 분기 · 목록 · 해제)",
+   "backend/day/emr/base.py (새 예외 · StaffAuthenticator 인터페이스)",
+   "backend/day/errors.py · backend/day/services/auth.py (login 기기 제한 · 새 choose_device 임시 토큰 · choose_device 제출)",
+   "backend/day/dtos/auth.py · backend/day/schemas/auth.py · backend/day/routers/api/auth.py (POST /api/auth/device · ChooseDevice)",
+   "backend/day/routers/login.py · backend/day/templates/partials/login_card.html (POST /login/device · 기기 선택 조각)",
+   "backend/day/services/environments.py (데모 넘김 choose_device)",
+   "deploy/local.env.example · deploy/compose.local.yaml (KOS_CLIENT_TAG 로컬)"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "스펙 PR 머지 · contract_version 2 재결속 · 사용자 plan 승인",
+   "OQ-K1 ~ K8 · K12 기본값 확인"
+  ],
+  "phases": [
+   "P1 KOS 클라이언트: 기기 제한 판정 · 목록 · 해제 · UA 표시 · 시스템 계정 자동 정리",
+   "P2 서비스 · 앱 JSON: choose_device 임시 토큰 · /api/auth/device · 데모 넘김",
+   "P3 웹: /login/device · 기기 선택 조각(DS) · 문구",
+   "P4 테스트 · 로컬 실물(day-local · 데모 지점)"
+  ],
+  "verification": [
+   "backend uv run pytest -q -m \"not infra\" (auth · kos client · staff client · login 화면 · environments)",
+   "scripts/test.sh -q · ruff · architecture",
+   "비밀번호 노출 검사(caplog · 응답 · HTML · DB)",
+   "데모 지점 실물: 기기 제한 → 목록 → 해제 → 재 sign-in · 해제 뒤 그 토큰 401 여부(OQ-K11)",
+   "lint-pipeline --strict"
+  ],
+  "predeploy": [
+   "서버 env KOS_CLIENT_TAG 값(dev · prod) — 배포 때 사용자"
+  ],
+  "rollback": [
+   "Code PR revert — migration 없음 · 새 라우트 제거로 원복 · KOS_CLIENT_TAG 비우면 UA · 자동 정리 원래대로"
+  ],
+  "open_questions": [
+   "OQ-K1 ~ K16 (DAY-SPEC-001 §5 「기기 제한 — 정할 것」)"
+  ]
+ }
+}
