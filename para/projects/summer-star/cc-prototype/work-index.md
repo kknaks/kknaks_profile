@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | [[orchestration/work/_archive/cc-prototype/api-swagger-docs/README\|api-swagger-docs]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-12-api-swagger-docs\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/cc-nav-resv/README\|cc-nav-resv]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-10-19-cc-nav-resv\|회고]] |
-| [[orchestration/work/cc-procedure-map/README\|cc-procedure-map]] | 진행 폴더 | 회고 미확인 |
+| [[orchestration/work/_archive/cc-prototype/cc-procedure-map/README\|cc-procedure-map]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-17-cc-procedure-map\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/ext-api-charty1/README\|ext-api-charty1]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-16-ext-api-charty1\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/ext-api-staff-fields/README\|ext-api-staff-fields]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-11-17-ext-api-staff-fields\|회고]] |
 | [[orchestration/work/_archive/cc-prototype/internal-chat/README\|internal-chat]] | 아카이브 | [[para/projects/summer-star/cc-prototype/log/2026-10-30-internal-chat\|회고]] |
