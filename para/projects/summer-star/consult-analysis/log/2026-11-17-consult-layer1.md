@@ -81,3 +81,9 @@
 - 2층 reviewer 검수(WORK-002 WP6) 안 함
 - 보고서 ⑧ 「다음에 볼 것」 — 대화 길이를 맞춘 뒤 비교 · 방 언어를 예약표 회신 뺀 기준으로 · 영어 · 한국어 방 응답 시간
 - 원본 · DB · 확인용 CSV 는 main 로컬(gitignore)에만 있다
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/consult-analysis/consult-layer1/README|consult-layer1]]
+<!-- work-links:end -->
