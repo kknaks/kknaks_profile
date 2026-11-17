@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | [[para/projects/summer-star/agency-settlement/README\|agency-settlement]] | [[para/projects/summer-star/agency-settlement/work-index\|작업 목록]] | 0 | 1 |
 | [[para/projects/company/ax-clinic-project/README\|ax-clinic-project]] | [[para/projects/company/ax-clinic-project/work-index\|작업 목록]] | 1 | 0 |
-| [[para/projects/summer-star/cc-prototype/README\|cc-prototype]] | [[para/projects/summer-star/cc-prototype/work-index\|작업 목록]] | 1 | 9 |
+| [[para/projects/summer-star/cc-prototype/README\|cc-prototype]] | [[para/projects/summer-star/cc-prototype/work-index\|작업 목록]] | 0 | 10 |
 | [[para/projects/company/centurion/README\|centurion]] | [[para/projects/company/centurion/work-index\|작업 목록]] | 0 | 2 |
 | [[para/projects/summer-star/consult-analysis/README\|consult-analysis]] | [[para/projects/summer-star/consult-analysis/work-index\|작업 목록]] | 0 | 1 |
 | [[para/projects/company/day/README\|day]] | [[para/projects/company/day/work-index\|작업 목록]] | 0 | 10 |
