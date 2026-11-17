@@ -159,6 +159,19 @@
         "orchestration/work/<slug>/design/ (시안 로컬 사본) · 브리프가 지정한 리포트 파일 1개"
       ],
       "verify": "브리프의 화면 · 상태 목록이 시안에 전부 있다(화면별 이름 표) · 로컬 사본이 프로젝트와 같다 · 기존 시안의 테마 · 컴포넌트만 쓴다 · 가짜 값만(실명 · 키 0) · 기존 파일 무수정"
+    },
+    "pencil": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "pencil",
+      "roles_dir": "roles/cc-prototype/pencil",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "reference/2026-11-12-open-pencil/medikit/ (브리프가 지정한 .fig · 스크립트 폴더만)",
+        "OpenPencil 앱에 열린 그 문서(브리프가 지정한 페이지만)",
+        "orchestration/work/<slug>/ 의 브리프가 지정한 리포트 파일 1개"
+      ],
+      "verify": "브리프 목록의 컴포넌트 · 조합이 전부 있다(항목별 대조표) · 색은 medikit 변수 바인딩 · 스크립트 재실행 시 같은 결과 · 기존 페이지 무수정 · 저장됨"
     }
   },
   "default_workers": [

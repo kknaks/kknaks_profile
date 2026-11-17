@@ -1,0 +1,6 @@
+source: CENTURION_DAY@c5045a99
+- medikit-preset.json  ← backend/day/styles/ (Tailwind preset v1.4.0 · 타이포 28 · 그림자 3 · 색은 var 참조만)
+- medikit.css          ← backend/day/static/ (키트 :root 실제 값 · primary teal #20c8d6)
+- day-override.css     ← backend/day/styles/app.css 26-41행 (DAY 가 primary 를 blue #1d8bff 로 덮음)
+
+결정(2026-11-12 사용자): cc 시술현황 primary = CRM blue #1d8bff (day-override.css 값 사용, 키트 teal 아님)

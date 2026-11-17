@@ -1,0 +1,16 @@
+/* ───────────────────────── DAY 토큰 ─────────────────────────
+ * `html[data-product="crm"]` — medikit `[data-product]` 브랜드 덮기와 같은 방식(1.4.0 에 crm 이 없다, DS 조사 §4-1).
+ * 키트 medikit.css 의 `:root` 보다 구체성이 높아 키트 값(teal)을 덮는다. */
+html[data-product="crm"] {
+  /* medikit 브랜드 — CRM(시안 L28-31 · 지윤 11-03) */
+  --ms-primary: #1d8bff;
+  --ms-primary-100: #eff7ff;
+  --ms-primary-300: #dbecff;
+  --ms-primary-500: #99cbff;
+  --ms-primary-shadow: rgba(29, 139, 255, 0.3);
+  /* 키트 css 에 빠진 medikit 1.4.0 단계(base.css 값) — 시안이 쓴다 */
+  --ms-red-300: #ffe1e1;
+  --ms-red-shadow: rgba(255, 78, 81, 0.2);
+  --ms-yellow-300: #ffe4c0;
+  --ms-hover-dark-rgb: 34 41 67;
+
