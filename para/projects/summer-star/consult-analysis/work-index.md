@@ -6,4 +6,4 @@
 
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
-| [[orchestration/work/consult-layer1/README\|consult-layer1]] | 진행 폴더 | [[orchestration/work/consult-layer1/SUMMARY\|회고]] |
+| [[orchestration/work/_archive/consult-analysis/consult-layer1/README\|consult-layer1]] | 아카이브 | [[para/projects/summer-star/consult-analysis/log/2026-11-17-consult-layer1\|회고]] |
