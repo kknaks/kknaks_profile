@@ -1,0 +1,70 @@
+{
+  "_doc": "consult-analysis(개인 — 클리닉 인스타그램 상담 DM 분석) 오케스트레이션 설정 SSOT. scripts/new-work.sh 가 읽는 유일한 곳. 값 하드코딩 금지. 단일 레포형 — 문서 · 스크립트가 모두 프로필 레포 para/projects/summer-star/consult-analysis/ 아래. 원본 데이터 · DB 는 gitignore.",
+  "project": "consult-analysis",
+  "document_root": "para/projects/summer-star/consult-analysis",
+  "worktree_root": "/Users/kknaks/orca/workspaces",
+  "use_worktree": true,
+  "repos": {
+    "app": {
+      "orca_name": "kknaks_profile",
+      "canonical_path": "/Users/kknaks/git/toy_pr2/kknaks_profile",
+      "remote": "https://github.com/kknaks/kknaks_profile.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "canonical(main)은 사용자 체크아웃 — pull/checkout 금지, fetch 만.",
+        "단일 레포형. 워커는 전부 workspace=coordinator — 코디 워크트리(workspaces/kknaks_profile/상담데이터분석)에 직렬로 탄다. 원본이 코디 워크트리의 gitignore 폴더에만 있기 때문.",
+        "원본: reference/2026-11-16-linky-data/ (gitignore · 읽기 전용). DB: para/projects/summer-star/consult-analysis/data/ (gitignore).",
+        "레포는 PUBLIC — 문서 · 스크립트 · 리포트에 고객 이름 · 메시지 본문 · 사진 금지. 건수 · 구조만."
+      ]
+    }
+  },
+  "workers": {
+    "planner": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "spec",
+      "roles_dir": "roles/consult-analysis/planner",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "para/projects/summer-star/consult-analysis/20-spec/",
+        "para/projects/summer-star/consult-analysis/30-work/"
+      ],
+      "verify": "SPEC 의 모든 절이 BASE-001 실측 · DEC-001 중 하나를 근거로 가리킨다. 원본 필드 대응표는 원본 JSON 을 직접 열어 확인한 것만. 근거 없는 정책 0 · 열린 것은 열린 것으로. 인덱스 갱신. public — 고객 이름 · 본문 인용 0(grep)"
+    },
+    "etl": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "etl",
+      "roles_dir": "roles/consult-analysis/etl",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "para/projects/summer-star/consult-analysis/scripts/",
+        "para/projects/summer-star/consult-analysis/data/ (gitignore — 생성물만)",
+        "para/projects/summer-star/consult-analysis/50-report/"
+      ],
+      "verify": "1층: python3 -I 로 load → verify 274칸 일치. 2층: SPEC-002 · WORK-002 수용 기준 · 단위 시험 · 출력에 고객 정보 0. 검증은 1회만"
+    },
+    "reviewer": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review",
+      "roles_dir": "roles/consult-analysis/reviewer",
+      "workspace": "coordinator",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "SPEC · WORK · 스크립트를 DEC-001 · BASE-001 과 대조. 각 지적에 파일:줄 + 근거. 판정 PASS · WARN · FAIL"
+    }
+  },
+  "default_workers": [
+    "planner"
+  ],
+  "summary_dest": "para/projects/summer-star/consult-analysis/log",
+  "rules": {
+    "spec_and_app_use_separate_prs": false,
+    "workers_commit_or_push": false,
+    "coordinator_verifies_before_pr": true
+  }
+}
