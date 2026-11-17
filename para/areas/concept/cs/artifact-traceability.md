@@ -9,6 +9,7 @@ aliases:
 up:
   - S-005-samsung-sds-software-development-ax
   - 2026-11-16-phub-ledger-redesign
+  - 2026-11-17-cc-procedure-map
 tags:
   - 설계
   - 추적성
@@ -51,6 +52,8 @@ flowchart LR
 
 요구가 바뀌었는데 어떤 코드와 테스트가 영향을 받는지 찾을 수 없으면 담당자의 기억에 의존한다. 관계와 버전을 남기면 변경 대상을 찾고 현재 구현이 어떤 요구와 검증 근거에 연결되는지 확인할 수 있다.
 
+- **화면 흐름 맵의 메모마다 원천 줄** — cc 시술현황 맵은 정책 메모 173개 모두 기획안 줄을 달아, 「출처 없는 메모 0 · 원문과 다른 인용 0」 을 기계로 셌다 → [[screen-flow-map]]
+
 ## 경계와 오해
 
 - 검색과 추적은 다르다. 비슷한 문서를 찾았다는 사실만으로 요구와 구현의 관계가 입증되지는 않는다.
@@ -71,3 +74,4 @@ flowchart LR
 
 - [[S-005-samsung-sds-software-development-ax]] — 사례 2.2, 특히 사진 12의 공통 식별자·관계 정보·버전과 권한·지식 구조화. 녹취 12:20–13:42의 관련 정보 갱신과 연결 설명을 일반화했다.
 - [[2026-11-16-phub-ledger-redesign]] §2 — gold 15표 · 질문 37 · `g_evidence` 복사 → 참조(13MB → 1.5MB) · 관계형 먼저 + `g_node`/`g_edge` 내보내기(`gold-final-notes.md` §1 · §3 · §4 · `_RESUME.md` 11-16 판단 4)
+- [[2026-11-17-cc-procedure-map]] §2 — 맵 메모 173 · 출처 줄 누락 0(`notes.json` · `pencil-map-report.md`)
