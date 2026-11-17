@@ -11,6 +11,7 @@
 | [[orchestration/work/_archive/day/day-data-architecture/README\|day-data-architecture]] | 아카이브 | 회고 미확인 |
 | [[orchestration/work/_archive/day/day-procedure-board-2/README\|day-procedure-board-2]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-procedure-board-2\|회고]] |
 | [[orchestration/work/_archive/day/fix/README\|fix]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-fix\|회고]] |
+| [[orchestration/work/_archive/day/fix-feedback/README\|fix-feedback]] | 아카이브 | [[para/projects/company/day/log/2026-11-17-fix-feedback\|회고]] |
 | [[orchestration/work/_archive/day/fix-web/README\|fix-web]] | 아카이브 | [[para/projects/company/day/log/2026-11-12-fix-web\|회고]] |
 | [[orchestration/work/_archive/day/prod-deploy-re1/README\|prod-deploy-re1]] | 아카이브 | [[para/projects/company/day/log/2026-11-12-prod-deploy-re1\|회고]] |
 | [[orchestration/work/_archive/day/seed-demo-re1/README\|seed-demo-re1]] | 아카이브 | [[para/projects/company/day/log/2026-11-12-seed-demo-re1\|회고]] |

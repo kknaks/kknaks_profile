@@ -10,6 +10,7 @@ aliases:
 up:
   - 2026-11-12-fix-web
   - 2026-11-16-ext-api-charty1
+  - 2026-11-17-fix-feedback
 tags:
   - API
   - 하위호환
@@ -40,6 +41,7 @@ DAY 직원 앱(Flutter) `Need.parse` 는 `why` 를 문자열 그대로 받고 `d
 - **관대한 읽기 ≠ 아무거나 받기** — 쓰는 칸의 타입이 틀리면 여전히 실패해야 맞다(조용한 실패를 만들지 않는다) → [[fail-fast]]
 - **값을 빼는 것과 모양을 바꾸는 것은 다르다** — 빼기는 버틴다, 이름 · 모양 바꾸기는 못 버틴다. 그래서 앱이 쓰는 `inbox.section` 의 값 이름은 그대로 두고 웹 전용 목록만 지웠다 → [[contract-surface-enumeration]]
 - **쓰는 쪽의 규칙과 짝이다** — 서버는 칸을 더하는 것은 자유, 빼거나 바꿀 때는 소비처를 세야 한다 → [[minimal-api-surface]] · [[public-vs-internal-api]]
+- **원소에 관대해도 집계는 어긋난다** — 앱이 모르는 알림 종류를 목록에서 버려도, 서버가 종류를 안 가리고 센 `unread` 는 그대로 와서 종 배지 숫자와 목록이 다르게 된다. 칸 · 원소는 관대한 읽기로 버티지만 **서버가 미리 합친 값**은 못 버틴다 — 새 종류를 더할 때는 집계 칸의 소비처도 센다 → [[contract-surface-enumeration]]
 
 ## 함께 보는 개념
 
@@ -51,3 +53,4 @@ DAY 직원 앱(Flutter) `Need.parse` 는 `why` 를 문자열 그대로 받고 `d
 
 - [[2026-11-12-fix-web]] §2 — DAY 수락 뒤 미시작(`accept`)을 서버에서 뺄지 웹에서만 거를지를 앱 파서(`Need.parse` · `Limits.parse`)로 판정 · 앱 무수정 · 새 빌드 없음
 - [[2026-11-16-ext-api-charty1]] §2 — 읽는 쪽이 외부 API(KOS 내부)일 때: 내지 않을 원소(다 쓴 묶음)는 모양을 보지 않고 먼저 거른다 · protobuf 0 생략은 「없는 칸 = 0」으로 받되 칸 자체가 없거나 타입이 틀리면 여전히 502(`procedure/back/app/service/ext.py` `_ticket` · DEC-012 D-46)
+- [[2026-11-17-fix-feedback]] §2 — 스냅샷에 `systemDoctor` 칸을 더해도 심사 중 앱은 무시(안전) · 반대로 호출 취소 알림(새 `notification_kind`)은 앱 목록에선 버려지지만 `unread` 배지가 어긋나 앱 업데이트 뒤로 미룸

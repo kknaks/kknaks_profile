@@ -12,6 +12,7 @@ aliases:
   - 알림 권한
 up:
   - 2026-10-10-strong-hajin-notify
+  - 2026-11-17-fix-feedback
 tags:
   - tauri
   - macos
@@ -42,6 +43,7 @@ tags:
 - **OS 마다 길이 갈린다** — macOS 는 직접, Windows 는 공식 플러그인(클릭 없음)처럼 OS 별로 다른 구현이 섞인다. 한쪽을 위해 올린 의존성이 다른 쪽을 흔들 수 있다 → [[dependency-upgrade-regression]]
 - **실측은 서명된 판으로만** — 알림 권한은 번들 id 와 서명에 묶인다. 개발 실행으로 본 결과는 사용자 앱과 다르다 → [[code-signing]] · [[dev-prod-parity]]
 - 띄우는 수단과 얼마나 띄울지는 다른 문제다 → [[notification-coalescing]]
+- **웹 Notification 의 「안 보일 때만」 조건은 다중 모니터에서 틀린다** — `document.hidden` 은 탭이 뒤로 갔거나 창이 가려졌을 때만 참이다. 다른 모니터에 **보이는 채로** 있는 창은 사용자가 안 보고 있어도 `false` 라 알림이 아예 안 만들어진다(알림 센터에도 없음). 「보고 있지 않다」를 브라우저가 알려 주는 값은 없다 — 띄울지는 사람이 정한다
 
 ## 함께 보는 개념
 
@@ -53,3 +55,4 @@ tags:
 ## 출처
 
 - [[2026-10-10-strong-hajin-notify]] §2 — Strong Hajin WORK-013 WP4. P0 에서 공식 `tauri-plugin-notification` 2.5.1 이 데스크톱 클릭을 버리고 권한을 늘 허용으로 답함을 소스로 확인 → macOS `UNUserNotificationCenter` 를 objc2 로 직접(`notify_permission` · `notify_show`) · 클릭 60초 보관 중계 · Windows 는 공식 플러그인(`frontend/src-tauri/src/notify.rs` · `W/review-wp4-report.md`)
+- [[2026-11-17-fix-feedback]] §2 — DAY 웹 원장 호출 OS 알림: 「탭이 뒤일 때만」 기본값이 오른쪽 모니터 웨일 창에서 안 뜸 → 서버 로그(행 · 신호 · 목록 GET 정상)로 화면 조건까지 좁힘 → 사용자 결정 「늘 띄움」
