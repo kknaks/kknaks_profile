@@ -1,0 +1,85 @@
+{
+  "id": "40b39e4f-90d1-4d13-9b25-69a52a62713f",
+  "ok": true,
+  "result": {
+    "runId": "run_19183a522baf",
+    "taskId": "task_4d48405c425c",
+    "dispatchId": "ctx_e90f866f1335",
+    "state": "ready",
+    "stage": "input_accepted",
+    "turnStart": "observed",
+    "setup": {
+      "requested": "not_applicable",
+      "effective": "not_applicable",
+      "source": "existing_worktree",
+      "hookFound": false,
+      "startupPolicy": "start-immediately",
+      "state": "not_applicable"
+    },
+    "launch": {
+      "requested": {
+        "agent": null,
+        "model": null,
+        "effort": null
+      },
+      "effective": {
+        "agent": null,
+        "model": null,
+        "effort": null
+      }
+    },
+    "mode": {
+      "mode": "terminal",
+      "preferred": "terminal",
+      "reason": "user_default",
+      "detail": "Started a terminal agent worker, the default for new agent tabs in your settings."
+    },
+    "timeoutMs": 60000,
+    "effects": [
+      {
+        "kind": "worktree",
+        "action": "reused",
+        "id": "8ac05be4-d9cd-475f-80bd-ff87179510b3::/Users/kknaks/orca/workspaces/kknaks_profile/open-pencil"
+      },
+      {
+        "kind": "setup",
+        "action": "not_applicable",
+        "state": "not_applicable"
+      },
+      {
+        "kind": "terminal",
+        "role": "agent",
+        "action": "reused",
+        "id": "term_4a81aeb5-f039-46a8-a846-b1d220629f82"
+      },
+      {
+        "kind": "dispatch_input",
+        "role": "agent",
+        "id": "term_4a81aeb5-f039-46a8-a846-b1d220629f82",
+        "state": "accepted"
+      }
+    ],
+    "prompt": {
+      "requestId": "ceb61c09-1d9c-4ca9-a3c2-ead1b16ce603",
+      "stages": [
+        "input_accepted",
+        "turn_started"
+      ],
+      "provider": "claude",
+      "observation": "supported",
+      "processIncarnation": "df616703-d363-46db-839c-d5a4e7b89e4a",
+      "generation": 395,
+      "baselineWorkingSequence": 0,
+      "baselineExplicitWorkingStartedAt": null,
+      "baselinePermissionSequence": 0
+    },
+    "residualResources": [],
+    "mutation": {
+      "requestId": "ceb61c09-1d9c-4ca9-a3c2-ead1b16ce603",
+      "replayed": false
+    }
+  },
+  "_meta": {
+    "runtimeId": "715c10ec-e945-482e-9871-0550195e23f1"
+  }
+}

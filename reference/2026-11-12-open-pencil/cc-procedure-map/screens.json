@@ -1,0 +1,1508 @@
+[
+ {
+  "screenId": "procedure/board",
+  "name": "시술 현황 화면",
+  "kind": "화면",
+  "section": "1-1",
+  "source": "P:L5-15, L63-67",
+  "elements": [
+   {
+    "no": 1,
+    "label": "시술 현황",
+    "type": "tabs",
+    "source": "P:L67",
+    "style": "예약 현황|원내 현황|시술 현황"
+   },
+   {
+    "no": 2,
+    "label": "고객 검색",
+    "type": "input",
+    "source": "P:L67"
+   },
+   {
+    "no": 3,
+    "label": "관리실 기록",
+    "type": "button",
+    "source": "P:L67, L686",
+    "style": "outlined/gray/s"
+   },
+   {
+    "no": 4,
+    "label": "확인 필요",
+    "type": "panel",
+    "source": "P:L67"
+   },
+   {
+    "no": 5,
+    "label": "관리실마다 고객 카드",
+    "type": "board",
+    "source": "P:L67-68"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/board/out-of-hours",
+  "name": "「조회 시간 밖」",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L172",
+  "elements": [
+   {
+    "no": 1,
+    "label": "조회 시간 밖",
+    "type": "banner",
+    "source": "P:L172",
+    "style": "neutral"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-slot",
+  "name": "관리실 칸",
+  "kind": "패널",
+  "section": "1-1",
+  "source": "P:L68",
+  "elements": [
+   {
+    "no": 1,
+    "label": "관리실",
+    "type": "text",
+    "source": "P:L68",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "침대가 둘 이상인 관리실은 침대마다 칸을 나눠 한 칸에 고객 카드 하나를 보인다",
+    "type": "slot",
+    "source": "P:L68"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-slot/occupied",
+  "name": "「점유 중 · {고객 이름}」 칸",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L69, L311, L328",
+  "elements": [
+   {
+    "no": 1,
+    "label": "점유 중 · {고객 이름}",
+    "type": "slot",
+    "source": "P:L69, L328",
+    "style": "occupied"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card",
+  "name": "고객 카드",
+  "kind": "패널",
+  "section": "1-1",
+  "source": "P:L10, L70-77",
+  "elements": [
+   {
+    "no": 1,
+    "label": "관리실 이름",
+    "type": "button",
+    "source": "P:L70, L325",
+    "style": "text/black/s"
+   },
+   {
+    "no": 2,
+    "label": "카드 상태",
+    "type": "badge",
+    "source": "P:L70",
+    "style": "neutral"
+   },
+   {
+    "no": 3,
+    "label": "고객 이름",
+    "type": "button",
+    "source": "P:L71",
+    "style": "text/black/s"
+   },
+   {
+    "no": 4,
+    "label": "한국어 발음 · 국적 · 담당 상담실장",
+    "type": "text",
+    "source": "P:L71"
+   },
+   {
+    "no": 5,
+    "label": "통역 필요 {언어}",
+    "type": "badge",
+    "source": "P:L71",
+    "style": "purple"
+   },
+   {
+    "no": 6,
+    "label": "오더 메모",
+    "type": "badge",
+    "source": "P:L72",
+    "style": "neutral"
+   },
+   {
+    "no": 7,
+    "label": "마취 시작",
+    "type": "button",
+    "source": "P:L73",
+    "style": "outlined/blue/ss"
+   },
+   {
+    "no": 8,
+    "label": "[이벤트] · 시술명 · 괄호(부위 · 요청) · 「시작」 · 「종료」",
+    "type": "line",
+    "source": "P:L74"
+   },
+   {
+    "no": 9,
+    "label": "전체 선택",
+    "type": "button",
+    "source": "P:L75",
+    "style": "text/blue/ss"
+   },
+   {
+    "no": 10,
+    "label": "전체 호출 · n개",
+    "type": "button",
+    "source": "P:L76",
+    "style": "solid/blue/s"
+   },
+   {
+    "no": 11,
+    "label": "지정 호출 · n개",
+    "type": "button",
+    "source": "P:L76",
+    "style": "outlined/blue/s"
+   },
+   {
+    "no": 12,
+    "label": "귀가 대기",
+    "type": "button",
+    "source": "P:L77",
+    "style": "solid/blue/s"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/status-waiting",
+  "name": "카드 상태 「시술 대기 HH:MM」",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L85",
+  "elements": [
+   {
+    "no": 1,
+    "label": "시술 대기 HH:MM",
+    "type": "badge",
+    "source": "P:L85",
+    "style": "neutral"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/status-in-progress",
+  "name": "카드 상태 「시술 진행」",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L86",
+  "elements": [
+   {
+    "no": 1,
+    "label": "시술 진행",
+    "type": "badge",
+    "source": "P:L86",
+    "style": "primary"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/status-discharge-wait",
+  "name": "카드 상태 「귀가 대기 HH:MM」",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L87, L651-656",
+  "elements": [
+   {
+    "no": 1,
+    "label": "귀가 대기 HH:MM",
+    "type": "badge",
+    "source": "P:L87, L656",
+    "style": "warning"
+   },
+   {
+    "no": 2,
+    "label": "⋯",
+    "type": "button",
+    "source": "P:L656",
+    "style": "icon/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/order-memo",
+  "name": "고객 카드 오더 메모",
+  "kind": "패널",
+  "section": "1-1",
+  "source": "P:L72, L110-122",
+  "elements": [
+   {
+    "no": 1,
+    "label": "자가세안 x",
+    "type": "badge",
+    "source": "P:L116",
+    "style": "neutral"
+   },
+   {
+    "no": 2,
+    "label": "OUT TIME {HH:MM}",
+    "type": "badge",
+    "source": "P:L117",
+    "style": "neutral"
+   },
+   {
+    "no": 3,
+    "label": "200만원결제",
+    "type": "badge",
+    "source": "P:L118",
+    "style": "neutral"
+   },
+   {
+    "no": 4,
+    "label": "지정 {원장}",
+    "type": "badge",
+    "source": "P:L119",
+    "style": "neutral"
+   },
+   {
+    "no": 5,
+    "label": "마취크림 30분 희망",
+    "type": "badge",
+    "source": "P:L120",
+    "style": "neutral"
+   },
+   {
+    "no": 6,
+    "label": "특이사항 · {글}",
+    "type": "badge",
+    "source": "P:L121",
+    "style": "neutral"
+   },
+   {
+    "no": 7,
+    "label": "임플란트 O",
+    "type": "badge",
+    "source": "P:L122",
+    "style": "neutral"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/waiting",
+  "name": "시술 줄 대기",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L74, L516",
+  "elements": [
+   {
+    "no": 1,
+    "label": "체크박스",
+    "type": "checkbox",
+    "source": "P:L150, L516",
+    "style": "unchecked"
+   },
+   {
+    "no": 2,
+    "label": "[이벤트]",
+    "type": "badge",
+    "source": "P:L128",
+    "style": "primary"
+   },
+   {
+    "no": 3,
+    "label": "써마지 FLX 300shot (얼전, 이마포함)",
+    "type": "text",
+    "source": "P:L129-130"
+   },
+   {
+    "no": 4,
+    "label": "시작",
+    "type": "button",
+    "source": "P:L516, L540",
+    "style": "solid/blue/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/not-proceeding",
+  "name": "시술 줄 시술 미진행(확인 전)",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L141, L519",
+  "elements": [
+   {
+    "no": 1,
+    "label": "시술 미진행",
+    "type": "line",
+    "source": "P:L141, L519",
+    "style": "disabled"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/done",
+  "name": "시술 줄 완료",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L135, L505, L521",
+  "elements": [
+   {
+    "no": 1,
+    "label": "완료 체크 표시",
+    "type": "checkbox",
+    "source": "P:L154, L521",
+    "style": "checked-disabled"
+   },
+   {
+    "no": 2,
+    "label": "{원장} · n분",
+    "type": "text",
+    "source": "P:L521",
+    "style": "muted"
+   },
+   {
+    "no": 3,
+    "label": "⋯",
+    "type": "button",
+    "source": "P:L521, L546",
+    "style": "icon/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/line-changed",
+  "name": "「변경」 · 카드 머리 「변경 n건」",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L139, L144",
+  "elements": [
+   {
+    "no": 1,
+    "label": "변경",
+    "type": "badge",
+    "source": "P:L139",
+    "style": "warning"
+   },
+   {
+    "no": 2,
+    "label": "변경 n건",
+    "type": "button",
+    "source": "P:L144",
+    "style": "filled/yellow/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/new-lines",
+  "name": "구분선 뒤 새 시술 줄",
+  "kind": "상태",
+  "section": "1-1",
+  "source": "P:L135, L140",
+  "elements": [
+   {
+    "no": 1,
+    "label": "구분선",
+    "type": "divider",
+    "source": "P:L135, L140"
+   },
+   {
+    "no": 2,
+    "label": "시작",
+    "type": "button",
+    "source": "P:L140",
+    "style": "solid/blue/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/call-bar",
+  "name": "시술 선택 · 원장 호출",
+  "kind": "패널",
+  "section": "1-1",
+  "source": "P:L75-76, L386, L417",
+  "elements": [
+   {
+    "no": 1,
+    "label": "전체 선택",
+    "type": "button",
+    "source": "P:L75",
+    "style": "text/blue/ss"
+   },
+   {
+    "no": 2,
+    "label": "지정 원장 · {원장}",
+    "type": "badge",
+    "source": "P:L386, L417",
+    "style": "primary"
+   },
+   {
+    "no": 3,
+    "label": "전체 호출 · n개",
+    "type": "button",
+    "source": "P:L76, L417",
+    "style": "solid/blue/s"
+   },
+   {
+    "no": 4,
+    "label": "지정 호출 · n개",
+    "type": "button",
+    "source": "P:L76, L417",
+    "style": "outlined/blue/s"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/change-history",
+  "name": "변경 이력",
+  "kind": "확인 안 됨",
+  "section": "1-1",
+  "source": "P:L135, L144, L261",
+  "elements": []
+ },
+ {
+  "screenId": "procedure/search",
+  "name": "고객 검색",
+  "kind": "패널",
+  "section": "1-2",
+  "source": "P:L176-187, L195",
+  "elements": [
+   {
+    "no": 1,
+    "label": "검색어",
+    "type": "input",
+    "source": "P:L195"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/search/results",
+  "name": "검색 결과",
+  "kind": "팝업",
+  "section": "1-2",
+  "source": "P:L196, L199-207",
+  "elements": [
+   {
+    "no": 1,
+    "label": "고객 이름 · 국적 · 최근 방문일 · 관리실 · 시술 이름",
+    "type": "list",
+    "source": "P:L196"
+   },
+   {
+    "no": 2,
+    "label": "외 n건",
+    "type": "text",
+    "source": "P:L228",
+    "style": "muted"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/search/empty",
+  "name": "「검색 결과 없음」",
+  "kind": "상태",
+  "section": "1-2",
+  "source": "P:L186, L197",
+  "elements": [
+   {
+    "no": 1,
+    "label": "검색 결과 없음",
+    "type": "empty",
+    "source": "P:L197"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/confirm-flag",
+  "name": "고객 카드의 「확인할 일」 글자",
+  "kind": "상태",
+  "section": "1-3",
+  "source": "P:L245, L262",
+  "elements": [
+   {
+    "no": 1,
+    "label": "대기 n분째",
+    "type": "badge",
+    "source": "P:L262, L270",
+    "style": "danger"
+   },
+   {
+    "no": 2,
+    "label": "호출 n분째",
+    "type": "badge",
+    "source": "P:L262, L272",
+    "style": "danger"
+   },
+   {
+    "no": 3,
+    "label": "시술 변경 n건",
+    "type": "badge",
+    "source": "P:L262, L274",
+    "style": "danger"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/confirm-needed",
+  "name": "「확인 필요」",
+  "kind": "패널",
+  "section": "1-3",
+  "source": "P:L239, L255",
+  "elements": [
+   {
+    "no": 1,
+    "label": "확인 필요",
+    "type": "text",
+    "source": "P:L255",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "확인할 상황마다 카드 한 장",
+    "type": "list",
+    "source": "P:L255"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/confirm-needed/card",
+  "name": "확인 필요 카드",
+  "kind": "패널",
+  "section": "1-3",
+  "source": "P:L256-261, L268-275",
+  "elements": [
+   {
+    "no": 1,
+    "label": "관리실 이름 · 고객 이름",
+    "type": "button",
+    "source": "P:L256",
+    "style": "text/black/s"
+   },
+   {
+    "no": 2,
+    "label": "확인할 일",
+    "type": "text",
+    "source": "P:L257"
+   },
+   {
+    "no": 3,
+    "label": "재호출",
+    "type": "button",
+    "source": "P:L258",
+    "style": "outlined/blue/ss"
+   },
+   {
+    "no": 4,
+    "label": "다시 알림",
+    "type": "button",
+    "source": "P:L259",
+    "style": "outlined/blue/ss"
+   },
+   {
+    "no": 5,
+    "label": "귀가 대기",
+    "type": "button",
+    "source": "P:L260",
+    "style": "outlined/blue/ss"
+   },
+   {
+    "no": 6,
+    "label": "변경 확인",
+    "type": "button",
+    "source": "P:L261",
+    "style": "outlined/blue/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/toast/alert",
+  "name": "시술 현황 화면 알림",
+  "kind": "토스트",
+  "section": "1-3",
+  "source": "P:L162-163, L281",
+  "elements": [
+   {
+    "no": 1,
+    "label": "{관리실} {이름} {확인할 일}",
+    "type": "toast",
+    "source": "P:L281",
+    "style": "custom"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-move/menu",
+  "name": "관리실 이동 메뉴",
+  "kind": "팝업",
+  "section": "2-1",
+  "source": "P:L297, L325",
+  "elements": [
+   {
+    "no": 1,
+    "label": "점유 이동",
+    "type": "menuitem",
+    "source": "P:L297, L326"
+   },
+   {
+    "no": 2,
+    "label": "다른 관리실로 이동",
+    "type": "menuitem",
+    "source": "P:L297, L326"
+   },
+   {
+    "no": 3,
+    "label": "원래 관리실로 복귀",
+    "type": "menuitem",
+    "source": "P:L297, L301"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-move/list",
+  "name": "관리실 이동 목록",
+  "kind": "팝업",
+  "section": "2-1",
+  "source": "P:L298, L326-327",
+  "elements": [
+   {
+    "no": 1,
+    "label": "새로 배정할 빈 관리실",
+    "type": "list",
+    "source": "P:L327"
+   },
+   {
+    "no": 2,
+    "label": "A-룸2 (1/2)",
+    "type": "list",
+    "source": "P:L327"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-move/list-empty",
+  "name": "「빈 관리실 없음」",
+  "kind": "상태",
+  "section": "2-1",
+  "source": "P:L327",
+  "elements": [
+   {
+    "no": 1,
+    "label": "빈 관리실 없음",
+    "type": "empty",
+    "source": "P:L327"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/toast/room-full",
+  "name": "「그 관리실에 자리가 없습니다」",
+  "kind": "토스트",
+  "section": "2-1",
+  "source": "P:L342",
+  "elements": [
+   {
+    "no": 1,
+    "label": "그 관리실에 자리가 없습니다",
+    "type": "toast",
+    "source": "P:L342",
+    "style": "error"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/anesthesia-idle",
+  "name": "마취 「마취 시작」",
+  "kind": "상태",
+  "section": "2-2",
+  "source": "P:L365",
+  "elements": [
+   {
+    "no": 1,
+    "label": "마취 시작",
+    "type": "button",
+    "source": "P:L365",
+    "style": "outlined/blue/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/anesthesia-running",
+  "name": "마취 「마취중 mm:ss」 · 「마취 종료」",
+  "kind": "상태",
+  "section": "2-2",
+  "source": "P:L352, L366",
+  "elements": [
+   {
+    "no": 1,
+    "label": "마취중 mm:ss",
+    "type": "timer",
+    "source": "P:L352, L366"
+   },
+   {
+    "no": 2,
+    "label": "마취 종료",
+    "type": "button",
+    "source": "P:L366",
+    "style": "outlined/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/calling",
+  "name": "시술 줄 호출 중",
+  "kind": "상태",
+  "section": "3-1",
+  "source": "P:L402, L517",
+  "elements": [
+   {
+    "no": 1,
+    "label": "체크박스",
+    "type": "checkbox",
+    "source": "P:L151, L517",
+    "style": "disabled"
+   },
+   {
+    "no": 2,
+    "label": "시작",
+    "type": "button",
+    "source": "P:L517, L541",
+    "style": "solid/blue/ss"
+   },
+   {
+    "no": 3,
+    "label": "재호출",
+    "type": "button",
+    "source": "P:L419, L517",
+    "style": "outlined/gray/ss"
+   },
+   {
+    "no": 4,
+    "label": "호출 중 n분",
+    "type": "timer",
+    "source": "P:L402, L517"
+   },
+   {
+    "no": 5,
+    "label": "{원장} 호출 중 n분",
+    "type": "timer",
+    "source": "P:L402, L517"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/doctor-list/designate-call",
+  "name": "원장 목록 — 지정 호출",
+  "kind": "팝업",
+  "section": "3-1",
+  "source": "P:L389, L418",
+  "elements": [
+   {
+    "no": 1,
+    "label": "그날 근무가 있는 원장",
+    "type": "radio",
+    "source": "P:L418"
+   },
+   {
+    "no": 2,
+    "label": "호출",
+    "type": "button",
+    "source": "P:L418",
+    "style": "solid/blue/s"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/accepted",
+  "name": "시술 줄 수락",
+  "kind": "상태",
+  "section": "3-2",
+  "source": "P:L440, L471, L518",
+  "elements": [
+   {
+    "no": 1,
+    "label": "{원장} 수락 완료 HH:MM",
+    "type": "button",
+    "source": "P:L471, L518",
+    "style": "text/black/ss"
+   },
+   {
+    "no": 2,
+    "label": "시작",
+    "type": "button",
+    "source": "P:L518, L542",
+    "style": "solid/blue/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/doctor-list/reassign",
+  "name": "원장 목록 — 담당 원장 바꾸기",
+  "kind": "팝업",
+  "section": "3-2",
+  "source": "P:L443, L471-472",
+  "elements": [
+   {
+    "no": 1,
+    "label": "그날 근무가 있는 원장",
+    "type": "list",
+    "source": "P:L472"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/in-progress",
+  "name": "시술 줄 진행 중",
+  "kind": "상태",
+  "section": "4-1",
+  "source": "P:L520",
+  "elements": [
+   {
+    "no": 1,
+    "label": "{원장} · 진행 mm:ss",
+    "type": "timer",
+    "source": "P:L520"
+   },
+   {
+    "no": 2,
+    "label": "종료",
+    "type": "button",
+    "source": "P:L520, L544",
+    "style": "outlined/blue/ss"
+   },
+   {
+    "no": 3,
+    "label": "⋯",
+    "type": "button",
+    "source": "P:L520, L545",
+    "style": "icon/gray/ss"
+   },
+   {
+    "no": 4,
+    "label": "{원장}",
+    "type": "button",
+    "source": "P:L471",
+    "style": "text/black/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/doctor-list/start-pick",
+  "name": "원장 목록 — 전체 호출 중 「시작」",
+  "kind": "팝업",
+  "section": "4-1",
+  "source": "P:L502, L541, L543",
+  "elements": [
+   {
+    "no": 1,
+    "label": "전체 호출 중 그날 근무가 있는 원장",
+    "type": "list",
+    "source": "P:L543"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/treatment-line/more-menu",
+  "name": "줄 「⋯」 더보기",
+  "kind": "팝업",
+  "section": "4-1",
+  "source": "P:L493, L545-546",
+  "elements": [
+   {
+    "no": 1,
+    "label": "시작 취소",
+    "type": "menuitem",
+    "source": "P:L545"
+   },
+   {
+    "no": 2,
+    "label": "완료 취소",
+    "type": "menuitem",
+    "source": "P:L546"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/confirm/cancel-start",
+  "name": "확인 창 「{시술} 시작을 취소할까요?」",
+  "kind": "모달",
+  "section": "4-1",
+  "source": "P:L545, L547",
+  "elements": [
+   {
+    "no": 1,
+    "label": "{시술} 시작을 취소할까요?",
+    "type": "title",
+    "source": "P:L545"
+   },
+   {
+    "no": 2,
+    "label": "닫기",
+    "type": "button",
+    "source": "P:L545, L547",
+    "style": "outlined/gray/l"
+   },
+   {
+    "no": 3,
+    "label": "시작 취소",
+    "type": "button",
+    "source": "P:L545",
+    "style": "solid/blue/l"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/confirm/cancel-complete",
+  "name": "확인 창 「{시술} 완료를 취소할까요?」",
+  "kind": "모달",
+  "section": "4-1",
+  "source": "P:L506, L546-547",
+  "elements": [
+   {
+    "no": 1,
+    "label": "{시술} 완료를 취소할까요?",
+    "type": "title",
+    "source": "P:L546"
+   },
+   {
+    "no": 2,
+    "label": "닫기",
+    "type": "button",
+    "source": "P:L546, L547",
+    "style": "outlined/gray/l"
+   },
+   {
+    "no": 3,
+    "label": "완료 취소",
+    "type": "button",
+    "source": "P:L546",
+    "style": "solid/blue/l"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart",
+  "name": "시술 차트",
+  "kind": "모달",
+  "section": "4-2",
+  "source": "P:L14, L586-599",
+  "elements": [
+   {
+    "no": 1,
+    "label": "한국어 발음 · 차트 번호 · 주의 · 불만",
+    "type": "text",
+    "source": "P:L588",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "오더 메모",
+    "type": "accordion",
+    "source": "P:L589"
+   },
+   {
+    "no": 3,
+    "label": "시술 이름 · 진행한 관리실 · 담당 원장",
+    "type": "table",
+    "source": "P:L590"
+   },
+   {
+    "no": 4,
+    "label": "마취 회차 · 이번 방문 관리실 기록",
+    "type": "table",
+    "source": "P:L591"
+   },
+   {
+    "no": 5,
+    "label": "의사 차트",
+    "type": "panel",
+    "source": "P:L592"
+   },
+   {
+    "no": 6,
+    "label": "간호관리차트",
+    "type": "panel",
+    "source": "P:L593"
+   },
+   {
+    "no": 7,
+    "label": "지난 방문 기록",
+    "type": "panel",
+    "source": "P:L599"
+   },
+   {
+    "no": 8,
+    "label": "고객 차트",
+    "type": "button",
+    "source": "P:L598",
+    "style": "text/blue/s"
+   },
+   {
+    "no": 9,
+    "label": "닫기",
+    "type": "button",
+    "source": "P:L596",
+    "style": "outlined/gray/l"
+   },
+   {
+    "no": 10,
+    "label": "저장",
+    "type": "button",
+    "source": "P:L595",
+    "style": "solid/blue/l"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/order-memo",
+  "name": "시술 차트 오더 메모",
+  "kind": "패널",
+  "section": "4-2",
+  "source": "P:L589",
+  "elements": [
+   {
+    "no": 1,
+    "label": "오더 메모",
+    "type": "text",
+    "source": "P:L589",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "마지막 고친 시각",
+    "type": "text",
+    "source": "P:L589",
+    "style": "muted"
+   },
+   {
+    "no": 3,
+    "label": "오더 메모 접기",
+    "type": "button",
+    "source": "P:L589",
+    "style": "text/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/doctor-chart",
+  "name": "「의사 차트」",
+  "kind": "패널",
+  "section": "4-2",
+  "source": "P:L592, L605",
+  "elements": [
+   {
+    "no": 1,
+    "label": "의사 차트",
+    "type": "text",
+    "source": "P:L592",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "담당자",
+    "type": "select",
+    "source": "P:L592, L605"
+   },
+   {
+    "no": 3,
+    "label": "샷 수 · 레벨 · 제품 · 용량 / 고객 반응 / 설명한 내용",
+    "type": "textarea",
+    "source": "P:L605"
+   },
+   {
+    "no": 4,
+    "label": "전체 시술에 내용 적용",
+    "type": "button",
+    "source": "P:L592",
+    "style": "outlined/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/nursing-chart",
+  "name": "「간호관리차트」",
+  "kind": "패널",
+  "section": "4-2",
+  "source": "P:L593-594, L606",
+  "elements": [
+   {
+    "no": 1,
+    "label": "간호관리차트",
+    "type": "text",
+    "source": "P:L593",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "작성자 추가",
+    "type": "button",
+    "source": "P:L593",
+    "style": "text/blue/s"
+   },
+   {
+    "no": 3,
+    "label": "고른 직원 이름",
+    "type": "text",
+    "source": "P:L594"
+   },
+   {
+    "no": 4,
+    "label": "한 일(세안 · 마취크림 30분) / 고객 반응 · 설명한 내용",
+    "type": "textarea",
+    "source": "P:L606"
+   },
+   {
+    "no": 5,
+    "label": "전체 시술에 내용 적용",
+    "type": "button",
+    "source": "P:L594",
+    "style": "outlined/gray/ss"
+   },
+   {
+    "no": 6,
+    "label": "칸 지우기",
+    "type": "button",
+    "source": "P:L594",
+    "style": "text/gray/ss"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/author-picker",
+  "name": "「작성자 추가」 직원 목록",
+  "kind": "팝업",
+  "section": "4-2",
+  "source": "P:L576, L593",
+  "elements": [
+   {
+    "no": 1,
+    "label": "오늘 근무하는 간호사 · 피부관리팀 이름 목록",
+    "type": "list",
+    "source": "P:L593"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/apply-all-confirm",
+  "name": "「전체 시술에 내용 적용」 확인 창",
+  "kind": "모달",
+  "section": "4-2",
+  "source": "P:L577, L617",
+  "elements": [
+   {
+    "no": 1,
+    "label": "적용 수 · 제외 수",
+    "type": "text",
+    "source": "P:L617"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/discard-confirm",
+  "name": "확인 창 「저장하지 않고 닫을까요?」",
+  "kind": "모달",
+  "section": "4-2",
+  "source": "P:L579, L596-598",
+  "elements": [
+   {
+    "no": 1,
+    "label": "저장하지 않고 닫을까요?",
+    "type": "title",
+    "source": "P:L579"
+   },
+   {
+    "no": 2,
+    "label": "계속 쓰기",
+    "type": "button",
+    "source": "P:L597",
+    "style": "outlined/gray/l"
+   },
+   {
+    "no": 3,
+    "label": "버리고 닫기",
+    "type": "button",
+    "source": "P:L597",
+    "style": "solid/blue/l"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/conflict-notice",
+  "name": "「다른 직원이 먼저 저장한 줄은 저장하지 않았습니다」",
+  "kind": "상태",
+  "section": "4-2",
+  "source": "P:L631",
+  "elements": [
+   {
+    "no": 1,
+    "label": "다른 직원이 먼저 저장한 줄은 저장하지 않았습니다",
+    "type": "banner",
+    "source": "P:L631",
+    "style": "warning"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/chart/past-visits",
+  "name": "지난 방문 기록",
+  "kind": "패널",
+  "section": "4-2",
+  "source": "P:L599",
+  "elements": [
+   {
+    "no": 1,
+    "label": "날짜 · 시술 · 의사 차트 · 간호관리차트",
+    "type": "table",
+    "source": "P:L599"
+   },
+   {
+    "no": 2,
+    "label": "날짜 · 시술 · 원장",
+    "type": "table",
+    "source": "P:L599"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/customer-card/more-menu",
+  "name": "카드 「⋯」 더보기",
+  "kind": "팝업",
+  "section": "5-1",
+  "source": "P:L493, L656",
+  "elements": [
+   {
+    "no": 1,
+    "label": "귀가 대기 취소",
+    "type": "menuitem",
+    "source": "P:L656"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-log",
+  "name": "관리실 기록 창",
+  "kind": "모달",
+  "section": "6-1",
+  "source": "P:L15, L676-692",
+  "elements": [
+   {
+    "no": 1,
+    "label": "날짜",
+    "type": "button",
+    "source": "P:L687",
+    "style": "outlined/gray/s"
+   },
+   {
+    "no": 2,
+    "label": "이전 날",
+    "type": "button",
+    "source": "P:L687",
+    "style": "icon/gray/m"
+   },
+   {
+    "no": 3,
+    "label": "다음 날",
+    "type": "button",
+    "source": "P:L687",
+    "style": "icon/gray/m"
+   },
+   {
+    "no": 4,
+    "label": "모든 관리실",
+    "type": "select",
+    "source": "P:L688"
+   },
+   {
+    "no": 5,
+    "label": "관리실 묶음",
+    "type": "panel",
+    "source": "P:L689"
+   },
+   {
+    "no": 6,
+    "label": "닫기",
+    "type": "button",
+    "source": "P:L692",
+    "style": "outlined/gray/l"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-log/date-calendar",
+  "name": "날짜 · 「이전 날」 · 「다음 날」 · 달력",
+  "kind": "팝업",
+  "section": "6-1",
+  "source": "P:L677, L687",
+  "elements": [
+   {
+    "no": 1,
+    "label": "달력",
+    "type": "calendar",
+    "source": "P:L687"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-log/room-select",
+  "name": "관리실 고르기",
+  "kind": "팝업",
+  "section": "6-1",
+  "source": "P:L678, L688",
+  "elements": [
+   {
+    "no": 1,
+    "label": "모든 관리실",
+    "type": "list",
+    "source": "P:L688"
+   },
+   {
+    "no": 2,
+    "label": "관리실 이름 목록",
+    "type": "list",
+    "source": "P:L688"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/room-log/room-group",
+  "name": "관리실 묶음",
+  "kind": "패널",
+  "section": "6-1",
+  "source": "P:L689-691, L694-710",
+  "elements": [
+   {
+    "no": 1,
+    "label": "관리실 이름",
+    "type": "text",
+    "source": "P:L689",
+    "style": "title"
+   },
+   {
+    "no": 2,
+    "label": "고객 이름",
+    "type": "button",
+    "source": "P:L690",
+    "style": "text/black/s"
+   },
+   {
+    "no": 3,
+    "label": "국적 · 들어온 시각 · 나간 시각",
+    "type": "text",
+    "source": "P:L690"
+   },
+   {
+    "no": 4,
+    "label": "체류 중",
+    "type": "badge",
+    "source": "P:L690",
+    "style": "primary"
+   },
+   {
+    "no": 5,
+    "label": "시작한 시술 없음",
+    "type": "badge",
+    "source": "P:L690",
+    "style": "neutral"
+   },
+   {
+    "no": 6,
+    "label": "시술 이름 · 시작 시각 · 종료 시각",
+    "type": "text",
+    "source": "P:L691"
+   },
+   {
+    "no": 7,
+    "label": "담당 원장 · 간호관리 담당자",
+    "type": "text",
+    "source": "P:L691",
+    "style": "muted"
+   },
+   {
+    "no": 8,
+    "label": "진행 중",
+    "type": "badge",
+    "source": "P:L708",
+    "style": "primary"
+   }
+  ]
+ },
+ {
+  "screenId": "procedure/consultant-call",
+  "name": "관리실별 상담실장 호출(고도화 · 1차 범위 밖)",
+  "kind": "범위 밖",
+  "section": "7-1",
+  "source": "P:L734-738",
+  "elements": [
+   {
+    "no": 1,
+    "label": "상담실장 호출",
+    "type": "button",
+    "source": "P:L738",
+    "style": "outlined/gray/s"
+   }
+  ]
+ },
+ {
+  "screenId": "mobile/call-accept",
+  "name": "CC 모바일 의사 호출 알림 · 「수락」",
+  "kind": "화면(탭 밖)",
+  "section": "M",
+  "source": "P:L13, L469-470",
+  "elements": [
+   {
+    "no": 1,
+    "label": "의사 호출 알림 · 관리실 · 한국어 발음 · 시술 · 지정 · 전체 호출",
+    "type": "text",
+    "source": "P:L460"
+   },
+   {
+    "no": 2,
+    "label": "수락",
+    "type": "button",
+    "source": "P:L469",
+    "style": "solid/blue/l"
+   }
+  ]
+ },
+ {
+  "screenId": "mobile/toast/taken",
+  "name": "「다른 원장이 먼저 받았습니다」",
+  "kind": "토스트(탭 밖)",
+  "section": "M",
+  "source": "P:L486",
+  "elements": [
+   {
+    "no": 1,
+    "label": "다른 원장이 먼저 받았습니다",
+    "type": "toast",
+    "source": "P:L486",
+    "style": "error"
+   }
+  ]
+ },
+ {
+  "screenId": "mobile/toast/canceled",
+  "name": "「취소된 호출입니다」",
+  "kind": "토스트(탭 밖)",
+  "section": "M",
+  "source": "P:L487",
+  "elements": [
+   {
+    "no": 1,
+    "label": "취소된 호출입니다",
+    "type": "toast",
+    "source": "P:L487",
+    "style": "error"
+   }
+  ]
+ }
+]

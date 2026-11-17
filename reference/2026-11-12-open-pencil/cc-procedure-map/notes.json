@@ -1,0 +1,2082 @@
+[
+ {
+  "id": "procedure.board#1",
+  "screenId": "procedure/board",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "현황 메뉴 시술 현황 탭에서 시술 대기 고객부터 귀가 대기까지 고객 카드 · 관리실 이동 · 마취 · 호출 · 시술 상태 · 차팅 · 귀가 대기 · 관리실 기록을 다룬다.",
+  "source": "P:L3"
+ },
+ {
+  "id": "procedure.board#2",
+  "screenId": "procedure/board",
+  "elementNo": 5,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 1 | 관리실은 관리실 정보에서 사용을 켠 관리실만 보이고 순서는 관리실 정보 등록 순서다(CC-23-1). 같은 관리실 안 카드는 먼저 시술 대기가 된 고객이 먼저다",
+  "source": "P:L160"
+ },
+ {
+  "id": "procedure.board#3",
+  "screenId": "procedure/board",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "7 | 1 | 시술 현황 화면 알림은 원장 수락 · 상담실장이 바꾼 시술(정책 6) · 확인 필요처럼 이 화면 밖에서 생긴 일만 시술 현황을 보는 화면 모두에 띄운다. 직원이 시술 현황에서 누른 일은 알리지 않는다",
+  "source": "P:L163"
+ },
+ {
+  "id": "procedure.board#4",
+  "screenId": "procedure/board",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "8 | 전체 | 카드 상태가 바뀌면 같은 이름의 내원 상태가 CC 예약 현황 · CC 원내 현황 · charty 접수 목록에 보인다",
+  "source": "P:L164"
+ },
+ {
+  "id": "procedure.board#5",
+  "screenId": "procedure/board",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 현황 화면 | 「관리실 기록」. 늘 있다 | 관리실 기록 창이 뜬다",
+  "source": "P:L686"
+ },
+ {
+  "id": "procedure.board.out-of-hours#1",
+  "screenId": "procedure/board/out-of-hours",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 1 | 조회 시간 밖이면 「조회 시간 밖」을 보인다",
+  "source": "P:L172"
+ },
+ {
+  "id": "procedure.room-slot#1",
+  "screenId": "procedure/room-slot",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 | 관리실 정보에서 사용을 켠 관리실마다 칸을 두고(정책 3) 그 관리실의 고객 카드를 보인다. 침대가 둘 이상인 관리실은 침대마다 칸을 나눠 한 칸에 고객 카드 하나를 보인다 | —",
+  "source": "P:L68"
+ },
+ {
+  "id": "procedure.room-slot#2",
+  "screenId": "procedure/room-slot",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 1 | 관리실은 관리실 정보에서 사용을 켠 관리실만 보이고 순서는 관리실 정보 등록 순서다(CC-23-1). 같은 관리실 안 카드는 먼저 시술 대기가 된 고객이 먼저다",
+  "source": "P:L160"
+ },
+ {
+  "id": "procedure.room-slot.occupied#1",
+  "screenId": "procedure/room-slot/occupied",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 | 점유 유지 원래 관리실에는 「점유 중 · {고객 이름}」(문구 안)이 보인다 | 2-1대로 한다",
+  "source": "P:L69"
+ },
+ {
+  "id": "procedure.room-slot.occupied#2",
+  "screenId": "procedure/room-slot/occupied",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 | 「점유 중 · {이름}」(문구 안). 점유 유지 원래 관리실에 보인다 | 그 고객 카드를 원래 관리실로 복귀시키고 점유를 푼다",
+  "source": "P:L328"
+ },
+ {
+  "id": "procedure.room-slot.occupied#3",
+  "screenId": "procedure/room-slot/occupied",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 3a · 4 | 점유 유지 원래 관리실은 다른 접수 · 관리실 이동에서 고르지 못한다. 점유는 그 고객이 돌아오거나 귀가하면 풀리고, 다른 관리실로 다시 옮겨도 남는다",
+  "source": "P:L336"
+ },
+ {
+  "id": "procedure.customer-card#1",
+  "screenId": "procedure/customer-card",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "간호사 · 원장이 시술 대기가 된 고객의 카드 한 장에서 관리실 · 고객 정보 · 오더 메모 · 시술 줄을 보고, 그 카드에서 마취 · 호출 · 시작 · 종료 · 차팅 · 귀가 대기를 한다.",
+  "source": "P:L50"
+ },
+ {
+  "id": "procedure.customer-card#2",
+  "screenId": "procedure/customer-card",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 관리실 이름 | 현재 배정 관리실 이름 | 「점유 이동」 · 「다른 관리실로 이동」이 뜬다. 점유 이동 중이면 「원래 관리실로 복귀」도 뜬다. 카드 상태가 귀가 대기이면 눌러도 아무 일이 없다",
+  "source": "P:L325"
+ },
+ {
+  "id": "procedure.customer-card#3",
+  "screenId": "procedure/customer-card",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 고객 정보 | 한국어 발음 · 국적 · 담당 상담실장 · 「통역 필요 {언어}」. <br>「통역 필요 {언어}」는 통역이 필요한 고객에게만 보인다 | 고객 이름을 누르면 시술 차트가 뜬다(4-2)",
+  "source": "P:L71"
+ },
+ {
+  "id": "procedure.customer-card#4",
+  "screenId": "procedure/customer-card",
+  "elementNo": 5,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "통역 필요 · 언어 | 「통역 필요 {언어}」 | 자동 저장 | 오늘 예약의 「통역 필요 여부와 언어」(CC 예약 현황 2-1)다. 예: 「통역 필요 중국어」 | —",
+  "source": "P:L107"
+ },
+ {
+  "id": "procedure.customer-card#5",
+  "screenId": "procedure/customer-card",
+  "elementNo": 6,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 오더 메모 | 아래 「오더 메모」 표 가운데 값이 있는 것. 하나도 없으면 보이지 않는다 | —",
+  "source": "P:L72"
+ },
+ {
+  "id": "procedure.customer-card#6",
+  "screenId": "procedure/customer-card",
+  "elementNo": 7,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 마취 | 「마취 시작」 · 「마취중 mm:ss」 · 「마취 종료」. 카드 상태가 귀가 대기이면 없다 | 2-2대로 한다",
+  "source": "P:L73"
+ },
+ {
+  "id": "procedure.customer-card#7",
+  "screenId": "procedure/customer-card",
+  "elementNo": 8,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 시술 줄 | 윗단에 [이벤트] · 시술명 · 괄호(부위 · 요청) · 「시작」 · 「종료」 같은 줄 버튼, 아랫단에 시술 상태 글자가 보인다(4-1 「시술 상태」). <br>시술 도중에 오더값이 바뀐 줄 · 새 시술 줄 · 시술 미진행 줄의 자리와 표시는 아래 「시술 줄 순서와 변경 표시」 표대로다 | 「시작」을 누르면 그 줄이 진행 중, 「종료」를 누르면 완료가 된다(4-1)",
+  "source": "P:L74"
+ },
+ {
+  "id": "procedure.customer-card#8",
+  "screenId": "procedure/customer-card",
+  "elementNo": 9,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 시술 선택 | 「전체 선택」 · 시술 줄마다 체크박스. 고를 수 있는 줄은 아래 「시술 줄 체크박스」 표대로다. 대기 줄이 없으면 「전체 선택」이 비활성이다 | 「전체 선택」을 누르면 대기 줄을 모두 고르고, 모두 골라져 있으면 모두 푼다. 체크박스를 누르면 그 줄만 고르거나 푼다",
+  "source": "P:L75"
+ },
+ {
+  "id": "procedure.customer-card#9",
+  "screenId": "procedure/customer-card",
+  "elementNo": 10,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 원장 호출 | 「전체 호출 · n개」 · 「지정 호출 · n개」. 시술 줄을 하나 이상 고르면 보이고, 고른 줄이 없으면 숨는다 | 3-1 흐름 3대로 부른다",
+  "source": "P:L76"
+ },
+ {
+  "id": "procedure.customer-card#10",
+  "screenId": "procedure/customer-card",
+  "elementNo": 12,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 귀가 대기 | 「귀가 대기」. 시작 전 · 진행 중인 시술 줄이 없고 카드 상태가 시술 진행일 때 보인다 | 카드 상태가 귀가 대기로 바뀐다(5-1)",
+  "source": "P:L77"
+ },
+ {
+  "id": "procedure.customer-card#11",
+  "screenId": "procedure/customer-card",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 2 | 시술을 시작한 고객은 charty에서 상담을 시작해도 카드 상태와 진행 중인 시술이 바뀌지 않는다(I-10). 시작한 줄이 없는 시술 대기 고객은 정책 11을 따른다",
+  "source": "P:L161"
+ },
+ {
+  "id": "procedure.customer-card#12",
+  "screenId": "procedure/customer-card",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "11 | 1 | 시작한 줄이 없는 시술 대기 고객의 상담을 상담실장이 charty에서 시작하면 고객 카드가 내려간다. 걸린 의사 호출 · 원장 수락은 자동으로 취소되고 원장에게 알려지며, 마취는 그대로 둔다. 상담을 저장해 다시 시술 대기가 되면 같은 관리실에 카드가 다시 생긴다(CC 예약 현황 4-1 순서 2f)",
+  "source": "P:L166"
+ },
+ {
+  "id": "procedure.customer-card.status-waiting#1",
+  "screenId": "procedure/customer-card/status-waiting",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 대기 | 「시술 대기 HH:MM」. 시각은 내원 상태가 처음 시술 대기가 된 시각이고(I-10), 돌아와도 바뀌지 않는다",
+  "source": "P:L85"
+ },
+ {
+  "id": "procedure.customer-card.status-waiting#2",
+  "screenId": "procedure/customer-card/status-waiting",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 시술 대기 | 시술 진행 | 시술 줄 하나가 「시작」으로 진행 중이 됐다 | 4-1 흐름 3",
+  "source": "P:L94"
+ },
+ {
+  "id": "procedure.customer-card.status-waiting#3",
+  "screenId": "procedure/customer-card/status-waiting",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "7 | 시술 대기 | (카드 없음) | 시작한 줄이 없는 고객의 상담을 상담실장이 charty에서 시작했다. 상담을 저장해 다시 시술 대기가 되면 같은 관리실에 카드가 생긴다 | CC 예약 현황 4-1 순서 2f",
+  "source": "P:L100"
+ },
+ {
+  "id": "procedure.customer-card.status-in-progress#1",
+  "screenId": "procedure/customer-card/status-in-progress",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 진행 | 「시술 진행」",
+  "source": "P:L86"
+ },
+ {
+  "id": "procedure.customer-card.status-in-progress#2",
+  "screenId": "procedure/customer-card/status-in-progress",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 시술 진행 | 시술 대기 | 시작을 되돌려 카드에 진행 중 · 완료 줄이 없다. | 4-1 정책 4",
+  "source": "P:L95"
+ },
+ {
+  "id": "procedure.customer-card.status-discharge-wait#1",
+  "screenId": "procedure/customer-card/status-discharge-wait",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "귀가 대기 | 「귀가 대기 HH:MM」 · 「귀가 대기 취소」. HH:MM은 「귀가 대기」를 누른 시각이다",
+  "source": "P:L87"
+ },
+ {
+  "id": "procedure.customer-card.status-discharge-wait#2",
+  "screenId": "procedure/customer-card/status-discharge-wait",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드(카드 상태 귀가 대기) | 「귀가 대기 HH:MM」 · 「⋯」 더보기 · 오더 메모 · 시술 줄 | 「⋯」 더보기의 「귀가 대기 취소」를 누르면 확인 창 없이 시술 진행으로 돌아간다",
+  "source": "P:L656"
+ },
+ {
+  "id": "procedure.customer-card.status-discharge-wait#3",
+  "screenId": "procedure/customer-card/status-discharge-wait",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 귀가 대기 | 시술 진행 | 「귀가 대기 취소」나 완료 줄 「완료 취소」를 눌렀다 | 5-1 흐름 5 · 4-1 정책 7",
+  "source": "P:L97"
+ },
+ {
+  "id": "procedure.customer-card.status-discharge-wait#4",
+  "screenId": "procedure/customer-card/status-discharge-wait",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 귀가 대기 | 시술 대기 | 귀가 대기 카드에 charty에서 새 줄이 들어왔다 | 5-1 정책 2",
+  "source": "P:L98"
+ },
+ {
+  "id": "procedure.customer-card.order-memo#1",
+  "screenId": "procedure/customer-card/order-memo",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "상담실장이 charty에서 저장한 오더 메모를 보이고, 시술 현황에서는 고치지 않는다. 아래 표시 글은 예시다.",
+  "source": "P:L112"
+ },
+ {
+  "id": "procedure.customer-card.order-memo#2",
+  "screenId": "procedure/customer-card/order-memo",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "10 | 1 | KOS가 내원에 붙인 기타 작업은 시술 줄로 보이지 않고 카드 상태에 세지 않는다",
+  "source": "P:L165"
+ },
+ {
+  "id": "procedure.treatment-line.waiting#1",
+  "screenId": "procedure/treatment-line/waiting",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "대기 | 고를 수 있다 | 「전체 호출」 · 「지정 호출」의 n이 고른 줄 수로 바뀐다",
+  "source": "P:L150"
+ },
+ {
+  "id": "procedure.treatment-line.waiting#2",
+  "screenId": "procedure/treatment-line/waiting",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "[이벤트] | 시술명 앞 「[이벤트]」. 가격 구분이 「이벤트」인 줄에만 붙고, 그 밖의 줄에는 표시가 없다 | 자동 저장 | charty 진행할 시술 가격 구분. 상담실장이 상담 저장 때 정한다(charty 4-4 · 5-1 · I-10) | —",
+  "source": "P:L128"
+ },
+ {
+  "id": "procedure.treatment-line.waiting#3",
+  "screenId": "procedure/treatment-line/waiting",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술명 | 판매 상품 이름(용량 포함, 예: 「써마지 FLX 300shot」)이나 시술권 상품 이름이다. 같은 상품을 같은 등록 방식으로 오늘 2회 이상 받으면 「아쿠아필 2회」처럼 한 줄로 온다 | 자동 저장 | charty 진행할 시술 시술명(charty 4-4 정책 9 · I-10) | —",
+  "source": "P:L129"
+ },
+ {
+  "id": "procedure.treatment-line.waiting#4",
+  "screenId": "procedure/treatment-line/waiting",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "부위 · 요청 | 시술명 뒤 괄호에 부위 · 요청 순서로 값이 있는 것만 쉼표로 잇는다. 예: 「(얼전, 이마포함)」. 다시 저장하면 바뀐 값으로 보이고 취소선은 긋지 않는다 | 자동 저장 | charty 상담 2-2 오더 메모 시술 줄의 부위 칸 · 요청 칸이다. AI가 대화에서 채우거나 상담실장이 쓴다(I-10) | —",
+  "source": "P:L130"
+ },
+ {
+  "id": "procedure.treatment-line.waiting#5",
+  "screenId": "procedure/treatment-line/waiting",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "대기 | 「대기」 글자 없이 체크박스 · 「시작」이 보인다",
+  "source": "P:L516"
+ },
+ {
+  "id": "procedure.treatment-line.not-proceeding#1",
+  "screenId": "procedure/treatment-line/not-proceeding",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 미진행 | 대기 · 호출 중 · 수락 | 바로 빼지 않고 같은 자리에 비활성 「시술 미진행」 줄을 보인다. 「변경 확인」으로 확인하면 카드에서 빠진다. 호출 중 · 수락 줄이면 CC가 그 줄의 호출을 자동으로 닫고, 수락 원장 배정도 푼다",
+  "source": "P:L141"
+ },
+ {
+  "id": "procedure.treatment-line.not-proceeding#2",
+  "screenId": "procedure/treatment-line/not-proceeding",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "10 | 대기 · 호출 중 · 수락 | 시술 미진행(확인 전) | 상담실장이 시술 오더를 시술 미진행으로 바꿨다. 「변경 확인」 뒤 카드에서 빠진다(I-10) | 1-1 「시술 줄 순서와 변경 표시」",
+  "source": "P:L534"
+ },
+ {
+  "id": "procedure.treatment-line.done#1",
+  "screenId": "procedure/treatment-line/done",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "완료 | 체크된 채로 보이고 눌리지 않는다 | —",
+  "source": "P:L154"
+ },
+ {
+  "id": "procedure.treatment-line.done#2",
+  "screenId": "procedure/treatment-line/done",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "완료 줄 | 완료 | 같은 줄의 용량 · 부위 · 시술명은 바꾸지 않는다. 새로 할 시술은 새 줄로 추가한다",
+  "source": "P:L142"
+ },
+ {
+  "id": "procedure.treatment-line.done#3",
+  "screenId": "procedure/treatment-line/done",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "완료 | 완료 체크 표시 · 담당 원장이 있으면 「{원장} · n분」, 없으면 「n분」 · 「⋯」 더보기가 보인다. n분은 시작 시각부터 종료 시각까지의 경과 시간이다. 완료 체크 표시는 눌리지 않는다",
+  "source": "P:L521"
+ },
+ {
+  "id": "procedure.treatment-line.done#4",
+  "screenId": "procedure/treatment-line/done",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 5 | 끝 시각은 그 줄에서 「종료」를 누른 시각이다. 걸린 시간은 시작 시각부터 끝 시각까지다. 고객 카드에는 걸린 시간만 n분으로 보인다",
+  "source": "P:L557"
+ },
+ {
+  "id": "procedure.customer-card.line-changed#1",
+  "screenId": "procedure/customer-card/line-changed",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "용량 변경 | 대기 · 호출 중 · 수락 · 진행 중 | 같은 줄에 최신 시술명 · 용량 · 부위를 보이고 「변경」만 붙인다. 상태 · 시작 시각 · 담당 원장은 그대로다",
+  "source": "P:L139"
+ },
+ {
+  "id": "procedure.customer-card.line-changed#2",
+  "screenId": "procedure/customer-card/line-changed",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "「변경」은 해당 카드를 연 간호사 · 피부관리팀이 확인하면 사라지고 변경 이력은 남는다. 새 시술 줄에는 확인 칩을 붙이지 않는다. 한 고객에게 바뀐 줄이 있으면 카드 머리에 「변경 n건」이 보인다. 이를 누르면 바뀐 줄의 변경 이력을 연다.",
+  "source": "P:L144"
+ },
+ {
+  "id": "procedure.customer-card.line-changed#3",
+  "screenId": "procedure/customer-card/line-changed",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 2 | 같은 고객의 바뀐 줄은 알림 하나와 카드 머리 「변경 n건」으로 모은다. 알림 글자는 1-3 정책 1을 따른다",
+  "source": "P:L162"
+ },
+ {
+  "id": "procedure.customer-card.new-lines#1",
+  "screenId": "procedure/customer-card/new-lines",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드에는 처음 있던 시술 줄을 먼저 보이고, 새 시술 줄은 그 아래 구분선 뒤에 보인다. 완료 줄은 원래 자리에 회색 글자와 완료 표시만 보인다. 같은 시술 줄의 최신 오더값은 charty 다시 저장으로 갱신한다. 이전 값 · 바꾼 사유 · 바꾼 사람 · 시각은 시술 차트의 변경 이력에 남기고 고객 카드에는 보이지 않는다(I-10).",
+  "source": "P:L135"
+ },
+ {
+  "id": "procedure.customer-card.new-lines#2",
+  "screenId": "procedure/customer-card/new-lines",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "새 시술 추가 | 대기 | 기존 시술 줄 아래 구분선 뒤에 새 줄과 「시작」을 보인다. 「추가」 칩은 붙이지 않는다",
+  "source": "P:L140"
+ },
+ {
+  "id": "procedure.customer-card.call-bar#1",
+  "screenId": "procedure/customer-card/call-bar",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 시술 선택 | 「전체 선택」 · 시술 줄마다 체크박스. 고를 수 있는 줄은 아래 「시술 줄 체크박스」 표대로다. 대기 줄이 없으면 「전체 선택」이 비활성이다 | 「전체 선택」을 누르면 대기 줄을 모두 고르고, 모두 골라져 있으면 모두 푼다. 체크박스를 누르면 그 줄만 고르거나 푼다",
+  "source": "P:L75"
+ },
+ {
+  "id": "procedure.customer-card.call-bar#2",
+  "screenId": "procedure/customer-card/call-bar",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 원장 호출 | 「전체 호출 · n개」 · 「지정 호출 · n개」. 시술 줄을 하나 이상 골랐을 때 보인다. 지정 원장이 그날 근무하면 버튼 위에 「지정 원장 · {원장}」이 보이고, 지정 원장이 없거나 미출근이면 보이지 않는다 | 「전체 호출」은 확인 창 없이 그날 근무가 있는 원장 모두에게 호출을 보낸다. 「지정 호출」은 원장 목록을 띄운다",
+  "source": "P:L417"
+ },
+ {
+  "id": "procedure.customer-card.call-bar#3",
+  "screenId": "procedure/customer-card/call-bar",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 3a · 3b · 5 | 한 번 누른 「전체 호출」 · 「지정 호출」 · 「재호출」은 호출 1건이고, 든 줄을 모두 담는다. 수납 전에 들어온 새 시술 줄도 든다(charty 6-2)",
+  "source": "P:L425"
+ },
+ {
+  "id": "procedure.customer-card.call-bar#4",
+  "screenId": "procedure/customer-card/call-bar",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 간호사 | 시술마다 원장이 다르거나 원장 없이 할 시술이 섞였으면 원장마다 줄을 골라 따로 부른다",
+  "source": "P:L387"
+ },
+ {
+  "id": "procedure.chart.change-history#1",
+  "screenId": "procedure/chart/change-history",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "open-question",
+  "body": "고객 카드에는 처음 있던 시술 줄을 먼저 보이고, 새 시술 줄은 그 아래 구분선 뒤에 보인다. 완료 줄은 원래 자리에 회색 글자와 완료 표시만 보인다. 같은 시술 줄의 최신 오더값은 charty 다시 저장으로 갱신한다. 이전 값 · 바꾼 사유 · 바꾼 사람 · 시각은 시술 차트의 변경 이력에 남기고 고객 카드에는 보이지 않는다(I-10).",
+  "source": "P:L135",
+  "ref": "research §6 #2"
+ },
+ {
+  "id": "procedure.chart.change-history#2",
+  "screenId": "procedure/chart/change-history",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "open-question",
+  "body": "「변경」은 해당 카드를 연 간호사 · 피부관리팀이 확인하면 사라지고 변경 이력은 남는다. 새 시술 줄에는 확인 칩을 붙이지 않는다. 한 고객에게 바뀐 줄이 있으면 카드 머리에 「변경 n건」이 보인다. 이를 누르면 바뀐 줄의 변경 이력을 연다.",
+  "source": "P:L144",
+  "ref": "research §6 #2"
+ },
+ {
+  "id": "procedure.search#1",
+  "screenId": "procedure/search",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "시술 현황을 연 직원이 고객 이름 · 담당 원장 이름 · 관리실 이름으로 시술 현황에 카드가 생겼던 고객을 찾고, 검색 결과를 눌러 그 고객의 가장 최근 방문 시술 차트를 연다.",
+  "source": "P:L176"
+ },
+ {
+  "id": "procedure.search#2",
+  "screenId": "procedure/search",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 현황 화면 고객 검색에 넣은 글자로 찾는 값이다. 빈칸과 대소문자를 무시하고, 넣은 글자가 값 어디에 있어도 맞는 것으로 본다.",
+  "source": "P:L211"
+ },
+ {
+  "id": "procedure.search#3",
+  "screenId": "procedure/search",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 1 | 찾는 고객은 CC를 켠 뒤 시술 현황에 카드가 생겼던 고객이다. 오늘 카드가 있는 고객 · 오늘 귀가한 고객 · 지난 방문 고객을 모두 찾는다",
+  "source": "P:L224"
+ },
+ {
+  "id": "procedure.search#4",
+  "screenId": "procedure/search",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 1 | 차트 번호로는 찾지 않는다",
+  "source": "P:L225"
+ },
+ {
+  "id": "procedure.search#5",
+  "screenId": "procedure/search",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 2 | 검색 결과가 떠 있는 동안에도 시술 현황 화면의 관리실 칸 · 고객 카드 · 확인 필요는 그대로 보인다",
+  "source": "P:L226"
+ },
+ {
+  "id": "procedure.search.results#1",
+  "screenId": "procedure/search/results",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 2 | 검색 결과는 최근 방문의 시술 대기 시각이 늦은 고객부터 보이고, 동명이인도 모두 남는다",
+  "source": "P:L227"
+ },
+ {
+  "id": "procedure.search.results#2",
+  "screenId": "procedure/search/results",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 2 | 시술 이름이 셋 이상이면 시술 줄 순서대로 앞의 둘과 「외 n건」(문구 안)을 보인다. 시술 이름 전부는 시술 차트에서 본다",
+  "source": "P:L228"
+ },
+ {
+  "id": "procedure.search.results#3",
+  "screenId": "procedure/search/results",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "7 | 3a | 오늘 귀가했거나 지난 방문 고객이면 시술 차트가 최근 방문일의 기록으로 열리고, 그날 차팅을 4-2 정책 15대로 고친다",
+  "source": "P:L229"
+ },
+ {
+  "id": "procedure.search.results#4",
+  "screenId": "procedure/search/results",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "최근 방문일 | 검색 결과 | 계산 | 시술 현황에 그 고객 카드가 생겼던 날 가운데 가장 최근 날이다. 오늘 카드가 있으면 「오늘」이다 | —",
+  "source": "P:L205"
+ },
+ {
+  "id": "procedure.search.empty#1",
+  "screenId": "procedure/search/empty",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 3c | 카드가 생긴 적 없는 고객은 「검색 결과 없음」이고, 고객 목록(CC-09)에서 찾는다",
+  "source": "P:L235"
+ },
+ {
+  "id": "procedure.customer-card.confirm-flag#1",
+  "screenId": "procedure/customer-card/confirm-flag",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 | 확인 필요에 든 동안 그 상황의 「확인할 일」 글자(「대기 n분째」 · 「호출 n분째」 · 「시술 변경 n건」 등)가 보인다. 상황이 여럿이면 모두 보이고, 「풀리는 때」의 일을 하면 사라진다 | 「확인할 일」 글자를 누르면 「확인 필요」에서 그 상황의 카드가 보이고 잠깐 강조된다",
+  "source": "P:L262"
+ },
+ {
+  "id": "procedure.customer-card.confirm-flag#2",
+  "screenId": "procedure/customer-card/confirm-flag",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "마취 전 대기 | 시술 대기 카드가 생긴 뒤 5분이 지나도 「마취 시작」 · 의사 호출 · 「시작」이 없다 | 「대기 n분째」 | — | 「마취 시작」 · 의사 호출 · 「시작」 가운데 하나를 누른다",
+  "source": "P:L270"
+ },
+ {
+  "id": "procedure.customer-card.confirm-flag#3",
+  "screenId": "procedure/customer-card/confirm-flag",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "받지 않은 호출 | 원장 호출을 보낸 뒤 5분이 지나도 원장이 CC 모바일에서 수락하지 않았다. 다시 부른 호출은 그 호출이 생긴 때부터 센다 | 「호출 n분째」 | 「재호출」 | 원장이 CC 모바일에서 수락하거나, 호출 중 줄 「시작」 · 「재호출」 가운데 하나가 되거나 그 줄이 시술 미진행이 된다",
+  "source": "P:L272"
+ },
+ {
+  "id": "procedure.customer-card.confirm-flag#4",
+  "screenId": "procedure/customer-card/confirm-flag",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 변경 | 시술 오더에서 용량 또는 부위를 바꿨고, 그 CC 시술 줄이 대기 · 호출 중 · 수락 · 진행 중이다. 또는 새 시술을 추가했거나, 대기 · 호출 중 · 수락 줄을 시술 미진행으로 바꿨다 | 「시술 변경 n건」 | 「변경 확인」 | 「변경 확인」으로 변경 이력을 열어 해당 변경을 확인한다. 확인한 줄의 「변경」은 사라지고, 비활성 「시술 미진행」 줄은 카드에서 빠진다",
+  "source": "P:L274"
+ },
+ {
+  "id": "procedure.confirm-needed#1",
+  "screenId": "procedure/confirm-needed",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "간호사가 확인해야 하는 상황이 생기면 시술 현황이 알림으로 따로 알려 주고, 「확인 필요」에 카드로 모아 보인다.",
+  "source": "P:L239"
+ },
+ {
+  "id": "procedure.confirm-needed#2",
+  "screenId": "procedure/confirm-needed",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 1 | 확인 필요 카드는 걸린 지 오래된 것부터 놓이고, 고객 검색과 상관없이 모두 보인다",
+  "source": "P:L283"
+ },
+ {
+  "id": "procedure.confirm-needed#3",
+  "screenId": "procedure/confirm-needed",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시간 기준이 있는 상황의 기준 분은 설정 「확인 필요 기준 분」(CC-20-3)의 값이다. 아래 분은 처음 값이다. 시술 변경은 시간을 재지 않고 바로 든다.",
+  "source": "P:L266"
+ },
+ {
+  "id": "procedure.confirm-needed.card#1",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "확인 필요 카드 관리실 이름 | 관리실 이름 · 고객 이름 | 그 고객 카드가 보이고 잠깐 강조된다",
+  "source": "P:L256"
+ },
+ {
+  "id": "procedure.confirm-needed.card#2",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "확인 필요 카드 버튼 | 「재호출」. 받지 않은 호출 카드에 보인다 | 처음 호출의 종류와 지정 원장으로 그 호출에 든 시술 줄을 모두 다시 부른다(3-1 「재호출」과 같다)",
+  "source": "P:L258"
+ },
+ {
+  "id": "procedure.confirm-needed.card#3",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "수락 뒤 미시작 | 원장이 CC 모바일에서 수락한 뒤 5분이 지나도 「시작」이 없다 | 「{원장} 수락 n분째」 | 「다시 알림」 | 「시작」을 누르거나, 원장을 바꾸거나, 그 줄이 시술 미진행이 된다(3-2). 「다시 알림」을 누르거나 원장을 바꾸면 카드가 닫히고 그때부터 다시 센다",
+  "source": "P:L273"
+ },
+ {
+  "id": "procedure.confirm-needed.card#4",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": 5,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "귀가 대기 전 | 시작 전 · 진행 중인 시술 줄이 없는데 「귀가 대기」를 누르지 않았다. 시간 기준 없이 바로 든다 | 「귀가 대기 전」 | 「귀가 대기」 | 「귀가 대기」를 누르거나, 「완료 취소」 · 새 시술로 끝나지 않은 줄이 생긴다",
+  "source": "P:L275"
+ },
+ {
+  "id": "procedure.confirm-needed.card#5",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": 6,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 변경 | 시술 오더에서 용량 또는 부위를 바꿨고, 그 CC 시술 줄이 대기 · 호출 중 · 수락 · 진행 중이다. 또는 새 시술을 추가했거나, 대기 · 호출 중 · 수락 줄을 시술 미진행으로 바꿨다 | 「시술 변경 n건」 | 「변경 확인」 | 「변경 확인」으로 변경 이력을 열어 해당 변경을 확인한다. 확인한 줄의 「변경」은 사라지고, 비활성 「시술 미진행」 줄은 카드에서 빠진다",
+  "source": "P:L274"
+ },
+ {
+  "id": "procedure.confirm-needed.card#6",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 1 | 한 고객이 여러 상황에 걸리면 확인 필요 카드가 여럿 생긴다. 호출 하나에 시술 줄이 여럿이어도 카드는 하나다",
+  "source": "P:L282"
+ },
+ {
+  "id": "procedure.confirm-needed.card#7",
+  "screenId": "procedure/confirm-needed/card",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "마취 초과 | 「마취 시작」 뒤 40분이 지나도 「마취 종료」를 누르지 않았다(2-2) | 「마취 n분째」 | — | 「마취 종료」나 「귀가 대기」를 누른다",
+  "source": "P:L271"
+ },
+ {
+  "id": "procedure.toast.alert#1",
+  "screenId": "procedure/toast/alert",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 1 | 알림 글자는 「{관리실} {이름} {확인할 일}」(문구 안)이다. 확인 필요에 들 때 한 번 뜨고, 시술 현황을 보는 직원 모두에게 같이 뜬다",
+  "source": "P:L281"
+ },
+ {
+  "id": "procedure.toast.alert#2",
+  "screenId": "procedure/toast/alert",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "7 | 1 | 시술 현황 화면 알림은 원장 수락 · 상담실장이 바꾼 시술(정책 6) · 확인 필요처럼 이 화면 밖에서 생긴 일만 시술 현황을 보는 화면 모두에 띄운다. 직원이 시술 현황에서 누른 일은 알리지 않는다",
+  "source": "P:L163"
+ },
+ {
+  "id": "procedure.toast.alert#3",
+  "screenId": "procedure/toast/alert",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 2 | 같은 고객의 바뀐 줄은 알림 하나와 카드 머리 「변경 n건」으로 모은다. 알림 글자는 1-3 정책 1을 따른다",
+  "source": "P:L162"
+ },
+ {
+  "id": "procedure.room-move.menu#1",
+  "screenId": "procedure/room-move/menu",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "간호사 · 코디가 고객 카드의 현재 배정 관리실 이름으로 고객을 빈 관리실로 옮긴다. 「점유 이동」은 원래 관리실을 다른 고객에게 열지 않은 채 새 빈 관리실에서 시술을 이어 가는 흐름이다. 「다른 관리실로 이동」은 원래 관리실을 비우고 새 관리실로 옮기는 흐름이다. 점유 이동 뒤에는 새로 배정된 관리실 이름에서 「원래 관리실로 복귀」를 눌러 돌아온다.",
+  "source": "P:L291"
+ },
+ {
+  "id": "procedure.room-move.menu#2",
+  "screenId": "procedure/room-move/menu",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "머물던 관리실 | 「점유 중 · {이름}」이 되고 다른 고객을 받지 못한다 | 빈다",
+  "source": "P:L311"
+ },
+ {
+  "id": "procedure.room-move.menu#3",
+  "screenId": "procedure/room-move/menu",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 간호사 · 코디 | 점유 이동 뒤 고객 카드의 새로 배정된 관리실 이름에서 「원래 관리실로 복귀」를 누르거나, 원래 관리실 「점유 중 · {이름}」을 누르면 카드가 원래 관리실로 돌아가고 점유가 풀린다",
+  "source": "P:L301"
+ },
+ {
+  "id": "procedure.room-move.menu#4",
+  "screenId": "procedure/room-move/menu",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 3a · 4 | 점유 유지 원래 관리실은 다른 접수 · 관리실 이동에서 고르지 못한다. 점유는 그 고객이 돌아오거나 귀가하면 풀리고, 다른 관리실로 다시 옮겨도 남는다",
+  "source": "P:L336"
+ },
+ {
+  "id": "procedure.room-move.list#1",
+  "screenId": "procedure/room-move/list",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 2 | 빈 관리실은 관리실 정보에서 사용을 켠 관리실(CC-23-1) 가운데 고객 수가 침대 수보다 적고 점유 중이 아닌 관리실이다",
+  "source": "P:L334"
+ },
+ {
+  "id": "procedure.room-move.list#2",
+  "screenId": "procedure/room-move/list",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 2 | 괄호의 「n/m」은 고객 수와 침대 수이고 침대가 둘 이상인 관리실에만 붙으며, 침대가 남으면 고객이 있어도 빈 관리실로 친다. 고객 수에는 접수 뒤 그 관리실을 고른 고객과 귀가 전인 귀가 대기 고객이 든다",
+  "source": "P:L335"
+ },
+ {
+  "id": "procedure.room-move.list#3",
+  "screenId": "procedure/room-move/list",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 이동 목록 | 「점유 이동」이나 「다른 관리실로 이동」 · 새로 배정할 빈 관리실. 침대가 둘 이상인 관리실만 고객 수 / 침대 수가 붙는다(「A-룸2 (1/2)」) | 고른 빈 관리실로 옮긴다. 고를 관리실이 없으면 「빈 관리실 없음」이 보인다. 목록 바깥을 누르면 닫히고 아무것도 바뀌지 않는다",
+  "source": "P:L327"
+ },
+ {
+  "id": "procedure.room-move.list-empty#1",
+  "screenId": "procedure/room-move/list-empty",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 이동 목록 | 「점유 이동」이나 「다른 관리실로 이동」 · 새로 배정할 빈 관리실. 침대가 둘 이상인 관리실만 고객 수 / 침대 수가 붙는다(「A-룸2 (1/2)」) | 고른 빈 관리실로 옮긴다. 고를 관리실이 없으면 「빈 관리실 없음」이 보인다. 목록 바깥을 누르면 닫히고 아무것도 바뀌지 않는다",
+  "source": "P:L327"
+ },
+ {
+  "id": "procedure.toast.room-full#1",
+  "screenId": "procedure/toast/room-full",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 3a · 3b | 두 사람이 같은 관리실의 마지막 자리로 거의 같이 옮기면 먼저 저장된 것이 남고, 뒤 사람 카드는 원래 관리실에 남으며 알림 「그 관리실에 자리가 없습니다」(문구 안)가 뜬다",
+  "source": "P:L342"
+ },
+ {
+  "id": "procedure.customer-card.anesthesia-idle#1",
+  "screenId": "procedure/customer-card/anesthesia-idle",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 간호사 | 「마취 시작」을 누르면 새 마취 회차가 열려 「마취중 00:00」부터 초 단위로 세고 「마취 종료」가 보인다",
+  "source": "P:L352"
+ },
+ {
+  "id": "procedure.customer-card.anesthesia-running#1",
+  "screenId": "procedure/customer-card/anesthesia-running",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 카드 마취 | 「마취중 mm:ss」 · 「마취 종료」. 열린 마취가 있을 때 보인다. 「마취 시작」을 누른 때부터 초 단위로 센다 | 「마취 종료」를 누르면 회차가 닫힌다",
+  "source": "P:L366"
+ },
+ {
+  "id": "procedure.customer-card.anesthesia-running#2",
+  "screenId": "procedure/customer-card/anesthesia-running",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 1 · 2 | 원장이 수락하거나 「시작」을 눌러도 마취는 「마취 종료」를 누를 때까지 열려 있다. 「귀가 대기」를 누르면 닫힌다(5-1)",
+  "source": "P:L372"
+ },
+ {
+  "id": "procedure.customer-card.anesthesia-running#3",
+  "screenId": "procedure/customer-card/anesthesia-running",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "마취 초과 | 「마취 시작」 뒤 40분이 지나도 「마취 종료」를 누르지 않았다(2-2) | 「마취 n분째」 | — | 「마취 종료」나 「귀가 대기」를 누른다",
+  "source": "P:L271"
+ },
+ {
+  "id": "procedure.treatment-line.calling#1",
+  "screenId": "procedure/treatment-line/calling",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "호출 중 | 아랫단에 「호출 중 n분」(지정 호출이면 「{원장} 호출 중 n분」), 윗단에 「시작」 · 「재호출」이 보인다. 체크박스는 비활성이다",
+  "source": "P:L517"
+ },
+ {
+  "id": "procedure.treatment-line.calling#2",
+  "screenId": "procedure/treatment-line/calling",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 5 | 「재호출」하면 처음 호출의 종류와 지정 원장을 그대로 써서 새 호출을 만든다. 그 줄은 앞 호출에서 빠지고 새 호출에 든다. 앞 호출에 남은 줄이 없으면 앞 호출과 그 원장 알림이 닫힌다(CC 개요 의사 호출 상태)",
+  "source": "P:L427"
+ },
+ {
+  "id": "procedure.treatment-line.calling#3",
+  "screenId": "procedure/treatment-line/calling",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "8 | 4-1 흐름 2b · 2c | 호출 중 줄을 「시작」하면 그 줄만 앞 호출에서 빠진다. 같은 호출의 다른 줄은 호출 중으로 남는다. 앞 호출에 남은 줄이 없으면 호출과 원장 알림이 닫힌다",
+  "source": "P:L428"
+ },
+ {
+  "id": "procedure.treatment-line.calling#4",
+  "screenId": "procedure/treatment-line/calling",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 줄 표시 | 「호출 중 n분」 | 「{원장} 호출 중 n분」",
+  "source": "P:L402"
+ },
+ {
+  "id": "procedure.treatment-line.calling#5",
+  "screenId": "procedure/treatment-line/calling",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "호출 중 줄 「시작」 | 원장 목록에서 실제 온 원장을 고르면 그 원장으로 시작된다(4-1 흐름 2c) | 부른 원장으로 바로 시작된다(4-1 흐름 2b)",
+  "source": "P:L403"
+ },
+ {
+  "id": "procedure.doctor-list.designate-call#1",
+  "screenId": "procedure/doctor-list/designate-call",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3b | 간호사 | 「지정 호출 · n개」를 누르면 원장 목록이 뜬다. 지정 원장이 그날 근무하면 그 원장이 맨 위에 골라진 채로 보인다. 간호사가 원장을 확인하거나 바꿔 「호출」을 누르면 든 줄이 「{원장} 호출 중」이 되고 체크가 풀린다",
+  "source": "P:L389"
+ },
+ {
+  "id": "procedure.doctor-list.designate-call#2",
+  "screenId": "procedure/doctor-list/designate-call",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "원장 목록 | 그날 근무가 있는 원장 · 「호출」. 지정 원장이 맨 위에 골라진 채로 보인다 | 원장을 고르고 「호출」을 누르면 목록이 닫히고 그 원장에게 지정 호출을 보낸다. 원장을 고르기 전에는 「호출」이 비활성이고, 목록 바깥을 누르면 닫히고 부르지 않는다",
+  "source": "P:L418"
+ },
+ {
+  "id": "procedure.doctor-list.designate-call#3",
+  "screenId": "procedure/doctor-list/designate-call",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 3a · 3b | 그날 근무가 있는 원장은 CC 근무 스케줄이 확정한 달의 「근무」 칸에서 읽고(CC 근무 스케줄 1-2)",
+  "source": "P:L426"
+ },
+ {
+  "id": "procedure.treatment-line.accepted#1",
+  "screenId": "procedure/treatment-line/accepted",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "수락 | 아랫단에 「{원장} 수락 완료 HH:MM」, 윗단에 「시작」. 원장 이름을 눌러 바꾼다(3-2). 체크박스가 없다",
+  "source": "P:L518"
+ },
+ {
+  "id": "procedure.treatment-line.accepted#2",
+  "screenId": "procedure/treatment-line/accepted",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 3a | 의사 호출을 CC 모바일에서 수락하면 다른 원장의 알림을 닫는다",
+  "source": "P:L478"
+ },
+ {
+  "id": "procedure.treatment-line.accepted#3",
+  "screenId": "procedure/treatment-line/accepted",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 5 | 원장은 CC 모바일에서 수락을 되돌리지 않는다. 담당 원장은 간호사가 시술 현황에서 바꾼다",
+  "source": "P:L480"
+ },
+ {
+  "id": "procedure.doctor-list.reassign#1",
+  "screenId": "procedure/doctor-list/reassign",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 간호사 | 담당 원장을 바꿀 때는 수락 · 진행 중 줄의 원장 이름을 눌러 원장 목록에서 고른다. 시술 상태와 시작 시각은 그대로 두고 새 원장 이름이 보인다",
+  "source": "P:L443"
+ },
+ {
+  "id": "procedure.doctor-list.reassign#2",
+  "screenId": "procedure/doctor-list/reassign",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "원장 목록 | 그날 근무가 있는 원장 | 원장 이름을 눌러 뜬 목록이면 담당 원장을 바꾼다. 전체 호출 중 「시작」으로 뜬 목록이면 실제 온 원장을 고른다. 목록 바깥을 누르면 아무것도 바뀌지 않는다",
+  "source": "P:L472"
+ },
+ {
+  "id": "procedure.doctor-list.reassign#3",
+  "screenId": "procedure/doctor-list/reassign",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 5 | 원장을 바꾸면 이전 원장 CC 모바일 알림이 닫힌다",
+  "source": "P:L479"
+ },
+ {
+  "id": "procedure.treatment-line.in-progress#1",
+  "screenId": "procedure/treatment-line/in-progress",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "진행 중 | 담당 원장이 있으면 「{원장} · 진행 mm:ss」, 없으면 「진행 mm:ss」와 「종료」 · 「⋯」 더보기가 보인다. 체크박스는 비활성이다",
+  "source": "P:L520"
+ },
+ {
+  "id": "procedure.treatment-line.in-progress#2",
+  "screenId": "procedure/treatment-line/in-progress",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 1 · 2a ~ 2c | 시작 시각은 해당 시술 줄의 「시작」이 확정돼 줄 상태가 진행 중으로 바뀐 시각이다. 카드가 시술 대기가 된 시각 · 원장 호출 시각 · 수락 시각 · 마취 시작 시각과는 다르다. 담당 원장은 수락한 원장, 지정 호출에서 부른 원장, 전체 호출 중 「시작」 때 고른 원장이고, 대기 줄을 바로 시작하면 비어 있다. 진행한 관리실은 「시작」을 누른 때 고객 카드가 있던 관리실이다",
+  "source": "P:L553"
+ },
+ {
+  "id": "procedure.treatment-line.in-progress#3",
+  "screenId": "procedure/treatment-line/in-progress",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 1 · 2a ~ 2c | 「진행 mm:ss」는 정책 1의 해당 시술 줄 시작 시각부터 현재 시각까지 센다",
+  "source": "P:L554"
+ },
+ {
+  "id": "procedure.treatment-line.in-progress#4",
+  "screenId": "procedure/treatment-line/in-progress",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 2a | 한 카드에서 여러 줄이 같이 진행 중일 수 있고, 시술을 맡고 있는 원장도 다른 시술을 맡는다",
+  "source": "P:L555"
+ },
+ {
+  "id": "procedure.treatment-line.in-progress#5",
+  "screenId": "procedure/treatment-line/in-progress",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 간호사 · 피부관리팀 | 시술이 끝나면 「종료」를 누른다. 확인 창 없이 줄이 완료가 되어 체크된 체크박스와, 담당 원장이 있으면 「{원장} · n분」, 없으면 「n분」이 보인다. n분은 그 줄의 시작 시각부터 「종료」를 누른 시각까지의 경과 시간이다",
+  "source": "P:L505"
+ },
+ {
+  "id": "procedure.doctor-list.start-pick#1",
+  "screenId": "procedure/doctor-list/start-pick",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "원장 목록 | 전체 호출 중 그날 근무가 있는 원장. 원장 계정은 본인, 그다음 지정 원장이 먼저 보인다 | 실제 온 원장을 고르면 그 원장으로 진행 중이 된다. 목록 바깥을 누르면 닫히고 줄은 바뀌지 않는다",
+  "source": "P:L543"
+ },
+ {
+  "id": "procedure.doctor-list.start-pick#2",
+  "screenId": "procedure/doctor-list/start-pick",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2c | 간호사 | 전체 호출 중인 줄에서 「시작」을 누르면 원장 목록이 뜬다. 실제 온 원장을 고르면 그 원장이 담당 원장이 되어 진행 중이 된다",
+  "source": "P:L502"
+ },
+ {
+  "id": "procedure.treatment-line.more-menu#1",
+  "screenId": "procedure/treatment-line/more-menu",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 4 | 「시작 취소」는 진행 중 줄 「⋯」 더보기에서 「종료」 전까지만 된다. 확인하면 시작 직전 상태로 돌아가고, 호출 중이었다면 그 호출을 되살린다",
+  "source": "P:L556"
+ },
+ {
+  "id": "procedure.treatment-line.more-menu#2",
+  "screenId": "procedure/treatment-line/more-menu",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 6 | 「완료 취소」를 확인하면 완료 상태가 진행 중으로 돌아가고 끝 시각 · 걸린 시간을 지운다. 다시 「종료」를 누르면 그 시각을 새 끝 시각으로 저장한다",
+  "source": "P:L558"
+ },
+ {
+  "id": "procedure.treatment-line.more-menu#3",
+  "screenId": "procedure/treatment-line/more-menu",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "7 | 6 | 카드 상태가 귀가 대기일 때 「완료 취소」를 누르면 「귀가 대기 취소」를 누른 것과 같이 처리한다(5-1 흐름 5)",
+  "source": "P:L559"
+ },
+ {
+  "id": "procedure.confirm.cancel-start#1",
+  "screenId": "procedure/confirm/cancel-start",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "확인 창 | 「닫기」 | 창이 닫히고 아무것도 바뀌지 않는다",
+  "source": "P:L547"
+ },
+ {
+  "id": "procedure.confirm.cancel-start#2",
+  "screenId": "procedure/confirm/cancel-start",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 4 | 「시작 취소」는 진행 중 줄 「⋯」 더보기에서 「종료」 전까지만 된다. 확인하면 시작 직전 상태로 돌아가고, 호출 중이었다면 그 호출을 되살린다",
+  "source": "P:L556"
+ },
+ {
+  "id": "procedure.confirm.cancel-complete#1",
+  "screenId": "procedure/confirm/cancel-complete",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "확인 창 | 「닫기」 | 창이 닫히고 아무것도 바뀌지 않는다",
+  "source": "P:L547"
+ },
+ {
+  "id": "procedure.confirm.cancel-complete#2",
+  "screenId": "procedure/confirm/cancel-complete",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 간호사 | 잘못 종료했으면 완료 줄 「⋯」 더보기의 「완료 취소」를 누르고 확인 창에서 「완료 취소」를 누른다. 줄이 진행 중으로 돌아가 처음 시작 시각부터 다시 세고, 카드 상태가 귀가 대기였으면 시술 진행으로 돌아간다",
+  "source": "P:L506"
+ },
+ {
+  "id": "procedure.chart#1",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "간호사 · 피부관리팀 · 원장이 고객 카드의 고객 이름으로 시술 차트를 열어, 시술 줄마다 의사 차트와 간호관리차트를 남긴다. 두 차트는 담당자와 내용을 따로 둔다. 같은 차트 내용을 모든 시술 줄에 적용할 수 있다.",
+  "source": "P:L564"
+ },
+ {
+  "id": "procedure.chart#2",
+  "screenId": "procedure/chart",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "6 | 2 | 시술 차트에서는 주의 · 불만을 고치지 않는다. 주의 · 불만은 고객 차트(CC 고객 차트 2-3)에서 적는다",
+  "source": "P:L615"
+ },
+ {
+  "id": "procedure.chart#3",
+  "screenId": "procedure/chart",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 2 | 이번 방문 시술 줄에는 그 고객의 진행할 시술이 모두 보이고, 오더 메모는 고치지 않고 보기만 한다",
+  "source": "P:L612"
+ },
+ {
+  "id": "procedure.chart#4",
+  "screenId": "procedure/chart",
+  "elementNo": 10,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 「저장」. 고친 것이 있을 때 눌리고, 그 밖에는 비활성이다 | 창이 닫히고 차팅을 저장한다",
+  "source": "P:L595"
+ },
+ {
+  "id": "procedure.chart#5",
+  "screenId": "procedure/chart",
+  "elementNo": 10,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "12 | 5 | 저장은 시술 줄 단위다. 줄마다 저장한 로그인 계정 · 저장 시각을, 의사 차트는 고른 담당자를, 간호관리차트는 칸마다 고른 직원을 같이 남긴다",
+  "source": "P:L619"
+ },
+ {
+  "id": "procedure.chart#6",
+  "screenId": "procedure/chart",
+  "elementNo": 9,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 「닫기」 · 창 바깥 | 쓴 것이 없으면 바로 닫힌다. 쓴 것이 있으면 바깥 누르기는 아무 일이 없고, 「닫기」는 확인 창 「저장하지 않고 닫을까요?」(문구 안)를 띄운다",
+  "source": "P:L596"
+ },
+ {
+  "id": "procedure.chart#7",
+  "screenId": "procedure/chart",
+  "elementNo": 8,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 「고객 차트」. 늘 있다 | 창을 닫고 같은 고객의 CC 고객 차트 3-2로 간다. 쓴 것이 있으면 「닫기」와 같은 확인 창이 먼저 뜬다",
+  "source": "P:L598"
+ },
+ {
+  "id": "procedure.chart#8",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "9 | 3 · 4 | 의사 차트는 줄마다 담당자와 글 칸 하나, 간호관리차트는 직원 한 명마다 이름과 글 칸 하나이고, 처음 열면 칸 안 예시 글만 보인다. 오더 메모 · 마취 · 관리실 기록을 차트에 미리 채우지 않는다",
+  "source": "P:L616"
+ },
+ {
+  "id": "procedure.chart#9",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "15 | 5 | 저장한 차팅을 고치면 고치기 전 값 · 고친 값 · 계정 · 시각을 남기고, 지난 값은 지우지 않는다(의료법 22조 2항 · 23조 4항)",
+  "source": "P:L622"
+ },
+ {
+  "id": "procedure.chart#10",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "16 | 5 | 「의사 차트」는 10년, 「간호관리차트」는 5년 보존한다(의료법 시행규칙 15조)",
+  "source": "P:L623"
+ },
+ {
+  "id": "procedure.chart#11",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "14 | 5 | 차팅이 없어도 「종료」 · 「귀가 대기」를 누를 수 있고, 차팅이 빠진 줄은 확인 필요에 들지 않는다",
+  "source": "P:L621"
+ },
+ {
+  "id": "procedure.chart#12",
+  "screenId": "procedure/chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "17 | 7 | 귀가해 카드가 사라진 뒤에는 CC 고객 차트 3-2 방문 기록의 「시술 차트」로 같은 시술 차트를 열어 그날 차팅을 고친다",
+  "source": "P:L624"
+ },
+ {
+  "id": "procedure.chart.order-memo#1",
+  "screenId": "procedure/chart/order-memo",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3 | 2 | 「마지막 고친 시각」은 오더 메모를 다시 저장한 때이고, 다시 저장이 없으면 보이지 않는다",
+  "source": "P:L613"
+ },
+ {
+  "id": "procedure.chart.order-memo#2",
+  "screenId": "procedure/chart/order-memo",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 「오더 메모」 · 「마지막 고친 시각」 · 「오더 메모 펼치기」 · 「오더 메모 접기」 | 오더 메모 글 전부가 보이거나 접힌다. 처음은 펼쳐져 있다",
+  "source": "P:L589"
+ },
+ {
+  "id": "procedure.chart.doctor-chart#1",
+  "screenId": "procedure/chart/doctor-chart",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "「의사 차트」 | 담당자를 고른다. 수락한 원장이 있으면 그 원장이 처음 값이다 | 「샷 수 · 레벨 · 제품 · 용량 / 고객 반응 / 설명한 내용」(문구 안)",
+  "source": "P:L605"
+ },
+ {
+  "id": "procedure.chart.doctor-chart#2",
+  "screenId": "procedure/chart/doctor-chart",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "open-question",
+  "body": "「의사 차트」 | 담당자를 고른다. 수락한 원장이 있으면 그 원장이 처음 값이다 | 「샷 수 · 레벨 · 제품 · 용량 / 고객 반응 / 설명한 내용」(문구 안)",
+  "source": "P:L605",
+  "ref": "research §6 #10"
+ },
+ {
+  "id": "procedure.chart.doctor-chart#3",
+  "screenId": "procedure/chart/doctor-chart",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "10 | 3 · 4a | 「전체 시술에 내용 적용」은 누른 차트 칸의 글만 다른 시술 줄에 복제한다. 담당자는 바꾸지 않는다. 이미 같은 차트에 글이 있는 줄은 적용하지 않고, 확인 창에서 적용 수와 제외 수를 보여 준다",
+  "source": "P:L617"
+ },
+ {
+  "id": "procedure.chart.doctor-chart#4",
+  "screenId": "procedure/chart/doctor-chart",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "11 | 3 · 4 | 칸 안 예시 글은 시술 종류마다 다르게 둔다. 예시 글과 시술 종류 나누기는 상품 구조와 같은 자리에서 정하고(CC 미결 31), 그동안은 「차트 칸」 표의 예시 글을 모든 시술에 쓴다",
+  "source": "P:L618"
+ },
+ {
+  "id": "procedure.chart.nursing-chart#1",
+  "screenId": "procedure/chart/nursing-chart",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 「간호관리차트」 · 「작성자 추가」(문구 안). 시술 줄마다 상태와 관계없이 있고, 계정으로 막지 않는다 | 「작성자 추가」를 누르면 오늘 근무하는 간호사 · 피부관리팀 이름 목록이 뜨고, 이름을 고르면 그 사람 칸이 하나 생긴다",
+  "source": "P:L593"
+ },
+ {
+  "id": "procedure.chart.nursing-chart#2",
+  "screenId": "procedure/chart/nursing-chart",
+  "elementNo": 5,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "간호관리차트 칸 | 고른 직원 이름 · 글 칸 · 「전체 시술에 내용 적용」 · 「칸 지우기」(문구 안). 「칸 지우기」는 저장 전 칸에만 보인다 | 글 칸은 「의사 차트」와 같이 쓴다. 「전체 시술에 내용 적용」은 그 칸의 내용만 다른 시술 줄의 같은 직원 칸에 적용한다. 「칸 지우기」를 누르면 확인 창 없이 그 칸이 없어진다",
+  "source": "P:L594"
+ },
+ {
+  "id": "procedure.chart.nursing-chart#3",
+  "screenId": "procedure/chart/nursing-chart",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "12 | 5 | 저장은 시술 줄 단위다. 줄마다 저장한 로그인 계정 · 저장 시각을, 의사 차트는 고른 담당자를, 간호관리차트는 칸마다 고른 직원을 같이 남긴다",
+  "source": "P:L619"
+ },
+ {
+  "id": "procedure.chart.author-picker#1",
+  "screenId": "procedure/chart/author-picker",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "19 | 4 | 「작성자 추가」 목록은 그날 근무가 있는 간호사 · 피부관리팀이다(CC 근무 스케줄 1-2 확정 달). 근무표가 확정되지 않은 달이면 직원 계정의 간호사 · 피부관리팀 모두가 보인다. 한 줄에 같은 사람 칸은 하나다",
+  "source": "P:L625"
+ },
+ {
+  "id": "procedure.chart.apply-all-confirm#1",
+  "screenId": "procedure/chart/apply-all-confirm",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "10 | 3 · 4a | 「전체 시술에 내용 적용」은 누른 차트 칸의 글만 다른 시술 줄에 복제한다. 담당자는 바꾸지 않는다. 이미 같은 차트에 글이 있는 줄은 적용하지 않고, 확인 창에서 적용 수와 제외 수를 보여 준다",
+  "source": "P:L617"
+ },
+ {
+  "id": "procedure.chart.apply-all-confirm#2",
+  "screenId": "procedure/chart/apply-all-confirm",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "open-question",
+  "body": "4a | 간호사 · 피부관리팀 · 원장 | 쓴 의사 차트나 간호관리차트의 「전체 시술에 내용 적용」을 누른다. 확인 창에서 적용할 시술 수를 보고 확인하면, 같은 차트의 내용을 다른 시술 줄에 적용한다",
+  "source": "P:L577",
+  "ref": "research §6 #7"
+ },
+ {
+  "id": "procedure.chart.discard-confirm#1",
+  "screenId": "procedure/chart/discard-confirm",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "확인 창 | 「계속 쓰기」 · 「버리고 닫기」 | 「계속 쓰기」는 확인 창만 닫고 쓴 것은 그대로다. 「버리고 닫기」는 쓴 것을 버리고 창을 닫는다",
+  "source": "P:L597"
+ },
+ {
+  "id": "procedure.chart.conflict-notice#1",
+  "screenId": "procedure/chart/conflict-notice",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 5 | 창을 연 뒤 다른 사람이 먼저 저장한 줄이 있으면 그 줄은 덮어쓰지 않고, 창에 「다른 직원이 먼저 저장한 줄은 저장하지 않았습니다」(문구 안)를 띄우고 그 줄을 새 값으로 보인다",
+  "source": "P:L631"
+ },
+ {
+  "id": "procedure.chart.past-visits#1",
+  "screenId": "procedure/chart/past-visits",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시술 차트 | 지난 방문 기록. CC를 켠 뒤 방문은 날짜 · 시술 · 의사 차트 · 간호관리차트, 켜기 전 방문은 KOS 시술 이력(CC-00-1)의 날짜 · 시술 · 원장이다 | —",
+  "source": "P:L599"
+ },
+ {
+  "id": "procedure.chart.past-visits#2",
+  "screenId": "procedure/chart/past-visits",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 2 | 지난 방문 기록은 최근 날짜부터 보이고 고치지 못한다",
+  "source": "P:L614"
+ },
+ {
+  "id": "procedure.customer-card.more-menu#1",
+  "screenId": "procedure/customer-card/more-menu",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "5 | 간호사 | 잘못 넘겼으면 「귀가 대기 취소」를 누른다. 확인 창 없이 카드가 시술 진행으로 돌아가고, 예약 현황 원내 상황에서도 시술로 돌아간다. 시술 줄의 「완료 취소」로도 같이 돌아간다(4-1 정책 7)",
+  "source": "P:L649"
+ },
+ {
+  "id": "procedure.customer-card.more-menu#2",
+  "screenId": "procedure/customer-card/more-menu",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | — | 귀가 대기 카드에 charty 6-2에서 새 시술 줄이 넘어오면(I-10) 카드와 내원 상태가 시술 대기로 돌아간다. 그 줄은 대기이고 「귀가 대기 취소」 없이 바로 「시작」한다",
+  "source": "P:L662"
+ },
+ {
+  "id": "procedure.room-log#1",
+  "screenId": "procedure/room-log",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "memo",
+  "body": "간호사가 「관리실 기록」에서 관리실마다 그날 머문 고객의 체류 구간과 그 관리실에서 받은 시술을 본다. 고객 이름을 누르면 그 고객의 그날 시술 차트를 열어 차팅과 전체 시술 이력을 이어서 본다.",
+  "source": "P:L670"
+ },
+ {
+  "id": "procedure.room-log#2",
+  "screenId": "procedure/room-log",
+  "elementNo": 3,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 기록 창 날짜 | 날짜 · 「이전 날」 · 「다음 날」. 처음 값은 오늘이고, 오늘이면 「다음 날」이 비활성이다 | 날짜를 누르면 달력이 뜨고, 고른 날 기록으로 바뀐다",
+  "source": "P:L687"
+ },
+ {
+  "id": "procedure.room-log#3",
+  "screenId": "procedure/room-log",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 기록 창 관리실 고르기 | 「모든 관리실」(문구 안) · 관리실 이름 목록. 처음 값은 「모든 관리실」이다 | 관리실 하나를 고르면 그 관리실 묶음만 보인다",
+  "source": "P:L688"
+ },
+ {
+  "id": "procedure.room-log#4",
+  "screenId": "procedure/room-log",
+  "elementNo": 6,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 기록 창 | 「닫기」 · 창 바깥 | 창이 닫힌다",
+  "source": "P:L692"
+ },
+ {
+  "id": "procedure.room-log.date-calendar#1",
+  "screenId": "procedure/room-log/date-calendar",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 기록 창 날짜 | 날짜 · 「이전 날」 · 「다음 날」. 처음 값은 오늘이고, 오늘이면 「다음 날」이 비활성이다 | 날짜를 누르면 달력이 뜨고, 고른 날 기록으로 바뀐다",
+  "source": "P:L687"
+ },
+ {
+  "id": "procedure.room-log.room-select#1",
+  "screenId": "procedure/room-log/room-select",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "관리실 기록 창 관리실 고르기 | 「모든 관리실」(문구 안) · 관리실 이름 목록. 처음 값은 「모든 관리실」이다 | 관리실 하나를 고르면 그 관리실 묶음만 보인다",
+  "source": "P:L688"
+ },
+ {
+  "id": "procedure.room-log.room-group#1",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 1 | 관리실 묶음은 관리실 정보 등록 순서다. 묶음 안 고객은 진행 중 시술이 있는 고객이 맨 위, 그다음 마지막 종료 시각이 늦은 순이고, 고객 안 시술 줄은 시작 시각 순이다",
+  "source": "P:L726"
+ },
+ {
+  "id": "procedure.room-log.room-group#2",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 1 | 한 고객이 그날 머문 관리실과 시술마다 진행한 관리실(4-1 정책 1)로 묶는다. 점유 이동으로 다른 관리실에서 받은 시술은 그 관리실 묶음에 보인다",
+  "source": "P:L727"
+ },
+ {
+  "id": "procedure.room-log.room-group#3",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": 4,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "나간 시각 | 관리실 묶음 고객의 나간 시각. 나간 시각이 없으면 「체류 중」이다 | 자동 저장 | 다른 관리실로 이동 · 원래 관리실로 복귀를 처리한 시각 또는 귀가를 처리한 시각이다(2-1 · CC 예약 현황 5-1) | —",
+  "source": "P:L700"
+ },
+ {
+  "id": "procedure.room-log.room-group#4",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": 6,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "시작 시각 | 관리실 묶음 시술 줄 시작 시각. 시작을 되돌린 줄은 보이지 않는다 | 자동 저장 | 4-1 정책 1의 시작 시각이다 | —",
+  "source": "P:L707"
+ },
+ {
+  "id": "procedure.room-log.room-group#5",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": 8,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "종료 시각 | 관리실 묶음 시술 줄 종료 시각. 진행 중이면 「진행 중」(문구 안)이다 | 자동 저장 | 4-1 정책 5 · 8의 끝 시각이다 | —",
+  "source": "P:L708"
+ },
+ {
+  "id": "procedure.room-log.room-group#6",
+  "screenId": "procedure/room-log/room-group",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "고객 한 명이 관리실 하나에 머문 구간이 관리실 기록 한 줄이다. 관리실을 옮기면 이전 관리실 줄에는 나간 시각을 남겨 닫고, 새 관리실에는 새 줄을 만든다. 따라서 같은 고객은 옮긴 관리실마다 한 줄씩 남고, 각 관리실 목록에서 그곳에 머문 이력을 볼 수 있다.",
+  "source": "P:L714"
+ },
+ {
+  "id": "procedure.consultant-call#1",
+  "screenId": "procedure/consultant-call",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "이 기능은 1차 범위 밖이다. 다음 스펙에서 개발한다.",
+  "source": "P:L736"
+ },
+ {
+  "id": "procedure.consultant-call#2",
+  "screenId": "procedure/consultant-call",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "간호사 · 피부관리팀이 개별 관리실 화면에서만 「상담실장 호출」을 눌러 그 고객의 담당 상담실장을 그 관리실로 부른다(I-24). 의국에서 보는 전체 시술 현황에는 이 버튼을 보이지 않는다. 호출 취소와 다시 호출, 알림을 받는 곳, 관리실별 화면의 흐름 · 화면 구성 · 정책은 다음 스펙에서 정한다.",
+  "source": "P:L738"
+ },
+ {
+  "id": "mobile.call-accept#1",
+  "screenId": "mobile/call-accept",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "3a | 원장 | 의사 호출 「수락」을 누르면 그 호출에 든 시술 줄이 모두 수락이 된다. 고객 카드의 각 줄에 「{원장} 수락 완료 HH:MM」이 보인다",
+  "source": "P:L440"
+ },
+ {
+  "id": "mobile.call-accept#2",
+  "screenId": "mobile/call-accept",
+  "elementNo": 2,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 3a | 의사 호출을 CC 모바일에서 수락하면 다른 원장의 알림을 닫는다",
+  "source": "P:L478"
+ },
+ {
+  "id": "mobile.call-accept#3",
+  "screenId": "mobile/call-accept",
+  "elementNo": null,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "4 | 5 | 원장은 CC 모바일에서 수락을 되돌리지 않는다. 담당 원장은 간호사가 시술 현황에서 바꾼다",
+  "source": "P:L480"
+ },
+ {
+  "id": "mobile.toast.taken#1",
+  "screenId": "mobile/toast/taken",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "1 | 3a · 3b | 두 원장이 거의 같이 CC 모바일에서 수락하면 먼저 저장된 것이 남고, 뒤 원장 화면에 「다른 원장이 먼저 받았습니다」(문구 안)가 뜬다",
+  "source": "P:L486"
+ },
+ {
+  "id": "mobile.toast.canceled#1",
+  "screenId": "mobile/toast/canceled",
+  "elementNo": 1,
+  "author": {
+   "type": "doc",
+   "name": "cc-기획안-시술현황"
+  },
+  "kind": "policy",
+  "body": "2 | 3a · 3b | 「재호출」로 닫힌 의사 호출과 charty에서 「호출 취소」가 온 상담 원장 호출(고도화, CC-24-3)의 알림은 닫힌다. 닫히기 전에 「수락」을 누르면 「취소된 호출입니다」(문구 안)가 뜨고 줄은 바뀌지 않는다",
+  "source": "P:L487"
+ }
+]

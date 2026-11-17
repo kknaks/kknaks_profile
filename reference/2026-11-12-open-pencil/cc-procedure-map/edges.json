@@ -1,0 +1,628 @@
+[
+ {
+  "from": "procedure/board",
+  "to": "procedure/search",
+  "trigger": 2,
+  "triggerLabel": "고객 검색",
+  "source": "P:L195",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/board",
+  "to": "procedure/room-log",
+  "trigger": 3,
+  "triggerLabel": "관리실 기록",
+  "source": "P:L676, L686",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/board",
+  "to": "procedure/board/out-of-hours",
+  "trigger": "조회 시간 밖",
+  "source": "P:L172",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/room-move/menu",
+  "trigger": 1,
+  "triggerLabel": "관리실 이름",
+  "source": "P:L297, L325",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/chart",
+  "trigger": 3,
+  "triggerLabel": "고객 이름",
+  "source": "P:L71, L570",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/customer-card/status-discharge-wait",
+  "trigger": 12,
+  "triggerLabel": "귀가 대기",
+  "source": "P:L77, L655",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/customer-card/call-bar",
+  "trigger": 9,
+  "triggerLabel": "전체 선택",
+  "source": "P:L75",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-slot/occupied",
+  "to": "procedure/customer-card",
+  "trigger": 1,
+  "triggerLabel": "점유 중 · {고객 이름}",
+  "source": "P:L301, L328",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/status-waiting",
+  "to": "procedure/customer-card/status-in-progress",
+  "trigger": "시술 줄 「시작」",
+  "source": "P:L94",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/status-in-progress",
+  "to": "procedure/customer-card/status-discharge-wait",
+  "trigger": "귀가 대기",
+  "source": "P:L96",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/status-discharge-wait",
+  "to": "procedure/customer-card/more-menu",
+  "trigger": 2,
+  "triggerLabel": "⋯",
+  "source": "P:L656",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/status-discharge-wait",
+  "to": "procedure/customer-card/status-waiting",
+  "trigger": "charty에서 새 줄",
+  "source": "P:L98, L662",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/waiting",
+  "to": "procedure/treatment-line/in-progress",
+  "trigger": 4,
+  "triggerLabel": "시작",
+  "source": "P:L499, L540",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/waiting",
+  "to": "procedure/customer-card/call-bar",
+  "trigger": 1,
+  "triggerLabel": "체크박스",
+  "source": "P:L150, L386",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/done",
+  "to": "procedure/treatment-line/more-menu",
+  "trigger": 3,
+  "triggerLabel": "⋯",
+  "source": "P:L546",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/line-changed",
+  "to": "procedure/chart/change-history",
+  "trigger": 2,
+  "triggerLabel": "변경 n건",
+  "source": "P:L144",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/call-bar",
+  "to": "procedure/treatment-line/calling",
+  "trigger": 3,
+  "triggerLabel": "전체 호출 · n개",
+  "source": "P:L388, L417",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/call-bar",
+  "to": "procedure/doctor-list/designate-call",
+  "trigger": 4,
+  "triggerLabel": "지정 호출 · n개",
+  "source": "P:L389, L417",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/search",
+  "to": "procedure/search/results",
+  "trigger": 1,
+  "triggerLabel": "검색어",
+  "source": "P:L195",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/search",
+  "to": "procedure/search/empty",
+  "trigger": 1,
+  "triggerLabel": "검색어",
+  "source": "P:L186, L197",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/search/results",
+  "to": "procedure/chart",
+  "trigger": 1,
+  "triggerLabel": "고객 이름 · 국적 · 최근 방문일 · 관리실 · 시술 이름",
+  "source": "P:L184, L196",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/confirm-flag",
+  "to": "procedure/confirm-needed/card",
+  "trigger": "확인할 일",
+  "source": "P:L262",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm-needed/card",
+  "to": "procedure/customer-card",
+  "trigger": 1,
+  "triggerLabel": "관리실 이름 · 고객 이름",
+  "source": "P:L256",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm-needed/card",
+  "to": "procedure/treatment-line/calling",
+  "trigger": 3,
+  "triggerLabel": "재호출",
+  "source": "P:L258",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm-needed/card",
+  "to": "mobile/call-accept",
+  "trigger": 4,
+  "triggerLabel": "다시 알림",
+  "source": "P:L259",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm-needed/card",
+  "to": "procedure/customer-card/status-discharge-wait",
+  "trigger": 5,
+  "triggerLabel": "귀가 대기",
+  "source": "P:L260",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm-needed/card",
+  "to": "procedure/chart/change-history",
+  "trigger": 6,
+  "triggerLabel": "변경 확인",
+  "source": "P:L261",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/menu",
+  "to": "procedure/room-move/list",
+  "trigger": 1,
+  "triggerLabel": "점유 이동",
+  "source": "P:L298, L326",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/menu",
+  "to": "procedure/room-move/list",
+  "trigger": 2,
+  "triggerLabel": "다른 관리실로 이동",
+  "source": "P:L298, L326",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/menu",
+  "to": "procedure/customer-card",
+  "trigger": 3,
+  "triggerLabel": "원래 관리실로 복귀",
+  "source": "P:L301",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/list",
+  "to": "procedure/customer-card",
+  "trigger": 1,
+  "triggerLabel": "새로 배정할 빈 관리실",
+  "source": "P:L299-300, L327",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/list",
+  "to": "procedure/room-slot/occupied",
+  "trigger": 1,
+  "triggerLabel": "새로 배정할 빈 관리실",
+  "source": "P:L299",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/list",
+  "to": "procedure/room-move/list-empty",
+  "trigger": "고를 관리실이 없으면",
+  "source": "P:L327",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-move/list",
+  "to": "procedure/toast/room-full",
+  "trigger": 1,
+  "triggerLabel": "새로 배정할 빈 관리실",
+  "source": "P:L342",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/anesthesia-idle",
+  "to": "procedure/customer-card/anesthesia-running",
+  "trigger": 1,
+  "triggerLabel": "마취 시작",
+  "source": "P:L352, L365",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/anesthesia-running",
+  "to": "procedure/customer-card/anesthesia-idle",
+  "trigger": 2,
+  "triggerLabel": "마취 종료",
+  "source": "P:L353, L366",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/doctor-list/designate-call",
+  "to": "procedure/treatment-line/calling",
+  "trigger": 2,
+  "triggerLabel": "호출",
+  "source": "P:L389, L418",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/calling",
+  "to": "procedure/treatment-line/in-progress",
+  "trigger": 2,
+  "triggerLabel": "시작",
+  "source": "P:L501, L541",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/calling",
+  "to": "procedure/doctor-list/start-pick",
+  "trigger": 2,
+  "triggerLabel": "시작",
+  "source": "P:L502, L541",
+  "kind": "nav"
+ },
+ {
+  "from": "mobile/call-accept",
+  "to": "procedure/treatment-line/accepted",
+  "trigger": 2,
+  "triggerLabel": "수락",
+  "source": "P:L440, L469",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/accepted",
+  "to": "procedure/treatment-line/in-progress",
+  "trigger": 2,
+  "triggerLabel": "시작",
+  "source": "P:L500, L542",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/accepted",
+  "to": "procedure/doctor-list/reassign",
+  "trigger": 1,
+  "triggerLabel": "{원장} 수락 완료 HH:MM",
+  "source": "P:L443, L471",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/in-progress",
+  "to": "procedure/doctor-list/reassign",
+  "trigger": 4,
+  "triggerLabel": "{원장}",
+  "source": "P:L443, L471",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/doctor-list/start-pick",
+  "to": "procedure/treatment-line/in-progress",
+  "trigger": 1,
+  "triggerLabel": "전체 호출 중 그날 근무가 있는 원장",
+  "source": "P:L502, L543",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/in-progress",
+  "to": "procedure/treatment-line/done",
+  "trigger": 2,
+  "triggerLabel": "종료",
+  "source": "P:L505, L544",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/in-progress",
+  "to": "procedure/treatment-line/more-menu",
+  "trigger": 3,
+  "triggerLabel": "⋯",
+  "source": "P:L545",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/more-menu",
+  "to": "procedure/confirm/cancel-start",
+  "trigger": 1,
+  "triggerLabel": "시작 취소",
+  "source": "P:L545",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/treatment-line/more-menu",
+  "to": "procedure/confirm/cancel-complete",
+  "trigger": 2,
+  "triggerLabel": "완료 취소",
+  "source": "P:L546",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm/cancel-start",
+  "to": "procedure/treatment-line/waiting",
+  "trigger": 3,
+  "triggerLabel": "시작 취소",
+  "source": "P:L531, L556",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm/cancel-start",
+  "to": "procedure/treatment-line/calling",
+  "trigger": 3,
+  "triggerLabel": "시작 취소",
+  "source": "P:L531, L556",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm/cancel-start",
+  "to": "procedure/treatment-line/accepted",
+  "trigger": 3,
+  "triggerLabel": "시작 취소",
+  "source": "P:L531, L556",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/confirm/cancel-complete",
+  "to": "procedure/treatment-line/in-progress",
+  "trigger": 3,
+  "triggerLabel": "완료 취소",
+  "source": "P:L506, L533, L546",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/discard-confirm",
+  "trigger": 9,
+  "triggerLabel": "닫기",
+  "source": "P:L579, L596",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/conflict-notice",
+  "trigger": 10,
+  "triggerLabel": "저장",
+  "source": "P:L631",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart/doctor-chart",
+  "to": "procedure/chart/apply-all-confirm",
+  "trigger": 4,
+  "triggerLabel": "전체 시술에 내용 적용",
+  "source": "P:L577",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart/nursing-chart",
+  "to": "procedure/chart/apply-all-confirm",
+  "trigger": 5,
+  "triggerLabel": "전체 시술에 내용 적용",
+  "source": "P:L577",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart/nursing-chart",
+  "to": "procedure/chart/author-picker",
+  "trigger": 2,
+  "triggerLabel": "작성자 추가",
+  "source": "P:L576, L593",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart/author-picker",
+  "to": "procedure/chart/nursing-chart",
+  "trigger": 1,
+  "triggerLabel": "오늘 근무하는 간호사 · 피부관리팀 이름 목록",
+  "source": "P:L593",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/chart/discard-confirm",
+  "to": "procedure/chart",
+  "trigger": 2,
+  "triggerLabel": "계속 쓰기",
+  "source": "P:L597",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/customer-card/more-menu",
+  "to": "procedure/customer-card/status-in-progress",
+  "trigger": 1,
+  "triggerLabel": "귀가 대기 취소",
+  "source": "P:L649, L656",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-log",
+  "to": "procedure/room-log/date-calendar",
+  "trigger": 1,
+  "triggerLabel": "날짜",
+  "source": "P:L677, L687",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-log",
+  "to": "procedure/room-log/room-select",
+  "trigger": 4,
+  "triggerLabel": "모든 관리실",
+  "source": "P:L678, L688",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-log/room-select",
+  "to": "procedure/room-log/room-group",
+  "trigger": 2,
+  "triggerLabel": "관리실 이름 목록",
+  "source": "P:L688",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/room-log/room-group",
+  "to": "procedure/chart",
+  "trigger": 2,
+  "triggerLabel": "고객 이름",
+  "source": "P:L571, L679, L690",
+  "kind": "nav"
+ },
+ {
+  "from": "mobile/call-accept",
+  "to": "mobile/toast/taken",
+  "trigger": 2,
+  "triggerLabel": "수락",
+  "source": "P:L486",
+  "kind": "nav"
+ },
+ {
+  "from": "mobile/call-accept",
+  "to": "mobile/toast/canceled",
+  "trigger": 2,
+  "triggerLabel": "수락",
+  "source": "P:L487",
+  "kind": "nav"
+ },
+ {
+  "from": "procedure/board",
+  "to": "procedure/room-slot",
+  "trigger": "관리실마다 칸",
+  "triggerLabel": "관리실마다 칸",
+  "source": "P:L68",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/board",
+  "to": "procedure/confirm-needed",
+  "trigger": "「확인 필요」",
+  "triggerLabel": "「확인 필요」",
+  "source": "P:L67, L255",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/confirm-needed",
+  "to": "procedure/confirm-needed/card",
+  "trigger": "확인할 상황마다 카드 한 장",
+  "triggerLabel": "확인할 상황마다 카드 한 장",
+  "source": "P:L255",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/board",
+  "to": "procedure/toast/alert",
+  "trigger": "이 화면 밖에서 생긴 일",
+  "triggerLabel": "이 화면 밖에서 생긴 일",
+  "source": "P:L163, L281",
+  "kind": "event"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/customer-card/order-memo",
+  "trigger": "오더 메모",
+  "triggerLabel": "오더 메모",
+  "source": "P:L72",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/customer-card",
+  "to": "procedure/customer-card/new-lines",
+  "trigger": "새 시술 줄",
+  "triggerLabel": "새 시술 줄",
+  "source": "P:L135, L140",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/treatment-line/waiting",
+  "to": "procedure/treatment-line/not-proceeding",
+  "trigger": "상담실장이 시술 오더를 시술 미진행으로 바꿨다",
+  "triggerLabel": "상담실장이 시술 오더를 시술 미진행으로 바꿨다",
+  "source": "P:L534",
+  "kind": "event"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/order-memo",
+  "trigger": "오더 메모",
+  "triggerLabel": "오더 메모",
+  "source": "P:L589",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/past-visits",
+  "trigger": "지난 방문 기록",
+  "triggerLabel": "지난 방문 기록",
+  "source": "P:L599",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/doctor-chart",
+  "trigger": "의사 차트",
+  "triggerLabel": "의사 차트",
+  "source": "P:L592",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/chart",
+  "to": "procedure/chart/nursing-chart",
+  "trigger": "간호관리차트",
+  "triggerLabel": "간호관리차트",
+  "source": "P:L593",
+  "kind": "contains"
+ },
+ {
+  "from": "procedure/room-slot",
+  "to": "procedure/consultant-call",
+  "trigger": "7-1 고도화 · 관리실별 화면에서만",
+  "triggerLabel": "7-1 고도화 · 관리실별 화면에서만",
+  "source": "P:L738",
+  "kind": "ref"
+ },
+ {
+  "from": "procedure/treatment-line/calling",
+  "to": "procedure/treatment-line/calling",
+  "trigger": "재호출",
+  "triggerLabel": "재호출",
+  "source": "P:L419, L517",
+  "kind": "nav"
+ }
+]
