@@ -1,0 +1,78 @@
+{
+  "idempotency_key": "day/fix-feedback-2026-11-17",
+  "title": "DAY 현장 피드백 — 귀가 대기 취소 · 정렬 탭 · 바로 시작 · 줄마다 ⋮ 되돌리기(호출 취소) · 웹 원장 호출 OS 알림 · 차트 아이콘 · 원장 계정 수락 (F-1 ~ F-7 · E2E)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 2,
+  "risk_level": "L2",
+  "target_specs": ["DAY-SPEC-002", "DAY-SPEC-005", "DAY-SPEC-003"],
+  "spec_baseline_revision": "4443a99ac616cc29bf681cf47a84f719d532fb94",
+  "target_delta": [
+    "F-1 귀가 대기 취소 — 웹 「시술 완료」 탭의 「귀가 대기」 카드 ⋮ → 「귀가 대기 취소」. 직전 단계(시술 전부 완료)로 되돌리고 KOS change-flow-step 직전 단계를 보낸다 → 그 방문이 판에 다시 보인다. 응답 = 판 전체 다시 받기(POST /board/visits/{visit_id}/undo-home · DAY-SPEC-002 개정 ㉑ · 규칙 35).",
+    "F-2 정렬 탭 — /board 머리 오른쪽 끝 「시술순」 · 「방별순」. 시술순 = 오더지 순 · 끌어 놓기 그대로 / 방별순 = 방 이름 오름차순 · 끌어 놓기 없음 · 빈 방 안 보임. 서버 정렬 GET 쿼리 sort=room(U-2 · 규칙 36).",
+    "F-3 바로 시작 — 액션바 「의사 호출 · N건」 옆 「바로 시작 · N건」. 선택한 준비중 줄을 원장 호출 없이 시작 — KOS 집도의가 있으면 그대로, 없으면 병원 시스템 계정을 KOS 집도의로(change-tasks-doctors) 쓰고 시작(POST /board/visits/{visit_id}/quick-start). SPEC-002 U-7 「원장 없이 시작 없음(11-09)」을 이 경로에 한해 뒤집음 · 단건 [시작] 그대로(사용자 2026-11-17).",
+    "F-5 줄마다 ⋮ 되돌리기(E4) — 준비중 줄 ⋮ 없음 · 호출 줄 → 「호출 취소」(준비중으로 · POST /board/tasks/{task_id}/cancel-call) · 진행중 줄 → 시작 취소 · 완료 줄 → 완료 취소. 호출 취소는 DAY 만(KOS 쓰기 없음 — KOS 에 호출 취소 명령 없음 · KOS 데스크 「호출」 남는 것 감수) · 호출 취소 알림 없음(규칙 38 · 개정 ㉒).",
+    "F-4 웹 원장 호출 OS 알림 — DAY 웹 탭이 열려 있으면 로그인 뒤 모든 웹 화면에서 원장 호출 알림 행이 생길 때 브라우저 Notification을 늘 띄운다(탭 앞 · 뒤 · 다른 모니터 상관없이 — E5 · OQ-N9 뒤집음 · DAY-SPEC-005 2026-11-17 2차 개정 U-5).",
+    "F-6 차트 아이콘 — 판 카드 완료 줄 · 「시술 완료」 탭에서 작성된 차트만 파란(brand) 아이콘, 미작성 안 그림 · 미완료 줄은 지금처럼 없음(규칙 37).",
+    "E6 차트 여는 곳 — 줄 전체가 아니라 시술 이름 글자만 차트 창을 연다 · 이름에 호버하면 「차트 작성」(규칙 23 · 개정 ㉒).",
+    "E3 시스템 계정 집도의 줄 — 원장 자리 「간호관리 · 진행 mm:ss」 · 「간호관리 · n분」 · 원장 바꾸기는 원장 줄과 똑같이 열림. 스냅샷 tasks[].systemDoctor = 진행중 · 완료 줄에서만 true(앱은 모르는 칸 무시 · 앱 무수정).",
+    "E2 의사 호출 팝오버 — 아래쪽 원장이 기본 선택일 때 팝오버 위쪽(제목 · 검색 · 추천 · 선택됨)이 잘리던 버그 고침(스펙 변경 없음 · U-4 그대로).",
+    "F-7 원장 계정 수락 — 웹 로그인 계정이 원장이면 「수락 대기」 카드 [수락]이 팝오버 없이 본인을 집도의로 바로 수락 · 그 밖 직원은 지금처럼 원장 골라 대리 수락(앱과 같게 · U-6)."
+  ],
+  "acceptance": [
+    "A1: 귀가 대기 카드 ⋮ → 「귀가 대기 취소」 후 그 방문이 판에 시술 전부 완료로 다시 보이고 「시술 완료」 탭에서 빠진다. 「귀가」 카드에는 ⋮ 가 없다. 귀가 대기 아닌 방문 요청은 409.",
+    "A2: 「시술순」은 지금 순서 · 끌어 놓기 그대로, 「방별순」은 방 이름 오름차순 · 끌어 놓기 없음 · board_card_order 를 바꾸지 않음 · 빈 방 카드 없음 · 판을 다시 그려도 탭 유지.",
+    "A3: 「바로 시작 · N건」 — N = 선택 중 준비중 줄 수. 담당의 있는 줄은 단건 [시작]과 같은 쓰기로, 담당의 없는 줄은 KOS change-tasks-doctors[시스템 계정] → 시작 쓰기 순으로 시작된다. 호출 중 줄은 시작되지 않고 거절 줄은 토스트. 단건 [시작] · no_doctor 는 그대로. 호출 행 · call-tasks-doctors 를 만들지 않는다.",
+    "A4: 시스템 계정 집도의로 시작한 줄은 원장 자리 「간호관리」 · 원장 바꾸기가 원장 줄과 같이 열린다. 시작 취소 → 다시 호출한 줄은 「간호관리」가 아니라 호출 대상이 보인다.",
+    "A5: 호출 줄 ⋮ 「호출 취소」 → 그 줄이 준비중 · 남은 줄 없는 호출은 닫힘 · 알림 행 · 앱 푸시 · KOS 쓰기 없음. 진행중 ⋮ = 시작 취소 · 완료 ⋮ = 완료 취소 · 준비중 · 수락 줄 ⋮ 없음. 수락된 호출은 call_already_accepted · 호출 아닌 줄은 task_not_called.",
+    "A6: 원장 계정으로 로그인한 웹 탭이 열려 있으면(앞 · 뒤 · 다른 모니터) 그 계정 원장 호출 알림 행이 생길 때 브라우저 OS 알림(제목 · 본문 = 알림 행 title · body)이 뜬다. /board 밖 화면에서도. 간호 계정 · 알림 끈 계정 · 권한 거절이면 안 뜬다.",
+    "A7: 완료 줄 · 「시술 완료」 탭에서 작성된 차트만 파란 아이콘 · 미작성 아이콘 없음 · 시술 이름 글자만 차트를 열고 호버 「차트 작성」 · ⋮ · 버튼 · 체크박스를 눌러도 차트 창이 뜨지 않는다.",
+    "A8: 원장 계정 웹 [수락] = 팝오버 없이 본인으로 수락(다른 원장 지정 호출 포함) · 원장 아닌 계정은 원장 고르기 팝오버 그대로. 의사 호출 팝오버는 맨 아래 원장이 선택돼도 제목 · 검색 · 추천 · 선택됨이 보인다.",
+    "A9: 기존 판 · 앱 회귀 없음(백엔드 pytest 전체 통과) · migration 없음 · 앱(Flutter) 코드 변경 없음."
+  ],
+  "non_goals": [
+    "호출 취소 알림(새 알림 종류 · notification_kind enum migration) — 앱 업데이트 뒤 다음 스펙(SPEC-005 OQ-N14)",
+    "앱 푸시(호출 취소 포함) — 알림과 함께 앱 업데이트 뒤",
+    "KOS 호출 취소 쓰기 — KOS 에 명령 없음(재호출만) · DAY 만",
+    "DB migration · 칸 · 인덱스 변경",
+    "빈 방 표시(방별순 포함) — 다음 스펙",
+    "웹 푸시(서비스워커 · 탭을 닫아도 오는 알림) · 웹 알림 목록 · 종 · 웹 알림 설정 화면 · 원장 호출 밖 웹 알림",
+    "앱(Flutter) 변경 — 앱 바로 시작 · 정렬 탭 · 차트 아이콘 · 귀가 대기 취소 · ⋮ 되돌리기 없음",
+    "단건 [시작]의 no_doctor 완화",
+    "기획안(products/day/00-baseline/planning/) 수정"
+  ],
+  "review_surface": [
+    "토스트 글자 3개 미정 — conflict(시스템 계정 KOS id 없음 · OQ-66 ⓓ) · task_not_called · visit_not_home 은 지금 일반 거절 글자. 사용자 글자를 받으면 SPEC-002 토스트 표와 함께 고침.",
+    "범위 밖 후속(이번 결과 계약 아님): KOS 로그인 기기 제한 — sign-in 401 SignInLimitExceeded(maxSignInCount 5)를 「비밀번호 틀림」과 구분해 보여 주기 · 시스템 계정(동기화) 로그인 자리 관리. 별도 Delivery 로."
+  ],
+  "scope_delta": "v1→v2: 스펙 PR mediness#945 머지(4443a99a)로 baseline 재결속 · 로컬 E2E 2회(사용자 2026-11-17) 결정 반영 — F-5(줄마다 ⋮ 되돌리기 · 호출 취소 = DAY 만 · 알림 없음)를 non_goals 에서 target_delta · acceptance 로 · E2 팝오버 잘림 버그 · E3 시스템 계정 집도의 줄 「간호관리」 · E5 웹 OS 알림 늘 띄움(뒤일 때만 → 늘) · E6 차트 = 시술 이름 글자만 + 호버 「차트 작성」 · non_goals 에 호출 취소 알림 · 앱 푸시(앱 업데이트 뒤) · KOS 호출 취소 쓰기 추가 · review_surface 는 남은 판단(토스트 글자 3)과 범위 밖 후속(KOS 기기 제한)만 · execution 은 머지된 코드 CENTURION_DAY#255(0c401726) 기준.",
+  "execution": {
+    "code_surface": [
+      "backend/day/services/board.py (quick_start · undo_home · cancel_call · undo-start · undo-finish)",
+      "backend/day/services/board_rules.py (system_doctor · 줄 ⋮ · 바로 시작 판정)",
+      "backend/day/routers/board.py (quick-start · undo-home · tasks/{id}/cancel-call · 정렬 쿼리 sort)",
+      "backend/day/queries/board.py · dtos/board.py (정렬 · tasks[].systemDoctor)",
+      "backend/day/templates/partials/board_parts.html · board_regions.html · board_main.html · board_action.html · board.html · base.html · ui.html (액션바 · ⋮ · 정렬 탭 · 수락 · 차트 아이콘 · 간호관리 · 알림 연결)",
+      "backend/day/static/day.js · styles/app.css → static/day.css (N 세기 · 정렬 탭 · Notification 늘 · 차트 이름 글자 · 팝오버 E2)",
+      "backend/tests/day/board/test_board_feedback_rules.py · test_board_feedback_service.py · tests/day/web/test_board_page.py · tests/architecture/test_screen_copy.py"
+    ],
+    "domain_candidates": [],
+    "dependencies": ["baseline 4443a99a(mediness#945 머지)", "Code PR CENTURION_DAY#255 머지(dev 0c401726)"],
+    "phases": [
+      "P1 화면: F-6 차트 아이콘 · F-7 원장 계정 수락 · E6 차트 여는 곳 · E2 팝오버",
+      "P2 F-3 바로 시작(서비스 · 라우트 · KOS change-tasks-doctors · 액션바) · E3 간호관리 · systemDoctor",
+      "P3 F-1 귀가 대기 취소(KOS change-flow-step) · F-2 정렬 탭 · F-5 줄 ⋮ 되돌리기 · 호출 취소(DAY 만)",
+      "P4 F-4 웹 OS 알림(공통 틀 스트림 · Notification 늘)"
+    ],
+    "verification": [
+      "backend pytest 전체 1298 passed(코디 2026-11-17)",
+      "웹 화면 테스트 test_board_page.py · 화면 글자 test_screen_copy.py",
+      "로컬 day-local 사용자 E2E 2회(2026-11-17)",
+      "dev 배포 GitHub Actions DAY dev run 44028948837 성공",
+      "mediness lint-pipeline --strict 0 error"
+    ],
+    "predeploy": ["prod 배포는 병원 마감 뒤 사용자 판단 · migration 없음"],
+    "rollback": ["Code PR #255 revert — migration 없음 · 새 라우트 제거로 원복"],
+    "open_questions": ["토스트 글자 conflict · task_not_called · visit_not_home"]
+  }
+}
