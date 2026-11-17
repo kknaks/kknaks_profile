@@ -144,3 +144,9 @@ reference/2026-11-11-kos-system/
 
 # 사용자 실기기 캡처(직원 실명 · 계정이 보임) — 로컬만
 orchestration/work/**/e2e-shots/
+
+# 링키 상담 데이터 원본 (Meta 내보내기 · 고객 DM · 1.8G)
+reference/2026-11-16-linky-data/
+# 1층 적재 결과 로컬 SQLite (고객 DM 포함 — 커밋 금지)
+para/projects/summer-star/consult-analysis/data/
+para/projects/summer-star/consult-analysis/scripts/.venv/
