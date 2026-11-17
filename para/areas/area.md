@@ -649,6 +649,7 @@ para/areas/
 | 536 | `cs` | [[para/areas/concept/cs/pilot-then-parallel-batches\|pilot-then-parallel-batches]] | 시범으로 표 · 칸을 굳히고 묶음 병렬 → 합치기 → 원천 전수 재추출. 묶음 경계가 누락 자리 · 어림 말고 세기 |  |
 | 537 | `front` | [[para/areas/concept/front/system-bar-inset\|system-bar-inset]] | edge-to-edge 에서 시스템 바가 덮는 자리만큼 비운다. Flutter 목록에 padding 을 직접 주면 안전 영역이 안 더해진다 |  |
 | 538 | `ai` | [[para/areas/concept/ai/consecutive-interpreter-turn-taking\|consecutive-interpreter-turn-taking]] | 통역기를 대화의 세 번째 참여자로 — 차례 끝에 말하기 · 늘 듣기 · 재생 언어 토큰 버림 + agent text · 반대 언어로 끼어들면 멈춤 |  |
+| 539 | `ai` | [[para/areas/concept/ai/target-leakage\|target-leakage]] | 결과를 정한 자료(예약표 회신)가 특징 입력에 섞여 관계가 부풂 — 결과 자료는 입력에서 빼고 근거 id 로 점검 |  |
 
 ---
 

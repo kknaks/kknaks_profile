@@ -27,8 +27,9 @@ status: active
 |---|---|---|
 | Baseline | BASE-001 · BASE-002 raw | — |
 | Decision | DEC-001 · DEC-002 accepted | — |
-| Spec | SPEC-001 0.2.1 accepted | SPEC-002 2층 |
-| Work | WORK-001 done (verify 274/274 · 시험 38 · 검수 PASS) | WORK-002 2층 |
+| Spec | SPEC-001 0.2.1 · SPEC-002 0.3.0 accepted | — |
+| Work | WORK-001 done (verify 274/274 · 검수 PASS) · WORK-002 done (llm-0.3.0 · 성공 93) | — |
+| Report | REPORT-001 accepted (`50-report/`) | — |
 
 ## 문서 맵
 

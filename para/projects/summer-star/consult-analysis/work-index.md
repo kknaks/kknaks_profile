@@ -6,4 +6,4 @@
 
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
-| [[orchestration/work/consult-layer1/README\|consult-layer1]] | 진행 폴더 | 회고 미확인 |
+| [[orchestration/work/consult-layer1/README\|consult-layer1]] | 진행 폴더 | [[orchestration/work/consult-layer1/SUMMARY\|회고]] |
