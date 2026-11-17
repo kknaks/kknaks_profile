@@ -11,6 +11,7 @@ up:
   - 2026-10-07-strong-hajin-inbox
   - 2026-11-17-fix-feedback
   - 2026-11-17-kos-signin-limit
+  - 2026-11-17-ext-api-staff-fields
 tags:
   - 연동
   - 오류 처리
@@ -43,6 +44,7 @@ tags:
 - **되돌릴 수 있는 처리는 넓게, 되돌릴 수 없는 처리는 좁게** — 재시도는 여러 코드에 걸어도 되지만, 끊기는 확실한 신호에만 건다
 - 조용히 삼키는 것과 다르다 — 분류해서 각자 드러낸다 → [[no-silent-fallback]]
 - **같은 상태 코드 안에서도 사유가 갈린다** — KOS sign-in 은 틀린 비밀번호도, 로그인 기기 수 초과(`SignInLimitExceeded` · 최대 5대)도 401 `InvalidRequestException` 이다. 401 을 통째로 「자격 증명 틀림」으로 묶으면 사용자에게 틀린 안내가 가고 로그에도 원인이 안 남는다 — 본문의 `message` 로 가른다
+- **시스템 계정의 로그인 슬롯은 환경이 나눠 쓴다** — 운영 · 로컬 · 다른 서버가 같은 외부 시스템 계정으로 sign-in 하면 기기 한도는 그 합으로 찬다. 운영처럼 토큰을 저장해 다시 쓰면 재시작에도 슬롯이 늘지 않지만, 로컬에서 새로 로그인할 때마다 한 자리를 먹는다. 한도 오류를 풀겠다고 「다른 기기 로그아웃」 을 누르면 운영 세션이 끊길 수 있다 — 재시도를 멈추고 확인 경로를 바꾼다
 
 ## 함께 보는 개념
 
@@ -58,3 +60,4 @@ tags:
 - [[2026-11-12-api-swagger-docs]] §2 — 「없음」과 「모양 깨짐」을 가름: KOS `{}` · `[]` = 빈 목록 · `data` 배열 아님 · 원소 깨짐 = 502 · 이름 검색 모양이 깨지면 「0명 → 새 고객 생성」으로 흐르던 갈래를 502 로 막음(`ext-review-r1.md` W1 · DEC-011 D-16)
 - [[2026-11-17-fix-feedback]] §2 — DAY 로그인이 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) → E2E 중 기기 제한을 못 알아봄 · HAR 본문 `SignInLimitExceeded` 로 판정
 - [[2026-11-17-kos-signin-limit]] §2 — DAY 가 KOS sign-in 401 을 본문 `message` 로 가름: `SignInLimitExceeded` 만 기기 제한(직원 웹 기기 선택 · 시스템 계정 자동 해제) · 나머지는 기존 자격 틀림 · 앱 JSON 은 깔린 앱 때문에 같은 401 `invalid_credentials` 유지
+- [[2026-11-17-ext-api-staff-fields]] §2 — cc-prototype 로컬 e2e 의 내부 API 401 을 처음엔 env 문제로 보고 `.env` 를 두 번 넣어 봄 → sign-in 본문 `SignInLimitExceeded` 로 판정 · 운영은 PVC 저장 토큰을 다시 써 재로그인 없음 · 로컬 재시도 멈추고 운영 실호출로 갈음
