@@ -2,19 +2,19 @@
 type: work
 id: WORK-015
 title: "외부 연동 API — 직원 목록에 `email` · `realName` · `kosAccountId` 더함 — BE1 스키마 · 서비스 · Swagger · T67 → REVIEW → 로컬 데모 실물 → 배포 · 운영 실물"
-status: draft
+status: done
 product: cc-prototype
 feature: procedure
 work_type: enhancement
 owner: kknaks
-progress: 0
+progress: 100
 created_at: 2026-11-17
 updated_at: 2026-11-17
 tags:
   - product/cc-prototype
   - feature/procedure
   - doc/work
-  - status/draft
+  - status/done
 links:
   baselines: []
   decisions:
@@ -39,7 +39,7 @@ sources:
 
 ## Meta
 
-- **진행**: 문서만 있다. 코드는 아직 손대지 않았다. progress 0
+- **진행**: 끝(2026-11-17) — 코드 #25 `0553173` · infra #62 `0ad0e6d` · 운영 실호출 확인(직원 78 · 원소 키 여덟 · `kosAccountId` 78/78 · `email` 78/78 · `realName` 64/78 — 값은 기록 안 함). WP-E2E-LOCAL 은 데모 KOS 시스템 계정이 동시 로그인 기기 한도(`401 SignInLimitExceeded`)에 걸려 건너뛰고 운영 실호출로 갈음했다(사용자 결정). 코드 검수 r1 W2(`email` · `realName` 이 문자열이 아닌 값이면 500 — 기존 `roleName` 과 같은 동작)는 고치지 않음. progress 100
 - **착수 전 게이트**: 없음. 남은 질문 없음
 - Covers spec: SPEC-008 0.4.7. **필드 추가만** 한다 — `staff[]` 원소의 기존 다섯 칸 · 행 고르기(시스템 계정 · 제외 목록) · 차례 · 오류 · KOS 호출 수(1)는 바꾸지 않는다. 다른 ext 경로 · 직원 API · 직원 사본 표 · 동기화는 손대지 않는다
 - 코드 레포: `kknaksss/cc-prototype` — 범위는 **`procedure/back/**`** 하나다. front · app 은 건드리지 않는다
@@ -65,10 +65,10 @@ sources:
 
 | WP | 내용 | 계약 | 워커 | 대상 파일(범위) | 완료 조건 | 검증 명령(부분) | 상태 |
 |---|---|---|---|---|---|---|---|
-| **WP-BE1** | **스키마 · 서비스 · Swagger 문구 · T67 시험** — `ExtStaff` 에 `email: str \| None` · `realName: str \| None` · `kosAccountId: str` 를 더하고 세 칸에 `description` 을 단다 · `staff()` 가 내부 원소의 `email` · `realName`(`null` · 빈 문자열 · 칸 없음 → null)과 `id`(문자열)를 옮긴다 · `STAFF_DOC` 의 「이메일 · 실명 · KOS id 는 내지 않는다」 를 SPEC §6.17 문장으로 고치고 첫 줄 칸 나열에 셋을 더한다 · T67 시험을 SPEC §9 T67(0.4.7)대로 고친다(지금의 「새지 않음」 단언 중 이메일 · 실명 · KOS id 몫을 「있음」 단언으로 · `userId` · `licenseNumber` · `mfaMethods` · `roleId` 몫은 그대로) · 가짜 KOS 원소에 세 칸(`null` · 빈 문자열 · 칸 없음 갈래 포함 · 지어낸 값만) · `id` 없는 원소 → 502 갈래(코드는 지금 그대로 · 시험만 더함) · 직원 목록 Swagger 설명 단언(SPEC §9 T70 — `kosAccountId` 있음 · 옛 문장 없음)을 `tests/test_ext_docs.py` 에 더함 | SPEC-008 §6.17 · §8 · §9 T67 · T70 | backend | `procedure/back/app/{schemas/ext.py,service/ext.py,api/ext.py}` · `procedure/back/tests/{test_ext_clinic.py,test_ext_docs.py}` · (가짜 원소를 거기 두면) `procedure/back/tests/fake_kos.py` | T67 통과 · T70 직원 목록 단언 통과 · Swagger 시험 통과 · ruff 0 | (`procedure/back` 에서) `uv run pytest -q tests/test_ext_clinic.py tests/test_ext_docs.py tests/test_openapi_docs.py` · `uv run ruff check .` | 대기 |
-| **WP-REVIEW** | reviewer: SPEC-008 0.4.7 §6.17 · T67 ↔ 코드 · **필드 추가만**인지(기존 다섯 칸 · 행 고르기 · 차례 · 오류 · KOS 호출 수 · 다른 ext 경로 · 직원 API · 사본 표 무변경) · 세 값이 `ext_call` · 로그 · 사본에 안 남는지 · Swagger 옛 문장이 지워졌는지 · 실명 · 이메일 · KOS id 실제 값 grep 0. FAIL 은 모아서 한 번에 수정 발주 | SPEC-008 §6.17 · §8 · §9 T67 · T70 | reviewer | 코드 변경 전체 | PASS | — | 대기 |
-| **WP-E2E-LOCAL** | 코디: 백엔드 커밋 뒤 로컬 스택을 **재기동**한다(옛 코드로 확인 금지) → **데모 KOS 실호출 1번** — `GET /api/ext/clinics/1/staff` 응답 원소에 세 칸이 있고 채워지는지(`kosAccountId` 는 전부 값 있음 · `email` · `realName` 은 값 또는 null) · 기존 다섯 칸이 앞 판과 같은지 · KOS 호출 수 1(로그). **값은 기록하지 않는다**(건수 · 키 · null 수만) | SPEC-008 §6.17 | 코디 | — | 세 칸 확인 · 기존 칸 회귀 없음 | — | 대기 |
-| **WP-DEPLOY** | 코디: 코드 PR main 머지 → back 이미지 → infra `back.imageTag` PR → ArgoCD sync · `/api/health` · `/api/docs` 의 직원 목록 설명이 새 문장인지 → **운영 호스트 실호출 1번**(연동처 키 · 세 칸 있음 · 값은 기록하지 않음). 협업자에게 새 칸을 알리는 것은 사용자 몫 | SPEC-008 §6.17 · §8 | 코디 | — | 운영 back = 이 판 · 운영 확인 끝 | — | 대기 |
+| **WP-BE1** | **스키마 · 서비스 · Swagger 문구 · T67 시험** — `ExtStaff` 에 `email: str \| None` · `realName: str \| None` · `kosAccountId: str` 를 더하고 세 칸에 `description` 을 단다 · `staff()` 가 내부 원소의 `email` · `realName`(`null` · 빈 문자열 · 칸 없음 → null)과 `id`(문자열)를 옮긴다 · `STAFF_DOC` 의 「이메일 · 실명 · KOS id 는 내지 않는다」 를 SPEC §6.17 문장으로 고치고 첫 줄 칸 나열에 셋을 더한다 · T67 시험을 SPEC §9 T67(0.4.7)대로 고친다(지금의 「새지 않음」 단언 중 이메일 · 실명 · KOS id 몫을 「있음」 단언으로 · `userId` · `licenseNumber` · `mfaMethods` · `roleId` 몫은 그대로) · 가짜 KOS 원소에 세 칸(`null` · 빈 문자열 · 칸 없음 갈래 포함 · 지어낸 값만) · `id` 없는 원소 → 502 갈래(코드는 지금 그대로 · 시험만 더함) · 직원 목록 Swagger 설명 단언(SPEC §9 T70 — `kosAccountId` 있음 · 옛 문장 없음)을 `tests/test_ext_docs.py` 에 더함 | SPEC-008 §6.17 · §8 · §9 T67 · T70 | backend | `procedure/back/app/{schemas/ext.py,service/ext.py,api/ext.py}` · `procedure/back/tests/{test_ext_clinic.py,test_ext_docs.py}` · (가짜 원소를 거기 두면) `procedure/back/tests/fake_kos.py` | T67 통과 · T70 직원 목록 단언 통과 · Swagger 시험 통과 · ruff 0 | (`procedure/back` 에서) `uv run pytest -q tests/test_ext_clinic.py tests/test_ext_docs.py tests/test_openapi_docs.py` · `uv run ruff check .` | 끝(767 passed · 수정 r1) |
+| **WP-REVIEW** | reviewer: SPEC-008 0.4.7 §6.17 · T67 ↔ 코드 · **필드 추가만**인지(기존 다섯 칸 · 행 고르기 · 차례 · 오류 · KOS 호출 수 · 다른 ext 경로 · 직원 API · 사본 표 무변경) · 세 값이 `ext_call` · 로그 · 사본에 안 남는지 · Swagger 옛 문장이 지워졌는지 · 실명 · 이메일 · KOS id 실제 값 grep 0. FAIL 은 모아서 한 번에 수정 발주 | SPEC-008 §6.17 · §8 · §9 T67 · T70 | reviewer | 코드 변경 전체 | PASS | — | 끝(r1 PASS · WARN 2 — W1 반영 · W2 보류) |
+| **WP-E2E-LOCAL** | 코디: 백엔드 커밋 뒤 로컬 스택을 **재기동**한다(옛 코드로 확인 금지) → **데모 KOS 실호출 1번** — `GET /api/ext/clinics/1/staff` 응답 원소에 세 칸이 있고 채워지는지(`kosAccountId` 는 전부 값 있음 · `email` · `realName` 은 값 또는 null) · 기존 다섯 칸이 앞 판과 같은지 · KOS 호출 수 1(로그). **값은 기록하지 않는다**(건수 · 키 · null 수만) | SPEC-008 §6.17 | 코디 | — | 세 칸 확인 · 기존 칸 회귀 없음 | — | 건너뜀(기기 한도 · 사용자 결정 → 운영 확인으로) |
+| **WP-DEPLOY** | 코디: 코드 PR main 머지 → back 이미지 → infra `back.imageTag` PR → ArgoCD sync · `/api/health` · `/api/docs` 의 직원 목록 설명이 새 문장인지 → **운영 호스트 실호출 1번**(연동처 키 · 세 칸 있음 · 값은 기록하지 않음). 협업자에게 새 칸을 알리는 것은 사용자 몫 | SPEC-008 §6.17 · §8 | 코디 | — | 운영 back = 이 판 · 운영 확인 끝 | — | 끝(#25 · infra #62 · 운영 확인) |
 
 ## 병렬
 
