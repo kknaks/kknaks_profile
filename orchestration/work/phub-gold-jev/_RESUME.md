@@ -1,6 +1,6 @@
 # 재개 노트 — phub-gold-jev (procedure-hub)
 
-**지금**: **연결 시험 마감(v06-37)** — 다음 세션 = 채팅(상담) · `NEXT-SESSION-chat-prompt.md` · 세 레포 미커밋(커밋/PR 먼저) · 18105 · 18220 은 이 세션 백그라운드(세션 끝나면 꺼짐)
+**지금**: **연결 시험 마감(v06-37)** — 다음 세션 = 채팅(상담) · `NEXT-SESSION-chat-prompt.md` · 세 레포 로컬 커밋됨(push · PR 은 다음 세션 — 회사 레포 머지 · stg 별도 승인) · 18105 · 18220 은 이 세션 백그라운드(세션 끝나면 꺼짐)
 **다음**: v06-37 결과 보고로 시험 마감 → **다음 세션 = 채팅(상담)** — 프롬프트 `NEXT-SESSION-chat-prompt.md` · 커밋/PR 먼저(분리 · 승인) · 같은 브랜치로 이어감 · 조사 먼저(silver/gold DB 화 · CLI resume vs SDK 캐싱 · 상담 프롬프트) · 화면은 사용자 지시 뒤
 
 세팅: `new-work.sh` 미사용 — 열린 `phub-recommend` 감지로 멈춤(phub-ledger-redesign 과 같은 선례 · 그쪽 `_RESUME.md:378`). 설정 SSOT `config/projects/procedure-hub.json`
@@ -99,6 +99,7 @@
 
 ## 5. 이력 (최신이 위)
 
+- `2026-11-17` 커밋(push · PR 안 함): 앱 `6303e18` · 허브 `85c28af`(회사 레포) · 프로필 `b0a3fbad`(이 커밋 뒤 이 줄만 미커밋)
 - `2026-11-17` **연결 시험 마감 — v06-37**(20261117-142252-v06-37-2f0a · 56분 · 오류 0 · 코디 검증 보고서 · quality 74 줄 · pytest 214+1): B 값 빠짐 B−C +93 → +1 · D7 0 · 종료 36/37(C 35) · Opus 173/175 · fail 2 · 전부 통과 35(C 30) · asked_only 31/31 · 첫 답 중앙 2.3s(C 9.6s) · 입력 토큰 중앙 13k(C 48k) · 0.5.2 B 진 13 중 11 닫힘(Q01 ⑤ 남음 · Q13 uncertainty) · D4 18 → 40(C 41) · 요약 batch-v06-summary.md · 열린 워커 0
 - `2026-11-17` researcher(DB) 완료(research-db.md 566줄 · silver 57 66,936행 · gold 15 62,244행 · 문자열 1:1 이면 담을 칸 없는 값 0 · gold_hash 재현 8accbb21 · 정할 것 8 + 원천 2) · 코디 확인: 변경 = 리포트 1개 · release
 - `2026-11-17` 채팅 세션 시작 · 사용자 「DB 설계 먼저」 → researcher(DB · fable) 발주 · v06-37 실행 37/37 끝 · 채점 진행 중

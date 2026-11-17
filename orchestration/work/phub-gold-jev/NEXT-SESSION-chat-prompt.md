@@ -18,7 +18,7 @@
 | 앱(공개 레포) | `/Users/kknaks/orca/workspaces/clinic_chat/phub-gold-jev` | `kknaksss/phub-gold-jev`(base `main`) |
 | silver · gold 데이터(gitignore · 로컬) | `…/orchestration/work/_archive/procedure-hub/phub-ledger-redesign/silver-model/` | — |
 
-- **세 레포 모두 아직 미커밋.** 이번 세션 첫 일로 지금까지를 커밋 · PR 로 묶고(분리 — 허브 · 앱 · 프로필 문서), 그 PR 위에서 이어 간다. 회사 레포 머지 · stg 는 별도 승인.
+- **세 레포 모두 로컬 커밋까지 됨(11-17 — 앱 `6303e18` · 허브 `85c28af` · 프로필 `b0a3fbad`) · push · PR 은 아직.** 이번 세션 첫 일로 push · PR(분리 — 허브 · 앱 · 프로필 문서)을 올리고 그 위에서 이어 간다. 회사 레포 머지 · stg 는 별도 승인.
 - 허브 실행(18105) · 시험 화면(18220) 명령은 앱 README 「실행 안내(e2e)」.
 
 ## 이번에 할 것
