@@ -20,6 +20,8 @@ aliases:
   - 예약 그룹
   - 시드 사전
   - 용어집 시드
+  - 일회성 적재
+  - docker run --rm 적재
 up:
   - 2026-11-12-seed-demo-re1
   - 2026-10-01-strong-hajin-deploy
@@ -27,6 +29,7 @@ up:
   - 2026-10-19-cc-nav-resv
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-27-interpret-pwa-poc
+  - 2026-11-18-phub-gold-jev
 tags:
   - db
   - 운영
@@ -104,6 +107,12 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 
 외부 원천(KOS 데모 지점)에 넣는 시험 데이터는 **화면이 시험할 경로를 빠짐없이 갖춰야** 한다. DAY 시드는 기타 작업을 목록에서 돌려 골라 「방 배정」 이 10명 중 3명에만 걸렸고, 같은 점유 이동이 두 경로로 갈라져 보였다. 병원 설정의 「방 배정」 을 모든 방문에 넣고(없으면 쓰기 전에 멈춤), 이름 · 오더 메모도 병원 실제 양식으로 맞췄다. 가짜 이름 조합은 유명인 이름을 빼야 한다 — 성 × 이름 300개에 13개가 남아 10명 한 번에 36% 로 나왔다.
 
+## 사례 — phub-gold-jev(2026-11-18)
+
+- **원천 CSV 는 레포 · 적재는 같은 이미지의 일회성 컨테이너** — 허브 stg 시드. CSV 가 레포(`data/medallion/`)에 있으니 이미지에 데이터를 싣지 않고(레포 ADR 「image 는 migration + API 만」), 배포가 스키마를 만든 뒤 서버에서 같은 이미지로 `docker run --rm` 을 띄워 dry-run → 한 트랜잭션 적재. 앱 시작 때 시드 · 파이프라인 단계는 레포 ADR 이 이미 기각한 꼴이었다
+- **적재는 배포 뒤에만 된다 — 순서가 설계다** — 새 표는 컨테이너 시작 때 생기므로 「env → 배포(gold 꺼진 채 기동) → 적재 → 재생성」. 배포가 빈 표로도 성공해야 해서 그 기능은 꺼진 채 뜨게 했다 → [[graceful-degradation]]
+- **`docker restart` 는 env 파일을 다시 안 읽는다** — env 는 배포 전에 두고, 바꾼 뒤에는 컨테이너를 재생성(배포 스크립트)한다
+
 ## 출처
 
 - [[2026-10-01-strong-hajin-deploy]] — 조직도 9표 양식 → mediness prod 4명 조회 → 로컬 import → dump 로 운영 복원
@@ -112,3 +121,4 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[2026-10-22-myeongdong-poc-v2]] §2 — KOS 데모 지점에 국적별 예약 칸 · 슬롯당 2명 데모 환자를 공개 API 로 채움 · 데모 표식 가드 · 메모 표식 · `reserveByTimeSlot` → `reserveV2`(`tools/kos_demo_patients.py` · 스킬 `kos-demo-patients` · `demo-patients-2026-10-22.md`)
 - [[2026-10-27-interpret-pwa-poc]] §2 — Procedure Hub 용어집을 1회 가져와 git 시드 사전으로(정규화 · 157 term × 7개 언어) · 깨지면 기동 실패 · 시험이 게이트(`back/seed/glossary.json` · `back/scripts/import_glossary.py` · `back/tests/test_seed.py` · DEC-001 D-33 · 코드 #4)
 - [[2026-11-12-seed-demo-re1]] §2 — KOS 데모 지점 시드: 「방 배정」 기본 · 한국어 가짜 이름(유명인 제외) · 상담 양식 오더 메모(시술 줄 = KOS 실제 제목 · 반영 지연 대기) · 시술 4 ~ 6개(`scripts/seed_demo_board.py` · CENTURION_DAY#248)
+- [[2026-11-18-phub-gold-jev]] §2 — 레포 CSV + 같은 이미지 일회성 컨테이너 dry-run → 적재 · 순서 env → 배포 → 적재 → 재생성 · restart 는 env 안 읽음(`research-stg-seed.md` · `stg-runbook.md` · `data/medallion/README.md`)

@@ -7,9 +7,14 @@ aliases:
   - reverse proxy
   - Nginx
   - Nginx Proxy Manager
+  - DNS rebinding
+  - Host 헤더
+  - 421 Misdirected Request
+  - allowed hosts
 up:
   - 2025-01-13-Day10
   - 2026-10-30-internal-chat
+  - 2026-11-18-phub-gold-jev
 tags:
   - 인프라
   - web
@@ -80,7 +85,14 @@ docker run -d --name npm_1 --restart unless-stopped \
 - [[proxy-pattern]] — 방향이 반대인 같은 이름
 - [[static-and-dynamic-content]] — 정적 파일을 여기서 내주는 선택
 
+## 사례 — phub-gold-jev(2026-11-18)
+
+- **프록시가 Host 를 바꾸면 MCP DNS rebinding 보호가 막는다(421)** — mcp SDK 의 Streamable HTTP 는 기본으로 Host 가 localhost 꼴일 때만 받는다(DNS rebinding 보호). 보호를 끄지 않고 허용 목록 설정(`GOLD_MCP_ALLOWED_HOSTS`)을 더했다
+- **허용 목록에는 백엔드가 실제로 받는 Host 를 넣는다** — 공개 호스트를 넣었는데도 421 이었다. 컨테이너 로그의 `Invalid Host header: <내부 주소>:<포트>` 를 보고서야 Gateway 가 Host 를 공개 이름이 아니라 백엔드 내부 주소로 넘긴다는 것을 알았다. 두 값을 다 넣어 풀었다. 확인은 `docker logs | grep "Invalid Host header"`
+- 로컬(localhost 직결)에서는 안 보이고 프록시 뒤에서만 나는 실패다 — 업로드 한도와 같은 꼴
+
 ## 출처
 
 - [[2025-01-13-Day10]] — 「Nginx 설치 및 설정」 절이 `docker run` 한 줄을 실은 뒤 **옵션 하나하나를 여섯 갈래로 풀어 적었다** — `-d`·`--name`·`--restart unless-stopped`(「수동으로 중지한 경우에는 재시작하지 않음」까지)·포트 매핑 셋(80·443·81 각각의 용도)·`-e TZ`·볼륨 둘(설정 데이터와 **SSL 인증서**). 이 주석 묶음이 `docker run` 을 처음 읽을 때 필요한 것을 다 담고 있다. 이어지는 「nginx proxy manager 관리콘솔에 접속」이 **웹 서버의 역할 셋**(정적 콘텐츠 제공·로드 밸런싱·HTTP 요청 처리)을 정의로 적어, 이 컨테이너가 무엇을 하는 자리인지 자리매김한다 → [[web-server]] · [[container]]
 - [[2026-10-30-internal-chat]] §2 「업로드 한도는 앞단부터」 · infra #44
+- [[2026-11-18-phub-gold-jev]] §2 — MCP 421 · `GOLD_MCP_ALLOWED_HOSTS` 에 공개 호스트 + Gateway 가 넘기는 내부 Host 둘 다(`stg-runbook.md` 실행 기록 · `_RESUME.md` §2 11-18)

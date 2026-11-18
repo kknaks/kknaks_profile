@@ -8,10 +8,13 @@ aliases:
   - 투패스 아키텍처
   - deterministic-first enrichment
   - two-pass AI pipeline
+  - 허브는 결정론
+  - 해석은 부르는 쪽
 up:
   - C-040-integrating-llm-wiki-with-graphify
   - architectural-guardrails-for-ai-generated-code
   - 2026-11-16-phub-recommend
+  - 2026-11-18-phub-gold-jev
 tags:
   - 결정론적 파싱
   - AI 보강
@@ -69,8 +72,14 @@ tags:
 - [[engineering-governance]] — 결정론적 판정 경계를 AI 생성 코드의 정책 집행에 적용한다.
 - [[architectural-drift-prevention]] — 명시적 결정과 코드 증거를 대조해 방지하려는 대표적인 문제다.
 
+## 사례 — phub-gold-jev(2026-11-18)
+
+- **허브는 결정론 · 해석은 부르는 쪽** — Procedure Hub resolve 는 0.5(부분 일치) · 0.7(줄임 일치)을 거치며 규칙이 늘었다. 상담 앱이 resolve 를 **문장 이해 관문**으로 쓰느라 허브에 규칙을 덧댄 것이었다. 다른 서비스 · MCP 클라이언트가 허브에 필요한 것은 이름 → 코드와 목록뿐이라, 0.8.x 에서 「정확 이름 → 코드 + 목록」 으로 줄이고 입력 정리는 채팅 단(LLM)으로 옮겼다. 결정론 층에 해석을 섞으면 그 층을 쓰는 모든 소비자가 한 소비자의 해석을 물려받는다
+- **줄이면 그 층에 기댄 시험이 깨진다** — 시험 앱(B 열)은 옛 허브 판(0.7.2)에 묶었고, 계약 표 밖에서 문장을 넣던 시험(Q21 등)을 검수가 세 번에 걸쳐 더 찾았다 → [[contract-surface-enumeration]]
+
 ## 출처
 
 - [[C-040-integrating-llm-wiki-with-graphify]] — Tree-sitter 같은 파서로 사실 기반 구조를 먼저 추출하고 AI가 문맥과 의미 관계를 보강하는 투패스 아키텍처를 설명한다.
 - [[architectural-guardrails-for-ai-generated-code]] — AI는 결정을 검색하거나 추천할 수 있지만 코드 정책의 경고와 차단은 명시적 규칙과 증거로 재현되어야 한다고 설명한다.
 - [[2026-11-16-phub-recommend]] §2 — Hub 에 LLM 없음(10-26) · resolve 조사 못 뗌(10-30 실물 1질문) · kiwi 채택(11-06)(`_RESUME.md` · `HANDOFF-2026-11-05.md` · `jev-research.md` §0 · `reference/2026-11-09/README.md` §5)
+- [[2026-11-18-phub-gold-jev]] §2 — resolve 를 「정확 이름 → 코드 + 목록」 으로 줄임(`SPEC-001-hub-gold-mcp.md` 0.8.x · `review-code-hub-v081.md` · PROCEDURE-HUB fdc155b)
