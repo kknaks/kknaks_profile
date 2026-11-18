@@ -1,0 +1,45 @@
+{
+  "run": "run_1df8a3160729",
+  "task": "task_e8f2bb439b4d",
+  "dispatch": "ctx_6e5c471a39b5",
+  "worker": "term_00a4c541-fcb6-44cc-a410-1b939ef88e40",
+  "coordinator": "term_e30bd772-976e-4376-94b6-96b64d6f9583",
+  "status": "complete",
+  "shared_worktree_ownership_confirmed_by": "term_a88e896b-403c-4d2d-9bcc-4388724b3418",
+  "allowed_app_paths": [
+    "clinic_chat/consult/templates/_face.svg",
+    "clinic_chat/consult/face_coords.py"
+  ],
+  "implementation": {
+    "task": "task_e8f2bb439b4d",
+    "dispatch": "ctx_6e5c471a39b5",
+    "outcome": "succeeded"
+  },
+  "preview_fix": {
+    "task": "task_42edf2cf7d77",
+    "dispatch": "ctx_c3760ab8bddf",
+    "outcome": "succeeded",
+    "worker_released": true
+  },
+  "review": {
+    "task": "task_98a3158093de",
+    "dispatch": "ctx_3631ee6295e4",
+    "worker": "term_d62706fe-1f7b-4872-ab41-ee6c05e01d16",
+    "outcome": "PASS",
+    "worker_released": true,
+    "minor_warnings": [
+      "SITE-025/027 are two positions on upper eyelid crease",
+      "SITE-030 indicates lateral eye region",
+      "SITE-060 indicates lateral lower lip"
+    ]
+  },
+  "coordinator_validation": {
+    "tests_passed": 12,
+    "codes": 60,
+    "visible_dots": 71,
+    "changed_coordinate_entries": 44,
+    "svg_paths": 41,
+    "raw_xml_valid": true,
+    "transparent_corners": true
+  }
+}
