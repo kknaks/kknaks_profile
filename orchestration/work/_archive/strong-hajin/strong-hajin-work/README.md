@@ -6,7 +6,9 @@
 
 ## 회고
 
-[[para/projects/summer-star/strong-hajin/log/2026-09-20-strong-hajin-work|회고]]
+회고 미확인
+
+회고 원본을 현재 체크아웃에서 확인하지 못했다. 아래 당시 기록에서 복구 근거를 확인한다. 완료 여부를 추측하지 않는다.
 
 ## 당시 문서
 

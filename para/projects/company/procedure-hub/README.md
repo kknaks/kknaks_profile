@@ -20,6 +20,7 @@
 ```text
 procedure-hub/
 ├── README.md   이 지도
+├── gold-api-guide.md   허브 gold REST · MCP 호출 안내(다른 서비스용 · stg)
 └── log/        작업 회고 — YYYY-MM-DD-<slug>.md (orchestration config `summary_dest` 가 여기를 가리킨다)
     ├── 2026-10-28-silver-step1-product-normalization.md   phub-recommend 실버 1단계(제품 원장) 정규화 과정 — 전후 비교 · 교육 자료
     ├── 2026-10-28-silver-step2-family.md                  phub-recommend 실버 2단계(계열) 정의 · 제품→계열 연결 — 전후 비교 · 규칙 · 계열 판정 스킬 근거

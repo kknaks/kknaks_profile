@@ -8,11 +8,15 @@ aliases:
   - 개체 정규화
   - 엔티티 정규화
   - entity resolution
+  - 엔티티 해석
+  - 후보 뽑기
+  - 닫힌 목록 고르기
 up:
   - 2026-11-06-agency-settlement
   - C-040-integrating-llm-wiki-with-graphify
   - 2026-11-16-phub-ledger-redesign
   - 2026-11-16-phub-recommend
+  - 2026-11-18-phub-gold-jev
 tags:
   - 개체
   - 동의어
@@ -66,9 +70,18 @@ tags:
 - [[semantic-search]] — 표면 표현이 다른 개체 후보를 의미 유사도로 찾을 수 있다.
 - [[text-embedding]] — 표현과 문맥의 유사도를 계산할 수 있는 벡터를 제공한다.
 
+## 사례 — phub-gold-jev(2026-11-18)
+
+- **글자 맞춤에서 LLM 고르기로 — 닫힌 목록 안에서만** — 상담 채팅의 「사용자가 말한 시술 → gold 코드」 를 허브 resolve(글자 일치)로 받던 판은 대상 정답 70.7% 였다. 같은 입력 전수 표에서 다섯 판을 쟀다: 지금(resolve → Jev) 70.7% · **소넷+별칭 97.1%(2.9초)** · 소넷 후보를 Jev 로 확정 85.8% · 하이쿠 93.4% · Jev fan-out(목록 820 을 한 요청) 62.3%(층 접기 넣으면 83.7% · 0.34초). 소넷+별칭을 입구로 골랐다
+- **지어냄은 목록과 버림 두 겹으로 막는다** — gold 목록 820 + 별칭을 프롬프트에 통째로 싣고(→ [[context-catalog-injection]]), 앱이 목록 밖 코드를 버린다. 지어낸 코드 0/375
+- **보기 안 점수를 잘하는 모델 ≠ 하나로 확정하는 모델** — Jev 는 보기마다 yes/no 점수는 잘 내지만 같은 줄기(필러 계열과 그 시술)를 한꺼번에 yes 해 하나로 못 정했다. 앞 대화 · 거둠(「그거 말고」) 같은 맥락은 대화 전체를 보는 소넷이 강했다. MCP 도구 루프 · 임베딩은 지연 · 맥락 부족으로 뺐다
+- **해석은 부르는 쪽, 원천은 결정론** — 문장 이해를 허브 resolve 규칙으로 덧대지 않고 허브는 「정확 이름 → 코드 + 목록」 만 남겼다 → [[deterministic-first-ai-enrichment]]
+- **도구 사용법은 문서에서 읽는다** — 처음 Jev 를 앱 코드만 보고 「32 개 한도」 로 잘못 말했다. 실제로는 질문 수 제한이 없고, 32 개씩 **차례로** 보낸 우리 코드가 38 요청 · 10초의 원인이었다(문서 `llms.txt`)
+
 ## 출처
 
 - [[C-040-integrating-llm-wiki-with-graphify]] — 동의어와 표기 차이가 별도 노드 및 고립 노드를 만들 수 있으며 규칙과 의미 분석을 결합해 이를 해소해야 한다고 설명한다.
 - [[2026-11-06-agency-settlement]] §2 — KOS 결제 품목 → 수납 요약 옵션 id → 상품 목록 상품 id(`be4-add-product-id.md` · DEC-001 D-20 · D-25 · D-27)
 - [[2026-11-16-phub-ledger-redesign]] §2 — 효과 시점 「충돌」 3건 = 동명이물 · 원장 오기 → 진술 42행 뗌 · `ledger-check-list.csv` 신설(`_RESUME.md` 11-15 보완 판단 3 · `relation-conflicts.csv` RCF-001 ~ 027)
 - [[2026-11-16-phub-recommend]] §2 — 실버 1단계 제품 ↔ 식약처 허가 매칭 규칙 · 이름 3칸(`_RESUME.md` 10-27 ~ 10-28 제품 행 · `log/2026-10-28-silver-step1-product-normalization.md`)
+- [[2026-11-18-phub-gold-jev]] §2 — 다섯 판 비교 · 소넷+별칭 97.1% · 지어냄 0/375 · Jev 32 개 오해(`research-input-space.md` §3 · `SPEC-008-consult-entry.md` · `para/resources/note/ai/llms.txt` · clinic_chat #2)

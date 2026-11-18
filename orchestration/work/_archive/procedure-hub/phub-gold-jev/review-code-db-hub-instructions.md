@@ -1,0 +1,11 @@
+# [reviewer_code] WORK-010 허브 로컬 DB 화 코드 검수
+
+**너는 앞 판의 맥락이 없다.** `phub-gold-jev-review-code-hub-brief.md`(폴더 /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev)의 역할 · 제약(read-only · 실호출 금지 · .env 열지 마라 · 접속 값 파일 열지 마라 · 18105 · 18106 · 18220 은 코디 것 — 띄우거나 내리지 마라 · GET 은 됨 · PostgreSQL 컨테이너 18432 에 쓰기 금지) · 완료 보고 그대로(핸들은 preamble 값). 11-17 사용자 결정: Procedure Hub 데이터는 공개 정보 — 「회사 데이터 본문」 grep 은 이 데이터에 걸지 않는다(비밀값 · 접속 문자열 · 홈 경로는 그대로 본다).
+
+검수 워크트리: /Users/kknaks/orca/workspaces/PROCEDURE-HUB/phub-gold-jev (HEAD 85c28af 위 미커밋 — 이번 판은 WORK-010 구현분 · `git diff` · `git status`).
+
+읽을 것: /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/SPEC-003-hub-gold-db.md · /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/WORK-010-hub-db.md · /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/review-spec-003.md · /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/review-work-010.md · /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/impl-db-hub-instructions.md · 구현 보고 /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/impl-db-hub-report.md · /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/_RESUME.md §2 11-17 행.
+
+볼 것: ① WP-0~4 완료 조건 · SPEC-003 계약 대조(테이블 74 · 칸 · PK · FK 82 지연 · 인덱스 30 · 유일 3 · 이름 ≤ 63 · JSON 칸 0 · load_seq · 빈칸 NULL) ② 적재 CLI — 한 트랜잭션 교체 · 실패 때 그대로 · exit 0/2/3 · 접속 실패 2 · dry-run 은 DB 접속 0 · 파일 한 번 읽기 · 접속 값이 로그에 안 찍힘 ③ DB 판 = CSV 판 같은 결과(정렬은 파이썬 · NULL→'' · expected_hash_checked · health 새 필드 0) ④ `app/core` · 기존 167 테이블 · 기존 시험 무변경(바뀐 fixture 줄 · 이름 목록이 W-1 · W-3 때문인지 — 기대값을 구현에 맞춰 내린 것 0) ⑤ alembic: revision id · downgrade 역순 · `alembic check` 꼴 ⑥ pytest 시간 32→74s(새 시험 두 판 매개변수화) — CI 15분 안 · 줄일 거리만 NOTE ⑦ ruff · pytest 1회(SQLite · README 대로) ⑧ 커밋 후보 grep(키 · 접속 문자열 · 홈 경로 · CSV · dump) ⑨ 「사용자가 실물에서 만날 자리」(DB 판 허브를 띄울 때 env 빠짐 · 모르는 GOLD_REPOSITORY 값 · 빈 DB 로 뜰 때 메시지).
+
+산출: /Users/kknaks/orca/workspaces/kknaks_profile/프로시저허브-데이터-메달리온/orchestration/work/phub-gold-jev/review-code-db-hub.md 1개 · 판정 PASS/WARN/FAIL.

@@ -12,12 +12,14 @@ aliases:
   - Soniox context
   - 용어집 context
   - 모호 별칭
+  - gold 목록 820
 up:
   - 2026-10-07-strong-hajin-enhance
   - 2026-10-27-interpret-pwa-poc
   - 2026-10-28-interpret-pwa-v2
   - 2026-11-16-interpreter-idea
   - 2026-11-16-tongky-quality-re1
+  - 2026-11-18-phub-gold-jev
 tags:
   - llm
   - prompt
@@ -69,6 +71,11 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - [[translation-glossary-normalization]] — 번역 엔진에 싣는 사전의 모양
 - [[empirical-limit-probing]] — 싣는 크기의 한도를 재는 법
 
+## 사례 — phub-gold-jev(2026-11-18)
+
+- **엔티티 고르기의 닫힌 목록으로 싣는다** — 상담 채팅 입구는 gold 시술 목록 820 + 별칭을 매 호출 프롬프트에 통째로 싣고 소넷이 그 안에서만 고르게 했다. 앱은 목록 밖 코드를 버린다 — 지어낸 코드 0/375 · 대상 정답 97.1%(2.9초). 도구로 하나씩 찾게 하는 MCP 도구 루프는 지연 때문에 뺐다 → [[entity-resolution]]
+- **CLI 경로로는 thinking 을 완전히 못 끈다** — 같은 목록 · 같은 프롬프트라도 CLI 호출은 20 호출 중 4 ~ 5 번 thinking 이 켜져 그 턴만 5초대 · 10초 초과가 남았다. 지연을 맞추려면 SDK 판으로 넘긴다
+
 ## 출처
 
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012(`ai_context_catalog` · DEC-009 D-13 · SPEC-010 OQ-1002 · 메디니스 서버 전량 주입 대조)
@@ -76,3 +83,4 @@ LLM 프롬프트만이 아니다. 실시간 번역 STT(Soniox)는 연결 설정�
 - [[2026-10-28-interpret-pwa-v2]] §2 — 새 term 「써마지 CPT」 를 싣자 기존 ko 별칭 「써마지」 가 그 문장을 FLX 로 번역 · `translation_terms` 는 더 긴 짝 우선이 아님 · 별칭 삭제로 처분을 실물 결과로 뒤집음(`live-check-wp16-newterms.json` · `-newterms-2.json` · `wp16-be-report.md` 처분 2)
 - [[2026-11-16-interpreter-idea]] §2 — 짝은 맞게 들어갔는데 중국어 손님 쪽 받아쓰기가 동음이의어로 틀어짐 · 역할 서술 `text` 칸
 - [[2026-11-16-tongky-quality-re1]] §2 — 짝 431 → 147 · 고유명사만 · 별칭 짝 0 · `terms` 74(`back/app/service/glossary.py` `build_context` · 시드 `.11` `proper` · DEC-001 D-71 · `research-translation-terms-report.md` · `research-proper-noun-dict-report.md` · `wp33-context-report.md` · code PR #15)
+- [[2026-11-18-phub-gold-jev]] §2 — gold 목록 820 + 별칭을 프롬프트에 · 목록 밖 코드 버림 · 0/375 · CLI thinking 4 ~ 5/20(`research-input-space.md` §3 · `SPEC-008-consult-entry.md`)

@@ -651,6 +651,8 @@ para/areas/
 | 538 | `ai` | [[para/areas/concept/ai/consecutive-interpreter-turn-taking\|consecutive-interpreter-turn-taking]] | 통역기를 대화의 세 번째 참여자로 — 차례 끝에 말하기 · 늘 듣기 · 재생 언어 토큰 버림 + agent text · 반대 언어로 끼어들면 멈춤 |  |
 | 539 | `ai` | [[para/areas/concept/ai/target-leakage\|target-leakage]] | 결과를 정한 자료(예약표 회신)가 특징 입력에 섞여 관계가 부풂 — 결과 자료는 입력에서 빼고 근거 id 로 점검 |  |
 | 540 | `design` | [[para/areas/concept/design/screen-flow-map\|screen-flow-map]] | 화면을 버튼 단위 화살표로 잇고 옆에 원천 줄 단 정책 메모. 데이터(JSON)가 원본 · 캔버스는 멱등 렌더 결과 |  |
+| 537 | `qa` | [[para/areas/concept/qa/input-space-enumeration\|input-space-enumeration]] | 증상마다 규칙 덧대기 전에 입력 꼴 × 데이터 조합 표를 짓고 지금 시스템에 돌려 실패 층을 센다. 완료 = 표 통과율 |  |
+| 538 | `back` | [[para/areas/concept/back/graceful-degradation\|graceful-degradation]] | 선택적 하위 시스템의 모든 실패를 그 경로만 503 으로 가두고 본체 health · 계약은 그대로 뜬다. 조용한 폴백과 다르다 |  |
 
 ---
 
