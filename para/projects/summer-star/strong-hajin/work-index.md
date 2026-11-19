@@ -17,4 +17,4 @@
 | [[orchestration/work/_archive/strong-hajin/strong-hajin-polish2/README\|strong-hajin-polish2]] | 아카이브 | [[para/projects/summer-star/strong-hajin/log/2026-10-03-strong-hajin-polish2\|회고]] |
 | [[orchestration/work/_archive/strong-hajin/strong-hajin-polish3/README\|strong-hajin-polish3]] | 아카이브 | [[para/projects/summer-star/strong-hajin/log/2026-10-05-strong-hajin-polish3\|회고]] |
 | [[orchestration/work/_archive/strong-hajin/strong-hajin-projects/README\|strong-hajin-projects]] | 아카이브 | [[para/projects/summer-star/strong-hajin/log/2026-09-24-strong-hajin-projects\|회고]] |
-| [[orchestration/work/_archive/strong-hajin/strong-hajin-work/README\|strong-hajin-work]] | 아카이브 | 회고 미확인 |
+| [[orchestration/work/_archive/strong-hajin/strong-hajin-work/README\|strong-hajin-work]] | 아카이브 | [[para/projects/summer-star/strong-hajin/log/2026-09-20-strong-hajin-work\|회고]] |
