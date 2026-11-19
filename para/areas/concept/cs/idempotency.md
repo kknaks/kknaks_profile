@@ -3,11 +3,13 @@ type: concept
 id: idempotency
 title: 멱등성 (Idempotency)
 aliases:
+  - 백필 멱등
   - 멱등성
   - 멱등
   - idempotent
   - idempotency
 up:
+  - 2026-11-19-customer-erd
   - 2026-11-06-agency-settlement
   - 2026-09-12-sc-meeting
   - 2026-08-10-idempotency-in-our-decisions
@@ -110,6 +112,13 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 - [[application-event]] — 사건에 이름을 붙여 쌓을 때
 - [[queue]] — 재시도가 구조적으로 생기는 자리
 
+## 외부 원천 백필의 멱등 — 대응표 upsert 로 「두 번째 실행 = 쓴 행 0」
+
+DAY 백필(`python -m runtime.backfill`)은 운영 동기화와 **같은 upsert 함수**를 쓴다. KOS 행은 [[external-id-mapping-table]] 에서 DAY 행을 찾아 갱신하고, 없을 때만 만든다. 그래서 같은 기간을 다시 돌려도 새로 쓴 행이 0 이다(DEMO 3회 · dev 실측).
+
+- 멱등이라 **중간에 끊겨도 이어 하기(`--resume`)가 안전하다**. 진행 위치는 최적화일 뿐 정합의 조건이 아니다.
+- 함정: 「창 안에서 응답에 없으면 사라짐 → 소프트 딜리트」 규칙을 같이 쓰면, **응답이 잘려 온 달**의 행을 잘못 지울 수 있다. 실 병원에서는 드라이런의 달별 건수를 원천 건수와 먼저 대조하고 실행한다(검수 6 WARN-1).
+
 ## 출처
 
 - [[2026-08-10-idempotency-in-our-decisions]] — 제품 다섯 곳의 결정 여덟 건이 같은 성질을 각자 다른 말로 요구하고 있던 것을 모은 실무 기록이다. **「멱등 upsert」·「중복 INSERT 차단」·「email 기준 멱등」·「append 중복 판정」이 전부 한 개념**이라는 것이 이 노트를 만든 이유다. 세 가지 공통 모양(재시도가 필연인 자리에서 나온다 · 자연키로 막는다 · DB 제약이 최종 방어선이다)과, upsert와 멱등이 같지 않다는 구별도 거기서 왔다.
@@ -120,3 +129,4 @@ Idempotency-Key: 6f5484e8-3dc7-4cb6-8987-e95d65b48767
 - [[2026-10-30-internal-chat]] §2 「안 읽음 · 다시 받기를 메시지 id 로」 — `since >=` + id 겹침 지움 · 대상별 `clientId`
 - [[2026-11-06-agency-settlement]] §2 — 운영 KOS 결제 증분(SPEC-001 §4.5 · OQ-123 · `review-doc-r3-report.md` F-2)
 - [[2026-11-16-phub-ledger-redesign]] §2 — `gold-build.py` 재실행 동일 바이트 · `gold-check.py` 재현 · 되짚기 · 값 ⊂ silver · 재빌드 해시(`gold/README.md`)
+- [[2026-11-19-customer-erd]] §2 — 백필 재실행 쓴 행 0(`be-3-report.md` · `review-code-6-report.md`)

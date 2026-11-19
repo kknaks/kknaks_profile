@@ -3,6 +3,8 @@ type: concept
 id: online-schema-change
 title: 운영 스키마 변경 — 칸(트랜잭션) → 이미지 → 인덱스(CONCURRENTLY) 로 가르기 (Online Schema Change)
 aliases:
+  - 더하기만 migration
+  - additive migration
   - 운영 마이그레이션
   - 무중단 스키마 변경
   - CREATE INDEX CONCURRENTLY
@@ -10,6 +12,7 @@ aliases:
   - indisvalid
   - manual SQL 순서
 up:
+  - 2026-11-19-customer-erd
   - 2026-10-07-strong-hajin-enhance
 tags:
   - database
@@ -48,6 +51,15 @@ tags:
 - [[ddl]] — 바꾸는 문장 자체
 - [[zero-downtime-deployment]] — 이미지 쪽의 무중단
 
+## 더하기만 · 이전 이미지 호환 — 자동 migration 배포에서
+
+DAY 는 dev 에 머지하면 배포가 `alembic upgrade head` 를 자동으로 돌리고, 롤백은 이미지만 바꾼다(forward-only). 그래서 2026-11-19 의 새 테이블 28개 · `visit_task` 칸 3개는 **더하기만**(새 칸 nullable · 데이터 이동 없음)으로 했다. 이전 코드가 새 스키마 위에서 그대로 돈다.
+
+- **유일 제약은 운영 동기화가 깨질 자리를 먼저 본다**: ERD 의 1:0..1 을 전부 DB 유일로 막으면, 원천(KOS)이 취소한 작업과 같은 티켓을 다시 쓸 때 **지금 돌고 있는 현황판 동기화가 막힌다.** 빈 테이블이고 위험이 낮은 하나(`ticket_bundle.purchase_item_id`)만 걸었다.
+- **이미 적용된 migration 은 고치지 않는다**: 백필용 `visit` 날짜 인덱스를 0010 에 넣었다가, 0010 이 이미 dev 에 적용된 뒤라 **새 0011** 로 옮겼다.
+- **레포 선례가 없으면 일반 `CREATE INDEX`** — `lock_timeout` 으로 대기만 끊는다. 다만 그동안 쓰기가 막히므로, prod 는 행 수를 보고 한가한 시간에 돌린다(CONCURRENTLY 는 트랜잭션 밖이라 별도 판).
+
 ## 출처
 
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 운영 SQL(`migrations/manual/2026-10-07-inbox-message-origin*.sql` · 검수 WP4 W-2 · 운영 `indisvalid=t` 확인)
+- [[2026-11-19-customer-erd]] §2 — migration 0010 더하기만 · 0011 인덱스 · 유일 제약 판단(`review-code-1-report.md` §5 · `review-code-6-report.md`)

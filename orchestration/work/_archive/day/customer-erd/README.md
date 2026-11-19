@@ -1,0 +1,65 @@
+# 작업 기록 — customer-erd
+
+프로젝트: [[para/projects/company/day/README|day]] · [[para/projects/company/day/work-index|작업 목록]]
+
+보관 위치: 아카이브
+
+## 회고
+
+[[para/projects/company/day/log/2026-11-19-customer-erd|회고]]
+
+## 당시 문서
+
+기록 본문은 보존하고, 이 목차에서 브리프·재개 노트·조사·검증 자료를 연결한다.
+
+- [[orchestration/work/_archive/day/customer-erd/SUMMARY|SUMMARY.md]]
+- [[orchestration/work/_archive/day/customer-erd/_RESUME|_RESUME.md]]
+- [[orchestration/work/_archive/day/customer-erd/backfill-split-instructions|backfill-split-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/be-1-report|be-1-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/be-2-report|be-2-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/be-3-report|be-3-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/be-4-report|be-4-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-be-2-brief|customer-erd-be-2-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-be-3-brief|customer-erd-be-3-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-be-4-brief|customer-erd-be-4-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-be-brief|customer-erd-be-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-research-2-brief|customer-erd-research-2-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-research-3-brief|customer-erd-research-3-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-research-4-brief|customer-erd-research-4-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-research-brief|customer-erd-research-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-review-brief|customer-erd-review-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-review-doc-brief|customer-erd-review-doc-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-spec-2-brief|customer-erd-spec-2-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/customer-erd-spec-brief|customer-erd-spec-brief.md]]
+- [[orchestration/work/_archive/day/customer-erd/delivery-start-instructions|delivery-start-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/delivery-start-report|delivery-start-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/har-check-report-2|har-check-report-2.md]]
+- [[orchestration/work/_archive/day/customer-erd/har-check-report-3|har-check-report-3.md]]
+- [[orchestration/work/_archive/day/customer-erd/har-check-report|har-check-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/kos-sync-research-report|kos-sync-research-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/menu-keys-addition|menu-keys-addition.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-1-report|review-code-1-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-2-instructions|review-code-2-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-2-report|review-code-2-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-3-instructions|review-code-3-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-3-report|review-code-3-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-4-instructions|review-code-4-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-4-report|review-code-4-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-5-instructions|review-code-5-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-5-report|review-code-5-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-6-instructions|review-code-6-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-code-6-report|review-code-6-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-fix-1-instructions|review-fix-1-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-spec-report-2|review-spec-report-2.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-spec-report|review-spec-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-sync-instructions|review-sync-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/review-sync-report|review-sync-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-2-delete-log-revert|spec-2-delete-log-revert.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-2-delete-log|spec-2-delete-log.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-2-scope-change|spec-2-scope-change.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-change-report|spec-change-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-fix-1-instructions|spec-fix-1-instructions.md]]
+- [[orchestration/work/_archive/day/customer-erd/spec-sync-report|spec-sync-report.md]]
+- [[orchestration/work/_archive/day/customer-erd/sync-fix-1|sync-fix-1.md]]
+- [[orchestration/work/_archive/day/customer-erd/sync-fix-2|sync-fix-2.md]]
+- [[orchestration/work/_archive/day/customer-erd/sync-fix-3-internal-only|sync-fix-3-internal-only.md]]
