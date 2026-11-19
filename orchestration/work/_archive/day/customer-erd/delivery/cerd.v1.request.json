@@ -1,0 +1,82 @@
+{
+ "idempotency_key": "day/customer-erd-2026-11-19",
+ "title": "메뉴 · 구매 · 시술권 · 선불카드 · 처방 테이블(마이그레이션) + KOS → DAY 동기화",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 1,
+ "risk_level": "L3",
+ "target_specs": [
+  "DAY-SPEC-000",
+  "DAY-SPEC-002"
+ ],
+ "spec_baseline_revision": "4585fb59cdfb1203ad6285d53b64edd11363a5f3",
+ "target_delta": [
+  "D-1 마이그레이션 0010(0009_consultation_visit 를 잇는다): DAY-SPEC-000 §4 새 테이블 28개(메뉴 16 · 구매 5 · 시술권 3 · 선불카드 3 · 처방 1)와 visit_task 빈 값 허용 칸 3개(treatment_item_id · ticket_id · machines)를 만든다. 지금 테이블 · 칸의 이름 · 타입은 바꾸지 않는다(더하기만). 모든 새 테이블에 deleted_at 을 두고 유일 제약은 살아 있는 행만(부분 유일). 칸은 baseline §4 에 mediness PR #952(head 4fe24e4b15a8d86d9bac1b273f78a514ef12ae37 · SPEC-000 2026-11-19 개정) 변경을 얹는다: product_option.unit_type · unit_value 와 product_option_composition.ref_single_option_id 는 만들지 않는다 · purchase.status 에 paid · process 에 revoking · prepaid_card_item_substituting 를 더한다.",
+  "D-2 모델 · 매핑: 새 테이블 SQLAlchemy 모델과 KOS 값 → DAY enum 매핑(#952 DAY-SPEC-002 개정 ㉔ 매핑 표 — 구매 status · process · item_type(ETCETRA_PRODUCT → etcetera_product) · 거래 status · payment_type(CASH · PREPAID_CARD · TRANSFER) · ticket status · 카드 이력 kind(CHARGE → charge · PAYMENT → use · REFUND → revoke) · pocket(BALANCE · POINT)). 표에 없는 값은 행을 쓰지 않고 건너뛰어 센다(OQ-70 기본값). external_ref.entity_type 새 값 20개(같은 절 목록) · KOS id 없는 하위 테이블은 external_ref 없이 부모 아래에서 다시 만든다.",
+  "D-3 메뉴 동기화: 1시간 기준 정보 회차(sync_master)에 메뉴 목록을 더한다. 원천은 내부 API(카테고리 · 상품(옵션 · 가격 · 구성 · 카테고리 연결) · 시술 · 기타 작업 · 선불카드 상품 · 시술 외 품목) · 시술 항목 · 기기 · 약물만 공개 메뉴 API(내부 경로 없음 · 내부 기기 · 약물 404).",
+  "D-4 오늘 동기화(10초): 이미 받는 일정 목록의 purchaseIds 를 묶어 내부 get-purchase-summaries {purchaseIds, includeDeleted:true} 1회 · 시술권(내부 get-ticket-bundles) · 카드(내부 get-prepaid-card-summaries → 바뀐 카드만 이벤트 · 공유 고객)는 구매 lastUpdatedDateTimeUtc 나 작업 ticketConfiguration.ticketId 가 바뀐 고객만. 처방(prescriptionIds) · visit_task.ticket_id · treatment_item_id · machines 는 이미 받는 일정 응답에서 채운다(추가 호출 없음).",
+  "D-5 병원 전체 변경(새 5분 루프): 공개 통계 3개(거래 · 카드 충전 이벤트 · 구매 항목)를 「지난 회차 시각부터」 받아 구매 · 고객 · 카드 id 를 모으는 데만 쓰고, 데이터는 D-4 와 같은 내부 원장 API 로 받는다. 방문이 DAY 에 없는 구매는 건너뛰어 세고 다음 회차에(OQ-69 기본값).",
+  "D-6 upsert · 삭제: external_ref 로 upsert · external_updated_at 에 KOS 바뀐 시각. 삭제는 소프트 딜리트(deleted_at)만 · 물리 DELETE 금지. 지운 구매는 내부 deleted:true 로 안다 · 구매 안 항목 · 거래 · 조정 · 담당은 그 구매 범위 안에서 사라짐 판단 · 메뉴는 목록 사라짐 또는 deleted · 시술권 응답에서 빠진 번들은 지우지 않는다(OQ-73 기본값) · 카드 행은 지우지 않고 공유 고객은 카드마다 비교 · 카드 이력은 쌓기만."
+ ],
+ "acceptance": [
+  "A1: alembic 0010 upgrade → downgrade → upgrade 왕복이 로컬 compose DB 에서 성공하고 0009_consultation_visit head 에 이어진다(체인 head 하나 · alembic check 차이 없음).",
+  "A2: 기존 테이블의 칸 · 타입 변경 0(모델 diff · 칸 스냅샷 테스트는 새 테이블 · visit_task 새 칸 3개만 늘어남).",
+  "A3: DEMO 테넌트 실호출로 메뉴 테이블이 채워지고 건수가 조사 리포트 규모와 맞는다(데모: 카테고리 15 · 상품 103 · 옵션 326 · 시술 804 · 시술 항목 226 · 기기 302 · 약물 349 · 선불카드 상품 8 · 시술 외 품목 11 · 기타 작업 10).",
+  "A4: DEMO 오늘 일정의 구매 · 거래 · 시술권 · 카드가 채워지고 external_ref 가 연결된다.",
+  "A5: 시술현황 판 기존 테스트가 통과하고 판 화면 동작은 바뀌지 않는다.",
+  "A6: 동기화 코드에 물리 DELETE 가 0 이다.",
+  "A7: 새 테스트가 통과한다(매핑 · upsert · 사라짐 · 바뀐 고객만)."
+ ],
+ "non_goals": [
+  "백필(지난 이력 · DAY-SPEC-000 OQ-00-3 · 다른 담당)",
+  "DAY → KOS 쓰기 · 원장 전환(OQ-00-2)",
+  "화면(판 · 앱 · 새 화면)",
+  "직원 결제 · 환불 감사 로그",
+  "prod 배포 · prod migration 실행",
+  "실 명동점 호출 — 개발 · 조사 · e2e 는 hospitalName 이 DEMO 인 테넌트만"
+ ],
+ "review_surface": [
+  "baseline: target SPEC 은 main 4585fb59 에서 stable(SPEC-000 §4 새 테이블 = #951). 동기화 계약(SPEC-002 개정 ㉔)과 SPEC-000 2026-11-19 칸 수정은 mediness PR #952(미머지 · head 4fe24e4b) — 사용자 결정 「머지는 코드와 한 번에」. 기존 stable 계약의 고도화로 보아 지금 main 을 baseline 으로 묶고 #952 내용을 Target Delta 로 둔다 · #952 는 Code PR 과 함께 머지되어 post-merge 문서 sync 몫이 된다. #952 를 먼저 머지하면 같은 key v2 로 재결속.",
+  "L3 schema 추가 · prod 서비스 중 무중단: 지금 테이블 · 칸 이름 · 타입 변경 0 · 새 테이블 + nullable 칸만 · downgrade 로 되돌림.",
+  "내부 API 의존(브라우저 UA · 시스템 계정 토큰): 원장 칸 원천 = 내부 · 공개 통계는 id 나열만(분석용 요약 · 시술권 통계는 운영 404).",
+  "enum 매핑: REFUND → revoke(전액 · 부분 환불 모두 남은 잔액 회수) · 5분 회차의 구매 항목 통계(열린 구매 포함 여부 미확인 — OQ-74).",
+  "기본값으로 시작하는 OQ(DAY-SPEC-002 §5 「동기화」): OQ-69 방문 없는 구매 건너뜀 · OQ-70 매핑 밖 값 건너뜀 · OQ-71 담당 직원이 DAY 에 없는 거래(purchase_transaction.staff_id 필수 — 미결) · OQ-72 5분 루프 시작 시각 · 상한 · 「지난 회차 시각」 자리 · OQ-73 시술권 빠진 번들 안 지움 · OQ-74 일정 updatedDateTimeUtc · OQ-75 처방 표본 없음."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/migrations/versions/ (새 20261119_0010_* · 0009_consultation_visit 다음)",
+   "backend/day/models/ (새 모듈 — 메뉴 · 구매 · 시술권 · 선불카드 · 처방 · task.py visit_task 칸 3 · __init__.py)",
+   "backend/day/emr/kos/client.py · backend/day/emr/kos/mapper.py · backend/day/emr/kos/mapper_values.py (내부 · 공개 메뉴 · 구매 · 시술권 · 카드 · 통계 호출 · 매핑)",
+   "backend/day/emr/normalized.py · backend/day/emr/base.py (새 정규화 값 · 어댑터 인터페이스)",
+   "backend/day/emr/sync_master.py · sync_schedules.py · sync_tasks.py · sync_references.py · sync_persistence.py · sync_tables.py · sync.py (적용 · upsert · 사라짐)",
+   "backend/day/tasks/emr.py · backend/common/config.py (5분 루프 · 주기 설정)",
+   "backend/tests/migrations/ (test_alembic.py · 새 0010 테스트) · backend/tests/day/test_column_snapshot.py · column_snapshot_data.py · backend/tests/day/emr/ (fixtures · test_kos_mapper.py · test_sync.py · test_emr_sync_service.py) · backend/tests/day/board/"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "사용자 plan 승인(L3)",
+   "DEMO 테넌트 KOS 연결(로컬 · 시스템 계정)"
+  ],
+  "phases": [
+   "P1 DB: migration 0010 · 모델 · 칸 스냅샷",
+   "P2 메뉴 동기화(1시간 회차)",
+   "P3 오늘 동기화(10초 — 구매 묶음 · 바뀐 고객만 시술권 · 카드 · 일정 응답의 처방 · 작업 새 칸)",
+   "P4 병원 전체 변경 5분 회차(공개 통계 id 나열 → 내부 원장)"
+  ],
+  "verification": [
+   "backend pytest 해당 파일(tests/day/emr · tests/day/board · test_column_snapshot · test_models)",
+   "backend/tests/migrations 왕복(upgrade → downgrade → upgrade · head 하나 · alembic check)",
+   "DEMO 테넌트 로컬 실물(메뉴 건수 · 오늘 구매 · 시술권 · 카드 · external_ref)",
+   "동기화 코드 물리 DELETE grep 0 · ruff · architecture"
+  ],
+  "predeploy": [],
+  "rollback": [
+   "alembic downgrade 0009_consultation_visit(0010 되돌림)",
+   "Code PR revert"
+  ],
+  "open_questions": [
+   "DAY-SPEC-002 §5 OQ-69 ~ OQ-75",
+   "DAY-SPEC-000 §6 OQ-08-9 · 08-10 · OQ-10-3"
+  ]
+ }
+}
