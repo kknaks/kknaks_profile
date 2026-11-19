@@ -3,6 +3,9 @@ type: concept
 id: public-vs-internal-api
 title: 벤더 공개 API 와 웹앱 내부 API — 운영 연동은 공개로, 내부는 근거 · 데모 지점 실호출로 (Public vs Internal API)
 aliases:
+  - 공개 API 비용
+  - 공개 API 0
+  - includePromotions
   - 공개 OpenAPI
   - 웹앱 내부 API
   - 내부 API
@@ -20,6 +23,7 @@ aliases:
   - kos-client-uri
   - 내부 API 403
 up:
+  - 2026-11-19-customer-erd
   - 2026-11-09-day-data-architecture
   - 2026-10-14-sts-prototype
   - 2026-10-19-cc-nav-resv
@@ -81,6 +85,20 @@ tags:
 - [[external-write-queue]] — 내부 쓰기 체인을 보내고 다시 읽어 확인하는 대기열
 - [[strangler-fig]] — 쓸 수 있는 API 표면이 원천을 감싸 교체하는 속도를 정한다
 
+## 비용이 방향을 뒤집을 때 — 운영 동기화를 내부 API 만으로
+
+원칙은 「운영은 공개, 내부는 근거」 다. 그런데 DAY 는 2026-11-19 에 **운영 동기화의 공개 API 호출을 0 으로** 만들었다. 공개 API 가 호출 단위로 과금되어 비쌌기 때문이다(사용자).
+
+- **바꾼 것**
+  - 공개 통계로 「오늘 밖 고객의 변경」을 5분마다 잡던 회차는 통째로 뺐다.
+  - 진료항목 · 기기 · 약물은 공개 목록 대신 내부 상품 응답 안에서 모았다.
+  - 기존 코드의 구역 목록도 내부 경로로 바꿨다. 운영 루프에서 공개 토큰 발급이 사라졌다.
+- **치른 값**
+  - 독립 목록이 없는 항목(어떤 옵션에도 안 쓰인 진료항목)은 받지 못한다. 그래서 「목록에서 빠짐 ≠ 삭제」 로 규칙을 바꿨다.
+  - 내부 API 의 약점(헤더 검사 · 예고 없는 변경)에 전부 기대게 됐다.
+- **판단 기준**: 공개 · 내부는 안정성만이 아니라 **호출 비용 · 쓸 수 있는 범위 · 깨질 위험**의 셋으로 고른다. 전부 내부로 갈 때는 「깨지면 어디서 알아채나」(건너뜀 카운트 · 첫 회차 구역 수 확인)를 함께 둔다.
+- **요청 조건도 본다**: 응답 키에 DB 칸을 다 맞췄는데, 요청 본문의 `includePromotions:false` 때문에 프로모션 칸이 늘 비어 왔다. HAR 을 베낄 때 **응답 키뿐 아니라 요청 파라미터**가 무엇을 빼고 있는지도 같이 읽는다.
+
 ## 출처
 
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 관제 조작을 KOS 에 반영할 수 있나(공개 OpenAPI 대조 · DEMO HAR 1·2차 · `workflow.md` 「KOS 반영 표」)
@@ -92,3 +110,4 @@ tags:
 - [[2026-11-11-day-procedure-board-2]] §2 — 시작 취소 · 집도의 변경 · 방 이동 · 차트 메모를 KOS 웹 HAR(경로 · 칸만) + 데모 실물로 확인 · 의사차트는 집도의를 골라야 쓰이고 고르면 수락 → 진행 중 · 완료 시술은 안 바뀜 → 시술 전 의사차트는 DAY 에만(`research-har-room-chart-report.md` · SPEC-002 KOS 쓰기 표)
 - [[2026-11-12-api-swagger-docs]] §2 · §7 — 공개 API 고객에 email 이 없어 이름+이메일 조회를 내부 `get-visitors` 이름 검색 → 우리 쪽 이메일 거르기로 · 한 페이지 1000 · 정확 일치 · 내부 조건이 바뀌면 외부 조회 · 예약 · 과거 시술 · 예약 내역이 502 로 멈추는 위험을 남김(`research-name-email-lookup.md` · DEC-010 D-15)
 - [[2026-11-16-ext-api-charty1]] §2 · §3 — 시술권 원천을 공개 → 내부로(공개는 사용 중 묶음을 빠뜨림) 바꾸자 내부 protobuf JSON 이 금액 0 의 `value` 를 빼서 lookup 502 · 같은 고객 공개 조회엔 `value` 있음 → 원천 차이로 확인 · 「값 없음 = 0」 · 거르기 먼저(DEC-012 D-46 · 커밋 `1c3a340`)
+- [[2026-11-19-customer-erd]] §2 — 공개 API 0 전환(`sync-fix-3-internal-only.md`) · `includePromotions` 누락 · 이벤트가 = `price.additional`

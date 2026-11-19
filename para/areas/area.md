@@ -653,6 +653,8 @@ para/areas/
 | 540 | `design` | [[para/areas/concept/design/screen-flow-map\|screen-flow-map]] | 화면을 버튼 단위 화살표로 잇고 옆에 원천 줄 단 정책 메모. 데이터(JSON)가 원본 · 캔버스는 멱등 렌더 결과 |  |
 | 537 | `qa` | [[para/areas/concept/qa/input-space-enumeration\|input-space-enumeration]] | 증상마다 규칙 덧대기 전에 입력 꼴 × 데이터 조합 표를 짓고 지금 시스템에 돌려 실패 층을 센다. 완료 = 표 통과율 |  |
 | 538 | `back` | [[para/areas/concept/back/graceful-degradation\|graceful-degradation]] | 선택적 하위 시스템의 모든 실패를 그 경로만 503 으로 가두고 본체 health · 계약은 그대로 뜬다. 조용한 폴백과 다르다 |  |
+| 541 | `back` | [[para/areas/concept/back/external-id-mapping-table\|external-id-mapping-table]] | 외부 id 는 대응표 한 곳에만 · 내 테이블은 내 id 로만 잇기. 떼면 대응표만 지운다 · 외부 id 유일성은 실물로 확인 |  |
+| 542 | `back` | [[para/areas/concept/back/paced-backfill\|paced-backfill]] | 지난 이력은 배포와 뗀 수동 작업으로. 전송 층 페이싱 · 운영 upsert 재사용(멱등) · 이어 하기 · 드라이런 대조 |  |
 
 ---
 
