@@ -1,0 +1,93 @@
+{
+ "idempotency_key": "day/day-mobile-v2-0.2.0-2026-11-20",
+ "title": "DAY 직원 앱 0.2.0(병원 인계 판) — 기기 선택 · 시술 현황(바로 시작 · 호출 취소 · 간호관리 · 방 옮기기 · 원장 바꾸기) · 호출 취소 알림 · 통역 통키 56e43a0 (DAY-SPEC-003 ⑲ · 001 ⑩ · 002 ㉕ · 005 · 000)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 1,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-003",
+  "DAY-SPEC-001",
+  "DAY-SPEC-002",
+  "DAY-SPEC-005",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "ccede2866d006607509c5e34bdad33079fa9dffd",
+ "target_delta": [
+  "M-1 출시: 앱 0.2.0 — DAY Dev(dev 서버) 먼저 → 실기기 통과 → 같은 코드를 정식(prod 설정)으로 빌드 · 빌드 번호 최소 iOS Dev 4 · iOS 정식 3 · Android 둘 다 4 · iOS 0.1.0 (2) 심사 건 그대로(mobile-deployment ⑤ · §10).",
+  "M-2 호환: 옛 앱(0.1.0) 호환을 챙기지 않는다 — 앱 버전으로 옛/새 가르기 없음 · 서버 응답 · 알림 종류 · 통역 프로토콜을 새 앱 기준으로 바로 바꾼다(SPEC-003 개정 ⑲ ②).",
+  "M-3 기기 선택: 앱 JSON 로그인도 KOS 기기 제한이면 200 choose_device(웹 service auth.login(device_choice=True) · auth.choose_device 재사용) · 새 POST /api/auth/device {pending_token, device_id, client} · 데모 넘김 read_success 가 choose_device 를 받음 · 앱 기기 선택 화면(웹과 같은 KOS 글자) · 로그아웃 때 KOS 해제 안 함(SPEC-001 개정 ⑩ · SPEC-003 U-17).",
+  "M-4/M-5 시술 현황: 새 POST /api/visits/{id}/quick-start(같은 service) · 스냅샷 tasks[] 새 칸 canCancelCall · canQuickStart · canChangeDoctor · 앱 룸 상세에 바로 시작(U-18) · 호출 취소 ⋮(U-19 · 기존 /api/tasks/{id}/cancel-call) · systemDoctor 「간호관리」(U-20) · 방 옮기기(U-21 · 기존 room-move · canMoveRoom/canHoldMove) · 원장 바꾸기(U-22 · 기존 /api/tasks/{id}/doctor). 귀가 대기 취소 · 정렬 탭 · 순서 변경은 앱에 없음(SPEC-002 개정 ㉕ · SPEC-003 개정 ⑲).",
+  "M-6 호출 취소 알림: 호출 취소 커밋 뒤 그 호출을 받았던 원장 계정마다 notification(kind doctor_call_cancel · 이름 제안) · 제목 「호출 취소」 · 본문 「{방} · 시술 {N}건 · 호출 취소」 · 원래 원장 호출 알림 닫기 · 실시간 unread · APNs 푸시 · 앱 알림 목록 · 종 배지 · 웹 OS 알림 · notification_kind / push_kind enum 값 추가 migration(SPEC-005 2026-11-20 · SPEC-000).",
+  "M-8 통역: 통키 interpret-pwa 56e43a0 따라가기 — stt-rt-v6 · endpoint 2000/-0.3(D-67) · 역할 context · 빈 원문 막기 · context = proper 74개(D-71) · 시드 .11 + 로더 허용 칸(proper · ko_wrong · wrong) · 바로잡기 correct_terms(records 함수 _norm · _spans · hays_of · match_spans 만 DAY 안으로) · 세 참여자 turn(서버 1초 차례 끝 · 끼어들기 2토큰 · agent text) · 새 WS 프레임 audio_stop(서버→앱) · playback_stopped(앱→서버) · 앱 반이중 걷음 · 통역 기록 없음 그대로(SPEC-003 §3 「통역 — 0.2.0」)."
+ ],
+ "acceptance": [
+  "A1: 기기 제한 계정의 앱 로그인 → 200 choose_device(devices[] · pending_token · environment · api_base_url) → POST /api/auth/device → signed_in / choose_hospital / 다시 choose_device · 목록 밖 · 빈 device_id · 만료 · 다른 종류 토큰 = 401 session_expired · 데모 계정(prod → dev)도 choose_device 가 넘어옴 · 앱 화면 글자 = 웹 U-4 KOS 글자 · 로그아웃은 KOS 해제 안 함.",
+  "A2: POST /api/visits/{id}/quick-start = 웹과 같은 판정 · 하나라도 시작되면 200 {startedTaskIds, rejected, flowStepChanged} · 묶음 거절 400/404/409 · 스냅샷 canCancelCall · canQuickStart · canChangeDoctor 가 서비스 거절 규칙과 같은 값(웹 템플릿 조건과 일치).",
+  "A3: 앱 룸 상세에서 바로 시작(canQuickStart 줄만 · 다중) · 호출 취소(canCancelCall · 확인 창) · 간호관리 표시(systemDoctor) · 방 옮기기(canMoveRoom · canHoldMove · rooms[]) · 원장 바꾸기(canChangeDoctor) — 버튼 노출은 서버 칸 + /me board edit 만 · 실패 토스트는 DAY-SPEC-002 글자 · 글자 없는 것은 미정대로(짓지 않음).",
+  "A4: 호출 취소 뒤 그 호출을 받았던 원장 계정마다 doctor_call_cancel 알림 행 하나(중복 없음) · 「호출 취소」 / 「{방} · 시술 {N}건 · 호출 취소」 · 원래 원장 호출 알림 닫힘(OQ-N17 결정대로) · 원장 호출 설정 끈 계정 없음 · iOS 푸시 · 앱 목록 · 배지 · 웹 OS 알림에 보임 · migration 은 enum 값 추가만.",
+  "A5: 통역 — stt-rt-v6 · 7개 언어 start→ready · 시드 .11 로 기동 · 바로잡기 단위 시험 · 재생 중 마이크 계속 · 끼어들기 때 audio_stop → 앱 재생 멈춤 · playback_stopped 처리 · 차례 끝 1초 · 기존 오류 코드 · 상한 6 회귀 없음.",
+  "A6: 백엔드 pytest · 앱 테스트(더블) 통과 · lint · DAY Dev 실기기(iOS · Android) 확인 뒤 정식 빌드(사용자 몫 — SPEC-003 A-50)."
+ ],
+ "non_goals": [
+  "Android FCM 푸시(별도 Delivery — 사용자 Firebase 준비에 걸림)",
+  "옛 앱(0.1.0) 호환 장치 · 앱 버전으로 응답 가르기",
+  "귀가 대기 취소 · 정렬 탭 · 카드 순서 바꾸기의 앱 화면 · JSON 짝",
+  "로그아웃 때 KOS 로그인 해제",
+  "통역 기록(records 저장 · D-42) · 사전 편집 화면",
+  "웹 알림 목록 · 웹 종 배지 화면 새로 만들기(DAY-SPEC-005 OQ-N19 확인 전)",
+  "기획안(products/day/00-baseline/) 수정 · 앱 성공 토스트 글자 짓기"
+ ],
+ "review_surface": [
+  "baseline: SPEC-003 개정 ⑲ · SPEC-001 개정 ⑩ · SPEC-002 개정 ㉕ · SPEC-005 2026-11-20 개정 · SPEC-000 2026-11-20 개정 · mobile-deployment ⑤ 는 mediness 워크트리 day-mobile-v2-spec 에만 있음(미커밋) — 지금 baseline ccede286 은 옛 계약. 스펙 PR 머지 → 같은 key 로 contract_version 2 재결속 → 그 뒤 사용자 plan 승인 권장.",
+  "착수 막는 OQ: DAY-SPEC-001 OQ-K18(기기 선택 JSON 이름) · DAY-SPEC-002 OQ-77(바로 시작 전부 거절 응답) · OQ-78(새 can* 이름 · 판정) · DAY-SPEC-005 OQ-N15(enum 값 이름 — migration 되돌리기 어려움) · N16(본문 N) · N17(원래 알림 닫는 방법) · DAY-SPEC-003 OQ-A52 · A54(시안 자리) · A55(방 복귀 넣나 — M-4 목록에 없음) · A61(playback_stopped 보내는 조작).",
+  "designer 시안 필요: 기기 선택 · 바로 시작 다중 선택 · 방 옮기기 · 원장 바꾸기 · 간호관리 표시(앱 21-screen 비어 있음) — mobile 화면은 시안 뒤.",
+  "통역 마감: STT v5 종료 2026-12-15 — 통역 서버 phase 를 먼저. Soniox 조직 한도(TTS 3) vs 상한 6 · D-68 뒤 TTS 연결 수명 확인 안 됨(SPEC-003 I-1).",
+  "M-6 「웹 알림 목록 · 종 배지」는 웹에 원장 호출 목록 · 종 화면이 없어 웹 OS 알림으로 읽음(DAY-SPEC-005 OQ-N19) — 다르면 사용자 확인."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/routers/api/auth.py · schemas/auth.py · services/auth.py(재사용) · adapters/environments.py(read_success)",
+   "backend/day/routers/api/board.py(quick-start) · services/board_quick_start.py(재사용) · presentation/board.py · schemas/board_responses.py · policies/board_rules.py(can* 판정)",
+   "backend/day/services/notifications.py · services/board_calls.py(cancel_call 뒤 훅) · enums/notification.py · backend/migrations(enum 값) · static/day.js(웹 OS 알림 kind)",
+   "backend/day/services/interpret/{session,turn(새),correct(새)}.py · adapters/soniox.py · policies/glossary.py · seed/glossary.json(.11)",
+   "app/lib/state/session_controller.dart · ui/login_screen.dart(기기 선택) · lib/model/board.dart · ui/room_screen.dart · lib/data/day_api.dart · lib/notify/notification_model.dart · state/push_coordinator.dart · ios/Runner(AppDelegate · AcceptLogic tapKeys) · lib/interpret/interpret_client.dart"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "스펙 PR 머지 · contract_version 2 재결속 · 사용자 plan 승인",
+   "착수 막는 OQ 결정(위 Review Surface)",
+   "designer 시안(기기 선택 · 바로 시작 · 방 옮기기 · 원장 바꾸기 · 간호관리) → mobile 화면"
+  ],
+  "phases": [
+   "P1 backend 통역(마감 2026-12-15): STT v6 · D-67 · 시드 .11 로더 · context D-71 · 바로잡기 · turn(D-68 ~ 70) · audio_stop / playback_stopped",
+   "P2 backend API: 앱 choose_device · /api/auth/device · relay · quick-start JSON · can* 3칸",
+   "P3 backend 알림: doctor_call_cancel migration · 행 · 원래 알림 닫기 · APNs · 웹 OS 알림 kind",
+   "P4 designer: 앱 시안 5자리(기기 선택 · 바로 시작 다중 선택 · 방 옮기기 · 원장 바꾸기 · 간호관리)",
+   "P5 mobile: 통역 클라이언트(반이중 걷음 · audio_stop · playback_stopped) — P1 뒤",
+   "P6 mobile: 기기 선택 · 시술 현황 5동작 · 알림 kind · 푸시 탭 — P2 · P3 · P4 뒤",
+   "P7 빌드: DAY Dev 0.2.0 (iOS 4 · Android 4) → 실기기 → 정식(iOS 3 · Android 4)"
+  ],
+  "verification": [
+   "backend pytest(auth · board api · notifications · interpret 단위)",
+   "앱 flutter test(더블)",
+   "dev 실물: 데모 지점 기기 제한 · 바로 시작 · 호출 취소 알림 · Soniox v6 7개 언어",
+   "사용자 실기기 iOS · Android(SPEC-003 A-50)",
+   "lint-pipeline --strict"
+  ],
+  "predeploy": [
+   "migration(enum 값 추가) dev → prod 순 · 되돌릴 수 없음 확인",
+   "STT v5 종료(2026-12-15) 전 prod 통역 배포"
+  ],
+  "rollback": [
+   "Code PR revert — 단 enum 값 추가 migration 은 되돌리지 않음(값은 남아도 무해)",
+   "앱은 이전 빌드로 되돌릴 수 없음(스토어) — 서버 revert 시 0.2.0 앱의 새 경로는 404"
+  ],
+  "open_questions": [
+   "DAY-SPEC-001 OQ-K18 ~ K20",
+   "DAY-SPEC-002 OQ-77 · 78",
+   "DAY-SPEC-005 OQ-N15 ~ N20",
+   "DAY-SPEC-003 OQ-A50 ~ A62 · I-6"
+  ]
+ }
+}

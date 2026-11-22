@@ -1,0 +1,96 @@
+{
+ "idempotency_key": "day/day-mobile-v2-0.2.0-2026-11-20",
+ "title": "DAY 직원 앱 0.2.0(병원 인계 판) — 기기 선택 · 시술 현황(바로 시작 · 호출 취소 · 간호관리 · 방 옮기기 · 원장 바꾸기) · 호출 취소 알림 · 통역 통키 56e43a0 (DAY-SPEC-003 ⑲ ⑳ · 001 ⑩ ⑪ · 002 ㉕ ㉖ · 005 · 000)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 2,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-003",
+  "DAY-SPEC-001",
+  "DAY-SPEC-002",
+  "DAY-SPEC-005",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "3ae2317ed00f737944e4ae77657b054daf9e7970",
+ "target_delta": [
+  "M-1 출시: 앱 0.2.0 — 배포 순서 = dev 서버 배포 → DAY Dev 0.2.0(iOS 4 · Android 4) 실기기 → **prod 서버 배포를 먼저 끝냄** → 같은 코드 정식 0.2.0(iOS 3 · Android 4) 제출 · iOS 0.1.0 (2) 심사 건 그대로(SPEC-003 개정 ⑲ ① · mobile-deployment ⑤ · §10).",
+  "M-2 호환: 옛 앱(0.1.0) 호환을 챙기지 않는다 — 앱 버전으로 옛/새 가르기 없음 · 서버 응답 · 알림 종류 · 통역 프로토콜을 새 앱 기준으로 바로 바꾼다.",
+  "M-3 기기 선택: 앱 JSON 로그인도 KOS 기기 제한이면 200 choose_device(웹 service auth.login(device_choice=True) · auth.choose_device 재사용) · 새 POST /api/auth/device {pending_token, device_id, client} · 데모 넘김 read_success 가 choose_device 를 받음 · 앱 기기 선택 화면(웹 KOS 글자) · 로그아웃 때 KOS 해제 안 함· client=web = 400 invalid_request · 앱 화면 = 로그인 카드 안 · 뒤로 = 입력 화면(SPEC-001 개정 ⑩ ⑪ · SPEC-003 U-17 · OQ-K18 닫음).",
+  "M-4/M-5 시술 현황: 새 POST /api/visits/{id}/quick-start(같은 service · 응답 {startedTaskIds, rejected, flowStepChanged}) · 스냅샷 tasks[] 새 칸 canCancelCall · canQuickStart · canChangeDoctor(판정 = 서비스 거절 규칙 정본 — 웹 템플릿과 다른 곳은 SPEC-002 개정 ㉕ ③) · 앱 룸 상세: 바로 시작(U-18) · 호출 취소 ⋮(U-19 · 확인 창 없음) · 「간호관리」(U-20) · 방 옮기기(목록 재묶음)·복귀·점유 띠(U-21) · 원장 바꾸기(U-22 · 「담당의 미정」 포함). 귀가 대기 취소 · 정렬 탭 · 순서 변경은 앱에 없음. 구현 사실(SPEC-003 개정 ⑳ · 시안 없음 — 기존 컴포넌트 + 웹 배치 · 글자): 바로 시작 = 룸 상세 [의사 호출] 옆 [바로 시작] → 의사 호출 드로어 재사용 · 원장 고르기 없음 · 체크 가능 = canQuickStart · rejected[] 토스트 코드마다 한 장씩 차례로 · 방 옮기기 = 머리 방 이름(▾) · 버튼 「복귀하기」 · 원장 바꾸기 창 「원장 변경」 · 시술 칸 없음 · canChangeDoctor = doctor_change_block 만(SPEC-002 개정 ㉖ · OQ-77 · 78 닫음).",
+  "M-6 호출 취소 알림: 호출 취소로 그 호출이 완전히 닫힐 때만(남은 줄 0 · closed_at) 그 호출을 받았던 원장 계정마다 notification(kind doctor_call_cancel) 한 번 · 제목 「호출 취소」 · 본문 「{방} · 호출 취소」(시술 수 없음) · 같은 때 원래 원장 호출 알림 닫기(서버 read_at · 앱 OS 알림 센터 · 웹 tag) · 일부 줄 취소 = 알림 없음 · APNs 푸시 · 앱 알림 목록 · 종 배지 · 웹 = OS 알림만 · notification_kind / push_kind enum 값 추가 migration 0013_doctor_call_cancel_kind(dev 0012_kos_keys 다음 · SPEC-005 · SPEC-000) · 푸시 묶음 = iOS apns-collapse-id = callId(새 칸 없음 — 취소 푸시가 원래 푸시를 OS 에서 대신).",
+  "M-8 통역: 통키 interpret-pwa 56e43a0 따라가기 — stt-rt-v6 · endpoint 2000/-0.3 · context text 키 · proper 74(D-71) · 시드 2026-11-16.11 + 로더 검사(proper · wrong_form · wrong_key) · 바로잡기(records 4함수만) · 세 참여자 turn(TokenGate · ECHO_TAIL 500ms 주 수단 · agent text 보조 · 1초 차례 끝 · 끼어들기 2토큰) · 빈 final caption 지우기 · audio_stop(id 무시) · playback_stopped([멈춤] · 지우기만 → 서버 audio_end) · stop 큐 비움 · 앱 반이중 걷음 · 통역 기록 없음(SPEC-003 §3 「통역 — 0.2.0」). 동시 세션 상한 = dev · prod 설정 3(DAY_INTERPRET_MAX_SESSIONS=3 · Soniox 조직 TTS 3 · I-1 닫음) · 재생 중 안내 줄 없음 · 「번역 읽는 중」 그대로.",
+  "상태(2026-11-22): 구현 = CENTURION_DAY#266 dev 스쿼시 머지 `5ece25ea` · dev 배포 성공(alembic 0014_device_platform_android head) · DAY Dev 0.2.0 업로드(TestFlight (4) · Play internal vc4) · 남은 것 = 실기기 확인(SPEC-003 A-50 · I-6) · prod 서버 배포 · 정식 0.2.0 앱(iOS 3 · Android 4) — 완료 아님."
+ ],
+ "acceptance": [
+  "A1: 기기 제한 계정의 앱 로그인 → 200 choose_device(devices[] · pending_token · environment · api_base_url) → POST /api/auth/device → signed_in / choose_hospital / 다시 choose_device · 목록 밖 · 빈 device_id · 만료 · 다른 종류 토큰 = 401 session_expired · 데모 계정(prod → dev)도 choose_device 가 넘어옴 · 앱 화면 글자 = 웹 U-4 KOS 글자 · 로그아웃은 KOS 해제 안 함.",
+  "A2: POST /api/visits/{id}/quick-start = 웹과 같은 service · 하나라도 시작되면 200 {startedTaskIds, rejected, flowStepChanged} · 묶음 거절 400/404/409(전부 거절 = 409 + 첫 코드) · 스냅샷 canCancelCall · canQuickStart · canChangeDoctor = 그 동작을 지금 보내면 서비스가 거절하지 않는가(서비스 거절 규칙이 정본 · 웹 템플릿 조건과 같을 필요 없음).",
+  "A3: 앱 룸 상세에서 바로 시작([의사 호출] 옆 [바로 시작] → 의사 호출 드로어 · canQuickStart 줄만 · 다중 · 거절 토스트 한 장씩) · 호출 취소(canCancelCall · 확인 창 없음) · 간호관리 표시(systemDoctor) · 방 옮기기(canMoveRoom · canHoldMove · 지금 방 빼고 자기 자신 takenBy 빼고 빈 방 먼저) · 복귀(canReturnRoom · 「복귀하기」) · 점유 띠(holdRoom) · 원장 바꾸기(canChangeDoctor · 담당의 자리 글자 누름) — 버튼은 서버 칸 + /me board edit 만 · 실패 토스트는 DAY-SPEC-002 글자 · 글자 없는 것은 미정대로.",
+  "A4: 호출이 완전히 닫히는 취소 때만 그 호출을 받았던 원장 계정마다 doctor_call_cancel 행 하나(중복 없음) · 「호출 취소」 / 「{방} · 호출 취소」 · 원래 원장 호출 알림 닫힘(read_at · 앱 OS 알림 · 웹 tag) · 일부 줄 취소 = 알림 없음 · 원장 호출 설정 끈 계정 없음 · iOS 푸시 · 앱 목록 · 배지 · 웹 OS 알림 · migration 은 enum 값 추가만.",
+  "A5: 통역 — stt-rt-v6 · 7개 언어 start→ready · 시드 .11 로 기동 · 바로잡기 단위 시험 · 재생 중 마이크 계속 · TokenGate 로 재생 소리 되울림 없음 · 빈 final caption 지움 · 끼어들기 때 audio_stop → 앱 재생 멈춤 · playback_stopped → audio_end · 차례 끝 1초 · 기존 오류 코드 · 동시 상한 설정 3(4번째 = session_limit) · 기존 오류 코드 회귀 없음.",
+  "A6: 백엔드 pytest · 앱 테스트(더블) 통과 · lint · dev 배포(구현 단계 — 끝남 · 위 상태) · **남음**: DAY Dev 실기기(iOS · Android) 확인(SPEC-003 A-50 · 통역 메아리 I-6) → prod 서버 배포(migration 0012 · 0013 · 0014 함께 = 5ece25ea) → 정식 0.2.0 빌드 제출(사용자 몫)."
+ ],
+ "non_goals": [
+  "Android FCM 푸시(별도 Delivery — 사용자 Firebase 준비에 걸림)",
+  "옛 앱(0.1.0) 호환 장치 · 앱 버전으로 응답 가르기",
+  "귀가 대기 취소 · 정렬 탭 · 카드 순서 바꾸기의 앱 화면 · JSON 짝",
+  "로그아웃 때 KOS 로그인 해제",
+  "통역 기록(records 저장 · D-42) · 사전 편집 화면",
+  "기획안(products/day/00-baseline/) 수정 · 앱 성공 토스트 글자 짓기",
+  "웹 알림 목록 · 웹 종 배지 화면(웹은 OS 알림만 — 사용자 2026-11-20)",
+  "호출 취소 확인 창 · 성공 토스트 글자"
+ ],
+ "review_surface": [
+  "baseline: mediness origin/main 3ae2317e(스펙 PR #955 스쿼시 머지) — DAY-SPEC-003 개정 ⑲ ⑳ · 001 ⑩ ⑪ · 002 ㉕ ㉖ · 005 2026-11-20 · 11-22 · 000 2026-11-20.",
+  "상태(2026-11-22): 구현 = CENTURION_DAY#266 dev 스쿼시 머지 `5ece25ea` · dev 배포 성공(alembic 0014_device_platform_android head) · DAY Dev 0.2.0 업로드(TestFlight (4) · Play internal vc4) — Issue 의 남은 단계는 P7 출시 하나(실기기 → prod 서버 → 정식 앱).",
+  "착수 막는 OQ: 없음 — K18 · 77 · 78 · A50 · A51 · A52 · A54 모두 닫음(기본값대로 구현 · 시안 없음 — 사용자 2026-11-20). 열린 것(막지 않음): K19 · K20 · N18 · A56 · A57 · A62 · I-6.",
+  "통역 마감: STT v5 종료 2026-12-15 — prod 통역 배포가 그 전에 필요. 상한 3 = 조직 TTS 3(Soniox 한도 상향은 사용자).",
+  "출시 순서: prod 서버 배포를 정식 0.2.0 앱보다 먼저(옛 서버에 0.2.0 앱 = 통역 되울림 · 새 경로 404) · prod 는 5ece25ea(0012 · 0013 · 0014 함께 — deployment.md 「prod 반영」 1행)."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/routers/api/auth.py · schemas/auth.py · services/auth.py(재사용) · adapters/environments.py(read_success)",
+   "backend/day/routers/api/board.py(quick-start) · services/board_quick_start.py(재사용) · presentation/board.py · schemas/board_responses.py · policies/board_rules.py(can* 판정)",
+   "backend/day/services/notifications.py · services/board_calls.py(cancel_call 뒤 훅) · enums/notification.py · backend/migrations(enum 값) · static/day.js(웹 OS 알림 kind)",
+   "backend/day/services/interpret/{session,turn(새),correct(새)}.py · adapters/soniox.py · policies/glossary.py · seed/glossary.json(.11)",
+   "app/lib/state/session_controller.dart · ui/login_screen.dart(기기 선택) · lib/model/board.dart · ui/room_screen.dart · lib/data/day_api.dart · lib/notify/notification_model.dart · state/push_coordinator.dart · ios/Runner(AppDelegate · AcceptLogic tapKeys) · lib/interpret/interpret_client.dart",
+   "구현 = CENTURION_DAY#266 → dev 5ece25ea"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "plan 승인(코디 검수 뒤)",
+   "사용자 실기기 확인(A-50 · I-6) → prod 서버 배포 → 정식 앱(P7)"
+  ],
+  "phases": [
+   "P1 backend 통역 — 구현됨(#266 · dev 배포) · STT v6 · D-67 · 시드 .11 로더 · context · 바로잡기 · turn(TokenGate) · 빈 final · audio_stop / playback_stopped · 상한 설정 3",
+   "P2 backend API — 구현됨(#266 · dev 배포) · 앱 choose_device · /api/auth/device(client=web 400) · relay · quick-start JSON · can* 3칸",
+   "P3 backend 알림 — 구현됨(#266 · dev 배포) · migration 0013 · 닫힐 때만 행 · 원래 알림 닫기 · APNs collapse-id = callId · 웹 OS 알림 kind",
+   "P4 designer — 하지 않음(사용자 2026-11-20 「시안 없이」 · OQ-A52 · A54 닫음) · 앱 = 기존 컴포넌트 + 웹 배치 · 글자",
+   "P5 mobile 통역 클라이언트 — 구현됨(#266) · 반이중 걷음 · audio_stop · playback_stopped · 빈 final · PCM 버리기 · 재생 중 안내 줄 지움",
+   "P6 mobile 화면 — 구현됨(#266 · DAY Dev 0.2.0 업로드) · 기기 선택 · 바로 시작 드로어 · 호출 취소 · 간호관리 · 방 옮기기 · 복귀하기 · 점유 띠 · 원장 변경 · 알림 kind · 푸시 탭 · 원래 푸시 지우기",
+   "P7 출시 — **남음**: DAY Dev 0.2.0 실기기 확인(A-50 · I-6) → prod 서버 배포 먼저(5ece25ea) → 정식 0.2.0(iOS 3 · Android 4) 제출"
+  ],
+  "verification": [
+   "backend pytest(auth · board api · notifications · interpret 단위) — 통과(#266 리포트)",
+   "앱 flutter test(더블) — 통과",
+   "dev 실물 배포 — 성공(alembic 0014 head · api healthy)",
+   "**남음**: 사용자 실기기 iOS · Android(SPEC-003 A-50 · I-6)",
+   "lint-pipeline --strict"
+  ],
+  "predeploy": [
+   "prod migration 0012 · 0013 · 0014 함께(5ece25ea · migrate-prod 조건 = dev DB 0014) · enum 값은 되돌릴 수 없음 확인",
+   "STT v5 종료(2026-12-15) 전 prod 통역 배포",
+   "정식 0.2.0 앱 제출 전에 prod 서버 배포 끝남 확인"
+  ],
+  "rollback": [
+   "Code revert — enum 값 추가 migration 은 되돌리지 않음(값은 남아도 무해) · 단 0013 앞 이미지로 되돌리면 알림 목록 500(P3 검수) → 이미지만 되돌리지 말고 migration 판단을 같이",
+   "서버를 되돌리면 정식 0.2.0 앱에서 통역 되울림(서버 TokenGate 없음) · 새 경로(quick-start · auth/device) 404 — 되돌리기 판단에 넣음 · 앱은 스토어에서 이전 빌드로 못 돌림"
+  ],
+  "open_questions": [
+   "DAY-SPEC-001 OQ-K19 · K20",
+   "DAY-SPEC-005 OQ-N18",
+   "DAY-SPEC-003 OQ-A56 · A57 · A62 · I-6(실기기)"
+  ]
+ },
+ "scope_delta": "v2: baseline = mediness main 3ae2317e(#955 머지) · 검수 1 ~ 3차 + 구현 사실(SPEC-003 ⑳ · 001 ⑪ · 002 ㉖) — can* = 서비스 거절 규칙 정본 · 호출 취소 확인 창 없음 · 「{방} · 호출 취소」 닫힐 때만 · 바로 시작 = 의사 호출 드로어 · 시안 없음 · 복귀하기 · 상한 3 · collapse-id · migration 0013 · 0014 · 단계 P1 ~ P6 구현됨(#266 · dev 배포) · 남은 것 P7(실기기 → prod 서버 → 정식 앱)"
+}

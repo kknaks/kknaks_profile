@@ -1,0 +1,68 @@
+{
+ "idempotency_key": "day/day-mobile-v2-fcm-2026-11-20",
+ "title": "DAY 직원 앱 0.2.0 — Android 푸시(FCM): 원장 호출 · 호출 취소 · 채팅 · 알림 [수락] (DAY-SPEC-003 ⑲ · 005 · 000)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 1,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-003",
+  "DAY-SPEC-005",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "ccede2866d006607509c5e34bdad33079fa9dffd",
+ "target_delta": [
+  "M-7 Android 푸시 = FCM: device.platform 에 android(migration) · PUT /api/devices/{install_id} platform android(push_env 없음 · 토큰 검사 완화) · 서버 FCM HTTP v1 발송(원장 호출 · 호출 취소 · 채팅 — iOS 와 같은 받는 사람 · 같은 push_log · 키 없음 skipped_no_key · 죽은 토큰 token_removed) · data 메시지 · Android day/push 채널 구현(권한 · 토큰 · 탭 · 앞화면 · 알림 [수락]) · google-services 플러그인(SPEC-003 §3 「Android 푸시 — FCM」 · mobile-deployment §8-1).",
+  "Firebase 프로젝트 · Android 앱 두 개 등록 · google-services.json 두 벌 · 서버 서비스 계정 키는 사용자가 만든다(값은 레포 밖 · 칸 이름 = DAY_FCM_SERVICE_ACCOUNT · DAY_FCM_ALLOWED_APP_IDS 제안 · app/android/app/google-services.json 커밋 안 함)."
+ ],
+ "acceptance": [
+  "A1: Android 기기 등록(platform android) · 해제 · 결속 규칙이 iOS 와 같음 · 잘못된 칸 400.",
+  "A2: 원장 호출 · 호출 취소 · 채팅 푸시가 Android 기기에 FCM 으로 감 · 키 없으면 skipped_no_key · 죽은 토큰 token_removed.",
+  "A3: Android 앱 — 로그인 직후 알림 권한 · 토큰 등록 · 푸시 눌러 룸 상세 / 채팅 · 원장 호출 알림 [수락](board.accept 일 때) · 앱 앞일 때 배너.",
+  "A4: google-services.json 없는 로컬 빌드 동작(OQ-A60 결정대로) · 사용자 실기기(개발 → 정식) 확인."
+ ],
+ "non_goals": [
+  "iOS APNs 경로 변경",
+  "웹 푸시(서비스워커)",
+  "Firebase 값 · 키를 레포에 넣기",
+  "옛 앱 호환"
+ ],
+ "review_surface": [
+  "baseline: SPEC-003 개정 ⑲ · SPEC-001 개정 ⑩ · SPEC-002 개정 ㉕ · SPEC-005 2026-11-20 개정 · SPEC-000 2026-11-20 개정 · mobile-deployment ⑤ 는 mediness 워크트리 day-mobile-v2-spec 에만 있음(미커밋) — 지금 baseline ccede286 은 옛 계약. 스펙 PR 머지 → 같은 key 로 contract_version 2 재결속 → 그 뒤 사용자 plan 승인 권장.",
+  "사용자 준비 대기: Firebase 프로젝트 · google-services.json 두 벌 · 서버 키 — 없으면 구현은 더블까지 · 실물 검증 보류.",
+  "착수 막는 OQ: DAY-SPEC-003 OQ-A50(env 이름) · A51(push_env · 토큰 검사) · A59(메시지 모양 · 채널) · DAY-SPEC-005 OQ-N15(호출 취소 kind 이름 — 메인 Delivery 와 공유).",
+  "메인 0.2.0 Delivery 의 호출 취소 알림(P3)과 순서 — FCM 발송은 그 kind 를 함께 보냄."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/schemas/devices.py · enums/device.py · backend/migrations(platform 값) · adapters/(새 FCM 어댑터) · services/notifications.py · 채팅 푸시 발송",
+   "app/android/app/build.gradle.kts(google-services) · src/main/kotlin/day/medisolveai/PushChannel.kt · MainActivity.kt · app/lib/data/push_bridge.dart"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "사용자 Firebase 준비",
+   "메인 0.2.0 Delivery 의 doctor_call_cancel kind",
+   "스펙 PR 머지 · v2 재결속 · plan 승인"
+  ],
+  "phases": [
+   "F1 backend: platform android migration · 등록 검사 · FCM 어댑터 · 발송 갈래",
+   "F2 mobile: Android day/push 구현 · 알림 채널 · [수락] · google-services",
+   "F3 실물: DAY Dev Android → 정식"
+  ],
+  "verification": [
+   "backend pytest(devices · FCM 어댑터 더블)",
+   "flutter test · Android 빌드",
+   "사용자 실기기 Android 푸시"
+  ],
+  "predeploy": [
+   "서버 FCM 키 등록(사용자)",
+   "migration dev → prod"
+  ],
+  "rollback": [
+   "Code PR revert · enum 값은 남김"
+  ],
+  "open_questions": [
+   "DAY-SPEC-003 OQ-A50 · A51 · A59 · A60"
+  ]
+ }
+}

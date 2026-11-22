@@ -83,9 +83,15 @@ apns-priority: 10          apns-expiration: 0
 - [[delegated-authorization]] — 알림 [수락] 도 back 이 역할 · 원장을 다시 검사한다
 - [[server-sent-events]] — 같은 기기 행 id 를 싣는 스트림 · 붙는 때는 앱 시작 · 복귀
 
+
+## 묶음 id — 취소 푸시가 원래 푸시를 OS 에서 덮는다
+
+DAY 0.2.0(2026-11-20): 앱이 꺼져 있으면 원래 원장 호출 푸시를 지울 수 없어 서버가 `apns-collapse-id`=callId 를 붙였다(Android 는 알림 tag = data.callId). 같은 id 가 되자 앱의 「원래 알림 지우기」가 취소 알림 자신까지 지울 수 있었다 — 묶음은 서버 · 앱이 함께 정한다. ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 토큰 = 행이라 같은 폰이 두 대로 뜸 → 설치 id 로 행 하나 · 옛 행은 대상에서만 뺌 · 기기 이름 = 기종 자동(코드 `333f30f` · `affac41` · `app-e2e-feedback-batch1.md` #1 · `-batch2.md` #1 · #3)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 명동 PoC v2 원장 호출 푸시 · 알림 [수락](SPEC-004 §5-1 · `push/apns.py` · `service/push.py` · `api/actions.py` · `AppDelegate.swift`)
 - [[2026-10-30-internal-chat]] §2 「푸시 · SSE 는 커밋 뒤」 — 동기 핸들러 = 푸시 0 · 만료 · thread-id
 - [[2026-11-11-day-app]] §2 — DAY 직원 채팅 · 원장 호출 알림 서버 APNs 직접 · 키는 나중 연결(코드 1dc1ec3d · 39a3dad8 · SPEC-004 · 005)
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)

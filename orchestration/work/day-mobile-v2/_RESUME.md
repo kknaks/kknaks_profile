@@ -75,6 +75,7 @@
 | 2026-11-20 | 글자 3: ① 통역 재생 중 안내 「번역 음성이 나오는 동안은 듣지 않아요」 지움 ② 「번역 읽는 중」 그대로 ③ 대리 수락 창 「호출할 시술 · N개」 그대로 | 사용자 「추천으로 가자」 |
 | 2026-11-20 | 코드 브랜치 `kknaksss/day-mobile-v2` push OK(별도 브랜치 · PR · 머지 없음) · 로컬 시뮬레이터 시험은 대기 | 사용자 |
 | 2026-11-20 | dev 가 움직임(f724b149 · day-cc-mig #265 · 0012_kos_keys) → 우리 브랜치 rebase · migration 0013 · 0014 → **dev 에 스쿼시 머지** → dev 자동 배포(migration 자동) → TestFlight DAY Dev 로 확인 | 사용자 「우리 것도 스쿼시 머지 하자 · dev 에」 |
+| 2026-11-22 | 스펙 #955 머지는 코디가(우리 작업 스펙) — planner 정리 · lint 뒤 force push → 스쿼시 머지 | 사용자 「우리 스펙 아니야?」 |
 | 2026-11-22 | 스펙(mediness#955) · 프로필 마감은 **대기** — 다른 세션 작업이 마무리되면 mediness main · profile main 이 움직인다 → 그 뒤 코드처럼 새 main 위로 rebase(#955 는 #954 와 spec-000 · log.md 겹침) → 문장 정리 3 → 머지 → Delivery #262 · #263 재결속 · 승인 → 프로필 아카이브 · 회고 | 사용자 「일단 대기 · 이전 작업 마무리하면 main 들이 움직일 거라서」 |
 | 2026-11-20 | 출시 방법 = DAY Dev 앱(dev 서버)으로 먼저 내고 실기기 통과하면 같은 코드를 prod 설정(정식 DAY)으로 빌드해 낸다 | 사용자 |
 
@@ -110,7 +111,8 @@
 
 ## 4. 산출물
 
-- spec PR: https://github.com/MediSolveAIDev/mediness/pull/955 (`7d198317` · OPEN)
+- Delivery #262 · #263 v2(baseline 3ae2317e) 검수 WARN 3(Non-Goals Firebase 잔재 · phase 「시작:」 빠짐 · #263 0014 롤백 경고 없음 — 남은 단계 영향 없음) → **승인 적용 11-22**(delivery-plan:approved · OPEN · 실기기 · prod 뒤 닫음) · json `delivery/`
+- spec PR: https://github.com/MediSolveAIDev/mediness/pull/955 → main **스쿼시 머지 `3ae2317e`**(11-22 · rebase 07aaa6d2 위 · 구현 동기화 bc3f9669 · deployment 정정 246ccaf0)
 - **dev 배포 성공**(run 44708143917 attempt 2 · 1차는 체크 중 취소됨 — 취소 주체 미확인 · 코디 cancel 은 거절돼 실행 안 됨) · alembic `0014_device_platform_android (head)` · api healthy · worker · scheduler up · FCM 키 실림 · 상한 3 · FCM 허용 앱 dev · /login 200
 - **DAY Dev 0.2.0 업로드(11-20)**: iOS (4) TestFlight VALID · 내부 테스트 · Android internal vc4 completed · AAB 사본 `~/.config/day/android/out/DAY-Dev-0.2.0-4.aab` · 서버 주소 dev 만 · 정식 앱 0
 - dev Key Vault `day-dev-fcm-service-account` 넣음(11-20 · ssh -D day-vm 경유 REST · 200)

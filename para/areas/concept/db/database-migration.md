@@ -90,6 +90,11 @@ DB 를 옮기지 않아도 **돌고 있는 스키마의 어휘를 바꾸는 것*
 - [[data-pipeline]] — 함께 옮겨야 하는 다른 소비자
 - [[infrastructure-as-code]] — 새 인프라를 세우는 쪽
 
+
+## 두 세션이 같은 번호를 잡으면 — 머지 순서가 번호를 정한다
+
+DAY(2026-11-20): `day-cc-mig` 의 `0012_kos_keys` 와 이 작업의 `0012` 가 둘 다 0011 뒤였다. 뒤에 머지하는 쪽(enum 값 추가뿐)이 rebase 해 0013 · 0014 로 옮겼다. enum 값 추가는 되돌리기가 어려워, 앞 이미지로 되돌리면 알림 목록이 500 — 되돌릴 때 migration 도 내린다. ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - [[2025-11-01-database_migration]] — 「마이그레이션 방안」 절이 **세 가지를 장단점 한 줄씩으로 나란히** 놓은 것이 이 개념의 뼈대다 — Dump→Load(쉽지만 손실), DMS+CDC(짧은 중단, 비용), Dual write(손실 없지만 점검 두 번). **「CDC 를 활용하여 실시간 데이터베이스를 업데이트 후 원하는 시점에 DB 주소를 변경하면 된다」**는 한 줄이 왜 두 번째를 골랐는지를 설명한다. 「마이그레이션 단계」가 **Full Load → CDC** 두 단계를 그림으로 갈랐고, 그 전에 원본 쪽 binlog 를 확인·설정하는 SQL(`log_bin` 확인, `binlog retention hours` 를 168시간으로)이 실려 있다. 다만 전환 후 검증 절차와 롤백 계획은 다루지 않았다
@@ -97,3 +102,4 @@ DB 를 옮기지 않아도 **돌고 있는 스키마의 어휘를 바꾸는 것*
 - [[2025-11-01-migration_detail]] — Azure DB 배포와 DMS 서비스 등록의 **화면 절차**를 스크린샷으로 남긴 짧은 노트다. 이미지가 함께 복구되지 않아 링크가 비어 있고, 남은 것은 **단계의 순서**(Azure DB 배포 → DMS 서비스 등록 → 새 프로젝트 생성)뿐이다
 - [[2026-11-06-agency-settlement]] §2 — 운영 매출 SQLite → 로컬 PG(SPEC-001 §4.4 · `migrate_sqlite` · 코드 `8089f72`)
 - [[2026-11-17-fix-feedback]] §2 — DAY 호출 취소: 동작은 기존 칸(`doctor_call_task.deleted_at` · `closed_at`)으로 migration 0 · 취소 알림(새 `notification_kind` 값)만 앱 업데이트 뒤로
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)

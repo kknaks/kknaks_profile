@@ -46,6 +46,12 @@ tags:
 - [[relationship-based-notification]] — 알림을 만들지 정하는 앞단
 - [[exponential-backoff]] — 겹치는 시점을 흩어 몰림을 막는 다른 장치
 
+
+## 일부 변경은 조용히 — 끝났을 때 한 번
+
+DAY 호출 취소 알림(2026-11-20): 취소는 시술 줄 단위인데 본문에서 시술 수를 빼자 「3줄 중 1줄 취소」도 전체 취소로 읽혔다. 호출이 완전히 닫힐 때만 한 번 보내고 원래 알림을 닫는 것으로 정했다. ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - [[2026-10-10-strong-hajin-notify]] §2 — Strong Hajin WORK-013 · DEC-010 D-39. 대상 화면을 보고 있으면 생략 · 합친 슬랙 채널 줄은 처음만 · 10초 창에 넷 이상이면 셋 + 「새 알림 N건」(`frontend/src/lib/osNotifier.ts`). 창·문턱 실측은 잔여
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)

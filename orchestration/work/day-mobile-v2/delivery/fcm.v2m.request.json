@@ -1,0 +1,71 @@
+{
+ "idempotency_key": "day/day-mobile-v2-fcm-2026-11-20",
+ "title": "DAY 직원 앱 0.2.0 — Android 푸시(FCM): 원장 호출 · 호출 취소 · 채팅 · 알림 [수락] (DAY-SPEC-003 ⑲ ⑳ · 005 · 000)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 2,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-003",
+  "DAY-SPEC-005",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "3ae2317ed00f737944e4ae77657b054daf9e7970",
+ "target_delta": [
+  "M-7 Android 푸시 = FCM: device.platform 에 android(migration 0014_device_platform_android) · PUT /api/devices/{install_id} platform android(push_env 보내면 400 · 토큰 4096자 이하) · 서버 FCM HTTP v1 발송(원장 호출 · 호출 취소 · 채팅 — iOS 와 같은 받는 사람 · push_log · 키 없음 skipped_no_key · 죽은 토큰 token_removed) · data 메시지 · Android 알림 채널 「원장 호출」(호출 취소 포함) · 「채팅」(앱 기존 글자) · Android day/push 채널 구현(권한 · 토큰 · 탭 · 앞화면 · 알림 [수락]) · 알림 tag = call:{callId}(원장 호출 · 호출 취소가 같은 자리 · 채팅 = 메시지마다 · 새 칸 없음) · google-services 플러그인(release 빌드는 Firebase 설정 없으면 멈춤 · -PDAY_ALLOW_NO_PUSH=true 예외 · OQ-A60 닫음)(SPEC-003 §3 「Android 푸시 — FCM」 · mobile-deployment §8-1).",
+  "Firebase 준비됨(사용자 2026-11-20): 기존 GCP 프로젝트에 Firebase · 앱 2개 등록 · google-services.json 한 벌(두 앱) · 서버 서비스 계정 키 dev · prod 각 1(값 · 경로는 레포 밖) · 칸 이름 DAY_FCM_SERVICE_ACCOUNT · DAY_FCM_ALLOWED_APP_IDS · app/android/app/google-services.json 커밋 안 함.",
+  "상태(2026-11-22): 구현 = CENTURION_DAY#266 dev 스쿼시 머지 `5ece25ea` · dev 배포 성공(alembic 0014_device_platform_android head) · DAY Dev 0.2.0 업로드(TestFlight (4) · Play internal vc4) · dev 서버 FCM 키 실림 · 남은 것 = Android 실기기 푸시 확인 · prod 서버 배포(키 포함) · 정식 앱 — 완료 아님."
+ ],
+ "acceptance": [
+  "A1: Android 기기 등록(platform android) · 해제 · 결속 규칙이 iOS 와 같음 · 잘못된 칸 400.",
+  "A2: 원장 호출 · 호출 취소 · 채팅 푸시가 Android 기기에 FCM 으로 감 · 키 없으면 skipped_no_key · 죽은 토큰 token_removed.",
+  "A3: Android 앱 — 로그인 직후 알림 권한 · 토큰 등록 · 푸시 눌러 룸 상세 / 채팅 · 원장 호출 알림 [수락](board.accept 일 때) · 앱 앞일 때 배너.",
+  "A4: google-services.json 없는 debug · profile 빌드 = 푸시 없이 동작 · release = 멈춤(-PDAY_ALLOW_NO_PUSH=true 예외 · OQ-A60 닫음) · **남음**: 사용자 실기기(DAY Dev → 정식) 확인."
+ ],
+ "non_goals": [
+  "iOS APNs 경로 변경",
+  "웹 푸시(서비스워커)",
+  "Firebase 값 · 키를 레포에 넣기",
+  "옛 앱 호환"
+ ],
+ "review_surface": [
+  "baseline: mediness origin/main 3ae2317e(스펙 PR #955 스쿼시 머지).",
+  "상태(2026-11-22): 구현 = CENTURION_DAY#266 dev 스쿼시 머지 `5ece25ea` · dev 배포 성공(alembic 0014_device_platform_android head) · DAY Dev 0.2.0 업로드(TestFlight (4) · Play internal vc4) — 남은 단계는 F3 하나.",
+  "착수 막는 OQ: 없음 — A50 · A51 · A59 · A60 닫음(칸 이름 DAY_FCM_SERVICE_ACCOUNT · DAY_FCM_ALLOWED_APP_IDS · android push_env 보내면 400 · 토큰 4096자 이하).",
+  "메인 0.2.0 Delivery(#262) 와 같이 출시 — prod 서버(5ece25ea · migration 0012 · 0013 · 0014) 먼저 → 정식 앱."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/schemas/devices.py · enums/device.py · backend/migrations(platform 값) · adapters/(새 FCM 어댑터) · services/notifications.py · 채팅 푸시 발송",
+   "app/android/app/build.gradle.kts(google-services) · src/main/kotlin/day/medisolveai/PushChannel.kt · MainActivity.kt · app/lib/data/push_bridge.dart",
+   "구현 = CENTURION_DAY#266 → dev 5ece25ea"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "plan 승인(코디 검수 뒤)",
+   "사용자 Android 실기기 확인 → prod 서버 배포(FCM 키 포함) → 정식 앱(F3)"
+  ],
+  "phases": [
+   "F1 backend — 구현됨(#266 · dev 배포 · dev FCM 키 실림) · platform android migration 0014 · 등록 검사 · FCM 어댑터 · 발송 갈래",
+   "F2 mobile — 구현됨(#266 · Play internal vc4) · Android day/push · 채널 「원장 호출」 · 「채팅」 · tag call:{callId} · [수락] · google-services(release 필수)",
+   "F3 실물 — **남음**: DAY Dev Android 실기기 푸시 확인 → prod 서버 먼저(FCM 키 · 5ece25ea) → 정식 앱"
+  ],
+  "verification": [
+   "backend pytest(devices · FCM 어댑터 더블) — 통과",
+   "flutter test · Android 빌드(Kotlin 단위 시험) — 통과",
+   "**남음**: 사용자 실기기 Android 푸시"
+  ],
+  "predeploy": [
+   "prod 서버 FCM 키 env 등록(값은 레포 밖)",
+   "migration 0014 dev → prod(0012 · 0013 과 함께)",
+   "정식 앱 전에 prod 서버 배포"
+  ],
+  "rollback": [
+   "Code PR revert · enum 값은 남김"
+  ],
+  "open_questions": [
+   "없음(OQ-A50 · A51 · A60 닫음) — 실기기 확인만 남음"
+  ]
+ },
+ "scope_delta": "v2: baseline = mediness main 3ae2317e(#955 머지) · Firebase 준비됨 · 채널 「원장 호출」 · 「채팅」 · 구현 사실(tag = callId · release 빌드 Firebase 필수 · OQ-A50 · A51 · A60 닫음 · migration 0014) · F1 · F2 구현됨(#266 · dev 배포) · 남은 것 F3(실기기 → prod 서버 → 정식 앱)"
+}
