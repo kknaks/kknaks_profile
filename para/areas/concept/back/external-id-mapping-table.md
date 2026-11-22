@@ -11,6 +11,7 @@ aliases:
 up:
   - 2026-11-19-customer-erd
   - 2026-11-09-day-data-architecture
+  - 2026-11-20-day-cc-mig
 tags:
   - 외부 연동
   - 데이터 모델
@@ -51,6 +52,10 @@ tags:
 - [[polling]] — 바뀐 것만 다시 받기
 - [[public-vs-internal-api]] — 어느 API 로 외부 행을 받나
 - [[strangler-fig]] — 외부를 서서히 걷어 내는 큰 그림
+
+## 대응표의 변경 감지 칸 — 쓰기 증폭
+
+DAY day-cc-mig(2026-11-20): 지금 반영의 연결(`Refs.link`)이 `external_updated_at` 을 매번 None 으로 덮고 새 보충이 KOS 수정 시각으로 다시 써서, 직원 · 상담 · 고객 연결 행이 10초마다 UPDATE 됐다. `Refs.link` 를 「None = 유지」로 바꾸자 구매 · 카드 · 메뉴의 「바뀜」 판정까지 뜻이 바뀌었다(검수 W5) — 원래 뜻으로 되돌리고 그 세 호출 자리에서만 옵션으로 유지했다. 공용 함수 한 줄의 뜻 변경은 모든 호출자에게 퍼진다. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 

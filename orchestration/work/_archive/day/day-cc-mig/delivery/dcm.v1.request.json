@@ -1,0 +1,80 @@
+{
+ "idempotency_key": "day/day-cc-mig-tables-2026-11-20",
+ "title": "KOS 키 전부 담는 테이블 보충(마이그레이션) + 동기화 매퍼 채우기 + 기존 행 업데이트",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 1,
+ "risk_level": "L3",
+ "target_specs": [
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "ccede2866d006607509c5e34bdad33079fa9dffd",
+ "target_delta": [
+  "D-1 마이그레이션 0012(0011_visit_reserved_index 를 잇는다): DAY-SPEC-000 §4A(mediness PR #954 · head 1944f9220e2b812c84677fad75e3320baa3587f7 · 미머지) 새 표 12개(hospital_operation_timetable · hospital_day_off · reservation_group_day_off · reservation_rule · reservation_rule_component · reservation_rule_event · customer_line_account · visit_requested_procedure_composition · visit_etc_work · visit_etc_work_staff · purchase_item_composition · medicine_machine_ref)와 기존 표 nullable 칸(prod 9표 · dev 에만 15표) · 새 DAY enum 타입 · external_ref.entity_type 새 값(hospital 등). 지금 표 · 칸 이름 · 타입 변경 0(더하기만) · 새 표에 deleted_at · 유일 제약은 살아 있는 행만(부분 유일).",
+  "D-2 모델 + 매퍼: §4A 의 새 칸과 「동기화로 채움」 칸 전부를 이미 도는 회차(일정 10초 · 기준 정보 1시간 · 판매 · 메뉴)의 응답에서 채운다. 상태 · 종류 = DAY enum(관찰 값 소문자) · 목록 밖 KOS 값 = 행 유지 · 그 칸 null + 동기화 경고(KOS 원래 문자열 남김). 결제 수단 CARD → card 매핑(+ cardConfiguration → payment_config) · created_at ← KOS 생성 시각(연동 기간) · 금액마다 통화 칸 · 번역 jsonb · 시술 항목 스냅샷(TI 묶음) · 약품 · 기기 id 는 medicine_machine_ref 행.",
+  "D-3 병원: 기준 정보 회차에 get-hospital · get-default-operation-timetable · get-default-days-off · 예약 그룹 휴무 · 예약 규칙 조회를 더해 hospital 칸 · 새 표를 채운다. KOS hospitalId → external_ref(entity_type = hospital) · KOS 테넌트 정보(hospitalCode · hospitalNationality · mode · namespace) → crm_connection.tenant_info. 특별 휴무 · 그룹 휴무 모양은 첫 실값에서 확인(OQ-4A-2).",
+  "D-4 고객 미동기화 칸(23키 · §4A.2): 원천 회차는 SPEC 기본값을 따른다(OQ-4A-14 — 이 SPEC 은 칸만 정하고 회차는 열려 있음 · 구현 때 선택을 Code PR 에 적는다). 암호화 칸(주민 · 외국인등록 · 여권번호)은 받을 때 암호화.",
+  "D-5 기존 행 업데이트: 이미 들어 있는 행의 새 칸을 채우는 수동 실행 경로 — 기존 backend/runtime/backfill.py 의 --dry-run · --resume · KOS 1초 1회를 재사용하거나 넓힌다. 로컬은 드라이런 → 실제 업데이트 · dev 배포 뒤 실제 업데이트(사용자 2026-11-20)."
+ ],
+ "acceptance": [
+  "A1: alembic 0012 upgrade → downgrade → upgrade 왕복이 로컬 compose DB 에서 성공하고 0011_visit_reserved_index head 에 이어진다(head 하나).",
+  "A2: 기존 표 칸 · 타입 변경 0(모델 diff · 칸 스냅샷 테스트는 새 칸 · 새 표만 늘어남).",
+  "A3: DEMO 테넌트 로컬 실물 — 동기화 한 회차 뒤 새 칸 · 새 표가 채워진다(병원 · 운영 시간 · 고객 칸 · 구매 · 일정).",
+  "A4: 목록 밖 enum 값 시험 — 행은 저장되고 그 칸은 null · 동기화 경고 1줄.",
+  "A5: 기존 행 업데이트 경로 — 로컬 드라이런(건수만 · DB 쓰기 0) → 실제 실행(새 칸 채워짐) 둘 다 실물.",
+  "A6: 시술현황 판 기존 테스트 통과 · 화면 동작 변경 0.",
+  "A7: 동기화 코드에 물리 DELETE 0 · 새 테스트 통과."
+ ],
+ "non_goals": [
+  "ext API 이관 · 고도화(2단계)",
+  "화면 · 수납(결제 설정 · 리다이렉트) · 문진 · 타이머 · 리액션 · 예약 칸 / 칸 점유 표",
+  "DAY → KOS 쓰기 · 원장 전환",
+  "prod 배포(dev 배포까지 — dev 실제 업데이트는 코디가 서버에서)",
+  "실 명동점 호출 — 개발 · 확인은 DEMO 테넌트만"
+ ],
+ "review_surface": [
+  "baseline: target SPEC DAY-SPEC-000 은 main ccede286 에서 stable. 이번 칸 계약(§4A · 검수 고침 1 포함)은 mediness PR #954(미머지 · head 1944f922) — 기존 stable 계약의 고도화로 보아 지금 main 을 baseline 으로 묶고 #954 내용을 Target Delta 로 둔다(customer-erd #259 와 같은 방식). #954 를 먼저 머지하면 같은 key v2 로 재결속.",
+  "L3 schema 추가 · prod 서비스 중 무중단: 지금 표 · 칸 이름 · 타입 변경 0 · 새 표 + nullable 칸만 · downgrade 로 되돌림.",
+  "enum 목록 밖 값 처리(행 유지 · 칸 null · 경고) · 값 미관찰 enum 칸(reservation_rule requested_procedure_repetition · event_type)은 첫 실값 전까지 늘 null.",
+  "업데이트 경로의 KOS 호출량(1초 1회 · 고객 × 카드) · 같은 시스템 계정 · UA 라 KOS 동시 로그인 자동 해제가 돌고 있는 worker 세션을 끊지 않게 자기 세션만 해제.",
+  "열린 것(DAY-SPEC-000 §6 OQ-4A-1 ~ 15): 앱 결제 · 간편결제 paymentType 문자열 · 휴무 모양 · 빈 키 처리 · 미관찰 키 · 시술 참조 두 경로."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/migrations/versions/ (새 20261120_0012_* · 0011_visit_reserved_index 다음)",
+   "backend/day/models/ (hospital.py · customer.py · visit.py · staff.py · room.py · task.py · menu.py · purchase.py · ticket.py · prepaid_card.py · 새 표 모듈 · __init__.py)",
+   "backend/day/emr/kos/client.py · mapper.py · mapper_menu.py · mapper_purchase.py · mapper_sale_values.py · mapper_values.py · sale_reads.py (병원 · 휴무 · 예약 규칙 조회 · 새 칸 매핑 · CARD · 목록 밖 enum)",
+   "backend/day/emr/normalized.py · normalized_sale.py · base.py",
+   "backend/day/emr/sync_master.py · sync_menu.py · sync_schedules.py · sync_tasks.py · sync_purchases.py · sync_tickets.py · sync_schedule_sales.py · sync_sale_writes.py · sync_references.py · sync_persistence.py · sync_tables.py · sync.py",
+   "backend/day/services/emr_sync.py · emr_sale_sync.py · emr_backfill.py · backend/day/tasks/emr.py",
+   "backend/runtime/backfill.py (기존 행 업데이트 — --dry-run · --resume)",
+   "backend/tests/migrations/ (test_alembic.py · 새 0012 테스트) · backend/tests/day/test_column_snapshot.py · column_snapshot_data.py · column_snapshot_sale_data.py · test_models.py · test_sale_entity_types.py · backend/tests/day/emr/ (fixtures · test_kos_mapper.py · test_kos_sale_mapper.py · test_sync.py · test_sale_sync*.py · test_backfill*.py) · backend/tests/day/board/"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "사용자 plan 승인(L3)",
+   "DEMO 테넌트 KOS 연결(로컬 · 시스템 계정)",
+   "mediness PR #954(SPEC-000 §4A) — 계약 원천 · 머지는 코드와 함께"
+  ],
+  "phases": [
+   "P1 DB: migration 0012 · 모델 · 칸 스냅샷",
+   "P2 매퍼 · 동기화(일정 · 판매 · 메뉴 새 칸 · CARD · enum 목록 밖 처리 · 병원 · 운영 시간 · 휴무 · 예약 규칙 · 고객 미동기화 칸)",
+   "P3 기존 행 업데이트 경로(backfill 재사용 · --dry-run · --resume)",
+   "P4 로컬 실물(DEMO — 동기화 회차 · 드라이런 → 실제 업데이트)"
+  ],
+  "verification": [
+   "backend pytest 해당 파일(tests/day/emr · tests/day/board · test_column_snapshot · test_models · test_sale_entity_types)",
+   "backend/tests/migrations 왕복(upgrade → downgrade → upgrade · head 하나 · alembic check)",
+   "DEMO 테넌트 로컬 실물(병원 · 운영 시간 · 고객 칸 · 구매 · 일정 · 목록 밖 enum 경고 · 업데이트 드라이런 → 실제)",
+   "동기화 코드 물리 DELETE grep 0 · ruff · architecture"
+  ],
+  "predeploy": [],
+  "rollback": [
+   "alembic downgrade 0011_visit_reserved_index(0012 되돌림)",
+   "Code PR revert"
+  ],
+  "open_questions": [
+   "DAY-SPEC-000 §6 OQ-4A-1 ~ OQ-4A-15 (#954)"
+  ]
+ }
+}

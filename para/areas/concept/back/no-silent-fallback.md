@@ -13,6 +13,7 @@ up:
   - 2026-10-02-strong-hajin-polish
   - 2026-10-15-strong-hajin-attach-read
   - 2026-11-16-ext-api-charty1
+  - 2026-11-20-day-cc-mig
 tags:
   - reliability
   - failure-handling
@@ -54,6 +55,10 @@ tags:
 
 - [[idempotency]] · [[two-pass-transcription]] · `fault-isolation` (개념 노트 미작성)
 - [[failure-reason-classification]] — 드러낸 `failed` 안에서 사유가 판정 근거만큼 맞는가
+
+## 경고는 한 번 · 셈은 계속
+
+DAY day-cc-mig(2026-11-20): 목록 밖 값 경고가 회차(10초)마다 찍히면 값 하나에 하루 8,640줄이 된다(검수 W2). 반대로 「못 찾음 · 못 맞춤」만 있는 회차는 아무 줄도 안 남아 매핑이 통째로 틀려도 조용했다(W3). 경고는 프로세스당 한 번, 못 찾음 · 못 맞춤은 값이 바뀔 때 셈 한 줄로 남겼다 — 조용하지도 시끄럽지도 않게. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 

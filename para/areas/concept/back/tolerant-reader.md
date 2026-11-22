@@ -11,6 +11,7 @@ up:
   - 2026-11-12-fix-web
   - 2026-11-16-ext-api-charty1
   - 2026-11-17-fix-feedback
+  - 2026-11-20-day-cc-mig
 tags:
   - API
   - 하위호환
@@ -48,6 +49,10 @@ DAY 직원 앱(Flutter) `Need.parse` 는 `why` 를 문자열 그대로 받고 `d
 - [[contract-surface-enumeration]] — 바꾸기 전에 누가 읽는지 세는 일
 - [[minimal-api-surface]] — 밖으로 내는 칸을 줄여 바꿀 자리 자체를 줄인다
 - [[fail-fast]] — 관대함의 한계
+
+## 서버가 외부 API 를 읽을 때 — 모르는 값은 그 칸만 비운다
+
+DAY day-cc-mig(2026-11-20): 동기화 매퍼가 목록 밖 결제 수단을 만나면 **거래 행째** 빼서 KOS 의 `CARD` 결제가 조용히 빠지고 있었다. 새 enum 칸부터는 「행은 받고 그 칸만 null + 경고 한 번」으로 바꿨다. 로컬 DEMO 첫 회차에 목록 밖 값 9줄이 실제로 나왔고 데이터는 하나도 빠지지 않았다 — 값을 모은 뒤 enum 에 한 번에 더했다. 단 NOT NULL 지금 칸(`payment_type`)은 이 방식을 못 쓴다. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 
