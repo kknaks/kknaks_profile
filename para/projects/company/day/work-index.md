@@ -9,6 +9,7 @@
 | [[orchestration/work/_archive/day/android-app/README\|android-app]] | 아카이브 | [[para/projects/company/day/log/2026-11-16-android-app\|회고]] |
 | [[orchestration/work/_archive/day/customer-erd/README\|customer-erd]] | 아카이브 | [[para/projects/company/day/log/2026-11-19-customer-erd\|회고]] |
 | [[orchestration/work/_archive/day/day-app/README\|day-app]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-app\|회고]] |
+| [[orchestration/work/_archive/day/day-cc-mig/README\|day-cc-mig]] | 아카이브 | [[para/projects/company/day/log/2026-11-20-day-cc-mig\|회고]] |
 | [[orchestration/work/_archive/day/day-data-architecture/README\|day-data-architecture]] | 아카이브 | 회고 미확인 |
 | [[orchestration/work/_archive/day/day-procedure-board-2/README\|day-procedure-board-2]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-procedure-board-2\|회고]] |
 | [[orchestration/work/_archive/day/fix/README\|fix]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-fix\|회고]] |

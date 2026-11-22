@@ -10,6 +10,7 @@ aliases:
   - rate limit 백필
 up:
   - 2026-11-19-customer-erd
+  - 2026-11-20-day-cc-mig
 tags:
   - 외부 연동
   - 동기화
@@ -54,6 +55,10 @@ tags:
 - [[polling]] — 주기 동기화(지금) 쪽
 - [[online-schema-change]] — 백필 전에 인덱스를 따로 두는 판
 - [[database-migration]] — 시스템 사이 옮기기의 큰 그림
+
+## 진행 키 분리 · 배포와 겹칠 때
+
+DAY day-cc-mig(2026-11-20): 같은 스크립트에 `--stage kos_keys` 를 더하면서 진행 위치를 stage 별 키로 나눴다 — 같은 키면 서로의 이어 받기 위치를 지운다(검수 W7). dev 실행 중 다른 세션의 배포가 돌아 `docker exec` 실행을 SIGINT 로 멈췄고, 배포가 취소된 뒤 `--resume` 이 남은 단계만 34호출로 마쳤다. 공용 dev 에서 긴 수동 실행 전에는 배포 Actions 를 먼저 본다. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 

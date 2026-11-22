@@ -14,6 +14,7 @@ aliases:
 up:
   - 2025-01-09-Day08
   - 2026-10-07-strong-hajin-inbox
+  - 2026-11-20-day-cc-mig
 tags:
   - JPA
   - database
@@ -86,6 +87,10 @@ spring:
 - [[database-index]] — 늘어난 질의가 더 비싸지는 자리
 - [[little-law]] — 질의 수가 처리량이 되는 축
 - [[caching]] — 한 번에 받은 것을 다시 묻지 않는 자리
+
+## 10초 동기화 회차의 N+1 — query-count 테스트로 고정
+
+DAY day-cc-mig(2026-11-20): 새 칸 보충이 부모 행(방문 · 희망 시술 · 기타 업무)마다 SELECT 를 냈다. 하루 방문 100 병원이면 10초마다 수백 문. 표마다 `in_` 묶음 SELECT 로 바꾸고 「방문 1건 vs 7건 문 수가 같다」는 query-count 테스트를 붙였다(검수 W1). ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 

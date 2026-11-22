@@ -14,6 +14,7 @@ up:
   - 2024-10-07-Day89
   - 2026-11-16-phub-ledger-redesign
   - 2026-11-16-phub-recommend
+  - 2026-11-20-day-cc-mig
 tags:
   - database
   - 설계
@@ -76,6 +77,10 @@ tags:
 - [[database-schema]] — intension 에 해당하는 것
 - [[surrogate-key]] — 키로 쓸 컬럼이 없을 때의 답
 - [[sql-join]] — 나눠 둔 것을 다시 합치는 연산
+
+## 같은 이름 · 다른 시점은 다른 칸
+
+DAY day-cc-mig(2026-11-20): cc ext 의 `counselor` 는 예약 때 지정한 희망 상담사였는데 사용자는 상담 차트의 상담사를 기대했다. 응답 키를 「KOS 의 어느 기록 · 어느 업무 시점」까지 적어 대조하니 같은 이름이 예약 · 상담 차트 · 지금 메뉴 · 산 시점 스냅샷에 따로 있었다. DAY 는 시점마다 다른 칸(`visit.requested_counselor_id` · `consultation.counselor_id` · 일정 단일 상담 정보 칸 · 구매 시점 구성 스냅샷)을 둔다. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 

@@ -15,6 +15,7 @@ up:
   - 2025-01-07-Day06
   - 2025-01-08-Day07
   - 2026-10-30-internal-chat
+  - 2026-11-20-day-cc-mig
 tags:
   - database
   - 동시성
@@ -87,6 +88,10 @@ UPDATE post SET username = '홍길순' WHERE id = 1;   -- 대기한다
 - [[thread]] — 동시에 도는 것들
 - [[connection-pool-sizing-formula]] — 대기가 길어질 때 드러나는 자리
 - [[optimistic-lock]] — 잠그지 않고 확인만 하는 반대편
+
+## 주기 작업 둘이 같은 행을 — 같은 잠금 안에서
+
+DAY day-cc-mig(2026-11-20): 새 보충 반영의 상한(30초)이 일정 회차 주기(10초)보다 길고 잠금 이름이 달라, 다음 회차와 같은 방문 · 작업 행을 동시에 쓸 수 있었다(행 잠금 대기 · 순서가 다르면 deadlock). 반영을 그 회차와 **같은 잠금 안**으로 넣고 상한을 8초로 줄였다. ← [[2026-11-20-day-cc-mig]]
 
 ## 출처
 
