@@ -67,9 +67,15 @@ tags:
 - [[deferred-stream-error]] — 한 연결 위 오류가 다음 요청에서 터질 때
 - [[push-to-talk]] — 송신 구간을 사람이 정하는 모드
 
+
+## 원천 엔진 따라가기 — 커밋 차이를 항목 표로
+
+DAY 통역(2026-11-20): 통키 `17c26b5..56e43a0` 5커밋을 항목 표로 만들어 옮겼다(STT v6 · 세 참여자 · 바로잡기 · 시드 .11). records 계열만 뺐고, 바로잡기가 기대던 records 함수 4개는 떼어 옮겼다. 세 참여자는 세션 내내 TTS 하나를 쥐어 조직 TTS 한도 3 에 맞춰 동시 상한 3. ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - 2026-09-12-sc-meeting §2 · ax-workspace `modules/meetings/stream.py`·`stream_service.py` · SCAX-SPEC-004 §5.3 · D41
 - [[2026-10-14-sts-prototype]] §2 — cc-prototype 통역: STT(two_way) + TTS 두 연결 중계 · 국적 → 언어 · 번체는 자막만(`wp2-be-report.md` 실물 호출 4건)
 - [[2026-10-27-interpret-pwa-poc]] §2 — 통키: TTS keepalive `{}` → `{"keep_alive": true}` · 다른 stream_id 오류는 경고만(`back/app/service/interpret/soniox.py` · `session.py` · `d35-be-report.md` 장애 절 · 코드 #6)
 - [[2026-11-11-fix]] §2 「옮겨 온 코드는 원천과 줄 단위로 대조한다」 — DAY 통역 서버: interpret-pwa back 이식 · DAY 세션 인증 · 동시 세션 상한 · 실제 Soniox 7개 언어(`research-interpret-report.md` · `be-2-report.md` · `review-be-report.md`)
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)

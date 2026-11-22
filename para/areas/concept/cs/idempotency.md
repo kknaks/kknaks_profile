@@ -124,6 +124,11 @@ DAY 백필(`python -m runtime.backfill`)은 운영 동기화와 **같은 upsert 
 
 DAY day-cc-mig(2026-11-20): 기존 행 새 칸 채우기(`runtime.backfill --stage kos_keys`)는 로컬 드라이런 0 → 실제 6,126 → 재실행 0, dev 도 재실행 6단계 모두 쓴 행 0 으로 멱등을 실물 확인했다. 지금 칸 · 지금 행은 쓰지 않고 새 칸만 비교해 쓰기 때문에 몇 번을 돌려도 같다. ← [[2026-11-20-day-cc-mig]]
 
+
+## 늦게 도는 작업은 보내기 직전에 다시 읽는다
+
+DAY 0.2.0(2026-11-20): 원장 호출 푸시 워커 태스크가 호출 취소 뒤에 돌면 닫힌 호출로 푸시 · 안 읽은 행을 만들 수 있었다. 보내기 · 쓰기 직전에 호출을 다시 읽어 닫혔으면 건너뛴다(경쟁 시험 2). ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - [[2026-08-10-idempotency-in-our-decisions]] — 제품 다섯 곳의 결정 여덟 건이 같은 성질을 각자 다른 말로 요구하고 있던 것을 모은 실무 기록이다. **「멱등 upsert」·「중복 INSERT 차단」·「email 기준 멱등」·「append 중복 판정」이 전부 한 개념**이라는 것이 이 노트를 만든 이유다. 세 가지 공통 모양(재시도가 필연인 자리에서 나온다 · 자연키로 막는다 · DB 제약이 최종 방어선이다)과, upsert와 멱등이 같지 않다는 구별도 거기서 왔다.
@@ -135,3 +140,4 @@ DAY day-cc-mig(2026-11-20): 기존 행 새 칸 채우기(`runtime.backfill --sta
 - [[2026-11-06-agency-settlement]] §2 — 운영 KOS 결제 증분(SPEC-001 §4.5 · OQ-123 · `review-doc-r3-report.md` F-2)
 - [[2026-11-16-phub-ledger-redesign]] §2 — `gold-build.py` 재실행 동일 바이트 · `gold-check.py` 재현 · 되짚기 · 값 ⊂ silver · 재빌드 해시(`gold/README.md`)
 - [[2026-11-19-customer-erd]] §2 — 백필 재실행 쓴 행 0(`be-3-report.md` · `review-code-6-report.md`)
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)

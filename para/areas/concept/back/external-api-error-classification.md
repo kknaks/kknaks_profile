@@ -53,6 +53,11 @@ tags:
 - [[attachment-relay]] — 권한 없음 403 이 오는 자리
 - [[fail-fast]] — 확실한 신호에서만 멈추기
 
+
+## FCM INVALID_ARGUMENT — 토큰 오류만 죽은 토큰
+
+DAY Android FCM(2026-11-20): `INVALID_ARGUMENT` 전부를 죽은 토큰으로 보면 본문 오류 하나로 기기 결속이 대량으로 풀린다. validate_only 실물 1회로 모양을 확인해 `fieldViolations` field=`message.token` 일 때만 `token_removed` 로 가른다. ← [[2026-11-22-day-mobile-v2]]
+
 ## 출처
 
 - [[2026-10-07-strong-hajin-inbox]] §2 — Strong Hajin WORK-011 외부 채널 오류 처리(be-fix-45-report · 커밋 2807351)
@@ -61,3 +66,4 @@ tags:
 - [[2026-11-17-fix-feedback]] §2 — DAY 로그인이 sign-in 400/401 을 전부 「비밀번호 틀림」으로 처리(`emr/kos/staff_client.py:88-90`) → E2E 중 기기 제한을 못 알아봄 · HAR 본문 `SignInLimitExceeded` 로 판정
 - [[2026-11-17-kos-signin-limit]] §2 — DAY 가 KOS sign-in 401 을 본문 `message` 로 가름: `SignInLimitExceeded` 만 기기 제한(직원 웹 기기 선택 · 시스템 계정 자동 해제) · 나머지는 기존 자격 틀림 · 앱 JSON 은 깔린 앱 때문에 같은 401 `invalid_credentials` 유지
 - [[2026-11-17-ext-api-staff-fields]] §2 — cc-prototype 로컬 e2e 의 내부 API 401 을 처음엔 env 문제로 보고 `.env` 를 두 번 넣어 봄 → sign-in 본문 `SignInLimitExceeded` 로 판정 · 운영은 PVC 저장 토큰을 다시 써 재로그인 없음 · 로컬 재시도 멈추고 운영 실호출로 갈음
+- [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
