@@ -1,7 +1,7 @@
 
 # 재개 노트 — day-mobile-v2 (day)
 
-**지금**: **마감(2026-11-22)** — 코드 #266 dev `5ece25ea` · dev 배포 · DAY Dev 0.2.0 TestFlight (4) · Play internal vc4 · 스펙 #955 main `3ae2317e` · Delivery #262 · #263 v2 승인(OPEN) · 회고 `para/projects/company/day/log/2026-11-22-day-mobile-v2.md` · 개념 보강 9 · 워크트리 2 · 워커 터미널 7 정리 · 아카이브
+**지금**: **마감(2026-11-22)** — 코드 #266 dev `5ece25ea` · dev 배포 · DAY Dev 0.2.0 TestFlight (4) · Play internal vc4 · 스펙 #955 main `3ae2317e` · Delivery #262 · #263 v2 승인(OPEN) · 회고 `para/projects/company/day/log/2026-11-22-day-mobile-v2.md` · 개념 보강 8 · 워크트리 2 · 워커 터미널 7 정리 · 아카이브
 **다음**: 회고 §7 — 사용자 실기기 확인 → prod 서버(`5ece25ea` · 0012 ~ 0014 · prod Key Vault FCM) → 정식 0.2.0(iOS 3 · Android 4) → Delivery #262 · #263 닫음
 
 세팅: `scripts/new-work.sh day day-mobile-v2` · 설정 SSOT `config/projects/day.json`
@@ -123,7 +123,7 @@
 
 ## 5. 이력 (최신이 위)
 
-- `2026-11-22` 마감: 스펙 rebase · 동기화 · #955 머지 · Delivery v2 · 검수 WARN · 승인 · 회고 · 개념 9 · 워크트리 · 터미널 정리 · 아카이브
+- `2026-11-22` 마감: 스펙 rebase · 동기화 · #955 머지 · Delivery v2 · 검수 WARN · 승인 · 회고 · 개념 8 · 워크트리 · 터미널 정리 · 아카이브
 - `2026-11-20` M1(app) · P1(통역) 완료 · 커밋 분리 · P1 검수 · P2 · P5 동시 발주
 - `2026-11-20` 스펙 검수 1차 FAIL → 2차 WARN → 3차 WARN → 4차 수정 · 코디 grep 확인 · PR mediness#955
 - `2026-11-20` planner 완료(SPEC 000 · 001⑩ · 002㉕ · 003⑲ · 005 · mobile-deployment · Delivery #262 · #263 v1 baseline ccede286) · reviewer_doc 발주
