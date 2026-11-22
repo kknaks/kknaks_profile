@@ -100,3 +100,9 @@
 - **Soniox 한도 상향**(사용자) → DAY 상한 다시 올림.
 - 화면 판단값(시안 없음): 방 이름 ▾ · 점유 띠 모양 · 아이패드 팝오버 폭 · 원장 변경 창 두 칸(아이패드).
 - iOS 배포 대상 경고(altool 90068 · 90725 — 2027-04 iOS 15 · Xcode 27).
+
+<!-- work-links:start -->
+## 작업 기록
+
+- [[orchestration/work/_archive/day/day-mobile-v2/README|day-mobile-v2]]
+<!-- work-links:end -->
