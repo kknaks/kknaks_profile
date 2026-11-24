@@ -14,6 +14,7 @@ up:
   - 2025-11-01-migration_detail
   - 2026-08-31-task-redesign
   - 2026-11-17-fix-feedback
+  - 2026-11-24-day-reservation2
 tags:
   - database
   - 인프라
@@ -113,3 +114,4 @@ DAY(2026-11-24): dev 가 `0024_customer_memo` 를 먼저 넣어 우리 `0024_vis
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
 - [[2026-11-24-day-reservation]] §2 — 권한 데이터 migration · 번호 두 번 밀기 · 로컬 revision 되돌림
 - [[2026-11-24-day-chart-photo]] §2 — 0024 → 0025(`be-rebase-1-report.md`)
+- [[2026-11-24-day-reservation2]] §2 — 세 번째 번호 밀기(dev #274 · #279 → 0026 ~ 0028) · 충돌은 공용 파일(`day.js` 한 파일)에서

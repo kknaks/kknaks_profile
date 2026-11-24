@@ -1,0 +1,72 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "spec_baseline_revision": "c43633be698e1ebbc06ac9617a16262dacd1fac7",
+  "idempotency_key": "day/day-spec-007/p3-procedure",
+  "title": "DAY 예약 상세 3판 — 시술: 시술만 진행 · 시술 목록 · 수납 정보 · 할인 전 가격 · 수납 딥링크 · 시술 중 귀가 (DAY-SPEC-007 · 002 ㉘ · 000 ②)",
+  "risk_level": "L3",
+  "target_specs": [
+    "DAY-SPEC-007",
+    "DAY-SPEC-002",
+    "DAY-SPEC-000"
+  ],
+  "target_delta": [
+    "「시술만 진행」(D41 · 초진 RP-05) · 시술 목록 「오늘」 ✓(접수 단계 · available 회차 줄만) · 관리실 필수 · 오더 메모 글 칸(✓ 있을 때) · [시술 대기](빠진 칸 = 신분확인 + ✓ 1개 이상 + 관리실 D50) = W8 → W9 → W13 ① 시술권 작업(계획 단계 KOS get-ticket-bundles {visitorId} 로 본문 · D48 round) → 2xx 뒤 상세 조회로 새 seq(규칙 28 예외 넓힘) → ④ 같은 방 → ② 오더 메모(빈 글이면 안 보냄 D56) → ③ PROCEDURE_WAITING · 접수 뒤 「시술 정보」 = 단계 이력에 상담 대기 없음 · 오더 메모 [수정](W17)",
+    "시술 목록(U-7 · D44 와이어) — 지난 시술권 남은 것(구매 시각 순) + 이번 구매(항목 순) · 겹침 제거 · 상품 → 구성 · n/m회(D42) · 오늘 ✓(연결 키 D29 · 취소 = 빠짐 D32) · 상태 4 문구(D30 · 여러 작업 = 시술 중 > 시술 전 > 시술 후 · 시술권 없는 작업 = 진료항목으로 붙임)",
+    "수납 정보(U-8) — 원내 현황 금액(visit_amounts · R49 ~ R54) + 할인 전 가격(상품 합계 · 할인 금액 · 빈 구매 = 칸 비움 D51) · 경고(R42) · 「수납 완료」 배지(R55) · 수납 버튼 넷(D36 · 「KOS에서 수납 중」 · [n원 수납] = KOS 웹 tab=purchase 딥링크 · kos_web_base · KOS id 없으면 꺼짐) — 할인 전 가격 = migration 0024_purchase_base_price · 매퍼 · 동기화 · 백필(**미커밋 일부 있음 → 이어서**)",
+    "시술 대기 · 시술 진행 [귀가 처리] — RP-01(사유) → W14 안 끝난 작업 전부 CANCEL(시술권 되돌아감) → COMPLETED",
+    "write_open 새 행: add-flow-tasks PROCEDURE + ticketConfiguration.ticketId · change-order-memo — D53 즉시 확인으로",
+    "계약 V(모달 값 — 판마다 칸을 더함 · 이름 제안 · SPEC-007 §3 「화면이 읽는 칸」 · 단계 × 날짜 경계 표 판정은 서버): stage(10 값) · date_kind(today|future|past) · editable 플래그(칸 · 버튼마다) · customer{name, passport_name, contact(KOS 꼴), birth, age, gender, nationality, is_domestic, notes} · reservation{assignee, start, end, funnel, memo, doctor|null, companions[]} · previous_visits[] · (2판) identity{checked} · consult{mode, counselor, room, missing[]} · discharge_reason · (3판) consult.order_memo · treatments[] · payment{base_total|null, discount|null, total, paid, due, warn, done, button, links|null} · 문구 · 색은 화면이 시안대로 키로 그림"
+  ],
+  "acceptance": [
+    "A1: SPEC-007 3판 요소(시술 정보 · RD-08 시술 목록 · RD-11 수납 정보 · 수납 버튼 · RP-05)가 시안 · D44 와이어와 같음 · 경계 표 시술 대기 · 시술 진행 줄 · 케이스 3판 줄(available 0 · IN_USE 충돌 · 관리실 안 고름 · KOS id 없음)",
+    "A2: 인라인 스크립트 0 · 손 CSS 0(static/day.js 이벤트 위임 + data-* · medikit · ui.html 매크로 · partials/reservations_*.html — AGENTS.md 「웹 화면」) · 시안 문구만(새 오류 토스트 글자 = 빈 문구 OQ-D17)",
+    "A3: 판에서 연 KOS 쓰기마다 write_open 허용 · 막힘 · planner 경로 · 본문 키 · expect 가 SPEC-007 W 표 · be-probe-1 ~ 4 와 같음(단위 테스트) · D53 즉시 확인(1초 간격 · 상한 · 넘김 → 다음 회차) 테스트 · 전체 pytest 회귀 없음",
+    "A4: 구매 동기화가 basePrice 를 받음(HAR 할인.har 모양 fixture) · migration 0024 업 · 다운 · 수납 정보 R52 실측 fixture · 원내 현황 금액 회귀 없음 · 시술 현황에서 그 시술 작업이 READY(호출 가능)",
+    "A5: 실물 e2e 1회(로컬 · KOS 데모 지점 · check_open_key_is_demo 통과 뒤만 · 각 쓰기 KOS 상세 다시 읽기로 expect 확인 · 두 번째 브라우저에 SSE 로 바로 반영): 재진 시술권 고객 접수 → 시술만 진행 → 「오늘」 ✓ → 오더 메모 → 관리실 → [시술 대기](KOS 방 배정 · 방 · 시술권 작업 · 같은 방 · 메모 · 시술 대기) → 시술 목록 n/m · 상태 → KOS 수납 창에 담기 → 「KOS에서 수납 중」 → 결제 → 「수납 완료」 · [n원 수납] 이 KOS 웹 수납 탭을 엶 → 시술 진행에서 [귀가 처리](사유 · 시술권 되돌아감) — 뒤 사용자 화면 확인"
+  ],
+  "non_goals": [
+    "문진 · 여권 스캔 동작(자리만 · 비활성 D13 · D55) · 신분 확인 자동 접수 · 외국인 신분확인 · 상담사 순번 · 고객 차트 · 처방 만들기 · 수납 항목 넣기 · 예약 요청 · 고객 등록 창 · 예약메모 덧붙이기(DAY-SPEC-007 §1 Out Of Scope)",
+    "「시술현황 차트 일부 기능 수정」(D43) · 시술 현황 쓰기의 확인 방식 변경(D53 범위 = 이 화면 쓰기)",
+    "귀가 대기 귀가 · 처방전(4판)"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-007(draft · 검수 3차 PASS) + DAY-SPEC-006 개정 ⑫ · DAY-SPEC-002 개정 ㉘ · DAY-SPEC-000 2026-11-24 개정 ② — Mediness PR #961(브랜치 kknaksss/day-reservation2-spec · 머지 전 · 첫 커밋 479d8f46a84fa87377a3525f6ccb45d69c399ce4 · 고침 3(D53 이번 판) 커밋이 같은 PR 에 얹힘). main 에 없어 spec-baseline:pending 으로 시작 · PR #961 머지 뒤 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재결속(결과 계약 같으면 재승인 없음 — requests.md)",
+    "판 순서(코디 · 사용자 2026-11-24): 판마다 구현 → 로컬 KOS 데모 지점 e2e → 사용자 화면 확인 → 다음 판. 한 Delivery = 한 Code PR(백엔드 + 화면 함께 · 안에서 병렬)",
+    "KOS 외부 쓰기 새로 엶(시술권 작업 · 오더 메모) — L3",
+    "migration 0024 · 백필",
+    "다회권 round(OQ-D25)"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/emr/kos/writes.py · services/emr_sync.py(이벤트 연쇄 넓힘)",
+      "backend/day/emr/kos/mapper_kos_keys_sale.py · mapper_purchase.py · models/purchase.py · migrations/versions/20261124_0024_purchase_base_price.py(미커밋 일부)",
+      "backend/day/queries/reservations*.py · policies/reservation_amounts.py(재사용)",
+      "backend/day/templates/partials/reservations_detail*.html · static/day.js"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "2판 Delivery 머지 · 사용자 화면 확인 뒤(접수 · 방 배정 · 귀가 순서 묶음을 씀)"
+    ],
+    "phases": [
+      "P1 할인 전 가격 0024 · 매퍼 · 백필(이어서)",
+      "P2 시술 목록 · 수납 정보 · 수납 버튼 · 딥링크",
+      "P3 시술만 진행 [시술 대기] 순서 묶음 · 오더 메모",
+      "P4 시술 단계 귀가 · e2e"
+    ],
+    "verification": [
+      "backend pytest",
+      "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"
+    ],
+    "predeploy": [
+      "migration 0024 · 백필 실행"
+    ],
+    "rollback": [
+      "Code PR revert + 0024 downgrade"
+    ],
+    "open_questions": [
+      "DAY-SPEC-007 OQ-D25(여러 세트 묶음 round.total)"
+    ]
+  }
+}

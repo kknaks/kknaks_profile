@@ -1,0 +1,58 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "spec_baseline_revision": "c43633be698e1ebbc06ac9617a16262dacd1fac7",
+  "idempotency_key": "day/day-spec-007/p4-discharge",
+  "title": "DAY 예약 상세 4판 — 귀가 대기 → 귀가: 처방전 딥링크 · 귀가 처리 (DAY-SPEC-007 · 002 ㉘)",
+  "risk_level": "L3",
+  "target_specs": [
+    "DAY-SPEC-007",
+    "DAY-SPEC-002"
+  ],
+  "target_delta": [
+    "귀가 대기 [귀가 처리] — RP-02(미수 경고 · 「남은 결제 금액 n 원」) / RP-03 → W15 COMPLETED 한 건(계획 단계에서 귀가 대기 ∧ DAY 사본 열린 작업 없음 확인 · 있으면 W14 처럼 작업 취소부터) — D53 즉시 확인 · 「귀가 처리했어요」",
+    "[처방전 출력](귀가 대기 · 귀가 · 오늘) = KOS 웹 tab=etceteraWork 딥링크(D38) · 귀가 완료 모달(머리 「귀가 완료」 · 귀가 사유 상자 · 상담 정보 잠금)",
+    "계약 V(모달 값 — 판마다 칸을 더함 · 이름 제안 · SPEC-007 §3 「화면이 읽는 칸」 · 단계 × 날짜 경계 표 판정은 서버): stage(10 값) · date_kind(today|future|past) · editable 플래그(칸 · 버튼마다) · customer{name, passport_name, contact(KOS 꼴), birth, age, gender, nationality, is_domestic, notes} · reservation{assignee, start, end, funnel, memo, doctor|null, companions[]} · previous_visits[] · (2판) identity{checked} · consult{mode, counselor, room, missing[]} · discharge_reason · (3판) consult.order_memo · treatments[] · payment{base_total|null, discount|null, total, paid, due, warn, done, button, links|null} · 문구 · 색은 화면이 시안대로 키로 그림"
+  ],
+  "acceptance": [
+    "A1: SPEC-007 4판 요소(RP-02 · RP-03 · [처방전 출력] · 귀가 완료)가 시안과 같음 · 경계 표 귀가 대기 · 귀가 줄 · 케이스 4판 줄",
+    "A2: 인라인 스크립트 0 · 손 CSS 0(static/day.js 이벤트 위임 + data-* · medikit · ui.html 매크로 · partials/reservations_*.html — AGENTS.md 「웹 화면」) · 시안 문구만(새 오류 토스트 글자 = 빈 문구 OQ-D17)",
+    "A3: 판에서 연 KOS 쓰기마다 write_open 허용 · 막힘 · planner 경로 · 본문 키 · expect 가 SPEC-007 W 표 · be-probe-1 ~ 4 와 같음(단위 테스트) · D53 즉시 확인(1초 간격 · 상한 · 넘김 → 다음 회차) 테스트 · 전체 pytest 회귀 없음",
+    "A4: 시술 현황 [귀가 대기] → 예약 상세 귀가가 KOS 400 없이 COMPLETED · 표 · 원내 현황에서 빠짐(SSE)",
+    "A5: 실물 e2e 1회(로컬 · KOS 데모 지점 · check_open_key_is_demo 통과 뒤만 · 각 쓰기 KOS 상세 다시 읽기로 expect 확인 · 두 번째 브라우저에 SSE 로 바로 반영): 시술 현황 [귀가 대기] 고객 → 예약 상세 → [처방전 출력] 이 KOS 웹 기타 업무 탭을 엶 → 미수 있음 [귀가 처리] 경고 창 → 미수 없음 단순 창 → 귀가 완료 · 표 카드 회색 — 뒤 사용자 화면 확인"
+  ],
+  "non_goals": [
+    "문진 · 여권 스캔 동작(자리만 · 비활성 D13 · D55) · 신분 확인 자동 접수 · 외국인 신분확인 · 상담사 순번 · 고객 차트 · 처방 만들기 · 수납 항목 넣기 · 예약 요청 · 고객 등록 창 · 예약메모 덧붙이기(DAY-SPEC-007 §1 Out Of Scope)",
+    "「시술현황 차트 일부 기능 수정」(D43) · 시술 현황 쓰기의 확인 방식 변경(D53 범위 = 이 화면 쓰기)"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-007(draft · 검수 3차 PASS) + DAY-SPEC-006 개정 ⑫ · DAY-SPEC-002 개정 ㉘ · DAY-SPEC-000 2026-11-24 개정 ② — Mediness PR #961(브랜치 kknaksss/day-reservation2-spec · 머지 전 · 첫 커밋 479d8f46a84fa87377a3525f6ccb45d69c399ce4 · 고침 3(D53 이번 판) 커밋이 같은 PR 에 얹힘). main 에 없어 spec-baseline:pending 으로 시작 · PR #961 머지 뒤 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재결속(결과 계약 같으면 재승인 없음 — requests.md)",
+    "판 순서(코디 · 사용자 2026-11-24): 판마다 구현 → 로컬 KOS 데모 지점 e2e → 사용자 화면 확인 → 다음 판. 한 Delivery = 한 Code PR(백엔드 + 화면 함께 · 안에서 병렬)",
+    "KOS 외부 쓰기 COMPLETED 한 건 판정 — L3"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/emr/kos/writes.py(판정)",
+      "backend/day/routers/reservations.py · services/reservation_*.py",
+      "backend/day/templates/partials/reservations_detail*.html · static/day.js"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "3판 Delivery 머지 · 사용자 화면 확인 뒤(딥링크 · 수납 값을 씀)"
+    ],
+    "phases": [
+      "P1 귀가 대기 귀가 · 확인 창 둘",
+      "P2 처방전 딥링크 · 귀가 완료 · e2e"
+    ],
+    "verification": [
+      "backend pytest",
+      "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"
+    ],
+    "predeploy": [],
+    "rollback": [
+      "Code PR revert"
+    ],
+    "open_questions": []
+  }
+}

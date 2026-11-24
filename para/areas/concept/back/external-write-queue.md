@@ -21,6 +21,7 @@ up:
   - 2026-11-09-day-data-architecture
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-28-overall-board
+  - 2026-11-24-day-reservation2
 tags:
   - 외부 연동
   - 신뢰성
@@ -98,6 +99,13 @@ DAY 공지(2026-11-23): 쓰기 큐가 방문 단위(`visit_id` NOT NULL · 일�
 
 DAY 시술전후사진(2026-11-24): 사진 KOS 등록은 방문 단위 `external_outbox` 에 태우지 않았다 — KOS 가 준 이미지 id 를 받아 `external_ref` 에 걸어야 하고, 로그인한 직원 토큰으로 써야 하기 때문(공지 저장 선례). 대신 DAY 행을 먼저 커밋하고 KOS 는 transaction 밖에서 부른 뒤, 실패는 행에 「미반영」으로 남겨 사람이 다시 시도한다. 다시 시도와 올리기가 겹치면 같은 사진이 두 번 등록될 수 있어 행 단위 Redis 잠금을 둔다.
 
+## 원천에 칸이 있으면 원천에 — 순서와 조건은 큐가 판정
+
+- 쓸지 말지는 「원천에 그 칸이 있나」로 정한다. 원천에 칸이 있으면 원천에 쓰고, 우리 사본은 동기화로 받는다. 원천에 칸이 없을 때만 우리 DB 에 둔다(DAY: 신분증 확인 · 귀가 사유 · 동행).
+- 같은 뜻이어도 **화면들이 실제로 읽는 원천 칸**에 써야 한다. 상담사를 예약 칸(`update-reservation counselor`)에 쓰면, 상담 기록을 읽는 표 카드 · 원내 현황에는 「미정」으로 남는다. KOS 화면 HAR 를 보고 상담 기록(`create-consultation` / `change-consultation-counselors`)으로 바로잡았다.
+- 원천이 상태 조건을 걸면(열린 작업이 있으면 귀가 `COMPLETED` 거절), 쓰기 허용 목록(`write_open`)은 경로 + 값만 본다. 순서(작업 CANCEL → `COMPLETED`)와 단계 조건은 **계획 단계의 순서 묶음**이 판정한다.
+- 본문을 원천 상태로 채워야 하는 쓰기(시술권 회차 `round.current` = 쓴 + 쓰는 중 + 1)는 보낼 때 원천을 읽어서 짓는다. 사본으로 지으면 다른 단말이 쓴 회차를 놓친다.
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 여권 사진 KOS 업로드 200 · `ok` 인데 일정 탭에 안 보임 → 일정(`scheduleId`) · 분류 「여권」(있는 지점만)을 실음. 근거는 사용자 HAR(KOS 웹 여권 스캔) · 데모 재조회(`app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`). 고객 문진 다시 제출 → 읽기는 첫 제출본(`app-backend-report.md` 「WORK-010 건강 정보 반영」)
@@ -106,3 +114,4 @@ DAY 시술전후사진(2026-11-24): 사진 KOS 등록은 방문 단위 `external
 - [[2026-11-11-day-procedure-board-2]] §2 — DAY 점유 이동: 「방 배정」 add-flow-tasks → 확인 → 원래 방 → 나머지 새 방(리뷰 W1) · 차트 메모 이력 `visit_task_chart_log`(source kos 포함) · guard(코드 b8a59cc3 · SPEC-002 개정 ⑰)
 - [[2026-11-24-day-reservation]] §2 — 공지 쓰기 = 직접 호출(큐 밖)
 - [[2026-11-24-day-chart-photo]] §2 — 사진 KOS 등록 · 미반영 · 다시 시도(`review-code-3-report.md` P4)
+- [[2026-11-24-day-reservation2]] §2 — DAY 예약 상세 쓰기 13종(상담 기록 · 귀가 순서 묶음 · 시술권 본문은 보낼 때 KOS 읽기)

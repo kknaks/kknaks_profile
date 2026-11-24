@@ -15,6 +15,7 @@
 | [[orchestration/work/_archive/day/day-mobile-v2/README\|day-mobile-v2]] | 아카이브 | [[para/projects/company/day/log/2026-11-22-day-mobile-v2\|회고]] |
 | [[orchestration/work/_archive/day/day-procedure-board-2/README\|day-procedure-board-2]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-procedure-board-2\|회고]] |
 | [[orchestration/work/_archive/day/day-reservation/README\|day-reservation]] | 아카이브 | [[para/projects/company/day/log/2026-11-24-day-reservation\|회고]] |
+| [[orchestration/work/_archive/day/day-reservation2/README\|day-reservation2]] | 아카이브 | [[para/projects/company/day/log/2026-11-24-day-reservation2\|회고]] |
 | [[orchestration/work/_archive/day/fix/README\|fix]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-fix\|회고]] |
 | [[orchestration/work/_archive/day/fix-feedback/README\|fix-feedback]] | 아카이브 | [[para/projects/company/day/log/2026-11-17-fix-feedback\|회고]] |
 | [[orchestration/work/_archive/day/fix-web/README\|fix-web]] | 아카이브 | [[para/projects/company/day/log/2026-11-12-fix-web\|회고]] |

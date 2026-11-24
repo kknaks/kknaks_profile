@@ -1,0 +1,99 @@
+import json, os, sys
+OUT, MAIN = sys.argv[1], sys.argv[2]
+SRC = "479d8f46a84fa87377a3525f6ccb45d69c399ce4"
+RS = (f"SPEC 원천 = DAY-SPEC-007(draft · 검수 3차 PASS) + DAY-SPEC-006 개정 ⑫ · DAY-SPEC-002 개정 ㉘ · DAY-SPEC-000 2026-11-24 개정 ② — Mediness PR #961(브랜치 kknaksss/day-reservation2-spec · 머지 전 · 첫 커밋 {SRC} · 고침 3(D53 이번 판) 커밋이 같은 PR 에 얹힘). "
+      "main 에 없어 spec-baseline:pending 으로 시작 · PR #961 머지 뒤 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재결속(결과 계약 같으면 재승인 없음 — requests.md)")
+ORDER = "판 순서(코디 · 사용자 2026-11-24): 판마다 구현 → 로컬 KOS 데모 지점 e2e → 사용자 화면 확인 → 다음 판. 한 Delivery = 한 Code PR(백엔드 + 화면 함께 · 안에서 병렬)"
+NON = ["문진 · 여권 스캔 동작(자리만 · 비활성 D13 · D55) · 신분 확인 자동 접수 · 외국인 신분확인 · 상담사 순번 · 고객 차트 · 처방 만들기 · 수납 항목 넣기 · 예약 요청 · 고객 등록 창 · 예약메모 덧붙이기(DAY-SPEC-007 §1 Out Of Scope)",
+       "「시술현황 차트 일부 기능 수정」(D43) · 시술 현황 쓰기의 확인 방식 변경(D53 범위 = 이 화면 쓰기)"]
+UNCOMMITTED = "코드 워크트리(CENTURION_DAY day-reservation2 · origin/dev 4bf0b4a1)에 앞서 멈춘 backend 미커밋 변경이 있음 — migration 0024_purchase_base_price(3판) · 0025_detail_permission(1판) · models/purchase.py · mapper_kos_keys_sale.py · column snapshot · alembic test. 「이미 일부 있음」 — 해당 판에서 이어서 함(화면 쪽 미커밋 변경은 없음)"
+W_BASE = ("쓰기 바닥(1판에서 만들고 다음 판이 넓힘): 화면 서비스는 `WriteIntent` 로 쓰기 큐에 넣기만 · 경로 · 본문 · expect 는 `KosWritePlanner`(writes.py) · `write_open` = 경로 + 값만 · 순서 / 단계 조건 = 계획 / 쓰기 큐(SPEC-002 ㉘ 「판정 자리」) · "
+          "**D53 보낸 즉시 확인** = 이 화면이 쌓은 쓰기는 보낸 즉시 그 일정을 KOS `get-schedule-detail` 로 1초 간격 다시 읽어 expect 확인 · 짧은 상한(설정 · WORK) 넘으면 다음 일정 조회 회차가 이어받음 · 확인 · 실패 → DAY 사본 반영 → 예약 현황 SSE(`emr_sync._chain_room_assign` 일반화 · 시술 현황 쓰기는 안 바꿈)")
+SSE = ("계약 S(예약 현황 SSE — 1판): `GET /reservations/stream`(이름 제안 · routers/board_streams.py 를 본뜸 · stream_guard · 같은 출처 쿠키) · 이벤트 `reservation`(data = version → hx-trigger sse:reservation 로 #reservation-main) · `write_confirmed`(data = {visitId, action} → 열린 모달 다시 받기 · 잠금 풂 · 성공 알림) · `kos_failed`(공용 토스트 HTML + 「다시 시도」 → sse-swap) · `session_expired` · retry 3000 · 15초 ping · 10초 조각 폴링(poll=1) 없앰(D52 · SPEC-006 ⑫)")
+MODAL = ("계약 V(모달 값 — 판마다 칸을 더함 · 이름 제안 · SPEC-007 §3 「화면이 읽는 칸」 · 단계 × 날짜 경계 표 판정은 서버): stage(10 값) · date_kind(today|future|past) · editable 플래그(칸 · 버튼마다) · customer{name, passport_name, contact(KOS 꼴), birth, age, gender, nationality, is_domestic, notes} · reservation{assignee, start, end, funnel, memo, doctor|null, companions[]} · previous_visits[] · "
+         "(2판) identity{checked} · consult{mode, counselor, room, missing[]} · discharge_reason · (3판) consult.order_memo · treatments[] · payment{base_total|null, discount|null, total, paid, due, warn, done, button, links|null} · 문구 · 색은 화면이 시안대로 키로 그림")
+E2E = lambda body: "실물 e2e 1회(로컬 · KOS 데모 지점 · check_open_key_is_demo 통과 뒤만 · 각 쓰기 KOS 상세 다시 읽기로 expect 확인 · 두 번째 브라우저에 SSE 로 바로 반영): " + body + " — 뒤 사용자 화면 확인"
+COMMON_ACC = ["A2: 인라인 스크립트 0 · 손 CSS 0(static/day.js 이벤트 위임 + data-* · medikit · ui.html 매크로 · partials/reservations_*.html — AGENTS.md 「웹 화면」) · 시안 문구만(새 오류 토스트 글자 = 빈 문구 OQ-D17)",
+              "A3: 판에서 연 KOS 쓰기마다 write_open 허용 · 막힘 · planner 경로 · 본문 키 · expect 가 SPEC-007 W 표 · be-probe-1 ~ 4 와 같음(단위 테스트) · D53 즉시 확인(1초 간격 · 상한 · 넘김 → 다음 회차) 테스트 · 전체 pytest 회귀 없음"]
+def req(key, title, specs, delta, acc, non, rsx, ex):
+    return {"product_id": "day", "document_root": "products/day", "contract_version": 1, "spec_baseline_revision": MAIN,
+            "idempotency_key": key, "title": title, "risk_level": "L3", "target_specs": specs,
+            "target_delta": delta, "acceptance": acc, "non_goals": NON + non, "review_surface": [RS, ORDER] + rsx, "execution": ex}
+R = {}
+R["p1-reservation"] = req("day/day-spec-007/p1-reservation",
+ "DAY 예약 상세 1판 — 예약 단계: 예약 등록 창 · 예약 상세 모달 틀 · 예약 취소 / 변경 · 우클릭 · 동행 · 예약 현황 SSE (DAY-SPEC-007 · 006 ⑫)",
+ ["DAY-SPEC-007", "DAY-SPEC-006", "DAY-SPEC-002", "DAY-SPEC-000"],
+ ["예약 등록 창(RB-01 ~ RB-13 · U-1) — 고객 찾기(DAY 사본) · 새 고객 [저장 후 예약 등록] = W1 같은 고객 찾기(저장 요청 안 · R39 예외) → W2 create-visitor → 사본 → W3 reserve · RB-11 같은 고객 창 · duplicate_token(KOS id 브라우저 왕복 없음) · DAY 사본 없으면 get-visitor(저장 요청 안) · 담당자 = 로그인 직원 · 열 = 예약 그룹 · 시간 = 그룹 간격 · 유입 · 지정 의사(태그 doctor) · SNS = SnsType 6개(D54) · 미리보기 카드 · 새 카드 반짝임(write_confirmed 뒤)",
+  "예약 상세 모달 틀(U-2 · U-3 · U-4 · U-6 · RD-01 ~ RD-05 · RD-12) — 머리 단계 · 색 · 고객 정보(신분확인 · 초진 문진 · 건강정보 = 줄만 · [문진 QR] · [여권 스캔] 시안 조건 비활성 D55) · 예약 정보 · 이전 방문(재진) · 의사 지정(예약 단계 · W16) · 이름 = 「준비중입니다」 · 지난 날 보기만 · 노쇼 · 예약 취소 머리 · 상담 정보 · 오른쪽 칸(시술 목록 · 수납)은 **3판에서 채움** — 1판은 칸 자리만(판 중간 상태)",
+  "예약 단계 버튼 — [예약 취소](RP-04 · W5 공개 cancel-reservation) · [예약 변경](바꾸기 창 · W4 update-reservation items 통째 · 유입 · 메모 보기만) · [접수] 는 2판",
+  "우클릭(RC-01 ~ RC-03 · U-11) — 예약 변경 = 옮기기 모드(W4 · 같은 날 · 길이 그대로 · 동행에서 빠짐) · 예약 취소 · 동행 추가 → 예약 상세 「동행」 체크 목록 · 동행 저장(PUT /reservations/companions/group · 묶음 통째 · R73 검사) · **카드 끌어 다른 카드에 놓아 묶기 · 띠 밖 풀기 제거**(D45)",
+  W_BASE + " — 1판 write_open 새 행: reserve · update-reservation(items · counselor · 최상위 doctor 막음) · create-visitor · open cancel-reservation(reason CANCELED)", SSE,
+  "권한 `reservation.detail` edit(데이터 migration 0025_detail_permission — 미커밋 일부 있음) · 지정 의사 원천 = visit_occupied_resource_doctor · " + UNCOMMITTED, MODAL],
+ ["A1: SPEC-007 1판 요소(RB · RD-01 ~ RD-05 · RD-12 · RP-04 · RC)가 시안과 같은 모양 · 문구 · 카드 클릭 = 상세 · 빈 칸 = 등록(지난 날 빼고) · 우클릭 켜짐 조건 · 케이스 매트릭스 1판 줄(권한 · 지난 날 · 같은 고객 · 토큰 만료 · 사본 없음 · 동행 조건 · 정원 · 지난 시각)",
+  *COMMON_ACC,
+  "A4: SSE 로 바뀜 — 폴링 요청 0 · 쓰기 결과가 두 화면에 바로 · 끌어 묶기 없음 · 공지 편집 · 원내 현황 · 날짜 최신화(R43) 회귀 없음",
+  "A5: " + E2E("새 고객 등록(같은 고객 없음 → 고객 + 예약) · 같은 고객 있음 창 → 그 고객으로 예약 · 기존 고객 예약 · 예약 상세 열기 · 의사 지정 · [예약 변경] 창 · 우클릭 옮기기 · 우클릭 예약 취소 · 동행 추가 · 저장 · 풀기")],
+ ["접수 이후 단계(2 ~ 4판)", "시술 목록 · 수납 정보 값(3판)"],
+ ["KOS 외부 쓰기 새로 엶(reserve · update-reservation · create-visitor · 공개 cancel) — L3", "migration 0025 · 화면 요청 안 KOS 호출 예외 둘(W1 · get-visitor)", "SSE 로 갈아탐 · 폴링 · 끌어 묶기 제거 회귀"],
+ {"code_surface": ["backend/day/emr/kos/writes.py · emr/base.py · dtos/emr_writes.py · services/emr_sync.py(D53 즉시 확인)", "backend/day/routers/reservations.py · routers/reservation_streams.py(새)", "backend/day/services/reservation_*.py · queries/reservations*.py · presentation/reservations*.py", "backend/day/policies/permissions.py · services/default_permissions.py · migrations/versions/20261124_0025_detail_permission.py(미커밋 일부)", "backend/day/templates/reservations.html · partials/reservations_main.html · reservations_parts.html · reservations_detail*.html · reservations_book*.html(새) · static/day.js"],
+  "domain_candidates": [], "dependencies": ["없음(첫 판)"],
+  "phases": ["P1 쓰기 바닥(write_open · planner · D53 즉시 확인 · 결과 신호) · 권한 0025", "P2 SSE 스트림 · 폴링 제거 · 끌어 묶기 제거", "P3 예약 등록 창 · 새 고객 순서", "P4 예약 상세 틀 · 예약 취소 / 변경 · 우클릭 · 동행 저장 · e2e"],
+  "verification": ["backend pytest(writes · planner · 라우트 · SSE · 템플릿 렌더 · CSP)", "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"],
+  "predeploy": ["migration 0025 · KOS 쓰기 열림 범위 확인"], "rollback": ["Code PR revert + 0025 downgrade(키 행 삭제) · 폴링 · 끌어 묶기가 같이 돌아옴"],
+  "open_questions": ["DAY-SPEC-007 OQ-D07(국가번호 목록 · kakaotalk 밖 SNS 값 create-visitor · etc 이름)"]})
+R["p2-reception"] = req("day/day-spec-007/p2-reception",
+ "DAY 예약 상세 2판 — 접수 → 상담: 접수 · 신분증 확인 · 상담사(상담 기록) · 관리실 · 상담 대기 · 상담 중 귀가 (DAY-SPEC-007 · 002 ㉘ · 000 ②)",
+ ["DAY-SPEC-007", "DAY-SPEC-002", "DAY-SPEC-000"],
+ ["[접수](오늘 예약 · W6 recept · 「접수했어요」) · 내국인 「신분증 확인」 체크(identity_check confirmed / unconfirmed · DAY 만 · 체크해도 접수 안 됨 D24) · 의사 지정(접수 단계 · W16 — be-probe-4 접수 뒤 O)",
+  "상담 정보(U-5) — 시술만 진행 체크는 3판 · 상담사 목록(태그 counselor · 목록만 D15 · D18) · 관리실(빈 방부터 · 꺼짐 없음 D19) · 예약 · 접수 = 화면에 담음 · [상담 대기](빠진 칸 = 신분확인 + 상담사 + 관리실 · 깜빡임 · 「{빠진 칸} 먼저 해 주세요」) = W8 방 배정 → W9 방 → W10 CONSULTATION_WAITING → W7a / W7b(계획 단계 KOS consultations[] 로 판정 · consultationId = 큐에 넣을 때 uuid) · 상담 대기에서 고르면 바로(W7 · W11) · 상담 진행부터 잠금 · 상담사 보이는 값 = R48 원천",
+  "상담 대기 · 상담 진행 [귀가 처리] — RP-01(사유 필수) → W12 cancel-flow-tasks CANCEL → COMPLETED(순서 묶음) · 귀가 사유 = `visit.discharge_reason`(migration 새 · DAY 만 · D26) · 귀가 완료 머리 · 귀가 사유 상자(RD-10)",
+  "write_open 새 행: recept · change-flow-step CONSULTATION_WAITING · COMPLETED(값만 · 판정 = 계획 / 쓰기 큐) · create-consultation · change-consultation-counselors(빈 배열 막음) — D53 즉시 확인으로", MODAL],
+ ["A1: SPEC-007 2판 요소(RD-03 신분확인 · RD-06 상담 정보 · RD-10 · RD-14 [접수] · [상담 대기] · [귀가 처리] · RP-01)가 시안과 같음 · 단계 × 날짜 경계 표 예약 · 접수 · 상담 대기 · 상담 진행 · 귀가 줄 · 케이스 매트릭스 2판 줄(앞날 접수 409 · 단계 바뀜 · 빠진 칸 · 외국인 회색 · 상담 기록 이미 있음 · 사유 없음 · 열린 작업 COMPLETED 400)",
+  *COMMON_ACC,
+  "A4: 표 카드 「상담사 ○○○」(R57) · 원내 현황(R48)이 [상담 대기] 뒤 바로 같은 상담사(SSE) · 시술 현황 [귀가 대기] · 방 배정 회귀 없음",
+  "A5: " + E2E("오늘 예약 → 신분증 확인 → [접수] → 상담사 · 관리실 → [상담 대기](KOS 방 배정 · 방 · 상담 대기 · 상담 기록) → 상담 대기에서 상담사 · 관리실 바꾸기 → [귀가 처리](사유) → 귀가 완료 · KOS 에서 상담 진행으로 바꾼 뒤 [귀가 처리]")],
+ ["시술만 진행 · 시술 목록 · 수납(3판) · 귀가 대기 귀가 · 처방전(4판)"],
+ ["KOS 외부 쓰기 새로 엶(recept · CONSULTATION_WAITING · COMPLETED · 상담 기록 둘) — L3", "migration discharge_reason", "상담 기록이 차티 · KOS 와 둘 되지 않는지(be-probe-4 ⓒ)"],
+ {"code_surface": ["backend/day/emr/kos/writes.py · services/emr_sync.py", "backend/day/routers/reservations.py · services/reservation_*.py", "backend/day/models/visit.py · reception.py · migrations/versions(discharge_reason 새)", "backend/day/templates/partials/reservations_detail*.html · static/day.js"],
+  "domain_candidates": [], "dependencies": ["1판 Delivery(모달 틀 · 쓰기 바닥 · D53 즉시 확인 · SSE) 머지 · 사용자 화면 확인 뒤"],
+  "phases": ["P1 접수 · 신분증 확인 · 의사 지정(접수)", "P2 상담 정보 · [상담 대기] 순서 묶음 · 상담 기록", "P3 상담 단계 귀가 · discharge_reason · 귀가 완료 · e2e"],
+  "verification": ["backend pytest", "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"],
+  "predeploy": ["migration discharge_reason"], "rollback": ["Code PR revert + discharge_reason downgrade"], "open_questions": []})
+R["p3-procedure"] = req("day/day-spec-007/p3-procedure",
+ "DAY 예약 상세 3판 — 시술: 시술만 진행 · 시술 목록 · 수납 정보 · 할인 전 가격 · 수납 딥링크 · 시술 중 귀가 (DAY-SPEC-007 · 002 ㉘ · 000 ②)",
+ ["DAY-SPEC-007", "DAY-SPEC-002", "DAY-SPEC-000"],
+ ["「시술만 진행」(D41 · 초진 RP-05) · 시술 목록 「오늘」 ✓(접수 단계 · available 회차 줄만) · 관리실 필수 · 오더 메모 글 칸(✓ 있을 때) · [시술 대기](빠진 칸 = 신분확인 + ✓ 1개 이상 + 관리실 D50) = W8 → W9 → W13 ① 시술권 작업(계획 단계 KOS get-ticket-bundles {visitorId} 로 본문 · D48 round) → 2xx 뒤 상세 조회로 새 seq(규칙 28 예외 넓힘) → ④ 같은 방 → ② 오더 메모(빈 글이면 안 보냄 D56) → ③ PROCEDURE_WAITING · 접수 뒤 「시술 정보」 = 단계 이력에 상담 대기 없음 · 오더 메모 [수정](W17)",
+  "시술 목록(U-7 · D44 와이어) — 지난 시술권 남은 것(구매 시각 순) + 이번 구매(항목 순) · 겹침 제거 · 상품 → 구성 · n/m회(D42) · 오늘 ✓(연결 키 D29 · 취소 = 빠짐 D32) · 상태 4 문구(D30 · 여러 작업 = 시술 중 > 시술 전 > 시술 후 · 시술권 없는 작업 = 진료항목으로 붙임)",
+  "수납 정보(U-8) — 원내 현황 금액(visit_amounts · R49 ~ R54) + 할인 전 가격(상품 합계 · 할인 금액 · 빈 구매 = 칸 비움 D51) · 경고(R42) · 「수납 완료」 배지(R55) · 수납 버튼 넷(D36 · 「KOS에서 수납 중」 · [n원 수납] = KOS 웹 tab=purchase 딥링크 · kos_web_base · KOS id 없으면 꺼짐) — 할인 전 가격 = migration 0024_purchase_base_price · 매퍼 · 동기화 · 백필(**미커밋 일부 있음 → 이어서**)",
+  "시술 대기 · 시술 진행 [귀가 처리] — RP-01(사유) → W14 안 끝난 작업 전부 CANCEL(시술권 되돌아감) → COMPLETED",
+  "write_open 새 행: add-flow-tasks PROCEDURE + ticketConfiguration.ticketId · change-order-memo — D53 즉시 확인으로", MODAL],
+ ["A1: SPEC-007 3판 요소(시술 정보 · RD-08 시술 목록 · RD-11 수납 정보 · 수납 버튼 · RP-05)가 시안 · D44 와이어와 같음 · 경계 표 시술 대기 · 시술 진행 줄 · 케이스 3판 줄(available 0 · IN_USE 충돌 · 관리실 안 고름 · KOS id 없음)",
+  *COMMON_ACC,
+  "A4: 구매 동기화가 basePrice 를 받음(HAR 할인.har 모양 fixture) · migration 0024 업 · 다운 · 수납 정보 R52 실측 fixture · 원내 현황 금액 회귀 없음 · 시술 현황에서 그 시술 작업이 READY(호출 가능)",
+  "A5: " + E2E("재진 시술권 고객 접수 → 시술만 진행 → 「오늘」 ✓ → 오더 메모 → 관리실 → [시술 대기](KOS 방 배정 · 방 · 시술권 작업 · 같은 방 · 메모 · 시술 대기) → 시술 목록 n/m · 상태 → KOS 수납 창에 담기 → 「KOS에서 수납 중」 → 결제 → 「수납 완료」 · [n원 수납] 이 KOS 웹 수납 탭을 엶 → 시술 진행에서 [귀가 처리](사유 · 시술권 되돌아감)")],
+ ["귀가 대기 귀가 · 처방전(4판)"],
+ ["KOS 외부 쓰기 새로 엶(시술권 작업 · 오더 메모) — L3", "migration 0024 · 백필", "다회권 round(OQ-D25)"],
+ {"code_surface": ["backend/day/emr/kos/writes.py · services/emr_sync.py(이벤트 연쇄 넓힘)", "backend/day/emr/kos/mapper_kos_keys_sale.py · mapper_purchase.py · models/purchase.py · migrations/versions/20261124_0024_purchase_base_price.py(미커밋 일부)", "backend/day/queries/reservations*.py · policies/reservation_amounts.py(재사용)", "backend/day/templates/partials/reservations_detail*.html · static/day.js"],
+  "domain_candidates": [], "dependencies": ["2판 Delivery 머지 · 사용자 화면 확인 뒤(접수 · 방 배정 · 귀가 순서 묶음을 씀)"],
+  "phases": ["P1 할인 전 가격 0024 · 매퍼 · 백필(이어서)", "P2 시술 목록 · 수납 정보 · 수납 버튼 · 딥링크", "P3 시술만 진행 [시술 대기] 순서 묶음 · 오더 메모", "P4 시술 단계 귀가 · e2e"],
+  "verification": ["backend pytest", "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"],
+  "predeploy": ["migration 0024 · 백필 실행"], "rollback": ["Code PR revert + 0024 downgrade"], "open_questions": ["DAY-SPEC-007 OQ-D25(여러 세트 묶음 round.total)"]})
+R["p4-discharge"] = req("day/day-spec-007/p4-discharge",
+ "DAY 예약 상세 4판 — 귀가 대기 → 귀가: 처방전 딥링크 · 귀가 처리 (DAY-SPEC-007 · 002 ㉘)",
+ ["DAY-SPEC-007", "DAY-SPEC-002"],
+ ["귀가 대기 [귀가 처리] — RP-02(미수 경고 · 「남은 결제 금액 n 원」) / RP-03 → W15 COMPLETED 한 건(계획 단계에서 귀가 대기 ∧ DAY 사본 열린 작업 없음 확인 · 있으면 W14 처럼 작업 취소부터) — D53 즉시 확인 · 「귀가 처리했어요」",
+  "[처방전 출력](귀가 대기 · 귀가 · 오늘) = KOS 웹 tab=etceteraWork 딥링크(D38) · 귀가 완료 모달(머리 「귀가 완료」 · 귀가 사유 상자 · 상담 정보 잠금)", MODAL],
+ ["A1: SPEC-007 4판 요소(RP-02 · RP-03 · [처방전 출력] · 귀가 완료)가 시안과 같음 · 경계 표 귀가 대기 · 귀가 줄 · 케이스 4판 줄",
+  *COMMON_ACC,
+  "A4: 시술 현황 [귀가 대기] → 예약 상세 귀가가 KOS 400 없이 COMPLETED · 표 · 원내 현황에서 빠짐(SSE)",
+  "A5: " + E2E("시술 현황 [귀가 대기] 고객 → 예약 상세 → [처방전 출력] 이 KOS 웹 기타 업무 탭을 엶 → 미수 있음 [귀가 처리] 경고 창 → 미수 없음 단순 창 → 귀가 완료 · 표 카드 회색")],
+ [],
+ ["KOS 외부 쓰기 COMPLETED 한 건 판정 — L3"],
+ {"code_surface": ["backend/day/emr/kos/writes.py(판정)", "backend/day/routers/reservations.py · services/reservation_*.py", "backend/day/templates/partials/reservations_detail*.html · static/day.js"],
+  "domain_candidates": [], "dependencies": ["3판 Delivery 머지 · 사용자 화면 확인 뒤(딥링크 · 수납 값을 씀)"],
+  "phases": ["P1 귀가 대기 귀가 · 확인 창 둘", "P2 처방전 딥링크 · 귀가 완료 · e2e"],
+  "verification": ["backend pytest", "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"],
+  "predeploy": [], "rollback": ["Code PR revert"], "open_questions": []})
+for k, r in R.items():
+    json.dump(r, open(os.path.join(OUT, f"request-{k}.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+print("ok", list(R))
