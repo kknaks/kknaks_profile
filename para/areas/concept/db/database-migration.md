@@ -99,6 +99,10 @@ DAY(2026-11-20): `day-cc-mig` 의 `0012_kos_keys` 와 이 작업의 `0012` 가 �
 
 DAY 예약 현황(2026-11-23 ~ 24): 새 권한 키 행을 시간 회차 · 로그인 시드로만 넣어 배포 직후 예약 현황이 403 이었다. 사용자 「마이그레이션 해주면 되는 문제」 → alembic 데이터 migration(`ON CONFLICT DO NOTHING` · downgrade 는 그 행 삭제). 같은 작업에서 dev 가 두 번 앞서 나가(0015 · 0016, 그다음 `0017_ext_catalog`) 번호를 두 번 밀었고, 로컬 DB 는 옛 번호 위에 서 있어 `alembic_version` 을 공통 조상으로 되돌린 뒤 다시 올렸다. PG enum 값 추가는 반드시 migration 이다. ← [[2026-11-24-day-reservation]]
 
+## 병렬 브랜치의 번호 겹침
+
+DAY(2026-11-24): dev 가 `0024_customer_memo` 를 먼저 넣어 우리 `0024_visit_photo` 를 `0025` 로 밀었다(down = 새 0024). revision 이름 쓰는 곳을 전부 grep 해 바꾸고 `alembic heads` 하나를 확인했다. 로컬 DB 는 옛 번호에 서 있어 새 테이블 · enum 을 지우고 `alembic_version` 을 공통 조상(0023)으로 되돌린 뒤 다시 올렸다. 같은 주에 세 번째 — dev 가 바쁜 레포는 마감 직전 rebase 를 일정에 넣는다.
+
 ## 출처
 
 - [[2025-11-01-database_migration]] — 「마이그레이션 방안」 절이 **세 가지를 장단점 한 줄씩으로 나란히** 놓은 것이 이 개념의 뼈대다 — Dump→Load(쉽지만 손실), DMS+CDC(짧은 중단, 비용), Dual write(손실 없지만 점검 두 번). **「CDC 를 활용하여 실시간 데이터베이스를 업데이트 후 원하는 시점에 DB 주소를 변경하면 된다」**는 한 줄이 왜 두 번째를 골랐는지를 설명한다. 「마이그레이션 단계」가 **Full Load → CDC** 두 단계를 그림으로 갈랐고, 그 전에 원본 쪽 binlog 를 확인·설정하는 SQL(`log_bin` 확인, `binlog retention hours` 를 168시간으로)이 실려 있다. 다만 전환 후 검증 절차와 롤백 계획은 다루지 않았다
@@ -108,3 +112,4 @@ DAY 예약 현황(2026-11-23 ~ 24): 새 권한 키 행을 시간 회차 · 로�
 - [[2026-11-17-fix-feedback]] §2 — DAY 호출 취소: 동작은 기존 칸(`doctor_call_task.deleted_at` · `closed_at`)으로 migration 0 · 취소 알림(새 `notification_kind` 값)만 앱 업데이트 뒤로
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
 - [[2026-11-24-day-reservation]] §2 — 권한 데이터 migration · 번호 두 번 밀기 · 로컬 revision 되돌림
+- [[2026-11-24-day-chart-photo]] §2 — 0024 → 0025(`be-rebase-1-report.md`)
