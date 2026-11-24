@@ -57,7 +57,12 @@ tags:
 
 DAY day-cc-mig(2026-11-20): 지금 반영의 연결(`Refs.link`)이 `external_updated_at` 을 매번 None 으로 덮고 새 보충이 KOS 수정 시각으로 다시 써서, 직원 · 상담 · 고객 연결 행이 10초마다 UPDATE 됐다. `Refs.link` 를 「None = 유지」로 바꾸자 구매 · 카드 · 메뉴의 「바뀜」 판정까지 뜻이 바뀌었다(검수 W5) — 원래 뜻으로 되돌리고 그 세 호출 자리에서만 옵션으로 유지했다. 공용 함수 한 줄의 뜻 변경은 모든 호출자에게 퍼진다. ← [[2026-11-20-day-cc-mig]]
 
+## 화면이 보인 행의 외부 id 로 대상 고르기
+
+DAY 공지(2026-11-23): KOS 공지 id 는 `notice` 칸이 아니라 `external_ref(entity_type='notice')` 에 두었다(migration 없음). 저장 대상은 「화면이 보인 공지의 DAY id → 대응표의 KOS id 가 다시 읽은 목록에 있으면 그것 · 없으면 첫 번째」. 처음 계약엔 화면이 DAY id 를 보내는 칸이 없어 검수가 잡았다 — 대응표를 쓰는 쓰기는 화면 → 서버 계약에 내부 id 가 실려야 한다. ← [[2026-11-24-day-reservation]]
+
 ## 출처
 
 - [[2026-11-19-customer-erd]] §2 — `erd-draft.md` · SPEC-000 §4 · `be-2-report.md` 실물 발견 1(`chargingId` 중복)
 - [[2026-11-09-day-data-architecture]] — `external_ref` 한 테이블 원칙(11-03 결정)
+- [[2026-11-24-day-reservation]] §2 — 공지 KOS id 대응표 · 대상 고르기
