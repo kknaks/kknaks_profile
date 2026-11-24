@@ -122,3 +122,4 @@ Strong Hajin 은 `seed_catalog(demo_organization=False)` 로 카탈로그만 깔
 - [[2026-10-27-interpret-pwa-poc]] §2 — Procedure Hub 용어집을 1회 가져와 git 시드 사전으로(정규화 · 157 term × 7개 언어) · 깨지면 기동 실패 · 시험이 게이트(`back/seed/glossary.json` · `back/scripts/import_glossary.py` · `back/tests/test_seed.py` · DEC-001 D-33 · 코드 #4)
 - [[2026-11-12-seed-demo-re1]] §2 — KOS 데모 지점 시드: 「방 배정」 기본 · 한국어 가짜 이름(유명인 제외) · 상담 양식 오더 메모(시술 줄 = KOS 실제 제목 · 반영 지연 대기) · 시술 4 ~ 6개(`scripts/seed_demo_board.py` · CENTURION_DAY#248)
 - [[2026-11-18-phub-gold-jev]] §2 — 레포 CSV + 같은 이미지 일회성 컨테이너 dry-run → 적재 · 순서 env → 배포 → 적재 → 재생성 · restart 는 env 안 읽음(`research-stg-seed.md` · `stg-runbook.md` · `data/medallion/README.md`)
+- [[2026-11-24-phub-consult-demo]] §2 — 허브 stg 두 번째 일회성 적재(머지 → 승격 → CD alembic → dry-run → 한 트랜잭션 → 재시작 → health 해시) · macOS tar `._*` 파일 주의 · DB 백업 먼저

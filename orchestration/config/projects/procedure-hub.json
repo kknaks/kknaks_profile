@@ -46,6 +46,18 @@
         "검증 명령 정본은 backend/README.md · frontend/README.md 「검증」 절. tests/integration 은 데이터 전제 DB 가 필요해 CI 에서도 안 돈다 — 개발·운영 DB 를 지정하지 않는다.",
         "배포는 .github/workflows/csp-azure-deploy.yml(Azure). 배포 · 운영 DB · secret 은 별도 승인 없이 하지 않는다. 회사 org 푸시 범위는 발행 전 사용자 확인."
       ]
+    },
+    "app": {
+      "orca_name": "clinic_chat",
+      "canonical_path": "/Users/kknaks/git/clinic_chat",
+      "remote": "https://github.com/kknaks/clinic_chat.git",
+      "base": "origin/main",
+      "pr_base": "main",
+      "worktree_suffix": "",
+      "notes": [
+        "상담 채팅 · 시험 앱(Python · uv). 개인 공개 레포 — 키 · 회사 데이터 본문(원장 · gold 값 · 질문 문장) · 홈 절대 경로를 커밋하지 않는다. .env · data/ · runs/ 는 gitignore 로컬.",
+        "2026-11-19 config 편입(phub-gold-jev 는 수동 워크트리였다). canonical 은 사용자 체크아웃 — pull/checkout 금지, fetch 만."
+      ]
     }
   },
   "workers": {
@@ -142,6 +154,26 @@
         "reference/<브리프가 지정한 폴더 하나>/"
       ],
       "verify": "폴더 안에서 uv sync · uv run pytest(실호출 없음) · uv run ruff check . — 각 1회. 실호출 확인 스크립트는 키가 있을 때 엔드포인트당 몇 번만. 키 · 캐시 · 개인 경로가 git 에 안 들어가는지 git status 로 확인"
+    },
+    "app": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "app",
+      "roles_dir": "roles/procedure-hub/backend",
+      "allowed_paths": [
+        "작업 워크트리 전체(브리프가 좁히면 그 범위)"
+      ],
+      "verify": "uv run ruff check <네가 만진 파일> · uv run pytest -q <네가 만들거나 고친 테스트 파일만> — 각 1회. 전체 pytest 금지. 사용자 포트 · 프로세스를 건드리지 않는다. 실행 못 한 검증은 사유와 함께 pending"
+    },
+    "reviewer_app": {
+      "repo": "app",
+      "agent": "claude",
+      "brief_suffix": "review-app",
+      "roles_dir": "roles/procedure-hub/reviewer",
+      "allowed_paths": [
+        "(read-only — 리포 파일 수정·생성 금지. 산출물은 브리프가 지정한 리뷰 리포트 파일 1개뿐)"
+      ],
+      "verify": "git diff <base>...HEAD + untracked 로 범위 산정. 각 지적에 파일:줄 + 근거(SPEC 절 · WORK). 판정 FAIL/WARN/PASS. 「사용자가 실물에서 만날 자리」를 따로 모은다"
     }
   },
   "default_workers": [

@@ -152,3 +152,17 @@ para/projects/summer-star/consult-analysis/data/
 para/projects/summer-star/consult-analysis/scripts/.venv/
 # phub-gold-jev 그림 원천(옛 CC BY-SA JPG 포함 · 원천은 PROCEDURE-HUB assets/procedure-images)
 /reference/2026-11-17-procedure-images/
+
+# 명동점 KOS 상품 구조 원자료(병원 가격 · 비공개) — 2026-11-19 phub-consult-demo
+reference/2026-11-19-myeongdong-kos/*.json
+reference/2026-11-19-myeongdong-kos/raw/
+
+# 허브 silver 작업 사본(회사 데이터 · 로컬) — phub-consult-demo
+orchestration/work/phub-consult-demo/silver-model/
+reference/2026-11-19-myeongdong-kos/*.xlsx
+reference/2026-11-19-myeongdong-kos/hospital-check-list-*.md
+# phub-consult-demo 아카이브 — 측정 원자료(상담 장부 · 화면 · 병원 가격 포함)와 허브 silver 작업 사본은 로컬만
+/orchestration/work/_archive/procedure-hub/phub-consult-demo/silver-model/
+/orchestration/work/_archive/procedure-hub/phub-consult-demo/quality/out/
+# 명동점 KOS 원자료 폴더 전체(병원 가격 · 비공개)
+/reference/2026-11-19-myeongdong-kos/

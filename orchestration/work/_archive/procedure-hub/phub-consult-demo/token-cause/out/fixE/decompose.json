@@ -1,0 +1,826 @@
+{
+ "k_tok_per_byte": 0.4480416594207099,
+ "a_by_prompt": {
+  "c8945390": 6583
+ },
+ "fit": {
+  "n_points": 3,
+  "n_groups": 1,
+  "resid_abs_max": 3.7,
+  "resid_abs_mean": 2.4
+ },
+ "system_bytes_now": {
+  "system_v3_bytes": 8454,
+  "with_kos_rules_bytes": 11790
+ },
+ "turns": [
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "c8945390",
+   "tokens_real": 17298,
+   "sent": true,
+   "tokens_total": 17298,
+   "error": null,
+   "app_est_tokens": 11902,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 757,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 17296
+   },
+   "msg_bytes": 23915,
+   "sec_bytes": {
+    "judgement": 539,
+    "close": 215,
+    "consult": 175,
+    "material": 1337,
+    "kos": 21600,
+    "question": 49
+   },
+   "sec_tok": {
+    "judgement": 241,
+    "close": 96,
+    "consult": 78,
+    "material": 599,
+    "kos": 9678,
+    "question": 22
+   },
+   "system_tok": 6583,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1324
+   },
+   "question": "팔자주름에 대해서 고민이돼",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 22293,
+   "sent": true,
+   "tokens_total": 22293,
+   "error": null,
+   "app_est_tokens": 6917,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 407,
+    "cache_creation_input_tokens": 4993,
+    "cache_read_input_tokens": 17296
+   },
+   "msg_bytes": 8961,
+   "sec_bytes": {
+    "judgement": 530,
+    "close": 212,
+    "consult": 271,
+    "material": 892,
+    "kos": 7013,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 237,
+    "close": 95,
+    "consult": 121,
+    "material": 400,
+    "kos": 3142,
+    "question": 19
+   },
+   "system_tok": 6583,
+   "history_tok": 11695,
+   "history_pred_tok": 10902,
+   "prev_bytes": 24333,
+   "mat_rows": 5,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 881
+   },
+   "layer_bytes": {
+    "요약 줄": 881
+   },
+   "by_bytes": {
+    "summary": 881
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 881
+   },
+   "question": "미간에 주름도 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 30129,
+   "sent": true,
+   "tokens_total": 30129,
+   "error": null,
+   "app_est_tokens": 9135,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 468,
+    "cache_creation_input_tokens": 7836,
+    "cache_read_input_tokens": 22289
+   },
+   "msg_bytes": 15614,
+   "sec_bytes": {
+    "judgement": 526,
+    "close": 209,
+    "consult": 375,
+    "material": 2566,
+    "kos": 11878,
+    "question": 60
+   },
+   "sec_tok": {
+    "judgement": 236,
+    "close": 94,
+    "consult": 168,
+    "material": 1150,
+    "kos": 5322,
+    "question": 27
+   },
+   "system_tok": 6583,
+   "history_tok": 16550,
+   "history_pred_tok": 15108,
+   "prev_bytes": 33721,
+   "mat_rows": 14,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 2551
+   },
+   "layer_bytes": {
+    "요약 줄": 2551
+   },
+   "by_bytes": {
+    "summary": 2551
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1123,
+    "unused_summary": 1428
+   },
+   "question": "얼굴에 탄력이 좀 떨어지는거 같은데",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 39019,
+   "sent": true,
+   "tokens_total": 39019,
+   "error": null,
+   "app_est_tokens": 10085,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1936,
+    "cache_creation_input_tokens": 8890,
+    "cache_read_input_tokens": 30125
+   },
+   "msg_bytes": 18466,
+   "sec_bytes": {
+    "judgement": 460,
+    "close": 28,
+    "consult": 559,
+    "material": 13455,
+    "kos": 3883,
+    "question": 81
+   },
+   "sec_tok": {
+    "judgement": 206,
+    "close": 13,
+    "consult": 250,
+    "material": 6028,
+    "kos": 1740,
+    "question": 36
+   },
+   "system_tok": 6583,
+   "history_tok": 24163,
+   "history_pred_tok": 22353,
+   "prev_bytes": 49891,
+   "mat_rows": 36,
+   "mat_used_rows": 17,
+   "kind_bytes": {
+    "overview": 8226,
+    "summary:QY4": 5205
+   },
+   "layer_bytes": {
+    "자기": 1889,
+    "물려받음": 5001,
+    "하위 제품": 1336,
+    "요약 줄": 5205
+   },
+   "by_bytes": {
+    "default": 8226,
+    "summary": 5205
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 6073,
+    "unused_other": 4859,
+    "unused_summary": 2499
+   },
+   "question": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 5,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 49322,
+   "sent": true,
+   "tokens_total": 49322,
+   "error": null,
+   "app_est_tokens": 9920,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 758,
+    "cache_creation_input_tokens": 10303,
+    "cache_read_input_tokens": 39015
+   },
+   "msg_bytes": 17971,
+   "sec_bytes": {
+    "judgement": 424,
+    "close": 56,
+    "consult": 621,
+    "material": 15520,
+    "kos": 1311,
+    "question": 39
+   },
+   "sec_tok": {
+    "judgement": 190,
+    "close": 25,
+    "consult": 278,
+    "material": 6954,
+    "kos": 587,
+    "question": 17
+   },
+   "system_tok": 6583,
+   "history_tok": 34687,
+   "history_pred_tok": 31030,
+   "prev_bytes": 69258,
+   "mat_rows": 49,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "mechanism": 13730,
+    "summary:QY4": 1774
+   },
+   "layer_bytes": {
+    "하위 케이스": 4960,
+    "하위 제품": 8770,
+    "요약 줄": 1774
+   },
+   "by_bytes": {
+    "yes": 13730,
+    "summary": 1774
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1300,
+    "unused_sub_not_md": 11993,
+    "unused_other": 1381,
+    "unused_summary": 830
+   },
+   "question": "고주파 원리가 머야 ?",
+   "kinds": [
+    "mechanism:yes"
+   ]
+  },
+  {
+   "conv": "fixE03b8000001",
+   "c4": "fixE",
+   "turn": 6,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 93055,
+   "sent": true,
+   "tokens_total": 93055,
+   "error": null,
+   "app_est_tokens": 34924,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 2236,
+    "cache_creation_input_tokens": 43733,
+    "cache_read_input_tokens": 49318
+   },
+   "msg_bytes": 92981,
+   "sec_bytes": {
+    "judgement": 744,
+    "close": 28,
+    "consult": 621,
+    "material": 90211,
+    "kos": 1311,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 333,
+    "close": 13,
+    "consult": 278,
+    "material": 40418,
+    "kos": 587,
+    "question": 30
+   },
+   "system_tok": 6583,
+   "history_tok": 44813,
+   "history_pred_tok": 39356,
+   "prev_bytes": 87841,
+   "mat_rows": 362,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "indication": 43709,
+    "outcome": 40701,
+    "lineup": 5621
+   },
+   "layer_bytes": {
+    "하위 케이스": 15267,
+    "하위 제품": 62151,
+    "자기": 3476,
+    "물려받음": 3516,
+    "층 표시 없음": 5621
+   },
+   "by_bytes": {
+    "kd9": 90031
+   },
+   "waste_bytes": {
+    "dup_names": 10056,
+    "unused_kd9": 84771,
+    "used": 2822,
+    "unused_but_safety_or_explicit": 2438
+   },
+   "question": "응 고주파에 대해서 전반적으로 설명해줘",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "fixEecc6000001",
+   "c4": "fixE",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "c8945390",
+   "tokens_real": 18360,
+   "sent": true,
+   "tokens_total": 18360,
+   "error": null,
+   "app_est_tokens": 12695,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 258,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18358
+   },
+   "msg_bytes": 26294,
+   "sec_bytes": {
+    "judgement": 460,
+    "close": 209,
+    "consult": 142,
+    "material": 2548,
+    "kos": 22874,
+    "question": 61
+   },
+   "sec_tok": {
+    "judgement": 206,
+    "close": 94,
+    "consult": 64,
+    "material": 1142,
+    "kos": 10249,
+    "question": 27
+   },
+   "system_tok": 6583,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 14,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 2528
+   },
+   "layer_bytes": {
+    "요약 줄": 2528
+   },
+   "by_bytes": {
+    "summary": 2528
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_summary": 1750,
+    "used": 778
+   },
+   "question": "요즘 피부 탄력이 저하 되서 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixEecc6000001",
+   "c4": "fixE",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 215366,
+   "sent": true,
+   "tokens_total": 215366,
+   "error": null,
+   "app_est_tokens": 149852,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 294,
+    "cache_creation_input_tokens": 197324,
+    "cache_read_input_tokens": 18038
+   },
+   "msg_bytes": 437767,
+   "sec_bytes": {
+    "judgement": 585,
+    "close": 209,
+    "consult": 177,
+    "material": 433360,
+    "kos": 3416,
+    "question": 20
+   },
+   "sec_tok": {
+    "judgement": 262,
+    "close": 94,
+    "consult": 79,
+    "material": 194163,
+    "kos": 1531,
+    "question": 9
+   },
+   "system_tok": 6583,
+   "history_tok": 12645,
+   "history_pred_tok": 12023,
+   "prev_bytes": 26835,
+   "mat_rows": 1584,
+   "mat_used_rows": 0,
+   "kind_bytes": {
+    "overview": 120459,
+    "indication": 312211
+   },
+   "layer_bytes": {
+    "층 표시 없음": 432670
+   },
+   "by_bytes": {
+    "default": 432670
+   },
+   "waste_bytes": {
+    "dup_names": 29512,
+    "unused_other": 432670
+   },
+   "question": "얼굴에",
+   "kinds": [
+    "overview:default",
+    "indication:default"
+   ]
+  },
+  {
+   "conv": "fixEecc6000001",
+   "c4": "fixE",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 414174,
+   "sent": true,
+   "tokens_total": 414174,
+   "error": null,
+   "app_est_tokens": 149348,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 505,
+    "cache_creation_input_tokens": 198808,
+    "cache_read_input_tokens": 215362
+   },
+   "msg_bytes": 436254,
+   "sec_bytes": {
+    "judgement": 9726,
+    "close": 209,
+    "consult": 182,
+    "material": 423129,
+    "kos": 2988,
+    "question": 20
+   },
+   "sec_tok": {
+    "judgement": 4358,
+    "close": 94,
+    "consult": 82,
+    "material": 189579,
+    "kos": 1339,
+    "question": 9
+   },
+   "system_tok": 6583,
+   "history_tok": 212131,
+   "history_pred_tok": 208427,
+   "prev_bytes": 465195,
+   "mat_rows": 1839,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "indication": 422201
+   },
+   "layer_bytes": {
+    "층 표시 없음": 422201
+   },
+   "by_bytes": {
+    "default": 422201
+   },
+   "waste_bytes": {
+    "dup_names": 55002,
+    "unused_other": 420992,
+    "used": 1209
+   },
+   "question": "얼굴에",
+   "kinds": [
+    "overview:default",
+    "indication:default"
+   ]
+  },
+  {
+   "conv": "fixE73bd000001",
+   "c4": "fixE",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "c8945390",
+   "tokens_real": 18437,
+   "sent": true,
+   "tokens_total": 18437,
+   "error": null,
+   "app_est_tokens": 12747,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 855,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 18435
+   },
+   "msg_bytes": 26450,
+   "sec_bytes": {
+    "judgement": 526,
+    "close": 209,
+    "consult": 177,
+    "material": 2548,
+    "kos": 22927,
+    "question": 63
+   },
+   "sec_tok": {
+    "judgement": 236,
+    "close": 94,
+    "consult": 79,
+    "material": 1142,
+    "kos": 10272,
+    "question": 28
+   },
+   "system_tok": 6583,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 14,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "summary:AP4": 2528
+   },
+   "layer_bytes": {
+    "요약 줄": 2528
+   },
+   "by_bytes": {
+    "summary": 2528
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_summary": 1932,
+    "used": 596
+   },
+   "question": "얼굴에 피부 탄력이 없어져서 걱정이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixE73bd000001",
+   "c4": "fixE",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 26193,
+   "sent": true,
+   "tokens_total": 26193,
+   "error": null,
+   "app_est_tokens": 8727,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 572,
+    "cache_creation_input_tokens": 7754,
+    "cache_read_input_tokens": 18435
+   },
+   "msg_bytes": 14391,
+   "sec_bytes": {
+    "judgement": 542,
+    "close": 212,
+    "consult": 379,
+    "material": 1379,
+    "kos": 11828,
+    "question": 51
+   },
+   "sec_tok": {
+    "judgement": 243,
+    "close": 95,
+    "consult": 170,
+    "material": 618,
+    "kos": 5299,
+    "question": 23
+   },
+   "system_tok": 6583,
+   "history_tok": 13162,
+   "history_pred_tok": 12002,
+   "prev_bytes": 26787,
+   "mat_rows": 8,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 1365
+   },
+   "layer_bytes": {
+    "요약 줄": 1365
+   },
+   "by_bytes": {
+    "summary": 1365
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 665,
+    "unused_summary": 700
+   },
+   "question": "아 주름이 눈가 입꼬리에 잇어",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "fixE73bd000001",
+   "c4": "fixE",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 29653,
+   "sent": true,
+   "tokens_total": 29653,
+   "error": null,
+   "app_est_tokens": 5948,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1044,
+    "cache_creation_input_tokens": 3460,
+    "cache_read_input_tokens": 26189
+   },
+   "msg_bytes": 6053,
+   "sec_bytes": {
+    "judgement": 585,
+    "close": 192,
+    "consult": 505,
+    "material": 881,
+    "kos": 3816,
+    "question": 74
+   },
+   "sec_tok": {
+    "judgement": 262,
+    "close": 86,
+    "consult": 226,
+    "material": 395,
+    "kos": 1710,
+    "question": 33
+   },
+   "system_tok": 6583,
+   "history_tok": 20358,
+   "history_pred_tok": 18665,
+   "prev_bytes": 41659,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "overview": 634,
+    "summary:QY4": 236
+   },
+   "layer_bytes": {
+    "물려받음": 634,
+    "요약 줄": 236
+   },
+   "by_bytes": {
+    "default": 634,
+    "summary": 236
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 870
+   },
+   "question": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "fixE73bd000001",
+   "c4": "fixE",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "c8945390",
+   "tokens_real": 31807,
+   "sent": true,
+   "tokens_total": 31807,
+   "error": null,
+   "app_est_tokens": 4679,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 439,
+    "cache_creation_input_tokens": 2154,
+    "cache_read_input_tokens": 29649
+   },
+   "msg_bytes": 2246,
+   "sec_bytes": {
+    "judgement": 574,
+    "close": 192,
+    "consult": 510,
+    "material": 20,
+    "kos": 894,
+    "question": 56
+   },
+   "sec_tok": {
+    "judgement": 257,
+    "close": 86,
+    "consult": 229,
+    "material": 9,
+    "kos": 401,
+    "question": 25
+   },
+   "system_tok": 6583,
+   "history_tok": 24218,
+   "history_pred_tok": 21621,
+   "prev_bytes": 48256,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "입꼬리에는 필러를 맞고 싶다니까",
+   "kinds": [
+    "overview:default"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1156 @@
+{
+ "F20 이해 실패 · 대상 없음(장부)": [
+  {
+   "conv": "44b2",
+   "turn": 1,
+   "q": "턱에 살이 너무 많아보여",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": false
+  },
+  {
+   "conv": "44b2",
+   "turn": 2,
+   "q": "사각턱인데 ?",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "44b2",
+   "turn": 4,
+   "q": "턱살이 너무 많아",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "44b2",
+   "turn": 5,
+   "q": "미간 주름도 너무 많고",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "44b2",
+   "turn": 6,
+   "q": "눈에 주름도 너무 많은데",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "9c9a",
+   "turn": 1,
+   "q": "볼살이 고민이야",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  }
+ ],
+ "F09 전반 설명": [
+  {
+   "conv": "44b2",
+   "turn": 3,
+   "q": "턱 보톡스 알려줘",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "7897",
+   "turn": 2,
+   "q": "볼뉴머에 대해서 설명해줄래 ?",
+   "tables": [
+    "product"
+   ],
+   "kinds": [
+    "overview"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 6,
+   "q": "응 팔자주름에는 보톡스에 대해 알려줘",
+   "tables": [
+    "concern",
+    "modality",
+    "site"
+   ],
+   "kinds": [
+    "overview",
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "03b8",
+   "turn": 6,
+   "q": "응 고주파에 대해서 전반적으로 설명해줘",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "overview"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 6,
+   "q": "응 고주파에 대해서 전반적으로 설명해줘",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "overview"
+   ],
+   "kind": "follow",
+   "mat": true
+  }
+ ],
+ "F11 효과 확인": [
+  {
+   "conv": "9c9a",
+   "turn": 2,
+   "q": "리프팅은 안해도 돼 ?",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "a578",
+   "turn": 3,
+   "q": "리프팅으로 해결 되나 ?",
+   "tables": [
+    "concern",
+    "modality",
+    "site"
+   ],
+   "kinds": [
+    "indication",
+    "outcome"
+   ],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "a578",
+   "turn": 7,
+   "q": "슈링크로 턱라인 타이트닝이 돼 ?",
+   "tables": [
+    "product",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "3016",
+   "turn": 2,
+   "q": "보톡스 효과가 없어 ?",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "outcome"
+   ],
+   "kind": "follow",
+   "mat": true
+  }
+ ],
+ "F07 같이 받기 · 순서": [
+  {
+   "conv": "9c9a",
+   "turn": 3,
+   "q": "지방분해 주사랑 리프팅은 같이 하면 안돼 ?",
+   "tables": [],
+   "kinds": [],
+   "kind": "",
+   "mat": true
+  },
+  {
+   "conv": "dc78",
+   "turn": 2,
+   "q": "지방분해 주사를 맞을건데 뭐 같이 하면 좋은 시술 잇어 ?",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "combo"
+   ],
+   "kind": "new",
+   "mat": false
+  }
+ ],
+ "F16 고민(+부위)": [
+  {
+   "conv": "d1e6",
+   "turn": 1,
+   "q": "얼굴이 자꾸 빨개져요",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "b8c9",
+   "turn": 1,
+   "q": "턱에 살이 너무 많아보여",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "b8c9",
+   "turn": 2,
+   "q": "사각턱인데?",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "dc78",
+   "turn": 1,
+   "q": "볼에 살이 많아서 고민이돼",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "a578",
+   "turn": 2,
+   "q": "지금 턱이 이중턱이 됫어 ㅠㅠ",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "5bce",
+   "turn": 3,
+   "q": "턱이 이중턱이라고",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "5bce",
+   "turn": 4,
+   "q": "볼살도 너무 많아",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "5bce",
+   "turn": 5,
+   "q": "미간 주름도 잇어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "76dd",
+   "turn": 1,
+   "q": "팔자 주름이 고민임",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "a7d7",
+   "turn": 1,
+   "q": "팔자 주름이 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "a7d7",
+   "turn": 2,
+   "q": "미간에 주름도 너무 깊어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "7897",
+   "turn": 1,
+   "q": "팔자 주름이 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 1,
+   "q": "팔자주름 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 2,
+   "q": "미간 주름도 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "03b8",
+   "turn": 1,
+   "q": "팔자주름에 대해서 고민이돼",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "03b8",
+   "turn": 2,
+   "q": "미간에 주름도 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "03b8",
+   "turn": 3,
+   "q": "얼굴에 탄력이 좀 떨어지는거 같은데",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "ecc6",
+   "turn": 1,
+   "q": "요즘 피부 탄력이 저하 되서 고민이야",
+   "tables": [
+    "concern"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "73bd",
+   "turn": 1,
+   "q": "얼굴에 피부 탄력이 없어져서 걱정이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "73bd",
+   "turn": 2,
+   "q": "아 주름이 눈가 입꼬리에 잇어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 1,
+   "q": "팔자주름에 대해서 고민이돼",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 2,
+   "q": "미간에 주름도 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 3,
+   "q": "얼굴에 탄력이 좀 떨어지는거 같은데",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 1,
+   "q": "요즘 피부 탄력이 저하 되서 고민이야",
+   "tables": [
+    "concern"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 1,
+   "q": "얼굴에 피부 탄력이 없어져서 걱정이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 2,
+   "q": "아 주름이 눈가 입꼬리에 잇어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  }
+ ],
+ "F13 종류 · 뭐가 있어": [
+  {
+   "conv": "dc78",
+   "turn": 3,
+   "q": "그럼 지방 분해주사 뭐뭐 잇어 ?",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "dc78",
+   "turn": 5,
+   "q": "그럼 미간 주름은 어떻게 없애 ?",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "dc78",
+   "turn": 6,
+   "q": "그럼 기기 리프팅 뭐 하면 좋을까 ?",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "a578",
+   "turn": 5,
+   "q": "아니 기기 리프팅 추천 해줘",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "a578",
+   "turn": 6,
+   "q": "턱라인 타이트닝을 받으려면 어떤 제품을 받아야 하냐고",
+   "tables": [
+    "concern",
+    "modality",
+    "site"
+   ],
+   "kinds": [
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": false
+  },
+  {
+   "conv": "5bce",
+   "turn": 6,
+   "q": "미간주름에 보톡스만 가능해 ?",
+   "tables": [
+    "concern",
+    "procedure"
+   ],
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "76dd",
+   "turn": 2,
+   "q": "팔자 주름 관련 시술이 머머 잇어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": false
+  },
+  {
+   "conv": "eac3",
+   "turn": 1,
+   "q": "팔자주름 개선하고 싶어",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 5,
+   "q": "팔자주름은 시술 머머 잇다고 햇지 ?",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "follow",
+   "mat": false
+  },
+  {
+   "conv": "02af",
+   "turn": 1,
+   "q": "얼굴 타이트닝을 받아야 하는데 어떤 시술이 잇어 ?",
+   "tables": [
+    "effect",
+    "site"
+   ],
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "02af",
+   "turn": 5,
+   "q": "입꼬리에는 어떤 시술들이 잇어 ? 주름이 고민이야",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "02af",
+   "turn": 6,
+   "q": "이마에 주름이 많으면 어떤 시술을 받아 ?",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": true
+  }
+ ],
+ "F10 원리": [
+  {
+   "conv": "dc78",
+   "turn": 4,
+   "q": "응 어떤 원리인지 어떤 시술인지 궁금해",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "overview",
+    "mechanism"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "03b8",
+   "turn": 5,
+   "q": "고주파 원리가 머야 ?",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "mechanism"
+   ],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 5,
+   "q": "고주파 원리가 머야 ?",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "mechanism"
+   ],
+   "kind": "follow",
+   "mat": true
+  }
+ ],
+ "F03 그중에서 · 고르기": [
+  {
+   "conv": "dc78",
+   "turn": 7,
+   "q": "써마지 받아보고 싶어",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "5bce",
+   "turn": 2,
+   "q": "턱 보톡스 맞고 싶다고",
+   "tables": [
+    "procedure",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "3016",
+   "turn": 1,
+   "q": "턱에 보톡스 맞고 싶은데 효과랑 부작용좀 알려줘",
+   "tables": [
+    "procedure",
+    "site"
+   ],
+   "kinds": [
+    "outcome",
+    "adverse"
+   ],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "e81b",
+   "turn": 1,
+   "q": "보톡스 맞고 싶어",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "a7d7",
+   "turn": 3,
+   "q": "보톡스로 맞고 싶어서",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 3,
+   "q": "써마지 시술을 받고 싶어",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "67bb",
+   "turn": 4,
+   "q": "아니 이마에 써마지를 받고 싶다고",
+   "tables": [
+    "product",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "03b8",
+   "turn": 4,
+   "q": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "73bd",
+   "turn": 3,
+   "q": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+   "tables": [
+    "modality",
+    "product",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "73bd",
+   "turn": 4,
+   "q": "입꼬리에는 필러를 맞고 싶다니까",
+   "tables": [
+    "modality",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "02af",
+   "turn": 2,
+   "q": "아 눈가에는 써마지 받고 싶어서",
+   "tables": [
+    "product",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "02af",
+   "turn": 4,
+   "q": "아 그럼 써마지로 안내해줘",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 4,
+   "q": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 3,
+   "q": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+   "tables": [
+    "modality",
+    "product",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 4,
+   "q": "입꼬리에는 필러를 맞고 싶다니까",
+   "tables": [
+    "modality",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  }
+ ],
+ "F05 가격 · 샷 · 회차": [
+  {
+   "conv": "dc78",
+   "turn": 8,
+   "q": "응 써마지 몇샷 맞아야해 ?",
+   "tables": [
+    "product"
+   ],
+   "kinds": [
+    "offer"
+   ],
+   "kind": "follow",
+   "mat": true
+  }
+ ],
+ "F19 맞장구 · 불만(talk)": [
+  {
+   "conv": "dc78",
+   "turn": 9,
+   "q": "아하 고마워",
+   "tables": [],
+   "kinds": [],
+   "kind": "talk",
+   "mat": false
+  },
+  {
+   "conv": "a578",
+   "turn": 1,
+   "q": "안녕",
+   "tables": [],
+   "kinds": [],
+   "kind": "talk",
+   "mat": false
+  }
+ ],
+ "F14 시술 · 제품 이름만": [
+  {
+   "conv": "a578",
+   "turn": 4,
+   "q": "기기 리프팅이지 그럼",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "e81b",
+   "turn": 3,
+   "q": "하이톡스",
+   "tables": [
+    "product"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  }
+ ],
+ "F06 부작용 · 회복 · 금기": [
+  {
+   "conv": "5bce",
+   "turn": 1,
+   "q": "턱에 보톡스 맞아도돼 ?",
+   "tables": [
+    "procedure",
+    "site"
+   ],
+   "kinds": [
+    "indication",
+    "contraindication"
+   ],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "3016",
+   "turn": 3,
+   "q": "부작용은 ?",
+   "tables": [
+    "procedure"
+   ],
+   "kinds": [
+    "adverse"
+   ],
+   "kind": "follow",
+   "mat": true
+  }
+ ],
+ "F18 부위만 · 주제 있음": [
+  {
+   "conv": "e81b",
+   "turn": 2,
+   "q": "턱에 맞을건ㄷ데",
+   "tables": [
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "ecc6",
+   "turn": 2,
+   "q": "얼굴에",
+   "tables": [
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "ecc6",
+   "turn": 3,
+   "q": "얼굴에",
+   "tables": [
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": false
+  },
+  {
+   "conv": "fixE",
+   "turn": 2,
+   "q": "얼굴에",
+   "tables": [
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  },
+  {
+   "conv": "fixE",
+   "turn": 3,
+   "q": "얼굴에",
+   "tables": [
+    "site"
+   ],
+   "kinds": [],
+   "kind": "new",
+   "mat": true
+  }
+ ],
+ "F01 바로잡기": [
+  {
+   "conv": "a7d7",
+   "turn": 4,
+   "q": "아니 팔자주름 말고 미간에 보톡스 얘기한건데",
+   "tables": [
+    "concern",
+    "procedure",
+    "site"
+   ],
+   "kinds": [],
+   "kind": "follow",
+   "mat": false
+  },
+  {
+   "conv": "a7d7",
+   "turn": 5,
+   "q": "아니 팔자주름 시술 추천은 그대로 두라니까",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "follow",
+   "mat": false
+  }
+ ],
+ "F02 넓히기 · 뺌": [
+  {
+   "conv": "a7d7",
+   "turn": 6,
+   "q": "팔자주름에 보톡스 말고 다른 시술은 없어서 그대로 둔거지 ?",
+   "tables": [
+    "concern",
+    "procedure",
+    "site"
+   ],
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "kind": "follow",
+   "mat": true
+  },
+  {
+   "conv": "a7d7",
+   "turn": 7,
+   "q": "근데 시발년아 팔자줄므에 보톡스 말고 다른 시술 알려달라니까 시발색이 ㅑ",
+   "tables": [
+    "concern",
+    "site"
+   ],
+   "kinds": [
+    "indication"
+   ],
+   "kind": "new",
+   "mat": false
+  }
+ ],
+ "F12 정체 묻기(뭐야)": [
+  {
+   "conv": "a7d7",
+   "turn": 8,
+   "q": "볼뉴머가 머야",
+   "tables": [
+    "product"
+   ],
+   "kinds": [
+    "overview"
+   ],
+   "kind": "new",
+   "mat": true
+  }
+ ],
+ "F04 명동점 밖 · 있나 물음": [
+  {
+   "conv": "67bb",
+   "turn": 7,
+   "q": "응 명동점 시술 뭐뭐 잇냐고",
+   "tables": [],
+   "kinds": [
+    "offer"
+   ],
+   "kind": "talk",
+   "mat": false
+  },
+  {
+   "conv": "02af",
+   "turn": 3,
+   "q": "그럼 실 리프팅은 없어 명동점에 ?",
+   "tables": [
+    "modality"
+   ],
+   "kinds": [
+    "offer"
+   ],
+   "kind": "new",
+   "mat": true
+  }
+ ]
+}

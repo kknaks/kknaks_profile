@@ -1,0 +1,65 @@
+ M .env.example
+ M clinic_chat/config.py
+ M clinic_chat/consult/entry_list.py
+ M clinic_chat/consult/fake_turn.py
+ M clinic_chat/consult/ledger.py
+ M clinic_chat/consult/material.py
+ M clinic_chat/consult/prompt.py
+ M clinic_chat/consult/render.py
+ M clinic_chat/consult/server.py
+ M clinic_chat/consult/static/consult.css
+ M clinic_chat/consult/static/consult.js
+ M clinic_chat/consult/steps.py
+ M clinic_chat/consult/templates/base.html
+ M clinic_chat/consult/templates/face_check.html
+ M clinic_chat/consult/templates/partials/answer.html
+ M clinic_chat/consult/templates/partials/drawer.html
+ M clinic_chat/consult/templates/partials/main.html
+ M clinic_chat/consult/templates/partials/state.html
+ M clinic_chat/consult/templates/partials/steps.html
+ M clinic_chat/consult/templates/partials/turn.html
+ M clinic_chat/consult/turn.py
+ M clinic_chat/consult/understand.py
+ M clinic_chat/consult/verify.py
+ M prompts/consult.json
+ M tests/conftest.py
+ M tests/test_consult_chat_ui.py
+ M tests/test_consult_page.py
+ M tests/test_v03_prompt.py
+ M tests/test_v04_ledger.py
+ M tests/test_v04_list.py
+ M tests/test_v04_prompt.py
+?? clinic_chat/consult/ask_axis.py
+?? clinic_chat/consult/cart.py
+?? clinic_chat/consult/detect.py
+?? clinic_chat/consult/images.py
+?? clinic_chat/consult/items_view.py
+?? clinic_chat/consult/kos_block.py
+?? clinic_chat/consult/kos_map.py
+?? clinic_chat/consult/modal.py
+?? clinic_chat/consult/modal_text.py
+?? clinic_chat/consult/price.py
+?? clinic_chat/consult/templates/partials/cart.html
+?? clinic_chat/consult/templates/partials/cart_body.html
+?? clinic_chat/consult/templates/partials/cart_item.html
+?? clinic_chat/consult/templates/partials/items.html
+?? clinic_chat/consult/templates/partials/marks.html
+?? clinic_chat/consult/templates/partials/modal.html
+?? clinic_chat/consult/templates/partials/modal_body.html
+?? clinic_chat/consult/topics.py
+?? clinic_chat/consult/ui_text.json
+?? prompts/modal_text.json
+?? scripts/
+?? tests/kos_fixture/
+?? tests/test_v05_ask_axis.py
+?? tests/test_v05_cart.py
+?? tests/test_v05_detect.py
+?? tests/test_v05_fix_a.py
+?? tests/test_v05_fix_e.py
+?? tests/test_v05_images.py
+?? tests/test_v05_kos_map.py
+?? tests/test_v05_llm_block.py
+?? tests/test_v05_modal.py
+?? tests/test_v05_page.py
+?? tests/test_v05_price.py
+?? tests/test_v05_topic_tuple.py

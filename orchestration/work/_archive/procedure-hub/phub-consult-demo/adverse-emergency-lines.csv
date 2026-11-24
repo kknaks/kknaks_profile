@@ -1,0 +1,259 @@
+﻿line_table,line_id,adverse_code,adverse_name,level,line_text,verdict,human_group,recommend,basis
+adverse_guidance,ADG-0037,ADV-051,혈관 폐색,emergency,주사 직후 피부가 하얗게 변하면 혈관이 막혔을 가능성 — 즉시 히알루로니다아제(분해효소) 투여 필요,자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-0336,ADV-153,호흡곤란,emergency_signs,호흡 곤란,자체,,,「호흡 곤란」 · 「호흡 곤란 (기도 주변 부종)」
+adverse_guidance,ADG-0337,ADV-078,연하곤란,emergency_signs,연하 곤란(삼키기 어려움),자체,,,「연하곤란 (삼키기 어려움)」 · 「연하곤란/호흡곤란 (독소 원격 확산)」
+adverse_guidance,ADG-0338,ADV-138,알레르기 반응,emergency_signs,"심한 알레르기 반응(두드러기, 호흡곤란)",사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-0339,ADV-140,두드러기,emergency_signs,"심한 알레르기 반응(두드러기, 호흡곤란)",악화 조건,,,"「심한 알레르기 반응(두드러기, 호흡곤란)」 — 동반 증상"
+adverse_guidance,ADG-0340,ADV-153,호흡곤란,emergency_signs,"심한 알레르기 반응(두드러기, 호흡곤란)",자체,,,「호흡 곤란」 · 「호흡 곤란 (기도 주변 부종)」
+adverse_guidance,ADG-0341,ADV-076,발음 장애,emergency_signs,발음 장애 또는 시력 변화,사람 판단,H5,악화 조건,「발음 장애 또는 시력 변화」 — 발음 장애 자체가 emergency_signs(독소 확산 징후) — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-0342,ADV-089,시야 장애,emergency_signs,발음 장애 또는 시력 변화,자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0345,ADV-055,백색 변화,emergency_signs,시술 부위 급격한 백색 변화(blanching) — 혈관폐색 의심,악화 조건,,,혈관폐색의 징후로 적힘(「백색 변화 — 혈관폐색 의심」 · 「통증 + 창백」)
+adverse_guidance,ADG-0346,ADV-051,혈관 폐색,emergency_signs,시술 부위 급격한 백색 변화(blanching) — 혈관폐색 의심,자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-0347,ADV-002,통증,emergency_signs,심한 통증(주입 시 통상적 수준을 초과하는 통증),악화 조건,,,줄이 모두 「심한 통증」 꼴(+ 창백 · 부종 · 수포 동반) — 통증 자체는 흔한 반응
+adverse_guidance,ADG-0348,ADV-089,시야 장애,emergency_signs,"시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실",자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0349,ADV-051,혈관 폐색,emergency_signs,"시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실",자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-0350,ADV-056,청색증,emergency_signs,피부 청색증 또는 그물반(livedo reticularis),악화 조건,,,혈관폐색 징후(「심한 통증 + 청색 변화」 · 「청색증 또는 그물반」)
+adverse_guidance,ADG-0351,ADV-057,그물반,emergency_signs,피부 청색증 또는 그물반(livedo reticularis),악화 조건,,,혈관폐색 징후(「청색증 또는 그물반」)
+adverse_guidance,ADG-0352,ADV-017,경결,emergency_signs,시술 부위 수일 후 점진적으로 커지는 경결/결절,악화 조건,,,「점진적으로 커지는 경결」 — 진행 꼴
+adverse_guidance,ADG-0353,ADV-110,결절,emergency_signs,시술 부위 수일 후 점진적으로 커지는 경결/결절,악화 조건,,,「점점 커지는 딱딱한 결절」 — 진행 꼴
+adverse_guidance,ADG-0364,ADV-139,아나필락시스,emergency,"심한 두드러기/호흡곤란 (아나필락시스, 극히 드묾)",자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-0365,ADV-141,발진,emergency,심한 전신 발진/혈관부종,악화 조건,,,「심한 전신 발진/혈관부종」 — 심한 · 전신 꼴
+adverse_guidance,ADG-0366,ADV-142,혈관부종,emergency,심한 전신 발진/혈관부종,자체,,,「심한 전신 발진/혈관부종」 — 혈관부종 자체가 emergency
+adverse_guidance,ADG-0375,ADV-089,시야 장애,emergency,시야 변화/복시,자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0376,ADV-090,복시,emergency,시야 변화/복시,사람 판단,H5,악화 조건,「시야 변화/복시」 — 복시 자체가 emergency — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-0377,ADV-072,안검하수,emergency,심한 안검하수,악화 조건,,,「심한 안검하수」 — 심한 꼴
+adverse_guidance,ADG-0378,ADV-078,연하곤란,emergency,연하곤란 (삼키기 어려움),자체,,,「연하곤란 (삼키기 어려움)」 · 「연하곤란/호흡곤란 (독소 원격 확산)」
+adverse_guidance,ADG-0386,ADV-089,시야 장애,emergency,시야 장애/복시 악화,자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0387,ADV-090,복시,emergency,시야 장애/복시 악화,사람 판단,H5,악화 조건,「시야 변화/복시」 — 복시 자체가 emergency — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-0388,ADV-078,연하곤란,emergency,연하곤란/호흡 불편,자체,,,「연하곤란 (삼키기 어려움)」 · 「연하곤란/호흡곤란 (독소 원격 확산)」
+adverse_guidance,ADG-0389,ADV-153,호흡곤란,emergency,연하곤란/호흡 불편,자체,,,「호흡 곤란」 · 「호흡 곤란 (기도 주변 부종)」
+adverse_guidance,ADG-0397,ADV-089,시야 장애,emergency,시야 장애 지속,자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0398,ADV-078,연하곤란,emergency,"연하곤란/호흡곤란 (독소 원격 확산, 극히 드묾)",자체,,,「연하곤란 (삼키기 어려움)」 · 「연하곤란/호흡곤란 (독소 원격 확산)」
+adverse_guidance,ADG-0399,ADV-153,호흡곤란,emergency,"연하곤란/호흡곤란 (독소 원격 확산, 극히 드묾)",자체,,,「호흡 곤란」 · 「호흡 곤란 (기도 주변 부종)」
+adverse_guidance,ADG-0407,ADV-069,근육 마비,emergency,"전신 근육 약화 (독소 전신 확산, 극히 드묾)",자체,,,「전신 근육 약화 (독소 전신 확산)」
+adverse_guidance,ADG-0418,ADV-051,혈관 폐색,emergency,** 혈관폐색 (blanching/하얗게 변함) -- 골든타임 Day 0-1 **,자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-0419,ADV-055,백색 변화,emergency,** 혈관폐색 (blanching/하얗게 변함) -- 골든타임 Day 0-1 **,악화 조건,,,혈관폐색의 징후로 적힘(「백색 변화 — 혈관폐색 의심」 · 「통증 + 창백」)
+adverse_guidance,ADG-0420,ADV-002,통증,emergency,심한 통증 + 피부 창백/청색 변화,악화 조건,,,줄이 모두 「심한 통증」 꼴(+ 창백 · 부종 · 수포 동반) — 통증 자체는 흔한 반응
+adverse_guidance,ADG-0421,ADV-055,백색 변화,emergency,심한 통증 + 피부 창백/청색 변화,악화 조건,,,혈관폐색의 징후로 적힘(「백색 변화 — 혈관폐색 의심」 · 「통증 + 창백」)
+adverse_guidance,ADG-0422,ADV-056,청색증,emergency,심한 통증 + 피부 창백/청색 변화,악화 조건,,,혈관폐색 징후(「심한 통증 + 청색 변화」 · 「청색증 또는 그물반」)
+adverse_guidance,ADG-0423,ADV-089,시야 장애,emergency,시야 변화/시력 저하 (안동맥 폐색),자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0424,ADV-139,아나필락시스,emergency,아나필락시스 (두드러기/호흡곤란),자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-0432,ADV-051,혈관 폐색,emergency,** 지연성 혈관폐색 -- 여전히 골든타임 **,자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-0433,ADV-130,피부 괴사,emergency,피부 괴사 징후 (검은색/보라색 변색),자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-0434,ADV-089,시야 장애,emergency,시야 변화/두통 + 주사 부위 변색,자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-0435,ADV-147,두통,emergency,시야 변화/두통 + 주사 부위 변색,악화 조건,,,"두개내압 · 혈관폐색의 동반 증상(「심한 두통, 시력 변화」 · 「시야 변화/두통 + 변색」)"
+adverse_guidance,ADG-0436,ADV-058,피부 변색,emergency,시야 변화/두통 + 주사 부위 변색,악화 조건,,,「시야 변화/두통 + 주사 부위 변색」 · 「피부 변색 지속」 — 동반 · 지속 꼴
+adverse_guidance,ADG-0437,ADV-035,감염,emergency,고열 + 급격한 부종 (감염),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-0438,ADV-152,발열,emergency,고열 + 급격한 부종 (감염),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-0448,ADV-130,피부 괴사,emergency,피부 괴사 (피부 검게 변함),자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-0449,ADV-037,농양,emergency,농 배출/고열 (감염),자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-0450,ADV-035,감염,emergency,농 배출/고열 (감염),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-0451,ADV-152,발열,emergency,농 배출/고열 (감염),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-0460,ADV-035,감염,emergency,지연성 감염 (발열/농/발적),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-0461,ADV-058,피부 변색,emergency,피부 변색 지속,악화 조건,,,「시야 변화/두통 + 주사 부위 변색」 · 「피부 변색 지속」 — 동반 · 지속 꼴
+adverse_guidance,ADG-0469,ADV-035,감염,emergency,지연성 감염/농양,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-0470,ADV-037,농양,emergency,지연성 감염/농양,자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-0471,ADV-112,육아종,emergency,육아종 형성,사람 판단,H3,악화 조건,「육아종 형성」 · 「수개월 후에도 발생 가능」 · 원장 등급 severe · 「중대한」 일반 경고문 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1049,ADV-110,결절,emergency_signs,시술 부위 점점 커지는 딱딱한 결절,악화 조건,,,「점점 커지는 딱딱한 결절」 — 진행 꼴
+adverse_guidance,ADG-1050,ADV-035,감염,emergency_signs,발열과 함께 시술 부위 발적·동통(감염 의심),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1051,ADV-138,알레르기 반응,emergency_signs,"심한 알레르기 반응(두드러기, 호흡곤란)",사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-1052,ADV-138,알레르기 반응,emergency_signs,"심한 알레르기 반응(두드러기, 호흡곤란, 안면부종)",사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-1053,ADV-035,감염,emergency_signs,"시술 부위 심한 감염 징후(발열, 농, 심한 발적)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1054,ADV-035,감염,emergency_signs,"채혈 부위 또는 시술 부위 심한 감염 징후(발열, 농, 심한 발적)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1055,ADV-138,알레르기 반응,emergency_signs,알레르기 반응(자가혈이지만 첨가제에 반응 가능),사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-1056,ADV-053,지방 색전증,emergency_signs,"심한 호흡곤란, 흉통(지방색전증 의심)",자체,,,"「생명을 위협할 수 있습니다」 · 「심한 호흡곤란, 흉통(지방색전증 의심)」"
+adverse_guidance,ADG-1057,ADV-014,부종,emergency_signs,시술 부위 급격한 부종 및 심한 통증,악화 조건,,,「급격한 부종 및 심한 통증」 · 「수일간 악화」 · 「48시간 이상 악화」
+adverse_guidance,ADG-1058,ADV-002,통증,emergency_signs,시술 부위 급격한 부종 및 심한 통증,악화 조건,,,줄이 모두 「심한 통증」 꼴(+ 창백 · 부종 · 수포 동반) — 통증 자체는 흔한 반응
+adverse_guidance,ADG-1059,ADV-035,감염,emergency_signs,고열(38.5°C 이상)과 시술 부위 발적(감염 의심),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1060,ADV-051,혈관 폐색,emergency_signs,시력 변화(안면 지방이식 시 혈관 폐색 의심),자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-1061,ADV-089,시야 장애,emergency_signs,시력 변화(안면 지방이식 시 혈관 폐색 의심),자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-1062,ADV-139,아나필락시스,emergency_signs,"아나필락시스(호흡곤란, 혈압 저하, 의식 저하)",자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-1063,ADV-060,혈관외유출,emergency_signs,주사 부위 심한 부종 및 통증(혈관외유출 의심),사람 판단,H5,악화 조건,「주사 부위 심한 부종 및 통증(혈관외유출 의심)」 — 혈관외유출 자체를 의심하는 경고 — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-1064,ADV-158,수분 과부하,emergency_signs,"흉통, 호흡곤란(수분 과부하 또는 공기색전 의심)",자체,,,"「흉통, 호흡곤란(수분 과부하 … 의심)」 · 원장 등급 severe"
+adverse_guidance,ADG-1065,ADV-054,공기색전,emergency_signs,"흉통, 호흡곤란(수분 과부하 또는 공기색전 의심)",자체,,,"「흉통, 호흡곤란(… 공기색전 의심)」 · 원장 등급 severe"
+adverse_guidance,ADG-1066,ADV-139,아나필락시스,emergency_signs,심한 알레르기 반응(아나필락시스),자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-1067,ADV-035,감염,emergency_signs,"시술 부위 심한 감염(고열, 농, 봉와직염)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1068,ADV-116,종괴,emergency_signs,비정상적 조직 성장 또는 종괴,사람 판단,H3,악화 조건,「비정상적 조직 성장 또는 종괴」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1088,ADV-139,아나필락시스,emergency,아나필락시스,자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-1089,ADV-130,피부 괴사,emergency,피부 괴사 초기 징후 (검은 반점),자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-1090,ADV-062,신경 손상,emergency,하악변연신경 손상 (비대칭 미소/입꼬리 처짐),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1091,ADV-183,미소 비대칭,emergency,하악변연신경 손상 (비대칭 미소/입꼬리 처짐),악화 조건,,,하악변연신경 손상의 동반 증상(「비대칭 미소/입꼬리 처짐」)
+adverse_guidance,ADG-1102,ADV-130,피부 괴사,emergency,피부 괴사 진행 (검은색 변색 확대),자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-1103,ADV-062,신경 손상,emergency,하악변연신경 손상 (비대칭 미소 지속),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1104,ADV-183,미소 비대칭,emergency,하악변연신경 손상 (비대칭 미소 지속),악화 조건,,,하악변연신경 손상의 동반 증상(「비대칭 미소/입꼬리 처짐」)
+adverse_guidance,ADG-1105,ADV-153,호흡곤란,emergency,호흡 곤란 (기도 주변 부종),자체,,,「호흡 곤란」 · 「호흡 곤란 (기도 주변 부종)」
+adverse_guidance,ADG-1114,ADV-130,피부 괴사,emergency,피부 괴사,자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-1115,ADV-037,농양,emergency,농양 형성,자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-1125,ADV-062,신경 손상,emergency,하악변연신경 손상 지속 (4주 이상 시 영구 손상 우려),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1126,ADV-130,피부 괴사,emergency,피부 괴사/궤양,자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-1127,ADV-132,궤양,emergency,피부 괴사/궤양,악화 조건,,,"화상 · 괴사의 동반 증상(「피부 괴사/궤양」 · 「심한 화상 증상(수포, 궤양)」)"
+adverse_guidance,ADG-1136,ADV-062,신경 손상,emergency,영구 신경 손상 징후,자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1146,ADV-139,아나필락시스,emergency,아나필락시스 (HA 알레르기),자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-1147,ADV-051,혈관 폐색,emergency,혈관폐색 (blanching -- 드묾),자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-1148,ADV-055,백색 변화,emergency,혈관폐색 (blanching -- 드묾),악화 조건,,,혈관폐색의 징후로 적힘(「백색 변화 — 혈관폐색 의심」 · 「통증 + 창백」)
+adverse_guidance,ADG-1158,ADV-035,감염,emergency,감염 (농/발열),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1159,ADV-037,농양,emergency,감염 (농/발열),자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-1160,ADV-152,발열,emergency,감염 (농/발열),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-1161,ADV-138,알레르기 반응,emergency,광범위 알레르기 반응,사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-1170,ADV-035,감염,emergency,지연성 감염,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1171,ADV-047,이물반응,emergency,이물 반응/육아종,사람 판단,H3,악화 조건,「이물 반응 초기」 · 「만성 이물 반응」 — 천천히 생기는 조직 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1172,ADV-112,육아종,emergency,이물 반응/육아종,사람 판단,H3,악화 조건,「육아종 형성」 · 「수개월 후에도 발생 가능」 · 원장 등급 severe · 「중대한」 일반 경고문 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1182,ADV-139,아나필락시스,emergency,아나필락시스,자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-1183,ADV-051,혈관 폐색,emergency,혈관폐색 (극히 드묾),자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_guidance,ADG-1194,ADV-035,감염,emergency,감염 (농/고열),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1195,ADV-037,농양,emergency,감염 (농/고열),자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-1196,ADV-152,발열,emergency,감염 (농/고열),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-1197,ADV-047,이물반응,emergency,이물 반응 초기,사람 판단,H3,악화 조건,「이물 반응 초기」 · 「만성 이물 반응」 — 천천히 생기는 조직 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1206,ADV-112,육아종,emergency,육아종 형성 (단단한 결절 + 발적),사람 판단,H3,악화 조건,「육아종 형성」 · 「수개월 후에도 발생 가능」 · 원장 등급 severe · 「중대한」 일반 경고문 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1207,ADV-047,이물반응,emergency,이물 반응 (광범위 염증),사람 판단,H3,악화 조건,「이물 반응 초기」 · 「만성 이물 반응」 — 천천히 생기는 조직 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1216,ADV-112,육아종,emergency,육아종 (수개월 후에도 발생 가능),사람 판단,H3,악화 조건,「육아종 형성」 · 「수개월 후에도 발생 가능」 · 원장 등급 severe · 「중대한」 일반 경고문 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1217,ADV-047,이물반응,emergency,만성 이물 반응,사람 판단,H3,악화 조건,「이물 반응 초기」 · 「만성 이물 반응」 — 천천히 생기는 조직 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1847,ADV-035,감염,emergency_signs,"시술 부위 급성 감염 징후(고열, 농, 심한 발적/동통)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1848,ADV-152,발열,emergency_signs,"시술 부위 급성 감염 징후(고열, 농, 심한 발적/동통)",악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-1849,ADV-118,실 노출,emergency_signs,실이 피부 밖으로 돌출,사람 판단,H3,악화 조건,「실 노출 (피부 밖으로)」 — 병원 처치가 필요하지만 응급 사건은 아님 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1850,ADV-173,비대칭,emergency_signs,안면 비대칭이 점점 심해지는 경우,악화 조건,,,「점점 심해지는」 · 「진행성」 · 신경 손상의 동반 증상
+adverse_guidance,ADG-1851,ADV-126,수포,emergency_signs,"시술 부위 수포 형성, 심한 화상",악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-1852,ADV-125,화상,emergency_signs,"시술 부위 수포 형성, 심한 화상",자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-1853,ADV-065,신경 마비,emergency_signs,안면 마비 또는 지속적 감각 소실(신경 손상),자체,,,「안면 비대칭/신경 마비」 · 「안면 신경 마비 지속」 — 사용자 예시
+adverse_guidance,ADG-1854,ADV-062,신경 손상,emergency_signs,안면 마비 또는 지속적 감각 소실(신경 손상),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1855,ADV-014,부종,emergency_signs,심한 부종이 수일간 악화,악화 조건,,,「급격한 부종 및 심한 통증」 · 「수일간 악화」 · 「48시간 이상 악화」
+adverse_guidance,ADG-1856,ADV-082,근육통,emergency_signs,심한 근육통 또는 부종이 48시간 이상 악화,악화 조건,,,「심한 근육통 … 48시간 이상 악화」
+adverse_guidance,ADG-1857,ADV-014,부종,emergency_signs,심한 근육통 또는 부종이 48시간 이상 악화,악화 조건,,,「급격한 부종 및 심한 통증」 · 「수일간 악화」 · 「48시간 이상 악화」
+adverse_guidance,ADG-1858,ADV-086,횡문근융해증,emergency_signs,혈뇨(횡문근융해증 의심 — 극히 드묾),자체,,,「혈뇨(횡문근융해증 의심)」
+adverse_guidance,ADG-1859,ADV-064,감각저하,emergency_signs,시술 부위 감각 소실,사람 판단,H5,악화 조건,「시술 부위 감각 소실」 — 감각저하 자체(소실)가 emergency_signs — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-1862,ADV-035,감염,emergency_signs,"시술 부위 농성 분비물, 고열(감염)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1863,ADV-152,발열,emergency_signs,"시술 부위 농성 분비물, 고열(감염)",악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-1864,ADV-110,결절,emergency_signs,시술 부위 점점 커지는 결절 또는 흉터,악화 조건,,,「점점 커지는 딱딱한 결절」 — 진행 꼴
+adverse_guidance,ADG-1865,ADV-106,흉터,emergency_signs,시술 부위 점점 커지는 결절 또는 흉터,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1866,ADV-125,화상,emergency_signs,"심한 화상 증상(수포, 궤양)",자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-1867,ADV-126,수포,emergency_signs,"심한 화상 증상(수포, 궤양)",악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-1868,ADV-132,궤양,emergency_signs,"심한 화상 증상(수포, 궤양)",악화 조건,,,"화상 · 괴사의 동반 증상(「피부 괴사/궤양」 · 「심한 화상 증상(수포, 궤양)」)"
+adverse_guidance,ADG-1872,ADV-182,역설적 지방 증식,emergency_signs,시술 부위가 시술 후 수주-수개월 내 오히려 딱딱하게 커지는 경우(PAH 의심),사람 판단,H3,악화 조건,「오히려 딱딱하게 커지는 경우(PAH 의심)」 · 원장 등급 severe — 수개월에 걸쳐 생김 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1873,ADV-128,동상,emergency_signs,"심한 동상 증상(수포, 피부 괴사)",자체,,,"「심한 동상 증상(수포, 피부 괴사)」 · 원장 등급 critical"
+adverse_guidance,ADG-1874,ADV-126,수포,emergency_signs,"심한 동상 증상(수포, 피부 괴사)",악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-1875,ADV-130,피부 괴사,emergency_signs,"심한 동상 증상(수포, 피부 괴사)",자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_guidance,ADG-1876,ADV-002,통증,emergency_signs,시술 부위 지속적이고 심한 통증,악화 조건,,,줄이 모두 「심한 통증」 꼴(+ 창백 · 부종 · 수포 동반) — 통증 자체는 흔한 반응
+adverse_guidance,ADG-1898,ADV-125,화상,emergency,화상/물집 (2도 이상),자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-1899,ADV-126,수포,emergency,화상/물집 (2도 이상),악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-1900,ADV-062,신경 손상,emergency,안면 신경 손상 증상 (안면 비대칭/마비),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1901,ADV-173,비대칭,emergency,안면 신경 손상 증상 (안면 비대칭/마비),악화 조건,,,「점점 심해지는」 · 「진행성」 · 신경 손상의 동반 증상
+adverse_guidance,ADG-1902,ADV-065,신경 마비,emergency,안면 신경 손상 증상 (안면 비대칭/마비),자체,,,「안면 비대칭/신경 마비」 · 「안면 신경 마비 지속」 — 사용자 예시
+adverse_guidance,ADG-1912,ADV-134,함몰,emergency,안면 함몰 징후 (지방위축 시작),사람 판단,H3,악화 조건,「안면 함몰 진행 (지방위축)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1913,ADV-133,위축,emergency,안면 함몰 징후 (지방위축 시작),사람 판단,H3,악화 조건,「안면 함몰 징후 (지방위축 시작)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1914,ADV-173,비대칭,emergency,안면 비대칭/신경 마비,악화 조건,,,「점점 심해지는」 · 「진행성」 · 신경 손상의 동반 증상
+adverse_guidance,ADG-1915,ADV-065,신경 마비,emergency,안면 비대칭/신경 마비,자체,,,「안면 비대칭/신경 마비」 · 「안면 신경 마비 지속」 — 사용자 예시
+adverse_guidance,ADG-1924,ADV-134,함몰,emergency,안면 함몰 진행 (지방위축),사람 판단,H3,악화 조건,「안면 함몰 진행 (지방위축)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1925,ADV-133,위축,emergency,안면 함몰 진행 (지방위축),사람 판단,H3,악화 조건,「안면 함몰 징후 (지방위축 시작)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1926,ADV-106,흉터,emergency,화상 반흔 형성 시작,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1935,ADV-134,함몰,emergency,진행성 안면 함몰 (지방위축 -- HIFU 심부 에너지 과다 시),사람 판단,H3,악화 조건,「안면 함몰 진행 (지방위축)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1936,ADV-133,위축,emergency,진행성 안면 함몰 (지방위축 -- HIFU 심부 에너지 과다 시),사람 판단,H3,악화 조건,「안면 함몰 징후 (지방위축 시작)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1937,ADV-062,신경 손상,emergency,지연성 신경 손상,자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1948,ADV-011,출혈,emergency,심한 출혈/혈종,악화 조건,,,「심한 출혈」 · 「비정상적으로 지속되는 출혈」 — 심한 · 지속 꼴
+adverse_guidance,ADG-1949,ADV-010,혈종,emergency,심한 출혈/혈종,악화 조건,,,「심한 출혈/혈종」 · 「한쪽 급격 부종」 — 심한 꼴
+adverse_guidance,ADG-1950,ADV-062,신경 손상,emergency,안면 신경 손상 (입꼬리/눈꺼풀 마비),자체,,,「영구 신경 손상 징후」 · 「안면 신경 손상 (입꼬리/눈꺼풀 마비)」
+adverse_guidance,ADG-1951,ADV-065,신경 마비,emergency,안면 신경 손상 (입꼬리/눈꺼풀 마비),자체,,,「안면 비대칭/신경 마비」 · 「안면 신경 마비 지속」 — 사용자 예시
+adverse_guidance,ADG-1961,ADV-035,감염,emergency,감염 초기 (발열 + 발적 + 농),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1962,ADV-152,발열,emergency,감염 초기 (발열 + 발적 + 농),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-1963,ADV-010,혈종,emergency,혈종 형성 (한쪽 급격 부종),악화 조건,,,「심한 출혈/혈종」 · 「한쪽 급격 부종」 — 심한 꼴
+adverse_guidance,ADG-1973,ADV-118,실 노출,emergency,실 노출 (피부 밖으로),사람 판단,H3,악화 조건,「실 노출 (피부 밖으로)」 — 병원 처치가 필요하지만 응급 사건은 아님 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1974,ADV-035,감염,emergency,감염 (농/발열/발적),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-1975,ADV-065,신경 마비,emergency,안면 신경 마비 지속,자체,,,「안면 비대칭/신경 마비」 · 「안면 신경 마비 지속」 — 사용자 예시
+adverse_guidance,ADG-1988,ADV-118,실 노출,emergency,실 노출,사람 판단,H3,악화 조건,「실 노출 (피부 밖으로)」 — 병원 처치가 필요하지만 응급 사건은 아님 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-1989,ADV-037,농양,emergency,농양 형성,자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-1990,ADV-173,비대칭,emergency,진행성 안면 비대칭,악화 조건,,,「점점 심해지는」 · 「진행성」 · 신경 손상의 동반 증상
+adverse_guidance,ADG-2000,ADV-035,감염,emergency,지연성 감염/농양,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2001,ADV-037,농양,emergency,지연성 감염/농양,자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-2002,ADV-118,실 노출,emergency,실 노출/돌출,사람 판단,H3,악화 조건,「실 노출 (피부 밖으로)」 — 병원 처치가 필요하지만 응급 사건은 아님 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2013,ADV-125,화상,emergency,광범위 화상/수포,자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-2014,ADV-126,수포,emergency,광범위 화상/수포,악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-2015,ADV-139,아나필락시스,emergency,아나필락시스 (마취크림 관련),자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-2026,ADV-035,감염,emergency,감염 (고열 + 농 + 봉와직염),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2027,ADV-038,봉와직염,emergency,감염 (고열 + 농 + 봉와직염),자체,,,「봉와직염 (광범위 발적 + 고열)」 · 「감염 확산 (봉와직염)」 — 사용자 예시
+adverse_guidance,ADG-2028,ADV-107,비후성 반흔,emergency,반흔 형성 (비후성/켈로이드),사람 판단,H3,악화 조건,「반흔 형성 (비후성/켈로이드)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2029,ADV-108,켈로이드,emergency,반흔 형성 (비후성/켈로이드),사람 판단,H3,악화 조건,「켈로이드 형성」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2038,ADV-035,감염,emergency,감염 (지연성),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2039,ADV-107,비후성 반흔,emergency,비후성 반흔/켈로이드,사람 판단,H3,악화 조건,「반흔 형성 (비후성/켈로이드)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2040,ADV-108,켈로이드,emergency,비후성 반흔/켈로이드,사람 판단,H3,악화 조건,「켈로이드 형성」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2083,ADV-055,백색 변화,emergency,레이저 시술 중 피부가 심하게 하얗게 변하거나 검게 탄다면 즉시 시술 중단,악화 조건,,,혈관폐색의 징후로 적힘(「백색 변화 — 혈관폐색 의심」 · 「통증 + 창백」)
+adverse_guidance,ADG-2084,ADV-125,화상,emergency,레이저 시술 중 피부가 심하게 하얗게 변하거나 검게 탄다면 즉시 시술 중단,자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-2406,ADV-125,화상,emergency_signs,시술 부위 수포 형성 및 심한 통증(화상),자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-2407,ADV-126,수포,emergency_signs,시술 부위 수포 형성 및 심한 통증(화상),악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-2408,ADV-002,통증,emergency_signs,시술 부위 수포 형성 및 심한 통증(화상),악화 조건,,,줄이 모두 「심한 통증」 꼴(+ 창백 · 부종 · 수포 동반) — 통증 자체는 흔한 반응
+adverse_guidance,ADG-2409,ADV-089,시야 장애,emergency_signs,시력 변화(눈 주위 시술 시),자체,,,"「시력 변화 또는 시야 장애 — 안동맥 폐색 의심, 즉시 응급실」"
+adverse_guidance,ADG-2410,ADV-035,감염,emergency_signs,"시술 부위 농성 분비물, 고열(감염)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2411,ADV-037,농양,emergency_signs,"시술 부위 농성 분비물, 고열(감염)",자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-2412,ADV-152,발열,emergency_signs,"시술 부위 농성 분비물, 고열(감염)",악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-2413,ADV-106,흉터,emergency_signs,점점 넓어지는 흉터 또는 색소탈실,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2414,ADV-101,색소탈실,emergency_signs,점점 넓어지는 흉터 또는 색소탈실,악화 조건,,,「점점 넓어지는 흉터 또는 색소탈실」 — 진행 꼴
+adverse_guidance,ADG-2416,ADV-125,화상,emergency_signs,"시술 부위 심한 화상(수포, 궤양)",자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-2417,ADV-126,수포,emergency_signs,"시술 부위 심한 화상(수포, 궤양)",악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-2418,ADV-132,궤양,emergency_signs,"시술 부위 심한 화상(수포, 궤양)",악화 조건,,,"화상 · 괴사의 동반 증상(「피부 괴사/궤양」 · 「심한 화상 증상(수포, 궤양)」)"
+adverse_guidance,ADG-2419,ADV-035,감염,emergency_signs,"감염 징후(고열, 농성 분비물)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2420,ADV-152,발열,emergency_signs,"감염 징후(고열, 농성 분비물)",악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-2421,ADV-037,농양,emergency_signs,"감염 징후(고열, 농성 분비물)",자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-2422,ADV-106,흉터,emergency_signs,점점 넓어지는 흉터,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2435,ADV-139,아나필락시스,emergency,아나필락시스 (마취크림 관련),자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-2436,ADV-126,수포,emergency,광범위 수포/화상,악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-2437,ADV-125,화상,emergency,광범위 수포/화상,자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_guidance,ADG-2448,ADV-035,감염,emergency,감염 (고열 + 농 + 발적 확대),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2449,ADV-041,헤르페스 재활성화,emergency,헤르페스 재활성화 (수포 군집),사람 판단,H5,악화 조건,「헤르페스 재활성화 (수포 군집)」 — 사건 자체가 emergency — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-2458,ADV-038,봉와직염,emergency,봉와직염 (광범위 발적 + 고열),자체,,,「봉와직염 (광범위 발적 + 고열)」 · 「감염 확산 (봉와직염)」 — 사용자 예시
+adverse_guidance,ADG-2459,ADV-106,흉터,emergency,반흔 초기 징후 (비정상적 조직 증식),사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2468,ADV-035,감염,emergency,감염 (지연성),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2469,ADV-106,흉터,emergency,반흔 형성 진행,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2478,ADV-108,켈로이드,emergency,켈로이드 형성,사람 판단,H3,악화 조건,「켈로이드 형성」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-2479,ADV-035,감염,emergency,지연성 감염,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2936,ADV-035,감염,emergency_signs,"시술 부위 심한 감염(고열, 농, 봉와직염)",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2937,ADV-152,발열,emergency_signs,"시술 부위 심한 감염(고열, 농, 봉와직염)",악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-2938,ADV-037,농양,emergency_signs,"시술 부위 심한 감염(고열, 농, 봉와직염)",자체,,,「농양 형성」 — 농양 자체가 emergency
+adverse_guidance,ADG-2939,ADV-038,봉와직염,emergency_signs,"시술 부위 심한 감염(고열, 농, 봉와직염)",자체,,,「봉와직염 (광범위 발적 + 고열)」 · 「감염 확산 (봉와직염)」 — 사용자 예시
+adverse_guidance,ADG-2940,ADV-011,출혈,emergency_signs,비정상적으로 지속되는 출혈,악화 조건,,,「심한 출혈」 · 「비정상적으로 지속되는 출혈」 — 심한 · 지속 꼴
+adverse_guidance,ADG-2941,ADV-138,알레르기 반응,emergency_signs,심한 알레르기 반응(도포 약물에 의한),사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-2947,ADV-127,화학화상,emergency_signs,"필링 후 심한 화학 화상(심부 수포, 궤양)",자체,,,「광범위 화학 화상」 · 「화상 확장 (화학물질 잔류)」 — 화상 계열
+adverse_guidance,ADG-2948,ADV-126,수포,emergency_signs,"필링 후 심한 화학 화상(심부 수포, 궤양)",악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_guidance,ADG-2949,ADV-132,궤양,emergency_signs,"필링 후 심한 화학 화상(심부 수포, 궤양)",악화 조건,,,"화상 · 괴사의 동반 증상(「피부 괴사/궤양」 · 「심한 화상 증상(수포, 궤양)」)"
+adverse_guidance,ADG-2950,ADV-147,두통,emergency_signs,"이소트레티노인 복용 중 심한 두통, 시력 변화(두개내압 상승 의심)",악화 조건,,,"두개내압 · 혈관폐색의 동반 증상(「심한 두통, 시력 변화」 · 「시야 변화/두통 + 변색」)"
+adverse_guidance,ADG-2951,ADV-089,시야 장애,emergency_signs,"이소트레티노인 복용 중 심한 두통, 시력 변화(두개내압 상승 의심)",악화 조건,,,"두개내압 상승의 동반 증상(「이소트레티노인 복용 중 심한 두통, 시력 변화」)"
+adverse_guidance,ADG-2952,ADV-098,두개내압 상승,emergency_signs,"이소트레티노인 복용 중 심한 두통, 시력 변화(두개내압 상승 의심)",자체,,,"「심한 두통, 시력 변화(두개내압 상승 의심)」"
+adverse_guidance,ADG-2953,ADV-138,알레르기 반응,emergency_signs,심한 알레르기 반응,사람 판단,H4,악화 조건,줄 7 가운데 6 이 「심한 · 광범위 알레르기 반응」 꼴 · 1 은 꾸밈 없음 · 추천 근거: 줄 대부분이 「심한 알레르기 반응」 — 주의 + 경고(심한 것 = 아나필락시스 · 혈관부종은 따로 위급)
+adverse_guidance,ADG-2954,ADV-163,간 기능 이상,emergency_signs,"간수치 급격한 상승 징후(황달, 심한 피로, 짙은 소변)",악화 조건,,,「간수치 급격한 상승 징후」 — 급격한 꼴
+adverse_guidance,ADG-2955,ADV-149,피로감,emergency_signs,"간수치 급격한 상승 징후(황달, 심한 피로, 짙은 소변)",악화 조건,,,"간수치 상승의 동반 증상(「황달, 심한 피로, 짙은 소변」)"
+adverse_guidance,ADG-2969,ADV-127,화학화상,emergency,광범위 화학 화상,자체,,,「광범위 화학 화상」 · 「화상 확장 (화학물질 잔류)」 — 화상 계열
+adverse_guidance,ADG-2970,ADV-139,아나필락시스,emergency,아나필락시스,자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_guidance,ADG-2982,ADV-035,감염,emergency,감염 (고열 + 농 + 발적 확대),자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-2983,ADV-152,발열,emergency,감염 (고열 + 농 + 발적 확대),악화 조건,,,감염의 동반 증상(「감염 (농/고열)」)
+adverse_guidance,ADG-2984,ADV-041,헤르페스 재활성화,emergency,헤르페스 재활성화 (수포 군집),사람 판단,H5,악화 조건,「헤르페스 재활성화 (수포 군집)」 — 사건 자체가 emergency — 코디 기본값 11-22: 대개 회복 → 주의 · 추천 근거: 주의로 내리고 원장 응급 줄을 「이럴 땐 바로 병원」 경고로(코디 기본값 11-22)
+adverse_guidance,ADG-2994,ADV-039,감염 파급,emergency,감염 확산 (봉와직염),자체,,,「감염 확산 (봉와직염)」 — 사용자 예시
+adverse_guidance,ADG-2995,ADV-038,봉와직염,emergency,감염 확산 (봉와직염),자체,,,「봉와직염 (광범위 발적 + 고열)」 · 「감염 확산 (봉와직염)」 — 사용자 예시
+adverse_guidance,ADG-2996,ADV-106,흉터,emergency,반흔 형성 시작,사람 판단,H3,악화 조건,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-3006,ADV-108,켈로이드,emergency,켈로이드/비후성 반흔,사람 판단,H3,악화 조건,「켈로이드 형성」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-3007,ADV-107,비후성 반흔,emergency,켈로이드/비후성 반흔,사람 판단,H3,악화 조건,「반흔 형성 (비후성/켈로이드)」 — 천천히 생기는 사건 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_guidance,ADG-3008,ADV-035,감염,emergency,지연성 감염,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_guidance,ADG-3009,ADV-127,화학화상,emergency,화상 확장 (화학물질 잔류에 의한),자체,,,「광범위 화학 화상」 · 「화상 확장 (화학물질 잔류)」 — 화상 계열
+adverse_risk,ADR-0016,ADV-035,감염,severity,"severe — 원장 항목 「감염 (Infection, 기저 위험)」",자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_risk,ADR-0530,ADV-112,육아종,severity,severe — 원장 항목 「육아종 (Granuloma)」,사람 판단,H3,분류에 안 씀,「육아종 형성」 · 「수개월 후에도 발생 가능」 · 원장 등급 severe · 「중대한」 일반 경고문 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_risk,ADR-0532,ADV-051,혈관 폐색,severity,critical — 원장 항목 「혈관폐색/색전 (Vascular Occlusion/Embolism)」,자체,,,「혈관폐색 — 골든타임」 · 「즉시 히알루로니다아제」 · 원장 등급 critical
+adverse_risk,ADR-0533,ADV-052,색전,severity,critical — 원장 항목 「혈관폐색/색전 (Vascular Occlusion/Embolism)」,자체,,,원장 등급 critical(「혈관폐색/색전」 항목)
+adverse_risk,ADR-0538,ADV-035,감염,severity,severe — 원장 항목 「감염 및 바이오필름 (Infection / Biofilm)」,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_risk,ADR-0539,ADV-036,바이오필름,severity,severe — 원장 항목 「감염 및 바이오필름 (Infection / Biofilm)」,사람 판단,H1,분류에 안 씀,원장 등급 severe 만(「감염 및 바이오필름」 항목) · 응급 대처 줄 없음 · 추천 근거: 바이오필름은 만성 감염 — 등급만으로 응급 아님 · 앞 분류(주의)
+adverse_risk,ADR-0588,ADV-139,아나필락시스,severity,critical — 원장 항목 「아나필락시스·즉시형 과민반응 (일반 baseline)」,자체,,,「아나필락시스 (두드러기/호흡곤란)」 · 원장 등급 critical
+adverse_risk,ADR-0589,ADV-137,과민반응,severity,critical — 원장 항목 「아나필락시스·즉시형 과민반응 (일반 baseline)」,사람 판단,H1,분류에 안 씀,대분류 행 · 원장 등급 critical(「아나필락시스·즉시형 과민반응」 항목) · 추천 근거: 대분류 행 — 등급은 아나필락시스 항목 것 · 앞 분류(주의)
+adverse_risk,ADR-0590,ADV-054,공기색전,severity,severe — 원장 항목 「공기색전·카테터 관련 감염」,자체,,,"「흉통, 호흡곤란(… 공기색전 의심)」 · 원장 등급 severe"
+adverse_risk,ADR-0591,ADV-042,카테터 관련 감염,severity,severe — 원장 항목 「공기색전·카테터 관련 감염」,사람 판단,H1,자체,원장 등급 severe 만(「공기색전·카테터 관련 감염」 항목) · 추천 근거: 감염 계열(혈류 감염) — 감염 · 농양과 같게 위급
+adverse_risk,ADR-0592,ADV-158,수분 과부하,severity,severe — 원장 항목 「수분·전해질 과부하 (심부전·신부전)」,자체,,,"「흉통, 호흡곤란(수분 과부하 … 의심)」 · 원장 등급 severe"
+adverse_risk,ADR-0593,ADV-159,전해질 불균형,severity,severe — 원장 항목 「수분·전해질 과부하 (심부전·신부전)」,사람 판단,H1,자체,원장 등급 severe 만(「수분·전해질 과부하 (심부전·신부전)」 항목) · 추천 근거: 같은 원장 항목 「수분·전해질 과부하 (심부전·신부전)」 의 수분 과부하가 응급 줄로 위급 — 같게
+adverse_risk,ADR-0624,ADV-053,지방 색전증,severity,생명을 위협할 수 있습니다 — 원장 항목 「지방 색전증(fat embolism)은 매우 드물지만 생명을 위협할 수 있습니다」,자체,,,"「생명을 위협할 수 있습니다」 · 「심한 호흡곤란, 흉통(지방색전증 의심)」"
+adverse_risk,ADR-1191,ADV-112,육아종,severity,중대한 — 원장 항목 「화장품 주사 — 이물육아종·흉터·색소침착·감염 등 중대한 부작용이 보고」,사람 판단,H2,분류에 안 씀,「중대한 부작용이 보고」 — 화장품 주사 일반 경고문 · 부작용 자체 진술 아님
+adverse_risk,ADR-1192,ADV-106,흉터,severity,중대한 — 원장 항목 「화장품 주사 — 이물육아종·흉터·색소침착·감염 등 중대한 부작용이 보고」,사람 판단,H2,분류에 안 씀,「중대한 부작용이 보고」 — 화장품 주사 일반 경고문 · 부작용 자체 진술 아님
+adverse_risk,ADR-1193,ADV-100,염증후 색소침착,severity,중대한 — 원장 항목 「화장품 주사 — 이물육아종·흉터·색소침착·감염 등 중대한 부작용이 보고」,사람 판단,H2,분류에 안 씀,「중대한 부작용이 보고」 — 화장품 주사 일반 경고문 · 부작용 자체 진술 아님
+adverse_risk,ADR-1194,ADV-035,감염,severity,중대한 — 원장 항목 「화장품 주사 — 이물육아종·흉터·색소침착·감염 등 중대한 부작용이 보고」,사람 판단,H2,분류에 안 씀,「중대한 부작용이 보고」 — 화장품 주사 일반 경고문 · 부작용 자체 진술 아님
+adverse_risk,ADR-1315,ADV-035,감염,severity,severe — 원장 항목 「감염」,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_risk,ADR-1329,ADV-125,화상,severity,severe — 원장 항목 「화상 (수포 포함)」,자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_risk,ADR-1330,ADV-126,수포,severity,severe — 원장 항목 「화상 (수포 포함)」,악화 조건,,,"화상 · 동상의 동반 증상으로 적힘(「화상/물집」 · 「심한 동상 증상(수포, 피부 괴사)」)"
+adverse_risk,ADR-1339,ADV-106,흉터,severity,severe — 원장 항목 「반흔 (Scarring)」,사람 판단,H3,분류에 안 씀,「반흔 형성 시작」 · 「점점 넓어지는 흉터」 — 천천히 생기는 사건을 원장이 emergency 로 적음 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_risk,ADR-1341,ADV-035,감염,severity,severe — 원장 항목 「감염」,자체,,,「감염 (농/발열)」 · 「지연성 감염」 · 「감염 초기」 — 감염 자체가 경고 기준 emergency · 원장 등급 severe
+adverse_risk,ADR-1342,ADV-125,화상,severity,"severe — 원장 항목 「화상 (열손상, Thermal Burn)」",자체,,,「화상/물집 (2도 이상)」 · 「광범위 화상」 · 원장 등급 severe — 사용자 예시
+adverse_risk,ADR-1345,ADV-182,역설적 지방 증식,severity,"severe — 원장 항목 「PAH (역설적 지방 증식, Paradoxical Adipose Hyperplasia)」",사람 판단,H3,분류에 안 씀,「오히려 딱딱하게 커지는 경우(PAH 의심)」 · 원장 등급 severe — 수개월에 걸쳐 생김 · 추천 근거: 주의로 두고 원장 줄을 「이럴 땐 바로 병원」 경고로
+adverse_risk,ADR-1346,ADV-130,피부 괴사,severity,"critical — 원장 항목 「피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)」",자체,,,「피부 괴사 징후 (검은색/보라색 변색)」 · 원장 등급 critical
+adverse_risk,ADR-1347,ADV-128,동상,severity,"critical — 원장 항목 「피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)」",자체,,,"「심한 동상 증상(수포, 피부 괴사)」 · 원장 등급 critical"
+adverse_risk,ADR-1348,ADV-131,지방괴사,severity,"critical — 원장 항목 「피부 괴사 (Skin Necrosis / 동상·지방괴사, Frostbite·Fat Necrosis)」",사람 판단,H1,분류에 안 씀,원장 등급 critical 만(「피부 괴사 / 동상·지방괴사」 묶은 항목) · 추천 근거: 묶은 항목(피부 괴사 · 동상 · 지방괴사)의 등급 — 지방괴사 자체 응급 줄 없음 · 앞 분류(주의)

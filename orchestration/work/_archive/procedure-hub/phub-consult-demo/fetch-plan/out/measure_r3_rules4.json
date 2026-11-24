@@ -1,0 +1,2134 @@
+{
+ "summary": {
+  "round": 3,
+  "rules": 4,
+  "json_round": 3,
+  "turns": 43,
+  "now_tok": 697892,
+  "new_tok": 248279,
+  "cut_pct": 64.4,
+  "cited": 276,
+  "miss": 0,
+  "miss_pct": 0.0,
+  "thin_cited": 28,
+  "miss_why": {},
+  "miss_turns": 0,
+  "json_bad": 0,
+  "ms_median": 2645.8,
+  "ms_max": 6269.7,
+  "usage_sum": {
+   "input_tokens": 86,
+   "cache_read_input_tokens": 953837,
+   "output_tokens": 9247
+  }
+ },
+ "turns": [
+  {
+   "conv": "03b8",
+   "turn": 1,
+   "question": "팔자주름에 대해서 고민이돼",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2672.1,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21020,
+    "output_tokens": 147,
+    "thinking_tokens": 0
+   },
+   "now_tok": 606,
+   "new_tok": 606,
+   "cut_pct": 0.0,
+   "cited": 8,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 606
+   }
+  },
+  {
+   "conv": "03b8",
+   "turn": 2,
+   "question": "미간에 주름도 고민이야",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2729.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21867,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 403,
+   "new_tok": 403,
+   "cut_pct": 0.0,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-015"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 403
+   }
+  },
+  {
+   "conv": "03b8",
+   "turn": 3,
+   "question": "얼굴에 탄력이 좀 떨어지는거 같은데",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2788.5,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22449,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1168,
+   "new_tok": 1168,
+   "cut_pct": 0.0,
+   "cited": 14,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-007"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 1168
+   }
+  },
+  {
+   "conv": "03b8",
+   "turn": 4,
+   "question": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2638.1,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22945,
+    "output_tokens": 189,
+    "thinking_tokens": 0
+   },
+   "now_tok": 6149,
+   "new_tok": 6149,
+   "cut_pct": 0.0,
+   "cited": 23,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 2383,
+    "overview · 물려받음 · 명동점": 1552,
+    "명시 대상(강제)": 865,
+    "overview · 하위 제품 · 명동점": 612,
+    "overview · 물려받음 · 밖": 372,
+    "overview · 물려받음 · -": 365
+   }
+  },
+  {
+   "conv": "03b8",
+   "turn": 5,
+   "question": "고주파 원리가 머야 ?",
+   "old_kinds": [
+    "mechanism:yes"
+   ],
+   "json_ok": true,
+   "ms": 2419.9,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23674,
+    "output_tokens": 165,
+    "thinking_tokens": 0
+   },
+   "now_tok": 7098,
+   "new_tok": 4629,
+   "cut_pct": 34.8,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "overview"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [
+    "mechanism",
+    "overview"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 2271,
+    "명동점 밖 · 이름만": 1396,
+    "요약 · 머리": 812,
+    "mechanism · 하위 제품 · 명동점": 150
+   }
+  },
+  {
+   "conv": "03b8",
+   "turn": 6,
+   "question": "응 고주파에 대해서 전반적으로 설명해줘",
+   "old_kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ],
+   "json_ok": true,
+   "ms": 2613.8,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23701,
+    "output_tokens": 188,
+    "thinking_tokens": 0
+   },
+   "now_tok": 41217,
+   "new_tok": 25454,
+   "cut_pct": 38.2,
+   "cited": 10,
+   "miss": 0,
+   "thin_cited": 3,
+   "thin_rows": [
+    {
+     "n": 432,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "?"
+    },
+    {
+     "n": 433,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "?"
+    },
+    {
+     "n": 449,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "?"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "mechanism",
+    "overview"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism",
+     "indication",
+     "outcome",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup",
+    "mechanism",
+    "outcome",
+    "overview"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 9544,
+    "명동점 밖 · 이름만": 6651,
+    "indication · 하위 제품 · 명동점": 5084,
+    "outcome · 하위 제품 · 명동점": 2017,
+    "outcome · 물려받음 · -": 1610,
+    "lineup · 층 표시 없음 · -": 548
+   }
+  },
+  {
+   "conv": "fixE",
+   "turn": 1,
+   "question": "요즘 피부 탄력이 저하 되서 고민이야",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2400.5,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21026,
+    "output_tokens": 147,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1157,
+   "new_tok": 1157,
+   "cut_pct": 0.0,
+   "cited": 4,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 1157
+   }
+  },
+  {
+   "conv": "fixE",
+   "turn": 2,
+   "question": "얼굴에",
+   "old_kinds": [
+    "overview:default",
+    "indication:default"
+   ],
+   "json_ok": true,
+   "ms": 2405.2,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22165,
+    "output_tokens": 159,
+    "thinking_tokens": 0
+   },
+   "now_tok": 198080,
+   "new_tok": 16423,
+   "cut_pct": 91.7,
+   "cited": 0,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "topic",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-007"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "indication · 층 표시 없음 · -": 11782,
+    "overview · 층 표시 없음 · 명동점": 4641
+   }
+  },
+  {
+   "conv": "fixE",
+   "turn": 3,
+   "question": "얼굴에",
+   "old_kinds": [
+    "overview:default",
+    "indication:default"
+   ],
+   "json_ok": true,
+   "ms": 2616.5,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23266,
+    "output_tokens": 159,
+    "thinking_tokens": 0
+   },
+   "now_tok": 193287,
+   "new_tok": 13928,
+   "cut_pct": 92.8,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "topic",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-007"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "indication · 층 표시 없음 · -": 13928
+   }
+  },
+  {
+   "conv": "73bd",
+   "turn": 1,
+   "question": "얼굴에 피부 탄력이 없어져서 걱정이야",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2807.0,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21028,
+    "output_tokens": 180,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1157,
+   "new_tok": 1157,
+   "cut_pct": 0.0,
+   "cited": 3,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-007"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 1157
+   }
+  },
+  {
+   "conv": "73bd",
+   "turn": 2,
+   "question": "아 주름이 눈가 입꼬리에 잇어",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 5627.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22165,
+    "output_tokens": 661,
+    "thinking_tokens": 428
+   },
+   "now_tok": 625,
+   "new_tok": 625,
+   "cut_pct": 0.0,
+   "cited": 4,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-019",
+     "SITE-067"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 625
+   }
+  },
+  {
+   "conv": "73bd",
+   "turn": 3,
+   "question": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 3155.9,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22616,
+    "output_tokens": 278,
+    "thinking_tokens": 0
+   },
+   "now_tok": 398,
+   "new_tok": 398,
+   "cut_pct": 0.0,
+   "cited": 2,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-019",
+     "SITE-067"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "overview · 물려받음 · 명동점": 290,
+    "요약 · 머리": 108
+   }
+  },
+  {
+   "conv": "3016",
+   "turn": 2,
+   "question": "보톡스 효과가 없어 ?",
+   "old_kinds": [
+    "outcome:yes"
+   ],
+   "json_ok": true,
+   "ms": 3038.5,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21263,
+    "output_tokens": 164,
+    "thinking_tokens": 0
+   },
+   "now_tok": 17126,
+   "new_tok": 10381,
+   "cut_pct": 39.4,
+   "cited": 7,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "outcome",
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "outcome"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 4585,
+    "outcome · 하위 케이스 · 명동점": 2098,
+    "요약 · 머리": 1975,
+    "명동점 밖 · 이름만": 956,
+    "outcome · 하위 제품 · 명동점": 766
+   }
+  },
+  {
+   "conv": "3016",
+   "turn": 3,
+   "question": "부작용은 ?",
+   "old_kinds": [
+    "adverse:yes"
+   ],
+   "json_ok": true,
+   "ms": 2535.6,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22380,
+    "output_tokens": 166,
+    "thinking_tokens": 0
+   },
+   "now_tok": 79884,
+   "new_tok": 60022,
+   "cut_pct": 24.9,
+   "cited": 33,
+   "miss": 0,
+   "thin_cited": 4,
+   "thin_rows": [
+    {
+     "n": 245,
+     "kind": "adverse",
+     "layer": "하위 케이스",
+     "owner": "턱선보톡스"
+    },
+    {
+     "n": 248,
+     "kind": "adverse",
+     "layer": "하위 케이스",
+     "owner": "턱선보톡스"
+    },
+    {
+     "n": 250,
+     "kind": "adverse",
+     "layer": "하위 케이스",
+     "owner": "턱선보톡스"
+    },
+    {
+     "n": 251,
+     "kind": "adverse",
+     "layer": "하위 케이스",
+     "owner": "턱선보톡스"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "recovery"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "adverse",
+     "recovery"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [
+    "adverse",
+    "recovery"
+   ],
+   "sizes_top": {
+    "안전(강제)": 46317,
+    "안전 · 명동점 밖 이름만": 8270,
+    "명시 대상(강제)": 5435
+   }
+  },
+  {
+   "conv": "a7d7",
+   "turn": 1,
+   "question": "팔자 주름이 고민이야",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2779.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21016,
+    "output_tokens": 158,
+    "thinking_tokens": 0
+   },
+   "now_tok": 606,
+   "new_tok": 606,
+   "cut_pct": 0.0,
+   "cited": 7,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-046"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 606
+   }
+  },
+  {
+   "conv": "a7d7",
+   "turn": 2,
+   "question": "미간에 주름도 너무 깊어",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2696.7,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21860,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 403,
+   "new_tok": 403,
+   "cut_pct": 0.0,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-015"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 403
+   }
+  },
+  {
+   "conv": "a7d7",
+   "turn": 3,
+   "question": "보톡스로 맞고 싶어서",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2426.8,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22400,
+    "output_tokens": 150,
+    "thinking_tokens": 0
+   },
+   "now_tok": 17904,
+   "new_tok": 13682,
+   "cut_pct": 23.6,
+   "cited": 8,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "명시 대상(강제)": 7821,
+    "overview · 하위 케이스 · 명동점": 2631,
+    "명동점 밖 · 이름만": 1454,
+    "overview · 하위 제품 · 명동점": 919,
+    "요약 · 머리": 857
+   }
+  },
+  {
+   "conv": "a7d7",
+   "turn": 6,
+   "question": "팔자주름에 보톡스 말고 다른 시술은 없어서 그대로 둔거지 ?",
+   "old_kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ],
+   "json_ok": true,
+   "ms": 6269.7,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22009,
+    "output_tokens": 738,
+    "thinking_tokens": 542
+   },
+   "now_tok": 3099,
+   "new_tok": 1363,
+   "cut_pct": 56.0,
+   "cited": 1,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-046"
+    ]
+   },
+   "kinds": [
+    "indication"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 1363
+   }
+  },
+  {
+   "conv": "a7d7",
+   "turn": 8,
+   "question": "볼뉴머가 머야",
+   "old_kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ],
+   "json_ok": true,
+   "ms": 2950.7,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22630,
+    "output_tokens": 185,
+    "thinking_tokens": 0
+   },
+   "now_tok": 11438,
+   "new_tok": 11240,
+   "cut_pct": 1.7,
+   "cited": 9,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism",
+     "indication",
+     "outcome",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup",
+    "mechanism",
+    "outcome",
+    "overview"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 3041,
+    "outcome · 물려받음 · -": 1628,
+    "outcome · 물려받음 · 명동점": 1612,
+    "indication · 물려받음 · 명동점": 1495,
+    "mechanism+overview · 물려받음 · 명동점": 1476,
+    "mechanism+overview · 물려받음 · -": 536
+   }
+  },
+  {
+   "conv": "a578",
+   "turn": 2,
+   "question": "지금 턱이 이중턱이 됫어 ㅠㅠ",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2861.9,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21123,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 628,
+   "new_tok": 628,
+   "cut_pct": 0.0,
+   "cited": 6,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-072"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 628
+   }
+  },
+  {
+   "conv": "a578",
+   "turn": 4,
+   "question": "기기 리프팅이지 그럼",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2567.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23191,
+    "output_tokens": 145,
+    "thinking_tokens": 0
+   },
+   "now_tok": 23105,
+   "new_tok": 9542,
+   "cut_pct": 58.7,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "명동점 밖 · 이름만": 4810,
+    "overview · 하위 제품 · 명동점": 2193,
+    "overview · 하위 케이스 · 명동점": 949,
+    "overview · 하위 시술 · 명동점": 884,
+    "요약 · 머리": 366,
+    "명시 대상(강제)": 340
+   }
+  },
+  {
+   "conv": "a578",
+   "turn": 5,
+   "question": "아니 기기 리프팅 추천 해줘",
+   "old_kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ],
+   "json_ok": true,
+   "ms": 2691.7,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23248,
+    "output_tokens": 156,
+    "thinking_tokens": 0
+   },
+   "now_tok": 20959,
+   "new_tok": 14260,
+   "cut_pct": 32.0,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 2,
+   "thin_rows": [
+    {
+     "n": 136,
+     "kind": "indication",
+     "layer": "하위 제품",
+     "owner": "슈링크"
+    },
+    {
+     "n": 195,
+     "kind": "indication",
+     "layer": "하위 제품",
+     "owner": "올리지오"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "sizes_top": {
+    "명동점 밖 · 이름만": 7583,
+    "indication · 하위 제품 · 명동점": 3498,
+    "명시 대상(강제)": 1214,
+    "indication · 하위 시술 · 명동점": 1053,
+    "indication · 하위 케이스 · 명동점": 498,
+    "lineup · 층 표시 없음 · 명동점": 253
+   }
+  },
+  {
+   "conv": "a578",
+   "turn": 7,
+   "question": "슈링크로 턱라인 타이트닝이 돼 ?",
+   "old_kinds": [
+    "indication:yes"
+   ],
+   "json_ok": true,
+   "ms": 2873.8,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22765,
+    "output_tokens": 194,
+    "thinking_tokens": 0
+   },
+   "now_tok": 427,
+   "new_tok": 427,
+   "cut_pct": 0.0,
+   "cited": 2,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication",
+    "outcome"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "outcome",
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-075"
+    ]
+   },
+   "kinds": [
+    "indication",
+    "outcome"
+   ],
+   "sizes_top": {
+    "요약 · 머리": 427
+   }
+  },
+  {
+   "conv": "5bce",
+   "turn": 2,
+   "question": "턱 보톡스 맞고 싶다고",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2687.4,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21252,
+    "output_tokens": 184,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1965,
+   "new_tok": 1965,
+   "cut_pct": 0.0,
+   "cited": 3,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-072"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 1965
+   }
+  },
+  {
+   "conv": "5bce",
+   "turn": 3,
+   "question": "턱이 이중턱이라고",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2664.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22314,
+    "output_tokens": 180,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1058,
+   "new_tok": 1058,
+   "cut_pct": 0.0,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-072"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 1058
+   }
+  },
+  {
+   "conv": "5bce",
+   "turn": 4,
+   "question": "볼살도 너무 많아",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2542.6,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23218,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 148,
+   "new_tok": 148,
+   "cut_pct": 0.0,
+   "cited": 2,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-051"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 148
+   }
+  },
+  {
+   "conv": "5bce",
+   "turn": 5,
+   "question": "미간 주름도 잇어",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2457.4,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23696,
+    "output_tokens": 158,
+    "thinking_tokens": 0
+   },
+   "now_tok": 634,
+   "new_tok": 634,
+   "cut_pct": 0.0,
+   "cited": 4,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-015"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 634
+   }
+  },
+  {
+   "conv": "5bce",
+   "turn": 6,
+   "question": "미간주름에 보톡스만 가능해 ?",
+   "old_kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ],
+   "json_ok": true,
+   "ms": 2627.1,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 23617,
+    "output_tokens": 194,
+    "thinking_tokens": 0
+   },
+   "now_tok": 27455,
+   "new_tok": 21906,
+   "cut_pct": 20.2,
+   "cited": 6,
+   "miss": 0,
+   "thin_cited": 3,
+   "thin_rows": [
+    {
+     "n": 132,
+     "kind": "indication",
+     "layer": "하위 제품",
+     "owner": "나보타"
+    },
+    {
+     "n": 134,
+     "kind": "indication",
+     "layer": "하위 제품",
+     "owner": "보툴렉스"
+    },
+    {
+     "n": 338,
+     "kind": "indication",
+     "layer": "하위 제품",
+     "owner": "메디톡신"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "combo"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication",
+     "combo"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-015"
+    ]
+   },
+   "kinds": [
+    "combo",
+    "indication"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 10558,
+    "명동점 밖 · 이름만": 8538,
+    "indication · 하위 케이스 · 명동점": 2072,
+    "indication · 하위 제품 · 명동점": 639,
+    "요약 · 머리": 100
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 1,
+   "question": "볼에 살이 많아서 고민이돼",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2649.9,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21020,
+    "output_tokens": 179,
+    "thinking_tokens": 0
+   },
+   "now_tok": 146,
+   "new_tok": 146,
+   "cut_pct": 0.0,
+   "cited": 2,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-051"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 146
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 3,
+   "question": "그럼 지방 분해주사 뭐뭐 잇어 ?",
+   "old_kinds": [
+    "lineup:yes"
+   ],
+   "json_ok": true,
+   "ms": 2537.6,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21817,
+    "output_tokens": 154,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1257,
+   "new_tok": 585,
+   "cut_pct": 53.4,
+   "cited": 9,
+   "miss": 0,
+   "thin_cited": 8,
+   "thin_rows": [
+    {
+     "n": 4,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "DCA 지방분해 주사"
+    },
+    {
+     "n": 5,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "콜산 지방분해 주사"
+    },
+    {
+     "n": 6,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "PPC 지방분해주사"
+    },
+    {
+     "n": 7,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "HP주사"
+    },
+    {
+     "n": 8,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "카복시테라피"
+    },
+    {
+     "n": 9,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "GPC주사"
+    },
+    {
+     "n": 10,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "브이올렛"
+    },
+    {
+     "n": 11,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "벨카이라"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "lineup"
+   ],
+   "sizes_top": {
+    "명동점 밖 · 이름만": 426,
+    "lineup · 층 표시 없음 · 명동점": 113,
+    "명시 대상(강제)": 47
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 4,
+   "question": "응 어떤 원리인지 어떤 시술인지 궁금해",
+   "old_kinds": [
+    "overview:yes",
+    "mechanism:yes",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ],
+   "json_ok": true,
+   "ms": 2645.8,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21735,
+    "output_tokens": 176,
+    "thinking_tokens": 0
+   },
+   "now_tok": 13831,
+   "new_tok": 5502,
+   "cut_pct": 60.2,
+   "cited": 4,
+   "miss": 0,
+   "thin_cited": 2,
+   "thin_rows": [
+    {
+     "n": 28,
+     "kind": "overview+mechanism",
+     "layer": "하위 시술",
+     "owner": "PPC 지방분해주사"
+    },
+    {
+     "n": 30,
+     "kind": "overview+mechanism",
+     "layer": "하위 시술",
+     "owner": "카복시테라피"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "lineup"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism",
+     "indication",
+     "outcome",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup",
+    "mechanism",
+    "outcome",
+    "overview"
+   ],
+   "sizes_top": {
+    "명동점 밖 · 이름만": 3037,
+    "mechanism+overview · 하위 제품 · 명동점": 640,
+    "outcome · 하위 제품 · 명동점": 609,
+    "mechanism+overview · 하위 시술 · 명동점": 373,
+    "mechanism+overview · 하위 케이스 · 명동점": 367,
+    "명시 대상(강제)": 350
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 5,
+   "question": "그럼 미간 주름은 어떻게 없애 ?",
+   "old_kinds": [
+    "indication:yes"
+   ],
+   "json_ok": true,
+   "ms": 3035.1,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21772,
+    "output_tokens": 185,
+    "thinking_tokens": 0
+   },
+   "now_tok": 634,
+   "new_tok": 634,
+   "cut_pct": 0.0,
+   "cited": 6,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-015"
+    ]
+   },
+   "kinds": [
+    "indication"
+   ],
+   "sizes_top": {
+    "요약 · 머리": 634
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 6,
+   "question": "그럼 기기 리프팅 뭐 하면 좋을까 ?",
+   "old_kinds": [
+    "lineup:yes"
+   ],
+   "json_ok": true,
+   "ms": 2514.2,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22340,
+    "output_tokens": 159,
+    "thinking_tokens": 0
+   },
+   "now_tok": 3538,
+   "new_tok": 1580,
+   "cut_pct": 55.3,
+   "cited": 8,
+   "miss": 0,
+   "thin_cited": 6,
+   "thin_rows": [
+    {
+     "n": 92,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "HIFU"
+    },
+    {
+     "n": 93,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "고주파"
+    },
+    {
+     "n": 94,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "마이크로웨이브"
+    },
+    {
+     "n": 95,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "울쎄라"
+    },
+    {
+     "n": 97,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "슈링크"
+    },
+    {
+     "n": 111,
+     "kind": "lineup",
+     "layer": "층 표시 없음",
+     "owner": "써마지"
+    }
+   ],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup",
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "sizes_top": {
+    "명동점 밖 · 이름만": 1013,
+    "lineup · 층 표시 없음 · 명동점": 251,
+    "lineup · 층 표시 없음 · -": 162,
+    "요약 · 머리": 109,
+    "명시 대상(강제)": 45
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 7,
+   "question": "써마지 받아보고 싶어",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2348.2,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22783,
+    "output_tokens": 147,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1665,
+   "new_tok": 1665,
+   "cut_pct": 0.0,
+   "cited": 4,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "overview · 물려받음 · 명동점": 589,
+    "overview · 물려받음 · -": 366,
+    "overview · 하위 제품 · 명동점": 312,
+    "명시 대상(강제)": 288,
+    "요약 · 머리": 109
+   }
+  },
+  {
+   "conv": "dc78",
+   "turn": 8,
+   "question": "응 써마지 몇샷 맞아야해 ?",
+   "old_kinds": [
+    "offer:yes"
+   ],
+   "json_ok": true,
+   "ms": 2554.0,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22836,
+    "output_tokens": 162,
+    "thinking_tokens": 0
+   },
+   "now_tok": 648,
+   "new_tok": 648,
+   "cut_pct": 0.0,
+   "cited": 2,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "outcome"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "offer",
+     "outcome"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [
+    "offer",
+    "outcome"
+   ],
+   "sizes_top": {
+    "offer · 하위 제품 · 명동점": 648
+   }
+  },
+  {
+   "conv": "02af",
+   "turn": 1,
+   "question": "얼굴 타이트닝을 받아야 하는데 어떤 시술이 잇어 ?",
+   "old_kinds": [
+    "outcome:entry"
+   ],
+   "json_ok": true,
+   "ms": 2889.5,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21038,
+    "output_tokens": 194,
+    "thinking_tokens": 0
+   },
+   "now_tok": 2836,
+   "new_tok": 2836,
+   "cut_pct": 0.0,
+   "cited": 12,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication",
+    "lineup"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup",
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": [
+     "SITE-007"
+    ]
+   },
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "sizes_top": {
+    "outcome · 층 표시 없음 · -": 2836
+   }
+  },
+  {
+   "conv": "02af",
+   "turn": 2,
+   "question": "아 눈가에는 써마지 받고 싶어서",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 5990.6,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21331,
+    "output_tokens": 640,
+    "thinking_tokens": 460
+   },
+   "now_tok": 284,
+   "new_tok": 284,
+   "cut_pct": 0.0,
+   "cited": 1,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-019"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 284
+   }
+  },
+  {
+   "conv": "02af",
+   "turn": 3,
+   "question": "그럼 실 리프팅은 없어 명동점에 ?",
+   "old_kinds": [
+    "offer:yes"
+   ],
+   "json_ok": true,
+   "ms": 2369.6,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21837,
+    "output_tokens": 153,
+    "thinking_tokens": 0
+   },
+   "now_tok": 637,
+   "new_tok": 0,
+   "cut_pct": 100.0,
+   "cited": 0,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "lineup"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "lineup"
+   ],
+   "sizes_top": {}
+  },
+  {
+   "conv": "02af",
+   "turn": 4,
+   "question": "아 그럼 써마지로 안내해줘",
+   "old_kinds": [
+    "overview:default"
+   ],
+   "json_ok": true,
+   "ms": 2555.7,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21864,
+    "output_tokens": 147,
+    "thinking_tokens": 0
+   },
+   "now_tok": 1574,
+   "new_tok": 1574,
+   "cut_pct": 0.0,
+   "cited": 3,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": []
+   },
+   "kinds": [],
+   "sizes_top": {
+    "overview · 물려받음 · 명동점": 610,
+    "overview · 물려받음 · -": 365,
+    "overview · 하위 제품 · 명동점": 311,
+    "명시 대상(강제)": 288
+   }
+  },
+  {
+   "conv": "02af",
+   "turn": 5,
+   "question": "입꼬리에는 어떤 시술들이 잇어 ? 주름이 고민이야",
+   "old_kinds": [
+    "indication:yes"
+   ],
+   "json_ok": true,
+   "ms": 4478.2,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22054,
+    "output_tokens": 483,
+    "thinking_tokens": 290
+   },
+   "now_tok": 298,
+   "new_tok": 298,
+   "cut_pct": 0.0,
+   "cited": 3,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication",
+    "lineup"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": [
+     "SITE-067"
+    ]
+   },
+   "kinds": [
+    "indication",
+    "lineup"
+   ],
+   "sizes_top": {
+    "요약 · 머리": 298
+   }
+  },
+  {
+   "conv": "02af",
+   "turn": 6,
+   "question": "이마에 주름이 많으면 어떤 시술을 받아 ?",
+   "old_kinds": [
+    "indication:yes"
+   ],
+   "json_ok": true,
+   "ms": 2564.3,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 22619,
+    "output_tokens": 185,
+    "thinking_tokens": 0
+   },
+   "now_tok": 392,
+   "new_tok": 392,
+   "cut_pct": 0.0,
+   "cited": 5,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [
+    "indication"
+   ],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "indication"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-014"
+    ]
+   },
+   "kinds": [
+    "indication"
+   ],
+   "sizes_top": {
+    "요약 · 머리": 392
+   }
+  },
+  {
+   "conv": "7897",
+   "turn": 1,
+   "question": "팔자 주름이 고민이야",
+   "old_kinds": [
+    "indication:entry"
+   ],
+   "json_ok": true,
+   "ms": 2461.1,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21016,
+    "output_tokens": 158,
+    "thinking_tokens": 0
+   },
+   "now_tok": 606,
+   "new_tok": 606,
+   "cut_pct": 0.0,
+   "cited": 7,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "site_filter": [
+     "SITE-046"
+    ]
+   },
+   "kinds": [],
+   "sizes_top": {
+    "요약 · 머리": 606
+   }
+  },
+  {
+   "conv": "7897",
+   "turn": 2,
+   "question": "볼뉴머에 대해서 설명해줄래 ?",
+   "old_kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ],
+   "json_ok": true,
+   "ms": 2604.2,
+   "usage": {
+    "input_tokens": 2,
+    "cache_read_input_tokens": 21871,
+    "output_tokens": 185,
+    "thinking_tokens": 0
+   },
+   "now_tok": 11362,
+   "new_tok": 11167,
+   "cut_pct": 1.7,
+   "cited": 19,
+   "miss": 0,
+   "thin_cited": 0,
+   "thin_rows": [],
+   "miss_why": {},
+   "miss_rows": [],
+   "need_more_kinds": [],
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism",
+     "indication",
+     "outcome",
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "site_filter": []
+   },
+   "kinds": [
+    "indication",
+    "lineup",
+    "mechanism",
+    "outcome",
+    "overview"
+   ],
+   "sizes_top": {
+    "명시 대상(강제)": 3016,
+    "outcome · 물려받음 · -": 1619,
+    "outcome · 물려받음 · 명동점": 1604,
+    "indication · 물려받음 · 명동점": 1481,
+    "mechanism+overview · 물려받음 · 명동점": 1472,
+    "mechanism+overview · 물려받음 · -": 535
+   }
+  }
+ ]
+}
