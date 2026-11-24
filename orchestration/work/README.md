@@ -9,7 +9,7 @@
 | [[para/projects/summer-star/cc-prototype/README\|cc-prototype]] | [[para/projects/summer-star/cc-prototype/work-index\|작업 목록]] | 0 | 10 |
 | [[para/projects/company/centurion/README\|centurion]] | [[para/projects/company/centurion/work-index\|작업 목록]] | 0 | 2 |
 | [[para/projects/summer-star/consult-analysis/README\|consult-analysis]] | [[para/projects/summer-star/consult-analysis/work-index\|작업 목록]] | 0 | 1 |
-| [[para/projects/company/day/README\|day]] | [[para/projects/company/day/work-index\|작업 목록]] | 0 | 15 |
+| [[para/projects/company/day/README\|day]] | [[para/projects/company/day/work-index\|작업 목록]] | 0 | 16 |
 | [[para/projects/summer-star/interpret-pwa/README\|interpret-pwa]] | [[para/projects/summer-star/interpret-pwa/work-index\|작업 목록]] | 0 | 5 |
 | [[para/projects/summer-star/kknaks-dev/README\|kknaks-dev]] | [[para/projects/summer-star/kknaks-dev/work-index\|작업 목록]] | 0 | 3 |
 | [[para/projects/company/mediness/README\|mediness]] | [[para/projects/company/mediness/work-index\|작업 목록]] | 0 | 9 |
