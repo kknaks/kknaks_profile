@@ -1,0 +1,80 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "target_specs": [
+    "DAY-SPEC-002"
+  ],
+  "spec_baseline_revision": "a896cda0b9cfcc920b7c76ea1c278e8f697f9d28",
+  "idempotency_key": "day/day-spec-002-r28/be-photo",
+  "title": "DAY 차트 시술전후사진 ② 백엔드 — KOS 내부 이미지 · 직원 토큰 · 서버 경유 (DAY-SPEC-002 개정 ㉘)",
+  "risk_level": "L2",
+  "target_delta": [
+    "사진 목록 · 올리기 · 삭제 · 원본 — 계약 K4 · 규칙 39 · §3 「KOS 사진 — 직접 호출」(내부 경로 · 직원 토큰 · 쓰기 큐 안 씀 · DAY 저장 없음 · C8 ~ C14)",
+    "목록 = `get-visitor-images {visitorId, scheduleId, deleted:false}` → 분류 이름 「시술 전」 · 「시술 후」 두 묶음 → 썸네일 `generate-signed-urls-with-param` 1회 → 서버 GET → `data:` 로 조각에 실음(W3 · 캐시 없음)",
+    "올리기 = `get-codes` IMAGE_CATEGORY · IMAGE_EQUIPMENT 이름 매칭(「시술 전」 · 「시술 후」 · 「태블릿」 — 못 찾으면 409 `photo_code_missing` · 아무것도 안 올림) → `generate-presigned-url` → S3 `PUT` → `register-visitor-images`(fileName · visitorId · source HOSPITAL · equipment · scheduleId · shootingDateTimeUtc · memo 「{고객 이름} 고객 시술 전 / 후」 · category) → 목록 다시",
+    "삭제 = 목록(그 방문에 그 id) → `delete-visitor-images {ids}` → 목록 다시",
+    "토큰 = 그 요청 세션 직원 KOS 토큰 · 없음 · KOS 401 = 401 `session_expired`(공지 저장 코드와 같게) · 그 밖 KOS 실패 · 연결 없음 = 503 `kos_unavailable`(W2)",
+    "KOS 호출 동안 DB transaction 을 열지 않음 → 결과 뒤 `event_log` 1행 따로 커밋(`photo.upload` · `photo.delete` · 실패 `kos_rejected` 꼴 — 파일 이름 · 그림 · 서명 주소 · 토큰은 싣지 않음 · W4 · 규칙 39 ⑤ ⑥)",
+    "계약 K4(사진 — #② 제공 · #③ 소비): `GET /board/visits/{visit_id}/photos` → 조각 `partials/board_photos.html`(이름 제안) · 값 `photos` = `{visit_id, edit(board edit 여부), groups: [{category: before | after, title: 「시술 전」 | 「시술 후」, items: [{image_id(KOS 사진 id), thumb(data: URI — 서버가 받아 실음 · W3), shot_at}]}]}` · `POST /board/visits/{visit_id}/photos`(multipart `category` · `file` 1장) · `POST /board/visits/{visit_id}/photos/{image_id}/delete` → 성공 = 같은 조각 · 실패 = 오류 토스트 조각 (400 `invalid_request` · 404 `not_found` · 409 `photo_code_missing` · 401 `session_expired` · 503 `kos_unavailable`) · `GET …/photos/{image_id}/original` → 그림 바이트(`Cache-Control: no-store`) · 썸네일 경로 없음(SPEC-002 §3 API — `…/thumb` 취소선)"
+  ],
+  "acceptance": [
+    "A1: 네 경로가 계약 K4 모양으로 응답하고 권한(보기 = `board` view · 올리기 · 삭제 = `board` edit)을 지킨다",
+    "A2: KOS 호출이 §3 「KOS 사진」 표 순서 · 칸과 같다(가짜 KOS 테스트 — 등록 칸 · 메모 · 분류 · 장비 객체 통째 · scheduleId · 목록 1 + 서명 1 + 썸네일 GET N)",
+    "A3: 매트릭스 사진 줄(404 · 400 · 409 `photo_code_missing` · 401 `session_expired` · 503)을 테스트로 덮는다 · 시스템 계정 토큰으로 대신 보내지 않음",
+    "A4: KOS 호출 동안 열린 DB transaction 이 없고 `event_log` 가 따로 1행 · payload 에 파일 이름 · 서명 주소 · 토큰이 없다(테스트)",
+    "A5: DAY DB · Blob · 임시 파일에 사진을 두지 않는다(새 테이블 · 칸 0 · 파일 쓰기 0)",
+    "A6: 실물 e2e 1회(로컬 · KOS 데모 지점 · 시험 고객): ⓐ 간호관리차트 여러 줄 쓰고 [저장] → 「최근 저장」 바뀜 · KOS 웹 그 작업 간호관리 메모 = 쓴 글 · 의사차트 탭 따로 저장 ⓑ 충돌 — 창을 연 뒤 KOS 웹에서 같은 줄 메모를 먼저 고치고 [저장] → 409 · 아무 줄도 저장 안 됨 · 그 줄 칸 = KOS 글 + 줄바꿈 + 내 글 · 다시 [저장] → 저장 · KOS = 이어 붙인 글 ⓒ 사진 — 「시술 전」 · 「시술 후」에 1장씩 올림 → KOS 웹 그 일정 사진 탭에 보임(분류 · 장비 「태블릿」 · 메모 「{고객 이름} 고객 시술 전 / 후」) · 1장 삭제 → KOS 사진 탭에서 사라짐 ⓓ 미저장 상태로 ✕ → 확인 창 · 「버리고 닫기」 → 저장 요청 0. 순서 조건: 실물 e2e 는 #① · #② · #③ 이 모두 들어간 로컬에서 마지막으로 머지되는 Issue 가 1회 돌리고 결과를 세 Issue 에 남긴다"
+  ],
+  "non_goals": [
+    "사진 탭 화면 · 시안 · 글자(Delivery ③ · OQ-88)",
+    "여러 장 · 크기 · 형식 한도(OQ-86)",
+    "분류 · 장비 코드 테이블(C13)",
+    "직원 앱(C15)",
+    "공개 `generate-uploading-url` 경로(C10 — 병원 공개 키 토큰)"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-002 개정 ㉘ · DAY-SPEC-001 개정 ⑫(검수 review-doc-3 PASS) — Mediness PR #960 커밋 a896cda0b9cfcc920b7c76ea1c278e8f697f9d28(브랜치 kknaksss/day-chart-photo-spec · 머지 전). 결정 원천 = chart-photo-decisions.md C1 ~ C17",
+    "직원 토큰 · 내부 경로(C10) · KOS 쓰기가 쓰기 큐 밖 직접 호출인 것(규칙 39 ⑤)",
+    "고객 이름이 든 fileName 이 로그 · event 에 남지 않는지",
+    "S3 PUT 뒤 등록 실패 파일은 남음(감수 · OQ-89 ⓓ)"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/emr/kos/images.py(새 — 내부 이미지 경로 · 직원 토큰 · S3 PUT)",
+      "backend/day/emr/kos/staff_client.py(직원 토큰 헤더 꼴 재사용)",
+      "backend/day/emr/base.py(어댑터 메서드)",
+      "backend/day/services/board_photos.py(새)",
+      "backend/day/presentation/board_photos.py(새 — 조각 값)",
+      "backend/day/routers/board_photos.py(새 · 화면 라우트)",
+      "backend/tests/day/board/test_board_photos*.py(새) · backend/day/emr/kos/demo(가짜 KOS 보충)"
+    ],
+    "domain_candidates": [
+      "없음(DAY 테이블 없음) — customer · visit external_ref · external_session(직원 토큰) 읽기 · event_log 쓰기"
+    ],
+    "dependencies": [
+      "③ — 계약 K4 만 맞추면 병렬",
+      "① 과 서로 독립",
+      "실물 e2e 는 ① · ② · ③ 뒤"
+    ],
+    "phases": [
+      "P1 KOS 이미지 어댑터(7단계 · 직원 토큰)",
+      "P2 service(이름 매칭 · 목록 확인 · transaction 밖 · event)",
+      "P3 라우트 · 조각 값 · 원본 바이트",
+      "P4 테스트 · 실물 e2e"
+    ],
+    "verification": [
+      "backend pytest(가짜 KOS · 매트릭스 · transaction · event payload)",
+      "실물 e2e(로컬 · KOS 데모 · KOS 웹 일정 사진 탭 눈 확인)"
+    ],
+    "predeploy": [
+      "데모 실물 1회 — 직원 토큰 + DAY 서버 UA 로 내부 이미지 경로가 받아지는지(OQ-89 ⓐ)"
+    ],
+    "rollback": [
+      "Code PR revert — migration 없음 · KOS 에 올린 시험 사진은 남음(시험 고객만)"
+    ],
+    "open_questions": [
+      "OQ-85 · 86 · 87 · 89 · 92 — SPEC-002 §5"
+    ]
+  }
+}

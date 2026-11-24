@@ -99,6 +99,10 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - [[queue]] — 같은 대상에 대한 쓰기를 한 줄로 세우는 자리
 - [[job-lease]] · [[proposal-revision]] — 같은 「읽은 값일 때만」 을 세션 기록·초안 회차에
 
+## 버전 대신 「연 때 값」 — 외부 원천과 대조하는 낙관적 충돌
+
+DAY 차트 탭 저장(2026-11-24): 충돌 판정에 DAY 이력 id(`baseLogId`)만 쓰면 아직 동기화되지 않은 KOS 직접 수정을 못 본다. 그래서 열 때 받은 값(`base` = 글 · 집도의)을 요청에 되돌려 받아 **저장 직전 KOS 지금 값과 대조**한다. 하나라도 다르면 탭 전체를 저장하지 않고(트랜잭션처럼) 그 칸에 「KOS 글 + 내 글」을 채워 돌려준다 — 사용자가 읽고 다시 저장. 다시 저장이 또 걸리는 틈이 셋 있었다: 409 직후 동기화가 KOS 이력을 쌓음(→ 동기화 이력은 글만 비교) · 응답 유실 뒤 같은 저장(→ 멱등) · CRLF(→ 정규화). 「다시 시도하면 통과해야 한다」를 끝 조건으로 시험해야 이 틈이 보인다.
+
 ## 출처
 
 - [[2025-01-08-Day07]] — 「낙관적 락, 비관적 락」 절이 둘을 나란히 정의하고, **「JPA 에서만 통용되는 개념으로 DB 에서는 낙관적락을 직접적인 지원은 없다」**는 첫 줄이 이 개념의 성격을 정확히 짚었다. 구현은 `@Version` 필드 하나이고, 「엔티티가 수정될 때마다 버전이 자동으로 증가한다 / 트랜잭션 충돌 시 `OptimisticLockException` 이 발생한다」로 동작을 적었다. **충돌을 실제로 만들어 본 방법**이 이 회차의 값이다 — 요청을 보내 `Thread.sleep(10_000)` 으로 트랜잭션을 붙들어 둔 사이에 **DBeaver 로 버전을 직접 수정**해 예외를 일으켰고, MariaDB 에서는 `JpaSystemException`/`GenericJDBCException` 으로 나타난다는 것까지 확인했다. 다만 충돌 후 재시도를 어떻게 할지는 다루지 않았고, 「JUnitTest」 절은 제목만 있다
@@ -106,3 +110,4 @@ UPDATE post SET username = ?, version = 3 WHERE id = 1 AND version = 2
 - [[2026-10-05-strong-hajin-polish3]] §2 — Strong Hajin WORK-010 업무 상세 인라인 즉시 저장(SPEC-007 §2.10.4 · `review-fe-p2a-report.md` W1 · `review-fe-p2b-report.md` W1 · 커밋 `cc64d18` · `58e591a`)
 - [[2026-10-07-strong-hajin-enhance]] §2 — Strong Hajin WORK-012 회의 세션 기록 CAS(웜스타트 경주) · AX 초안 v+1 수정
 - [[2026-11-11-day-procedure-board-2]] §2 — DAY 차트 자동 저장: 연 때 이력 id(`baseLogId`)를 들고 저장 · 다르면 409 `chart_conflict` · 외부(KOS) 수정은 동기화로 이력에 쌓고 양쪽 동시면 외부가 이김(SPEC-002 U-14 · 규칙 31 · 32)
+- [[2026-11-24-day-chart-photo]] §2 — 차트 탭 저장 C17 ~ C20(`review-code-1-report.md` W1 · W2 · W4)

@@ -10,6 +10,7 @@
 | [[orchestration/work/_archive/day/customer-erd/README\|customer-erd]] | 아카이브 | [[para/projects/company/day/log/2026-11-19-customer-erd\|회고]] |
 | [[orchestration/work/_archive/day/day-app/README\|day-app]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-app\|회고]] |
 | [[orchestration/work/_archive/day/day-cc-mig/README\|day-cc-mig]] | 아카이브 | [[para/projects/company/day/log/2026-11-20-day-cc-mig\|회고]] |
+| [[orchestration/work/_archive/day/day-chart-photo/README\|day-chart-photo]] | 아카이브 | [[para/projects/company/day/log/2026-11-24-day-chart-photo\|회고]] |
 | [[orchestration/work/_archive/day/day-data-architecture/README\|day-data-architecture]] | 아카이브 | 회고 미확인 |
 | [[orchestration/work/_archive/day/day-mobile-v2/README\|day-mobile-v2]] | 아카이브 | [[para/projects/company/day/log/2026-11-22-day-mobile-v2\|회고]] |
 | [[orchestration/work/_archive/day/day-procedure-board-2/README\|day-procedure-board-2]] | 아카이브 | [[para/projects/company/day/log/2026-11-11-day-procedure-board-2\|회고]] |

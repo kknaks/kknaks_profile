@@ -37,6 +37,11 @@ tags:
 
 - [[cold-start]] · [[kubernetes-workload]] · [[no-silent-fallback]] · [[stateless-protocol]]
 
+## 외부 시스템 세션도 공유 저장소로 — 프로세스마다 sign-in 하면 서로 끊는다
+
+DAY(2026-11-24): KOS 시스템 계정은 sign-in 마다 세션 하나(IP 무관) · 5기기 한도. 차트 저장 경로가 새 클라이언트를 만들어 저장마다 sign-in 했고, 캐시로 고치자 이번엔 API · 워커가 각자 세션을 들고 한도에서 「가장 오래된 같은 표시 세션」을 서로 해제해 번갈아 재로그인했다. 토큰을 Redis 에 병원마다 하나(암호화 · TTL) 두고 만료 · 401 이면 잠금 잡은 한 프로세스만 다시 받는다 — 재시작 뒤에도 sign-in 0. 세션 수 한도가 있는 외부 계정은 「프로세스 로컬 캐시」가 아니라 「공유 저장소 하나」가 단위다.
+
 ## 출처
 
 - [[2026-10-02-strong-hajin-polish]] §2·§3 — Strong Hajin 운영 회의 요약 실패(`research-meeting-summary.md`), 인프라 MediSolveAIDev/k8s_infra_mac#7, 코드 `dd4bd7c`, 배포 직후 옛 대화 세션 소실
+- [[2026-11-24-day-chart-photo]] §2 — C35 KOS 시스템 토큰 Redis 공유(로그 08:47 · 08:49 재로그인)

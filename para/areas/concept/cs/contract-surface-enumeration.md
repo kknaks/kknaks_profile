@@ -47,8 +47,13 @@ mediness 에서 "요청자 = 담당자" 가정을 깨고 담당자 지정을 열
 
 DAY FCM 키(2026-11-20): Key Vault 이름 · 배포 선택 비밀 목록에만 넣고 끝났다고 봤으나 금지 목록 · 로컬 가드 · 예시 env · compose · 배포 문서에 빠져 있었다(검수 FAIL). 하나라도 빠지면 Android 푸시가 오류 없이 skipped 로 꺼진다. release 빌드는 Firebase 설정이 없으면 실패하게 했다. ← [[2026-11-22-day-mobile-v2]]
 
+## 앞단(프록시)도 계약 표면이다
+
+DAY(2026-11-24): 여러 장 올리기를 하며 앱의 본문 상한을 없앴지만 dev · prod 앞의 Caddy 가 6MiB 로 막았다. 로컬 실행기는 Caddy 를 거치지 않고 시험은 ASGI 직접 호출이라 e2e 3회 · 시험 2700개가 다 통과했다. 코드 검수가 Caddyfile 을 읽어서야 잡았다. 요청이 지나가는 층(프록시 · 게이트웨이 · CDN)의 상한 · 시간 제한도 계약 표면 목록에 넣는다.
+
 ## 출처
 
 - [[2026-10-30-internal-chat]] §2 「들어온 뒤 대화만」 · review-doc r5
 - [[2026-11-12-fix-web]] §2 — 받은함 웹 전용 목록과 앱용 `inbox.section` 을 소비처로 갈라 웹만 정리 · accept 제거를 앱 파서로 판정
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
+- [[2026-11-24-day-chart-photo]] §2 — Caddy 6MiB(`review-code-4-report.md` F1 · C33)
