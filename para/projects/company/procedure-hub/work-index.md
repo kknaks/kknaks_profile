@@ -6,6 +6,7 @@
 
 | 작업 | 보관 위치 | 회고 |
 | --- | --- | --- |
+| [[orchestration/work/_archive/procedure-hub/phub-consult-demo/README\|phub-consult-demo]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-24-phub-consult-demo\|회고]] |
 | [[orchestration/work/_archive/procedure-hub/phub-gold-jev/README\|phub-gold-jev]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-18-phub-gold-jev\|회고]] |
 | [[orchestration/work/_archive/procedure-hub/phub-ledger-redesign/README\|phub-ledger-redesign]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-16-phub-ledger-redesign\|회고]] |
 | [[orchestration/work/_archive/procedure-hub/phub-recommend/README\|phub-recommend]] | 아카이브 | [[para/projects/company/procedure-hub/log/2026-11-16-phub-recommend\|회고]] |

@@ -75,3 +75,4 @@ up:
 - [[2026-11-16-phub-recommend]] §2 · §3 — 품질 측정 1~3차 · sample50 · 가상 문장 시험 철회(`_RESUME.md` 10-28 「3단계 끝 조건」 · 10-30 「품질 목표」 · 11-01 「측정 축소」 · `log/2026-10-30-quality-eval.md`)
 - [[2026-11-16-tongky-quality-re1]] §2 — 합성 144세션 vs 실기기 7세션 · 제모 · 써마지 · 끊김 값 D-55(합성) → D-67(실기기)(`wp33-context-report.md` · DEC-001 D-67)
 - [[2026-11-18-phub-gold-jev]] §2 — 입력 전수 표를 기준 묶음으로 · 두 번 재기 · 9 턴 분모 분리 · 엄격 채점 92.5 ~ 94.1(`research-input-space.md` · `review-input-space.md` · `review-code-app-v04.md` M-1 · L-8)
+- [[2026-11-24-phub-consult-demo]] §2 · §3 — 상담 품질 기준 22 × 13 시나리오 × 3 실행(192 턴) · 전 · 후는 같은 gold · 정답표 · 채점 판 · 너그러운 채점이 수치를 부풀림(100% → 85%) · 프롬프트를 바꾸면 전체를 다시 잰다 · 멈춤 기준을 먼저(`quality/after6-report.md` · `review-quality-base.md` · `review-spec-012-code-r4.md`)

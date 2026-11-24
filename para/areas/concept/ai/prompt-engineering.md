@@ -69,3 +69,4 @@ up:
 
 - [[2026-09-15-ai-engineering-ch1]] — 가중치를 안 바꾸는 적응 기법으로서의 정의, 컨텍스트 구성의 선택과 비용, 프롬프트를 코드처럼 버전 관리해야 하는 이유를 정리한다.
 - [[2026-10-03-strong-hajin-polish2]] §2 — Strong Hajin WORK-009 E2E-1·E2E-6(`be-survey-report.md` §1-2 · `be-survey2-report.md` · `review-be-p3-report.md` · 실물 2회)
+- [[2026-11-24-phub-consult-demo]] §2 · §3 — 낱말 · 동형 어미로 뜻을 가르면 평서문을 얼린다 · 판단은 LLM 출력 · 사실은 데이터 · 말투마다 상태 규칙을 쌓는 구조의 한계
