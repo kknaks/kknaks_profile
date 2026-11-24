@@ -1,0 +1,1 @@
+# [backend] 기능 4 고침 1 — R70 · R71(결정 파일 마지막 두 행): ① 동행 조건 「같은 시간대」 = 같은 30분 배치 행(열 간격 칸 아님) · 시험 갱신(60분 열에서 13:00 · 13:40 = 다른 행 → 409) ② CompanionCondition · CompanionPastDate 오류를 board_error_handler(oob 토스트)로(fe 질문 msg_c59e6b62227f 답 A) ③ 카드 높이는 화면 몫이라 바꿀 것 없으면 근거만. 관련 시험만 · 커밋 · 스택 금지 · worker_done 본문에 결과.

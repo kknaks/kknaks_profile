@@ -1,0 +1,4 @@
+# [frontend] 기능 3 — 공지 「수정하기」 제자리 편집
+결정 R58 · R61 · R62(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md` 마지막 절) · 계약 `contract-v3-notice.md` · 조사 `research-notice-1-report.md` 표 1(cc 화면) · §5(시안 오더 메모 모양 L2142 ~ 2146 · `.btn-xs-text` 파란 글자) 이 정본.
+할 일: 공지 날짜 머리 오른쪽 파란 글자 「수정하기」(notice.editable 일 때만) → textarea(현재 글 · autofocus) + 「n / 2,000」(넘으면 빨강 · 저장 막음) + [취소] · [저장](시안 오더 메모 버튼 모양). 저장 = `PUT /reservations/notice`(HTMX · form date · content) → 성공 시 공지 칸 조각 교체 + 알림 「공지를 저장했어요」 · 실패 시 글 · 편집 그대로 + 칸 안 「저장하지 못했습니다」 · 「다시 시도」. 편집 중엔 10초 폴링 · 날짜 이동이 공지 칸을 덮지 않음(날짜 이동 시 편집 닫기 · 버림). 문구는 결정 문장만(test_screen_copy 추가). backend 가 아직 없어도 계약 모양 픽스처로 node 시험(성공 · 실패 · 폴링 중 편집 유지 · 2,000 초과). 기존 규약(day.js 시계 하나 · 인라인 · 손 CSS 금지). 관련 시험만 · 커밋 · 스택 금지 · Python 은 backend 몫. 리포트 `fe-feat-3-report.md` · worker_done.
+- R62: 공백만 = 지우기 · 길이 = 앞뒤 공백 자른 값 · 저장 뒤 다시 읽기만 실패해도 성공(응답이 방금 글로 그림).

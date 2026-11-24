@@ -1,0 +1,1 @@
+# [reviewer_doc] 12차 — 검수 11 고침 확인: `review-doc-11-report.md` F11-1 ~ 3 · W11-1 ~ 6 이 `planner-fix-19-report.md` 대로 · 새 결정 R70 · R71(결정 파일 마지막 두 행)과 같은지만. 낡은 문장 grep(U-5 위치 · 높이 · 「열 간격 칸」) · lint 0. 범위 밖은 WARN 만. PASS/FAIL · `review-doc-12-report.md` · worker_done.

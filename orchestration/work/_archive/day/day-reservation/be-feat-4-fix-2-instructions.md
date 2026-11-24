@@ -1,0 +1,1 @@
+# [backend] 기능 4 고침 2 — 코드 검수 4 반영. `review-code-4-report.md`(이 폴더) F4-1: join 이 끈 카드 · 놓은 카드 둘 다 날짜 검사(현지 날짜 다르면 409 companion_condition · 놓은 카드 지난 날이면 409 companion_past_date) · 잘못된 요청으로 앞 그룹이 바뀌지 않게 검사를 바꾸기 전에. WARN 중 backend 몫은 판단해 고치고 근거. 순서는 R73(결정 파일 마지막 행)대로 그대로. 시험 추가(다른 날 · 지난 날 놓은 카드 → 409 · 데이터 그대로). 관련 시험만 · 커밋 · 스택 금지 · worker_done 본문에 결과.

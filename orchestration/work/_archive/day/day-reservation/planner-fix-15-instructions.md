@@ -1,0 +1,2 @@
+# [planner] 개정 ⑨ — E4 · E5 · 공지 수정 + 동기화 (R56 ~ R61)
+결정 파일 마지막 절 R56 ~ R61 을 SPEC-006 개정 ⑨ 로. 조사 `research-notice-1-report.md`(이 폴더) · 계약 `contract-v3-notice.md`. 뒤집히는 것: R48 「있을 때만」 · R16 「동기화 없음」 · R1/R44 「공지 쓰기 없음 · 다음 피처」 · R39 예외(쓰기) · U-7 「여러 행 전부」 → 첫 번째만 — grep 으로 낡은 문장 전부. 기획 1-3(자동 저장 · 어느 날짜든 · 고친 직원 표시)과 다른 곳 줄. SPEC-002(권한 키) · SPEC-000(notice · external_ref) 와 다른 곳은 「다른 스펙과 다른 곳」에 사실로. 10-decision · 20-spec · log 동기 · lint 0 error · 커밋 안 함. 리포트 `planner-fix-15-report.md` · worker_done.

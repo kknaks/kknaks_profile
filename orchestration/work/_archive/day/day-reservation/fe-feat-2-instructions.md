@@ -1,0 +1,2 @@
+# [frontend] 기능 2 — 담당자 「미정」 표시 (e2e E4 · E5)
+`e2e-1-feedback.md`(이 폴더) E4 · E5. ① 원내 현황 카드: 상담 대기부터 `counselor_name` 이 null 이어도 줄을 그리고 값 = 「미정」(상담 ○○ 실장 / 상담 미정). ② 예약 표 카드: backend 가 `card.staff = {role: "counselor"|"doctor", name|null}|null` 을 준다(동시 작업 — 필드 이름 이대로). role counselor → 「상담사 ○○○」 / 「상담사 미정」 · doctor → 「담당의 ○○○」 / 「담당의 미정」 · null 이면 줄 없음. 문구는 사용자 확정(test_screen_copy 에 추가). 카드 높이 · 말줄임은 기존 카드 규칙. 관련 시험만 · 커밋 · 스택 금지 · Python 은 backend 몫. worker_done 본문에 결과.

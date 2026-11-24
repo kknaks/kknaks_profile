@@ -1,0 +1,2 @@
+# [planner] 고침 13 — 검수 7 반영
+리포트 `review-doc-7-report.md`(이 폴더). F7-1 · F7-2 · W7-3 · W7-5 · W7-6 을 고친다. F7-1 · F7-2 · W7-1 은 새 결정 **R54** 로 정해졌다(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md` 마지막 행) — ⓐ 거래 = 승인 · 취소 · SPENT(선불카드 포함) · ⓑ 덮임 = 살아 있는 수납 건(상태 무관)에 같은 옵션. §3 · 케이스 매트릭스 · 요약 다섯 곳 전부 이 문장으로(grep). W7-2: R52 는 실측 당시 스냅샷을 fixture 로 — 한 줄. W7-4: 계약 칩 count 는 「표시 안 함」 한 줄. lint 0 error · 커밋 안 함. 리포트 `planner-fix-13-report.md` · worker_done.

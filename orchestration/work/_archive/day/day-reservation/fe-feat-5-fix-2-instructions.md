@@ -1,0 +1,2 @@
+# [frontend] 기능 5 고침 2 — R75(결정 파일 마지막 행 · 사용자): 「동행그룹」 꼬리표 · 사다리꼴 탭 마크업 · CSS 없앰, bands 행 위 여백(18px) 없앰 → 행 높이 = lines × 줄 높이(R70 그대로 · 시간 축 밀림 없앰). 띠는 진한 primary 굵은 테두리만(지금 색 · 두께 그대로). test_screen_copy 의 「동행그룹」 빼기 · node · 화면 시험 되돌림/갱신 · 관련 시험만 · 커밋 · 스택 금지 · worker_done 본문에 결과.
+너는 맥락이 없다(새 터미널). 먼저 이 폴더의 `fe-feat-4-report.md`(끝 「기능 5」 · 「고침 1」)와 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation/AGENTS.md` 를 읽어라.

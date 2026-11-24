@@ -1,0 +1,4 @@
+# [reviewer] review-delivery — CENTURION_DAY#272 ↔ Delivery #267 · #268 · #269 (v3)
+먼저 읽어라: 이 폴더 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/` 의 `delivery-4-report.md`(key · version 3 · digest · scope_delta) · `review-delivery-1-report.md`(지난 방식).
+할 일: mediness harness 의 `review-delivery` 단계(skill · 문서 워크트리 `/Users/kknaks/orca/workspaces/mediness-mediness/day-reservation-spec` 의 harness 안내대로)를 **exact PR head `85836b30`** 로 세 Issue 에 대해 돌린다. 코드는 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation`(읽기만 · 전체 check.sh 이미 녹색 — 2584 passed · CI success). 결과 라벨 · 댓글은 harness 가 정한 대로 남겨도 된다(그게 이 단계의 산출물). 코드 · 문서 고치기 · 커밋 · 머지 금지. 규칙이 막으면 우회 말고 그대로 보고.
+보고 `review-delivery-2-report.md`(위 폴더) — Issue 마다 판정 · 남긴 라벨 · 다음 단계(머지 뒤 spec-sync 등). preamble 의 worker_done.

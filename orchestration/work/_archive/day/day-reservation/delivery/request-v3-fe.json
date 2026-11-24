@@ -1,0 +1,87 @@
+{
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 3,
+ "target_specs": [
+  "DAY-SPEC-006"
+ ],
+ "spec_baseline_revision": "32b83390eb9fbdcd615f86ecad016b6e9c39ee74",
+ "idempotency_key": "day/day-spec-006/fe",
+ "title": "DAY 예약 현황 ③ 화면 — 탭 · 카드 · 배치 · 끌어 놓기 · 공지 편집 (Jinja2 + HTMX · day.js · DAY-SPEC-006)",
+ "risk_level": "L2",
+ "target_delta": [
+  "예약 현황 화면 — 페이지 머리(날짜 · 꺾쇠 · [오늘] · 달력 · [필터] 팝오버) · 예약 표(열 머리 · 시간 칸 · 회색 면 · 현재 시각 선 · 카드 띠 색 · 이름 · 국가 · 초진 · 수납 필요 · 상태 툴팁 · 취소 / 귀가 모양 · 좌우 넘김) · 오른쪽 패널(공지 / 예약 요청 제목만 · 1:1) — 시안이 정본 · SPEC-006 RV-01 ~ RV-41 · U-1 ~ U-7",
+  "날짜 바꾸기 = HTMX GET 조각 #reservation-main(V0) · hx-push-url · 10초 조각 폴링(R41 — 계약 S `poll=1` 을 싣고 push 안 함) · 필터는 계약 V4 의 수를 그대로 보이고 흐리게 하기만 화면 안에서(다시 세지 않음) · 현재 시각 선은 화면이 1분마다(now_min 기준)",
+  "아이콘 줄 「예약」 · 헤더 탭 「예약 현황」 링크는 ① #267 이 `menu.py` 로 켠다 — ③ 은 링크가 켜졌는지 e2e 로 확인만",
+  "계약 S(폴링 구분 — #267 · #269 같은 문장): 10초 폴링 요청은 쿼리 `poll=1` 을 싣는다(`GET /reservations?date=YYYY-MM-DD&poll=1` + `HX-Request` · 폴링 요소는 hx-push-url 을 쓰지 않음) · ① 은 `poll=1` 이면 최신화 요청을 넣지 않고 DB 사본만 돌려준다 · 날짜 바꾸기(꺾쇠 · [오늘] · 달력)는 `poll` 없이 보낸다. 고른 이유: HX-Trigger 헤더는 HTMX 가 누른 요소 id 를 싣는 칸이라 요소 id 에 묶이지만, 쿼리는 요소와 무관하고 로그 · 테스트에서 바로 보인다",
+  "계약 V0(조각 범위 — #267 제공 · #269 소비 같은 문장): HX 조각 `#reservation-main` = 페이지 머리 날짜 줄(날짜 · 꺾쇠 · [오늘] · [필터] 버튼과 팝오버) + 예약 표 + 오른쪽 패널(공지 / 예약 요청 제목). 셸(아이콘 줄 · 헤더)은 전체 페이지에만",
+  "계약 V1(화면 값 · 페이지): `date`(YYYY-MM-DD) · `weekday`(요일 한 글자) · `is_today`(bool) · `now_min`(오늘만 · 자정부터 분 · 아니면 null) · `axis`{`start_min`, `end_min`}(30분 단위 · 기본 08:00 ~ 24:00 · 축 밖 예약이면 ① 이 늘림) — 판정 위치 = ①",
+  "계약 V1 보충(addendum 1 · 2): `today`(병원 현지 오늘) · `open_min`(그날 가장 이른 운영 시작 · 그룹 0개면 null) · `axis.time_gray_spans[]`(open_min 전 ∪ 오늘이면 지금 정시 전 · 지난 날이면 끝까지 — 계산 = ①) · 템플릿 컨텍스트 이름 = 계약 이름 그대로 최상위(`date` · `weekday` · `is_today` · `today` · `now_min` · `open_min` · `axis` · `columns` · `cards` · `rows` · `bands` · `filter` · `notice` · `inhouse` · `companion_editable`)",
+  "계약 V2(화면 값 · 열 `columns[]`): {`group_id`, `title`, `capacity` (int 또는 null — 살아 있는 구역이 1개면 그 정원 · 0개 · 2개 이상이면 null), `interval_minutes`, `gray_spans[]`{`start_min`, `end_min`}(운영 전 · 지난 시간 · 쉬는 시간 · 꺼진 요일 · 그룹 휴무를 합친 회색 구간)} — 정원 null 판정 · 회색 구간 계산 = ① / 「n명 / m분」 글자 조립 · capacity null 이면 「n명」 부분 비움 = ③(시안 문구)",
+  "계약 V3(화면 값 · 카드 `cards[]` — 2026-11-24 갱신): {`visit_id`, `group_id`, `start_min`, `end_min`, `lane`(0 ~ 4 · 줄 안 자리), `line`(0 ~ · 그 30분 행 안 몇째 줄), `companion_group_id`(없으면 null), `name`, `nationality`, `is_new`, `state`(예약 상태(취소 · 노쇼)를 먼저 보는 판정 = ①), `payment_due`(bool — 내원 단계와 상관없이 살아 있는 `visit_task.payment_required` 하나라도 · R42), 담당자 줄 값(상담 대기 · 진행 = 상담사 · 시술 대기 · 진행 = 담당의 · 없으면 「미정」 · 그 밖 단계 없음 — R56 · R57 · R63)} · ~~`stack_index`~~ 없앰(v4). + `rows[]`{`start_min`, `end_min`, `lines`}(30분 행 · 전 열 공통) · `bands[]`{`group_id`, `column_id`, `start_min`, `line`, `lane_from`, `lane_to`} · `companion_editable`(오늘 · 앞날 ∧ `reservation.companion` edit). 배치 순서 = 닫힌 카드 뒤 · 동행 그룹 카드 먼저(그룹 생긴 순 → 넣은 순) · 그룹 없는 카드(시작 → 생성) · 한 줄 최대 5 — 판정 = ①(R64 · R70 · R71 · R73) · 띠 색 · 툴팁 글자 · 모양은 ③",
+  "계약 V4(화면 값 · 필터 · 패널 — 2026-11-24 갱신): `filter`(그대로 — 수를 세는 곳 = ① · ③ 은 다시 세지 않음) · `notice`{`id`(DAY notice id · 없으면 null), `content`(그 날짜 첫 공지 · 없으면 null), `editable`(date ≥ 오늘 KST ∧ `reservation.notice` edit), `date`}(v3) · `inhouse`{`chips[]`, `items[]`}(v2 — 대상 = 오늘 · 판정(대상 · cat · 배지 · 금액 · 순번) = ① · 화면은 칩으로 거르고 순번으로 줄 세우기만) · 예약 요청 칸 제목 「예약 요청」은 ③ 템플릿 글자",
+  "오른쪽 패널 탭 「공지 / 예약」 · 「원내 현황」(R46 · 기본 = 공지 / 예약) · 원내 현황 카드 = 시안 `stageCard`(이름 · 배지 · 단계 · 접수 = 예약 일시 / 국적 · 상담 실장 줄 「미정」 · 금액 세 줄) · 칩으로 거르고 `order_*` 로 줄 세움 · 빈 목록 「해당하는 고객이 없어요」 · 고른 탭 · 칩은 폴링 · 날짜 이동 뒤에도 유지(계약 v2 · R47 · R48 · R56)",
+  "표 카드 담당자 한 줄(R57) · 「수납 필요」 = V3 `payment_due` 그대로(R42) · 정원 null 열 머리 = 「30분」만(addendum 7)",
+  "배치(R64 · R70 · R71): 카드 폭 140 · 한 줄 최대 5 · 시간 행 높이 = `lines` × 70 · 카드 높이 한 줄 고정 66 · top = 행 top + `line` × 70 — 받은 값으로만 그림",
+  "끌어 놓기(계약 v4 · R66 · R69): `companion_editable` 일 때 카드 끌기 → 다른 카드 위 = 묶기 PUT · 띠 밖 빈 곳 = 풀기 PUT · 같은 그룹 위 / 그룹 없는 카드 빈 곳 = 요청 없음 · 끄는 동안 폴링 미룸 · 실패 = 제자리 + 시술 현황과 같은 oob 토스트(R71) · 띠 = 진한 primary 굵은 테두리만 · 글자 없음(R75 — R72 꼬리표 · R74 책갈피 뒤집음)",
+  "공지 편집(계약 v3 · R58): 「수정하기」(editable 일 때 · 날짜 오른쪽) → 제자리 textarea + 글자 수(2,000) + [취소] · [저장] · 편집 중 폴링이 공지 칸을 덮지 않음 · 성공 「공지를 저장했어요」 · 실패 = 글 그대로 + 「저장하지 못했습니다」 · 「다시 시도」",
+  "꺾쇠 연타 debounce(addendum 6): 마지막으로 멈춘 날짜만 요청 · 문구 근거 표 `tests/architecture/test_screen_copy.py` 는 시안 글자만 · 행마다 시안 줄 번호(addendum 3)"
+ ],
+ "acceptance": [
+  "A1: SPEC-006 「화면 구성」 넣음 요소가 시안과 같은 모양 · 문구로 보이고 「뺌」 요소는 그려지지 않는다(문구를 짓지 않음)",
+  "A2: 인라인 스크립트 0 · 손 CSS 0 — JS 는 static/day.js 이벤트 위임 + data-* · 스타일은 medikit 토큰 · ui.html 매크로(CENTURION_DAY AGENTS.md 「웹 화면」)",
+  "A3: 날짜 바꾸기(poll 없음) · 10초 폴링(`poll=1`) · 필터(V4 수 그대로) · 툴팁(V3 `state` 키 → 시안 글자) · 좌우 넘김이 SPEC-006 U-1 ~ U-7 · 케이스 매트릭스대로 동작 — 계약 V0 ~ V4 가짜 값으로 템플릿 렌더 테스트",
+  "A4: 실물 e2e 1회(로컬 · KOS 데모 지점 · 기대 결과): 오늘 열기 = 최신화 요청 0(로그 · task 큐로 확인) · 10초 폴링이 DB 사본만 다시 읽음 / 다른 날짜 열기 = 첫 화면은 이전 사본(빈 표 가능) · 최신화 요청 1회 → 다음 폴링에 그 날짜 카드가 채워짐 · 폴링 동안 최신화 요청 0 / 같은 날짜를 두 창에서 동시에 열기 = 그 (병원, 날짜) KOS 일정 조회 1회(로그 · 호출 수로 확인) · 두 창 모두 다음 폴링에 같은 사본. 순서 조건: e2e 는 ① #267 · ② #268 · ③ #269 가 모두 들어간 뒤 마지막으로 머지되는 Issue 에서 1회 돌리고 그 결과를 세 Issue 에 남긴다 · 메뉴 링크(① 이 켬)가 열리는지",
+  "A5: 원내 현황 탭 · 칩 · 정렬 · 카드 · 빈 상태 · 탭 유지가 계약 v2 가짜 값으로 렌더 · DOM 테스트",
+  "A6: 끌어 놓기 — 묶기 · 풀기 · 요청 없음 두 경우 · 실패 제자리 + oob 토스트 · 끄는 동안 폴링 미룸 · 띠에 글자 없음 — DOM 테스트",
+  "A7: 공지 편집 — 수정하기 보임 조건 · 글자 수 · 취소 · 저장 성공 · 실패 · 다시 시도 · 편집 중 폴링이 덮지 않음 — DOM 테스트",
+  "A8: 배치 — rows · lines · lane · line 으로 행 높이 · 카드 top · 6번째 카드 아래 줄 · debounce 마지막 날짜만 — DOM 테스트"
+ ],
+ "non_goals": [
+  "백엔드 조회 · 공지 저장 · 동행 쓰기 · 권한(Delivery ①) · 동기화(Delivery ②)",
+  "카드 누르기 동작(끌기 밖) · 상세 모달 · 예약 요청 내용 · 근무표 · 고객 검색 · 고객 등록(R1 ~ R5 · R15 · R33)",
+  "원내 현황 · 시술 현황의 동행 표시(R68)",
+  "낡음 표시(OQ-R21 · 2루프)"
+ ],
+ "review_surface": [
+  "SPEC 원천 = DAY-SPEC-006(stable · 개정 ① ~ ⑪) · DAY-SPEC-000 2026-11-24 개정 · DAY-SPEC-002 개정 ㉗ — Mediness main 32b83390(PR #958 머지 · spec-baseline ready). 구현 = Code PR CENTURION_DAY#272(dev 대상 · 1차 조회 + 원내 현황 + 담당자 줄 + 공지 수정 · 동기화 + 카드 배치 + 동행 그룹 · 세 Delivery 를 한 PR 이 덮음)",
+  "시안과 모양 · 문구가 같은지",
+  "CSP(인라인 스크립트 0) · medikit 클래스만",
+  "Delivery ① 과의 값 계약"
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/templates/reservations.html",
+   "backend/day/templates/partials/reservations_main.html · reservations_notice.html · reservations_parts.html",
+   "backend/day/static/day.js · day.css",
+   "backend/day/styles/app.css",
+   "backend/day/templates/ui.html · icons.html",
+   "scripts/frontend/tests/res-*.test.mjs(DOM 테스트)",
+   "backend/tests/architecture/test_screen_copy.py(문구 근거 표 — addendum 3)"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "① #267 — 계약 S · V0 ~ V4 · v2 ~ v4 만 맞추면 가짜 값으로 병렬",
+   "세 Delivery 가 한 Code PR #272 로 들어감 · 실물 e2e 는 그 PR 에서"
+  ],
+  "phases": [
+   "P1 셸 · 페이지 머리 · 표 뼈대",
+   "P2 카드 · 회색 면 · 현재 시각 · 넘김",
+   "P3 필터 · 툴팁 · 오른쪽 패널",
+   "P4 폴링 · 날짜 바꾸기 · 실물 e2e",
+   "P5 원내 현황 탭 · 담당자 줄",
+   "P6 공지 편집",
+   "P7 배치 · 끌어 놓기 · 띠"
+  ],
+  "verification": [
+   "템플릿 렌더 테스트(pytest) · CSP 검사 · DOM 테스트(scripts/frontend/tests)",
+   "실물 e2e(로컬 · KOS 데모) · 시안 대조"
+  ],
+  "predeploy": [],
+  "rollback": [
+   "Code PR revert — 메뉴 링크를 빼면 화면이 안 보임"
+  ],
+  "open_questions": []
+ },
+ "scope_delta": "2026-11-24 재결속 — baseline = 머지된 Mediness main 32b83390(PR #958 · spec-baseline:pending 뗌). 범위 넓힘(사용자 결정 R42 ~ R75 · 코디 계약): 계약 보충 v1 addendum 1 ~ 9(V1 today · open_min · time_gray_spans · 컨텍스트 이름 = 계약 이름 · 문구 근거 표 · 행 경합 = 날짜 쪽 양보(lock_timeout) · 꺾쇠 연타 debounce · 정원 null = 「30분」 · 잠금 전 Redis 10초 캐시 · 권한 행 = 데이터 migration) · v2 원내 현황 탭(R46 ~ R55 · 금액 = 수납 · 미수 · 결제총액) · v3 공지 수정 + KOS 공지 동기화(R58 ~ R62 · 누른 직원 토큰 직접 쓰기 · 503 kos_unavailable) · v4 동행 그룹 · 카드 배치(R64 ~ R73 · DAY 전용 새 테이블 · lane · line · rows · bands · 띠 = 진한 primary 테두리만 R75) · 「수납 필요」 = 단계 무관 payment_required(R42) · 다른 날짜 첫 화면 최대 3초 기다림(R43) · 담당자 줄(R56 · R57 · R63). 나눔: #267 = 백엔드 조회 · 원내 금액 · 공지 저장 · 동행 쓰기 · 권한 키 셋 · migration 0018 ~ 0023 / #268 = 동기화(날짜 회차 · 공지 동기화 · 거래 매핑) / #269 = 화면(탭 · 카드 · 배치 · 끌어 놓기 · 공지 편집). 결과 계약이 바뀌어 재승인 대상"
+}

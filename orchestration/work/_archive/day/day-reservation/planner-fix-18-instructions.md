@@ -1,0 +1,2 @@
+# [planner] 개정 ⑩ — 담당의 첫 줄(R63) · 카드 배치(R64) · 동행 그룹(R65 ~ R69) · 공지 503
+결정 파일 끝 R63 ~ R69 · 계약 `contract-v4-companion.md` · 조사 `research-companion-1-report.md` · 계약 v3 보충 2(KOS 장애 = 503 kos_unavailable — SPEC 의 502 문구 정정). SPEC-006 개정 ⑩: 화면(U 절) · 데이터(새 테이블 두 개 · SPEC-000 와 다른 곳) · 쓰기 API · 권한 · 기획안 · 시안과 다른 곳(동행은 기획 = 메모 · 시안 없음) · 낡은 문장 grep(stack_index · 「겹치면 옆으로」 등). 10-decision · 20-spec · log 동기 · lint 0 · 커밋 안 함. 리포트 `planner-fix-18-report.md` · worker_done.

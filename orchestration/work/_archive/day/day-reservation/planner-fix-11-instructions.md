@@ -1,0 +1,2 @@
+# [planner] SPEC-006 R42 정정 — 수납 필요 단계 조건 제거
+결정 파일 R42 가 바뀌었다(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md`): 수납 필요 = **단계와 상관없이** 살아 있는 시술 줄 중 payment_required 하나라도. 개정 ⑦ 의 「귀가 대기 ∧」 문장마다 취소선 + R42 정정 · 기획안 · 시안과 다른 곳 표에 「시안은 귀가 대기부터 · DAY 는 단계 무관(사용자)」 한 줄 · log.md 한 줄 · lint --strict · 커밋 금지 · 워크트리 `/Users/kknaks/orca/workspaces/mediness-mediness/day-reservation-spec` · preamble 의 worker_done

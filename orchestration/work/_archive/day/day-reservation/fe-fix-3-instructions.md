@@ -1,0 +1,3 @@
+# [frontend] 고침 3 — e2e 1회차 E1 · E2(화면 쪽)
+읽을 것: `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/e2e-1-feedback.md` E1 · E2 · 원 브리프 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/day-reservation-fe-brief.md`(§5 · §8 · §9) · 워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation`(backend 도 같은 트리 — 서로 미커밋 변경 지우지 마라 · 스택 건드리지 마라)
+E1 이 먼저(가장 급함). E2 는 backend 가 응답을 늦추는 것이라 화면은 「기다리는 동안 이전 화면 유지 · 순서 판정과 충돌 없음」만. 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/fe-fix-3-report.md` · preamble 의 worker_done

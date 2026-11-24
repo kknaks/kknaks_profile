@@ -1,0 +1,3 @@
+# [backend] 고침 4 — 수납 필요 단계 조건 제거 (사용자 정정)
+사용자: 「단계 상관없이 붙여라」. 고침 3 의 E3 에서 **귀가 대기 조건을 뺀다** → 수납 필요 = 살아 있는 시술 줄 중 `payment_required` 하나라도(어느 단계든 · 취소 · 노쇼 카드는 지금 규칙대로 두고 이유 한 줄). 시험 바꿈: 접수 + 수납필요 → **붙음** · 시술 진행 + 수납필요 → 붙음 · 수납필요 없음 → 안 붙음 · 지운 작업 → 안 붙음. 결정 파일 R42(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md`).
+워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation`(스택 건드리지 마라 · 재기동은 코디) · 네 시험 + 관련 화면 시험만 · 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/be-fix-4-report.md` · preamble 의 worker_done

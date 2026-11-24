@@ -1,0 +1,4 @@
+# [reviewer] 코드 검수 4 — 카드 배치 · 동행 그룹 (be-feat-4 · fix-1 · fe-feat-4 · fix-1)
+앞 판 `review-code-3-report.md` · `be-feat-4-report.md` · `fe-feat-4-report.md`(이 폴더). 워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation` 미커밋 변경 중 검수 3 이후분.
+기준: SPEC-006 개정 ⑩(`/Users/kknaks/orca/workspaces/mediness-mediness/day-reservation-spec/products/day/20-spec/spec-006-reservation-board.md` HEAD 최신) · 결정 R63 ~ R71 · 계약 `contract-v4-companion.md`.
+특히 ① 배치(30분 행 · 5장 · line · rows.lines · 그룹 이웃 · bands)가 계약 · 결정과 같은지 ② 동행 조건(같은 열 · 같은 30분 행 · 닫힌 카드 · 지난 날짜 · 권한) · 옮김 · 풀기 · 1명 남음 · 자동 빠짐(읽기 valid_members · 쓰기 · 동기화 prune · savepoint) ③ migration 0021 · 0022 heads 하나 · 부분 유일 ④ W3-1(공지 savepoint) · W3-2 ⑤ 화면 끌어 놓기(편집 가능할 때만 · 폴링 미룸 · 실패 제자리 · 옛 폴링이 덮지 않음) · 카드 한 줄 고정 ⑥ 실패 토스트 빈 문구(UNSET) 동작 ⑦ 쿼리 수 · 계층 · 문구 규약. 관련 시험 직접 · 전체 check.sh 말고. 고치지 마라 · 커밋 · 스택 금지. PASS/FAIL · `review-code-4-report.md` · worker_done.

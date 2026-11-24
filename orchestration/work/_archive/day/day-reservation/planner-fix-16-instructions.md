@@ -1,0 +1,1 @@
+# [planner] 고침 16 — 검수 9 반영. `review-doc-9-report.md` F9-1(Rule 7 끝 문장 취소선 · R59) · F9-2 와 WARN 은 새 결정 R62(결정 파일 마지막 행)로. R17 인용 낡은 것 고침. Delivery 는 코디 몫이라 그대로. lint 0 · 커밋 안 함 · `planner-fix-16-report.md` · worker_done.

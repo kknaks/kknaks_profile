@@ -1,0 +1,69 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 2,
+  "target_specs": [
+    "DAY-SPEC-006"
+  ],
+  "spec_baseline_revision": "8aef9206036d076798242ca66abd30d644762180",
+  "idempotency_key": "day/day-spec-006/be-refresh",
+  "title": "DAY 예약 현황(조회) ② 백엔드 — 다른 날짜 최신화 중앙 작업(R40 · 잠금 · C1 ~ C3) (DAY-SPEC-006)",
+  "risk_level": "L2",
+  "target_delta": [
+    "중앙(서버 worker) 작업 — (병원, 날짜) 최신화 요청을 받아 그 날 창(병원 현지 00:00 ~ 다음 날 00:00)으로 오늘 동기화와 같은 범위를 KOS 에서 받아 저장: 일정 → KOS 키 보충(visit.reservation_group_id) → 구매 · 시술권 · 선불카드(R26 · R40)",
+    "같은 (병원, 날짜) 최신화 잠금 — 동시 요청은 한 번만(R40) · 주기적 재최신화 없음 · 오늘은 이 작업을 쓰지 않음(10초 회차 그대로)",
+    "조건 C1 완성된 상태만 보임(일정만 반영되고 그룹 칸이 빈 중간 상태를 읽는 순서 없음) · C2 오늘 10초 회차의 잠금 때문에 단계를 건너뛰지 않음 · 실패면 중간 상태 없이 실패(화면 = 이전 사본 R30) · C3 구매 단계의 「오늘」 가정(발행 시각 순서 · 병원 sales 잠금 · 오늘 끝까지 티켓)에 그 날짜 것이 버려지지 않음 — 지금 함수가 못 지키는 곳은 SPEC-006 §3 사실 표(emr_kos_keys.py:81-128 · emr_sync.py:243 · emr_sale_sync.py:355-367)",
+    "계약 T(최신화 요청 입구 — #267 · #268 같은 문장): taskiq task 이름 `day.sync_reservation_date_hospital`(기존 `tasks/emr.py` task 이름 꼴 · 이름 제안 — 외부 계약 AGENTS.md:131) · 인자 `hospital_id: str`(DAY hospital uuid 문자열) · `date: str`(병원 현지 날짜 `YYYY-MM-DD`). ① 은 오늘이 아닌 날짜를 열거나 바꿀 때(`poll` 없음) `kiq` 로 한 번 넣고 기다리지 않는다 · 오늘 날짜 · `poll=1` 요청은 넣지 않는다 · 같은 (병원, 날짜) 잠금 · 중복 제거 · 실패 처리는 ② 안에서 한다(① 은 모른다)"
+  ],
+  "acceptance": [
+    "A1: 계약 T 요청 하나로 그 날짜를 오늘 동기화와 같은 범위(R26)로 저장한다 — 방문 · 고객 · 작업 · 그룹 칸 · 구매 · 시술권 · 선불카드(이 화면이 읽는 것은 그중 구매뿐이지만 범위는 오늘 동기화와 같게)",
+    "A2: C1 — 최신화 중 다른 읽기가 그룹 칸이 빈 방문을 보지 않는다(테스트로 증명)",
+    "A3: C2 — 오늘 10초 회차가 같은 병원 잠금을 잡고 있어도 날짜 최신화가 단계를 조용히 건너뛰지 않는다 · 실패면 중간 상태 없음",
+    "A4: C3 — 오늘 구매 메시지와 순서가 겹쳐도 그 날짜 구매가 버려지지 않는다",
+    "A5: 같은 (병원, 날짜) 동시 요청 = 한 번만 돈다 · 오늘 10초 회차 동작은 바뀌지 않는다(기존 테스트 그대로 통과)",
+    "A6: 실물 e2e 1회(로컬 · KOS 데모 지점 · 기대 결과): 오늘 열기 = 최신화 요청 0(로그 · task 큐로 확인) · 10초 폴링이 DB 사본만 다시 읽음 / 다른 날짜 열기 = 첫 화면은 이전 사본(빈 표 가능) · 최신화 요청 1회 → 다음 폴링에 그 날짜 카드가 채워짐 · 폴링 동안 최신화 요청 0 / 같은 날짜를 두 창에서 동시에 열기 = 그 (병원, 날짜) KOS 일정 조회 1회(로그 · 호출 수로 확인) · 두 창 모두 다음 폴링에 같은 사본. 순서 조건: e2e 는 ① #267 · ② #268 · ③ #269 가 모두 들어간 뒤 마지막으로 머지되는 Issue 에서 1회 돌리고 그 결과를 세 Issue 에 남긴다"
+  ],
+  "non_goals": [
+    "오늘 10초 회차 동작 변경 · 오늘 화면 C1(R41 ⓐ)",
+    "주기적 재최신화 · 선동기화(R18 · R40)",
+    "쓰기 큐 확인(outbox.confirm) · 「방 배정」 잇기를 다른 날짜에서 돌리기(R33)",
+    "새 테이블 · 칸 · migration",
+    "공지 · 기준 정보 동기화"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-006(사용자 승인 · stable) — Mediness PR #958 커밋 1870f68cd23633776a228d4c28e78f68a593cbca(브랜치 kknaksss/day-reservation-spec). main 에 아직 없어 spec-baseline:pending 으로 시작한다. SPEC-006 이 Mediness main 에 들어가면 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재실행해 spec-baseline:ready 로 재결속한다(결과 계약 의미가 같으면 재승인 없음 — requests.md)",
+    "C1 ~ C3 를 어떻게 지키는지(transaction · 잠금 설계)",
+    "오늘 회차와의 겹침 — 기존 오늘 동기화 회귀 없음",
+    "KOS 호출량(날짜 열 때마다 1회 · 잠금)"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/tasks/emr.py(새 task `day.sync_reservation_date_hospital` — 계약 T)",
+      "backend/day/services/emr_sync.py(창 인자 · run_schedules 경로)",
+      "backend/day/services/emr_kos_keys.py(apply_isolated 잠금 · transaction)",
+      "backend/day/services/emr_sale_sync.py(발행 시각 순서 · today_window)",
+      "backend/day/emr/sync_schedules.py"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "① #267 — 계약 T 만 맞추면 병렬",
+      "실물 e2e 는 ① · ② · ③ 이 다 들어간 뒤"
+    ],
+    "phases": [
+      "P1 날짜 창 · 잠금 · task 입구",
+      "P2 일정 → 키 보충 → 구매를 C1 · C2 로 묶기",
+      "P3 구매 단계 C3",
+      "P4 테스트(실 PostgreSQL · Redis) · 실물 e2e"
+    ],
+    "verification": [
+      "backend pytest — C1 · C2 · C3 · 동시 요청 · 오늘 회차 회귀",
+      "실물 e2e(로컬 · KOS 데모)"
+    ],
+    "predeploy": [],
+    "rollback": [
+      "Code PR revert — migration 없음 · 사본에 받아 둔 다른 날짜 행은 다음 동기화와 같은 모양이라 남아도 무해"
+    ],
+    "open_questions": []
+  },
+  "scope_delta": "2026-11-23 Delivery 검수(review-delivery-1) FAIL 4 · WARN 6 반영 — 계약 명시(폴링 신호 S · task 입구 T · 화면 값 V0 ~ V4) · 수정 후보 이름(AGENTS.md 규칙) · e2e 기대 결과 · 순서 조건. 범위(무엇을 만드는지)는 그대로"
+}

@@ -1,0 +1,102 @@
+{
+ "delivery_issue": 268,
+ "contract_digest": "sha256:0e03044b8b5249b04ea565f00a5c50dc92f776fb6edff3de04fa800ff8e537c8",
+ "contract_version": 3,
+ "spec_baseline_revision": "32b83390eb9fbdcd615f86ecad016b6e9c39ee74",
+ "code_pr": 272,
+ "code_pr_head_sha": "85836b300cb729fb9b4923d05ae9d8bf14bd66f8",
+ "code_merge_sha": "4bf0b4a12f3238b610150eb052a6964ab2438ff2",
+ "acceptance": [
+  {
+   "id": "A1",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_date_sync.py:209",
+    "backend/tests/day/emr/test_date_sync_rules.py:106"
+   ]
+  },
+  {
+   "id": "A2",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_date_sync.py:235",
+    "backend/tests/day/emr/test_date_sync_rules.py:147"
+   ]
+  },
+  {
+   "id": "A3",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_date_sync.py:255",
+    "backend/tests/day/emr/test_date_sync.py:278",
+    "backend/tests/day/emr/test_date_sync.py:296"
+   ]
+  },
+  {
+   "id": "A4",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_date_sync.py:320",
+    "backend/tests/day/emr/test_date_sync_rules.py:125"
+   ]
+  },
+  {
+   "id": "A5",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_date_sync.py:336",
+    "backend/tests/day/emr/test_date_sync.py:448",
+    "backend/tests/day/emr/test_emr_sync_service.py:177"
+   ]
+  },
+  {
+   "id": "A6",
+   "result": "pass",
+   "evidence": [
+    "https://github.com/MediSolveAIDev/CENTURION_DAY/issues/268#issuecomment-7121402807",
+    "사용자 직접 확인 2026-11-24 「내가 다 확인했다」 · 로그: sync_reservation_date_hospital 18 · done 18 · 오늘 날짜 최신화 0 · 폴링 낸 최신화 0"
+   ]
+  },
+  {
+   "id": "A7",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_notice_sync.py:44",
+    "backend/tests/day/emr/test_notice_sync.py:106",
+    "backend/tests/day/emr/test_date_sync_notices.py:49",
+    "backend/tests/day/emr/test_date_sync_notices.py:66",
+    "backend/tests/day/emr/test_date_sync_notices.py:82"
+   ]
+  },
+  {
+   "id": "A8",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/emr/test_kos_sale_mapper.py:180",
+    "backend/tests/day/emr/test_kos_keys_mapper.py:495",
+    "backend/tests/day/test_reservation_amounts.py:243"
+   ]
+  },
+  {
+   "id": "A9",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/day/test_reservation_refresh.py:120",
+    "backend/tests/day/emr/test_date_sync.py:362",
+    "backend/tests/day/emr/test_date_sync.py:407"
+   ]
+  }
+ ],
+ "per_spec": [
+  {
+   "spec": "DAY-SPEC-006",
+   "result": "none"
+  },
+  {
+   "spec": "DAY-SPEC-000",
+   "result": "none"
+  }
+ ],
+ "implementation": "conformant",
+ "merged": true
+}

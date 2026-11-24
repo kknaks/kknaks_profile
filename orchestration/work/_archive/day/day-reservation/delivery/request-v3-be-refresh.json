@@ -1,0 +1,83 @@
+{
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 3,
+ "target_specs": [
+  "DAY-SPEC-006",
+  "DAY-SPEC-000"
+ ],
+ "spec_baseline_revision": "32b83390eb9fbdcd615f86ecad016b6e9c39ee74",
+ "idempotency_key": "day/day-spec-006/be-refresh",
+ "title": "DAY 예약 현황 ② 백엔드 — 동기화: 다른 날짜 최신화 · 공지 동기화 · 거래 매핑 (DAY-SPEC-006)",
+ "risk_level": "L2",
+ "target_delta": [
+  "중앙(서버 worker) 작업 — (병원, 날짜) 최신화 요청을 받아 그 날 창(병원 현지 00:00 ~ 다음 날 00:00)으로 오늘 동기화와 같은 범위를 KOS 에서 받아 저장: 일정 → KOS 키 보충(visit.reservation_group_id) → 구매 · 시술권 · 선불카드(R26 · R40)",
+  "같은 (병원, 날짜) 최신화 잠금 — 동시 요청은 한 번만(R40) · 주기적 재최신화 없음 · 오늘은 이 작업을 쓰지 않음(10초 회차 그대로)",
+  "조건 C1 완성된 상태만 보임(일정만 반영되고 그룹 칸이 빈 중간 상태를 읽는 순서 없음) · C2 오늘 10초 회차의 잠금 때문에 단계를 건너뛰지 않음 · 실패면 중간 상태 없이 실패(화면 = 이전 사본 R30) · C3 구매 단계의 「오늘」 가정(발행 시각 순서 · 병원 sales 잠금 · 오늘 끝까지 티켓)에 그 날짜 것이 버려지지 않음 — 지금 함수가 못 지키는 곳은 SPEC-006 §3 사실 표(emr_kos_keys.py:81-128 · emr_sync.py:243 · emr_sale_sync.py:355-367)",
+  "계약 T(최신화 요청 입구 — #267 · #268 같은 문장): taskiq task 이름 `day.sync_reservation_date_hospital`(기존 `tasks/emr.py` task 이름 꼴 · 이름 제안 — 외부 계약 AGENTS.md:131) · 인자 `hospital_id: str`(DAY hospital uuid 문자열) · `date: str`(병원 현지 날짜 `YYYY-MM-DD`). ① 은 오늘이 아닌 날짜를 열거나 바꿀 때(`poll` 없음) `kiq` 로 한 번 넣고 기다리지 않는다 · 오늘 날짜 · `poll=1` 요청은 넣지 않는다 · 같은 (병원, 날짜) 잠금 · 중복 제거 · 실패 처리는 ② 안에서 한다(① 은 모른다)",
+  "행 경합 = 날짜 쪽이 양보(addendum 4): 날짜 반영 transaction 에 짧은 잠금 대기 상한(`SET LOCAL lock_timeout` · 설정) · 고객 행 정렬 순서 · 부딪히면 날짜 쪽 error(중간 상태 없음) · 오늘 회차 그대로",
+  "잠금 전 Redis 10초 캐시(addendum 8): (병원 · 날짜) 「최근 10초 안에 최신화함」 표시가 있으면 task 도 잠금도 안 함 · 최신화 시작 때 세움 · 실패면 지움 · 「병원당 동시 1개」는 없음 · 최신화 끝 표시는 ① 의 3초 기다림(R43)이 읽음",
+  "공지 동기화(R60 · R62): 오늘 = 10초 일정 회차 · 다른 날짜 = 날짜 최신화 회차에 KOS `get-notices`(그 날 · deleted:false)를 붙여 DAY `notice` 를 그 날짜 통째로 맞춤 · KOS id = `external_ref(entity_type = notice)` · 실패는 따로(회차를 오류로 만들지 않음 · 이전 사본 · 경고 로그) · C1 묶음 밖",
+  "거래 매핑 넓힘(R53 · DAY-SPEC-000 2026-11-24 개정): 상태 SPENT · REQUESTED · FAILED · 수단 PLATFORM · EASY_PAY · MEDICAL_LOAN — 오늘 구매 회차 · 날짜 최신화가 같은 매핑(enum 값 추가 migration 0019 는 ① #267)",
+  "동기화 뒤 동행 정리(R67): 일정 반영 뒤 조건이 깨진 동행 멤버를 빼는 정리 함수(① #267 제공)를 부름 · 실패는 회차 오류 아님"
+ ],
+ "acceptance": [
+  "A1: 계약 T 요청 하나로 그 날짜를 오늘 동기화와 같은 범위(R26)로 저장한다 — 방문 · 고객 · 작업 · 그룹 칸 · 구매 · 시술권 · 선불카드(이 화면이 읽는 것은 그중 구매뿐이지만 범위는 오늘 동기화와 같게)",
+  "A2: C1 — 최신화 중 다른 읽기가 그룹 칸이 빈 방문을 보지 않는다(테스트로 증명)",
+  "A3: C2 — 오늘 10초 회차가 같은 병원 잠금을 잡고 있어도 날짜 최신화가 단계를 조용히 건너뛰지 않는다 · 실패면 중간 상태 없음",
+  "A4: C3 — 오늘 구매 메시지와 순서가 겹쳐도 그 날짜 구매가 버려지지 않는다",
+  "A5: 같은 (병원, 날짜) 동시 요청 = 한 번만 돈다 · 오늘 10초 회차 동작은 바뀌지 않는다(기존 테스트 그대로 통과)",
+  "A6: 실물 e2e 1회(로컬 · KOS 데모 지점 · 기대 결과): 오늘 열기 = 최신화 요청 0(로그 · task 큐로 확인) · 10초 폴링이 DB 사본만 다시 읽음 / 다른 날짜 열기 = 첫 화면은 이전 사본(빈 표 가능) · 최신화 요청 1회 → 다음 폴링에 그 날짜 카드가 채워짐 · 폴링 동안 최신화 요청 0 / 같은 날짜를 두 창에서 동시에 열기 = 그 (병원, 날짜) KOS 일정 조회 1회(로그 · 호출 수로 확인) · 두 창 모두 다음 폴링에 같은 사본. 순서 조건: e2e 는 ① #267 · ② #268 · ③ #269 가 모두 들어간 뒤 마지막으로 머지되는 Issue 에서 1회 돌리고 그 결과를 세 Issue 에 남긴다",
+  "A7: 공지 동기화 — 오늘 회차 · 날짜 회차가 그 날짜 공지를 통째로 맞추고(추가 · 수정 · 지움) 공지 실패가 일정 회차를 실패로 만들지 않는다 — 테스트",
+  "A8: 거래 상태 5값 · 수단 7종이 행을 빼지 않고 저장된다 · 7종 밖 값은 그 행을 뺀다 — 매퍼 테스트",
+  "A9: Redis 10초 캐시 · lock_timeout 양보 — 10초 안 두 번째 요청 = task 0 · 경합 시 날짜 쪽 error · 중간 상태 없음 — 테스트"
+ ],
+ "non_goals": [
+  "오늘 10초 회차 동작 변경 · 오늘 화면 C1(R41 ⓐ)",
+  "주기적 재최신화 · 선동기화(R18 · R40)",
+  "쓰기 큐 확인(outbox.confirm) · 「방 배정」 잇기를 다른 날짜에서 돌리기(R33)",
+  "새 테이블 · 칸 · migration(migration 은 ① #267)",
+  "공지 쓰기(① #267)",
+  "기준 정보 동기화 변경"
+ ],
+ "review_surface": [
+  "SPEC 원천 = DAY-SPEC-006(stable · 개정 ① ~ ⑪) · DAY-SPEC-000 2026-11-24 개정 · DAY-SPEC-002 개정 ㉗ — Mediness main 32b83390(PR #958 머지 · spec-baseline ready). 구현 = Code PR CENTURION_DAY#272(dev 대상 · 1차 조회 + 원내 현황 + 담당자 줄 + 공지 수정 · 동기화 + 카드 배치 + 동행 그룹 · 세 Delivery 를 한 PR 이 덮음)",
+  "C1 ~ C3 를 어떻게 지키는지(transaction · 잠금 설계)",
+  "오늘 회차와의 겹침 — 기존 오늘 동기화 회귀 없음",
+  "KOS 호출량(날짜 열 때마다 1회 · 잠금)"
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/tasks/emr.py(`day.sync_reservation_date_hospital` — 계약 T)",
+   "backend/day/services/emr_date_sync.py(새 — 날짜 회차 · 잠금 · 캐시)",
+   "backend/day/services/emr_sync.py",
+   "backend/day/emr/sync_notices.py · emr/kos/mapper_notice.py · emr/normalized_notice.py(공지 동기화)",
+   "backend/day/emr/kos/mapper_sale_values.py(거래 매핑)",
+   "backend/day/emr/sync_references.py",
+   "backend/common/config.py(lock_timeout · 캐시 · 기다림 설정)"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "① #267 — 계약 T · 동행 정리 함수 · migration 0019 만 맞추면 병렬",
+   "세 Delivery 가 한 Code PR #272 로 들어감 · 실물 e2e 는 그 PR 에서"
+  ],
+  "phases": [
+   "P1 날짜 창 · 잠금 · task 입구",
+   "P2 일정 → 키 보충 → 구매를 C1 · C2 로 묶기",
+   "P3 구매 단계 C3",
+   "P4 테스트(실 PostgreSQL · Redis) · 실물 e2e",
+   "P5 공지 동기화(오늘 · 날짜)",
+   "P6 거래 매핑 넓힘 · Redis 10초 캐시 · lock_timeout 양보"
+  ],
+  "verification": [
+   "backend pytest — C1 · C2 · C3 · 동시 요청 · 오늘 회차 회귀 · 공지 동기화 · 거래 매핑 · 캐시 · 양보",
+   "실물 e2e(로컬 · KOS 데모)"
+  ],
+  "predeploy": [],
+  "rollback": [
+   "Code PR revert — 이 Delivery 몫 migration 없음 · 받아 둔 다른 날짜 행 · 공지 사본은 다음 동기화와 같은 모양이라 남아도 무해"
+  ],
+  "open_questions": []
+ },
+ "scope_delta": "2026-11-24 재결속 — baseline = 머지된 Mediness main 32b83390(PR #958 · spec-baseline:pending 뗌). 범위 넓힘(사용자 결정 R42 ~ R75 · 코디 계약): 계약 보충 v1 addendum 1 ~ 9(V1 today · open_min · time_gray_spans · 컨텍스트 이름 = 계약 이름 · 문구 근거 표 · 행 경합 = 날짜 쪽 양보(lock_timeout) · 꺾쇠 연타 debounce · 정원 null = 「30분」 · 잠금 전 Redis 10초 캐시 · 권한 행 = 데이터 migration) · v2 원내 현황 탭(R46 ~ R55 · 금액 = 수납 · 미수 · 결제총액) · v3 공지 수정 + KOS 공지 동기화(R58 ~ R62 · 누른 직원 토큰 직접 쓰기 · 503 kos_unavailable) · v4 동행 그룹 · 카드 배치(R64 ~ R73 · DAY 전용 새 테이블 · lane · line · rows · bands · 띠 = 진한 primary 테두리만 R75) · 「수납 필요」 = 단계 무관 payment_required(R42) · 다른 날짜 첫 화면 최대 3초 기다림(R43) · 담당자 줄(R56 · R57 · R63). 나눔: #267 = 백엔드 조회 · 원내 금액 · 공지 저장 · 동행 쓰기 · 권한 키 셋 · migration 0018 ~ 0023 / #268 = 동기화(날짜 회차 · 공지 동기화 · 거래 매핑) / #269 = 화면(탭 · 카드 · 배치 · 끌어 놓기 · 공지 편집). 결과 계약이 바뀌어 재승인 대상"
+}
