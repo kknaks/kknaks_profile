@@ -1,0 +1,70 @@
+{
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 2,
+ "spec_baseline_revision": "29480cfd9062e4d40ab0d273874ac42193dce98d",
+ "idempotency_key": "day/day-spec-007/p2-reception",
+ "title": "DAY 예약 상세 2판 — 접수 → 상담: 접수 · 신분증 확인 · 상담사(상담 기록) · 관리실 · 상담 대기 · 상담 중 귀가 (DAY-SPEC-007 · 002 ㉙ · 000 ②)",
+ "risk_level": "L3",
+ "target_specs": [
+  "DAY-SPEC-007",
+  "DAY-SPEC-002",
+  "DAY-SPEC-000"
+ ],
+ "target_delta": [
+  "[접수](오늘 예약 · W6 recept · 「접수했어요」) · 내국인 「신분증 확인」 체크(identity_check confirmed / unconfirmed · DAY 만 · 체크해도 접수 안 됨 D24) · 의사 지정(접수 단계 · W16 — be-probe-4 접수 뒤 O)",
+  "상담 정보(U-5) — 시술만 진행 체크는 3판 · 상담사 목록(태그 counselor · 목록만 D15 · D18) · 관리실(빈 방부터 · 꺼짐 없음 D19) · 예약 · 접수 = 화면에 담음 · [상담 대기](빠진 칸 = 신분확인 + 상담사 + 관리실 · 깜빡임 · 「{빠진 칸} 먼저 해 주세요」) = W8 방 배정 → W9 방 → W10 CONSULTATION_WAITING → W7a / W7b(계획 단계 KOS consultations[] 로 판정 · consultationId = 큐에 넣을 때 uuid) · 상담 대기에서 고르면 바로(W7 · W11) · 상담 진행부터 잠금 · 상담사 보이는 값 = R48 원천",
+  "상담 대기 · 상담 진행 [귀가 처리] — RP-01(사유 필수) → W12 cancel-flow-tasks CANCEL → COMPLETED(순서 묶음) · 귀가 사유 = `visit.discharge_reason`(migration 새 · DAY 만 · D26) · 귀가 완료 머리 · 귀가 사유 상자(RD-10)",
+  "write_open 새 행: recept · change-flow-step CONSULTATION_WAITING · COMPLETED(값만 · 판정 = 계획 / 쓰기 큐) · create-consultation · change-consultation-counselors(빈 배열 막음) — D53 즉시 확인으로",
+  "계약 V(모달 값 — 판마다 칸을 더함 · 이름 제안 · SPEC-007 §3 「화면이 읽는 칸」 · 단계 × 날짜 경계 표 판정은 서버): stage(10 값) · date_kind(today|future|past) · editable 플래그(칸 · 버튼마다) · customer{name, passport_name, contact(KOS 꼴), birth, age, gender, nationality, is_domestic, notes} · reservation{assignee, start, end, funnel, memo, doctor|null, companions[]} · previous_visits[] · (2판) identity{checked} · consult{mode, counselor, room, missing[]} · discharge_reason · (3판) consult.order_memo · treatments[] · payment{base_total|null, discount|null, total, paid, due, warn, done, button, links|null} · 문구 · 색은 화면이 시안대로 키로 그림",
+  "고침 4(1판 화면 확인): 왼쪽 상담 정보 칸 없앰 → 바닥 줄 `□시술만 진행 [상담사 ▴] [관리실 ▴] [접수 / 상담 대기]`(예약 · 접수 = 고름 · 상담 대기 = 바로 KOS · 상담 진행부터 = 비활성 · 평소 회색 · 빠진 칸은 누를 때만 깜빡 B37 · B39 · B40) · [관리실 ▴] = 시술 현황 방 고르기 부품 · 그 방문 접수 구역 방만 · 빈 방 먼저 → 사용 중 · 방 순서 · 오른쪽 「비어 있음」(B15 · B23 · B24 · B26 · B27) · 상담 대기 관리실 = 「방 배정」 없으면 W8 로 만들고 방 지정 · 거절 = 공용 토스트 + 서버 값으로 다시 그림(B20 · SPEC-002 ㉙) · 단계 바꾸기(CONSULTATION_WAITING · COMPLETED)도 보낸 즉시 확인(B28) · migration 번호 0028_visit_discharge_reason"
+ ],
+ "acceptance": [
+  "A1: SPEC-007 2판 요소(RD-03 신분확인 · RD-06 상담 정보 · RD-10 · RD-14 [접수] · [상담 대기] · [귀가 처리] · RP-01)가 시안과 같음 · 단계 × 날짜 경계 표 예약 · 접수 · 상담 대기 · 상담 진행 · 귀가 줄 · 케이스 매트릭스 2판 줄(앞날 접수 409 · 단계 바뀜 · 빠진 칸 · 외국인 회색 · 상담 기록 이미 있음 · 사유 없음 · 열린 작업 COMPLETED 400)",
+  "A2: 인라인 스크립트 0 · 손 CSS 0(static/day.js 이벤트 위임 + data-* · medikit · ui.html 매크로 · partials/reservations_*.html — AGENTS.md 「웹 화면」) · 시안 문구만(새 오류 토스트 글자 = 빈 문구 OQ-D17)",
+  "A3: 판에서 연 KOS 쓰기마다 write_open 허용 · 막힘 · planner 경로 · 본문 키 · expect 가 SPEC-007 W 표 · be-probe-1 ~ 4 와 같음(단위 테스트) · D53 즉시 확인(1초 간격 · 상한 · 넘김 → 다음 회차) 테스트 · 전체 pytest 회귀 없음",
+  "A4: 표 카드 「상담사 ○○○」(R57) · 원내 현황(R48)이 [상담 대기] 뒤 바로 같은 상담사(SSE) · 시술 현황 [귀가 대기] · 방 배정 회귀 없음",
+  "A5: 실물 e2e 1회(로컬 · KOS 데모 지점 · check_open_key_is_demo 통과 뒤만 · 각 쓰기 KOS 상세 다시 읽기로 expect 확인 · 두 번째 브라우저에 SSE 로 바로 반영): 오늘 예약 → 신분증 확인 → [접수] → 상담사 · 관리실 → [상담 대기](KOS 방 배정 · 방 · 상담 대기 · 상담 기록) → 상담 대기에서 상담사 · 관리실 바꾸기 → [귀가 처리](사유) → 귀가 완료 · KOS 에서 상담 진행으로 바꾼 뒤 [귀가 처리] — 뒤 사용자 화면 확인"
+ ],
+ "non_goals": [
+  "문진 · 여권 스캔 동작(자리만 · 비활성 D13 · D55) · 신분 확인 자동 접수 · 외국인 신분확인 · 상담사 순번 · 고객 차트 · 처방 만들기 · 수납 항목 넣기 · 예약 요청 · 고객 등록 창 · 예약메모 덧붙이기(DAY-SPEC-007 §1 Out Of Scope)",
+  "「시술현황 차트 일부 기능 수정」(D43) · 시술 현황 쓰기의 확인 방식 변경(D53 범위 = 이 화면 쓰기)",
+  "시술만 진행 · 시술 목록 · 수납(3판) · 귀가 대기 귀가 · 처방전(4판)"
+ ],
+ "review_surface": [
+  "SPEC 원천 = DAY-SPEC-007(stable · 고침 4) + DAY-SPEC-006 개정 ⑫ · ⑬ · DAY-SPEC-002 개정 ㉙(#960 이 ㉘ 을 먼저 써서 ㉘ → ㉙ 로 바꿈) · DAY-SPEC-000 2026-11-24 개정 ② — Mediness main 29480cfd(PR #961 · #962 머지 · SPEC-007 stable · spec-baseline ready). 구현 = Code PR CENTURION_DAY#280(dev 스쿼시 머지 55e60aa4 · dev 배포 성공 · migration head 0028_visit_discharge_reason · 판 1 ~ 4 를 한 PR 이 덮음)",
+  "판 순서(코디 · 사용자 2026-11-24): 판마다 구현 → 로컬 KOS 데모 지점 e2e → 사용자 화면 확인 → 다음 판. 한 Delivery = 한 Code PR(백엔드 + 화면 함께 · 안에서 병렬)",
+  "KOS 외부 쓰기 새로 엶(recept · CONSULTATION_WAITING · COMPLETED · 상담 기록 둘) — L3",
+  "migration discharge_reason",
+  "상담 기록이 차티 · KOS 와 둘 되지 않는지(be-probe-4 ⓒ)"
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/emr/kos/writes.py · services/emr_sync.py",
+   "backend/day/routers/reservations.py · services/reservation_*.py",
+   "backend/day/models/visit.py · reception.py · migrations/versions(discharge_reason 새)",
+   "backend/day/templates/partials/reservations_detail*.html · static/day.js"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "1판 Delivery(모달 틀 · 쓰기 바닥 · D53 즉시 확인 · SSE) 머지 · 사용자 화면 확인 뒤"
+  ],
+  "phases": [
+   "P1 접수 · 신분증 확인 · 의사 지정(접수)",
+   "P2 상담 정보 · [상담 대기] 순서 묶음 · 상담 기록",
+   "P3 상담 단계 귀가 · discharge_reason · 귀가 완료 · e2e"
+  ],
+  "verification": [
+   "backend pytest",
+   "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"
+  ],
+  "predeploy": [
+   "migration discharge_reason"
+  ],
+  "rollback": [
+   "Code PR revert + discharge_reason downgrade"
+  ],
+  "open_questions": []
+ },
+ "scope_delta": "2026-11-24 재결속 — baseline = 머지된 Mediness main 29480cfd(PR #961 · #962 — SPEC-007 stable · spec-baseline:pending 뗌). 1판 화면 확인(e2e-1-feedback B1 ~ B41 · 사용자 · 코디 · 검수)으로 바뀐 계약 = DAY-SPEC-007 고침 4 · DAY-SPEC-002 개정 ㉙(#960 과 번호 겹침으로 ㉘ → ㉙ · 단계 바꾸기도 즉시 확인 B28 · 상담 대기 관리실 = 방 배정 없으면 만듦 B20 · 관리실 목록 = 방 옮기기 부품 B24 · B26 · B27) · DAY-SPEC-006 개정 ⑬(SSE 신호 = 보이는 값이 바뀐 때만 · 다시 받기 합침 B11 · B41): 이전 방문 = 이번 방문 시작보다 앞선 방문(같은 날 포함 B14) · 관리실 = 접수 구역 방만 · 빈 방 먼저 · 오른쪽 「비어 있음」(B15 · B23 · B24 · B26 · B27) · 모달 다시 그릴 때 담은 값 유지(B16) · 시술 목록 = KOS 시술권 카드 모양(옵션 머리 › 구성 · n = 전체 − 남음 · 시술권 id 로 자기 줄 · 구매 전 수납 필요 시술 · 오늘 묶음 먼저 · 상품 합계 + 옵션가 B18 · B19 · B31 ~ B33) · 「시술 종료」(B36) · 「예약그룹」(B22) · 예약 단계 「오늘」 ✓(B29) · 오더 메모 = 시술 목록 아래 · 시술 대기부터 숨김(B30) · 바닥 줄 `□시술만 진행 [상담사 ▴] [관리실 ▴] [단계 버튼]` · [예약 취소] = [예약 변경] 옆 · 평소 회색(B37 ~ B40) · 초진 / 재진 = KOS isNew 그대로(B5 · B9 · B12 · B13 철회) · migration 0026 ~ 0028(rebase · dev 0024 · 0025 뒤). B42(SSE 연결 한도)는 열림 OQ-D26 · 범위 밖. 한 Code PR #280 이 판 1 ~ 4 를 덮음"
+}

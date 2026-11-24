@@ -1,0 +1,68 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "spec_baseline_revision": "c43633be698e1ebbc06ac9617a16262dacd1fac7",
+  "idempotency_key": "day/day-spec-007/p2-reception",
+  "title": "DAY 예약 상세 2판 — 접수 → 상담: 접수 · 신분증 확인 · 상담사(상담 기록) · 관리실 · 상담 대기 · 상담 중 귀가 (DAY-SPEC-007 · 002 ㉘ · 000 ②)",
+  "risk_level": "L3",
+  "target_specs": [
+    "DAY-SPEC-007",
+    "DAY-SPEC-002",
+    "DAY-SPEC-000"
+  ],
+  "target_delta": [
+    "[접수](오늘 예약 · W6 recept · 「접수했어요」) · 내국인 「신분증 확인」 체크(identity_check confirmed / unconfirmed · DAY 만 · 체크해도 접수 안 됨 D24) · 의사 지정(접수 단계 · W16 — be-probe-4 접수 뒤 O)",
+    "상담 정보(U-5) — 시술만 진행 체크는 3판 · 상담사 목록(태그 counselor · 목록만 D15 · D18) · 관리실(빈 방부터 · 꺼짐 없음 D19) · 예약 · 접수 = 화면에 담음 · [상담 대기](빠진 칸 = 신분확인 + 상담사 + 관리실 · 깜빡임 · 「{빠진 칸} 먼저 해 주세요」) = W8 방 배정 → W9 방 → W10 CONSULTATION_WAITING → W7a / W7b(계획 단계 KOS consultations[] 로 판정 · consultationId = 큐에 넣을 때 uuid) · 상담 대기에서 고르면 바로(W7 · W11) · 상담 진행부터 잠금 · 상담사 보이는 값 = R48 원천",
+    "상담 대기 · 상담 진행 [귀가 처리] — RP-01(사유 필수) → W12 cancel-flow-tasks CANCEL → COMPLETED(순서 묶음) · 귀가 사유 = `visit.discharge_reason`(migration 새 · DAY 만 · D26) · 귀가 완료 머리 · 귀가 사유 상자(RD-10)",
+    "write_open 새 행: recept · change-flow-step CONSULTATION_WAITING · COMPLETED(값만 · 판정 = 계획 / 쓰기 큐) · create-consultation · change-consultation-counselors(빈 배열 막음) — D53 즉시 확인으로",
+    "계약 V(모달 값 — 판마다 칸을 더함 · 이름 제안 · SPEC-007 §3 「화면이 읽는 칸」 · 단계 × 날짜 경계 표 판정은 서버): stage(10 값) · date_kind(today|future|past) · editable 플래그(칸 · 버튼마다) · customer{name, passport_name, contact(KOS 꼴), birth, age, gender, nationality, is_domestic, notes} · reservation{assignee, start, end, funnel, memo, doctor|null, companions[]} · previous_visits[] · (2판) identity{checked} · consult{mode, counselor, room, missing[]} · discharge_reason · (3판) consult.order_memo · treatments[] · payment{base_total|null, discount|null, total, paid, due, warn, done, button, links|null} · 문구 · 색은 화면이 시안대로 키로 그림"
+  ],
+  "acceptance": [
+    "A1: SPEC-007 2판 요소(RD-03 신분확인 · RD-06 상담 정보 · RD-10 · RD-14 [접수] · [상담 대기] · [귀가 처리] · RP-01)가 시안과 같음 · 단계 × 날짜 경계 표 예약 · 접수 · 상담 대기 · 상담 진행 · 귀가 줄 · 케이스 매트릭스 2판 줄(앞날 접수 409 · 단계 바뀜 · 빠진 칸 · 외국인 회색 · 상담 기록 이미 있음 · 사유 없음 · 열린 작업 COMPLETED 400)",
+    "A2: 인라인 스크립트 0 · 손 CSS 0(static/day.js 이벤트 위임 + data-* · medikit · ui.html 매크로 · partials/reservations_*.html — AGENTS.md 「웹 화면」) · 시안 문구만(새 오류 토스트 글자 = 빈 문구 OQ-D17)",
+    "A3: 판에서 연 KOS 쓰기마다 write_open 허용 · 막힘 · planner 경로 · 본문 키 · expect 가 SPEC-007 W 표 · be-probe-1 ~ 4 와 같음(단위 테스트) · D53 즉시 확인(1초 간격 · 상한 · 넘김 → 다음 회차) 테스트 · 전체 pytest 회귀 없음",
+    "A4: 표 카드 「상담사 ○○○」(R57) · 원내 현황(R48)이 [상담 대기] 뒤 바로 같은 상담사(SSE) · 시술 현황 [귀가 대기] · 방 배정 회귀 없음",
+    "A5: 실물 e2e 1회(로컬 · KOS 데모 지점 · check_open_key_is_demo 통과 뒤만 · 각 쓰기 KOS 상세 다시 읽기로 expect 확인 · 두 번째 브라우저에 SSE 로 바로 반영): 오늘 예약 → 신분증 확인 → [접수] → 상담사 · 관리실 → [상담 대기](KOS 방 배정 · 방 · 상담 대기 · 상담 기록) → 상담 대기에서 상담사 · 관리실 바꾸기 → [귀가 처리](사유) → 귀가 완료 · KOS 에서 상담 진행으로 바꾼 뒤 [귀가 처리] — 뒤 사용자 화면 확인"
+  ],
+  "non_goals": [
+    "문진 · 여권 스캔 동작(자리만 · 비활성 D13 · D55) · 신분 확인 자동 접수 · 외국인 신분확인 · 상담사 순번 · 고객 차트 · 처방 만들기 · 수납 항목 넣기 · 예약 요청 · 고객 등록 창 · 예약메모 덧붙이기(DAY-SPEC-007 §1 Out Of Scope)",
+    "「시술현황 차트 일부 기능 수정」(D43) · 시술 현황 쓰기의 확인 방식 변경(D53 범위 = 이 화면 쓰기)",
+    "시술만 진행 · 시술 목록 · 수납(3판) · 귀가 대기 귀가 · 처방전(4판)"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-007(draft · 검수 3차 PASS) + DAY-SPEC-006 개정 ⑫ · DAY-SPEC-002 개정 ㉘ · DAY-SPEC-000 2026-11-24 개정 ② — Mediness PR #961(브랜치 kknaksss/day-reservation2-spec · 머지 전 · 첫 커밋 479d8f46a84fa87377a3525f6ccb45d69c399ce4 · 고침 3(D53 이번 판) 커밋이 같은 PR 에 얹힘). main 에 없어 spec-baseline:pending 으로 시작 · PR #961 머지 뒤 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재결속(결과 계약 같으면 재승인 없음 — requests.md)",
+    "판 순서(코디 · 사용자 2026-11-24): 판마다 구현 → 로컬 KOS 데모 지점 e2e → 사용자 화면 확인 → 다음 판. 한 Delivery = 한 Code PR(백엔드 + 화면 함께 · 안에서 병렬)",
+    "KOS 외부 쓰기 새로 엶(recept · CONSULTATION_WAITING · COMPLETED · 상담 기록 둘) — L3",
+    "migration discharge_reason",
+    "상담 기록이 차티 · KOS 와 둘 되지 않는지(be-probe-4 ⓒ)"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/emr/kos/writes.py · services/emr_sync.py",
+      "backend/day/routers/reservations.py · services/reservation_*.py",
+      "backend/day/models/visit.py · reception.py · migrations/versions(discharge_reason 새)",
+      "backend/day/templates/partials/reservations_detail*.html · static/day.js"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "1판 Delivery(모달 틀 · 쓰기 바닥 · D53 즉시 확인 · SSE) 머지 · 사용자 화면 확인 뒤"
+    ],
+    "phases": [
+      "P1 접수 · 신분증 확인 · 의사 지정(접수)",
+      "P2 상담 정보 · [상담 대기] 순서 묶음 · 상담 기록",
+      "P3 상담 단계 귀가 · discharge_reason · 귀가 완료 · e2e"
+    ],
+    "verification": [
+      "backend pytest",
+      "로컬 KOS 데모 지점 실물 e2e 1회 · 사용자 화면 확인"
+    ],
+    "predeploy": [
+      "migration discharge_reason"
+    ],
+    "rollback": [
+      "Code PR revert + discharge_reason downgrade"
+    ],
+    "open_questions": []
+  }
+}
