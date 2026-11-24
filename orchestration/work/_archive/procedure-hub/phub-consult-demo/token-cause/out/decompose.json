@@ -1,0 +1,7951 @@
+{
+ "k_tok_per_byte": 0.45780811091889256,
+ "a_by_prompt": {
+  "66c112c5": 4195,
+  "7aba4c0a": 4253,
+  "67159cb6": 4772,
+  "abb8d5f3": 4542,
+  "717ebe22": 4559,
+  "47074f74": 5909,
+  "597f44cf": 6196,
+  "b2f871de": 6322
+ },
+ "fit": {
+  "n_points": 28,
+  "n_groups": 8,
+  "resid_abs_max": 569.0,
+  "resid_abs_mean": 67.7
+ },
+ "system_bytes_now": {
+  "system_v3_bytes": 8454,
+  "with_kos_rules_bytes": 11790
+ },
+ "turns": [
+  {
+   "conv": "5e4fcc5d71784d83",
+   "c4": "5e4f",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "66c112c5",
+   "tokens_real": 5249,
+   "sent": true,
+   "tokens_total": 5249,
+   "error": null,
+   "app_est_tokens": 4698,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 429,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 5247
+   },
+   "msg_bytes": 2303,
+   "sec_bytes": {
+    "judgement": 260,
+    "material": 2001,
+    "question": 42
+   },
+   "sec_tok": {
+    "judgement": 119,
+    "material": 916,
+    "question": 19
+   },
+   "system_tok": 4195,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 9,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "summary:AP4": 1987
+   },
+   "layer_bytes": {
+    "요약 줄": 1987
+   },
+   "by_bytes": {
+    "summary": 1987
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1987
+   },
+   "question": "팔자주름이 고민이에요",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "66c112c5",
+   "tokens_real": 5250,
+   "sent": true,
+   "tokens_total": 5250,
+   "error": null,
+   "app_est_tokens": 4697,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 589,
+    "cache_creation_input_tokens": 1545,
+    "cache_read_input_tokens": 3703
+   },
+   "msg_bytes": 2302,
+   "sec_bytes": {
+    "judgement": 260,
+    "material": 2001,
+    "question": 41
+   },
+   "sec_tok": {
+    "judgement": 119,
+    "material": 916,
+    "question": 19
+   },
+   "system_tok": 4195,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 9,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "summary:AP4": 1987
+   },
+   "layer_bytes": {
+    "요약 줄": 1987
+   },
+   "by_bytes": {
+    "summary": 1987
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1820,
+    "unused_summary": 167
+   },
+   "question": "팔자 주름이 고민이 되",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 20537,
+   "sent": true,
+   "tokens_total": 20537,
+   "error": null,
+   "app_est_tokens": 14393,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1200,
+    "cache_creation_input_tokens": 15605,
+    "cache_read_input_tokens": 4928
+   },
+   "msg_bytes": 31389,
+   "sec_bytes": {
+    "judgement": 249,
+    "material": 31097,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 114,
+    "material": 14236,
+    "question": 20
+   },
+   "system_tok": 4195,
+   "history_tok": 1971,
+   "history_pred_tok": 1631,
+   "prev_bytes": 3562,
+   "mat_rows": 70,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "outcome": 31084
+   },
+   "layer_bytes": {
+    "층 표시 없음": 31084
+   },
+   "by_bytes": {
+    "entry": 31084
+   },
+   "waste_bytes": {
+    "dup_names": 52,
+    "unused_other": 28672,
+    "used": 2412
+   },
+   "question": "리프팅으로 하고 싶은데",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:entry",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 21879,
+   "sent": true,
+   "tokens_total": 21879,
+   "error": null,
+   "app_est_tokens": 4028,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 217,
+    "cache_creation_input_tokens": 1342,
+    "cache_read_input_tokens": 20533
+   },
+   "msg_bytes": 293,
+   "sec_bytes": {
+    "judgement": 210,
+    "material": 20,
+    "question": 63
+   },
+   "sec_tok": {
+    "judgement": 96,
+    "material": 9,
+    "question": 29
+   },
+   "system_tok": 4195,
+   "history_tok": 17549,
+   "history_pred_tok": 16504,
+   "prev_bytes": 36050,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "각 시술에 대표적인 제품이 머가 잇어 ?",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 4,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 30369,
+   "sent": true,
+   "tokens_total": 30369,
+   "error": null,
+   "app_est_tokens": 10086,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1402,
+    "cache_creation_input_tokens": 8490,
+    "cache_read_input_tokens": 21875
+   },
+   "msg_bytes": 18467,
+   "sec_bytes": {
+    "judgement": 267,
+    "material": 18185,
+    "question": 15
+   },
+   "sec_tok": {
+    "judgement": 122,
+    "material": 8325,
+    "question": 7
+   },
+   "system_tok": 4195,
+   "history_tok": 17719,
+   "history_pred_tok": 16861,
+   "prev_bytes": 36830,
+   "mat_rows": 28,
+   "mat_used_rows": 28,
+   "kind_bytes": {
+    "overview": 18174
+   },
+   "layer_bytes": {
+    "자기": 588,
+    "물려받음": 759,
+    "하위 케이스": 2613,
+    "하위 제품": 14214
+   },
+   "by_bytes": {
+    "default": 18174
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 18174
+   },
+   "question": "hifu",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 5,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 31975,
+   "sent": true,
+   "tokens_total": 31975,
+   "error": null,
+   "app_est_tokens": 4077,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 687,
+    "cache_creation_input_tokens": 1606,
+    "cache_read_input_tokens": 30365
+   },
+   "msg_bytes": 441,
+   "sec_bytes": {
+    "judgement": 382,
+    "material": 20,
+    "question": 39
+   },
+   "sec_tok": {
+    "judgement": 175,
+    "material": 9,
+    "question": 18
+   },
+   "system_tok": 4195,
+   "history_tok": 27578,
+   "history_pred_tok": 25883,
+   "prev_bytes": 56537,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "울쎄라 원리는 먼데 ?",
+   "kinds": [
+    "overview:None",
+    "mechanism:yes",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 6,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 38860,
+   "sent": true,
+   "tokens_total": 38860,
+   "error": null,
+   "app_est_tokens": 8393,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1007,
+    "cache_creation_input_tokens": 6885,
+    "cache_read_input_tokens": 31971
+   },
+   "msg_bytes": 13390,
+   "sec_bytes": {
+    "judgement": 485,
+    "material": 12840,
+    "question": 65
+   },
+   "sec_tok": {
+    "judgement": 222,
+    "material": 5878,
+    "question": 30
+   },
+   "system_tok": 4195,
+   "history_tok": 28535,
+   "history_pred_tok": 26400,
+   "prev_bytes": 57667,
+   "mat_rows": 59,
+   "mat_used_rows": 10,
+   "kind_bytes": {
+    "indication": 5640,
+    "outcome": 6590,
+    "lineup": 570
+   },
+   "layer_bytes": {
+    "자기": 2328,
+    "물려받음": 7994,
+    "하위 제품": 1908,
+    "층 표시 없음": 570
+   },
+   "by_bytes": {
+    "kd10": 12230,
+    "kd9": 570
+   },
+   "waste_bytes": {
+    "dup_names": 1325,
+    "used": 2328,
+    "unused_other": 9902,
+    "unused_but_safety_or_explicit": 104,
+    "unused_kd9": 466
+   },
+   "question": "그러니까 울쎄라에 대해서 설명해달라고",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd10",
+    "indication:kd10",
+    "outcome:kd10",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d50174b929a44072",
+   "c4": "d501",
+   "turn": 7,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "66c112c5",
+   "tokens_real": 62223,
+   "sent": true,
+   "tokens_total": 62223,
+   "error": null,
+   "app_est_tokens": 20411,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1937,
+    "cache_creation_input_tokens": 23363,
+    "cache_read_input_tokens": 38856
+   },
+   "msg_bytes": 49443,
+   "sec_bytes": {
+    "judgement": 649,
+    "material": 48710,
+    "question": 84
+   },
+   "sec_tok": {
+    "judgement": 297,
+    "material": 22300,
+    "question": 38
+   },
+   "system_tok": 4195,
+   "history_tok": 35392,
+   "history_pred_tok": 33047,
+   "prev_bytes": 72185,
+   "mat_rows": 96,
+   "mat_used_rows": 20,
+   "kind_bytes": {
+    "outcome": 18981,
+    "recovery": 730,
+    "order_interval": 28949
+   },
+   "layer_bytes": {
+    "하위 제품": 18981,
+    "자기": 6446,
+    "물려받음": 23233
+   },
+   "by_bytes": {
+    "yes": 47930,
+    "kd10": 730
+   },
+   "waste_bytes": {
+    "dup_names": 2140,
+    "used": 10871,
+    "unused_other": 23542,
+    "unused_sub_not_md": 7358,
+    "unused_but_safety_or_explicit": 6889
+   },
+   "question": "그럼 고강도 집속 초음파는 다 효과가 동일해 시간도 ??",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:yes",
+    "lineup:None",
+    "adverse:None",
+    "recovery:kd10",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:yes",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2ab4d1c0ac414b0b",
+   "c4": "2ab4",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "7aba4c0a",
+   "tokens_real": 12741,
+   "sent": true,
+   "tokens_total": 12741,
+   "error": null,
+   "app_est_tokens": 10046,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 327,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 12739
+   },
+   "msg_bytes": 18349,
+   "sec_bytes": {
+    "judgement": 455,
+    "material": 17862,
+    "question": 32
+   },
+   "sec_tok": {
+    "judgement": 208,
+    "material": 8177,
+    "question": 15
+   },
+   "system_tok": 4253,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 67,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "overview+mechanism": 4119,
+    "indication": 5560,
+    "outcome": 7586,
+    "lineup": 560
+   },
+   "layer_bytes": {
+    "자기": 3252,
+    "물려받음": 11422,
+    "하위 제품": 2591,
+    "층 표시 없음": 560
+   },
+   "by_bytes": {
+    "yes": 4119,
+    "kd9": 13706
+   },
+   "waste_bytes": {
+    "dup_names": 1351,
+    "used": 3171,
+    "unused_other": 1947,
+    "unused_but_safety_or_explicit": 1690,
+    "unused_kd9": 11017
+   },
+   "question": "울쎄라가 머야 ?",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "c1b7b741c58a4676",
+   "c4": "c1b7",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "7aba4c0a",
+   "tokens_real": 6005,
+   "sent": true,
+   "tokens_total": 6005,
+   "error": null,
+   "app_est_tokens": 5269,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 888,
+    "cache_creation_input_tokens": 2300,
+    "cache_read_input_tokens": 3703
+   },
+   "msg_bytes": 4017,
+   "sec_bytes": {
+    "judgement": 500,
+    "material": 3445,
+    "question": 72
+   },
+   "sec_tok": {
+    "judgement": 229,
+    "material": 1577,
+    "question": 33
+   },
+   "system_tok": 4253,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 18,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "overview": 634,
+    "indication": 2791
+   },
+   "layer_bytes": {
+    "층 표시 없음": 3425
+   },
+   "by_bytes": {
+    "default": 634,
+    "top": 2791
+   },
+   "waste_bytes": {
+    "dup_names": 244,
+    "used": 960,
+    "unused_other": 2465
+   },
+   "question": "íìì£¼ë¦ì´ ê³ ë¯¼ì´ìì",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:top",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2ab4d1c0ac414b0b",
+   "c4": "2ab4",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "7aba4c0a",
+   "tokens_real": 13284,
+   "sent": true,
+   "tokens_total": 13284,
+   "error": null,
+   "app_est_tokens": 4086,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 339,
+    "cache_creation_input_tokens": 861,
+    "cache_read_input_tokens": 12419
+   },
+   "msg_bytes": 469,
+   "sec_bytes": {
+    "judgement": 413,
+    "material": 20,
+    "question": 36
+   },
+   "sec_tok": {
+    "judgement": 189,
+    "material": 9,
+    "question": 16
+   },
+   "system_tok": 4253,
+   "history_tok": 8816,
+   "history_pred_tok": 8698,
+   "prev_bytes": 18999,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "시술원리가 궁금해",
+   "kinds": [
+    "overview:None",
+    "mechanism:yes",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d38ad36df68546dd",
+   "c4": "d38a",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "7aba4c0a",
+   "tokens_real": 21610,
+   "sent": true,
+   "tokens_total": 21610,
+   "error": null,
+   "app_est_tokens": 10047,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 305,
+    "cache_creation_input_tokens": 9187,
+    "cache_read_input_tokens": 12419
+   },
+   "msg_bytes": 18350,
+   "sec_bytes": {
+    "judgement": 455,
+    "material": 17862,
+    "question": 33
+   },
+   "sec_tok": {
+    "judgement": 208,
+    "material": 8177,
+    "question": 15
+   },
+   "system_tok": 4253,
+   "history_tok": 8956,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 67,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "overview+mechanism": 4119,
+    "indication": 5560,
+    "outcome": 7586,
+    "lineup": 560
+   },
+   "layer_bytes": {
+    "자기": 3252,
+    "물려받음": 11422,
+    "하위 제품": 2591,
+    "층 표시 없음": 560
+   },
+   "by_bytes": {
+    "yes": 4119,
+    "kd9": 13706
+   },
+   "waste_bytes": {
+    "dup_names": 1351,
+    "used": 3339,
+    "unused_other": 780,
+    "unused_but_safety_or_explicit": 2689,
+    "unused_kd9": 11017
+   },
+   "question": "울쎄라가 머냐고",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d38ad36df68546dd",
+   "c4": "d38a",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "7aba4c0a",
+   "tokens_real": 22153,
+   "sent": true,
+   "tokens_total": 22153,
+   "error": null,
+   "app_est_tokens": 4092,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 395,
+    "cache_creation_input_tokens": 543,
+    "cache_read_input_tokens": 21606
+   },
+   "msg_bytes": 487,
+   "sec_bytes": {
+    "judgement": 437,
+    "material": 20,
+    "question": 30
+   },
+   "sec_tok": {
+    "judgement": 200,
+    "material": 9,
+    "question": 14
+   },
+   "system_tok": 4253,
+   "history_tok": 17677,
+   "history_pred_tok": 8681,
+   "prev_bytes": 18962,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "효과가 궁금해",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:yes",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d38ad36df68546dd",
+   "c4": "d38a",
+   "turn": 4,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "7aba4c0a",
+   "tokens_real": 46302,
+   "sent": true,
+   "tokens_total": 46302,
+   "error": null,
+   "app_est_tokens": 21357,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 589,
+    "cache_creation_input_tokens": 24149,
+    "cache_read_input_tokens": 22149
+   },
+   "msg_bytes": 52280,
+   "sec_bytes": {
+    "judgement": 277,
+    "material": 51971,
+    "question": 32
+   },
+   "sec_tok": {
+    "judgement": 127,
+    "material": 23793,
+    "question": 15
+   },
+   "system_tok": 4253,
+   "history_tok": 18114,
+   "history_pred_tok": 9279,
+   "prev_bytes": 20268,
+   "mat_rows": 179,
+   "mat_used_rows": 26,
+   "kind_bytes": {
+    "adverse": 51846
+   },
+   "layer_bytes": {
+    "자기": 4008,
+    "물려받음": 44275,
+    "하위 제품": 3563
+   },
+   "by_bytes": {
+    "yes": 51846
+   },
+   "waste_bytes": {
+    "dup_names": 865,
+    "used": 8237,
+    "unused_but_safety_or_explicit": 43609
+   },
+   "question": "그럼 부작용은 ?",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:yes",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d38ad36df68546dd",
+   "c4": "d38a",
+   "turn": 5,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "7aba4c0a",
+   "tokens_real": 59072,
+   "sent": true,
+   "tokens_total": 59072,
+   "error": null,
+   "app_est_tokens": 12817,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 889,
+    "cache_creation_input_tokens": 12770,
+    "cache_read_input_tokens": 46298
+   },
+   "msg_bytes": 26660,
+   "sec_bytes": {
+    "judgement": 252,
+    "material": 26381,
+    "question": 27
+   },
+   "sec_tok": {
+    "judgement": 115,
+    "material": 12077,
+    "question": 12
+   },
+   "system_tok": 4253,
+   "history_tok": 42614,
+   "history_pred_tok": 33763,
+   "prev_bytes": 73749,
+   "mat_rows": 39,
+   "mat_used_rows": 39,
+   "kind_bytes": {
+    "adverse": 26369
+   },
+   "layer_bytes": {
+    "층 표시 없음": 26369
+   },
+   "by_bytes": {
+    "yes": 26369
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 26369
+   },
+   "question": "열감이 잇어",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:yes",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "67159cb6",
+   "tokens_real": 4457,
+   "sent": true,
+   "tokens_total": 4457,
+   "error": null,
+   "app_est_tokens": 4115,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 230,
+    "cache_creation_input_tokens": 752,
+    "cache_read_input_tokens": 3703
+   },
+   "msg_bytes": 555,
+   "sec_bytes": {
+    "judgement": 260,
+    "material": 238,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 119,
+    "material": 109,
+    "question": 26
+   },
+   "system_tok": 4772,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 227
+   },
+   "layer_bytes": {
+    "요약 줄": 227
+   },
+   "by_bytes": {
+    "summary": 227
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 227
+   },
+   "question": "지금 턱살이 너무 많아서 고민이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 5696,
+   "sent": true,
+   "tokens_total": 5696,
+   "error": null,
+   "app_est_tokens": 4658,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 596,
+    "cache_creation_input_tokens": 1557,
+    "cache_read_input_tokens": 4135
+   },
+   "msg_bytes": 2183,
+   "sec_bytes": {
+    "judgement": 352,
+    "material": 1788,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 161,
+    "material": 819,
+    "question": 20
+   },
+   "system_tok": 4772,
+   "history_tok": -75,
+   "history_pred_tok": 473,
+   "prev_bytes": 1034,
+   "mat_rows": 8,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "summary:AP4": 1773
+   },
+   "layer_bytes": {
+    "요약 줄": 1773
+   },
+   "by_bytes": {
+    "summary": 1773
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1773
+   },
+   "question": "지방이 두꺼운 느낌이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 6496,
+   "sent": true,
+   "tokens_total": 6496,
+   "error": null,
+   "app_est_tokens": 4093,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 194,
+    "cache_creation_input_tokens": 800,
+    "cache_read_input_tokens": 5692
+   },
+   "msg_bytes": 490,
+   "sec_bytes": {
+    "judgement": 404,
+    "material": 20,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 185,
+    "material": 9,
+    "question": 30
+   },
+   "system_tok": 4772,
+   "history_tok": 1500,
+   "history_pred_tok": 2045,
+   "prev_bytes": 4467,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "지방분해주사랑 같이 맞는 시술이 궁금해",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 4,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 7800,
+   "sent": true,
+   "tokens_total": 7800,
+   "error": null,
+   "app_est_tokens": 4770,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 441,
+    "cache_creation_input_tokens": 1304,
+    "cache_read_input_tokens": 6492
+   },
+   "msg_bytes": 2519,
+   "sec_bytes": {
+    "judgement": 305,
+    "material": 2174,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 140,
+    "material": 995,
+    "question": 18
+   },
+   "system_tok": 4772,
+   "history_tok": 1875,
+   "history_pred_tok": 2473,
+   "prev_bytes": 5401,
+   "mat_rows": 3,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "overview": 2163
+   },
+   "layer_bytes": {
+    "자기": 548,
+    "물려받음": 1615
+   },
+   "by_bytes": {
+    "default": 2163
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2163
+   },
+   "question": "왜 채우지를 못한거야",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 5,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 8648,
+   "sent": true,
+   "tokens_total": 8648,
+   "error": null,
+   "app_est_tokens": 4229,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 753,
+    "cache_creation_input_tokens": 848,
+    "cache_read_input_tokens": 7796
+   },
+   "msg_bytes": 897,
+   "sec_bytes": {
+    "judgement": 291,
+    "material": 527,
+    "question": 79
+   },
+   "sec_tok": {
+    "judgement": 133,
+    "material": 241,
+    "question": 36
+   },
+   "system_tok": 4772,
+   "history_tok": 3465,
+   "history_pred_tok": 4077,
+   "prev_bytes": 8906,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "summary:AP4": 516
+   },
+   "layer_bytes": {
+    "요약 줄": 516
+   },
+   "by_bytes": {
+    "summary": 516
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 516
+   },
+   "question": "아니 지방 주사 랑 같이 하면 좋은 시술 알려달라고",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "7c356e51f396449e",
+   "c4": "7c35",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "new",
+   "prompt": "67159cb6",
+   "tokens_real": 8757,
+   "sent": true,
+   "tokens_total": 8757,
+   "error": null,
+   "app_est_tokens": 6693,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 281,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 8755
+   },
+   "msg_bytes": 8290,
+   "sec_bytes": {
+    "judgement": 1631,
+    "consult": 136,
+    "material": 6486,
+    "question": 37
+   },
+   "sec_tok": {
+    "judgement": 747,
+    "consult": 62,
+    "material": 2969,
+    "question": 17
+   },
+   "system_tok": 4772,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 26,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "overview": 3378,
+    "summary:QY3": 3087
+   },
+   "layer_bytes": {
+    "자기": 626,
+    "물려받음": 2074,
+    "하위 제품": 678,
+    "요약 줄": 3087
+   },
+   "by_bytes": {
+    "default": 3378,
+    "summary": 3087
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 3170,
+    "unused_other": 640,
+    "unused_summary": 2655
+   },
+   "question": "써마지 받고 싶어요",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 6,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 11034,
+   "sent": true,
+   "tokens_total": 11034,
+   "error": null,
+   "app_est_tokens": 5164,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 500,
+    "cache_creation_input_tokens": 2386,
+    "cache_read_input_tokens": 8644
+   },
+   "msg_bytes": 3703,
+   "sec_bytes": {
+    "judgement": 267,
+    "material": 3399,
+    "question": 37
+   },
+   "sec_tok": {
+    "judgement": 122,
+    "material": 1556,
+    "question": 17
+   },
+   "system_tok": 4772,
+   "history_tok": 4567,
+   "history_pred_tok": 4847,
+   "prev_bytes": 10587,
+   "mat_rows": 5,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "overview": 3388
+   },
+   "layer_bytes": {
+    "자기": 628,
+    "물려받음": 2080,
+    "하위 제품": 680
+   },
+   "by_bytes": {
+    "default": 3388
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2590,
+    "unused_other": 798
+   },
+   "question": "써마지 받고 싶어요",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "805816632b934c78",
+   "c4": "8058",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "new",
+   "prompt": "67159cb6",
+   "tokens_real": 8757,
+   "sent": true,
+   "tokens_total": 8757,
+   "error": null,
+   "app_est_tokens": 6693,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 258,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 8755
+   },
+   "msg_bytes": 8290,
+   "sec_bytes": {
+    "judgement": 1631,
+    "consult": 136,
+    "material": 6486,
+    "question": 37
+   },
+   "sec_tok": {
+    "judgement": 747,
+    "consult": 62,
+    "material": 2969,
+    "question": 17
+   },
+   "system_tok": 4772,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 26,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "overview": 3378,
+    "summary:QY3": 3087
+   },
+   "layer_bytes": {
+    "자기": 626,
+    "물려받음": 2074,
+    "하위 제품": 678,
+    "요약 줄": 3087
+   },
+   "by_bytes": {
+    "default": 3378,
+    "summary": 3087
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 3026,
+    "unused_other": 640,
+    "unused_summary": 2799
+   },
+   "question": "써마지 받고 싶어요",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "805816632b934c78",
+   "c4": "8058",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 9935,
+   "sent": true,
+   "tokens_total": 9935,
+   "error": null,
+   "app_est_tokens": 4598,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 361,
+    "cache_creation_input_tokens": 1496,
+    "cache_read_input_tokens": 8435
+   },
+   "msg_bytes": 2005,
+   "sec_bytes": {
+    "judgement": 440,
+    "consult": 222,
+    "material": 1313,
+    "question": 30
+   },
+   "sec_tok": {
+    "judgement": 201,
+    "consult": 102,
+    "material": 601,
+    "question": 14
+   },
+   "system_tok": 4772,
+   "history_tok": 4245,
+   "history_pred_tok": 4047,
+   "prev_bytes": 8839,
+   "mat_rows": 6,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 836,
+    "summary:QY4": 463
+   },
+   "layer_bytes": {
+    "요약 줄": 1299
+   },
+   "by_bytes": {
+    "summary": 1299
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1299
+   },
+   "question": "볼이 처져서요",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:top",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "805816632b934c78",
+   "c4": "8058",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 32752,
+   "sent": true,
+   "tokens_total": 32752,
+   "error": null,
+   "app_est_tokens": 20773,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1116,
+    "cache_creation_input_tokens": 22817,
+    "cache_read_input_tokens": 9931
+   },
+   "msg_bytes": 50530,
+   "sec_bytes": {
+    "judgement": 526,
+    "consult": 282,
+    "material": 49677,
+    "question": 45
+   },
+   "sec_tok": {
+    "judgement": 241,
+    "consult": 129,
+    "material": 22743,
+    "question": 21
+   },
+   "system_tok": 4772,
+   "history_tok": 4847,
+   "history_pred_tok": 5323,
+   "prev_bytes": 11627,
+   "mat_rows": 103,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "avoid+same_day": 1441,
+    "combo+same_day": 12726,
+    "same_day": 34530,
+    "summary:QY4": 926
+   },
+   "layer_bytes": {
+    "물려받음": 42431,
+    "자기": 4768,
+    "층 표시 없음": 1498,
+    "요약 줄": 926
+   },
+   "by_bytes": {
+    "yes": 48697,
+    "summary": 926
+   },
+   "waste_bytes": {
+    "dup_names": 3071,
+    "unused_but_safety_or_explicit": 5695,
+    "unused_other": 42488,
+    "used": 1440
+   },
+   "question": "울쎄라랑 같이 해도 돼요?",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:kd10",
+    "combo:yes",
+    "package:None",
+    "same_day:yes",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "5c0d670e7bf44ac1",
+   "c4": "5c0d",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "new",
+   "prompt": "67159cb6",
+   "tokens_real": 8758,
+   "sent": true,
+   "tokens_total": 8758,
+   "error": null,
+   "app_est_tokens": 6694,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 280,
+    "cache_creation_input_tokens": 4234,
+    "cache_read_input_tokens": 4522
+   },
+   "msg_bytes": 8293,
+   "sec_bytes": {
+    "judgement": 1631,
+    "consult": 136,
+    "material": 6486,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 747,
+    "consult": 62,
+    "material": 2969,
+    "question": 18
+   },
+   "system_tok": 4772,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 26,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "overview": 3378,
+    "summary:QY3": 3087
+   },
+   "layer_bytes": {
+    "자기": 626,
+    "물려받음": 2074,
+    "하위 제품": 678,
+    "요약 줄": 3087
+   },
+   "by_bytes": {
+    "default": 3378,
+    "summary": 3087
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 3173,
+    "unused_other": 640,
+    "unused_summary": 2652
+   },
+   "question": "써마지를 받고 싶어요",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "5c0d670e7bf44ac1",
+   "c4": "5c0d",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 9904,
+   "sent": true,
+   "tokens_total": 9904,
+   "error": null,
+   "app_est_tokens": 4563,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 352,
+    "cache_creation_input_tokens": 1464,
+    "cache_read_input_tokens": 8436
+   },
+   "msg_bytes": 1900,
+   "sec_bytes": {
+    "judgement": 336,
+    "consult": 221,
+    "material": 1313,
+    "question": 30
+   },
+   "sec_tok": {
+    "judgement": 154,
+    "consult": 101,
+    "material": 601,
+    "question": 14
+   },
+   "system_tok": 4772,
+   "history_tok": 4262,
+   "history_pred_tok": 4074,
+   "prev_bytes": 8899,
+   "mat_rows": 6,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "summary:AP4": 836,
+    "summary:QY4": 463
+   },
+   "layer_bytes": {
+    "요약 줄": 1299
+   },
+   "by_bytes": {
+    "summary": 1299
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_summary": 625,
+    "used": 674
+   },
+   "question": "볼이 쳐져서요",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:top",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "5c0d670e7bf44ac1",
+   "c4": "5c0d",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "67159cb6",
+   "tokens_real": 10490,
+   "sent": true,
+   "tokens_total": 10490,
+   "error": null,
+   "app_est_tokens": 4099,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 162,
+    "cache_creation_input_tokens": 586,
+    "cache_read_input_tokens": 9900
+   },
+   "msg_bytes": 506,
+   "sec_bytes": {
+    "judgement": 244,
+    "consult": 221,
+    "material": 20,
+    "question": 21
+   },
+   "sec_tok": {
+    "judgement": 112,
+    "consult": 101,
+    "material": 9,
+    "question": 10
+   },
+   "system_tok": 4772,
+   "history_tok": 5486,
+   "history_pred_tok": 5289,
+   "prev_bytes": 11553,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "응 맞아",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 7,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 18630,
+   "sent": true,
+   "tokens_total": 18630,
+   "error": null,
+   "app_est_tokens": 9035,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1158,
+    "cache_creation_input_tokens": 18626,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 15316,
+   "sec_bytes": {
+    "judgement": 473,
+    "material": 14813,
+    "question": 30
+   },
+   "sec_tok": {
+    "judgement": 217,
+    "material": 6782,
+    "question": 14
+   },
+   "system_tok": 4666,
+   "history_tok": 6953,
+   "history_pred_tok": 7046,
+   "prev_bytes": 15390,
+   "mat_rows": 66,
+   "mat_used_rows": 23,
+   "kind_bytes": {
+    "indication": 5641,
+    "outcome": 8702,
+    "lineup": 433
+   },
+   "layer_bytes": {
+    "물려받음": 11355,
+    "하위 제품": 2988,
+    "층 표시 없음": 433
+   },
+   "by_bytes": {
+    "kd10": 5641,
+    "kd9": 9135
+   },
+   "waste_bytes": {
+    "dup_names": 1302,
+    "unused_other": 3662,
+    "used": 3860,
+    "unused_kd9": 7254
+   },
+   "question": "써마지 알려줘",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd10",
+    "outcome:kd9",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 8,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 20004,
+   "sent": true,
+   "tokens_total": 20004,
+   "error": null,
+   "app_est_tokens": 4088,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 479,
+    "cache_creation_input_tokens": 1374,
+    "cache_read_input_tokens": 18626
+   },
+   "msg_bytes": 475,
+   "sec_bytes": {
+    "judgement": 418,
+    "material": 20,
+    "question": 37
+   },
+   "sec_tok": {
+    "judgement": 191,
+    "material": 9,
+    "question": 17
+   },
+   "system_tok": 4666,
+   "history_tok": 15121,
+   "history_pred_tok": 14743,
+   "prev_bytes": 32204,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "아니 원리가 머냐고",
+   "kinds": [
+    "overview:None",
+    "mechanism:yes",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 9,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 35132,
+   "sent": true,
+   "tokens_total": 35132,
+   "error": null,
+   "app_est_tokens": 14320,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 909,
+    "cache_creation_input_tokens": 15128,
+    "cache_read_input_tokens": 20000
+   },
+   "msg_bytes": 31170,
+   "sec_bytes": {
+    "judgement": 297,
+    "material": 30828,
+    "question": 45
+   },
+   "sec_tok": {
+    "judgement": 136,
+    "material": 14113,
+    "question": 21
+   },
+   "system_tok": 4666,
+   "history_tok": 16197,
+   "history_pred_tok": 15267,
+   "prev_bytes": 33348,
+   "mat_rows": 66,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "outcome": 30816
+   },
+   "layer_bytes": {
+    "층 표시 없음": 30816
+   },
+   "by_bytes": {
+    "entry": 30816
+   },
+   "waste_bytes": {
+    "dup_names": 26,
+    "unused_other": 30373,
+    "used": 443
+   },
+   "question": "비침습적 리프팅이 머야 ?",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd10",
+    "indication:kd9",
+    "outcome:entry",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 10,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 37081,
+   "sent": true,
+   "tokens_total": 37081,
+   "error": null,
+   "app_est_tokens": 4704,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 456,
+    "cache_creation_input_tokens": 1949,
+    "cache_read_input_tokens": 35128
+   },
+   "msg_bytes": 2322,
+   "sec_bytes": {
+    "judgement": 261,
+    "material": 2037,
+    "question": 24
+   },
+   "sec_tok": {
+    "judgement": 119,
+    "material": 933,
+    "question": 11
+   },
+   "system_tok": 4666,
+   "history_tok": 31352,
+   "history_pred_tok": 29997,
+   "prev_bytes": 65522,
+   "mat_rows": 9,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "summary:AP4": 2023
+   },
+   "layer_bytes": {
+    "요약 줄": 2023
+   },
+   "by_bytes": {
+    "summary": 2023
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1852,
+    "unused_summary": 171
+   },
+   "question": "팔자 주름",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 11,
+   "date": "2026-11-17",
+   "era": "before-11-18(default)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 58315,
+   "sent": true,
+   "tokens_total": 58315,
+   "error": null,
+   "app_est_tokens": 19524,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 845,
+    "cache_creation_input_tokens": 21234,
+    "cache_read_input_tokens": 37077
+   },
+   "msg_bytes": 46783,
+   "sec_bytes": {
+    "judgement": 286,
+    "material": 46440,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 131,
+    "material": 21261,
+    "question": 26
+   },
+   "system_tok": 4666,
+   "history_tok": 32232,
+   "history_pred_tok": 31511,
+   "prev_bytes": 68831,
+   "mat_rows": 70,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "overview": 46429
+   },
+   "layer_bytes": {
+    "하위 시술": 1321,
+    "하위 제품": 33542,
+    "하위 케이스": 11566
+   },
+   "by_bytes": {
+    "default": 46429
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 6149,
+    "unused_sub_not_md": 35447,
+    "unused_other": 4833
+   },
+   "question": "기기 리프팅을 맞아야 할거 같아서",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 12,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 59419,
+   "sent": true,
+   "tokens_total": 59419,
+   "error": null,
+   "app_est_tokens": 4127,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 895,
+    "cache_creation_input_tokens": 1104,
+    "cache_read_input_tokens": 58311
+   },
+   "msg_bytes": 592,
+   "sec_bytes": {
+    "judgement": 517,
+    "material": 20,
+    "question": 55
+   },
+   "sec_tok": {
+    "judgement": 237,
+    "material": 9,
+    "question": 25
+   },
+   "system_tok": 4666,
+   "history_tok": 54482,
+   "history_pred_tok": 53465,
+   "prev_bytes": 116784,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "처짐이 고민이야 팔자주름이라고",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:entry",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 13,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 60437,
+   "sent": true,
+   "tokens_total": 60437,
+   "error": null,
+   "app_est_tokens": 4015,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 183,
+    "cache_creation_input_tokens": 1018,
+    "cache_read_input_tokens": 59415
+   },
+   "msg_bytes": 254,
+   "sec_bytes": {
+    "judgement": 211,
+    "material": 20,
+    "question": 23
+   },
+   "sec_tok": {
+    "judgement": 97,
+    "material": 9,
+    "question": 11
+   },
+   "system_tok": 4666,
+   "history_tok": 55655,
+   "history_pred_tok": 54059,
+   "prev_bytes": 118082,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "개새끼야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "e3f90bfd3278476e",
+   "c4": "e3f9",
+   "turn": 14,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "3b47d892",
+   "tokens_real": 60741,
+   "sent": true,
+   "tokens_total": 60741,
+   "error": null,
+   "app_est_tokens": 4014,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 135,
+    "cache_creation_input_tokens": 304,
+    "cache_read_input_tokens": 60433
+   },
+   "msg_bytes": 251,
+   "sec_bytes": {
+    "judgement": 211,
+    "material": 20,
+    "question": 20
+   },
+   "sec_tok": {
+    "judgement": 97,
+    "material": 9,
+    "question": 9
+   },
+   "system_tok": 4666,
+   "history_tok": 55960,
+   "history_pred_tok": 54361,
+   "prev_bytes": 118741,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "미안해",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "79b290325ac2446c",
+   "c4": "79b2",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "abb8d5f3",
+   "tokens_real": 4921,
+   "sent": true,
+   "tokens_total": 4921,
+   "error": null,
+   "app_est_tokens": 4204,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 150,
+    "cache_creation_input_tokens": 4919,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 823,
+   "sec_bytes": {
+    "judgement": 343,
+    "close": 92,
+    "consult": 128,
+    "material": 203,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 157,
+    "close": 42,
+    "consult": 59,
+    "material": 93,
+    "question": 26
+   },
+   "system_tok": 4542,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 192
+   },
+   "layer_bytes": {
+    "요약 줄": 192
+   },
+   "by_bytes": {
+    "summary": 192
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 192
+   },
+   "question": "지금 턱살이 너무 많아서 고민이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "79b290325ac2446c",
+   "c4": "79b2",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 5976,
+   "sent": true,
+   "tokens_total": 5976,
+   "error": null,
+   "app_est_tokens": 4600,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 262,
+    "cache_creation_input_tokens": 1373,
+    "cache_read_input_tokens": 4599
+   },
+   "msg_bytes": 2011,
+   "sec_bytes": {
+    "judgement": 293,
+    "close": 28,
+    "consult": 128,
+    "material": 1519,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 134,
+    "close": 13,
+    "consult": 59,
+    "material": 695,
+    "question": 20
+   },
+   "system_tok": 4542,
+   "history_tok": 513,
+   "history_pred_tok": 524,
+   "prev_bytes": 1145,
+   "mat_rows": 9,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "summary:AP4": 1504
+   },
+   "layer_bytes": {
+    "요약 줄": 1504
+   },
+   "by_bytes": {
+    "summary": 1504
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1504
+   },
+   "question": "지방이 두꺼운 느낌이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "79b290325ac2446c",
+   "c4": "79b2",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 6578,
+   "sent": true,
+   "tokens_total": 6578,
+   "error": null,
+   "app_est_tokens": 4182,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 86,
+    "cache_creation_input_tokens": 602,
+    "cache_read_input_tokens": 5972
+   },
+   "msg_bytes": 756,
+   "sec_bytes": {
+    "judgement": 404,
+    "close": 69,
+    "consult": 197,
+    "material": 20,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 185,
+    "close": 32,
+    "consult": 90,
+    "material": 9,
+    "question": 30
+   },
+   "system_tok": 4542,
+   "history_tok": 1689,
+   "history_pred_tok": 1698,
+   "prev_bytes": 3709,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "지방분해주사랑 같이 맞는 시술이 궁금해",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "79b290325ac2446c",
+   "c4": "79b2",
+   "turn": 4,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 6911,
+   "sent": true,
+   "tokens_total": 6911,
+   "error": null,
+   "app_est_tokens": 4107,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 135,
+    "cache_creation_input_tokens": 333,
+    "cache_read_input_tokens": 6574
+   },
+   "msg_bytes": 530,
+   "sec_bytes": {
+    "judgement": 101,
+    "close": 27,
+    "prev": 145,
+    "consult": 197,
+    "material": 20,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 46,
+    "close": 12,
+    "prev": 66,
+    "consult": 90,
+    "material": 9,
+    "question": 18
+   },
+   "system_tok": 4542,
+   "history_tok": 2126,
+   "history_pred_tok": 2127,
+   "prev_bytes": 4646,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "왜 채우지를 못한거야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "79b290325ac2446c",
+   "c4": "79b2",
+   "turn": 5,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 8846,
+   "sent": true,
+   "tokens_total": 8846,
+   "error": null,
+   "app_est_tokens": 5180,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 210,
+    "cache_creation_input_tokens": 1935,
+    "cache_read_input_tokens": 6907
+   },
+   "msg_bytes": 3749,
+   "sec_bytes": {
+    "judgement": 459,
+    "close": 69,
+    "consult": 197,
+    "material": 2946,
+    "question": 78
+   },
+   "sec_tok": {
+    "judgement": 210,
+    "close": 32,
+    "consult": 90,
+    "material": 1349,
+    "question": 36
+   },
+   "system_tok": 4542,
+   "history_tok": 2587,
+   "history_pred_tok": 2508,
+   "prev_bytes": 5478,
+   "mat_rows": 22,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "lineup": 2928
+   },
+   "layer_bytes": {
+    "층 표시 없음": 2928
+   },
+   "by_bytes": {
+    "kd10": 2928
+   },
+   "waste_bytes": {
+    "dup_names": 37,
+    "unused_but_safety_or_explicit": 106,
+    "used": 1020,
+    "unused_other": 1802
+   },
+   "question": "아니 지방 주사랑 같이 하면 좋은 시술 알려달라고",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:kd10",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2d16997adb7847b0",
+   "c4": "2d16",
+   "turn": 1,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "new",
+   "prompt": "abb8d5f3",
+   "tokens_real": 4921,
+   "sent": true,
+   "tokens_total": 4921,
+   "error": null,
+   "app_est_tokens": 4204,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 164,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 4919
+   },
+   "msg_bytes": 823,
+   "sec_bytes": {
+    "judgement": 343,
+    "close": 92,
+    "consult": 128,
+    "material": 203,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 157,
+    "close": 42,
+    "consult": 59,
+    "material": 93,
+    "question": 26
+   },
+   "system_tok": 4542,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 192
+   },
+   "layer_bytes": {
+    "요약 줄": 192
+   },
+   "by_bytes": {
+    "summary": 192
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 192
+   },
+   "question": "지금 턱살이 너무 많아서 고민이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2d16997adb7847b0",
+   "c4": "2d16",
+   "turn": 2,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 5409,
+   "sent": true,
+   "tokens_total": 5409,
+   "error": null,
+   "app_est_tokens": 4164,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 139,
+    "cache_creation_input_tokens": 806,
+    "cache_read_input_tokens": 4599
+   },
+   "msg_bytes": 702,
+   "sec_bytes": {
+    "judgement": 293,
+    "close": 28,
+    "consult": 128,
+    "material": 210,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 134,
+    "close": 13,
+    "consult": 59,
+    "material": 96,
+    "question": 20
+   },
+   "system_tok": 4542,
+   "history_tok": 545,
+   "history_pred_tok": 536,
+   "prev_bytes": 1170,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 199
+   },
+   "layer_bytes": {
+    "요약 줄": 199
+   },
+   "by_bytes": {
+    "summary": 199
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 199
+   },
+   "question": "지방이 두꺼운 느낌이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2d16997adb7847b0",
+   "c4": "2d16",
+   "turn": 3,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 5888,
+   "sent": true,
+   "tokens_total": 5888,
+   "error": null,
+   "app_est_tokens": 4182,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 85,
+    "cache_creation_input_tokens": 479,
+    "cache_read_input_tokens": 5405
+   },
+   "msg_bytes": 756,
+   "sec_bytes": {
+    "judgement": 404,
+    "close": 69,
+    "consult": 197,
+    "material": 20,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 185,
+    "close": 32,
+    "consult": 90,
+    "material": 9,
+    "question": 30
+   },
+   "system_tok": 4542,
+   "history_tok": 999,
+   "history_pred_tok": 986,
+   "prev_bytes": 2154,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "지방분해주사랑 같이 맞는 시술이 궁금해",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "2d16997adb7847b0",
+   "c4": "2d16",
+   "turn": 4,
+   "date": "2026-11-17",
+   "era": "before-11-18(None)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 6220,
+   "sent": true,
+   "tokens_total": 6220,
+   "error": null,
+   "app_est_tokens": 4107,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 129,
+    "cache_creation_input_tokens": 332,
+    "cache_read_input_tokens": 5884
+   },
+   "msg_bytes": 530,
+   "sec_bytes": {
+    "judgement": 101,
+    "close": 27,
+    "prev": 145,
+    "consult": 197,
+    "material": 20,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 46,
+    "close": 12,
+    "prev": 66,
+    "consult": 90,
+    "material": 9,
+    "question": 18
+   },
+   "system_tok": 4542,
+   "history_tok": 1435,
+   "history_pred_tok": 1413,
+   "prev_bytes": 3087,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "왜 채우지를 못한거야",
+   "kinds": []
+  },
+  {
+   "conv": "2d16997adb7847b0",
+   "c4": "2d16",
+   "turn": 5,
+   "date": "2026-11-17",
+   "era": "before-11-18(jev)",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 8149,
+   "sent": true,
+   "tokens_total": 8149,
+   "error": null,
+   "app_est_tokens": 5175,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 210,
+    "cache_creation_input_tokens": 1929,
+    "cache_read_input_tokens": 6216
+   },
+   "msg_bytes": 3735,
+   "sec_bytes": {
+    "judgement": 459,
+    "close": 69,
+    "consult": 197,
+    "material": 2932,
+    "question": 78
+   },
+   "sec_tok": {
+    "judgement": 210,
+    "close": 32,
+    "consult": 90,
+    "material": 1342,
+    "question": 36
+   },
+   "system_tok": 4542,
+   "history_tok": 1897,
+   "history_pred_tok": 1788,
+   "prev_bytes": 3905,
+   "mat_rows": 22,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "lineup": 2921
+   },
+   "layer_bytes": {
+    "층 표시 없음": 2921
+   },
+   "by_bytes": {
+    "kd10": 2921
+   },
+   "waste_bytes": {
+    "dup_names": 37,
+    "unused_but_safety_or_explicit": 105,
+    "used": 594,
+    "unused_other": 2222
+   },
+   "question": "아니 지방 주사랑 같이 하면 좋은 시술 알려달라고",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:None",
+    "lineup:kd10",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:yes",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "default",
+   "mode": "new",
+   "prompt": "abb8d5f3",
+   "tokens_real": 4842,
+   "sent": true,
+   "tokens_total": 4842,
+   "error": null,
+   "app_est_tokens": 4152,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 89,
+    "cache_creation_input_tokens": 4840,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 665,
+   "sec_bytes": {
+    "judgement": 463,
+    "close": 28,
+    "consult": 110,
+    "material": 20,
+    "question": 44
+   },
+   "sec_tok": {
+    "judgement": 212,
+    "close": 13,
+    "consult": 50,
+    "material": 9,
+    "question": 20
+   },
+   "system_tok": 4542,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "턱에 살이 너무 많아보여",
+   "kinds": [
+    "overview:default",
+    "mechanism:None",
+    "indication:default",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 2,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 11048,
+   "sent": true,
+   "tokens_total": 11048,
+   "error": null,
+   "app_est_tokens": 8536,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 208,
+    "cache_creation_input_tokens": 6524,
+    "cache_read_input_tokens": 4520
+   },
+   "msg_bytes": 13818,
+   "sec_bytes": {
+    "judgement": 1049,
+    "close": 641,
+    "consult": 150,
+    "material": 11950,
+    "question": 28
+   },
+   "sec_tok": {
+    "judgement": 480,
+    "close": 293,
+    "consult": 69,
+    "material": 5471,
+    "question": 13
+   },
+   "system_tok": 4542,
+   "history_tok": 180,
+   "history_pred_tok": 389,
+   "prev_bytes": 849,
+   "mat_rows": 67,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "overview": 581,
+    "indication": 10217,
+    "summary:QY7": 1088
+   },
+   "layer_bytes": {
+    "층 표시 없음": 10798,
+    "요약 줄": 1088
+   },
+   "by_bytes": {
+    "top": 581,
+    "kd9": 10217,
+    "summary": 1088
+   },
+   "waste_bytes": {
+    "dup_names": 1637,
+    "used": 781,
+    "unused_kd9": 10017,
+    "unused_summary": 1088
+   },
+   "question": "사각턱인데 ?",
+   "kinds": [
+    "overview:top",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 3,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 19396,
+   "sent": true,
+   "tokens_total": 19396,
+   "error": null,
+   "app_est_tokens": 9783,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 331,
+    "cache_creation_input_tokens": 8348,
+    "cache_read_input_tokens": 11044
+   },
+   "msg_bytes": 17558,
+   "sec_bytes": {
+    "judgement": 500,
+    "close": 28,
+    "consult": 224,
+    "material": 16772,
+    "question": 34
+   },
+   "sec_tok": {
+    "judgement": 229,
+    "close": 13,
+    "consult": 103,
+    "material": 7678,
+    "question": 16
+   },
+   "system_tok": 4542,
+   "history_tok": 6815,
+   "history_pred_tok": 6915,
+   "prev_bytes": 15105,
+   "mat_rows": 77,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "overview+mechanism": 2216,
+    "indication": 6543,
+    "outcome": 7405,
+    "lineup": 537
+   },
+   "layer_bytes": {
+    "물려받음": 15142,
+    "자기": 1022,
+    "층 표시 없음": 537
+   },
+   "by_bytes": {
+    "kd9": 10158,
+    "kd10": 6543
+   },
+   "waste_bytes": {
+    "dup_names": 1754,
+    "used": 3206,
+    "unused_kd9": 6773,
+    "unused_other": 6543,
+    "unused_but_safety_or_explicit": 179
+   },
+   "question": "턱 보톡스 알려줘",
+   "kinds": [
+    "overview:top",
+    "mechanism:kd9",
+    "indication:kd10",
+    "outcome:kd9",
+    "lineup:kd9",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 4,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 20142,
+   "sent": true,
+   "tokens_total": 20142,
+   "error": null,
+   "app_est_tokens": 4233,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 138,
+    "cache_creation_input_tokens": 746,
+    "cache_read_input_tokens": 19392
+   },
+   "msg_bytes": 908,
+   "sec_bytes": {
+    "judgement": 365,
+    "close": 28,
+    "consult": 274,
+    "material": 207,
+    "question": 34
+   },
+   "sec_tok": {
+    "judgement": 167,
+    "close": 13,
+    "consult": 125,
+    "material": 95,
+    "question": 16
+   },
+   "system_tok": 4542,
+   "history_tok": 15184,
+   "history_pred_tok": 15261,
+   "prev_bytes": 33336,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 196
+   },
+   "layer_bytes": {
+    "요약 줄": 196
+   },
+   "by_bytes": {
+    "summary": 196
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 196
+   },
+   "question": "턱살이 너무 많아",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 5,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 21246,
+   "sent": true,
+   "tokens_total": 21246,
+   "error": null,
+   "app_est_tokens": 4658,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 239,
+    "cache_creation_input_tokens": 1104,
+    "cache_read_input_tokens": 20138
+   },
+   "msg_bytes": 2183,
+   "sec_bytes": {
+    "judgement": 365,
+    "close": 28,
+    "consult": 333,
+    "material": 1416,
+    "question": 41
+   },
+   "sec_tok": {
+    "judgement": 167,
+    "close": 13,
+    "consult": 152,
+    "material": 648,
+    "question": 19
+   },
+   "system_tok": 4542,
+   "history_tok": 15704,
+   "history_pred_tok": 15808,
+   "prev_bytes": 34530,
+   "mat_rows": 9,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 1402
+   },
+   "layer_bytes": {
+    "요약 줄": 1402
+   },
+   "by_bytes": {
+    "summary": 1402
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 992,
+    "unused_summary": 410
+   },
+   "question": "미간 주름도 너무 많고",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "44b267e97f6d4df4",
+   "c4": "44b2",
+   "turn": 6,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 24352,
+   "sent": true,
+   "tokens_total": 24352,
+   "error": null,
+   "app_est_tokens": 6077,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 255,
+    "cache_creation_input_tokens": 3106,
+    "cache_read_input_tokens": 21242
+   },
+   "msg_bytes": 6440,
+   "sec_bytes": {
+    "judgement": 1213,
+    "close": 884,
+    "consult": 420,
+    "material": 3879,
+    "question": 44
+   },
+   "sec_tok": {
+    "judgement": 555,
+    "close": 405,
+    "consult": 192,
+    "material": 1776,
+    "question": 20
+   },
+   "system_tok": 4542,
+   "history_tok": 16861,
+   "history_pred_tok": 17038,
+   "prev_bytes": 37217,
+   "mat_rows": 23,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 3854
+   },
+   "layer_bytes": {
+    "요약 줄": 3854
+   },
+   "by_bytes": {
+    "summary": 3854
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 888,
+    "unused_summary": 2966
+   },
+   "question": "눈에 주름도 너무 많은데",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "9c9adca4a4e44aba",
+   "c4": "9c9a",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "new",
+   "prompt": "abb8d5f3",
+   "tokens_real": 4968,
+   "sent": true,
+   "tokens_total": 4968,
+   "error": null,
+   "app_est_tokens": 4239,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 169,
+    "cache_creation_input_tokens": 920,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 927,
+   "sec_bytes": {
+    "judgement": 343,
+    "close": 92,
+    "consult": 128,
+    "material": 331,
+    "question": 33
+   },
+   "sec_tok": {
+    "judgement": 157,
+    "close": 42,
+    "consult": 59,
+    "material": 152,
+    "question": 15
+   },
+   "system_tok": 4542,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "summary:AP4": 320
+   },
+   "layer_bytes": {
+    "요약 줄": 320
+   },
+   "by_bytes": {
+    "summary": 320
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 320
+   },
+   "question": "볼살이 고민이야",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:entry",
+    "outcome:None",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "9c9adca4a4e44aba",
+   "c4": "9c9a",
+   "turn": 2,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 19944,
+   "sent": true,
+   "tokens_total": 19944,
+   "error": null,
+   "app_est_tokens": 14463,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 917,
+    "cache_creation_input_tokens": 15294,
+    "cache_read_input_tokens": 4646
+   },
+   "msg_bytes": 31598,
+   "sec_bytes": {
+    "judgement": 282,
+    "close": 28,
+    "consult": 166,
+    "material": 31083,
+    "question": 39
+   },
+   "sec_tok": {
+    "judgement": 129,
+    "close": 13,
+    "consult": 76,
+    "material": 14230,
+    "question": 18
+   },
+   "system_tok": 4542,
+   "history_tok": 936,
+   "history_pred_tok": 587,
+   "prev_bytes": 1283,
+   "mat_rows": 70,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "outcome": 31070
+   },
+   "layer_bytes": {
+    "층 표시 없음": 31070
+   },
+   "by_bytes": {
+    "entry": 31070
+   },
+   "waste_bytes": {
+    "dup_names": 52,
+    "unused_other": 30272,
+    "used": 798
+   },
+   "question": "리프팅은 안해도 돼 ?",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:entry",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:None",
+    "combo:None",
+    "package:None",
+    "same_day:None",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "9c9adca4a4e44aba",
+   "c4": "9c9a",
+   "turn": 3,
+   "date": "2026-11-18",
+   "era": "jev",
+   "mode": "resume",
+   "prompt": "abb8d5f3",
+   "tokens_real": 26513,
+   "sent": true,
+   "tokens_total": 26513,
+   "error": null,
+   "app_est_tokens": 7975,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 552,
+    "cache_creation_input_tokens": 6569,
+    "cache_read_input_tokens": 19940
+   },
+   "msg_bytes": 12136,
+   "sec_bytes": {
+    "judgement": 812,
+    "close": 48,
+    "consult": 240,
+    "material": 10967,
+    "question": 69
+   },
+   "sec_tok": {
+    "judgement": 372,
+    "close": 22,
+    "consult": 110,
+    "material": 5021,
+    "question": 32
+   },
+   "system_tok": 4542,
+   "history_tok": 16415,
+   "history_pred_tok": 15262,
+   "prev_bytes": 33337,
+   "mat_rows": 20,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "outcome": 10292,
+    "same_day": 663
+   },
+   "layer_bytes": {
+    "하위 시술": 4053,
+    "하위 제품": 6902
+   },
+   "by_bytes": {
+    "entry": 10292,
+    "yes": 663
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_sub_not_md": 8962,
+    "unused_other": 1330,
+    "used": 663
+   },
+   "question": "지방분해 주사랑 리프팅은 같이 하면 안돼 ?",
+   "kinds": [
+    "overview:None",
+    "mechanism:None",
+    "indication:None",
+    "outcome:entry",
+    "lineup:None",
+    "adverse:None",
+    "recovery:None",
+    "contraindication:None",
+    "avoid:yes",
+    "combo:None",
+    "package:None",
+    "same_day:yes",
+    "order_interval:None",
+    "offer:None"
+   ]
+  },
+  {
+   "conv": "d1e64271cdf54095",
+   "c4": "d1e6",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 6357,
+   "sent": true,
+   "tokens_total": 6357,
+   "error": null,
+   "app_est_tokens": 5199,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 984,
+    "cache_creation_input_tokens": 2309,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 3807,
+   "sec_bytes": {
+    "judgement": 927,
+    "close": 697,
+    "consult": 171,
+    "material": 1972,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 424,
+    "close": 319,
+    "consult": 78,
+    "material": 903,
+    "question": 18
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 17,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "summary:AP4": 775,
+    "summary:QY7": 1184
+   },
+   "layer_bytes": {
+    "요약 줄": 1959
+   },
+   "by_bytes": {
+    "summary": 1959
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 886,
+    "unused_summary": 1073
+   },
+   "question": "얼굴이 자꾸 빨개져요",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "b8c9ea94ce824746",
+   "c4": "b8c9",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 4950,
+   "sent": true,
+   "tokens_total": 4950,
+   "error": null,
+   "app_est_tokens": 4225,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 173,
+    "cache_creation_input_tokens": 902,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 885,
+   "sec_bytes": {
+    "judgement": 386,
+    "close": 92,
+    "consult": 160,
+    "material": 203,
+    "question": 44
+   },
+   "sec_tok": {
+    "judgement": 177,
+    "close": 42,
+    "consult": 73,
+    "material": 93,
+    "question": 20
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 1,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:AP4": 192
+   },
+   "layer_bytes": {
+    "요약 줄": 192
+   },
+   "by_bytes": {
+    "summary": 192
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 192
+   },
+   "question": "턱에 살이 너무 많아보여",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "b8c9ea94ce824746",
+   "c4": "b8c9",
+   "turn": 2,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 5687,
+   "sent": true,
+   "tokens_total": 5687,
+   "error": null,
+   "app_est_tokens": 4344,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 491,
+    "cache_creation_input_tokens": 1055,
+    "cache_read_input_tokens": 4628
+   },
+   "msg_bytes": 1243,
+   "sec_bytes": {
+    "judgement": 342,
+    "close": 28,
+    "consult": 256,
+    "material": 590,
+    "question": 27
+   },
+   "sec_tok": {
+    "judgement": 157,
+    "close": 13,
+    "consult": 117,
+    "material": 270,
+    "question": 12
+   },
+   "system_tok": 4559,
+   "history_tok": 559,
+   "history_pred_tok": 579,
+   "prev_bytes": 1264,
+   "mat_rows": 4,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 576
+   },
+   "layer_bytes": {
+    "요약 줄": 576
+   },
+   "by_bytes": {
+    "summary": 576
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 576
+   },
+   "question": "사각턱인데?",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 5019,
+   "sent": true,
+   "tokens_total": 5019,
+   "error": null,
+   "app_est_tokens": 4276,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 479,
+    "cache_creation_input_tokens": 971,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 1037,
+   "sec_bytes": {
+    "judgement": 407,
+    "close": 92,
+    "consult": 160,
+    "material": 331,
+    "question": 47
+   },
+   "sec_tok": {
+    "judgement": 186,
+    "close": 42,
+    "consult": 73,
+    "material": 152,
+    "question": 22
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "summary:AP4": 320
+   },
+   "layer_bytes": {
+    "요약 줄": 320
+   },
+   "by_bytes": {
+    "summary": 320
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 320
+   },
+   "question": "볼에 살이 많아서 고민이돼",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 2,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 5881,
+   "sent": true,
+   "tokens_total": 5881,
+   "error": null,
+   "app_est_tokens": 4207,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 61,
+    "cache_creation_input_tokens": 860,
+    "cache_read_input_tokens": 5017
+   },
+   "msg_bytes": 832,
+   "sec_bytes": {
+    "judgement": 448,
+    "close": 48,
+    "consult": 229,
+    "material": 20,
+    "question": 87
+   },
+   "sec_tok": {
+    "judgement": 205,
+    "close": 22,
+    "consult": 105,
+    "material": 9,
+    "question": 40
+   },
+   "system_tok": 4559,
+   "history_tok": 941,
+   "history_pred_tok": 633,
+   "prev_bytes": 1382,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "지방분해 주사를 맞을건데 뭐 같이 하면 좋은 시술 잇어 ?",
+   "kinds": [
+    "combo:yes"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 3,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 7640,
+   "sent": true,
+   "tokens_total": 7640,
+   "error": null,
+   "app_est_tokens": 5093,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 389,
+    "cache_creation_input_tokens": 1759,
+    "cache_read_input_tokens": 5877
+   },
+   "msg_bytes": 3490,
+   "sec_bytes": {
+    "judgement": 381,
+    "close": 56,
+    "consult": 229,
+    "material": 2771,
+    "question": 53
+   },
+   "sec_tok": {
+    "judgement": 174,
+    "close": 26,
+    "consult": 105,
+    "material": 1269,
+    "question": 24
+   },
+   "system_tok": 4559,
+   "history_tok": 1483,
+   "history_pred_tok": 1071,
+   "prev_bytes": 2339,
+   "mat_rows": 22,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "lineup": 2745
+   },
+   "layer_bytes": {
+    "층 표시 없음": 2745
+   },
+   "by_bytes": {
+    "yes": 2745
+   },
+   "waste_bytes": {
+    "dup_names": 37,
+    "used": 986,
+    "unused_other": 1759
+   },
+   "question": "그럼 지방 분해주사 뭐뭐 잇어 ?",
+   "kinds": [
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 4,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 22106,
+   "sent": true,
+   "tokens_total": 22106,
+   "error": null,
+   "app_est_tokens": 14325,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 698,
+    "cache_creation_input_tokens": 14466,
+    "cache_read_input_tokens": 7636
+   },
+   "msg_bytes": 31184,
+   "sec_bytes": {
+    "judgement": 634,
+    "close": 28,
+    "consult": 229,
+    "material": 30229,
+    "question": 64
+   },
+   "sec_tok": {
+    "judgement": 290,
+    "close": 13,
+    "consult": 105,
+    "material": 13839,
+    "question": 29
+   },
+   "system_tok": 4559,
+   "history_tok": 3270,
+   "history_pred_tok": 2870,
+   "prev_bytes": 6270,
+   "mat_rows": 57,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "overview+mechanism": 16162,
+    "indication": 3751,
+    "outcome": 10299
+   },
+   "layer_bytes": {
+    "자기": 764,
+    "하위 시술": 10025,
+    "하위 제품": 15605,
+    "하위 케이스": 3818
+   },
+   "by_bytes": {
+    "yes": 16162,
+    "kd9": 14050
+   },
+   "waste_bytes": {
+    "dup_names": 345,
+    "used": 3265,
+    "unused_sub_not_md": 10696,
+    "unused_other": 2201,
+    "unused_kd9": 14050
+   },
+   "question": "응 어떤 원리인지 어떤 시술인지 궁금해",
+   "kinds": [
+    "overview:yes",
+    "mechanism:yes",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 5,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 23767,
+   "sent": true,
+   "tokens_total": 23767,
+   "error": null,
+   "app_est_tokens": 4651,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 438,
+    "cache_creation_input_tokens": 1661,
+    "cache_read_input_tokens": 22102
+   },
+   "msg_bytes": 2164,
+   "sec_bytes": {
+    "judgement": 360,
+    "close": 28,
+    "consult": 325,
+    "material": 1398,
+    "question": 53
+   },
+   "sec_tok": {
+    "judgement": 165,
+    "close": 13,
+    "consult": 149,
+    "material": 640,
+    "question": 24
+   },
+   "system_tok": 4559,
+   "history_tok": 18217,
+   "history_pred_tok": 17466,
+   "prev_bytes": 38151,
+   "mat_rows": 9,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 1384
+   },
+   "layer_bytes": {
+    "요약 줄": 1384
+   },
+   "by_bytes": {
+    "summary": 1384
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 980,
+    "unused_summary": 404
+   },
+   "question": "그럼 미간 주름은 어떻게 없애 ?",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 6,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 28344,
+   "sent": true,
+   "tokens_total": 28344,
+   "error": null,
+   "app_est_tokens": 6791,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 506,
+    "cache_creation_input_tokens": 4577,
+    "cache_read_input_tokens": 23763
+   },
+   "msg_bytes": 8583,
+   "sec_bytes": {
+    "judgement": 320,
+    "close": 56,
+    "consult": 393,
+    "material": 7757,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 146,
+    "close": 26,
+    "consult": 180,
+    "material": 3551,
+    "question": 26
+   },
+   "system_tok": 4559,
+   "history_tok": 19855,
+   "history_pred_tok": 18723,
+   "prev_bytes": 40897,
+   "mat_rows": 76,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "lineup": 7489,
+    "summary:QY4": 239
+   },
+   "layer_bytes": {
+    "층 표시 없음": 7489,
+    "요약 줄": 239
+   },
+   "by_bytes": {
+    "yes": 7489,
+    "summary": 239
+   },
+   "waste_bytes": {
+    "dup_names": 294,
+    "used": 956,
+    "unused_other": 6772
+   },
+   "question": "그럼 기기 리프팅 뭐 하면 좋을까 ?",
+   "kinds": [
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 7,
+   "date": "2026-11-18",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 30812,
+   "sent": true,
+   "tokens_total": 30812,
+   "error": null,
+   "app_est_tokens": 5420,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 424,
+    "cache_creation_input_tokens": 2468,
+    "cache_read_input_tokens": 28340
+   },
+   "msg_bytes": 4471,
+   "sec_bytes": {
+    "judgement": 303,
+    "close": 28,
+    "consult": 453,
+    "material": 3647,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 139,
+    "close": 13,
+    "consult": 207,
+    "material": 1670,
+    "question": 18
+   },
+   "system_tok": 4559,
+   "history_tok": 24206,
+   "history_pred_tok": 22866,
+   "prev_bytes": 49946,
+   "mat_rows": 6,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "overview": 3398,
+    "summary:QY4": 238
+   },
+   "layer_bytes": {
+    "자기": 630,
+    "물려받음": 2086,
+    "하위 제품": 682,
+    "요약 줄": 238
+   },
+   "by_bytes": {
+    "default": 3398,
+    "summary": 238
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2350,
+    "unused_other": 1286
+   },
+   "question": "써마지 받아보고 싶어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 8,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 32229,
+   "sent": true,
+   "tokens_total": 32229,
+   "error": null,
+   "app_est_tokens": 4673,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 364,
+    "cache_creation_input_tokens": 1417,
+    "cache_read_input_tokens": 30808
+   },
+   "msg_bytes": 2229,
+   "sec_bytes": {
+    "judgement": 276,
+    "close": 28,
+    "consult": 453,
+    "material": 1426,
+    "question": 46
+   },
+   "sec_tok": {
+    "judgement": 126,
+    "close": 13,
+    "consult": 207,
+    "material": 653,
+    "question": 21
+   },
+   "system_tok": 4559,
+   "history_tok": 26649,
+   "history_pred_tok": 25140,
+   "prev_bytes": 54913,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "offer": 1415
+   },
+   "layer_bytes": {
+    "하위 제품": 1415
+   },
+   "by_bytes": {
+    "yes": 1415
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1415
+   },
+   "question": "응 써마지 몇샷 맞아야해 ?",
+   "kinds": [
+    "offer:yes"
+   ]
+  },
+  {
+   "conv": "dc7841741ec94cbb",
+   "c4": "dc78",
+   "turn": 9,
+   "date": "2026-11-18",
+   "era": "None",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 32912,
+   "sent": true,
+   "tokens_total": 32912,
+   "error": null,
+   "app_est_tokens": 4165,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 31,
+    "cache_creation_input_tokens": 683,
+    "cache_read_input_tokens": 32225
+   },
+   "msg_bytes": 704,
+   "sec_bytes": {
+    "judgement": 101,
+    "close": 27,
+    "prev": 76,
+    "consult": 453,
+    "material": 20,
+    "question": 27
+   },
+   "sec_tok": {
+    "judgement": 46,
+    "close": 12,
+    "prev": 35,
+    "consult": 207,
+    "material": 9,
+    "question": 12
+   },
+   "system_tok": 4559,
+   "history_tok": 28030,
+   "history_pred_tok": 26301,
+   "prev_bytes": 57449,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "아하 고마워",
+   "kinds": []
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 1,
+   "date": "2026-11-18",
+   "era": "None",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 4703,
+   "sent": true,
+   "tokens_total": 4703,
+   "error": null,
+   "app_est_tokens": 4033,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 61,
+    "cache_creation_input_tokens": 655,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 308,
+   "sec_bytes": {
+    "judgement": 101,
+    "close": 27,
+    "prev": 65,
+    "consult": 78,
+    "material": 20,
+    "question": 17
+   },
+   "sec_tok": {
+    "judgement": 46,
+    "close": 12,
+    "prev": 30,
+    "consult": 36,
+    "material": 9,
+    "question": 8
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "안녕",
+   "kinds": []
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 2,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 5737,
+   "sent": true,
+   "tokens_total": 5737,
+   "error": null,
+   "app_est_tokens": 4645,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 367,
+    "cache_creation_input_tokens": 1352,
+    "cache_read_input_tokens": 4381
+   },
+   "msg_bytes": 2144,
+   "sec_bytes": {
+    "judgement": 416,
+    "close": 95,
+    "consult": 200,
+    "material": 1382,
+    "question": 51
+   },
+   "sec_tok": {
+    "judgement": 190,
+    "close": 43,
+    "consult": 92,
+    "material": 633,
+    "question": 23
+   },
+   "system_tok": 4559,
+   "history_tok": 196,
+   "history_pred_tok": 199,
+   "prev_bytes": 435,
+   "mat_rows": 9,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 1371
+   },
+   "layer_bytes": {
+    "요약 줄": 1371
+   },
+   "by_bytes": {
+    "summary": 1371
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 946,
+    "unused_summary": 425
+   },
+   "question": "지금 턱이 이중턱이 됫어 ㅠㅠ",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 3,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 6753,
+   "sent": true,
+   "tokens_total": 6753,
+   "error": null,
+   "app_est_tokens": 4400,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 138,
+    "cache_creation_input_tokens": 1016,
+    "cache_read_input_tokens": 5733
+   },
+   "msg_bytes": 1410,
+   "sec_bytes": {
+    "judgement": 822,
+    "close": 143,
+    "consult": 383,
+    "material": 20,
+    "question": 42
+   },
+   "sec_tok": {
+    "judgement": 376,
+    "close": 65,
+    "consult": 175,
+    "material": 9,
+    "question": 19
+   },
+   "system_tok": 4559,
+   "history_tok": 1548,
+   "history_pred_tok": 1535,
+   "prev_bytes": 3353,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "리프팅으로 해결 되나 ?",
+   "kinds": [
+    "indication:yes",
+    "outcome:yes"
+   ]
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 4,
+   "date": "2026-11-18",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 29832,
+   "sent": true,
+   "tokens_total": 29832,
+   "error": null,
+   "app_est_tokens": 21102,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 268,
+    "cache_creation_input_tokens": 23079,
+    "cache_read_input_tokens": 6749
+   },
+   "msg_bytes": 51516,
+   "sec_bytes": {
+    "judgement": 473,
+    "close": 135,
+    "consult": 387,
+    "material": 50481,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 217,
+    "close": 62,
+    "consult": 177,
+    "material": 23111,
+    "question": 18
+   },
+   "system_tok": 4559,
+   "history_tok": 1688,
+   "history_pred_tok": 2314,
+   "prev_bytes": 5055,
+   "mat_rows": 78,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "overview": 49669,
+    "summary:QY4": 800
+   },
+   "layer_bytes": {
+    "자기": 742,
+    "하위 시술": 1930,
+    "하위 제품": 34784,
+    "하위 케이스": 12213,
+    "요약 줄": 800
+   },
+   "by_bytes": {
+    "default": 49669,
+    "summary": 800
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2148,
+    "unused_other": 8187,
+    "unused_sub_not_md": 40134
+   },
+   "question": "기기 리프팅이지 그럼",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 5,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 51660,
+   "sent": true,
+   "tokens_total": 51660,
+   "error": null,
+   "app_est_tokens": 19538,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 898,
+    "cache_creation_input_tokens": 21828,
+    "cache_read_input_tokens": 29828
+   },
+   "msg_bytes": 46825,
+   "sec_bytes": {
+    "judgement": 439,
+    "close": 56,
+    "consult": 387,
+    "material": 45895,
+    "question": 48
+   },
+   "sec_tok": {
+    "judgement": 201,
+    "close": 26,
+    "consult": 177,
+    "material": 21011,
+    "question": 22
+   },
+   "system_tok": 4559,
+   "history_tok": 25664,
+   "history_pred_tok": 26163,
+   "prev_bytes": 57148,
+   "mat_rows": 266,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "indication": 38282,
+    "lineup": 7500
+   },
+   "layer_bytes": {
+    "자기": 2551,
+    "하위 시술": 2299,
+    "하위 제품": 31666,
+    "하위 케이스": 1766,
+    "층 표시 없음": 7500
+   },
+   "by_bytes": {
+    "yes": 45782
+   },
+   "waste_bytes": {
+    "dup_names": 9348,
+    "unused_but_safety_or_explicit": 2393,
+    "used": 725,
+    "unused_other": 18267,
+    "unused_sub_not_md": 24397
+   },
+   "question": "아니 기기 리프팅 추천 해줘",
+   "kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 6,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 53385,
+   "sent": true,
+   "tokens_total": 53385,
+   "error": null,
+   "app_est_tokens": 4486,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 819,
+    "cache_creation_input_tokens": 1725,
+    "cache_read_input_tokens": 51656
+   },
+   "msg_bytes": 1668,
+   "sec_bytes": {
+    "judgement": 1003,
+    "close": 135,
+    "consult": 424,
+    "material": 20,
+    "question": 86
+   },
+   "sec_tok": {
+    "judgement": 459,
+    "close": 62,
+    "consult": 194,
+    "material": 9,
+    "question": 39
+   },
+   "system_tok": 4559,
+   "history_tok": 48062,
+   "history_pred_tok": 47825,
+   "prev_bytes": 104465,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "턱라인 타이트닝을 받으려면 어떤 제품을 받아야 하냐고",
+   "kinds": [
+    "indication:entry",
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "a578141fc2d24a1d",
+   "c4": "a578",
+   "turn": 7,
+   "date": "2026-11-18",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 55126,
+   "sent": true,
+   "tokens_total": 55126,
+   "error": null,
+   "app_est_tokens": 4612,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 565,
+    "cache_creation_input_tokens": 1741,
+    "cache_read_input_tokens": 53381
+   },
+   "msg_bytes": 2045,
+   "sec_bytes": {
+    "judgement": 463,
+    "close": 94,
+    "consult": 489,
+    "material": 944,
+    "question": 55
+   },
+   "sec_tok": {
+    "judgement": 212,
+    "close": 43,
+    "consult": 224,
+    "material": 432,
+    "question": 25
+   },
+   "system_tok": 4559,
+   "history_tok": 49631,
+   "history_pred_tok": 48775,
+   "prev_bytes": 106541,
+   "mat_rows": 4,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "summary:QY4": 933
+   },
+   "layer_bytes": {
+    "요약 줄": 933
+   },
+   "by_bytes": {
+    "summary": 933
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 462,
+    "unused_summary": 471
+   },
+   "question": "슈링크로 턱라인 타이트닝이 돼 ?",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 1,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 4924,
+   "sent": true,
+   "tokens_total": 4924,
+   "error": null,
+   "app_est_tokens": 4205,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 106,
+    "cache_creation_input_tokens": 4922,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 826,
+   "sec_bytes": {
+    "judgement": 538,
+    "close": 56,
+    "consult": 170,
+    "material": 20,
+    "question": 42
+   },
+   "sec_tok": {
+    "judgement": 246,
+    "close": 26,
+    "consult": 78,
+    "material": 9,
+    "question": 19
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "턱에 보톡스 맞아도돼 ?",
+   "kinds": [
+    "indication:yes",
+    "contraindication:yes"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 2,
+   "date": "2026-11-19",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 9745,
+   "sent": true,
+   "tokens_total": 9745,
+   "error": null,
+   "app_est_tokens": 7240,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 406,
+    "cache_creation_input_tokens": 5139,
+    "cache_read_input_tokens": 4602
+   },
+   "msg_bytes": 9929,
+   "sec_bytes": {
+    "judgement": 2860,
+    "close": 2539,
+    "consult": 180,
+    "material": 4309,
+    "question": 41
+   },
+   "sec_tok": {
+    "judgement": 1309,
+    "close": 1162,
+    "consult": 82,
+    "material": 1973,
+    "question": 19
+   },
+   "system_tok": 4559,
+   "history_tok": 640,
+   "history_pred_tok": 482,
+   "prev_bytes": 1052,
+   "mat_rows": 41,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "summary:QY3": 4292
+   },
+   "layer_bytes": {
+    "요약 줄": 4292
+   },
+   "by_bytes": {
+    "summary": 4292
+   },
+   "waste_bytes": {
+    "dup_names": 902,
+    "unused_summary": 3989,
+    "used": 303
+   },
+   "question": "턱 보톡스 맞고 싶다고",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 3,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 11511,
+   "sent": true,
+   "tokens_total": 11511,
+   "error": null,
+   "app_est_tokens": 4941,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 214,
+    "cache_creation_input_tokens": 1766,
+    "cache_read_input_tokens": 9741
+   },
+   "msg_bytes": 3033,
+   "sec_bytes": {
+    "judgement": 377,
+    "close": 28,
+    "consult": 270,
+    "material": 2322,
+    "question": 36
+   },
+   "sec_tok": {
+    "judgement": 173,
+    "close": 13,
+    "consult": 124,
+    "material": 1063,
+    "question": 16
+   },
+   "system_tok": 4559,
+   "history_tok": 5563,
+   "history_pred_tok": 5155,
+   "prev_bytes": 11261,
+   "mat_rows": 13,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 1389,
+    "summary:QY4": 922
+   },
+   "layer_bytes": {
+    "요약 줄": 2311
+   },
+   "by_bytes": {
+    "summary": 2311
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1078,
+    "unused_summary": 1233
+   },
+   "question": "턱이 이중턱이라고",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 4,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 12230,
+   "sent": true,
+   "tokens_total": 12230,
+   "error": null,
+   "app_est_tokens": 4300,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 228,
+    "cache_creation_input_tokens": 719,
+    "cache_read_input_tokens": 11507
+   },
+   "msg_bytes": 1111,
+   "sec_bytes": {
+    "judgement": 357,
+    "close": 28,
+    "consult": 357,
+    "material": 335,
+    "question": 34
+   },
+   "sec_tok": {
+    "judgement": 163,
+    "close": 13,
+    "consult": 163,
+    "material": 153,
+    "question": 16
+   },
+   "system_tok": 4559,
+   "history_tok": 7162,
+   "history_pred_tok": 6747,
+   "prev_bytes": 14738,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "summary:AP4": 324
+   },
+   "layer_bytes": {
+    "요약 줄": 324
+   },
+   "by_bytes": {
+    "summary": 324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 324
+   },
+   "question": "볼살도 너무 많아",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 5,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 13471,
+   "sent": true,
+   "tokens_total": 13471,
+   "error": null,
+   "app_est_tokens": 4688,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 170,
+    "cache_creation_input_tokens": 1241,
+    "cache_read_input_tokens": 12226
+   },
+   "msg_bytes": 2273,
+   "sec_bytes": {
+    "judgement": 360,
+    "close": 28,
+    "consult": 453,
+    "material": 1398,
+    "question": 34
+   },
+   "sec_tok": {
+    "judgement": 165,
+    "close": 13,
+    "consult": 207,
+    "material": 640,
+    "question": 16
+   },
+   "system_tok": 4559,
+   "history_tok": 7871,
+   "history_pred_tok": 7354,
+   "prev_bytes": 16063,
+   "mat_rows": 9,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 1384
+   },
+   "layer_bytes": {
+    "요약 줄": 1384
+   },
+   "by_bytes": {
+    "summary": 1384
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 715,
+    "unused_summary": 669
+   },
+   "question": "미간 주름도 잇어",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "5bce4316705544d1",
+   "c4": "5bce",
+   "turn": 6,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 41351,
+   "sent": true,
+   "tokens_total": 41351,
+   "error": null,
+   "app_est_tokens": 24320,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 689,
+    "cache_creation_input_tokens": 27880,
+    "cache_read_input_tokens": 13467
+   },
+   "msg_bytes": 61169,
+   "sec_bytes": {
+    "judgement": 462,
+    "close": 56,
+    "consult": 453,
+    "material": 60147,
+    "question": 51
+   },
+   "sec_tok": {
+    "judgement": 212,
+    "close": 26,
+    "consult": 207,
+    "material": 27536,
+    "question": 23
+   },
+   "system_tok": 4559,
+   "history_tok": 8788,
+   "history_pred_tok": 8556,
+   "prev_bytes": 18689,
+   "mat_rows": 364,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "indication": 56254,
+    "lineup": 3499,
+    "summary:AP4": 218
+   },
+   "layer_bytes": {
+    "자기": 2648,
+    "물려받음": 3891,
+    "하위 케이스": 7604,
+    "하위 제품": 42111,
+    "층 표시 없음": 3499,
+    "요약 줄": 218
+   },
+   "by_bytes": {
+    "yes": 59753,
+    "summary": 218
+   },
+   "waste_bytes": {
+    "dup_names": 17602,
+    "unused_but_safety_or_explicit": 2672,
+    "used": 925,
+    "unused_other": 28181,
+    "unused_sub_not_md": 27975,
+    "unused_summary": 218
+   },
+   "question": "미간주름에 보톡스만 가능해 ?",
+   "kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "30164ac2c88741a6",
+   "c4": "3016",
+   "turn": 1,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "717ebe22",
+   "tokens_real": 4918,
+   "sent": true,
+   "tokens_total": 4918,
+   "error": null,
+   "app_est_tokens": 4202,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 104,
+    "cache_creation_input_tokens": 870,
+    "cache_read_input_tokens": 4046
+   },
+   "msg_bytes": 816,
+   "sec_bytes": {
+    "judgement": 457,
+    "close": 56,
+    "consult": 206,
+    "material": 20,
+    "question": 77
+   },
+   "sec_tok": {
+    "judgement": 209,
+    "close": 26,
+    "consult": 94,
+    "material": 9,
+    "question": 35
+   },
+   "system_tok": 4559,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "턱에 보톡스 맞고 싶은데 효과랑 부작용좀 알려줘",
+   "kinds": [
+    "outcome:yes",
+    "adverse:yes"
+   ]
+  },
+  {
+   "conv": "30164ac2c88741a6",
+   "c4": "3016",
+   "turn": 2,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 25107,
+   "sent": true,
+   "tokens_total": 25107,
+   "error": null,
+   "app_est_tokens": 18299,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 871,
+    "cache_creation_input_tokens": 20507,
+    "cache_read_input_tokens": 4596
+   },
+   "msg_bytes": 43108,
+   "sec_bytes": {
+    "judgement": 2822,
+    "close": 2561,
+    "consult": 211,
+    "material": 37475,
+    "question": 39
+   },
+   "sec_tok": {
+    "judgement": 1292,
+    "close": 1172,
+    "consult": 97,
+    "material": 17156,
+    "question": 18
+   },
+   "system_tok": 4559,
+   "history_tok": 813,
+   "history_pred_tok": 472,
+   "prev_bytes": 1032,
+   "mat_rows": 112,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "outcome": 33095,
+    "summary:QY3": 4314
+   },
+   "layer_bytes": {
+    "자기": 3358,
+    "물려받음": 2940,
+    "하위 제품": 19314,
+    "하위 케이스": 7483,
+    "요약 줄": 4314
+   },
+   "by_bytes": {
+    "yes": 33095,
+    "summary": 4314
+   },
+   "waste_bytes": {
+    "dup_names": 1266,
+    "used": 2058,
+    "unused_but_safety_or_explicit": 1604,
+    "unused_other": 12914,
+    "unused_sub_not_md": 16823,
+    "unused_summary": 4010
+   },
+   "question": "보톡스 효과가 없어 ?",
+   "kinds": [
+    "outcome:yes"
+   ]
+  },
+  {
+   "conv": "30164ac2c88741a6",
+   "c4": "3016",
+   "turn": 3,
+   "date": "2026-11-19",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "717ebe22",
+   "tokens_real": 106577,
+   "sent": true,
+   "tokens_total": 106577,
+   "error": null,
+   "app_est_tokens": 62387,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1962,
+    "cache_creation_input_tokens": 81470,
+    "cache_read_input_tokens": 25103
+   },
+   "msg_bytes": 175372,
+   "sec_bytes": {
+    "judgement": 277,
+    "close": 28,
+    "consult": 211,
+    "material": 174831,
+    "question": 25
+   },
+   "sec_tok": {
+    "judgement": 127,
+    "close": 13,
+    "consult": 97,
+    "material": 80039,
+    "question": 11
+   },
+   "system_tok": 4559,
+   "history_tok": 21731,
+   "history_pred_tok": 20416,
+   "prev_bytes": 44595,
+   "mat_rows": 629,
+   "mat_used_rows": 33,
+   "kind_bytes": {
+    "adverse": 174493
+   },
+   "layer_bytes": {
+    "자기": 11871,
+    "물려받음": 51650,
+    "하위 케이스": 45765,
+    "하위 제품": 65207
+   },
+   "by_bytes": {
+    "yes": 174493
+   },
+   "waste_bytes": {
+    "dup_names": 1561,
+    "unused_but_safety_or_explicit": 159009,
+    "used": 15484
+   },
+   "question": "부작용은 ?",
+   "kinds": [
+    "adverse:yes"
+   ]
+  },
+  {
+   "conv": "76dd263bb2c34742",
+   "c4": "76dd",
+   "turn": 1,
+   "date": "2026-11-20",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "47074f74",
+   "tokens_real": 16249,
+   "sent": true,
+   "tokens_total": 16249,
+   "error": null,
+   "app_est_tokens": 11436,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 657,
+    "cache_creation_input_tokens": 16247,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 22517,
+   "sec_bytes": {
+    "judgement": 533,
+    "close": 209,
+    "consult": 175,
+    "material": 1337,
+    "kos": 20226,
+    "question": 37
+   },
+   "sec_tok": {
+    "judgement": 244,
+    "close": 96,
+    "consult": 80,
+    "material": 612,
+    "kos": 9260,
+    "question": 17
+   },
+   "system_tok": 5909,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1191,
+    "unused_summary": 133
+   },
+   "question": "팔자 주름이 고민임",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "76dd263bb2c34742",
+   "c4": "76dd",
+   "turn": 2,
+   "date": "2026-11-20",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 18131,
+   "sent": true,
+   "tokens_total": 18131,
+   "error": null,
+   "app_est_tokens": 4704,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 483,
+    "cache_creation_input_tokens": 1880,
+    "cache_read_input_tokens": 16247
+   },
+   "msg_bytes": 2323,
+   "sec_bytes": {
+    "judgement": 558,
+    "close": 209,
+    "consult": 175,
+    "material": 20,
+    "kos": 1306,
+    "question": 55
+   },
+   "sec_tok": {
+    "judgement": 255,
+    "close": 96,
+    "consult": 80,
+    "material": 9,
+    "kos": 598,
+    "question": 25
+   },
+   "system_tok": 5909,
+   "history_tok": 11158,
+   "history_pred_tok": 10464,
+   "prev_bytes": 22856,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "팔자 주름 관련 시술이 머머 잇어",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "e81ba10182ca4bc9",
+   "c4": "e81b",
+   "turn": 1,
+   "date": "2026-11-20",
+   "era": "default",
+   "mode": "new",
+   "prompt": "47074f74",
+   "tokens_real": 30995,
+   "sent": true,
+   "tokens_total": 30995,
+   "error": null,
+   "app_est_tokens": 22337,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 232,
+    "cache_creation_input_tokens": 25695,
+    "cache_read_input_tokens": 5298
+   },
+   "msg_bytes": 55220,
+   "sec_bytes": {
+    "judgement": 434,
+    "close": 176,
+    "consult": 137,
+    "material": 38436,
+    "kos": 16003,
+    "question": 34
+   },
+   "sec_tok": {
+    "judgement": 199,
+    "close": 81,
+    "consult": 63,
+    "material": 17596,
+    "kos": 7326,
+    "question": 16
+   },
+   "system_tok": 5909,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 55,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "overview": 38425
+   },
+   "layer_bytes": {
+    "자기": 669,
+    "하위 시술": 720,
+    "하위 제품": 14263,
+    "하위 케이스": 22773
+   },
+   "by_bytes": {
+    "default": 38425
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 669,
+    "unused_other": 21011,
+    "unused_sub_not_md": 16745
+   },
+   "question": "보톡스 맞고 싶어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "e81ba10182ca4bc9",
+   "c4": "e81b",
+   "turn": 2,
+   "date": "2026-11-20",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 37147,
+   "sent": true,
+   "tokens_total": 37147,
+   "error": null,
+   "app_est_tokens": 8054,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 720,
+    "cache_creation_input_tokens": 6470,
+    "cache_read_input_tokens": 30673
+   },
+   "msg_bytes": 12371,
+   "sec_bytes": {
+    "judgement": 607,
+    "close": 186,
+    "consult": 169,
+    "material": 20,
+    "kos": 11356,
+    "question": 33
+   },
+   "sec_tok": {
+    "judgement": 278,
+    "close": 85,
+    "consult": 77,
+    "material": 9,
+    "kos": 5199,
+    "question": 15
+   },
+   "system_tok": 5909,
+   "history_tok": 25574,
+   "history_pred_tok": 25499,
+   "prev_bytes": 55699,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "턱에 맞을건ㄷ데",
+   "kinds": [
+    "overview:default",
+    "indication:default"
+   ]
+  },
+  {
+   "conv": "e81ba10182ca4bc9",
+   "c4": "e81b",
+   "turn": 3,
+   "date": "2026-11-20",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 39560,
+   "sent": true,
+   "tokens_total": 39560,
+   "error": null,
+   "app_est_tokens": 5075,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 634,
+    "cache_creation_input_tokens": 2413,
+    "cache_read_input_tokens": 37143
+   },
+   "msg_bytes": 3436,
+   "sec_bytes": {
+    "judgement": 594,
+    "close": 232,
+    "consult": 232,
+    "material": 20,
+    "kos": 2335,
+    "question": 23
+   },
+   "sec_tok": {
+    "judgement": 272,
+    "close": 106,
+    "consult": 106,
+    "material": 9,
+    "kos": 1069,
+    "question": 11
+   },
+   "system_tok": 5909,
+   "history_tok": 32078,
+   "history_pred_tok": 31305,
+   "prev_bytes": 68380,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "하이톡스",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "eac3e80f75f644ba",
+   "c4": "eac3",
+   "turn": 1,
+   "date": "2026-11-20",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "47074f74",
+   "tokens_real": 16252,
+   "sent": true,
+   "tokens_total": 16252,
+   "error": null,
+   "app_est_tokens": 11438,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 885,
+    "cache_creation_input_tokens": 10952,
+    "cache_read_input_tokens": 5298
+   },
+   "msg_bytes": 22523,
+   "sec_bytes": {
+    "judgement": 533,
+    "close": 209,
+    "consult": 175,
+    "material": 1337,
+    "kos": 20226,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 244,
+    "close": 96,
+    "consult": 80,
+    "material": 612,
+    "kos": 9260,
+    "question": 20
+   },
+   "system_tok": 5909,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_summary": 592,
+    "used": 732
+   },
+   "question": "팔자주름 개선하고 싶어",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 1,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "47074f74",
+   "tokens_real": 16947,
+   "sent": true,
+   "tokens_total": 16947,
+   "error": null,
+   "app_est_tokens": 11871,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 329,
+    "cache_creation_input_tokens": 11647,
+    "cache_read_input_tokens": 5298
+   },
+   "msg_bytes": 23824,
+   "sec_bytes": {
+    "judgement": 539,
+    "close": 215,
+    "consult": 175,
+    "material": 1337,
+    "kos": 21518,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 247,
+    "close": 98,
+    "consult": 80,
+    "material": 612,
+    "kos": 9851,
+    "question": 18
+   },
+   "system_tok": 5909,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1191,
+    "unused_summary": 133
+   },
+   "question": "팔자 주름이 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 2,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 22021,
+   "sent": true,
+   "tokens_total": 22021,
+   "error": null,
+   "app_est_tokens": 7285,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 354,
+    "cache_creation_input_tokens": 5392,
+    "cache_read_input_tokens": 16625
+   },
+   "msg_bytes": 10065,
+   "sec_bytes": {
+    "judgement": 530,
+    "close": 212,
+    "consult": 271,
+    "material": 892,
+    "kos": 8116,
+    "question": 44
+   },
+   "sec_tok": {
+    "judgement": 243,
+    "close": 97,
+    "consult": 124,
+    "material": 408,
+    "kos": 3716,
+    "question": 20
+   },
+   "system_tok": 5909,
+   "history_tok": 11504,
+   "history_pred_tok": 11226,
+   "prev_bytes": 24521,
+   "mat_rows": 5,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 881
+   },
+   "layer_bytes": {
+    "요약 줄": 881
+   },
+   "by_bytes": {
+    "summary": 881
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 881
+   },
+   "question": "미간에 주름도 너무 깊어",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 3,
+   "date": "2026-11-22",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 41553,
+   "sent": true,
+   "tokens_total": 41553,
+   "error": null,
+   "app_est_tokens": 18099,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 435,
+    "cache_creation_input_tokens": 19532,
+    "cache_read_input_tokens": 22017
+   },
+   "msg_bytes": 42508,
+   "sec_bytes": {
+    "judgement": 541,
+    "close": 186,
+    "consult": 331,
+    "material": 39123,
+    "kos": 2287,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 248,
+    "close": 85,
+    "consult": 152,
+    "material": 17911,
+    "kos": 1047,
+    "question": 18
+   },
+   "system_tok": 5909,
+   "history_tok": 16183,
+   "history_pred_tok": 16172,
+   "prev_bytes": 35324,
+   "mat_rows": 63,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "overview": 37236,
+    "summary:QY4": 1871
+   },
+   "layer_bytes": {
+    "자기": 704,
+    "물려받음": 688,
+    "하위 케이스": 21346,
+    "하위 제품": 14498,
+    "요약 줄": 1871
+   },
+   "by_bytes": {
+    "default": 37236,
+    "summary": 1871
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 4139,
+    "unused_other": 17193,
+    "unused_sub_not_md": 16614,
+    "unused_summary": 1161
+   },
+   "question": "보톡스로 맞고 싶어서",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 4,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 43064,
+   "sent": true,
+   "tokens_total": 43064,
+   "error": null,
+   "app_est_tokens": 4649,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 261,
+    "cache_creation_input_tokens": 1511,
+    "cache_read_input_tokens": 41549
+   },
+   "msg_bytes": 2156,
+   "sec_bytes": {
+    "judgement": 612,
+    "close": 186,
+    "consult": 341,
+    "material": 20,
+    "kos": 924,
+    "question": 73
+   },
+   "sec_tok": {
+    "judgement": 280,
+    "close": 85,
+    "consult": 156,
+    "material": 9,
+    "kos": 423,
+    "question": 33
+   },
+   "system_tok": 5909,
+   "history_tok": 36168,
+   "history_pred_tok": 36052,
+   "prev_bytes": 78749,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "아니 팔자주름 말고 미간에 보톡스 얘기한건데",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 5,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 44418,
+   "sent": true,
+   "tokens_total": 44418,
+   "error": null,
+   "app_est_tokens": 4661,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 301,
+    "cache_creation_input_tokens": 1354,
+    "cache_read_input_tokens": 43060
+   },
+   "msg_bytes": 2194,
+   "sec_bytes": {
+    "judgement": 529,
+    "close": 186,
+    "consult": 341,
+    "material": 20,
+    "kos": 1048,
+    "question": 70
+   },
+   "sec_tok": {
+    "judgement": 242,
+    "close": 85,
+    "consult": 156,
+    "material": 9,
+    "kos": 480,
+    "question": 32
+   },
+   "system_tok": 5909,
+   "history_tok": 37504,
+   "history_pred_tok": 37296,
+   "prev_bytes": 81467,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "아니 팔자주름 시술 추천은 그대로 두라니까",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 6,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 49173,
+   "sent": true,
+   "tokens_total": 49173,
+   "error": null,
+   "app_est_tokens": 6981,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 429,
+    "cache_creation_input_tokens": 4755,
+    "cache_read_input_tokens": 44414
+   },
+   "msg_bytes": 9154,
+   "sec_bytes": {
+    "judgement": 672,
+    "close": 186,
+    "consult": 341,
+    "material": 6820,
+    "kos": 1043,
+    "question": 92
+   },
+   "sec_tok": {
+    "judgement": 308,
+    "close": 85,
+    "consult": 156,
+    "material": 3122,
+    "kos": 477,
+    "question": 42
+   },
+   "system_tok": 5909,
+   "history_tok": 39073,
+   "history_pred_tok": 38594,
+   "prev_bytes": 84301,
+   "mat_rows": 55,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "lineup": 6769
+   },
+   "layer_bytes": {
+    "층 표시 없음": 6769
+   },
+   "by_bytes": {
+    "yes": 6769
+   },
+   "waste_bytes": {
+    "dup_names": 81,
+    "unused_but_safety_or_explicit": 188,
+    "unused_other": 6446,
+    "used": 135
+   },
+   "question": "팔자주름에 보톡스 말고 다른 시술은 없어서 그대로 둔거지 ?",
+   "kinds": [
+    "indication:yes",
+    "lineup:yes"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 7,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 51045,
+   "sent": true,
+   "tokens_total": 51045,
+   "error": null,
+   "app_est_tokens": 4826,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 325,
+    "cache_creation_input_tokens": 1872,
+    "cache_read_input_tokens": 49169
+   },
+   "msg_bytes": 2689,
+   "sec_bytes": {
+    "judgement": 561,
+    "close": 215,
+    "consult": 336,
+    "material": 20,
+    "kos": 1444,
+    "question": 113
+   },
+   "sec_tok": {
+    "judgement": 257,
+    "close": 98,
+    "consult": 154,
+    "material": 9,
+    "kos": 661,
+    "question": 52
+   },
+   "system_tok": 5909,
+   "history_tok": 43905,
+   "history_pred_tok": 43204,
+   "prev_bytes": 94372,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "근데 시발년아 팔자줄므에 보톡스 말고 다른 시술 알려달라니까 시발색이 ㅑ",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "a7d7e253308d4a80",
+   "c4": "a7d7",
+   "turn": 8,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "47074f74",
+   "tokens_real": 63437,
+   "sent": true,
+   "tokens_total": 63437,
+   "error": null,
+   "app_est_tokens": 12791,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 539,
+    "cache_creation_input_tokens": 12392,
+    "cache_read_input_tokens": 51041
+   },
+   "msg_bytes": 26584,
+   "sec_bytes": {
+    "judgement": 584,
+    "close": 28,
+    "consult": 396,
+    "material": 25026,
+    "kos": 520,
+    "question": 30
+   },
+   "sec_tok": {
+    "judgement": 267,
+    "close": 13,
+    "consult": 181,
+    "material": 11457,
+    "kos": 238,
+    "question": 14
+   },
+   "system_tok": 5909,
+   "history_tok": 45358,
+   "history_pred_tok": 44732,
+   "prev_bytes": 97709,
+   "mat_rows": 82,
+   "mat_used_rows": 9,
+   "kind_bytes": {
+    "overview+mechanism": 5928,
+    "indication": 7324,
+    "outcome": 9756,
+    "lineup": 835,
+    "summary:QY4": 1142
+   },
+   "layer_bytes": {
+    "자기": 6542,
+    "물려받음": 16466,
+    "층 표시 없음": 835,
+    "요약 줄": 1142
+   },
+   "by_bytes": {
+    "yes": 5928,
+    "kd9": 17915,
+    "summary": 1142
+   },
+   "waste_bytes": {
+    "dup_names": 1259,
+    "used": 5346,
+    "unused_other": 2119,
+    "unused_but_safety_or_explicit": 5063,
+    "unused_kd9": 11760,
+    "unused_summary": 697
+   },
+   "question": "볼뉴머가 머야",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "78970b4858614e1b",
+   "c4": "7897",
+   "turn": 1,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "597f44cf",
+   "tokens_real": 17140,
+   "sent": true,
+   "tokens_total": 17140,
+   "error": null,
+   "app_est_tokens": 11899,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 272,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 17138
+   },
+   "msg_bytes": 23906,
+   "sec_bytes": {
+    "judgement": 539,
+    "close": 215,
+    "consult": 175,
+    "material": 1337,
+    "kos": 21600,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 247,
+    "close": 98,
+    "consult": 80,
+    "material": 612,
+    "kos": 9889,
+    "question": 18
+   },
+   "system_tok": 6196,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1191,
+    "unused_summary": 133
+   },
+   "question": "팔자 주름이 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "78970b4858614e1b",
+   "c4": "7897",
+   "turn": 2,
+   "date": "2026-11-22",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 31413,
+   "sent": true,
+   "tokens_total": 31413,
+   "error": null,
+   "app_est_tokens": 14003,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 797,
+    "cache_creation_input_tokens": 14591,
+    "cache_read_input_tokens": 16818
+   },
+   "msg_bytes": 30218,
+   "sec_bytes": {
+    "judgement": 752,
+    "close": 215,
+    "consult": 233,
+    "material": 24860,
+    "kos": 4107,
+    "question": 51
+   },
+   "sec_tok": {
+    "judgement": 344,
+    "close": 98,
+    "consult": 107,
+    "material": 11381,
+    "kos": 1880,
+    "question": 23
+   },
+   "system_tok": 6196,
+   "history_tok": 11383,
+   "history_pred_tok": 11203,
+   "prev_bytes": 24471,
+   "mat_rows": 82,
+   "mat_used_rows": 19,
+   "kind_bytes": {
+    "overview+mechanism": 5912,
+    "indication": 7252,
+    "outcome": 9702,
+    "lineup": 821,
+    "summary:QY4": 1132
+   },
+   "layer_bytes": {
+    "자기": 6490,
+    "물려받음": 16376,
+    "층 표시 없음": 821,
+    "요약 줄": 1132
+   },
+   "by_bytes": {
+    "yes": 5912,
+    "kd9": 17775,
+    "summary": 1132
+   },
+   "waste_bytes": {
+    "dup_names": 1259,
+    "used": 8113,
+    "unused_other": 2113,
+    "unused_but_safety_or_explicit": 3681,
+    "unused_kd9": 10912
+   },
+   "question": "볼뉴머에 대해서 설명해줄래 ?",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "597f44cf",
+   "tokens_real": 17138,
+   "sent": true,
+   "tokens_total": 17138,
+   "error": null,
+   "app_est_tokens": 11897,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 294,
+    "cache_creation_input_tokens": 17136,
+    "cache_read_input_tokens": 0
+   },
+   "msg_bytes": 23902,
+   "sec_bytes": {
+    "judgement": 539,
+    "close": 215,
+    "consult": 175,
+    "material": 1337,
+    "kos": 21600,
+    "question": 36
+   },
+   "sec_tok": {
+    "judgement": 247,
+    "close": 98,
+    "consult": 80,
+    "material": 612,
+    "kos": 9889,
+    "question": 16
+   },
+   "system_tok": 6196,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 7,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1191,
+    "unused_summary": 133
+   },
+   "question": "팔자주름 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 22350,
+   "sent": true,
+   "tokens_total": 22350,
+   "error": null,
+   "app_est_tokens": 7403,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 282,
+    "cache_creation_input_tokens": 5530,
+    "cache_read_input_tokens": 16816
+   },
+   "msg_bytes": 10420,
+   "sec_bytes": {
+    "judgement": 530,
+    "close": 212,
+    "consult": 271,
+    "material": 892,
+    "kos": 8475,
+    "question": 40
+   },
+   "sec_tok": {
+    "judgement": 243,
+    "close": 97,
+    "consult": 124,
+    "material": 408,
+    "kos": 3880,
+    "question": 18
+   },
+   "system_tok": 6196,
+   "history_tok": 11384,
+   "history_pred_tok": 11221,
+   "prev_bytes": 24511,
+   "mat_rows": 5,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 881
+   },
+   "layer_bytes": {
+    "요약 줄": 881
+   },
+   "by_bytes": {
+    "summary": 881
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 881
+   },
+   "question": "미간 주름도 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 25226,
+   "sent": true,
+   "tokens_total": 25226,
+   "error": null,
+   "app_est_tokens": 5865,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1008,
+    "cache_creation_input_tokens": 2876,
+    "cache_read_input_tokens": 22346
+   },
+   "msg_bytes": 5806,
+   "sec_bytes": {
+    "judgement": 381,
+    "close": 28,
+    "consult": 329,
+    "material": 4373,
+    "kos": 651,
+    "question": 44
+   },
+   "sec_tok": {
+    "judgement": 174,
+    "close": 13,
+    "consult": 151,
+    "material": 2002,
+    "kos": 298,
+    "question": 20
+   },
+   "system_tok": 6196,
+   "history_tok": 16372,
+   "history_pred_tok": 16268,
+   "prev_bytes": 35535,
+   "mat_rows": 9,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "overview": 3438,
+    "summary:QY4": 924
+   },
+   "layer_bytes": {
+    "자기": 628,
+    "물려받음": 2130,
+    "하위 제품": 680,
+    "요약 줄": 924
+   },
+   "by_bytes": {
+    "default": 3438,
+    "summary": 924
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2551,
+    "unused_other": 1332,
+    "unused_summary": 479
+   },
+   "question": "써마지 시술을 받고 싶어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 27011,
+   "sent": true,
+   "tokens_total": 27011,
+   "error": null,
+   "app_est_tokens": 4487,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 257,
+    "cache_creation_input_tokens": 1785,
+    "cache_read_input_tokens": 25222
+   },
+   "msg_bytes": 1672,
+   "sec_bytes": {
+    "judgement": 422,
+    "close": 121,
+    "consult": 371,
+    "material": 20,
+    "kos": 681,
+    "question": 57
+   },
+   "sec_tok": {
+    "judgement": 193,
+    "close": 55,
+    "consult": 170,
+    "material": 9,
+    "kos": 312,
+    "question": 26
+   },
+   "system_tok": 6196,
+   "history_tok": 20050,
+   "history_pred_tok": 19161,
+   "prev_bytes": 41854,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "아니 이마에 써마지를 받고 싶다고",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 5,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 28219,
+   "sent": true,
+   "tokens_total": 28219,
+   "error": null,
+   "app_est_tokens": 4586,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 711,
+    "cache_creation_input_tokens": 1208,
+    "cache_read_input_tokens": 27007
+   },
+   "msg_bytes": 1969,
+   "sec_bytes": {
+    "judgement": 391,
+    "close": 28,
+    "consult": 371,
+    "material": 20,
+    "kos": 1100,
+    "question": 59
+   },
+   "sec_tok": {
+    "judgement": 179,
+    "close": 13,
+    "consult": 170,
+    "material": 9,
+    "kos": 504,
+    "question": 27
+   },
+   "system_tok": 6196,
+   "history_tok": 21122,
+   "history_pred_tok": 20176,
+   "prev_bytes": 44070,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "팔자주름은 시술 머머 잇다고 햇지 ?",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 6,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 34590,
+   "sent": true,
+   "tokens_total": 34590,
+   "error": null,
+   "app_est_tokens": 7870,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1593,
+    "cache_creation_input_tokens": 6371,
+    "cache_read_input_tokens": 28215
+   },
+   "msg_bytes": 11819,
+   "sec_bytes": {
+    "judgement": 751,
+    "close": 114,
+    "consult": 442,
+    "material": 9269,
+    "kos": 1180,
+    "question": 63
+   },
+   "sec_tok": {
+    "judgement": 344,
+    "close": 52,
+    "consult": 202,
+    "material": 4243,
+    "kos": 540,
+    "question": 29
+   },
+   "system_tok": 6196,
+   "history_tok": 22984,
+   "history_pred_tok": 21283,
+   "prev_bytes": 46488,
+   "mat_rows": 68,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "overview+mechanism+indication": 917,
+    "lineup": 5581,
+    "summary:AP4": 215,
+    "summary:QY4": 2498
+   },
+   "layer_bytes": {
+    "하위 케이스": 917,
+    "층 표시 없음": 5581,
+    "요약 줄": 2713
+   },
+   "by_bytes": {
+    "yes": 917,
+    "kd9": 5581,
+    "summary": 2713
+   },
+   "waste_bytes": {
+    "dup_names": 81,
+    "used": 1150,
+    "unused_but_safety_or_explicit": 92,
+    "unused_kd9": 5489,
+    "unused_summary": 2480
+   },
+   "question": "응 팔자주름에는 보톡스에 대해 알려줘",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:yes",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "67bb9fafed6045bc",
+   "c4": "67bb",
+   "turn": 7,
+   "date": "2026-11-23",
+   "era": "None",
+   "mode": "resume",
+   "prompt": "597f44cf",
+   "tokens_real": 36885,
+   "sent": true,
+   "tokens_total": 36885,
+   "error": null,
+   "app_est_tokens": 4415,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 103,
+    "cache_creation_input_tokens": 2295,
+    "cache_read_input_tokens": 34586
+   },
+   "msg_bytes": 1455,
+   "sec_bytes": {
+    "judgement": 101,
+    "close": 27,
+    "prev": 166,
+    "consult": 442,
+    "material": 20,
+    "kos": 651,
+    "question": 48
+   },
+   "sec_tok": {
+    "judgement": 46,
+    "close": 12,
+    "prev": 76,
+    "consult": 202,
+    "material": 9,
+    "kos": 298,
+    "question": 22
+   },
+   "system_tok": 6196,
+   "history_tok": 30023,
+   "history_pred_tok": 27037,
+   "prev_bytes": 59058,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "응 명동점 시술 뭐뭐 잇냐고",
+   "kinds": []
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "b2f871de",
+   "tokens_real": 17298,
+   "sent": true,
+   "tokens_total": 17298,
+   "error": null,
+   "app_est_tokens": 11902,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 280,
+    "cache_creation_input_tokens": 11688,
+    "cache_read_input_tokens": 5608
+   },
+   "msg_bytes": 23915,
+   "sec_bytes": {
+    "judgement": 539,
+    "close": 215,
+    "consult": 175,
+    "material": 1337,
+    "kos": 21600,
+    "question": 49
+   },
+   "sec_tok": {
+    "judgement": 247,
+    "close": 98,
+    "consult": 80,
+    "material": 612,
+    "kos": 9889,
+    "question": 22
+   },
+   "system_tok": 6322,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 8,
+   "mat_used_rows": 8,
+   "kind_bytes": {
+    "summary:AP4": 1324
+   },
+   "layer_bytes": {
+    "요약 줄": 1324
+   },
+   "by_bytes": {
+    "summary": 1324
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1324
+   },
+   "question": "팔자주름에 대해서 고민이돼",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 22497,
+   "sent": true,
+   "tokens_total": 22497,
+   "error": null,
+   "app_est_tokens": 7404,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 317,
+    "cache_creation_input_tokens": 5517,
+    "cache_read_input_tokens": 16976
+   },
+   "msg_bytes": 10423,
+   "sec_bytes": {
+    "judgement": 530,
+    "close": 212,
+    "consult": 271,
+    "material": 892,
+    "kos": 8475,
+    "question": 43
+   },
+   "sec_tok": {
+    "judgement": 243,
+    "close": 97,
+    "consult": 124,
+    "material": 408,
+    "kos": 3880,
+    "question": 20
+   },
+   "system_tok": 6322,
+   "history_tok": 11403,
+   "history_pred_tok": 11207,
+   "prev_bytes": 24479,
+   "mat_rows": 5,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 881
+   },
+   "layer_bytes": {
+    "요약 줄": 881
+   },
+   "by_bytes": {
+    "summary": 881
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 881
+   },
+   "question": "미간에 주름도 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 30241,
+   "sent": true,
+   "tokens_total": 30241,
+   "error": null,
+   "app_est_tokens": 9135,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 447,
+    "cache_creation_input_tokens": 7744,
+    "cache_read_input_tokens": 22493
+   },
+   "msg_bytes": 15614,
+   "sec_bytes": {
+    "judgement": 526,
+    "close": 209,
+    "consult": 375,
+    "material": 2566,
+    "kos": 11878,
+    "question": 60
+   },
+   "sec_tok": {
+    "judgement": 241,
+    "close": 96,
+    "consult": 172,
+    "material": 1175,
+    "kos": 5438,
+    "question": 27
+   },
+   "system_tok": 6322,
+   "history_tok": 16771,
+   "history_pred_tok": 16272,
+   "prev_bytes": 35543,
+   "mat_rows": 14,
+   "mat_used_rows": 14,
+   "kind_bytes": {
+    "summary:AP4": 2551
+   },
+   "layer_bytes": {
+    "요약 줄": 2551
+   },
+   "by_bytes": {
+    "summary": 2551
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 2551
+   },
+   "question": "얼굴에 탄력이 좀 떨어지는거 같은데",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 39721,
+   "sent": true,
+   "tokens_total": 39721,
+   "error": null,
+   "app_est_tokens": 10529,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 675,
+    "cache_creation_input_tokens": 9480,
+    "cache_read_input_tokens": 30237
+   },
+   "msg_bytes": 19798,
+   "sec_bytes": {
+    "judgement": 460,
+    "close": 28,
+    "consult": 559,
+    "material": 13455,
+    "kos": 5215,
+    "question": 81
+   },
+   "sec_tok": {
+    "judgement": 211,
+    "close": 13,
+    "consult": 256,
+    "material": 6160,
+    "kos": 2387,
+    "question": 37
+   },
+   "system_tok": 6322,
+   "history_tok": 24335,
+   "history_pred_tok": 23833,
+   "prev_bytes": 52058,
+   "mat_rows": 36,
+   "mat_used_rows": 23,
+   "kind_bytes": {
+    "overview": 8226,
+    "summary:QY4": 5205
+   },
+   "layer_bytes": {
+    "자기": 1889,
+    "물려받음": 5001,
+    "하위 제품": 1336,
+    "요약 줄": 5205
+   },
+   "by_bytes": {
+    "default": 8226,
+    "summary": 5205
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 9402,
+    "unused_other": 1965,
+    "unused_summary": 2064
+   },
+   "question": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 5,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 48760,
+   "sent": true,
+   "tokens_total": 48760,
+   "error": null,
+   "app_est_tokens": 9919,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 282,
+    "cache_creation_input_tokens": 9039,
+    "cache_read_input_tokens": 39717
+   },
+   "msg_bytes": 17968,
+   "sec_bytes": {
+    "judgement": 421,
+    "close": 56,
+    "consult": 621,
+    "material": 15520,
+    "kos": 1311,
+    "question": 39
+   },
+   "sec_tok": {
+    "judgement": 193,
+    "close": 26,
+    "consult": 284,
+    "material": 7105,
+    "kos": 600,
+    "question": 18
+   },
+   "system_tok": 6322,
+   "history_tok": 34212,
+   "history_pred_tok": 33527,
+   "prev_bytes": 73234,
+   "mat_rows": 49,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "mechanism": 13730,
+    "summary:QY4": 1774
+   },
+   "layer_bytes": {
+    "하위 케이스": 4960,
+    "하위 제품": 8770,
+    "요약 줄": 1774
+   },
+   "by_bytes": {
+    "yes": 13730,
+    "summary": 1774
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1300,
+    "unused_sub_not_md": 11993,
+    "unused_other": 1381,
+    "unused_summary": 830
+   },
+   "question": "고주파 원리가 머야 ?",
+   "kinds": [
+    "mechanism:yes"
+   ]
+  },
+  {
+   "conv": "03b8fb12fa144491",
+   "c4": "03b8",
+   "turn": 6,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 92015,
+   "sent": true,
+   "tokens_total": 92015,
+   "error": null,
+   "app_est_tokens": 34924,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1395,
+    "cache_creation_input_tokens": 43255,
+    "cache_read_input_tokens": 48756
+   },
+   "msg_bytes": 92981,
+   "sec_bytes": {
+    "judgement": 744,
+    "close": 28,
+    "consult": 621,
+    "material": 90211,
+    "kos": 1311,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 341,
+    "close": 13,
+    "consult": 284,
+    "material": 41299,
+    "kos": 600,
+    "question": 30
+   },
+   "system_tok": 6322,
+   "history_tok": 43126,
+   "history_pred_tok": 42018,
+   "prev_bytes": 91780,
+   "mat_rows": 362,
+   "mat_used_rows": 10,
+   "kind_bytes": {
+    "indication": 43709,
+    "outcome": 40701,
+    "lineup": 5621
+   },
+   "layer_bytes": {
+    "하위 케이스": 15267,
+    "하위 제품": 62151,
+    "자기": 3476,
+    "물려받음": 3516,
+    "층 표시 없음": 5621
+   },
+   "by_bytes": {
+    "kd9": 90031
+   },
+   "waste_bytes": {
+    "dup_names": 10056,
+    "used": 2346,
+    "unused_kd9": 85247,
+    "unused_but_safety_or_explicit": 2438
+   },
+   "question": "응 고주파에 대해서 전반적으로 설명해줘",
+   "kinds": [
+    "overview:yes",
+    "mechanism:kd9",
+    "indication:kd9",
+    "outcome:kd9",
+    "lineup:kd9"
+   ]
+  },
+  {
+   "conv": "ecc64e4dc13a41da",
+   "c4": "ecc6",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "b2f871de",
+   "tokens_real": 18360,
+   "sent": true,
+   "tokens_total": 18360,
+   "error": null,
+   "app_est_tokens": 12695,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 343,
+    "cache_creation_input_tokens": 12750,
+    "cache_read_input_tokens": 5608
+   },
+   "msg_bytes": 26294,
+   "sec_bytes": {
+    "judgement": 460,
+    "close": 209,
+    "consult": 142,
+    "material": 2548,
+    "kos": 22874,
+    "question": 61
+   },
+   "sec_tok": {
+    "judgement": 211,
+    "close": 96,
+    "consult": 65,
+    "material": 1166,
+    "kos": 10472,
+    "question": 28
+   },
+   "system_tok": 6322,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 14,
+   "mat_used_rows": 6,
+   "kind_bytes": {
+    "summary:AP4": 2528
+   },
+   "layer_bytes": {
+    "요약 줄": 2528
+   },
+   "by_bytes": {
+    "summary": 2528
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1111,
+    "unused_summary": 1417
+   },
+   "question": "요즘 피부 탄력이 저하 되서 고민이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "ecc64e4dc13a41da",
+   "c4": "ecc6",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 20912,
+   "sent": true,
+   "tokens_total": 20912,
+   "error": "fold",
+   "app_est_tokens": 5346,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 60,
+    "cache_creation_input_tokens": 2870,
+    "cache_read_input_tokens": 18038
+   },
+   "msg_bytes": 4247,
+   "sec_bytes": {
+    "judgement": 586,
+    "close": 28,
+    "consult": 177,
+    "material": 20,
+    "kos": 3416,
+    "question": 20
+   },
+   "sec_tok": {
+    "judgement": 268,
+    "close": 13,
+    "consult": 81,
+    "material": 9,
+    "kos": 1564,
+    "question": 9
+   },
+   "system_tok": 6322,
+   "history_tok": 12646,
+   "history_pred_tok": 12365,
+   "prev_bytes": 27009,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "얼굴에",
+   "kinds": [
+    "overview:default",
+    "indication:default"
+   ]
+  },
+  {
+   "conv": "ecc64e4dc13a41da",
+   "c4": "ecc6",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 22976,
+   "sent": true,
+   "tokens_total": 22976,
+   "error": "fold",
+   "app_est_tokens": 5203,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 60,
+    "cache_creation_input_tokens": 2064,
+    "cache_read_input_tokens": 20908
+   },
+   "msg_bytes": 3819,
+   "sec_bytes": {
+    "judgement": 586,
+    "close": 28,
+    "consult": 177,
+    "material": 20,
+    "kos": 2988,
+    "question": 20
+   },
+   "sec_tok": {
+    "judgement": 268,
+    "close": 13,
+    "consult": 81,
+    "material": 9,
+    "kos": 1368,
+    "question": 9
+   },
+   "system_tok": 6322,
+   "history_tok": 14906,
+   "history_pred_tok": 14364,
+   "prev_bytes": 31375,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "얼굴에",
+   "kinds": [
+    "overview:default",
+    "indication:default"
+   ]
+  },
+  {
+   "conv": "73bd0f8c37c74a4f",
+   "c4": "73bd",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "b2f871de",
+   "tokens_real": 18437,
+   "sent": true,
+   "tokens_total": 18437,
+   "error": null,
+   "app_est_tokens": 12747,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 1066,
+    "cache_creation_input_tokens": 12827,
+    "cache_read_input_tokens": 5608
+   },
+   "msg_bytes": 26450,
+   "sec_bytes": {
+    "judgement": 526,
+    "close": 209,
+    "consult": 177,
+    "material": 2548,
+    "kos": 22927,
+    "question": 63
+   },
+   "sec_tok": {
+    "judgement": 241,
+    "close": 96,
+    "consult": 81,
+    "material": 1166,
+    "kos": 10496,
+    "question": 29
+   },
+   "system_tok": 6322,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 14,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "summary:AP4": 2528
+   },
+   "layer_bytes": {
+    "요약 줄": 2528
+   },
+   "by_bytes": {
+    "summary": 2528
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "unused_summary": 1970,
+    "used": 558
+   },
+   "question": "얼굴에 피부 탄력이 없어져서 걱정이야",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "73bd0f8c37c74a4f",
+   "c4": "73bd",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 26404,
+   "sent": true,
+   "tokens_total": 26404,
+   "error": null,
+   "app_est_tokens": 8727,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 788,
+    "cache_creation_input_tokens": 7965,
+    "cache_read_input_tokens": 18435
+   },
+   "msg_bytes": 14391,
+   "sec_bytes": {
+    "judgement": 542,
+    "close": 212,
+    "consult": 379,
+    "material": 1379,
+    "kos": 11828,
+    "question": 51
+   },
+   "sec_tok": {
+    "judgement": 248,
+    "close": 97,
+    "consult": 174,
+    "material": 631,
+    "kos": 5415,
+    "question": 23
+   },
+   "system_tok": 6322,
+   "history_tok": 13494,
+   "history_pred_tok": 12284,
+   "prev_bytes": 26833,
+   "mat_rows": 8,
+   "mat_used_rows": 4,
+   "kind_bytes": {
+    "summary:AP4": 1365
+   },
+   "layer_bytes": {
+    "요약 줄": 1365
+   },
+   "by_bytes": {
+    "summary": 1365
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 661,
+    "unused_summary": 704
+   },
+   "question": "아 주름이 눈가 입꼬리에 잇어",
+   "kinds": [
+    "indication:entry"
+   ]
+  },
+  {
+   "conv": "73bd0f8c37c74a4f",
+   "c4": "73bd",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 28551,
+   "sent": true,
+   "tokens_total": 28551,
+   "error": null,
+   "app_est_tokens": 4892,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1900,
+    "cache_creation_input_tokens": 2147,
+    "cache_read_input_tokens": 26400
+   },
+   "msg_bytes": 2885,
+   "sec_bytes": {
+    "judgement": 435,
+    "close": 28,
+    "consult": 505,
+    "material": 881,
+    "kos": 962,
+    "question": 74
+   },
+   "sec_tok": {
+    "judgement": 199,
+    "close": 13,
+    "consult": 231,
+    "material": 403,
+    "kos": 440,
+    "question": 34
+   },
+   "system_tok": 6322,
+   "history_tok": 20908,
+   "history_pred_tok": 19055,
+   "prev_bytes": 41622,
+   "mat_rows": 2,
+   "mat_used_rows": 2,
+   "kind_bytes": {
+    "overview": 634,
+    "summary:QY4": 236
+   },
+   "layer_bytes": {
+    "물려받음": 634,
+    "요약 줄": 236
+   },
+   "by_bytes": {
+    "default": 634,
+    "summary": 236
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 870
+   },
+   "question": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "73bd0f8c37c74a4f",
+   "c4": "73bd",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 32856,
+   "sent": true,
+   "tokens_total": 32856,
+   "error": null,
+   "app_est_tokens": 5593,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1260,
+    "cache_creation_input_tokens": 4305,
+    "cache_read_input_tokens": 28547
+   },
+   "msg_bytes": 4988,
+   "sec_bytes": {
+    "judgement": 574,
+    "close": 192,
+    "consult": 510,
+    "material": 20,
+    "kos": 3636,
+    "question": 56
+   },
+   "sec_tok": {
+    "judgement": 263,
+    "close": 88,
+    "consult": 233,
+    "material": 9,
+    "kos": 1665,
+    "question": 26
+   },
+   "system_tok": 6322,
+   "history_tok": 24250,
+   "history_pred_tok": 20586,
+   "prev_bytes": 44967,
+   "mat_rows": 0,
+   "mat_used_rows": 0,
+   "kind_bytes": {},
+   "layer_bytes": {},
+   "by_bytes": {},
+   "waste_bytes": {},
+   "question": "입꼬리에는 필러를 맞고 싶다니까",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 1,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "new",
+   "prompt": "b2f871de",
+   "tokens_real": 12490,
+   "sent": true,
+   "tokens_total": 12490,
+   "error": null,
+   "app_est_tokens": 8446,
+   "tokens_parts": {
+    "input_tokens": 2,
+    "output_tokens": 650,
+    "cache_creation_input_tokens": 6880,
+    "cache_read_input_tokens": 5608
+   },
+   "msg_bytes": 13547,
+   "sec_bytes": {
+    "judgement": 374,
+    "close": 134,
+    "consult": 161,
+    "material": 6206,
+    "kos": 6593,
+    "question": 79
+   },
+   "sec_tok": {
+    "judgement": 171,
+    "close": 61,
+    "consult": 74,
+    "material": 2841,
+    "kos": 3018,
+    "question": 36
+   },
+   "system_tok": 6322,
+   "history_tok": 0,
+   "history_pred_tok": 0,
+   "prev_bytes": 0,
+   "mat_rows": 14,
+   "mat_used_rows": 12,
+   "kind_bytes": {
+    "outcome": 6194
+   },
+   "layer_bytes": {
+    "층 표시 없음": 6194
+   },
+   "by_bytes": {
+    "entry": 6194
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 5421,
+    "unused_other": 773
+   },
+   "question": "얼굴 타이트닝을 받아야 하는데 어떤 시술이 잇어 ?",
+   "kinds": [
+    "outcome:entry"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 2,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 14492,
+   "sent": true,
+   "tokens_total": 14492,
+   "error": null,
+   "app_est_tokens": 4890,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 694,
+    "cache_creation_input_tokens": 2000,
+    "cache_read_input_tokens": 12488
+   },
+   "msg_bytes": 2879,
+   "sec_bytes": {
+    "judgement": 753,
+    "close": 438,
+    "consult": 260,
+    "material": 633,
+    "kos": 741,
+    "question": 54
+   },
+   "sec_tok": {
+    "judgement": 345,
+    "close": 201,
+    "consult": 119,
+    "material": 290,
+    "kos": 339,
+    "question": 25
+   },
+   "system_tok": 6322,
+   "history_tok": 6852,
+   "history_pred_tok": 6371,
+   "prev_bytes": 13916,
+   "mat_rows": 5,
+   "mat_used_rows": 1,
+   "kind_bytes": {
+    "summary:QY3": 621
+   },
+   "layer_bytes": {
+    "요약 줄": 621
+   },
+   "by_bytes": {
+    "summary": 621
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 129,
+    "unused_summary": 492
+   },
+   "question": "아 눈가에는 써마지 받고 싶어서",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 3,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 16370,
+   "sent": true,
+   "tokens_total": 16370,
+   "error": null,
+   "app_est_tokens": 4786,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 396,
+    "cache_creation_input_tokens": 1878,
+    "cache_read_input_tokens": 14488
+   },
+   "msg_bytes": 2568,
+   "sec_bytes": {
+    "judgement": 273,
+    "close": 28,
+    "consult": 324,
+    "material": 1403,
+    "kos": 484,
+    "question": 56
+   },
+   "sec_tok": {
+    "judgement": 125,
+    "close": 13,
+    "consult": 148,
+    "material": 642,
+    "kos": 222,
+    "question": 26
+   },
+   "system_tok": 6322,
+   "history_tok": 8872,
+   "history_pred_tok": 7921,
+   "prev_bytes": 17301,
+   "mat_rows": 3,
+   "mat_used_rows": 0,
+   "kind_bytes": {
+    "offer": 1391
+   },
+   "layer_bytes": {
+    "하위 시술": 1391
+   },
+   "by_bytes": {
+    "yes": 1391
+   },
+   "waste_bytes": {
+    "dup_names": 29,
+    "unused_sub_not_md": 1391
+   },
+   "question": "그럼 실 리프팅은 없어 명동점에 ?",
+   "kinds": [
+    "offer:yes"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 4,
+   "date": "2026-11-23",
+   "era": "default",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 19357,
+   "sent": true,
+   "tokens_total": 19357,
+   "error": null,
+   "app_est_tokens": 5824,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1088,
+    "cache_creation_input_tokens": 2987,
+    "cache_read_input_tokens": 16366
+   },
+   "msg_bytes": 5683,
+   "sec_bytes": {
+    "judgement": 714,
+    "close": 438,
+    "consult": 329,
+    "material": 3449,
+    "kos": 706,
+    "question": 47
+   },
+   "sec_tok": {
+    "judgement": 327,
+    "close": 201,
+    "consult": 151,
+    "material": 1579,
+    "kos": 323,
+    "question": 22
+   },
+   "system_tok": 6322,
+   "history_tok": 10433,
+   "history_pred_tok": 9189,
+   "prev_bytes": 20071,
+   "mat_rows": 5,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "overview": 3438
+   },
+   "layer_bytes": {
+    "자기": 628,
+    "물려받음": 2130,
+    "하위 제품": 680
+   },
+   "by_bytes": {
+    "default": 3438
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 1948,
+    "unused_other": 1490
+   },
+   "question": "아 그럼 써마지로 안내해줘",
+   "kinds": [
+    "overview:default"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 5,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 23120,
+   "sent": true,
+   "tokens_total": 23120,
+   "error": null,
+   "app_est_tokens": 5785,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1423,
+    "cache_creation_input_tokens": 3763,
+    "cache_read_input_tokens": 19353
+   },
+   "msg_bytes": 5566,
+   "sec_bytes": {
+    "judgement": 519,
+    "close": 192,
+    "consult": 428,
+    "material": 662,
+    "kos": 3687,
+    "question": 78
+   },
+   "sec_tok": {
+    "judgement": 238,
+    "close": 88,
+    "consult": 196,
+    "material": 303,
+    "kos": 1688,
+    "question": 36
+   },
+   "system_tok": 6322,
+   "history_tok": 14250,
+   "history_pred_tok": 12066,
+   "prev_bytes": 26355,
+   "mat_rows": 3,
+   "mat_used_rows": 3,
+   "kind_bytes": {
+    "summary:AP4": 199,
+    "summary:QY4": 452
+   },
+   "layer_bytes": {
+    "요약 줄": 651
+   },
+   "by_bytes": {
+    "summary": 651
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 651
+   },
+   "question": "입꼬리에는 어떤 시술들이 잇어 ? 주름이 고민이야",
+   "kinds": [
+    "indication:yes"
+   ]
+  },
+  {
+   "conv": "02aff6b4fa204f1e",
+   "c4": "02af",
+   "turn": 6,
+   "date": "2026-11-23",
+   "era": "understand",
+   "mode": "resume",
+   "prompt": "b2f871de",
+   "tokens_real": 34726,
+   "sent": true,
+   "tokens_total": 34726,
+   "error": null,
+   "app_est_tokens": 11267,
+   "tokens_parts": {
+    "input_tokens": 4,
+    "output_tokens": 1073,
+    "cache_creation_input_tokens": 11606,
+    "cache_read_input_tokens": 23116
+   },
+   "msg_bytes": 22012,
+   "sec_bytes": {
+    "judgement": 530,
+    "close": 212,
+    "consult": 524,
+    "material": 868,
+    "kos": 19812,
+    "question": 66
+   },
+   "sec_tok": {
+    "judgement": 243,
+    "close": 97,
+    "consult": 240,
+    "material": 397,
+    "kos": 9070,
+    "question": 30
+   },
+   "system_tok": 6322,
+   "history_tok": 18327,
+   "history_pred_tok": 14885,
+   "prev_bytes": 32513,
+   "mat_rows": 5,
+   "mat_used_rows": 5,
+   "kind_bytes": {
+    "summary:AP4": 856
+   },
+   "layer_bytes": {
+    "요약 줄": 856
+   },
+   "by_bytes": {
+    "summary": 856
+   },
+   "waste_bytes": {
+    "dup_names": 0,
+    "used": 856
+   },
+   "question": "이마에 주름이 많으면 어떤 시술을 받아 ?",
+   "kinds": [
+    "indication:yes"
+   ]
+  }
+ ]
+}

@@ -15,7 +15,7 @@
 | [[para/projects/company/mediness/README\|mediness]] | [[para/projects/company/mediness/work-index\|작업 목록]] | 0 | 9 |
 | [[para/projects/summer-star/mykakao/README\|mykakao]] | [[para/projects/summer-star/mykakao/work-index\|작업 목록]] | 0 | 1 |
 | [[para/projects/summer-star/ontology-demo/README\|ontology-demo]] | [[para/projects/summer-star/ontology-demo/work-index\|작업 목록]] | 0 | 2 |
-| [[para/projects/company/procedure-hub/README\|procedure-hub]] | [[para/projects/company/procedure-hub/work-index\|작업 목록]] | 0 | 3 |
+| [[para/projects/company/procedure-hub/README\|procedure-hub]] | [[para/projects/company/procedure-hub/work-index\|작업 목록]] | 0 | 4 |
 | [[para/projects/company/sc-ax/README\|sc-ax]] | [[para/projects/company/sc-ax/work-index\|작업 목록]] | 0 | 6 |
 | [[para/projects/summer-star/sc-rank/README\|sc-rank]] | [[para/projects/summer-star/sc-rank/work-index\|작업 목록]] | 0 | 1 |
 | [[para/projects/summer-star/strong-hajin/README\|strong-hajin]] | [[para/projects/summer-star/strong-hajin/work-index\|작업 목록]] | 0 | 12 |

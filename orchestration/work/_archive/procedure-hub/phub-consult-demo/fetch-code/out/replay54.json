@@ -1,0 +1,3242 @@
+{
+ "sample": {
+  "summary": {
+   "turns": 43,
+   "now_tok": 697892,
+   "new_tok": 261317,
+   "cited": 276,
+   "lineup_names": 17,
+   "miss": 0,
+   "lose_detail": 7,
+   "cut_pct": 62.6,
+   "eras": {
+    "default": {
+     "turns": 10,
+     "now_tok": 444411,
+     "new_tok": 60932,
+     "cited": 54,
+     "lineup_names": 0,
+     "miss": 0,
+     "lose_detail": 0,
+     "cut_pct": 86.3
+    },
+    "understand": {
+     "turns": 33,
+     "now_tok": 253481,
+     "new_tok": 200385,
+     "cited": 222,
+     "lineup_names": 17,
+     "miss": 0,
+     "lose_detail": 7,
+     "cut_pct": 20.9
+    }
+   },
+   "json_bad": 0,
+   "fetch_missing": 0,
+   "fetch_fixed_turns": 0,
+   "out_tok_median": 152,
+   "ms_median": 2544.8
+  },
+  "turns": [
+   {
+    "conv": "03b8",
+    "turn": 1,
+    "question": "팔자주름에 대해서 고민이돼",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2563.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 21063,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 8,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "03b8",
+    "turn": 2,
+    "question": "미간에 주름도 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2620.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 21910,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 138,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 403,
+    "new_tok": 403,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "03b8",
+    "turn": 3,
+    "question": "얼굴에 탄력이 좀 떨어지는거 같은데",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2642.1,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 22492,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 1168,
+    "new_tok": 1168,
+    "cited": 14,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 14
+    }
+   },
+   {
+    "conv": "03b8",
+    "turn": 4,
+    "question": "그중에서 소프웨이브, 써마지, 울쎄라만 관심이 잇어",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2710.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 22988,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 175,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 6149,
+    "new_tok": 6149,
+    "cited": 23,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 3,
+     "full:read": 9,
+     "full:no_kind": 24
+    }
+   },
+   {
+    "conv": "03b8",
+    "turn": 5,
+    "question": "고주파 원리가 머야 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2495.1,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 3210,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 152,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "mechanism"
+     ],
+     "new_kinds": [
+      "mechanism",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "mechanism": "yes"
+     }
+    },
+    "now_tok": 7098,
+    "new_tok": 4617,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "mechanism",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 14,
+     "names:branch": 26,
+     "full:read": 1,
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "03b8",
+    "turn": 6,
+    "question": "응 고주파에 대해서 전반적으로 설명해줘",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2596.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 3237,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 174,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome"
+     ],
+     "old_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "mechanism": "yes",
+      "indication": "yes",
+      "outcome": "yes",
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 41217,
+    "new_tok": 25426,
+    "cited": 10,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 3,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism",
+      "indication",
+      "outcome",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup",
+     "mechanism",
+     "outcome",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 95,
+     "full:read": 82,
+     "names:branch": 156,
+     "names:lineup": 29
+    }
+   },
+   {
+    "conv": "fixE",
+    "turn": 1,
+    "question": "요즘 피부 탄력이 저하 되서 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2467.0,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 562,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 1157,
+    "new_tok": 1157,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 14
+    }
+   },
+   {
+    "conv": "fixE",
+    "turn": 2,
+    "question": "얼굴에",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2419.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1701,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default",
+      "indication": "default"
+     }
+    },
+    "now_tok": 198080,
+    "new_tok": 11782,
+    "cited": 0,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "topic",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "drop:kind": 179,
+     "drop:topic": 1301,
+     "full:read": 104
+    }
+   },
+   {
+    "conv": "fixE",
+    "turn": 3,
+    "question": "얼굴에",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2460.4,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2802,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default",
+      "indication": "default"
+     }
+    },
+    "now_tok": 193287,
+    "new_tok": 13928,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "topic",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "drop:topic": 1712,
+     "full:read": 127
+    }
+   },
+   {
+    "conv": "73bd",
+    "turn": 1,
+    "question": "얼굴에 피부 탄력이 없어져서 걱정이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2538.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 564,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 160,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 1157,
+    "new_tok": 1157,
+    "cited": 3,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 14
+    }
+   },
+   {
+    "conv": "73bd",
+    "turn": 2,
+    "question": "아 주름이 눈가 입꼬리에 잇어",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 4645.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1701,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 474,
+     "thinking_tokens": 267
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 625,
+    "new_tok": 625,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "73bd",
+    "turn": 3,
+    "question": "아 눈가는 볼뉴머 이ㅃ고리는 필러를 맞고 싶어",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2988.5,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2152,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 260,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 398,
+    "new_tok": 398,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:read": 1,
+     "full:no_kind": 1
+    }
+   },
+   {
+    "conv": "3016",
+    "turn": 2,
+    "question": "보톡스 효과가 없어 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2544.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 799,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 150,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "outcome"
+     ],
+     "new_kinds": [
+      "indication",
+      "outcome"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "outcome": "yes"
+     }
+    },
+    "now_tok": 17126,
+    "new_tok": 10376,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "outcome"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "outcome"
+    ],
+    "lines": {
+     "full:explicit": 24,
+     "names:branch": 34,
+     "full:read": 13,
+     "full:no_kind": 41
+    }
+   },
+   {
+    "conv": "3016",
+    "turn": 3,
+    "question": "부작용은 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2479.4,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1916,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 148,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "adverse"
+     ],
+     "new_kinds": [
+      "adverse",
+      "recovery"
+     ],
+     "new_by": {
+      "adverse": "yes",
+      "recovery": "fetch"
+     }
+    },
+    "now_tok": 79884,
+    "new_tok": 79884,
+    "cited": 33,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "adverse",
+      "recovery"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "adverse",
+     "recovery"
+    ],
+    "lines": {
+     "full:explicit": 45,
+     "full:safety": 584
+    }
+   },
+   {
+    "conv": "a7d7",
+    "turn": 1,
+    "question": "팔자 주름이 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2558.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 552,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "a7d7",
+    "turn": 2,
+    "question": "미간에 주름도 너무 깊어",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2565.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1396,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 403,
+    "new_tok": 403,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "a7d7",
+    "turn": 3,
+    "question": "보톡스로 맞고 싶어서",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2447.5,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1936,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 135,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 17904,
+    "new_tok": 13673,
+    "cited": 8,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 25,
+     "names:branch": 19,
+     "full:read": 11,
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "a7d7",
+    "turn": 6,
+    "question": "팔자주름에 보톡스 말고 다른 시술은 없어서 그대로 둔거지 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 5856.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1545,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 608,
+     "thinking_tokens": 431
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication",
+      "lineup"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes"
+     }
+    },
+    "now_tok": 3099,
+    "new_tok": 1363,
+    "cited": 1,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:explicit": 24,
+     "drop:kind": 31
+    }
+   },
+   {
+    "conv": "a7d7",
+    "turn": 8,
+    "question": "볼뉴머가 머야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2455.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2166,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 155,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome"
+     ],
+     "old_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "mechanism": "fetch",
+      "indication": "fetch",
+      "outcome": "fetch",
+      "lineup": "fetch"
+     }
+    },
+    "now_tok": 11438,
+    "new_tok": 11240,
+    "cited": 9,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism",
+      "indication",
+      "outcome",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup",
+     "mechanism",
+     "outcome",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 26,
+     "full:read": 45,
+     "names:lineup": 6,
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "a578",
+    "turn": 2,
+    "question": "지금 턱이 이중턱이 됫어 ㅠㅠ",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2549.4,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 659,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 628,
+    "new_tok": 628,
+    "cited": 6,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 9
+    }
+   },
+   {
+    "conv": "a578",
+    "turn": 4,
+    "question": "기기 리프팅이지 그럼",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2410.7,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2727,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 131,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 23105,
+    "new_tok": 9514,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "full:read": 13,
+     "names:branch": 61,
+     "full:no_kind": 3
+    }
+   },
+   {
+    "conv": "a578",
+    "turn": 5,
+    "question": "아니 기기 리프팅 추천 해줘",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2569.5,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2784,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 146,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication",
+      "lineup"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 20959,
+    "new_tok": 14249,
+    "cited": 5,
+    "miss": [],
+    "lose": [
+     {
+      "n": 136,
+      "why": "branch",
+      "kind": [
+       "indication"
+      ],
+      "owner": "슈링크"
+     },
+     {
+      "n": 195,
+      "why": "branch",
+      "kind": [
+       "indication"
+      ],
+      "owner": "올리지오"
+     }
+    ],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup"
+    ],
+    "lines": {
+     "full:explicit": 20,
+     "full:read": 55,
+     "names:branch": 170,
+     "names:lineup": 21
+    }
+   },
+   {
+    "conv": "a578",
+    "turn": 7,
+    "question": "슈링크로 턱라인 타이트닝이 돼 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2596.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2301,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 169,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication",
+      "outcome"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "outcome": "yes"
+     }
+    },
+    "now_tok": 427,
+    "new_tok": 427,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "outcome"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "outcome"
+    ],
+    "lines": {
+     "full:no_kind": 4
+    }
+   },
+   {
+    "conv": "5bce",
+    "turn": 2,
+    "question": "턱 보톡스 맞고 싶다고",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 3472.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 21295,
+     "output_tokens": 322,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 1965,
+    "new_tok": 1965,
+    "cited": 3,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:no_kind": 41
+    }
+   },
+   {
+    "conv": "5bce",
+    "turn": 3,
+    "question": "턱이 이중턱이라고",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2542.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1850,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 160,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 1058,
+    "new_tok": 1058,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 13
+    }
+   },
+   {
+    "conv": "5bce",
+    "turn": 4,
+    "question": "볼살도 너무 많아",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2879.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2754,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 148,
+    "new_tok": 148,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 2
+    }
+   },
+   {
+    "conv": "5bce",
+    "turn": 5,
+    "question": "미간 주름도 잇어",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2355.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 3232,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 138,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 634,
+    "new_tok": 634,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 9
+    }
+   },
+   {
+    "conv": "5bce",
+    "turn": 6,
+    "question": "미간주름에 보톡스만 가능해 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2641.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 3153,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 195,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview",
+      "package"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication",
+      "lineup"
+     ],
+     "new_kinds": [
+      "combo",
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "combo": "yes"
+     }
+    },
+    "now_tok": 27455,
+    "new_tok": 21899,
+    "cited": 6,
+    "miss": [],
+    "lose": [
+     {
+      "n": 132,
+      "why": "branch",
+      "kind": [
+       "indication"
+      ],
+      "owner": "나보타"
+     },
+     {
+      "n": 134,
+      "why": "branch",
+      "kind": [
+       "indication"
+      ],
+      "owner": "보툴렉스"
+     },
+     {
+      "n": 338,
+      "why": "branch",
+      "kind": [
+       "indication"
+      ],
+      "owner": "메디톡신"
+     }
+    ],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "combo"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "combo",
+     "indication"
+    ],
+    "lines": {
+     "full:explicit": 145,
+     "names:branch": 162,
+     "full:read": 26,
+     "drop:kind": 30,
+     "full:no_kind": 1
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 1,
+    "question": "볼에 살이 많아서 고민이돼",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2552.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 556,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 160,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 146,
+    "new_tok": 146,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 2
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 3,
+    "question": "그럼 지방 분해주사 뭐뭐 잇어 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2390.7,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1353,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "lineup"
+     ],
+     "new_kinds": [
+      "lineup"
+     ],
+     "new_by": {
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 1257,
+    "new_tok": 583,
+    "cited": 9,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 8,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "lineup"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "names:lineup": 4,
+     "names:branch": 17
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 4,
+    "question": "응 어떤 원리인지 어떤 시술인지 궁금해",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2338.4,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1271,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 148,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [
+      "indication",
+      "lineup",
+      "outcome"
+     ],
+     "old_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_kinds": [
+      "mechanism",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "mechanism": "yes"
+     }
+    },
+    "now_tok": 13831,
+    "new_tok": 3424,
+    "cited": 4,
+    "miss": [],
+    "lose": [
+     {
+      "n": 28,
+      "why": "branch",
+      "kind": [
+       "overview",
+       "mechanism"
+      ],
+      "owner": "PPC 지방분해주사"
+     },
+     {
+      "n": 30,
+      "why": "branch",
+      "kind": [
+       "overview",
+       "mechanism"
+      ],
+      "owner": "카복시테라피"
+     }
+    ],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "mechanism",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "full:read": 4,
+     "names:branch": 17,
+     "drop:kind": 35
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 5,
+    "question": "그럼 미간 주름은 어떻게 없애 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2538.0,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1308,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 144,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes"
+     }
+    },
+    "now_tok": 634,
+    "new_tok": 634,
+    "cited": 6,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 9
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 6,
+    "question": "그럼 기기 리프팅 뭐 하면 좋을까 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2483.1,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1876,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 145,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [
+      "overview"
+     ],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "lineup"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 3538,
+    "new_tok": 1577,
+    "cited": 8,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 6,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "names:lineup": 21,
+     "names:branch": 53,
+     "full:no_kind": 1
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 7,
+    "question": "써마지 받아보고 싶어",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2257.0,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2319,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 1665,
+    "new_tok": 1665,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "full:read": 4,
+     "full:no_kind": 1
+    }
+   },
+   {
+    "conv": "dc78",
+    "turn": 8,
+    "question": "응 써마지 몇샷 맞아야해 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2406.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2372,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 148,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "offer"
+     ],
+     "new_kinds": [
+      "offer",
+      "outcome"
+     ],
+     "new_by": {
+      "outcome": "yes",
+      "offer": "yes"
+     }
+    },
+    "now_tok": 648,
+    "new_tok": 648,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "outcome",
+      "offer"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "offer",
+     "outcome"
+    ],
+    "lines": {
+     "full:read": 2
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 1,
+    "question": "얼굴 타이트닝을 받아야 하는데 어떤 시술이 잇어 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2643.0,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 574,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 175,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "outcome"
+     ],
+     "new_kinds": [
+      "outcome"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "lineup": "yes",
+      "outcome": "entry"
+     }
+    },
+    "now_tok": 2836,
+    "new_tok": 2836,
+    "cited": 12,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup",
+     "outcome"
+    ],
+    "lines": {
+     "full:read": 14
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 2,
+    "question": "아 눈가에는 써마지 받고 싶어서",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2624.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 867,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 182,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 284,
+    "new_tok": 284,
+    "cited": 1,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 3,
+    "question": "그럼 실 리프팅은 없어 명동점에 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2452.7,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1373,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [
+      "overview"
+     ],
+     "old_kd9": [],
+     "old_kinds": [
+      "offer"
+     ],
+     "new_kinds": [
+      "lineup"
+     ],
+     "new_by": {
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 637,
+    "new_tok": 0,
+    "cited": 0,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "lineup"
+    ],
+    "lines": {
+     "drop:kind": 3
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 4,
+    "question": "아 그럼 써마지로 안내해줘",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2578.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1400,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 1574,
+    "new_tok": 1574,
+    "cited": 3,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "full:read": 4
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 5,
+    "question": "입꼬리에는 어떤 시술들이 잇어 ? 주름이 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2665.1,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1590,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 173,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes",
+      "lineup": "yes"
+     }
+    },
+    "now_tok": 298,
+    "new_tok": 298,
+    "cited": 3,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup"
+    ],
+    "lines": {
+     "full:no_kind": 3
+    }
+   },
+   {
+    "conv": "02af",
+    "turn": 6,
+    "question": "이마에 주름이 많으면 어떤 시술을 받아 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2474.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2155,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 165,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes"
+     }
+    },
+    "now_tok": 392,
+    "new_tok": 392,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "indication"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "7897",
+    "turn": 1,
+    "question": "팔자 주름이 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2438.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 21059,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "7897",
+    "turn": 2,
+    "question": "볼뉴머에 대해서 설명해줄래 ?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2412.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1407,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 155,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome"
+     ],
+     "old_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "mechanism": "fetch",
+      "indication": "fetch",
+      "outcome": "fetch",
+      "lineup": "fetch"
+     }
+    },
+    "now_tok": 11362,
+    "new_tok": 11167,
+    "cited": 19,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism",
+      "indication",
+      "outcome",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup",
+     "mechanism",
+     "outcome",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 26,
+     "full:read": 45,
+     "names:lineup": 6,
+     "full:no_kind": 5
+    }
+   }
+  ]
+ },
+ "outside": {
+  "summary": {
+   "turns": 11,
+   "now_tok": 28432,
+   "new_tok": 23429,
+   "cited": 49,
+   "lineup_names": 0,
+   "miss": 0,
+   "lose_detail": 0,
+   "cut_pct": 17.6,
+   "eras": {
+    "default": {
+     "turns": 2,
+     "now_tok": 19588,
+     "new_tok": 15422,
+     "cited": 6,
+     "lineup_names": 0,
+     "miss": 0,
+     "lose_detail": 0,
+     "cut_pct": 21.3
+    },
+    "understand": {
+     "turns": 9,
+     "now_tok": 8844,
+     "new_tok": 8007,
+     "cited": 43,
+     "lineup_names": 0,
+     "miss": 0,
+     "lose_detail": 0,
+     "cut_pct": 9.5
+    }
+   },
+   "json_bad": 0,
+   "fetch_missing": 0,
+   "fetch_fixed_turns": 0,
+   "out_tok_median": 139,
+   "ms_median": 2473.9
+  },
+  "turns": [
+   {
+    "conv": "67bb",
+    "turn": 1,
+    "question": "팔자주름 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2429.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 550,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "67bb",
+    "turn": 2,
+    "question": "미간 주름도 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2453.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1390,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 138,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 403,
+    "new_tok": 403,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 5
+    }
+   },
+   {
+    "conv": "67bb",
+    "turn": 3,
+    "question": "써마지 시술을 받고 싶어",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 3044.8,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1959,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 1997,
+    "new_tok": 1997,
+    "cited": 5,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 1,
+     "full:read": 4,
+     "full:no_kind": 4
+    }
+   },
+   {
+    "conv": "67bb",
+    "turn": 6,
+    "question": "응 팔자주름에는 보톡스에 대해 알려줘",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2735.6,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 2629,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 205,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [
+      "lineup",
+      "mechanism",
+      "outcome"
+     ],
+     "old_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_kinds": [
+      "indication",
+      "lineup",
+      "mechanism",
+      "outcome",
+      "overview"
+     ],
+     "new_by": {
+      "overview": "yes",
+      "indication": "entry",
+      "mechanism": "fetch",
+      "outcome": "fetch",
+      "lineup": "fetch"
+     }
+    },
+    "now_tok": 4217,
+    "new_tok": 3380,
+    "cited": 2,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [
+      "overview",
+      "mechanism",
+      "indication",
+      "outcome",
+      "lineup"
+     ],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "names",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication",
+     "lineup",
+     "mechanism",
+     "outcome",
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 26,
+     "names:branch": 19,
+     "names:lineup": 11,
+     "full:no_kind": 12
+    }
+   },
+   {
+    "conv": "76dd",
+    "turn": 1,
+    "question": "팔자 주름이 고민임",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2408.2,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 551,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "b8c9",
+    "turn": 1,
+    "question": "턱에 살이 너무 많아보여",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 4450.4,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 554,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 426,
+     "thinking_tokens": 266
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 88,
+    "new_tok": 88,
+    "cited": 1,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 1
+    }
+   },
+   {
+    "conv": "b8c9",
+    "turn": 2,
+    "question": "사각턱인데?",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2625.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 21463,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 264,
+    "new_tok": 264,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 4
+    }
+   },
+   {
+    "conv": "d1e6",
+    "turn": 1,
+    "question": "얼굴이 자꾸 빨개져요",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2473.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 556,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 159,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 897,
+    "new_tok": 897,
+    "cited": 7,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 17
+    }
+   },
+   {
+    "conv": "e81b",
+    "turn": 1,
+    "question": "보톡스 맞고 싶어",
+    "era": "default",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2264.3,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 552,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 131,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "overview"
+     ],
+     "new_kinds": [
+      "overview"
+     ],
+     "new_by": {
+      "overview": "default"
+     }
+    },
+    "now_tok": 17591,
+    "new_tok": 13425,
+    "cited": 1,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "overview"
+    ],
+    "lines": {
+     "full:explicit": 25,
+     "names:branch": 19,
+     "full:read": 11
+    }
+   },
+   {
+    "conv": "eac3",
+    "turn": 1,
+    "question": "팔자주름 개선하고 싶어",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2657.9,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 554,
+     "cache_read_input_tokens": 20507,
+     "output_tokens": 139,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "yes"
+     }
+    },
+    "now_tok": 606,
+    "new_tok": 606,
+    "cited": 4,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 8
+    }
+   },
+   {
+    "conv": "ecc6",
+    "turn": 1,
+    "question": "요즘 피부 탄력이 저하 되서 고민이야",
+    "era": "understand",
+    "json_ok": true,
+    "fetch_present": true,
+    "fetch_fixed": [],
+    "ms": 2333.7,
+    "usage": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 21069,
+     "output_tokens": 133,
+     "thinking_tokens": 0
+    },
+    "offered": {
+     "old": [],
+     "new": [],
+     "old_kd9": [],
+     "old_kinds": [
+      "indication"
+     ],
+     "new_kinds": [
+      "indication"
+     ],
+     "new_by": {
+      "indication": "entry"
+     }
+    },
+    "now_tok": 1157,
+    "new_tok": 1157,
+    "cited": 6,
+    "miss": [],
+    "lose": [],
+    "lineup_names": 0,
+    "fetch": {
+     "about": "targets",
+     "kinds": [],
+     "layers": "sub",
+     "scope": "branch",
+     "lineup": "none",
+     "from": "understand",
+     "fixed": []
+    },
+    "g2": [
+     "indication"
+    ],
+    "lines": {
+     "full:no_kind": 14
+    }
+   }
+  ]
+ }
+}

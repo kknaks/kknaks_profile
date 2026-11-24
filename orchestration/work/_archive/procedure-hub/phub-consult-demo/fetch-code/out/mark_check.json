@@ -1,0 +1,166 @@
+[
+ {
+  "turn": "dc78 T4",
+  "q": "응 어떤 원리인지 어떤 시술인지 궁금해",
+  "scope_plain": "branch",
+  "scope_marked": "branch",
+  "sys_bytes_marked": 46003,
+  "sys_bytes_plain": 38422,
+  "cut_plain": {
+   "now_tok": 13831,
+   "new_tok": 3424,
+   "cited": 4,
+   "miss": [],
+   "lose": [
+    {
+     "n": 28,
+     "why": "branch",
+     "kind": [
+      "overview",
+      "mechanism"
+     ],
+     "owner": "PPC 지방분해주사"
+    },
+    {
+     "n": 30,
+     "why": "branch",
+     "kind": [
+      "overview",
+      "mechanism"
+     ],
+     "owner": "카복시테라피"
+    }
+   ],
+   "lineup_names": 0,
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "from": "understand",
+    "fixed": []
+   },
+   "g2": [
+    "mechanism",
+    "overview"
+   ],
+   "lines": {
+    "full:explicit": 1,
+    "full:read": 4,
+    "names:branch": 17,
+    "drop:kind": 35
+   }
+  },
+  "cut_marked": {
+   "now_tok": 13831,
+   "new_tok": 3424,
+   "cited": 4,
+   "miss": [],
+   "lose": [
+    {
+     "n": 28,
+     "why": "branch",
+     "kind": [
+      "overview",
+      "mechanism"
+     ],
+     "owner": "PPC 지방분해주사"
+    },
+    {
+     "n": 30,
+     "why": "branch",
+     "kind": [
+      "overview",
+      "mechanism"
+     ],
+     "owner": "카복시테라피"
+    }
+   ],
+   "lineup_names": 0,
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "overview",
+     "mechanism"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "none",
+    "from": "understand",
+    "fixed": []
+   },
+   "g2": [
+    "mechanism",
+    "overview"
+   ],
+   "lines": {
+    "full:explicit": 1,
+    "full:read": 4,
+    "names:branch": 17,
+    "drop:kind": 35
+   }
+  }
+ },
+ {
+  "turn": "02af T3",
+  "q": "그럼 실 리프팅은 없어 명동점에 ?",
+  "scope_plain": "branch",
+  "scope_marked": "branch",
+  "sys_bytes_marked": 46003,
+  "sys_bytes_plain": 38422,
+  "cut_plain": {
+   "now_tok": 637,
+   "new_tok": 0,
+   "cited": 0,
+   "miss": [],
+   "lose": [],
+   "lineup_names": 0,
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "from": "understand",
+    "fixed": []
+   },
+   "g2": [
+    "lineup"
+   ],
+   "lines": {
+    "drop:kind": 3
+   }
+  },
+  "cut_marked": {
+   "now_tok": 637,
+   "new_tok": 0,
+   "cited": 0,
+   "miss": [],
+   "lose": [],
+   "lineup_names": 0,
+   "fetch": {
+    "about": "targets",
+    "kinds": [
+     "lineup"
+    ],
+    "layers": "sub",
+    "scope": "branch",
+    "lineup": "names",
+    "from": "understand",
+    "fixed": []
+   },
+   "g2": [
+    "lineup"
+   ],
+   "lines": {
+    "drop:kind": 3
+   }
+  }
+ }
+]
