@@ -1,0 +1,1 @@
+# [frontend] 기능 5 — 동행 띠 잘 보이게(E8 · R72 · 결정 파일 마지막 행): 띠 = primary 굵은 테두리(토큰 · 손 CSS 금지 규약 안에서 — 새 토큰이면 styles/app.css) + 위 테두리 왼쪽에 걸친 꼬리표 「동행그룹」(작은 파란 바탕 · 흰 글자 또는 시안 배지 모양 중 기존 ui 에 있는 것). 행 높이 · 카드 자리 안 바꿈 · 띠가 카드 hover / 끌기를 가리지 않게(pointer-events). 문구 test_screen_copy 추가. node · 화면 시험 갱신 · 관련 시험만 · 커밋 · 스택 금지 · worker_done 본문에 결과.

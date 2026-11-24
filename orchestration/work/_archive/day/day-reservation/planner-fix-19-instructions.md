@@ -1,0 +1,1 @@
+# [planner] 고침 19 — 검수 11 반영. `review-doc-11-report.md` F11-1(Rule 7 끝 문장 · 동행 쓰기) · F11-2 → 새 결정 R70(카드 한 줄 고정 높이 · top = 행 + line) · F11-3 → R71(같은 시간대 = 30분 배치 행 · 실패 알림 oob 토스트) · W11-1 ~ W11-6 은 planner 판단으로 문장 정리(코디 몫 W11-7 은 그대로). U-5 L184 위치 · 높이 문장 · R66 「열 간격 칸」 문장 grep 전부. lint 0 · 커밋 안 함 · `planner-fix-19-report.md` · worker_done.

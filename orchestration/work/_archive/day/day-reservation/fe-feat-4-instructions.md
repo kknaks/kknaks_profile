@@ -1,0 +1,3 @@
+# [frontend] 기능 4 — 카드 폭 · 줄 접기 · 동행 그룹 끌어 놓기(E6 · E7)
+결정 R64 ~ R69(결정 파일 끝) · 계약 `contract-v4-companion.md` · 조사 `research-companion-1-report.md` §4(기존 끌기 = 시술 현황 G9 `static/day.js:738-855` · pointer · 폴링 미룸 busy) 이 정본.
+할 일: ① 카드 폭 140px 토큰 · 카드 top / left = rows(lines) · line · lane 으로 ② 띠(bands) = 감싸는 얇은 테두리 · 글자 없음(디자인 토큰 · 손 CSS 금지 규약 안에서) ③ 끌어 놓기: companion_editable 일 때만 · 카드 전체 끌기 · 놓은 점 아래 카드 → `PUT /reservations/companions` · 빈 곳(띠 밖) → `/leave` · 같은 카드 위면 아무것도 안 함 · 끄는 동안 폴링 미룸 · 성공 = #reservation-main 교체 · 실패 = 제자리 + 기존 오류 알림 ④ node 시험(끌기 · 놓기 · 풀기 · 실패 · 폴링 미룸 · 6장 2줄 배치) · 화면 pytest. backend 가 아직이어도 계약 픽스처로. 관련 시험만 · 커밋 · 스택 금지 · Python 은 backend 몫. 리포트 `fe-feat-4-report.md`.

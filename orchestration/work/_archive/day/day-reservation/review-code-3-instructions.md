@@ -1,0 +1,5 @@
+# [reviewer] 코드 검수 3 — E4 · E5 · 공지 수정 + KOS 공지 동기화
+앞 판 `review-code-2-report.md` · `be-feat-2` · `be-feat-3-report.md` · `fe-feat-2-report.md` · `fe-feat-3-report.md`(이 폴더). 워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation` 미커밋 변경 중 검수 2 이후분(be-feat-2 · be-feat-3 · fe-feat-2 · fe-feat-3)을 본다.
+기준: SPEC-006 개정 ⑨(`/Users/kknaks/orca/workspaces/mediness-mediness/day-reservation-spec/products/day/20-spec/spec-006-reservation-board.md` · HEAD `039bbfd7`) · 결정 R56 ~ R62 · 계약 `contract-v3-notice.md`(보충 1 · 2 — KOS 장애 = 503).
+특히 ① 공지 저장 분기(대상 고르기 notice_id → external_ref · 없으면 첫 번째 · create / change / delete · trim · 공백만 = 지우기 · 과거 날짜 409 · 2,000 · 권한 403) ② 누른 직원 토큰 사용 · 시스템 토큰으로 새지 않는지 ③ 저장 성공 뒤 DAY notice + external_ref 맞춤 · 다시 읽기 실패 처리 ④ 공지 동기화가 일정 · 날짜 회차를 오류로 만들지 않는지(R62 ①) · 통째 맞춤 ⑤ migration 0020 · heads 하나 ⑥ 화면: 편집 중 폴링 보호 · 실패 줄 · 문구(R58 · R57 만) ⑦ E5 담당의 판정이 시술 현황판과 같은지 · 쿼리 수 ⑧ 업체 경계 · 계층 규약.
+관련 시험은 직접 돌려라(전체 check.sh 는 말고). 고치지 마라 · 커밋 · 스택 금지. PASS / FAIL. 리포트 `review-code-3-report.md` · worker_done.

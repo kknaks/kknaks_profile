@@ -90,9 +90,14 @@ cc-prototype 명동 PoC v2 의 `kos_op` 표와 루프(`kos/ops.py` · `kos/runti
 - [[queue]] — 순서대로 꺼내는 자료구조
 - [[strangler-fig]] — 우리 DB 가 원천을 품는 구조라 이 대기열이 생긴다
 
+## 큐에 안 맞는 쓰기 — 방문이 없는 원천 행
+
+DAY 공지(2026-11-23): 쓰기 큐가 방문 단위(`visit_id` NOT NULL · 일정 동기화로 확인)라 방문이 없는 공지는 태울 수 없었다. create 가 돌려주는 새 id 도 받아야 했다. 그래서 로그인처럼 **요청 안에서 누른 직원 토큰으로 직접 호출** · 저장 직전 다시 읽어 대상 고르기 · 성공 뒤 다시 읽어 사본 맞춤으로 갔다. 큐는 「확인할 수 있는 쓰기」에 맞고, 확인 길이 없는 쓰기는 동기 호출이 정직하다. ← [[2026-11-24-day-reservation]]
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 여권 사진 KOS 업로드 200 · `ok` 인데 일정 탭에 안 보임 → 일정(`scheduleId`) · 분류 「여권」(있는 지점만)을 실음. 근거는 사용자 HAR(KOS 웹 여권 스캔) · 데모 재조회(`app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`). 고객 문진 다시 제출 → 읽기는 첫 제출본(`app-backend-report.md` 「WORK-010 건강 정보 반영」)
 - [[2026-11-09-day-data-architecture]] §2 — DAY 의 KOS 쓰기 `external_outbox`: 같은 행 중복 발송 → 보내기 전 claim · 오래 멈춘 SENT → 실패 · 쓰기 토큰 = 누른 직원(`sender_staff_id`) · 즉시 kick 상한 1초(코드 `8c85233a` · `292d0996` · SPEC-002 ⑥⑦)
 - [[2026-10-22-myeongdong-poc-v2]] §2 — 명동 PoC v2 `kos_op` 대기열(SPEC-003 §4.3 · §4.4 · `kos/runtime.py` · `kos/ops.py` · 리뷰 r1 W1 · W2 · r2 N2 · E2E-6)
 - [[2026-11-11-day-procedure-board-2]] §2 — DAY 점유 이동: 「방 배정」 add-flow-tasks → 확인 → 원래 방 → 나머지 새 방(리뷰 W1) · 차트 메모 이력 `visit_task_chart_log`(source kos 포함) · guard(코드 b8a59cc3 · SPEC-002 개정 ⑰)
+- [[2026-11-24-day-reservation]] §2 — 공지 쓰기 = 직접 호출(큐 밖)

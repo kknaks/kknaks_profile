@@ -1,0 +1,5 @@
+# [reviewer] 코드 검수 2 — 원내 현황 탭 (be-feat-1 · fix-1 · fe-feat-1)
+앞 판 `review-code-1-report.md` · `be-feat-1-report.md` · `fe-feat-1-report.md` 가 이 폴더에 있다. 워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation` 의 **미커밋 변경**(HEAD `431c081b` 위)만 본다.
+기준: SPEC-006 개정 ⑧(`/Users/kknaks/orca/workspaces/mediness-mediness/day-reservation-spec/products/day/20-spec/spec-006-reservation-board.md` §3 「원내 현황 금액」 · U-8) · 결정 R46 ~ R55(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md`) · 계약 `contract-v2-inhouse.md`.
+특히: ① 금액 함수가 R49 ~ R55 와 한 줄씩 같은지(수납 = 거래 − 선불카드 차감 · ⓐ 거래 = 승인 · 취소 · SPENT · ⓑ 덮임 = 상태 무관 같은 옵션 · 횟수 · VAT · 버림) ② R52 세 사례 시험이 실제로 그 값을 단언하는지 ③ migration 0018(enum 값 추가 · down 가능 여부 · heads 하나) ④ 계층 규약(queries / policies / presentation · 인라인 스크립트 · 손 CSS 금지 · 화면 문구 = 시안만) ⑤ 폴링 · 날짜 이동 뒤 탭 · 칩 유지 ⑥ 쿼리 수 증가(+6/폴링) 위험.
+관련 시험은 직접 돌려라(전체 check.sh 는 말고). 고치지 마라 · 커밋 금지 · 스택 금지. PASS / FAIL + 항목. 리포트 `review-code-2-report.md` · worker_done.

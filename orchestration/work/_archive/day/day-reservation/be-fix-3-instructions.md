@@ -1,0 +1,3 @@
+# [backend] 고침 3 — e2e 1회차 E2 · E3(서버 쪽)
+읽을 것: `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/e2e-1-feedback.md` E2 · E3 · 원 브리프 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/day-reservation-be-brief.md`(§5 · §8 · §9) · 워크트리 `/Users/kknaks/orca/workspaces/CENTURION_DAY/day-reservation`(frontend 도 같은 트리 — 서로 미커밋 변경 지우지 마라 · 스택 건드리지 마라)
+E2 기다림 상한은 설정값 하나(기본 3초) · 완료 / 실패 표시는 10초 캐시 표시와 같은 자리 재사용 가능. E3 는 시험에 「접수 + payment_required → 안 붙음 / 귀가 대기 + payment_required → 붙음 / 귀가 대기 + 열린 purchase 만 → 안 붙음」. 리포트 `/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/orchestration/work/day-reservation/be-fix-3-report.md` · preamble 의 worker_done

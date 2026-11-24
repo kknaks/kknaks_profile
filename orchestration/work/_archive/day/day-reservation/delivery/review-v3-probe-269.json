@@ -1,0 +1,95 @@
+{
+ "delivery_issue": 269,
+ "contract_digest": "sha256:8811c0d5a4afd3fbdad9a762b4796f9457889da4266ae0c7539cad48bbe852b3",
+ "contract_version": 3,
+ "spec_baseline_revision": "32b83390eb9fbdcd615f86ecad016b6e9c39ee74",
+ "code_pr": 272,
+ "code_pr_head_sha": "85836b300cb729fb9b4923d05ae9d8bf14bd66f8",
+ "code_merge_sha": null,
+ "acceptance": [
+  {
+   "id": "A1",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/architecture/test_screen_copy.py:226",
+    "backend/tests/day/web/test_reservations_screen.py:358",
+    "backend/tests/day/web/test_reservations_screen.py:601"
+   ]
+  },
+  {
+   "id": "A2",
+   "result": "pass",
+   "evidence": [
+    "backend/tests/architecture/test_web_rules.py:101"
+   ]
+  },
+  {
+   "id": "A3",
+   "result": "pass",
+   "evidence": [
+    "scripts/frontend/tests/res-browser.test.mjs:8",
+    "scripts/frontend/tests/res-browser.test.mjs:21",
+    "scripts/frontend/tests/res-order.test.mjs:61",
+    "backend/tests/day/web/test_reservations_screen.py:288",
+    "backend/tests/day/web/test_reservations_screen.py:422"
+   ]
+  },
+  {
+   "id": "A4",
+   "result": "undetermined",
+   "evidence": [
+    "PR #272 body 검증 절: 요청 수 · 두 창 동시 e2e 기록 없음"
+   ]
+  },
+  {
+   "id": "A5",
+   "result": "pass",
+   "evidence": [
+    "scripts/frontend/tests/res-inhouse.test.mjs:30",
+    "scripts/frontend/tests/res-inhouse.test.mjs:67",
+    "scripts/frontend/tests/res-inhouse.test.mjs:101",
+    "backend/tests/day/web/test_reservations_screen.py:481"
+   ]
+  },
+  {
+   "id": "A6",
+   "result": "pass",
+   "evidence": [
+    "scripts/frontend/tests/res-companion.test.mjs:29",
+    "scripts/frontend/tests/res-companion.test.mjs:56",
+    "scripts/frontend/tests/res-companion.test.mjs:85",
+    "scripts/frontend/tests/res-companion.test.mjs:108",
+    "scripts/frontend/tests/res-companion.test.mjs:134",
+    "scripts/frontend/tests/res-companion.test.mjs:202"
+   ]
+  },
+  {
+   "id": "A7",
+   "result": "pass",
+   "evidence": [
+    "scripts/frontend/tests/res-notice.test.mjs:54",
+    "scripts/frontend/tests/res-notice.test.mjs:73",
+    "scripts/frontend/tests/res-notice.test.mjs:92",
+    "scripts/frontend/tests/res-notice.test.mjs:140",
+    "scripts/frontend/tests/res-notice.test.mjs:169"
+   ]
+  },
+  {
+   "id": "A8",
+   "result": "pass",
+   "evidence": [
+    "scripts/frontend/tests/res-companion.test.mjs:165",
+    "scripts/frontend/tests/res-companion.test.mjs:246",
+    "scripts/frontend/tests/res-debounce.test.mjs:70"
+   ]
+  }
+ ],
+ "per_spec": [
+  {
+   "spec": "DAY-SPEC-006",
+   "result": "none"
+  }
+ ],
+ "implementation": "conflict",
+ "merged": false
+}

@@ -1,0 +1,1 @@
+# [planner] 고침 17 — review-doc-10 W10-1: Rule 12 첫머리(L611 근처) 「첫 공지 대상」을 R62 ② 문장과 같게. 계약 보충(contract-v3-notice.md 「보충 1」 notice.id · notice_id)도 SPEC 칸 표 · API 표에 한 줄. lint 0 · 커밋 안 함 · worker_done 본문에 고친 줄.

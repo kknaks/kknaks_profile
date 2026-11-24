@@ -1,0 +1,4 @@
+# [backend] 기능 4 — 동행 그룹 + 카드 배치(E6 · E7) + 검수 3 W3-1 · W3-2
+결정 R63 ~ R69(`/Users/kknaks/orca/workspaces/kknaks_profile/day-ext/reference/2026-11-23-reservation/reservation-board-decisions.md` 끝) · 계약 `contract-v4-companion.md` · 조사 `research-companion-1-report.md`(§4 ~ §6) 이 정본.
+할 일: ① 테이블 `companion_group` · `companion_member` + migration(다음 번호 · heads 하나 · up/down/up) + 권한 `reservation.companion` 데이터 migration ② 배치 policy: lane(최대 5) · line · rows(lines) · bands · 같은 그룹 이웃 자리(그룹 먼저 생긴 순 → 넣은 순) ③ 쓰기 두 경로 + 조건 · 지난 날짜 · 권한 · event_log ④ 자동 빠짐 R67(읽을 때 조건 깨진 멤버는 제외 · 정리는 쓰기 / 동기화 때) ⑤ 검수 3 W3-1 공지 반영을 일정 C1 transaction 에서 떼기(savepoint 등 · R62 ①) · W3-2 날짜 회차 공지 경로 시험 ⑥ 시험(조건 · 옮김 · 1명 남음 · 자동 빠짐 · 6명 = 2줄 · rows lines · bands · 쿼리 수 단언 갱신). 관련 시험만.
+템플릿 · JS · CSS 는 frontend 몫. 커밋 · 스택 금지. worker_done 에 rows 단위 · 필드 예시. 리포트 `be-feat-4-report.md`.

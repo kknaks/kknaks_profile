@@ -1,0 +1,69 @@
+{
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 2,
+  "target_specs": [
+    "DAY-SPEC-006"
+  ],
+  "spec_baseline_revision": "8aef9206036d076798242ca66abd30d644762180",
+  "idempotency_key": "day/day-spec-006/fe",
+  "title": "DAY 예약 현황(조회) ③ 화면 — Jinja2 + HTMX 템플릿 · day.js (DAY-SPEC-006)",
+  "risk_level": "L2",
+  "target_delta": [
+    "예약 현황 화면 — 페이지 머리(날짜 · 꺾쇠 · [오늘] · 달력 · [필터] 팝오버) · 예약 표(열 머리 · 시간 칸 · 회색 면 · 현재 시각 선 · 카드 띠 색 · 이름 · 국가 · 초진 · 수납 필요 · 상태 툴팁 · 취소 / 귀가 모양 · 좌우 넘김) · 오른쪽 패널(공지 / 예약 요청 제목만 · 1:1) — 시안이 정본 · SPEC-006 RV-01 ~ RV-41 · U-1 ~ U-7",
+    "날짜 바꾸기 = HTMX GET 조각 #reservation-main(V0) · hx-push-url · 10초 조각 폴링(R41 — 계약 S `poll=1` 을 싣고 push 안 함) · 필터는 계약 V4 의 수를 그대로 보이고 흐리게 하기만 화면 안에서(다시 세지 않음) · 현재 시각 선은 화면이 1분마다(now_min 기준)",
+    "아이콘 줄 「예약」 · 헤더 탭 「예약 현황」 링크는 ① #267 이 `menu.py` 로 켠다 — ③ 은 링크가 켜졌는지 e2e 로 확인만",
+    "계약 S(폴링 구분 — #267 · #269 같은 문장): 10초 폴링 요청은 쿼리 `poll=1` 을 싣는다(`GET /reservations?date=YYYY-MM-DD&poll=1` + `HX-Request` · 폴링 요소는 hx-push-url 을 쓰지 않음) · ① 은 `poll=1` 이면 최신화 요청을 넣지 않고 DB 사본만 돌려준다 · 날짜 바꾸기(꺾쇠 · [오늘] · 달력)는 `poll` 없이 보낸다. 고른 이유: HX-Trigger 헤더는 HTMX 가 누른 요소 id 를 싣는 칸이라 요소 id 에 묶이지만, 쿼리는 요소와 무관하고 로그 · 테스트에서 바로 보인다",
+    "계약 V0(조각 범위 — #267 제공 · #269 소비 같은 문장): HX 조각 `#reservation-main` = 페이지 머리 날짜 줄(날짜 · 꺾쇠 · [오늘] · [필터] 버튼과 팝오버) + 예약 표 + 오른쪽 패널(공지 / 예약 요청 제목). 셸(아이콘 줄 · 헤더)은 전체 페이지에만",
+    "계약 V1(화면 값 · 페이지): `date`(YYYY-MM-DD) · `weekday`(요일 한 글자) · `is_today`(bool) · `now_min`(오늘만 · 자정부터 분 · 아니면 null) · `axis`{`start_min`, `end_min`}(30분 단위 · 기본 08:00 ~ 24:00 · 축 밖 예약이면 ① 이 늘림) — 판정 위치 = ①",
+    "계약 V2(화면 값 · 열 `columns[]`): {`group_id`, `title`, `capacity` (int 또는 null — 살아 있는 구역이 1개면 그 정원 · 0개 · 2개 이상이면 null), `interval_minutes`, `gray_spans[]`{`start_min`, `end_min`}(운영 전 · 지난 시간 · 쉬는 시간 · 꺼진 요일 · 그룹 휴무를 합친 회색 구간)} — 정원 null 판정 · 회색 구간 계산 = ① / 「n명 / m분」 글자 조립 · capacity null 이면 「n명」 부분 비움 = ③(시안 문구)",
+    "계약 V3(화면 값 · 카드 `cards[]`): {`visit_id`, `group_id`, `start_min`, `end_min`, `stack_index`(같은 열 겹침 순서 · 취소 · 노쇼 뒤), `name`(한글 발음 없으면 이름), `nationality`(값 그대로 · 없으면 빈 문자열), `is_new`(bool), `state`(`reserved` · `reception` · `consultation_waiting` · `consultation` · `procedure_waiting` · `procedure` · `procedure_done` · `completed` · `canceled` · `no_show` — 예약 상태(취소 · 노쇼)를 먼저 보는 판정 = ①), `payment_due`(bool — 귀가 대기 ∧ 열린 구매 판정 = ①)} — 띠 색 · 툴팁 글자(예약 · 예약 취소 · 노쇼 …) · 취소 / 귀가 모양은 ③ 이 `state` 키로 시안대로 그린다(① 은 문구 · 색을 넘기지 않음)",
+    "계약 V4(화면 값 · 필터 · 패널): `filter`{`total`(취소 · 노쇼 제외), `counts`{`reserved`, `reception`(접수 + 상담 대기), `consultation`, `procedure`(시술 대기 + 시술 중), `procedure_done`, `completed`, `canceled`(취소 + 노쇼)}} — 수를 세는 곳 = ① · ③ 은 다시 세지 않고 이 값을 그대로 보이며 흐리게 하기만 화면 안에서 · `notice`{`items[]`{`content`}}(`released_at` 순 · null 제외 = ①) · 예약 요청 칸 제목 「예약 요청」은 ③ 템플릿 글자(① 은 넘기지 않음)"
+  ],
+  "acceptance": [
+    "A1: SPEC-006 「화면 구성」 넣음 요소가 시안과 같은 모양 · 문구로 보이고 「뺌」 요소는 그려지지 않는다(문구를 짓지 않음)",
+    "A2: 인라인 스크립트 0 · 손 CSS 0 — JS 는 static/day.js 이벤트 위임 + data-* · 스타일은 medikit 토큰 · ui.html 매크로(CENTURION_DAY AGENTS.md 「웹 화면」)",
+    "A3: 날짜 바꾸기(poll 없음) · 10초 폴링(`poll=1`) · 필터(V4 수 그대로) · 툴팁(V3 `state` 키 → 시안 글자) · 좌우 넘김이 SPEC-006 U-1 ~ U-7 · 케이스 매트릭스대로 동작 — 계약 V0 ~ V4 가짜 값으로 템플릿 렌더 테스트",
+    "A4: 실물 e2e 1회(로컬 · KOS 데모 지점 · 기대 결과): 오늘 열기 = 최신화 요청 0(로그 · task 큐로 확인) · 10초 폴링이 DB 사본만 다시 읽음 / 다른 날짜 열기 = 첫 화면은 이전 사본(빈 표 가능) · 최신화 요청 1회 → 다음 폴링에 그 날짜 카드가 채워짐 · 폴링 동안 최신화 요청 0 / 같은 날짜를 두 창에서 동시에 열기 = 그 (병원, 날짜) KOS 일정 조회 1회(로그 · 호출 수로 확인) · 두 창 모두 다음 폴링에 같은 사본. 순서 조건: e2e 는 ① #267 · ② #268 · ③ #269 가 모두 들어간 뒤 마지막으로 머지되는 Issue 에서 1회 돌리고 그 결과를 세 Issue 에 남긴다 · 메뉴 링크(① 이 켬)가 열리는지"
+  ],
+  "non_goals": [
+    "조회 · 권한 백엔드(Delivery ①) · 날짜 최신화(Delivery ②)",
+    "카드 클릭 동작 · 상세 모달 · 예약 요청 내용 · 근무표 · 원내 현황 · 고객 검색 · 고객 등록(R1 ~ R5 · R15 · R33)",
+    "낡음 표시(OQ-R21 · 2루프)"
+  ],
+  "review_surface": [
+    "SPEC 원천 = DAY-SPEC-006(사용자 승인 · stable) — Mediness PR #958 커밋 1870f68cd23633776a228d4c28e78f68a593cbca(브랜치 kknaksss/day-reservation-spec). main 에 아직 없어 spec-baseline:pending 으로 시작한다. SPEC-006 이 Mediness main 에 들어가면 같은 idempotency key · contract_version +1 · 새 origin/main SHA 로 재실행해 spec-baseline:ready 로 재결속한다(결과 계약 의미가 같으면 재승인 없음 — requests.md)",
+    "시안과 모양 · 문구가 같은지",
+    "CSP(인라인 스크립트 0) · medikit 클래스만",
+    "Delivery ① 과의 값 계약"
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/day/templates/reservations.html(새)",
+      "backend/day/templates/partials/reservations_*.html(새 — 복수 · AGENTS.md:83)",
+      "backend/day/static/day.js",
+      "backend/day/templates/ui.html(매크로가 모자라면)"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "① #267 — 계약 S · V0 ~ V4 만 맞추면 가짜 값으로 병렬",
+      "실물 e2e 는 ① · ② · ③ 이 다 들어간 뒤"
+    ],
+    "phases": [
+      "P1 셸 · 페이지 머리 · 표 뼈대",
+      "P2 카드 · 회색 면 · 현재 시각 · 넘김",
+      "P3 필터 · 툴팁 · 오른쪽 패널",
+      "P4 폴링 · 날짜 바꾸기 · 실물 e2e"
+    ],
+    "verification": [
+      "템플릿 렌더 테스트(pytest) · CSP 검사",
+      "실물 e2e(로컬 · KOS 데모) · 시안 대조"
+    ],
+    "predeploy": [],
+    "rollback": [
+      "Code PR revert — 메뉴 링크를 빼면 화면이 안 보임"
+    ],
+    "open_questions": []
+  },
+  "scope_delta": "2026-11-23 Delivery 검수(review-delivery-1) FAIL 4 · WARN 6 반영 — 계약 명시(폴링 신호 S · task 입구 T · 화면 값 V0 ~ V4) · 수정 후보 이름(AGENTS.md 규칙) · e2e 기대 결과 · 순서 조건. 범위(무엇을 만드는지)는 그대로"
+}

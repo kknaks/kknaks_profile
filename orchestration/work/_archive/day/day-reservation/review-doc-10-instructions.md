@@ -1,0 +1,1 @@
+# [reviewer_doc] 10차 — 검수 9 고침 확인: `review-doc-9-report.md` F9-1 · F9-2 · WARN 이 `planner-fix-16-report.md` 대로 · 새 결정 R62(결정 파일 마지막 행)와 같은지만. 낡은 문장 grep · lint 0. 범위 밖은 WARN 만. PASS/FAIL · `review-doc-10-report.md` · worker_done.
