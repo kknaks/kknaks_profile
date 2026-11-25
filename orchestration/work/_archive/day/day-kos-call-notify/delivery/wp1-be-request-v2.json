@@ -1,0 +1,81 @@
+{
+ "idempotency_key": "day/day-kos-call-notify-be",
+ "title": "KOS 에서 건 원장 호출 → DAY 원장 호출 알림 · 푸시 (WP-1 BE · DAY-SPEC-002 규칙 40 · DAY-SPEC-005)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 2,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-002",
+  "DAY-SPEC-005"
+ ],
+ "spec_baseline_revision": "bf440f270ffdaaabcbed77415ca403df90e4c172",
+ "target_delta": [
+  "[계약 원천] mediness PR #965 브랜치 kknaksss/day-kos-call-notify-spec a498d34b32da77937824dd9a695573ff9bf73941(+ 이번 Delivery 발행 커밋 — 30-work Spec Coverage · log) — SPEC 검수 r3 PASS · 미머지. baseline = origin/main b152d46325423848fb6682a4c18d3269748d6cb1(spec-baseline:ready)이지만 main 판 DAY-SPEC-002 · 005 · 006 · 007 은 개정 전(규칙 40 · 개정 ⑭ 없음)이라 이 계약의 근거가 아니다. #965 머지 뒤 같은 idempotency key · contract_version 2 · 새 main SHA 로 재결속(사용자 지시 2026-11-25 · 코디).",
+  "간호사가 KOS 화면에서 원장을 부르면(지정 · 전체 · 여러 작업 동시), 시술 현황 동기화가 그 호출을 DAY 원장 호출(`doctor_call` · `doctor_call_task`)로 만들고 커밋 뒤 기존 원장 호출 알림 행 · 실시간 안 읽은 수 · 앱 푸시(APNs · FCM) · 웹 OS 알림이 그대로 간다 — 새 알림 종류 · 새 글자 · 새 설정 스위치 없음(DAY-SPEC-002 개정 ㉚ 규칙 40 · DAY-SPEC-005 §3 「KOS 에서 건 호출」).",
+  "판정 자리 = 작업 쓰기 공통 경로 `_apply_tasks`(10초 일정 조회 · 예약 상세 반영 연쇄 두 경로) · 비교할 이전 `doctor_called_at` · `status` 는 방문 잠금 `board:{visit_id}` 뒤 같은 transaction 에서 읽음 · 두 경로 모두 커밋 뒤 만든 호출마다 `after_call`(규칙 40 머리 · ①).",
+  "대상(②) = KOS `calledDoctors` 중 원장 목록 원장: 1명 = 지정 · 0명 = 전체(기본값 · OQ-99) · 2명 이상 = 그 원장들만(`kind = one` · 대표 = 첫 원장 · 받는 사람 = 그 호출 작업들의 `called_doctor` 원장 — `kind = one` 규칙 40 호출만 · `kind = all` 은 원장 목록 전부) — `services/notifications.py` `_recipients` 변경.",
+  "묶음(③) = 같은 방문 · 같은 회차 · 같은 대상(같은 kind · 지정이면 원장 집합) · 묶음의 가장 이른 새 시각과의 차가 허용 오차(30초 제안) 안 = 호출 하나.",
+  "다시 부름 · 옮김(④) = DAY 재호출 · 새 호출과 같은 처리(사슬 `reassigned_from_call_id` · 빈 앞 호출 `closed_at`) · KOS 수락(⑤) = 메아리 거름(op pending · sent 면 안 함) + 이전 DAY status 가 READY 아님 → READY · 원장(전이)일 때만 `doctor_call_accept`(호출 안 닫음) · 메아리 막기(⑥ — 같은 sequence 의 `call-tasks-doctors` op 창 · (라) last_error BLOCKED · 토큰 없음만 보내기 전) · 늦은 관측 거름(⑦) · 호출한 사람 = 병원 시스템 계정(⑧) · 판 · 앱은 DAY 호출과 같게(⑨ · [재호출] = 사슬 맨 처음 호출 대상)."
+ ],
+ "acceptance": [
+  "A1: KOS 에서 지정 1명 호출 → 다음 동기화 커밋 뒤 그 원장 계정에만 `notification(kind = doctor_call)` 1행 · 본문 「{방} · 시술 {N}건 · 지정 호출」 · 판 줄 「호출」 — pytest(동기화 더블 · 테스트 DB).",
+  "A2: KOS 전체 호출(`calledDoctors` 빈 배열) → 원장 목록 전원에게 1행씩 · 본문 「전체 호출」 · 2명 이상 지정 → 그 원장들만(called_doctor 행) · 본문 「지정 호출」 · `kind = all` 은 called_doctor 계산을 쓰지 않음 — pytest.",
+  "A3: 같은 회차 · 같은 방문 · 같은 대상 · 시각 차 허용 오차 안 작업 여럿 = 호출 1개 · 계정당 알림 1 · 푸시 1(시각 차 경계 · 대상 집합 다름 = 2개) — pytest.",
+  "A4: 메아리 — DAY [의사 호출] · [재호출] 뒤 KOS 가 찍은 새 시각이 돌아와도(op pending · sent · confirmed 창 · 2xx 뒤 failed 창) DAY 호출 · 알림이 더 생기지 않음 · last_error BLOCKED/토큰 없음 failed 뒤 바뀐 값은 KOS 호출로 만듦 — pytest.",
+  "A5: 경쟁 — 같은 변화를 10초 회차 두 번 · 예약 상세 반영 연쇄 · 판 조작이 겹쳐 봐도 호출 1개(방문 잠금 뒤 이전 값 읽기) · 예약 상세 반영 연쇄가 먼저 저장한 KOS 호출도 알림이 감(두 경로 커밋 뒤 after_call) — pytest.",
+  "A6: 다시 부름 — 열린 호출의 받을 시술 전부를 KOS 가 다시 부르면 새 호출 `reassigned_from_call_id` = 앞 호출 · 앞 호출 닫힘 · 새 알림 · 일부만이면 사슬 없이 옮김 · DAY [재호출] 대상 = 사슬 맨 처음 호출 대상 — pytest.",
+  "A7: KOS 수락 — 열린 미수락 호출 + 이전 DAY status ≠ READY → READY · doctors[] 원장 = `doctor_call_accept`(원장 = 원장 목록 첫 원장) · 호출 `closed_at` 비움 · op pending · sent 면 안 함 · 이미 READY 였던 옛 집도의는 수락 아님 — pytest.",
+  "A8: 늦은 관측 — 수락 · 진행 · 완료 · KOS WAITING 아님 · 오늘 아님 · 판 카드 아님 · 시스템 계정 없음 = 호출 없음 · 값이 그대로면(호출 취소 뒤 KOS 에 남은 호출 포함) 없음 — pytest.",
+  "A9: 정식 앱 0.1.0 이 받는 모양 그대로 — 알림 행 · 푸시 payload(`kind: doctor_call` · title · body · callId) 회귀 · 기존 DAY 호출 · 재호출 · 수락 · 호출 취소 · 알림 테스트 전부 통과 · ruff · 아키텍처 검사 통과.",
+  "A10: 로컬 KOS DEMO 지점 실물 1회(완료 조건) — KOS 웹에서 지정 호출 · 전체 호출 · 여러 작업 동시 호출 각 1건 → DAY 알림 행(DB) · 웹 OS 알림 · iPad 시뮬레이터 앱 표시(알림 목록 · 판 「호출」)를 증거로 남기고 그 실물로 DAY-SPEC-002 OQ-99(전체 호출 `calledDoctors` 값) · OQ-106(여러 작업 같은 시각 여부)을 닫는다(결과는 spec-sync 에서 SPEC 반영)."
+ ],
+ "non_goals": [
+  "새 알림 종류 · 새 글자 · 새 설정 스위치 · migration — 없음(기존 `doctor_call` kind · `call_body` · 테이블 그대로).",
+  "KOS 쓰기 추가 — 없음(규칙 40 은 KOS 를 더 부르지 않음 · 쓰기 큐 0행).",
+  "지난 이력 백필 — 나중(수동 · 사용자 2026-11-25).",
+  "웹 예약 현황 · 고객 화면 열림 설정 — WP-2 Delivery 몫.",
+  "앱 코드 변경 — 없음(앱은 기존 kind 를 그대로 그린다).",
+  "dev → prod 배포 · migrate-prod — 이 Delivery 밖(사람 gate · deployment.md)."
+ ],
+ "review_surface": [
+  "[계약 원천] mediness PR #965 브랜치 kknaksss/day-kos-call-notify-spec a498d34b32da77937824dd9a695573ff9bf73941(+ 이번 Delivery 발행 커밋 — 30-work Spec Coverage · log) — SPEC 검수 r3 PASS · 미머지. baseline = origin/main b152d46325423848fb6682a4c18d3269748d6cb1(spec-baseline:ready)이지만 main 판 DAY-SPEC-002 · 005 · 006 · 007 은 개정 전(규칙 40 · 개정 ⑭ 없음)이라 이 계약의 근거가 아니다. #965 머지 뒤 같은 idempotency key · contract_version 2 · 새 main SHA 로 재결속(사용자 지시 2026-11-25 · 코디).",
+  "판 동작 변화: KOS 에서 부른 줄이 이제 DAY 판 · 앱에서도 「호출」(수락 대기 · 늦음 · [재호출] · 호출 취소)로 보인다(개정 ㉒ 「DAY 판은 준비중 그대로」가 바뀜) · KOS 수락이 DAY `doctor_call_accept` 를 만든다(DAY 에서 누른 호출에도 — OQ-104 기본값).",
+  "기본값으로 남은 OQ: OQ-99(전체 호출 표현 — A10 실물로 닫음) · OQ-101(허용 오차 30초) · OQ-102(배포 전 prod worker 가 멈춰 있었다면 배포 전에 닫음) · OQ-103 · 104 · 105 · OQ-106(A10 실물) · OQ-107(2명 이상 지정 표시 · 재호출 대표 한 명 · 시스템 계정 판별) — 사람 확인 축.",
+  "정식 앱 0.1.0 이 서버 업데이트 뒤 깨질 수 있음은 사용자가 수용(2026-11-25) — 이 Delivery 의 알림 payload 자체는 바뀌지 않음."
+ ],
+ "execution": {
+  "code_surface": [
+   "backend/day/emr/sync_tasks.py `_apply_tasks` · `lock_visits` · `PreviousTaskData`(dtos/sync_state.py — 이전 `doctor_called_at` · `status` 함께 읽기) · 판정 · 묶음 · 사슬 · 수락 전이",
+   "backend/day/emr/sync_schedules.py `apply_schedules`(10초 경로) · backend/day/services/emr_sync.py `_apply_detail`(예약 상세 반영 연쇄) — 두 커밋 뒤 만든 호출마다 `notifications.after_call`",
+   "backend/day/emr/outbox_rules.py · models/task.py `ExternalOutbox`(메아리 창 — path `call-tasks-doctors` · body.sequences · status · created_at · updated_at · last_error)",
+   "backend/day/services/notifications.py `_recipients`(kind one 규칙 40 호출 = called_doctor 원장) · services/board_transactions.py `_system_staff` · policies/board_rules.py(유효 호출 · receivable · calls_to_close 재사용)",
+   "backend/tests/day/(동기화 · 알림 · 판 규칙 테스트 추가)"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "SPEC PR mediness#965 머지 뒤 baseline 재결속(사람)"
+  ],
+  "phases": [
+   "P1 잠금 뒤 이전 값 읽기 · ① 판정 · ⑦ 거름 · ⑥ 메아리 창",
+   "P2 ② 대상 · ③ 묶음 · ④ 사슬 · ⑧ 시스템 계정 · event_log · 두 경로 커밋 뒤 after_call",
+   "P3 ⑤ KOS 수락 전이 · _recipients called_doctor",
+   "P4 pytest · ruff · 아키텍처 · 로컬 KOS DEMO 실물(A10)"
+  ],
+  "verification": [
+   "uv run pytest -q -m \"not infra\" backend/tests/day",
+   "ruff · 아키텍처 import 경계 테스트",
+   "로컬 KOS DEMO 지점 실물 1회(지정 · 전체 · 여러 작업) — DB 알림 행 · 웹 OS 알림 · iPad 시뮬레이터 스크린샷"
+  ],
+  "predeploy": [
+   "prod worker(동기화)가 배포 직전까지 돌고 있는지 확인 — 멈췄었다면 OQ-102 를 배포 전에 닫음(DAY-SPEC-005 운영 메모)"
+  ],
+  "rollback": [
+   "Code PR revert — migration 없음 · 만든 doctor_call 행은 일반 호출처럼 남음(판에서 닫히거나 하루가 지나면 빠짐)"
+  ],
+  "open_questions": [
+   "DAY-SPEC-002 OQ-99 · OQ-106 — A10 실물로 닫음"
+  ]
+ },
+ "scope_delta": "2026-11-25 재결속 — 계약 원천이던 mediness PR #965 가 main 에 스쿼시 머지됨(bf440f27 · DAY-SPEC-002 개정 ㉚ 규칙 40 · DAY-SPEC-005 「KOS 에서 건 호출」 · stable). baseline = 그 main(spec-baseline:ready) — v1 의 「main 판은 개정 전 · 재결속 예정」 caveat 해소. 승인된 계획면(target_delta · acceptance · non_goals · review_surface · risk L2)은 그대로. #965 안에서 구현(CENTURION_DAY#285) 검수로 다듬은 규칙(sync-1)이 main SPEC 에 함께 들어감: ① 호출 시각이 새로 생기거나 늦어질 때만(앞으로만) · 이미 만든 KOS 시각(`event_log` payload `kosCalledAt`) 최댓값 이하 안 만듦 · ② 시스템 계정이 부른 kind one 받는 사람 = target_staff_id ∪ called_doctor 원장(규칙 40 호출은 결과 같음) · 대표 = 묶음에서 sequence 가 가장 작은 작업의 첫 원장 · 판정 경로 = 10초 조회 · 예약 상세 두 커밋 · 외부 연동 사본 · 날짜(다른 날짜 최신화 · 백필 뺌). 구현 = Code PR CENTURION_DAY#285(dev 스쿼시 1b5bba22 · prod 배포 완료)."
+}

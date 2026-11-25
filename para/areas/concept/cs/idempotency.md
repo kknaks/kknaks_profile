@@ -146,3 +146,4 @@ DAY 차트 탭 저장(2026-11-24): 자동 저장을 걷어내며 ACK 복구 시�
 - [[2026-11-19-customer-erd]] §2 — 백필 재실행 쓴 행 0(`be-3-report.md` · `review-code-6-report.md`)
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
 - [[2026-11-24-day-chart-photo]] §2 — C19 응답 유실 뒤 같은 저장 = 성공(`review-code-1-report.md` W2)
+- [[2026-11-25-day-kos-call-notify]] §2 — 동기화가 같은 외부 변화를 두 번 봐도 행 하나: 앞으로만(`called_at > before`) + 만든 외부 시각 최댓값 이하면 안 만듦(`event_log` payload) · 비교는 방문 잠금 뒤

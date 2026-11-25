@@ -106,6 +106,10 @@ DAY 시술전후사진(2026-11-24): 사진 KOS 등록은 방문 단위 `external
 - 원천이 상태 조건을 걸면(열린 작업이 있으면 귀가 `COMPLETED` 거절), 쓰기 허용 목록(`write_open`)은 경로 + 값만 본다. 순서(작업 CANCEL → `COMPLETED`)와 단계 조건은 **계획 단계의 순서 묶음**이 판정한다.
 - 본문을 원천 상태로 채워야 하는 쓰기(시술권 회차 `round.current` = 쓴 + 쓰는 중 + 1)는 보낼 때 원천을 읽어서 짓는다. 사본으로 지으면 다른 단말이 쓴 회차를 놓친다.
 
+## 내가 쓴 쓰기의 메아리 — 동기화가 같은 값을 다시 볼 때
+
+DAY KOS 원장 호출(2026-11-25): 동기화가 KOS 호출 시각을 보고 DAY 호출을 만들게 하자, DAY 에서 누른 호출이 큐로 KOS 에 갔다가 같은 시각으로 돌아오는 「메아리」가 생겼다. KOS 가 받은 시각을 새로 찍어 값 비교는 안 된다 → **그 sequence 의 op 상태 + 시간 창**으로 가른다(pending · sent = 메아리 · confirmed 또는 2xx 뒤 failed = `updated_at` + 30초까지 · 보내기 전 막힌 failed(`last_error` BLOCKED · 토큰 없음)만 창 밖). 실물 시각 차 +0.3초 / +4.2초. ← [[2026-11-25-day-kos-call-notify]]
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 여권 사진 KOS 업로드 200 · `ok` 인데 일정 탭에 안 보임 → 일정(`scheduleId`) · 분류 「여권」(있는 지점만)을 실음. 근거는 사용자 HAR(KOS 웹 여권 스캔) · 데모 재조회(`app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`). 고객 문진 다시 제출 → 읽기는 첫 제출본(`app-backend-report.md` 「WORK-010 건강 정보 반영」)
@@ -115,3 +119,4 @@ DAY 시술전후사진(2026-11-24): 사진 KOS 등록은 방문 단위 `external
 - [[2026-11-24-day-reservation]] §2 — 공지 쓰기 = 직접 호출(큐 밖)
 - [[2026-11-24-day-chart-photo]] §2 — 사진 KOS 등록 · 미반영 · 다시 시도(`review-code-3-report.md` P4)
 - [[2026-11-24-day-reservation2]] §2 — DAY 예약 상세 쓰기 13종(상담 기록 · 귀가 순서 묶음 · 시술권 본문은 보낼 때 KOS 읽기)
+- [[2026-11-25-day-kos-call-notify]] §2 — 메아리 창 · `kosCalledAt` 옛 사본 거름(코드 검수 W1 · W6)

@@ -48,6 +48,11 @@ DAY 첫 prod 배포에서 `prod` 브랜치는 있었지만 워크플로 파일�
 - [[zero-downtime-deployment]] — 올리는 방식
 - [[web-application-deployment]]
 
+### dev 이미지 그대로 prod — 핫픽스도 dev 배포를 기다린다 (DAY 2026-11-25)
+
+- prod 배포는 dev 배포가 만든 같은 SHA 이미지(ACR)를 쓰고, migrate-prod 는 dev DB 가 그 이미지 head 인지 먼저 본다 → dev 배포 끝나기 전엔 prod 시작 불가. 순서 = dev 머지 → dev 배포 → migrate-prod(`--ref prod`) → `git push <sha>:prod`(ff) → prod 배포.
+- 스쿼시 머지는 새 SHA 라 PR 검사 통과를 못 쓰고 dev · prod 워크플로가 검사를 각각 다시 돈다(각 ~10분). 출처: [[2026-11-25-day-kos-call-notify]]
+
 ## 출처
 
 - [[2026-11-12-prod-deploy-re1]] §2 「같은 서버 · 다른 스키마 prod 첫 배포」 — CENTURION_DAY `382827d5` · `0b2f8cff` prod fast-forward · deploy-prod run 43153893222 · migrate-prod 43154046130 · `40-architecture/deployment.md`
