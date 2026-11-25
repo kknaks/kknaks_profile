@@ -57,3 +57,4 @@ DAY(2026-11-24): 여러 장 올리기를 하며 앱의 본문 상한을 없앴�
 - [[2026-11-12-fix-web]] §2 — 받은함 웹 전용 목록과 앱용 `inbox.section` 을 소비처로 갈라 웹만 정리 · accept 제거를 앱 파서로 판정
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
 - [[2026-11-24-day-chart-photo]] §2 — Caddy 6MiB(`review-code-4-report.md` F1 · C33)
+- [[2026-11-25-day-kos-call-notify]] §2 — 「판정 경로 두 개」 스펙이 `ext_sync` 저장 경로를 빠뜨림 · 워커가 `_apply_tasks` 를 부르는 커밋을 전수로 세서 잡음(date_sync · backfill 은 오늘 아님 근거 줄)

@@ -1,0 +1,69 @@
+{
+  "idempotency_key": "day/day-kos-call-notify-web",
+  "title": "웹 예약 현황 · 고객 화면 열림 설정 — prod 에서 끔 (WP-2 웹 · DAY-SPEC-006 개정 ⑭ · DAY-SPEC-007)",
+  "product_id": "day",
+  "document_root": "products/day",
+  "contract_version": 1,
+  "risk_level": "L2",
+  "target_specs": [
+    "DAY-SPEC-006",
+    "DAY-SPEC-007"
+  ],
+  "spec_baseline_revision": "b152d46325423848fb6682a4c18d3269748d6cb1",
+  "target_delta": [
+    "[계약 원천] mediness PR #965 브랜치 kknaksss/day-kos-call-notify-spec a498d34b32da77937824dd9a695573ff9bf73941(+ 이번 Delivery 발행 커밋 — 30-work Spec Coverage · log) — SPEC 검수 r3 PASS · 미머지. baseline = origin/main b152d46325423848fb6682a4c18d3269748d6cb1(spec-baseline:ready)이지만 main 판 DAY-SPEC-002 · 005 · 006 · 007 은 개정 전(규칙 40 · 개정 ⑭ 없음)이라 이 계약의 근거가 아니다. #965 머지 뒤 같은 idempotency key · contract_version 2 · 새 main SHA 로 재결속(사용자 지시 2026-11-25 · 코디).",
+    "서버 환경 변수 하나 `DAY_WEB_RESERVATION_CUSTOMER_ENABLED`(bool · 이름 제안 그대로 · 적지 않음 = 꺼짐 · 빈 값 쓰지 않음)로 웹 예약 현황(`/reservations` 아래 — 예약 등록 · 예약 상세 · 우클릭 · SSE 포함)과 고객 목록 · 고객 차트(`/customers` 아래)를 열고 닫는다 — `common/config.py` · `deploy/config/dev.env` = true · `deploy/config/prod.env` = 줄 안 씀 · `deploy/local.env.example` = true(DAY-SPEC-006 §3 「웹 화면 열림 설정」).",
+    "꺼짐: 아이콘 줄 「예약」 · 「고객」 · 헤더 탭 「예약 현황」을 그리지 않음(`day/menu.py`) · 대상 경로로 직접 오면 시술 현황으로 — 화면 요청 303 `Location: /board` · HTMX 요청 `HX-Redirect: /board` · SSE `/reservations/stream` 연결 안 함 · 권한 판정보다 먼저 · 새 안내 글자 없음.",
+    "`APP_ENV` 분기 없음 · 프론트만(서버 `/api/*` · 동기화 · worker · 테이블 · KOS 쓰기 계약 그대로) · 켜짐 = 지금 그대로."
+  ],
+  "acceptance": [
+    "A1: 설정 꺼짐(줄 없음) — 메뉴에 예약 · 고객 · 예약 현황 탭 없음 · `/reservations` · `/reservations/book` · `/reservations/visits/{id}` · `/customers` · `/customers/{id}/chart` · 그 아래 POST 가 303 /board(HTMX 는 HX-Redirect) · `/reservations/stream` 연결 안 됨 · 권한 없는 직원도 같은 응답 — pytest(라우터 · 템플릿).",
+    "A2: 설정 켜짐(true) — 지금 동작 그대로(DAY-SPEC-006 · 007 · 고객 화면 테스트 회귀 통과).",
+    "A3: `/board`(차트 모달 · 시술전후사진) · 채팅 · 알림 · 로그인 · `/api/*` 는 설정과 무관하게 그대로 — pytest.",
+    "A4: `APP_ENV` 로 가르는 코드 없음 · bool 빈 값을 env 파일에 쓰지 않음 · dev.env true · prod.env 줄 없음 · local.env.example true — 파일 검사.",
+    "A5: 화면 확인(완료 조건) — 로컬에서 설정 켬 · 끔 두 번 웹 화면 확인(메뉴 · 주소 직접 · HTMX 링크) 스크린샷 증거.",
+    "A6: ruff · 아키텍처 검사 · 기존 웹 테스트 전부 통과."
+  ],
+  "non_goals": [
+    "서버 API · 동기화 · 테이블 · KOS 쓰기 끄기 — 없음(프론트만).",
+    "꺼진 화면 안내 문구 · 토스트 — 없음(새 글자 금지 · OQ-R41).",
+    "고객 화면 SPEC 작성 — 없음(OQ-R40).",
+    "직원 앱 변경 — 없음.",
+    "KOS 호출 알림(WP-1 Delivery 몫) · prod 배포(사람 gate)."
+  ],
+  "review_surface": [
+    "[계약 원천] mediness PR #965 브랜치 kknaksss/day-kos-call-notify-spec a498d34b32da77937824dd9a695573ff9bf73941(+ 이번 Delivery 발행 커밋 — 30-work Spec Coverage · log) — SPEC 검수 r3 PASS · 미머지. baseline = origin/main b152d46325423848fb6682a4c18d3269748d6cb1(spec-baseline:ready)이지만 main 판 DAY-SPEC-002 · 005 · 006 · 007 은 개정 전(규칙 40 · 개정 ⑭ 없음)이라 이 계약의 근거가 아니다. #965 머지 뒤 같은 idempotency key · contract_version 2 · 새 main SHA 로 재결속(사용자 지시 2026-11-25 · 코디).",
+    "prod 웹 화면이 사라지는 운영 변화(dev 켬 · prod 끔) — prod 배포 때 prod.env 에 줄을 넣지 않는 것이 「끔」 · 다시 켜려면 env PR + 재배포.",
+    "메뉴 숨김은 기존 「화면 없는 메뉴 = 글자만」 관례와 다름(사용자 결정 · OQ-R41)."
+  ],
+  "execution": {
+    "code_surface": [
+      "backend/common/config.py `Settings`(bool 칸 · 기본 False)",
+      "backend/day/menu.py `RAIL` · `TABS` · `HREFS` · `rail_menus` · `header_tabs`(꺼짐이면 예약 · 고객 · 예약 현황 빼기) · backend/day/web.py(셸 렌더 · 303/HX-Redirect 도우미 재사용)",
+      "backend/day/routers/reservations.py · reservation_detail.py · reservations_streams.py · customers.py — 라우터 가드(의존성 하나 · 권한 앞)",
+      "deploy/config/dev.env · deploy/config/prod.env(주석만) · deploy/local.env.example",
+      "backend/tests/day/(라우터 · 메뉴 테스트)"
+    ],
+    "domain_candidates": [],
+    "dependencies": [
+      "SPEC PR mediness#965 머지 뒤 baseline 재결속(사람)"
+    ],
+    "phases": [
+      "P1 설정 칸 · env 파일",
+      "P2 메뉴 숨김 · 라우터 가드(303 · HX-Redirect · SSE)",
+      "P3 pytest · 로컬 켬 · 끔 화면 확인"
+    ],
+    "verification": [
+      "uv run pytest -q -m \"not infra\" backend/tests/day",
+      "ruff · 아키텍처 검사",
+      "로컬 웹 켬 · 끔 두 번 스크린샷"
+    ],
+    "predeploy": [
+      "prod.env 에 `DAY_WEB_RESERVATION_CUSTOMER_ENABLED` 줄이 없음(꺼짐) · dev.env = true 확인"
+    ],
+    "rollback": [
+      "Code PR revert 또는 env 값 true 로 PR + 재배포 — migration 없음"
+    ],
+    "open_questions": []
+  }
+}
