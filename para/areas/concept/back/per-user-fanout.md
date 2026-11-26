@@ -12,6 +12,7 @@ up:
   - 2026-10-07-strong-hajin-inbox
   - 2026-10-10-strong-hajin-notify
   - 2026-10-30-internal-chat
+  - 2026-11-26-day-app-re1
 tags:
   - 권한
   - 메시징
@@ -48,8 +49,13 @@ tags:
 - [[relationship-based-notification]] — 사건 하나를 받는 사람마다 알림 행으로 나누는 규칙
 - [[server-sent-events]] — 사람별 저장을 사람별 스트림으로 내보내는 길
 
+## 계정이 아니라 기기 하나로 — 열려 있으면 SSE · 아니면 푸시 · 놓친 건 pending
+
+DAY 태블릿에 보내기(2026-11-25): SSE · 푸시가 계정 단위라 공용 코디 계정으로 로그인한 태블릿 여러 대 중 「이 한 대」를 고를 수 없었다. 기기 등록 토큰안은 사용자 「스펙이 너무 복잡」으로 버리고, 보낼 목록 = 코디 직무 계정의 `device.kind=tablet` 기기(이름 = 앱 설정 「이 기기 이름」), 요청은 그 기기 id 에만 묶는다. 앱이 열려 있으면 SSE 로 바로, 아니면 그 기기 토큰에만 푸시, 앱이 늦게 켜지면 pending 조회로 채운다. ← [[2026-11-26-day-app-re1]]
+
 ## 출처
 
 - [[2026-10-07-strong-hajin-inbox]] §2 — Strong Hajin WORK-011 슬랙 채널 구독(review-be23 F-1 → 커밋 b2ba11a)
 - [[2026-10-10-strong-hajin-notify]] §2 — Strong Hajin WORK-013. 알림을 받는 사람마다 행으로 만들고, 메시지함 사건 넷과 알림을 회원별 SSE 스트림 하나에 실었다
 - [[2026-10-30-internal-chat]] §2 「푸시 · SSE」 · review-doc r5 FAIL-1
+- [[2026-11-26-day-app-re1]] §2 — 태블릿에 보내기(`research-3-report.md`)

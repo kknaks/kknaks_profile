@@ -22,6 +22,7 @@ up:
   - 2026-10-22-myeongdong-poc-v2
   - 2026-10-28-overall-board
   - 2026-11-24-day-reservation2
+  - 2026-11-26-day-app-re1
 tags:
   - 외부 연동
   - 신뢰성
@@ -110,6 +111,10 @@ DAY 시술전후사진(2026-11-24): 사진 KOS 등록은 방문 단위 `external
 
 DAY KOS 원장 호출(2026-11-25): 동기화가 KOS 호출 시각을 보고 DAY 호출을 만들게 하자, DAY 에서 누른 호출이 큐로 KOS 에 갔다가 같은 시각으로 돌아오는 「메아리」가 생겼다. KOS 가 받은 시각을 새로 찍어 값 비교는 안 된다 → **그 sequence 의 op 상태 + 시간 창**으로 가른다(pending · sent = 메아리 · confirmed 또는 2xx 뒤 failed = `updated_at` + 30초까지 · 보내기 전 막힌 failed(`last_error` BLOCKED · 토큰 없음)만 창 밖). 실물 시각 차 +0.3초 / +4.2초. ← [[2026-11-25-day-kos-call-notify]]
 
+## 고객이 쓴 답은 내 DB 먼저 — 외부 쓰기는 뒤에서, 상태로 보인다
+
+DAY 고객 문진(2026-11-25 ~ 26): cc 는 KOS 제출이 성공한 뒤에만 저장해서 KOS 가 실패하면 고객 답이 남지 않았다. 사용자 「우리쪽 db 에도 저장을 해야지」 → DAY `questionnaire_history` 에 먼저 저장하고 고객에겐 그 자리에서 200, KOS 제출은 뒤에서 하고 `crm_status`(sending · sent · failed)로 보인다. 멈춘 sending 은 읽을 때 failed 로 판정하고, 직원 [다시 보내기]가 같은 답을 다시 낸다. 고객 응답이 KOS 를 기다리면 KOS 지연이 고객 화면 지연이 된다(검수 BW2). 핵심 표에 업체 이름 칸(`kos_status`)은 구조 시험이 막아 `crm_*` 로. ← [[2026-11-26-day-app-re1]]
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 여권 사진 KOS 업로드 200 · `ok` 인데 일정 탭에 안 보임 → 일정(`scheduleId`) · 분류 「여권」(있는 지점만)을 실음. 근거는 사용자 HAR(KOS 웹 여권 스캔) · 데모 재조회(`app-backend-report.md` 「E2E batch 2 #5」 · 「여권 사진 분류」 · 코드 `fad8b56` · `96441df`). 고객 문진 다시 제출 → 읽기는 첫 제출본(`app-backend-report.md` 「WORK-010 건강 정보 반영」)
@@ -120,3 +125,4 @@ DAY KOS 원장 호출(2026-11-25): 동기화가 KOS 호출 시각을 보고 DAY 
 - [[2026-11-24-day-chart-photo]] §2 — 사진 KOS 등록 · 미반영 · 다시 시도(`review-code-3-report.md` P4)
 - [[2026-11-24-day-reservation2]] §2 — DAY 예약 상세 쓰기 13종(상담 기록 · 귀가 순서 묶음 · 시술권 본문은 보낼 때 KOS 읽기)
 - [[2026-11-25-day-kos-call-notify]] §2 — 메아리 창 · `kosCalledAt` 옛 사본 거름(코드 검수 W1 · W6)
+- [[2026-11-26-day-app-re1]] §2 — 문진 DAY 먼저 → KOS · `crm_status` · [다시 보내기](실물 KOS `sent`)
