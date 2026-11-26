@@ -16,6 +16,7 @@ aliases:
 up:
   - 2026-11-09-day-data-architecture
   - 2024-08-06-Day51
+  - 2026-11-26-day-app-re1
 tags:
   - database
   - SQL
@@ -106,7 +107,12 @@ insert into test1(no,name,age,kor,eng,math) values(4,'c',20,81,81,81);
 - [[ddl]] — 제약을 나중에 더하는 명령
 - [[crud]] — 등록 화면이 중복 안내를 내보내는 지점
 
+## 「한 번만」을 DB 가 보장 — 조건부 원자 UPDATE + 부분 유니크
+
+DAY 고객 문진(2026-11-25): 「이미 냈나」를 앱 코드에서 확인하면 동시에 들어온 제출 두 개가 둘 다 통과한다(검수 FAIL F1). 상태 조건을 건 `UPDATE … WHERE status = <열림> RETURNING` 한 문장이 넘김을 원자로 하고, 살아 있는 요청은 부분 유니크(`WHERE` 조건 인덱스)로 방문당 하나만 둔다. 레포의 유니크 레지스트리 시험이 새 유니크를 등록하라고 막아 `live_unique` 로 등록했다. 재제출 = 409 `q_submitted`. ← [[2026-11-26-day-app-re1]]
+
 ## 출처
 
 - [[2026-11-09-day-data-architecture]] §2 — DAY 데이터 모델의 유일 = 살아 있는 행만(`WHERE deleted_at IS NULL`) · upsert `ON CONFLICT` 에 같은 `WHERE` 반복(코드 `b6f23b42` · SPEC-000 동기화)
 - [[2024-08-06-Day51]] — 「primary key 만 적용하면 다른 칼럼들의 중복을 막을 수 없다」를 이유로 `constraint test1_uk unique (name, age)` 를 걸고, 네 행을 넣은 뒤 **번호가 중복된 경우와 번호는 새것인데 `(name, age)` 가 중복된 경우** 두 가지 거절을 주석으로 구분해 남겼다. 들어간 데이터에 `name = 'a'` 가 두 번 있는 것이 복합 유니크가 조합만 본다는 증거다. 제약에 `test1_uk` 라는 이름을 지어 준 형태와, `alter table ... add constraint 키이름 unique(컬럼명)` 로 나중에 더하는 문법도 함께 적었다
+- [[2026-11-26-day-app-re1]] §2 — 문진 1회 제출 = 조건부 UPDATE + partial unique(`review-code-2-report.md` F1)

@@ -15,6 +15,7 @@ aliases:
   - Vision 문자 인식
 up:
   - 2026-10-28-overall-board
+  - 2026-11-26-day-app-re1
 tags:
   - ios
   - ocr
@@ -73,6 +74,11 @@ confirmed → 진동 · 틀 영역 JPEG(메모리)  ─▶ 확인 화면(읽은 
 - [[external-write-queue]] — 읽은 값 · 사진을 원천에 올리고 화면에서 보이는지 확인하는 쪽
 - [[no-inference-from-free-text]] — 구조 값은 구조 필드(검사 숫자가 있는 칸)에서만
 
+## Android 로 옮기기 — CameraX + ML Kit(번들)
+
+DAY 직원 앱(2026-11-25 ~ 26): cc 원천은 iOS(Vision)뿐이라 갤럭시 탭용은 새로 만들었다. CameraX 프레임을 ML Kit 텍스트 인식(모델을 앱에 번들 — Play 서비스 내려받기 없이 첫 실행부터)으로 읽고, MRZ 판독 · 확인 화면은 Dart 쪽 하나를 두 플랫폼이 같이 쓴다. Android 는 스캔 화면에 `FLAG_SECURE`(여권 화면 캡처 막기 · iOS 는 효과 없음). 남은 것: Play 데이터 보안 양식에 ML Kit 고지 · CAMERA 선언 뒤 기존 사진 찍기(image_picker) 실기기 확인. ← [[2026-11-26-day-app-re1]]
+
 ## 출처
 
 - [[2026-10-28-overall-board]] §2 — 전체현황판 앱 여권 스캔을 한 장 촬영에서 연속 프레임 인식으로. 틀 영역만 Vision · 칸별 보정 · 검사 숫자 셋 · 연속 2 프레임 확정 · [촬영] 늘 · 실기기에서만 확인(코드 `333f30f` · `affac41` · `app-mobile-report.md` 「E2E batch 1」 #6 · 「E2E batch 2」 #4)
+- [[2026-11-26-day-app-re1]] §2 — iOS Vision · Android CameraX + ML Kit 번들(`app-2-report.md` · `mobile-build-2-report.md`)

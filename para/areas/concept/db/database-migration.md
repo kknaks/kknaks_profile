@@ -15,6 +15,7 @@ up:
   - 2026-08-31-task-redesign
   - 2026-11-17-fix-feedback
   - 2026-11-24-day-reservation2
+  - 2026-11-26-day-app-re1
 tags:
   - database
   - 인프라
@@ -104,6 +105,10 @@ DAY 예약 현황(2026-11-23 ~ 24): 새 권한 키 행을 시간 회차 · 로�
 
 DAY(2026-11-24): dev 가 `0024_customer_memo` 를 먼저 넣어 우리 `0024_visit_photo` 를 `0025` 로 밀었다(down = 새 0024). revision 이름 쓰는 곳을 전부 grep 해 바꾸고 `alembic heads` 하나를 확인했다. 로컬 DB 는 옛 번호에 서 있어 새 테이블 · enum 을 지우고 `alembic_version` 을 공통 조상(0023)으로 되돌린 뒤 다시 올렸다. 같은 주에 세 번째 — dev 가 바쁜 레포는 마감 직전 rebase 를 일정에 넣는다.
 
+## 다른 사람 migration 이 같은 부모에서 갈라졌을 때 — 로컬 DB 는 stamp 로
+
+DAY(2026-11-26): 마감 직전 dev 에 다른 사람의 `0029_partner_charty` 가 들어왔고 우리 `0029_display_questionnaire_kos` 도 같은 0028 에서 갈라졌다. 우리 것은 아직 어디에도 배포 전이라 `0030`(down = `0029_partner_charty`)으로 옮겼다(두 head 를 잇는 merge revision 보다 이력이 한 줄로 남는다). 로컬 DB 는 사라진 id 를 가리켜 `Can't locate revision` — 이번엔 표를 지우지 않고 `alembic_version` 만 0028 로 UPDATE → dev 0029 만 `upgrade` → 이미 들어 있는 우리 0030 은 `stamp`. downgrade 길은 우리 downgrade 가 문진 KOS 보냄 상태를 지워 데이터를 잃는다. 겹침은 머지 직전 `git rev-list HEAD..origin/dev` 를 다시 봐서 배포 전에 잡았다. ← [[2026-11-26-day-app-re1]]
+
 ## 출처
 
 - [[2025-11-01-database_migration]] — 「마이그레이션 방안」 절이 **세 가지를 장단점 한 줄씩으로 나란히** 놓은 것이 이 개념의 뼈대다 — Dump→Load(쉽지만 손실), DMS+CDC(짧은 중단, 비용), Dual write(손실 없지만 점검 두 번). **「CDC 를 활용하여 실시간 데이터베이스를 업데이트 후 원하는 시점에 DB 주소를 변경하면 된다」**는 한 줄이 왜 두 번째를 골랐는지를 설명한다. 「마이그레이션 단계」가 **Full Load → CDC** 두 단계를 그림으로 갈랐고, 그 전에 원본 쪽 binlog 를 확인·설정하는 SQL(`log_bin` 확인, `binlog retention hours` 를 168시간으로)이 실려 있다. 다만 전환 후 검증 절차와 롤백 계획은 다루지 않았다
@@ -115,3 +120,4 @@ DAY(2026-11-24): dev 가 `0024_customer_memo` 를 먼저 넣어 우리 `0024_vis
 - [[2026-11-24-day-reservation]] §2 — 권한 데이터 migration · 번호 두 번 밀기 · 로컬 revision 되돌림
 - [[2026-11-24-day-chart-photo]] §2 — 0024 → 0025(`be-rebase-1-report.md`)
 - [[2026-11-24-day-reservation2]] §2 — 세 번째 번호 밀기(dev #274 · #279 → 0026 ~ 0028) · 충돌은 공용 파일(`day.js` 한 파일)에서
+- [[2026-11-26-day-app-re1]] §2 — 0029 → 0030 · 로컬 버전 표 UPDATE + upgrade + stamp(`merge-dev-3-report.md` §6)
