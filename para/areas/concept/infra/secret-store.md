@@ -62,12 +62,19 @@ DB 비밀번호 · 외부 API 키 · 외부 시스템 주소처럼 **레포에 �
 - [[ci-cd]] — 파이프라인 쪽 비밀과의 경계
 - [[fail-fast]] — 비밀 누락을 시작 때 잡기
 
+## 비밀의 형식이 바뀌는 배포 — 전달 → 확인 → 배포
+
+- 비밀의 **모양**(예: 연동처별 두 줄 → 병원당 한 줄)이 바뀌는 배포는, 새 값을 받을 쪽에 **먼저 전달하고 바꿨다는 확인을 받은 뒤** 보관소 교체와 배포를 같이 한다. 순서를 거꾸로 하면 배포 순간 연동이 전부 401 이 되고, 실패가 쌓여 IP 단위 429 까지 난다(DAY ext 키 · 11-27).
+- 새 코드가 옛 모양을 모르는 칸 거부(`extra=forbid`)로 읽으면 **섞인 상태가 없다** — 모양을 같이 바꾸지 않으면 503 이다. 되돌리기 = 보관소 이전 버전 + 이전 이미지.
+- 방화벽 뒤 보관소엔 허용된 경로(VM 경유 SOCKS · REST PUT)로 넣는다 · 새 값은 레포 밖 600 파일에만 두고 화면엔 모양(줄 수 · 칸 이름)만.
+
 ## 출처
 
 - [[2026-11-09-day-data-architecture]] §2 · §3 — DAY: VM 신원으로 Key Vault 읽기 · 보관소는 VM 서브넷만 · 비밀 넣을 때 로컬 IP 를 잠깐 열고 닫기 · 외부 CRM 주소 레포 env → Key Vault(코드 `1ccc101b`) · 관리자 env 파일 → `~/.pgpass`
 - [[2026-11-11-day-app]] §2 — 선택 비밀(채팅 Blob · APNs 키)은 보관소에 없으면 app.env 에 안 넣고 기능만 꺼짐(fail-closed) · 배포는 성공(`scripts/deploy/day_vm.py` OPTIONAL_SECRETS)
 - [[2026-11-11-fix]] §2 「방화벽 뒤 비밀 저장소에 허용된 경로로 넣기」 — APNs · Soniox 키를 VM 경유로 Key Vault 에 · `RETIRED_SECRETS`(`be-4-report.md` · `review-doc-3-report.md` W5)
 - [[2026-11-12-prod-deploy-re1]] §2 「비밀을 화면에 안 내는 운영 등록」 — 운영 연결 값을 prod 컨테이너 안 `--stdin` 1회로 · 테넌트 id 는 컨테이너에서 받아 로컬 600 파일에만 · 값 파일은 쓰자마자 삭제(`backend/day/register_connection.py` · `be-1-report.md`)
+- [[2026-11-27-day-reservation3]] §2 — ext 키 형식 변경 배포 순서 사고 · dev Key Vault VM 경유 교체(§3)
 
 ## 모바일 기기 안 — Android Keystore (DAY android-app)
 
