@@ -11,6 +11,7 @@ aliases:
   - 웹 · 앱 API 가르기
 up:
   - 2026-11-09-day-data-architecture
+  - 2026-11-28-day-reservations-fix
 tags:
   - frontend
   - 서버 렌더
@@ -55,6 +56,14 @@ GET  /api/...               → 앱 전용 JSON(웹은 안 씀)
 
 버튼 응답이 판 전체 조각을 다시 그리고 실시간 신호로 한 번 더 그리면, 다른 카드까지 깜빡이고 메뉴가 늦게 뜬다. 응답 = 누른 카드 조각 + OOB(숫자 · 사이드) + 판 version, 실시간 신호는 version 만. 받는 쪽은 **자기 조작으로 받은 version 만** 건너뛴다 — 응답 version 을 「다 봤다」로 쓰면 그보다 작은 남의 변경 신호를 놓친다. 앱이 같은 version 을 소비하면 뜻(판이 바뀔 때만 오름 · 같은 값은 받음)을 한 번에 맞춘다.
 
+## 응답이 누른 요소를 바꿔 넣은 뒤 — afterRequest 의 `elt`
+
+조각을 넓게 갈아 끼우면 **누른 요소가 응답 처리 중에 문서에서 떨어진다.** DAY [문진 QR] 팝오버의 「링크 복사하기」는 폼 POST 응답이 모달 전체(`#modal-root`)를 바꿨다. 그 뒤 오는 `htmx:afterRequest` 의 `e.detail.elt` 는 폼이 아니라 바뀐 영역이었다. 그래서 「이 폼이 눌렸나」 검사가 늘 거짓이 되어 클립보드가 비고, 미리 연 새 탭은 `about:blank` 로 남았다.
+
+- 단위 · 조각 테스트(TestClient · jsdom)는 모두 통과했다. 실제 브라우저(Playwright)에서 폼의 `connected` 값을 찍어 보고서야 드러났다.
+- 고친 길: 누른 요소는 `e.detail.requestConfig.elt` 로 찾거나, 갈아 끼우기 전(`htmx:beforeSwap`)에 응답에서 값을 읽는다.
+- 같은 갈아 끼우기가 JS 로 넣은 위치 `style` 을 **속성째** 새 요소로 옮기면서 CSP `style-src-attr` 위반도 냈다. 위치는 속성이 아니라 CSSOM 으로 다시 계산해 넣는다.
+
 ## 함께 보는 개념
 
 - [[server-sent-events]] — 조각을 밀어 보내는 통로
@@ -67,3 +76,4 @@ GET  /api/...               → 앱 전용 JSON(웹은 안 씀)
 
 - [[2026-11-09-day-data-architecture]] §2 — DAY 웹 = Jinja2 + HTMX + SSE · 화면 라우트 HTML 조각 · JSON `/api/*` 는 앱 전용 · CSRF 는 사내 기존 관리자 앱 방식(코드 `9c7376ca` · `3cbb2e08` · 결정 2026-11-06)
 - [[2026-11-11-day-procedure-board-2]] §2 — DAY 시술 현황 #236 v3 · 로컬 확인 F7 · F8 · 리뷰 W1 · 앱 스펙과 version 뜻 맞춤(`review-236v3-report.md` · `review-doc-merge921-report.md` F1)
+- [[2026-11-28-day-reservations-fix]] §2 — 모달 전체 교체 뒤 afterRequest `elt` 가 폼이 아님 → 링크 복사 · 열기 실패 · settle 이 위치 style 을 옮겨 CSP 위반(`qa-1-report.md` FAIL-1 · WARN-1 · `day.js` `dpLinkAfterRequest`)

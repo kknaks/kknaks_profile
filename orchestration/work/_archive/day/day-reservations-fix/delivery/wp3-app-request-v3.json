@@ -1,0 +1,63 @@
+{
+ "idempotency_key": "day/day-reservations-fix-app",
+ "title": "앱 예약현황 표 1시간 행 배치 · 상세 「6개월 경과」 (WP-3 앱 · DAY-SPEC-003 2026-11-27 · DAY-SPEC-006 Rule 15)",
+ "product_id": "day",
+ "document_root": "products/day",
+ "contract_version": 3,
+ "risk_level": "L2",
+ "target_specs": [
+  "DAY-SPEC-003",
+  "DAY-SPEC-006",
+  "DAY-SPEC-007"
+ ],
+ "spec_baseline_revision": "9bfccfb27be0b50820430d4fee01895a63a7b3bb",
+ "target_delta": [
+  "[BE ↔ 웹 · 앱 계약 — 세 Delivery 공통 · 이름 고정 · 세 Issue 에 같은 글자] ① 배치 값(DAY-SPEC-006 Functional Rule 15 ⓐ ~ ⓙ — 살아 있는 배치 정의는 이것 하나): 예약 판 값(웹 조각 렌더 값 · 앱 `GET /api/reservations?date=` · 스트림 같은 값)에 `rows[] {start_min, end_min, lines}`(오픈 시각 `open_min` 부터 1시간 행 · 오픈 전 예약 있으면 1시간씩 앞으로 · 마감 뒤 24:00 까지 · 정각 아닌 오픈 = 오픈 시각 경계 · 마지막 행 24:00 자름) · `cards[] {lane(0 ~ 4), line(0 ~), start_min, end_min}` · `bands[] {group_id, column_id, start_min, end_min, line, lane_from, lane_to}`(동행 띠 = 멤버를 다 감싸는 상자 — start_min = 멤버 가장 이른 시작 · end_min = 멤버 가장 늦은 끝 · 행을 넘으면 ⓖ 그림 규칙 · DAY-SPEC-006 U-9 · OQ-R43 닫힘). 놓는 순서 = 시작 시각 → 같은 시작이면 R73 · 동행 = 이웃 자리 · 이어진 빈 자리 첫 묶음(OQ-R43) · 그 시각에 겹치지 않는 가장 앞 자리 · 한 줄 5 자리 넘치면 그 행 아래 줄 · 행을 넘는 첫 줄 카드 = ⓖ 두 조각(시작 행 첫 줄 띠 끝에서 자르고 다음 행 첫 줄 띠 안 행 시작 ~ 끝 분 · 시작 행 아래 줄 띠는 덮지 않음 · 다음 행 첫 줄 자리 셈엔 넣음 · 카드 겹침 0 · 띠도 같음 · 아래 줄 카드는 행 끝 자름) · ⓚ y 매핑 하나(분 → y = 각 줄 띠 안 분 비례 · 회색 면 · 현재 시각 선 = 그 행 모든 줄 띠 · [+] · 빈 칸 누르기 y → 시각 같은 식) · `rows[].lines` = 그 행 어느 열이든 가장 큰 line + 1(전 열 공통) · 열 폭 = 한 줄 자리 수 최댓값(최대 5) × 카드 폭 + 사이 + 왼쪽 여백 + 오른쪽 70. 앱 JSON 은 camelCase(Row `startMin` · `endMin` · `lines` / Card `startMin` · `endMin` · `lane` · `line` / Band `groupId` · `columnId` · `startMin` · `endMin` · `line` · `laneFrom` · `laneTo` — Band `endMin` 새 칸). 화면은 받은 값으로만 그리고 다시 계산하지 않는다 · 픽셀(1시간 행 기본 높이 = 웹 140px · 앱 지금 30분 칸 × 2 · 카드 폭)만 화면마다(ⓗ). ② [+] 툴팁용 열 값: 웹 = 열 `title` · `interval_minutes` · 앱 JSON = 기존 Column `title` · `intervalMinutes`(새 칸 없음). ③ 예약 상세: 웹 · 앱 상세 `questionnaire.expired: bool`(DAY-SPEC-007 앱 JSON 짝 · 그 고객 마지막 살아 있는 `questionnaire_history` 가 기간(env · 기본 6개월 · KST 날짜 + n 달력 개월 D49) 밖이면 true · 행 없음 = `questionnaire` null) · 웹 · 앱 글자 「6개월 경과」(결정 글자 · 새 문구 아님) · [문진 QR] 보이기(`actions.questionnaireQr`)도 같은 조건. ④ 팝오버: 기기 목록 = `GET /reservations/visits/{visit_id}/display-targets?kind=`(지금 구현 · DAY-SPEC-007 API 표) · 요청 만들기 = `POST /reservations/visits/{visit_id}/display-requests`(form `kind` · `device_id` — [문진 QR] 「링크 복사하기」 · 「링크 열기」 = device 없는 요청 · 기기 없는 열린(pending · opened) 링크 요청이 여는 시한(`expires_at`) 안이면 다시 씀(D44 · **웹 팝오버만** — 앱 JSON 경로는 늘 새 요청 · F-1) · 기기 줄 = 앞 요청 취소 → 새 요청 · [여권 스캔] = 기기 줄만 · 기기 줄 모양 = 기기명 · 점(초록 연결 · 빨강 미연결) · 상태 · 미연결 줄도 보이고 누름 · **고르면 그때 요청 생성** — 버튼 누름만으로는 요청 없음 · DAY-SPEC-007 규칙 2 · 7 · 케이스 고침 8 줄). ⑤ F6: 상세를 그리는 모든 경로가 같은 origin 을 넘겨 진행 값(`displays[].qrUrl`)이 같다(DAY-SPEC-007 규칙 9).",
+  "앱 예약현황 표(DAY-SPEC-003 U-25 · 머리 2026-11-27 ①): 서버 `rows` · `lane` · `line` · `startMin` · `endMin` 으로만 그림(다시 계산 없음) — 1시간 행 기본 높이 = 지금 30분 칸 높이 × 2(Rule 15 ⓗ) · 행 높이 = lines × 기본 높이 · 길이 비례 · 겹치면 옆 자리 · 한 줄 5 · 넘치면 아래 줄 · 행 넘는 카드 ⓖ · 지금 「고정 66 · 시작 행 안 lane / line」(`app/lib/ui/reservation_table.dart`)을 바꿈 · **시간 칸 선 · 회색 글자(`:313-321` 30분마다) · rows 없을 때 대체 행(`:173-174` 30분) = 1시간 행 · 띠 = `bands` 값으로(`:351-363` · Band `endMin` — 멤버 가장 늦은 끝까지 · 행을 넘으면 ⓖ)** · 열 오른쪽 [+] 는 앱에 없음(읽기 전용).",
+  "앱 상세(DAY-SPEC-003 U-26 · DAY-SPEC-007 앱 JSON 짝): `questionnaire.expired` 참이면 「6개월 경과」(웹과 같은 글자) · [문진 QR] 보이기 같은 조건 · 앱 [문진 QR](이 기기) · 태블릿에 보내기 · 여권 스캔 흐름은 그대로."
+ ],
+ "acceptance": [
+  "A1: 표 — BE 값 그대로(12:00 ~ 13:00 / 12:30 ~ 13:30 옆 자리 · 6장 → 아래 줄 · 행 높이 · 행 넘는 카드 · 15분 1/4 · 시간 칸 1시간 · 대체 행 1시간 · 동행 띠 = bands 값) — flutter test.",
+  "A2: 상세 「6개월 경과」 — flutter test.",
+  "A3: 회귀 — flutter analyze · test 통과 · iOS · Android 빌드.",
+  "A4: 로컬 KOS DEMO 지점 실물 e2e 1회(완료 조건) — 태블릿(실기기 또는 에뮬레이터)에서 같은 날 웹 표와 같은 배치 · 6개월 지난 고객 상세 「6개월 경과」."
+ ],
+ "non_goals": [
+  "BE 값 계산 — WP-1 몫.",
+  "웹 — WP-2 몫.",
+  "앱 쓰기 기능 · [+] 등록 — 없음(읽기 전용).",
+  "스토어 배포 — 사람 gate."
+ ],
+ "review_surface": [
+  "[BE ↔ 웹 · 앱 계약 — 세 Delivery 공통 · 이름 고정 · 세 Issue 에 같은 글자] ① 배치 값(DAY-SPEC-006 Functional Rule 15 ⓐ ~ ⓙ — 살아 있는 배치 정의는 이것 하나): 예약 판 값(웹 조각 렌더 값 · 앱 `GET /api/reservations?date=` · 스트림 같은 값)에 `rows[] {start_min, end_min, lines}`(오픈 시각 `open_min` 부터 1시간 행 · 오픈 전 예약 있으면 1시간씩 앞으로 · 마감 뒤 24:00 까지 · 정각 아닌 오픈 = 오픈 시각 경계 · 마지막 행 24:00 자름) · `cards[] {lane(0 ~ 4), line(0 ~), start_min, end_min}` · `bands[] {group_id, column_id, start_min, end_min, line, lane_from, lane_to}`(동행 띠 = 멤버를 다 감싸는 상자 — start_min = 멤버 가장 이른 시작 · end_min = 멤버 가장 늦은 끝 · 행을 넘으면 ⓖ 그림 규칙 · DAY-SPEC-006 U-9 · OQ-R43 닫힘). 놓는 순서 = 시작 시각 → 같은 시작이면 R73 · 동행 = 이웃 자리 · 이어진 빈 자리 첫 묶음(OQ-R43) · 그 시각에 겹치지 않는 가장 앞 자리 · 한 줄 5 자리 넘치면 그 행 아래 줄 · 행을 넘는 첫 줄 카드 = ⓖ 두 조각(시작 행 첫 줄 띠 끝에서 자르고 다음 행 첫 줄 띠 안 행 시작 ~ 끝 분 · 시작 행 아래 줄 띠는 덮지 않음 · 다음 행 첫 줄 자리 셈엔 넣음 · 카드 겹침 0 · 띠도 같음 · 아래 줄 카드는 행 끝 자름) · ⓚ y 매핑 하나(분 → y = 각 줄 띠 안 분 비례 · 회색 면 · 현재 시각 선 = 그 행 모든 줄 띠 · [+] · 빈 칸 누르기 y → 시각 같은 식) · `rows[].lines` = 그 행 어느 열이든 가장 큰 line + 1(전 열 공통) · 열 폭 = 한 줄 자리 수 최댓값(최대 5) × 카드 폭 + 사이 + 왼쪽 여백 + 오른쪽 70. 앱 JSON 은 camelCase(Row `startMin` · `endMin` · `lines` / Card `startMin` · `endMin` · `lane` · `line` / Band `groupId` · `columnId` · `startMin` · `endMin` · `line` · `laneFrom` · `laneTo` — Band `endMin` 새 칸). 화면은 받은 값으로만 그리고 다시 계산하지 않는다 · 픽셀(1시간 행 기본 높이 = 웹 140px · 앱 지금 30분 칸 × 2 · 카드 폭)만 화면마다(ⓗ). ② [+] 툴팁용 열 값: 웹 = 열 `title` · `interval_minutes` · 앱 JSON = 기존 Column `title` · `intervalMinutes`(새 칸 없음). ③ 예약 상세: 웹 · 앱 상세 `questionnaire.expired: bool`(DAY-SPEC-007 앱 JSON 짝 · 그 고객 마지막 살아 있는 `questionnaire_history` 가 기간(env · 기본 6개월 · KST 날짜 + n 달력 개월 D49) 밖이면 true · 행 없음 = `questionnaire` null) · 웹 · 앱 글자 「6개월 경과」(결정 글자 · 새 문구 아님) · [문진 QR] 보이기(`actions.questionnaireQr`)도 같은 조건. ④ 팝오버: 기기 목록 = `GET /reservations/visits/{visit_id}/display-targets?kind=`(지금 구현 · DAY-SPEC-007 API 표) · 요청 만들기 = `POST /reservations/visits/{visit_id}/display-requests`(form `kind` · `device_id` — [문진 QR] 「링크 복사하기」 · 「링크 열기」 = device 없는 요청 · 기기 없는 열린(pending · opened) 링크 요청이 여는 시한(`expires_at`) 안이면 다시 씀(D44 · **웹 팝오버만** — 앱 JSON 경로는 늘 새 요청 · F-1) · 기기 줄 = 앞 요청 취소 → 새 요청 · [여권 스캔] = 기기 줄만 · 기기 줄 모양 = 기기명 · 점(초록 연결 · 빨강 미연결) · 상태 · 미연결 줄도 보이고 누름 · **고르면 그때 요청 생성** — 버튼 누름만으로는 요청 없음 · DAY-SPEC-007 규칙 2 · 7 · 케이스 고침 8 줄). ⑤ F6: 상세를 그리는 모든 경로가 같은 origin 을 넘겨 진행 값(`displays[].qrUrl`)이 같다(DAY-SPEC-007 규칙 9).",
+  "공개(open) KOS 호출을 새로 두지 않는다(사용자 2026-11-27 「우리 다 내부 api 만」) — KOS 문진 읽기 = 내부 `visitor/questionnaire/v1/queries/get-questionnaire-submit/legacy` · 남은 공개 호출은 DAY-SPEC-002 목록만(이번에 안 바꿈).",
+  "열린 OQ(사용자 글자): DAY-SPEC-007 OQ-D43(진행 칸 · 복사 알림 글자) · OQ-D48(다른 날 낸 문진 글자) — 지금 글자 · 알림 없음으로 구현 · 화면 문구를 새로 짓지 않는다."
+ ],
+ "execution": {
+  "code_surface": [
+   "app/lib/ui/reservation_table.dart(:52 고정 66 · :173-174 대체 행 · :249 열 폭 · :313-321 시간 칸 · :351-363 띠 · :374-378 카드) · reservation_screen.dart · reservation_detail.dart",
+   "app/lib/(예약 JSON 모델)",
+   "app/test/"
+  ],
+  "domain_candidates": [],
+  "dependencies": [
+   "WP-1 BE 배치 값(앱 JSON camelCase) · questionnaire.expired — 계약 이름 고정이라 병렬 · e2e 는 BE 머지 뒤"
+  ],
+  "phases": [
+   "P1 JSON 모델 · rows/lane/line/startMin/endMin",
+   "P2 표 그리기 1시간 행 · 줄 접기 · 행 넘는 카드 · 시간 칸 · 대체 행 · 띠 bands",
+   "P3 상세 「6개월 경과」",
+   "P4 flutter test · analyze · 로컬 KOS DEMO 실물(A4)"
+  ],
+  "verification": [
+   "flutter analyze · flutter test",
+   "로컬 KOS DEMO 지점 실물 — 태블릿 표 · 상세"
+  ],
+  "predeploy": [],
+  "rollback": [
+   "Code PR revert — 앱 코드만 · 서버 값은 하위 호환(새 칸 추가)"
+  ],
+  "open_questions": []
+ },
+ "scope_delta": "2026-11-28 v3 — SPEC PR mediness#971 main 머지(9bfccfb2) 뒤 재결속 · baseline = 머지된 main · 「[계약 원천] 미머지 PR」 줄 뗌. 코드 검수 · e2e 로 바뀐 계약(SPEC 에 반영됨): R45 행 넘는 첫 줄 카드 = 두 조각(시작 행 아래 줄 띠 안 덮음 · 겹침 0 — 코드 검수 F-2) · ⓚ y 매핑 하나(회색 면 · 현재 시각 선 · [+] · 빈 칸 누르기 — W-1) · F-1 앱 JSON 경로는 늘 새 요청 · D44 다시 쓰기 = 여는 시한 안 · W-a [+] · 빈 칸 누르기 시각 단위 = 그 열 그룹 간격(끌어 놓기 30분 그대로) · OQ-D43 닫힘(pending 줄 = 「남은 시간 mm:ss」만) · crm_error 에 KOS 오류 이름 · migration 0032 고객 문진 인덱스. 구현 = CENTURION_DAY#303(dev 머지 7af15621)."
+}

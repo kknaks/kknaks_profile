@@ -11,6 +11,7 @@ up:
   - 2026-09-01-task-improve
   - 2026-10-30-internal-chat
   - 2026-11-12-fix-web
+  - 2026-11-28-day-reservations-fix
 tags:
   - 설계
   - 프로세스
@@ -51,6 +52,14 @@ DAY FCM 키(2026-11-20): Key Vault 이름 · 배포 선택 비밀 목록에만 �
 
 DAY(2026-11-24): 여러 장 올리기를 하며 앱의 본문 상한을 없앴지만 dev · prod 앞의 Caddy 가 6MiB 로 막았다. 로컬 실행기는 Caddy 를 거치지 않고 시험은 ASGI 직접 호출이라 e2e 3회 · 시험 2700개가 다 통과했다. 코드 검수가 Caddyfile 을 읽어서야 잡았다. 요청이 지나가는 층(프록시 · 게이트웨이 · CDN)의 상한 · 시간 제한도 계약 표면 목록에 넣는다.
 
+## 같은 화면을 그리는 경로도 표면이다
+
+DAY 예약 상세는 네 경로가 같은 조각을 그렸다(POST 띄우기 · GET 상세 · 동행 저장 · 신분확인). 그중 POST 만 공개 주소(`origin`)를 넘겼다. SSE 신호로 GET 이 다시 그리면 `qrUrl = null` 이 되어 QR 과 [태블릿에 보내기]가 「떴다 사라졌다」. 증상은 시한 · 시간대처럼 보였지만, 원인은 **같은 출력을 만드는 입구 하나가 입력을 빠뜨린 것**이었다.
+
+- 세는 단위는 「이 값을 쓰는 곳」 이 아니라 **「이 화면을 그리는 모든 경로」** 다.
+- 빠뜨림을 막는 방법은 인자를 필수로 바꾸는 것이다. 그러면 타입 검사가 남은 입구를 대신 센다. 공개 주소 함수도 두 벌이던 것을 하나로 모았다.
+- 같은 상수를 두 뜻으로 쓰는 곳도 표면이다. 배치 행을 1시간으로 바꾸면서 동행 판정이 같은 `ROW_MINUTES` 를 쓰고 있어 묶기 조건이 조용히 넓어질 뻔했다. 함수와 상수를 나눴다.
+
 ## 출처
 
 - [[2026-10-30-internal-chat]] §2 「들어온 뒤 대화만」 · review-doc r5
@@ -58,3 +67,4 @@ DAY(2026-11-24): 여러 장 올리기를 하며 앱의 본문 상한을 없앴�
 - [[2026-11-22-day-mobile-v2]] §2 — 직원 앱 0.2.0(CENTURION_DAY #266 · mediness #955)
 - [[2026-11-24-day-chart-photo]] §2 — Caddy 6MiB(`review-code-4-report.md` F1 · C33)
 - [[2026-11-25-day-kos-call-notify]] §2 — 「판정 경로 두 개」 스펙이 `ext_sync` 저장 경로를 빠뜨림 · 워커가 `_apply_tasks` 를 부르는 커밋을 전수로 세서 잡음(date_sync · backfill 은 오늘 아님 근거 줄)
+- [[2026-11-28-day-reservations-fix]] §2 — 예약 상세 4경로 중 GET 만 origin 누락 → F6 · `detail_view(origin)` 필수 · `public_origin` 하나 · R71 동행 판정 상수 분리(`be-f6-debug-1-report.md` · `review-delivery-1-report.md` D2)
