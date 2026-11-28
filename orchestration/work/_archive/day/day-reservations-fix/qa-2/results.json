@@ -1,0 +1,142 @@
+{
+ "login": "/reservations",
+ "1-f2": {
+  "d": {
+   "x": 11,
+   "h": 136,
+   "lane": "0",
+   "parts": 0
+  },
+  "s": {
+   "x": 155,
+   "h": 68,
+   "lane": "1",
+   "parts": 1
+  },
+  "rowH": [
+   140
+  ],
+  "rows": 14
+ },
+ "2-hover-lifting-1900-top": {
+  "tip": "리프팅 | 19:00 ~ 20:00",
+  "tipShown": "리프팅 | 19:00 ~ 20:00",
+  "y": 468,
+  "h": 136,
+  "x": 1221,
+  "w": 61,
+  "dashed": "dashed"
+ },
+ "2-book-lifting-1900-top": {
+  "dlg": [],
+  "timeSelected": [
+   "19:00"
+  ],
+  "timeLabel": "19:00 - 20:00"
+ },
+ "2-hover-lifting-1930-bottom": {
+  "tip": "수액/체형 | 20:00 ~ 20:30",
+  "tipShown": "수액/체형 | 20:00 ~ 20:30",
+  "y": 524,
+  "h": 66,
+  "x": 1265,
+  "w": 113,
+  "dashed": "dashed"
+ },
+ "2-book-lifting-1930-bottom": {
+  "dlg": [],
+  "timeSelected": [],
+  "timeLabel": "시간 선택"
+ },
+ "2-hover-gita30-1930-bottom": {
+  "tip": "보톡스 | 20:45 ~ 21:00",
+  "tipShown": "보톡스 | 20:45 ~ 21:00",
+  "y": 537,
+  "h": 31,
+  "x": 809,
+  "w": 113,
+  "dashed": "dashed"
+ },
+ "2-book-gita30-1930-bottom": {
+  "dlg": [],
+  "timeSelected": [],
+  "timeLabel": "시간 선택"
+ },
+ "8-3-detail": {
+  "questionnaire": "6개월 경과",
+  "health": "사용 중인 메신저 (복수 선택 가능) 없음",
+  "qrBtn": true,
+  "qrStyle": [
+   "rgb(110, 110, 110)",
+   "rgb(243, 243, 243)",
+   "1",
+   false
+  ],
+  "deviceCard": false
+ },
+ "3-4-popover": {
+  "expanded": "true",
+  "open": true,
+  "rows": [
+   "링크 복사하기",
+   "링크 열기"
+  ],
+  "empty": [
+   "띄울 수 있는 기기가 없어요 — 코디 계정으로 로그인한 기기가 보여요"
+  ],
+  "sub": 0
+ },
+ "6-copy1": {
+  "clipHasLink": true,
+  "clip==domLink": true,
+  "clip": "http://127.0.0.1:11340/q#pbMl_9…"
+ },
+ "5-prog-after-copy": {
+  "status": "opened",
+  "text": "입력 중 / 고객이 입력 중 · 15:25"
+ },
+ "6-copy2-same": true,
+ "6-open": {
+  "url==clip": false,
+  "url": "http://127.0.0.1:11340/q",
+  "body": "한국어 / 日本語 / 简体中文 / 繁體中文 / English / Bahasa Indonesia / 박하늘(시험) 님 /  / 시술 전에 몇 가지를 여쭤볼게요 /  / 시작"
+ },
+ "5-prog-after-12s": {
+  "status": "opened",
+  "text": "입력 중 / 고객이 입력 중 · 15:25"
+ },
+ "7-d45": {
+  "refetchOnMain": [
+   "GET /reservations/visits/7511bbb0-38f7-480d-9a0d-"
+  ],
+  "pop": {
+   "expanded": "true",
+   "open": true,
+   "rows": [
+    "링크 복사하기",
+    "링크 열기"
+   ],
+   "empty": [
+    "띄울 수 있는 기기가 없어요 — 코디 계정으로 로그인한 기기가 보여요"
+   ],
+   "sub": 0
+  }
+ },
+ "8-7511": {
+  "questionnaire": "제출됨 · 15:14 실패 ",
+  "qrBtn": 0
+ },
+ "9-errors": [
+  [
+   "main",
+   "error",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  [
+   "main",
+   "error",
+   "Event"
+  ]
+ ],
+ "logout": "/login?reason=logged_out"
+}

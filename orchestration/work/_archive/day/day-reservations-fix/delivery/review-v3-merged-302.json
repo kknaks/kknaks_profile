@@ -1,0 +1,61 @@
+{
+ "delivery_issue": 302,
+ "contract_digest": "sha256:8df6b13d749b01f727a4b94939628aad934b748e3c97e7b95c1e8cafe51c1a91",
+ "contract_version": 3,
+ "spec_baseline_revision": "9bfccfb27be0b50820430d4fee01895a63a7b3bb",
+ "code_pr": 303,
+ "code_pr_head_sha": "d1ce8ea80b6ffa070154fc7d6e403ba45f1ba5a5",
+ "code_merge_sha": "7af15621ad067f2edbbeef69ab62901aad57c8c9",
+ "acceptance": [
+  {
+   "id": "A1",
+   "result": "pass",
+   "evidence": [
+    "app/test/ui/reservation_table_test.dart:56",
+    "app/test/ui/reservation_table_test.dart:93",
+    "app/test/ui/reservation_table_test.dart:114",
+    "app/test/ui/reservation_table_test.dart:180",
+    "app/test/ui/reservation_table_test.dart:214",
+    "app/test/ui/reservation_table_test.dart:225",
+    "app/test/ui/reservation_table_test.dart:241"
+   ]
+  },
+  {
+   "id": "A2",
+   "result": "pass",
+   "evidence": [
+    "app/test/ui/reservation_ui_test.dart:156"
+   ]
+  },
+  {
+   "id": "A3",
+   "result": "pass",
+   "evidence": [
+    "Code PR CENTURION_DAY#303 본문 「검증」 절 — ./scripts/test.sh --pure 2457 passed · 전체(infra) 3344 passed · web 290 · arch 393 · node 141 · flutter analyze 0 · flutter test +551 −1(base 기존 실패 board_messages_contract_test · PR 무관) · 코드 검수 review-code-1 → review-code-2 PASS"
+   ]
+  },
+  {
+   "id": "A4",
+   "result": "undetermined",
+   "evidence": [
+    "미확인 — 앱 태블릿 실기기(또는 에뮬레이터) 배치 · 「6개월 경과」 실물 기록 없음(위젯 테스트만) · DAY-SPEC-007 OQ-D53 · dev 배포 7af15621 성공 · 태블릿 실기기 확인 대기"
+   ]
+  }
+ ],
+ "per_spec": [
+  {
+   "spec": "DAY-SPEC-003",
+   "result": "none"
+  },
+  {
+   "spec": "DAY-SPEC-006",
+   "result": "none"
+  },
+  {
+   "spec": "DAY-SPEC-007",
+   "result": "none"
+  }
+ ],
+ "implementation": "conformant",
+ "merged": true
+}

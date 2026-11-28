@@ -1,0 +1,132 @@
+{
+ "2-hover-lifting60-1900": {
+  "interval": "60",
+  "col": "리프팅",
+  "tip": "리프팅 | 19:00 ~ 20:00",
+  "tipShown": "리프팅 | 19:00 ~ 20:00",
+  "h": 136
+ },
+ "2-book-lifting60-1900": {
+  "open": true,
+  "group": "리프팅",
+  "timeSelected": [
+   "19:00"
+  ],
+  "timeLabel": "19:00 - 20:00",
+  "options": [
+   "14:00",
+   "15:00",
+   "16:00",
+   "17:00",
+   "18:00",
+   "19:00"
+  ]
+ },
+ "2-hover-lifting60-1930": {
+  "interval": "60",
+  "col": "리프팅",
+  "tip": "리프팅 | 19:00 ~ 20:00",
+  "tipShown": "리프팅 | 19:00 ~ 20:00",
+  "h": 136
+ },
+ "2-book-lifting60-1930": {
+  "open": true,
+  "group": "리프팅",
+  "timeSelected": [
+   "19:00"
+  ],
+  "timeLabel": "19:00 - 20:00",
+  "options": [
+   "14:00",
+   "15:00",
+   "16:00",
+   "17:00",
+   "18:00",
+   "19:00"
+  ]
+ },
+ "2-hover-gita30-1900": {
+  "interval": "30",
+  "col": "기타",
+  "tip": "기타 | 19:00 ~ 19:30",
+  "tipShown": "기타 | 19:00 ~ 19:30",
+  "h": 66
+ },
+ "2-book-gita30-1900": {
+  "open": true,
+  "group": "기타",
+  "timeSelected": [
+   "19:00"
+  ],
+  "timeLabel": "19:00 - 19:30",
+  "options": [
+   "17:00",
+   "17:30",
+   "18:00",
+   "18:30",
+   "19:00",
+   "19:30"
+  ]
+ },
+ "2-hover-gita30-1930": {
+  "interval": "30",
+  "col": "기타",
+  "tip": "기타 | 19:30 ~ 20:00",
+  "tipShown": "기타 | 19:30 ~ 20:00",
+  "h": 66
+ },
+ "2-book-gita30-1930": {
+  "open": true,
+  "group": "기타",
+  "timeSelected": [
+   "19:30"
+  ],
+  "timeLabel": "19:30 - 20:00",
+  "options": [
+   "17:00",
+   "17:30",
+   "18:00",
+   "18:30",
+   "19:00",
+   "19:30"
+  ]
+ },
+ "6-open-tab": {
+  "tokenMatchesClipboard": true,
+  "tabUrl": "http://127.0.0.1:11340/q",
+  "body": "한국어 / 日本語 / 简体中文 / 繁體中文 / English / Bahasa Indonesia / 박하늘(시험) 님 /  / 시술 전에 몇 가지를 여쭤볼게요 /  / 시작"
+ },
+ "9-errors": [
+  [
+   "main",
+   "error",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   {
+    "url": "http://127.0.0.1:11340/favicon.ico",
+    "lineNumber": 0,
+    "columnNumber": 0
+   }
+  ],
+  [
+   "main",
+   "error",
+   "Event",
+   {
+    "url": "http://127.0.0.1:11340/static/htmx.min.js?v=2.0.4",
+    "lineNumber": 0,
+    "columnNumber": 27243
+   }
+  ],
+  [
+   "reqfail",
+   "http://127.0.0.1:11340/reservations/stream",
+   "net::ERR_ABORTED"
+  ],
+  [
+   "reqfail",
+   "http://127.0.0.1:11340/api/notifications/stream",
+   "net::ERR_ABORTED"
+  ]
+ ],
+ "logout": "/login?reason=logged_out"
+}
